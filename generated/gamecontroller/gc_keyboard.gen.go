@@ -30,6 +30,8 @@ type _GCKeyboardClass struct {
 // An interface definition for the [GCKeyboard] class.
 type IGCKeyboard interface {
 	objectivec.IObject
+	KeyboardInput() unsafe.Pointer
+	SetKeyboardInput(value unsafe.Pointer)
 }
 
 // An object that represents a physical keyboard connected to a device.

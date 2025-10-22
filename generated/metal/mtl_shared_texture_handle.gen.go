@@ -30,6 +30,9 @@ type _SharedTextureHandleClass struct {
 // An interface definition for the [SharedTextureHandle] class.
 type ISharedTextureHandle interface {
 	objectivec.IObject
+	Device() objc.ID
+	Label() string
+	SetLabel(value string)
 }
 
 // A texture handle that can be shared across process address space boundaries.
@@ -91,8 +94,8 @@ func (s_ SharedTextureHandle) Device() objc.ID {
 // A string that identifies the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsharedtexturehandle/label
-func (s_ SharedTextureHandle) Label() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("label"))
+func (s_ SharedTextureHandle) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -102,8 +105,8 @@ func (s_ SharedTextureHandle) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsharedtexturehandle/label
-func (s_ SharedTextureHandle) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
+func (s_ SharedTextureHandle) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 

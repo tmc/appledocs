@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -57,6 +56,44 @@ type IManagedObjectContext interface {
 	TryLock() bool
 	Undo()
 	Unlock()
+	AutomaticallyMergesChangesFromParent() bool
+	SetAutomaticallyMergesChangesFromParent(value bool)
+	ConcurrencyType() ManagedObjectContextConcurrencyType
+	DeletedObjects() unsafe.Pointer
+	HasChanges() bool
+	MergePolicy() objc.ID
+	SetMergePolicy(value objc.ID)
+	Name() string
+	SetName(value string)
+	PersistentStoreCoordinator() NSPersistentStoreCoordinator
+	SetPersistentStoreCoordinator(value IPersistentStoreCoordinator)
+	PropagatesDeletesAtEndOfEvent() bool
+	SetPropagatesDeletesAtEndOfEvent(value bool)
+	QueryGenerationToken() NSQueryGenerationToken
+	RegisteredObjects() unsafe.Pointer
+	RetainsRegisteredObjects() bool
+	SetRetainsRegisteredObjects(value bool)
+	ShouldDeleteInaccessibleFaults() bool
+	SetShouldDeleteInaccessibleFaults(value bool)
+	StalenessInterval() foundation.TimeInterval
+	SetStalenessInterval(value foundation.ITimeInterval)
+	TransactionAuthor() string
+	SetTransactionAuthor(value string)
+	UpdatedObjects() unsafe.Pointer
+	UserInfo() foundation.MutableDictionary
+	NSDeletedObjectsKey() string
+	NSInsertedObjectsKey() string
+	NSInvalidatedAllObjectsKey() string
+	NSInvalidatedObjectsKey() string
+	InsertedObjects() NSManagedObject
+	SetInsertedObjects(value IManagedObject)
+	Parent() NSManagedObjectContext
+	SetParent(value IManagedObjectContext)
+	UndoManager() foundation.UndoManager
+	SetUndoManager(value foundation.IUndoManager)
+	NSManagedObjectContextQueryGenerationKey() string
+	NSRefreshedObjectsKey() string
+	NSUpdatedObjectsKey() string
 }
 
 // An object space to manipulate and track changes to managed objects.
@@ -197,8 +234,8 @@ func (m_ ManagedObjectContext) ObjectWithID(objectID IManagedObjectID) ManagedOb
 // Allows a context that has registered as an observer of a value to be notified of a change to that value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/observeValue(forKeyPath:of:change:context:)
-func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath appkit.string, object objectivec.IObject, change unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), keyPath, object, change, context)
+func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath string, object objectivec.IObject, change unsafe.Pointer, context unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), objc.String(keyPath), object, change, context)
 }
 
 // Converts to permanent IDs the object IDs of the objects in a given array.
@@ -382,8 +419,8 @@ func (m_ ManagedObjectContext) SetMergePolicy(value objc.ID) {
 // The developer-provided name of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
-func (m_ ManagedObjectContext) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ ManagedObjectContext) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -393,8 +430,8 @@ func (m_ ManagedObjectContext) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/name
-func (m_ ManagedObjectContext) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ ManagedObjectContext) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The persistent store coordinator of the context.
@@ -506,8 +543,8 @@ func (m_ ManagedObjectContext) SetStalenessInterval(value foundation.ITimeInterv
 // The author for the context that is used as an identifier in persistent history transactions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
-func (m_ ManagedObjectContext) TransactionAuthor() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("transactionAuthor"))
+func (m_ ManagedObjectContext) TransactionAuthor() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -517,8 +554,8 @@ func (m_ ManagedObjectContext) TransactionAuthor() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/transactionAuthor
-func (m_ ManagedObjectContext) SetTransactionAuthor(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), value)
+func (m_ ManagedObjectContext) SetTransactionAuthor(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
 }
 
 // The set of objects registered with the context that have uncommitted changes.
@@ -540,32 +577,32 @@ func (m_ ManagedObjectContext) UserInfo() foundation.MutableDictionary {
 // A key for the set of objects that were marked for deletion during the previous event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsdeletedobjectskey
-func (m_ ManagedObjectContext) NSDeletedObjectsKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSDeletedObjectsKey"))
+func (m_ ManagedObjectContext) NSDeletedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSDeletedObjectsKey"))
 	return rv
 }
 
 // A key for the set of objects that were inserted into the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsinsertedobjectskey
-func (m_ ManagedObjectContext) NSInsertedObjectsKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSInsertedObjectsKey"))
+func (m_ ManagedObjectContext) NSInsertedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSInsertedObjectsKey"))
 	return rv
 }
 
 // A key that specifies that all objects in the context have been invalidated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedallobjectskey
-func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
+func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
 	return rv
 }
 
 // A key for the set of objects that were invalidated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedobjectskey
-func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSInvalidatedObjectsKey"))
+func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedObjectsKey"))
 	return rv
 }
 
@@ -626,24 +663,24 @@ func (m_ ManagedObjectContext) SetUndoManager(value foundation.IUndoManager) {
 // Constant used to reference the query generation token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextquerygenerationkey
-func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSManagedObjectContextQueryGenerationKey"))
+func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSManagedObjectContextQueryGenerationKey"))
 	return rv
 }
 
 // A key for the set of objects that were refreshed but were not dirtied in the scope of this context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrefreshedobjectskey
-func (m_ ManagedObjectContext) NSRefreshedObjectsKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSRefreshedObjectsKey"))
+func (m_ ManagedObjectContext) NSRefreshedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSRefreshedObjectsKey"))
 	return rv
 }
 
 // A key for the set of objects that were updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsupdatedobjectskey
-func (m_ ManagedObjectContext) NSUpdatedObjectsKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
+func (m_ ManagedObjectContext) NSUpdatedObjectsKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
 	return rv
 }
 

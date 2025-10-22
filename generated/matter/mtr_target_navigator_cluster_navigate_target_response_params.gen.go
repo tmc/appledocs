@@ -31,6 +31,12 @@ type _MTRTargetNavigatorClusterNavigateTargetResponseParamsClass struct {
 // An interface definition for the [MTRTargetNavigatorClusterNavigateTargetResponseParams] class.
 type IMTRTargetNavigatorClusterNavigateTargetResponseParams interface {
 	objectivec.IObject
+	Data() string
+	SetData(value string)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRTargetNavigatorClusterNavigateTargetResponseParams() MTRTargetNavigat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
-func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() appkit.st
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
-func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetData(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 
 //

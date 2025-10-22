@@ -31,6 +31,14 @@ type _CBL2CAPChannelClass struct {
 // An interface definition for the [CBL2CAPChannel] class.
 type ICBL2CAPChannel interface {
 	objectivec.IObject
+	InputStream() foundation.InputStream
+	SetInputStream(value foundation.IInputStream)
+	OutputStream() foundation.OutputStream
+	SetOutputStream(value foundation.IOutputStream)
+	Peer() CBPeer
+	SetPeer(value ICBPeer)
+	Psm() CBL2CAPPSM
+	SetPsm(value ICBL2CAPPSM)
 }
 
 // A live L2CAP connection to a remote device.

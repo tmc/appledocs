@@ -31,6 +31,8 @@ type _DomainStateBiometryClass struct {
 // An interface definition for the [DomainStateBiometry] class.
 type IDomainStateBiometry interface {
 	objectivec.IObject
+	BiometryType() BiometryType
+	StateHash() foundation.NSData
 }
 
 //

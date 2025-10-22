@@ -29,6 +29,10 @@ type _CBServiceClass struct {
 // An interface definition for the [CBService] class.
 type ICBService interface {
 	ICBAttribute
+	Characteristics() []CBCharacteristic
+	IncludedServices() []CBService
+	IsPrimary() bool
+	Peripheral() CBPeripheral
 }
 
 // A collection of data and associated behaviors that accomplish a function or feature of a device.

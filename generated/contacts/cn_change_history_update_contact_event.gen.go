@@ -29,6 +29,7 @@ type _CNChangeHistoryUpdateContactEventClass struct {
 // An interface definition for the [CNChangeHistoryUpdateContactEvent] class.
 type ICNChangeHistoryUpdateContactEvent interface {
 	ICNChangeHistoryEvent
+	Contact() CNContact
 }
 
 // An object that represents a user updating a contact.

@@ -29,6 +29,16 @@ type _WhoseSpecifierClass struct {
 // An interface definition for the [WhoseSpecifier] class.
 type IWhoseSpecifier interface {
 	IScriptObjectSpecifier
+	EndSubelementIdentifier() unsafe.Pointer
+	SetEndSubelementIdentifier(value unsafe.Pointer)
+	EndSubelementIndex() int
+	SetEndSubelementIndex(value int)
+	StartSubelementIdentifier() unsafe.Pointer
+	SetStartSubelementIdentifier(value unsafe.Pointer)
+	StartSubelementIndex() int
+	SetStartSubelementIndex(value int)
+	Test() NSScriptWhoseTest
+	SetTest(value IScriptWhoseTest)
 }
 
 // A specifier that indicates every object in a collection matching a condition.

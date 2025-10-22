@@ -31,6 +31,14 @@ type _MTRNetworkCommissioningClusterConnectNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterConnectNetworkParams] class.
 type IMTRNetworkCommissioningClusterConnectNetworkParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	NetworkID() foundation.Data
+	SetNetworkID(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

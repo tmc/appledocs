@@ -30,6 +30,8 @@ type _ProcessPoolClass struct {
 // An interface definition for the [ProcessPool] class.
 type IProcessPool interface {
 	objectivec.IObject
+	ProcessPool() WKProcessPool
+	SetProcessPool(value IWKProcessPool)
 }
 
 // An opaque token that you use to run multiple web views in a single process.

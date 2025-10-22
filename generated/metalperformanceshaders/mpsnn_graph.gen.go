@@ -29,6 +29,27 @@ type _GraphClass struct {
 // An interface definition for the [Graph] class.
 type IGraph interface {
 	IKernel
+	DestinationImageAllocator() objc.ID
+	SetDestinationImageAllocator(value objc.ID)
+	ResultStateHandles() []objc.ID
+	DestinationFeatureChannelOffset() int
+	SetDestinationFeatureChannelOffset(value int)
+	Offset() unsafe.Pointer
+	SetOffset(value unsafe.Pointer)
+	Format() unsafe.Pointer
+	SetFormat(value unsafe.Pointer)
+	IntermediateImageHandles() unsafe.Pointer
+	SetIntermediateImageHandles(value unsafe.Pointer)
+	OutputStateIsTemporary() bool
+	SetOutputStateIsTemporary(value bool)
+	ResultHandle() unsafe.Pointer
+	SetResultHandle(value unsafe.Pointer)
+	ResultImageIsNeeded() bool
+	SetResultImageIsNeeded(value bool)
+	SourceImageHandles() unsafe.Pointer
+	SetSourceImageHandles(value unsafe.Pointer)
+	SourceStateHandles() unsafe.Pointer
+	SetSourceStateHandles(value unsafe.Pointer)
 }
 
 // An optimized representation of a graph of neural network image and filter nodes.

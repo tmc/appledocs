@@ -41,6 +41,8 @@ type IStrokePath interface {
 	ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.ITimeInterval) float64
 	PointAtIndex(i uint) StrokePoint
 	ObjectAtIndexedSubscript(i uint) StrokePoint
+	Count() uint
+	CreationDate() foundation.NSDate
 }
 
 // A class that captures the components of a stroke and provides methods to find and interpolate points along the stroke’s path.

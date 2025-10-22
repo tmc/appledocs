@@ -27,7 +27,7 @@ var (
 	_VNNormalizedPointForImagePointUsingRegionOfInterest func(coregraphics.CGPoint, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect) coregraphics.CGPoint
 	_VNNormalizedRectForImageRect func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
 	_VNNormalizedRectForImageRectUsingRegionOfInterest func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect) coregraphics.CGRect
-	_VNNormalizedRectIsIdentityRect func(coregraphics.CGRect) unsafe.Pointer
+	_VNNormalizedRectIsIdentityRect func(coregraphics.CGRect) bool
 )
 
 func init() {
@@ -178,7 +178,7 @@ func VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect coregraphics.CG
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectIsIdentityRect(_:)
-func VNNormalizedRectIsIdentityRect(normalizedRect coregraphics.CGRect) unsafe.Pointer {
+func VNNormalizedRectIsIdentityRect(normalizedRect coregraphics.CGRect) bool {
 	return _VNNormalizedRectIsIdentityRect(normalizedRect)
 	}
 

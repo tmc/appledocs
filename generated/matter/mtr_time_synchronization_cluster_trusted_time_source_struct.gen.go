@@ -31,6 +31,12 @@ type _MTRTimeSynchronizationClusterTrustedTimeSourceStructClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterTrustedTimeSourceStruct] class.
 type IMTRTimeSynchronizationClusterTrustedTimeSourceStruct interface {
 	objectivec.IObject
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	NodeID() foundation.Number
+	SetNodeID(value foundation.INumber)
 }
 
 //

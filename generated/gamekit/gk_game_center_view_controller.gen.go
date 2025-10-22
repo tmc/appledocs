@@ -30,6 +30,10 @@ type _GameCenterViewControllerClass struct {
 // An interface definition for the [GameCenterViewController] class.
 type IGameCenterViewController interface {
 	appkit.IViewController
+	GameCenterDelegate() unsafe.Pointer
+	SetGameCenterDelegate(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // The dashboard that allows players to access their Game Center data in your game.
@@ -87,9 +91,9 @@ func NewGameCenterViewController() GameCenterViewController {
 // Creates a view controller that presents a leaderboard set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(leaderboardSetID:)
-func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID appkit.string) GameCenterViewController {
+func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
-	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), leaderboardSetID)
+	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), objc.String(leaderboardSetID))
 	rv.Autorelease()
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _MTRServiceAreaClusterMapStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterMapStruct] class.
 type IMTRServiceAreaClusterMapStruct interface {
 	objectivec.IObject
+	MapID() foundation.Number
+	SetMapID(value foundation.INumber)
+	Name() string
+	SetName(value string)
 }
 
 //
@@ -94,8 +97,8 @@ func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRServiceAreaClusterMapStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -103,8 +106,8 @@ func (m_ MTRServiceAreaClusterMapStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRServiceAreaClusterMapStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

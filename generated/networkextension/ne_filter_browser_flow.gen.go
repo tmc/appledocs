@@ -30,6 +30,12 @@ type _NEFilterBrowserFlowClass struct {
 // An interface definition for the [NEFilterBrowserFlow] class.
 type INEFilterBrowserFlow interface {
 	INEFilterFlow
+	ParentURL() foundation.URL
+	SetParentURL(value foundation.IURL)
+	Request() foundation.URLRequest
+	SetRequest(value foundation.IURLRequest)
+	Response() foundation.URLResponse
+	SetResponse(value foundation.IURLResponse)
 }
 
 // A flow of network data, originating from a WebKit-based browser, that the filter examines.

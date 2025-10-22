@@ -50,6 +50,9 @@ type ISet interface {
 	ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer
 	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
+	AllObjects() []objc.ID
+	Count() uint
+	Description() string
 }
 
 // A static, unordered collection of unique objects.

@@ -30,6 +30,9 @@ type _RecordedRotationRateDataClass struct {
 // An interface definition for the [RecordedRotationRateData] class.
 type IRecordedRotationRateData interface {
 	IRotationRateData
+	StartDate() foundation.NSDate
+	RotationRate() unsafe.Pointer
+	SetRotationRate(value unsafe.Pointer)
 }
 
 // A data object that contains a single rotation-rate measurement at a specific time.

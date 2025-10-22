@@ -34,6 +34,22 @@ type IRoutePickerView interface {
 	appkit.IView
 	RoutePickerButtonColorForState(state RoutePickerViewButtonState) appkit.Color
 	SetRoutePickerButtonColorForState(color appkit.IColor, state RoutePickerViewButtonState)
+	ActiveTintColor() appkit.Color
+	SetActiveTintColor(value appkit.IColor)
+	CustomRoutingController() avrouting.CustomRoutingController
+	SetCustomRoutingController(value avrouting.ICustomRoutingController)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	RoutePickerButtonBordered() bool
+	SetRoutePickerButtonBordered(value bool)
+	Player() avfoundation.Player
+	SetPlayer(value avfoundation.IPlayer)
+	PrioritizesVideoDevices() bool
+	SetPrioritizesVideoDevices(value bool)
+	RoutePickerButtonStyle() RoutePickerViewButtonStyle
+	SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle)
+	IsRoutePickerButtonBordered() bool
+	SetIsRoutePickerButtonBordered(value bool)
 }
 
 // A view that presents a list of nearby media receivers.

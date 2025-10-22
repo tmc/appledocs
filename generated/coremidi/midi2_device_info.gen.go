@@ -30,6 +30,10 @@ type _MIDI2DeviceInfoClass struct {
 // An interface definition for the [MIDI2DeviceInfo] class.
 type IMIDI2DeviceInfo interface {
 	objectivec.IObject
+	Family() MIDIUInteger14
+	ManufacturerID() unsafe.Pointer
+	ModelNumber() MIDIUInteger14
+	RevisionLevel() unsafe.Pointer
 }
 
 //

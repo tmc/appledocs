@@ -30,6 +30,16 @@ type _MIDICIDeviceClass struct {
 // An interface definition for the [MIDICIDevice] class.
 type IMIDICIDevice interface {
 	objectivec.IObject
+	DeviceInfo() MIDI2DeviceInfo
+	DeviceType() MIDICIDeviceType
+	MaxPropertyExchangeRequests() uint
+	MaxSysExSize() uint
+	MUID() MIDICIMUID
+	Profiles() []MIDIUMPCIProfile
+	SupportsProcessInquiry() bool
+	SupportsProfileConfiguration() bool
+	SupportsPropertyExchange() bool
+	SupportsProtocolNegotiation() bool
 }
 
 //

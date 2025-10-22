@@ -31,6 +31,57 @@ type _MTL4MeshRenderPipelineDescriptorClass struct {
 type IMTL4MeshRenderPipelineDescriptor interface {
 	IMTL4PipelineDescriptor
 	Reset()
+	AlphaToCoverageState() unsafe.Pointer
+	SetAlphaToCoverageState(value unsafe.Pointer)
+	AlphaToOneState() MTL4AlphaToOneState
+	SetAlphaToOneState(value MTL4AlphaToOneState)
+	ColorAttachmentMappingState() unsafe.Pointer
+	SetColorAttachmentMappingState(value unsafe.Pointer)
+	ColorAttachments() MTL4RenderPipelineColorAttachmentDescriptorArray
+	FragmentFunctionDescriptor() unsafe.Pointer
+	SetFragmentFunctionDescriptor(value unsafe.Pointer)
+	FragmentStaticLinkingDescriptor() unsafe.Pointer
+	SetFragmentStaticLinkingDescriptor(value unsafe.Pointer)
+	RasterizationEnabled() bool
+	SetRasterizationEnabled(value bool)
+	MaxTotalThreadgroupsPerMeshGrid() uint
+	SetMaxTotalThreadgroupsPerMeshGrid(value uint)
+	MaxTotalThreadsPerMeshThreadgroup() uint
+	SetMaxTotalThreadsPerMeshThreadgroup(value uint)
+	MaxTotalThreadsPerObjectThreadgroup() uint
+	SetMaxTotalThreadsPerObjectThreadgroup(value uint)
+	MaxVertexAmplificationCount() uint
+	SetMaxVertexAmplificationCount(value uint)
+	MeshFunctionDescriptor() unsafe.Pointer
+	SetMeshFunctionDescriptor(value unsafe.Pointer)
+	MeshStaticLinkingDescriptor() unsafe.Pointer
+	SetMeshStaticLinkingDescriptor(value unsafe.Pointer)
+	MeshThreadgroupSizeIsMultipleOfThreadExecutionWidth() bool
+	SetMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool)
+	ObjectFunctionDescriptor() unsafe.Pointer
+	SetObjectFunctionDescriptor(value unsafe.Pointer)
+	ObjectStaticLinkingDescriptor() unsafe.Pointer
+	SetObjectStaticLinkingDescriptor(value unsafe.Pointer)
+	ObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth() bool
+	SetObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool)
+	PayloadMemoryLength() uint
+	SetPayloadMemoryLength(value uint)
+	RasterSampleCount() uint
+	SetRasterSampleCount(value uint)
+	RequiredThreadsPerMeshThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerMeshThreadgroup(value coregraphics.ISize)
+	RequiredThreadsPerObjectThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerObjectThreadgroup(value coregraphics.ISize)
+	SupportFragmentBinaryLinking() bool
+	SetSupportFragmentBinaryLinking(value bool)
+	SupportIndirectCommandBuffers() unsafe.Pointer
+	SetSupportIndirectCommandBuffers(value unsafe.Pointer)
+	SupportMeshBinaryLinking() bool
+	SetSupportMeshBinaryLinking(value bool)
+	SupportObjectBinaryLinking() bool
+	SetSupportObjectBinaryLinking(value bool)
+	IsRasterizationEnabled() bool
+	SetIsRasterizationEnabled(value bool)
 }
 
 // Groups together properties you use to create a mesh render pipeline state object.

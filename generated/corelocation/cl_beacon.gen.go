@@ -31,6 +31,14 @@ type _BeaconClass struct {
 // An interface definition for the [Beacon] class.
 type IBeacon interface {
 	objectivec.IObject
+	Accuracy() unsafe.Pointer
+	Major() foundation.Number
+	Minor() foundation.Number
+	Proximity() Proximity
+	ProximityUUID() foundation.UUID
+	Rssi() int
+	Timestamp() foundation.NSDate
+	UUID() foundation.UUID
 }
 
 // Information about an observed iBeacon device and its relative distance to a person’s device.

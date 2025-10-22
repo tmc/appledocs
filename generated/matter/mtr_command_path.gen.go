@@ -30,6 +30,8 @@ type _MTRCommandPathClass struct {
 // An interface definition for the [MTRCommandPath] class.
 type IMTRCommandPath interface {
 	IMTRClusterPath
+	Command() foundation.Number
+	SetCommand(value foundation.INumber)
 }
 
 //

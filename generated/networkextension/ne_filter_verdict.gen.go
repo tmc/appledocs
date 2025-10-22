@@ -30,6 +30,8 @@ type _NEFilterVerdictClass struct {
 // An interface definition for the [NEFilterVerdict] class.
 type INEFilterVerdict interface {
 	objectivec.IObject
+	ShouldReport() bool
+	SetShouldReport(value bool)
 }
 
 // The abstract base class for filter verdict classes.

@@ -30,6 +30,12 @@ type _PlayerInterstitialEventControllerClass struct {
 // An interface definition for the [PlayerInterstitialEventController] class.
 type IPlayerInterstitialEventController interface {
 	IPlayerInterstitialEventMonitor
+	LocalizedStringsTableName() string
+	SetLocalizedStringsTableName(value string)
+	Events() AVPlayerInterstitialEvent
+	SetEvents(value IAVPlayerInterstitialEvent)
+	LocalizedStringsBundle() foundation.Bundle
+	SetLocalizedStringsBundle(value foundation.IBundle)
 }
 
 // An object that schedules interstitial events for items played by the primary player.

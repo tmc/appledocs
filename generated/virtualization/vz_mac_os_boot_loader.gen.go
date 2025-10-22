@@ -29,6 +29,8 @@ type _VZMacOSBootLoaderClass struct {
 // An interface definition for the [VZMacOSBootLoader] class.
 type IVZMacOSBootLoader interface {
 	IVZBootLoader
+	Platform() VZPlatformConfiguration
+	SetPlatform(value IVZPlatformConfiguration)
 }
 
 // An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.

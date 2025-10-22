@@ -32,6 +32,7 @@ type _MXCallStackTreeClass struct {
 type IMXCallStackTree interface {
 	objectivec.IObject
 	JSONRepresentation() foundation.Data
+	MXErrorDomain() string
 }
 
 // An object representing the call stack for an exception.
@@ -91,8 +92,8 @@ func (m_ MXCallStackTree) JSONRepresentation() foundation.Data {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXCallStackTree) MXErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXCallStackTree) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

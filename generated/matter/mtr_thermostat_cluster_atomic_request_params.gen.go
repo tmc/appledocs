@@ -31,6 +31,16 @@ type _MTRThermostatClusterAtomicRequestParamsClass struct {
 // An interface definition for the [MTRThermostatClusterAtomicRequestParams] class.
 type IMTRThermostatClusterAtomicRequestParams interface {
 	objectivec.IObject
+	AttributeRequests() objc.ID
+	SetAttributeRequests(value objc.ID)
+	RequestType() foundation.Number
+	SetRequestType(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Timeout() foundation.Number
+	SetTimeout(value foundation.INumber)
 }
 
 //

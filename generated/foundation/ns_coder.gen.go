@@ -59,6 +59,25 @@ type ICoder interface {
 	EncodeIntForKey(value int, key string)
 	EncodeConditionalObjectForKey(object objectivec.IObject, key string)
 	EncodeNXObject(object objectivec.IObject)
+	AllowsKeyedCoding() bool
+	DecodingFailurePolicy() unsafe.Pointer
+	RequiresSecureCoding() bool
+	AllowedClasses() unsafe.Pointer
+	SetAllowedClasses(value unsafe.Pointer)
+	Error() Error
+	SetError(value IError)
+	SystemVersion() unsafe.Pointer
+	SetSystemVersion(value unsafe.Pointer)
+	NSCoderErrorMaximum() int
+	SetNSCoderErrorMaximum(value int)
+	NSCoderErrorMinimum() int
+	SetNSCoderErrorMinimum(value int)
+	NSCoderInvalidValueError() int
+	SetNSCoderInvalidValueError(value int)
+	NSCoderReadCorruptError() int
+	SetNSCoderReadCorruptError(value int)
+	NSCoderValueNotFoundError() int
+	SetNSCoderValueNotFoundError(value int)
 }
 
 // An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.

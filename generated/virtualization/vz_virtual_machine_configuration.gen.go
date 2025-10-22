@@ -32,6 +32,42 @@ type IVZVirtualMachineConfiguration interface {
 	objectivec.IObject
 	ValidateWithError(error_ unsafe.Pointer) bool
 	ValidateSaveRestoreSupportWithError(error_ unsafe.Pointer) bool
+	AudioDevices() []VZAudioDeviceConfiguration
+	SetAudioDevices(value []VZAudioDeviceConfiguration)
+	BootLoader() VZBootLoader
+	SetBootLoader(value IVZBootLoader)
+	ConsoleDevices() []VZConsoleDeviceConfiguration
+	SetConsoleDevices(value []VZConsoleDeviceConfiguration)
+	CPUCount() uint
+	SetCPUCount(value uint)
+	DirectorySharingDevices() []VZDirectorySharingDeviceConfiguration
+	SetDirectorySharingDevices(value []VZDirectorySharingDeviceConfiguration)
+	EntropyDevices() []VZEntropyDeviceConfiguration
+	SetEntropyDevices(value []VZEntropyDeviceConfiguration)
+	GraphicsDevices() []VZGraphicsDeviceConfiguration
+	SetGraphicsDevices(value []VZGraphicsDeviceConfiguration)
+	Keyboards() []VZKeyboardConfiguration
+	SetKeyboards(value []VZKeyboardConfiguration)
+	MemoryBalloonDevices() []VZMemoryBalloonDeviceConfiguration
+	SetMemoryBalloonDevices(value []VZMemoryBalloonDeviceConfiguration)
+	MemorySize() uint64
+	SetMemorySize(value uint64)
+	NetworkDevices() []VZNetworkDeviceConfiguration
+	SetNetworkDevices(value []VZNetworkDeviceConfiguration)
+	Platform() VZPlatformConfiguration
+	SetPlatform(value IVZPlatformConfiguration)
+	PointingDevices() []VZPointingDeviceConfiguration
+	SetPointingDevices(value []VZPointingDeviceConfiguration)
+	SerialPorts() []VZSerialPortConfiguration
+	SetSerialPorts(value []VZSerialPortConfiguration)
+	SocketDevices() []VZSocketDeviceConfiguration
+	SetSocketDevices(value []VZSocketDeviceConfiguration)
+	StorageDevices() []VZStorageDeviceConfiguration
+	SetStorageDevices(value []VZStorageDeviceConfiguration)
+	UsbControllers() []VZUSBControllerConfiguration
+	SetUsbControllers(value []VZUSBControllerConfiguration)
+	CpuCount() uint
+	SetCpuCount(value uint)
 }
 
 // The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.

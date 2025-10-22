@@ -35,6 +35,22 @@ type IHKWorkoutBuilder interface {
 	BeginCollectionWithStartDateCompletion(startDate foundation.IDate, completion unsafe.Pointer)
 	FinishWorkoutWithCompletion(completion unsafe.Pointer)
 	UpdateActivityWithUUIDEndDateCompletion(UUID foundation.IUUID, endDate foundation.IDate, completion unsafe.Pointer)
+	Device() HKDevice
+	AllStatistics() HKStatistics
+	SetAllStatistics(value IHKStatistics)
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	Metadata() string
+	SetMetadata(value string)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	WorkoutActivities() HKWorkoutActivity
+	SetWorkoutActivities(value IHKWorkoutActivity)
+	WorkoutConfiguration() HKWorkoutConfiguration
+	SetWorkoutConfiguration(value IHKWorkoutConfiguration)
+	WorkoutEvents() HKWorkoutEvent
+	SetWorkoutEvents(value IHKWorkoutEvent)
+	HKWorkoutTypeIdentifier() string
 }
 
 // A builder object that incrementally constructs a workout.
@@ -160,8 +176,8 @@ func (h_ HKWorkoutBuilder) SetEndDate(value foundation.IDate) {
 // The metadata the builder saves with the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
-func (h_ HKWorkoutBuilder) Metadata() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("metadata"))
+func (h_ HKWorkoutBuilder) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -171,8 +187,8 @@ func (h_ HKWorkoutBuilder) Metadata() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
-func (h_ HKWorkoutBuilder) SetMetadata(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
+func (h_ HKWorkoutBuilder) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
 // The workout’s start date and time.
@@ -247,8 +263,8 @@ func (h_ HKWorkoutBuilder) SetWorkoutEvents(value IHKWorkoutEvent) {
 // The workout type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkoutBuilder) HKWorkoutTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+func (h_ HKWorkoutBuilder) HKWorkoutTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }
 

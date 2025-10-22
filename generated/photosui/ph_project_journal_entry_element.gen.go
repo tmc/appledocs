@@ -30,6 +30,9 @@ type _PHProjectJournalEntryElementClass struct {
 // An interface definition for the [PHProjectJournalEntryElement] class.
 type IPHProjectJournalEntryElement interface {
 	IPHProjectElement
+	AssetElement() PHProjectAssetElement
+	Date() foundation.NSDate
+	TextElement() PHProjectTextElement
 }
 
 // An element that represents a journal entry within project section content.

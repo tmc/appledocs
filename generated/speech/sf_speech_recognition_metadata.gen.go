@@ -30,6 +30,16 @@ type _SFSpeechRecognitionMetadataClass struct {
 // An interface definition for the [SFSpeechRecognitionMetadata] class.
 type ISFSpeechRecognitionMetadata interface {
 	objectivec.IObject
+	AveragePauseDuration() unsafe.Pointer
+	SetAveragePauseDuration(value unsafe.Pointer)
+	SpeakingRate() float64
+	SetSpeakingRate(value float64)
+	SpeechDuration() unsafe.Pointer
+	SetSpeechDuration(value unsafe.Pointer)
+	SpeechStartTimestamp() unsafe.Pointer
+	SetSpeechStartTimestamp(value unsafe.Pointer)
+	VoiceAnalytics() SFVoiceAnalytics
+	SetVoiceAnalytics(value ISFVoiceAnalytics)
 }
 
 // The metadata of speech in the audio of a speech recognition request.
@@ -99,8 +109,8 @@ func (s_ SFSpeechRecognitionMetadata) SetAveragePauseDuration(value unsafe.Point
 // The number of words spoken per minute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speakingrate
-func (s_ SFSpeechRecognitionMetadata) SpeakingRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speakingRate"))
+func (s_ SFSpeechRecognitionMetadata) SpeakingRate() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("speakingRate"))
 	return rv
 }
 
@@ -110,7 +120,7 @@ func (s_ SFSpeechRecognitionMetadata) SpeakingRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speakingrate
-func (s_ SFSpeechRecognitionMetadata) SetSpeakingRate(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionMetadata) SetSpeakingRate(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)
 }
 

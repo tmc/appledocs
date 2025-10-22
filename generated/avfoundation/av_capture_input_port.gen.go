@@ -31,6 +31,22 @@ type _CaptureInputPortClass struct {
 // An interface definition for the [CaptureInputPort] class.
 type ICaptureInputPort interface {
 	objectivec.IObject
+	Clock() unsafe.Pointer
+	SetClock(value unsafe.Pointer)
+	FormatDescription() unsafe.Pointer
+	SetFormatDescription(value unsafe.Pointer)
+	Input() AVCaptureInput
+	SetInput(value IAVCaptureInput)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	MediaType() MediaType
+	SetMediaType(value MediaType)
+	SourceDevicePosition() unsafe.Pointer
+	SetSourceDevicePosition(value unsafe.Pointer)
+	SourceDeviceType() unsafe.Pointer
+	SetSourceDeviceType(value unsafe.Pointer)
+	Ports() AVCaptureInputPort
+	SetPorts(value IAVCaptureInputPort)
 }
 
 // An object that represents a stream of data that a capture input provides.

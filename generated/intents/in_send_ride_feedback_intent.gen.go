@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,11 @@ type _INSendRideFeedbackIntentClass struct {
 // An interface definition for the [INSendRideFeedbackIntent] class.
 type IINSendRideFeedbackIntent interface {
 	IINIntent
+	RideIdentifier() string
+	Rating() foundation.Number
+	SetRating(value foundation.INumber)
+	Tip() INCurrencyAmount
+	SetTip(value INCurrencyAmount)
 }
 
 // An intent indicating that the user provided feedback for a completed ride.
@@ -86,8 +90,8 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent/rideIdentifier
-func (i_ INSendRideFeedbackIntent) RideIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 

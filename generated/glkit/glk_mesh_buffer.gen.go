@@ -30,6 +30,12 @@ type _GLKMeshBufferClass struct {
 // An interface definition for the [GLKMeshBuffer] class.
 type IGLKMeshBuffer interface {
 	objectivec.IObject
+	Allocator() GLKMeshBufferAllocator
+	GlBufferName() unsafe.Pointer
+	Length() uint
+	Offset() uint
+	Type() unsafe.Pointer
+	Zone() objc.ID
 }
 
 //

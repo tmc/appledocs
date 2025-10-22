@@ -30,6 +30,16 @@ type _AudioInputNodeClass struct {
 type IAudioInputNode interface {
 	IAudioIONode
 	SetManualRenderingInputPCMFormatInputBlock(format AVAudioFormat, block unsafe.Pointer) bool
+	VoiceProcessingBypassed() bool
+	SetVoiceProcessingBypassed(value bool)
+	IsVoiceProcessingAGCEnabled() bool
+	SetIsVoiceProcessingAGCEnabled(value bool)
+	IsVoiceProcessingBypassed() bool
+	SetIsVoiceProcessingBypassed(value bool)
+	IsVoiceProcessingInputMuted() bool
+	SetIsVoiceProcessingInputMuted(value bool)
+	VoiceProcessingOtherAudioDuckingConfiguration() unsafe.Pointer
+	SetVoiceProcessingOtherAudioDuckingConfiguration(value unsafe.Pointer)
 }
 
 // An object that connects to the system’s audio input.

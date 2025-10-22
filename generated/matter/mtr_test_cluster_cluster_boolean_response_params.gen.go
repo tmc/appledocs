@@ -30,6 +30,10 @@ type _MTRTestClusterClusterBooleanResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterBooleanResponseParams] class.
 type IMTRTestClusterClusterBooleanResponseParams interface {
 	IMTRUnitTestingClusterBooleanResponseParams
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

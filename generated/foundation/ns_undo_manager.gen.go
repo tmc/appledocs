@@ -42,6 +42,37 @@ type IUndoManager interface {
 	UndoActionUserInfoValueForKey(key unsafe.Pointer) objc.ID
 	UndoMenuTitleForUndoActionName(actionName string) String
 	UndoNestedGroup()
+	CanRedo() bool
+	GroupingLevel() int
+	GroupsByEvent() bool
+	SetGroupsByEvent(value bool)
+	RedoCount() uint
+	RedoMenuItemTitle() string
+	RunLoopModes() []string
+	SetRunLoopModes(value []string)
+	UndoActionName() string
+	NSUndoCloseGroupingRunLoopOrdering() int
+	NSUndoManagerGroupIsDiscardableKey() string
+	CanUndo() bool
+	SetCanUndo(value bool)
+	IsRedoing() bool
+	SetIsRedoing(value bool)
+	IsUndoRegistrationEnabled() bool
+	SetIsUndoRegistrationEnabled(value bool)
+	IsUndoing() bool
+	SetIsUndoing(value bool)
+	LevelsOfUndo() int
+	SetLevelsOfUndo(value int)
+	RedoActionIsDiscardable() bool
+	SetRedoActionIsDiscardable(value bool)
+	RedoActionName() string
+	SetRedoActionName(value string)
+	UndoActionIsDiscardable() bool
+	SetUndoActionIsDiscardable(value bool)
+	UndoCount() int
+	SetUndoCount(value int)
+	UndoMenuItemTitle() string
+	SetUndoMenuItemTitle(value string)
 }
 
 // A general-purpose recorder of operations that enables undo and redo.

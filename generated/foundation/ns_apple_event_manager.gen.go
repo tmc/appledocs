@@ -30,6 +30,10 @@ type _AppleEventManagerClass struct {
 // An interface definition for the [AppleEventManager] class.
 type IAppleEventManager interface {
 	objectivec.IObject
+	CurrentAppleEvent() NSAppleEventDescriptor
+	SetCurrentAppleEvent(value IAppleEventDescriptor)
+	CurrentReplyAppleEvent() NSAppleEventDescriptor
+	SetCurrentReplyAppleEvent(value IAppleEventDescriptor)
 }
 
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.

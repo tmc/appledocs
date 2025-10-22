@@ -31,6 +31,10 @@ type _MTRMediaInputClusterHideInputStatusParamsClass struct {
 // An interface definition for the [MTRMediaInputClusterHideInputStatusParams] class.
 type IMTRMediaInputClusterHideInputStatusParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,12 @@ type _TKTokenDriverClass struct {
 // An interface definition for the [TKTokenDriver] class.
 type ITKTokenDriver interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ConfigurationData() foundation.Data
+	SetConfigurationData(value foundation.IData)
+	KeychainItems() unsafe.Pointer
+	SetKeychainItems(value unsafe.Pointer)
 }
 
 // A base class for building token drivers.

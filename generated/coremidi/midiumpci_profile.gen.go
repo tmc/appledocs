@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,14 @@ type _MIDIUMPCIProfileClass struct {
 type IMIDIUMPCIProfile interface {
 	objectivec.IObject
 	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount IMIDIUInteger14, error_ unsafe.Pointer) bool
+	EnabledChannelCount() MIDIUInteger14
+	FirstChannel() MIDIChannelNumber
+	GroupOffset() MIDIUMPGroupNumber
+	IsEnabled() bool
+	Name() string
+	ProfileID() unsafe.Pointer
+	ProfileType() MIDICIProfileType
+	TotalChannelCount() MIDIUInteger14
 }
 
 //
@@ -114,8 +121,8 @@ func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/name
-func (m_ MIDIUMPCIProfile) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPCIProfile) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

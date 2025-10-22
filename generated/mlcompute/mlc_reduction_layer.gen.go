@@ -29,6 +29,12 @@ type _CReductionLayerClass struct {
 // An interface definition for the [CReductionLayer] class.
 type ICReductionLayer interface {
 	ICLayer
+	Dimension() int
+	SetDimension(value int)
+	Dimensions() int
+	SetDimensions(value int)
+	ReductionType() CReductionType
+	SetReductionType(value CReductionType)
 }
 
 // A layer that reduces tensor values across a specific dimension to a scalar value.

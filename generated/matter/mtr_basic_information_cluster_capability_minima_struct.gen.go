@@ -31,6 +31,10 @@ type _MTRBasicInformationClusterCapabilityMinimaStructClass struct {
 // An interface definition for the [MTRBasicInformationClusterCapabilityMinimaStruct] class.
 type IMTRBasicInformationClusterCapabilityMinimaStruct interface {
 	objectivec.IObject
+	CaseSessionsPerFabric() foundation.Number
+	SetCaseSessionsPerFabric(value foundation.INumber)
+	SubscriptionsPerFabric() foundation.Number
+	SetSubscriptionsPerFabric(value foundation.INumber)
 }
 
 //

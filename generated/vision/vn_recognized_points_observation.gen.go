@@ -33,6 +33,8 @@ type IRecognizedPointsObservation interface {
 	KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) coreml.MultiArray
 	RecognizedPointForKeyError(pointKey IRecognizedPointKey, error_ unsafe.Pointer) RecognizedPoint
 	RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer
+	AvailableGroupKeys() []string
+	AvailableKeys() []string
 }
 
 // An observation that provides the points the analysis recognized.

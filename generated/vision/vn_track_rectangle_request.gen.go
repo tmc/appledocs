@@ -29,6 +29,7 @@ type _TrackRectangleRequestClass struct {
 // An interface definition for the [TrackRectangleRequest] class.
 type ITrackRectangleRequest interface {
 	ITrackingRequest
+	VNTrackRectangleRequestRevision1() int
 }
 
 // An image-analysis request that tracks movement of a previously identified rectangular object across multiple images or video frames.

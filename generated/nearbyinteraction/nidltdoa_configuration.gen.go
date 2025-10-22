@@ -29,6 +29,10 @@ type _NIDLTDOAConfigurationClass struct {
 // An interface definition for the [NIDLTDOAConfiguration] class.
 type INIDLTDOAConfiguration interface {
 	INIConfiguration
+	NetworkIdentifier() int
+	SetNetworkIdentifier(value int)
+	SupportsDLTDOAMeasurement() bool
+	SetSupportsDLTDOAMeasurement(value bool)
 }
 
 // A configuration that enables Downlink Time-Difference-of-Arrival ranging.

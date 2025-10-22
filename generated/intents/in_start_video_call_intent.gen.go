@@ -29,6 +29,8 @@ type _INStartVideoCallIntentClass struct {
 // An interface definition for the [INStartVideoCallIntent] class.
 type IINStartVideoCallIntent interface {
 	IINIntent
+	Contacts() INPerson
+	SetContacts(value INPerson)
 }
 
 // A request to start a video call with one or more users.

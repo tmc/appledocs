@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = avkit.NewInterstitialTimeRange
 
+// ExampleNewInterstitialTimeRangeWithTimeRange demonstrates how to create a InterstitialTimeRange instance using NewInterstitialTimeRangeWithTimeRange.
+// Initializes an interstitial time range object with the specified time range.
+func ExampleNewInterstitialTimeRangeWithTimeRange() {
+	_ = avkit.NewInterstitialTimeRangeWithTimeRange(
+		avkit.InterstitialTimeRange{}, // timeRange InterstitialTimeRange
+	)
+	// Output:
+}

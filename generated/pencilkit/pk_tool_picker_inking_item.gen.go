@@ -30,6 +30,9 @@ type _ToolPickerInkingItemClass struct {
 // An interface definition for the [ToolPickerInkingItem] class.
 type IToolPickerInkingItem interface {
 	IToolPickerItem
+	AllowsColorSelection() bool
+	SetAllowsColorSelection(value bool)
+	InkingTool() PKInkingTool
 }
 
 // An item that represents an inking tool in the tool picker.
@@ -117,9 +120,9 @@ func NewToolPickerInkingItemWithInkTypeColorWidth(inkType unsafe.Pointer, color 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:azimuth:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, azimuth float64, identifier appkit.string) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, azimuth float64, identifier string) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, identifier)
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }
@@ -129,9 +132,9 @@ func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsaf
 // Creates a new inking item with the specified ink type, color, width, and identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, identifier appkit.string) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, identifier string) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, identifier)
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

@@ -29,6 +29,10 @@ type _ParameterGroupClass struct {
 // An interface definition for the [ParameterGroup] class.
 type IParameterGroup interface {
 	IParameterNode
+	AllParameters() []Parameter
+	Children() []ParameterNode
+	Identifier() string
+	SetIdentifier(value string)
 }
 
 // A parameter group object represents a group of related audio unit parameters.
@@ -100,8 +104,8 @@ func (p_ ParameterGroup) Children() []ParameterNode {
 // A non-localized, permanent name for the parameter node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
-func (p_ ParameterGroup) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ ParameterGroup) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -111,8 +115,8 @@ func (p_ ParameterGroup) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
-func (p_ ParameterGroup) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+func (p_ ParameterGroup) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 

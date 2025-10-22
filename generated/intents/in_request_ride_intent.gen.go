@@ -30,6 +30,17 @@ type _INRequestRideIntentClass struct {
 // An interface definition for the [INRequestRideIntent] class.
 type IINRequestRideIntent interface {
 	IINIntent
+	PickupLocation() corelocation.Placemark
+	DropOffLocation() corelocation.Placemark
+	SetDropOffLocation(value corelocation.IPlacemark)
+	PartySize() int
+	SetPartySize(value int)
+	PaymentMethod() unsafe.Pointer
+	SetPaymentMethod(value unsafe.Pointer)
+	RideOptionName() INSpeakableString
+	SetRideOptionName(value INSpeakableString)
+	ScheduledPickupTime() INDateComponentsRange
+	SetScheduledPickupTime(value INDateComponentsRange)
 }
 
 // A request to book the specified ride from your service.

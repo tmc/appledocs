@@ -30,6 +30,23 @@ type _CKFetchShareMetadataOperationClass struct {
 // An interface definition for the [CKFetchShareMetadataOperation] class.
 type ICKFetchShareMetadataOperation interface {
 	ICKOperation
+	ShouldFetchRootRecord() bool
+	SetShouldFetchRootRecord(value bool)
+	FetchShareMetadataCompletionBlock() unsafe.Pointer
+	SetFetchShareMetadataCompletionBlock(value unsafe.Pointer)
+	FetchShareMetadataResultBlock() unsafe.Pointer
+	SetFetchShareMetadataResultBlock(value unsafe.Pointer)
+	PerShareMetadataBlock() unsafe.Pointer
+	SetPerShareMetadataBlock(value unsafe.Pointer)
+	PerShareMetadataResultBlock() unsafe.Pointer
+	SetPerShareMetadataResultBlock(value unsafe.Pointer)
+	RootRecordDesiredKeys() unsafe.Pointer
+	SetRootRecordDesiredKeys(value unsafe.Pointer)
+	ShareURLs() foundation.URL
+	SetShareURLs(value foundation.IURL)
+	CKPartialErrorsByItemIDKey() string
+	UserInfo() string
+	SetUserInfo(value string)
 }
 
 // An operation that fetches metadata for one or more shares.

@@ -31,6 +31,20 @@ type _MTRDoorLockClusterLockUserChangeEventClass struct {
 // An interface definition for the [MTRDoorLockClusterLockUserChangeEvent] class.
 type IMTRDoorLockClusterLockUserChangeEvent interface {
 	objectivec.IObject
+	DataIndex() foundation.Number
+	SetDataIndex(value foundation.INumber)
+	DataOperationType() foundation.Number
+	SetDataOperationType(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	LockDataType() foundation.Number
+	SetLockDataType(value foundation.INumber)
+	OperationSource() foundation.Number
+	SetOperationSource(value foundation.INumber)
+	SourceNode() foundation.Number
+	SetSourceNode(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
 }
 
 //

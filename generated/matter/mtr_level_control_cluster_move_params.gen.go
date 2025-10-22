@@ -31,6 +31,18 @@ type _MTRLevelControlClusterMoveParamsClass struct {
 // An interface definition for the [MTRLevelControlClusterMoveParams] class.
 type IMTRLevelControlClusterMoveParams interface {
 	objectivec.IObject
+	MoveMode() foundation.Number
+	SetMoveMode(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	Rate() foundation.Number
+	SetRate(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

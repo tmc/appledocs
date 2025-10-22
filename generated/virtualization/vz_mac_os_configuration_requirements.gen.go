@@ -30,6 +30,9 @@ type _VZMacOSConfigurationRequirementsClass struct {
 // An interface definition for the [VZMacOSConfigurationRequirements] class.
 type IVZMacOSConfigurationRequirements interface {
 	objectivec.IObject
+	HardwareModel() VZMacHardwareModel
+	MinimumSupportedCPUCount() uint
+	MinimumSupportedMemorySize() uint64
 }
 
 // An object that describes the parameter constraints required by a specific configuration of macOS.

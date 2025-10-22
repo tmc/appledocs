@@ -29,6 +29,9 @@ type _MagnetometerDataClass struct {
 // An interface definition for the [MagnetometerData] class.
 type IMagnetometerData interface {
 	ILogItem
+	MagneticField() unsafe.Pointer
+	MagnetometerData() CMMagnetometerData
+	SetMagnetometerData(value ICMMagnetometerData)
 }
 
 // Measurements of the Earth’s magnetic field relative to the device.

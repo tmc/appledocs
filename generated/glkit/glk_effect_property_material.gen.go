@@ -29,6 +29,16 @@ type _GLKEffectPropertyMaterialClass struct {
 // An interface definition for the [GLKEffectPropertyMaterial] class.
 type IGLKEffectPropertyMaterial interface {
 	IGLKEffectProperty
+	AmbientColor() GLKVector4
+	SetAmbientColor(value IGLKVector4)
+	DiffuseColor() GLKVector4
+	SetDiffuseColor(value IGLKVector4)
+	EmissiveColor() GLKVector4
+	SetEmissiveColor(value IGLKVector4)
+	Shininess() unsafe.Pointer
+	SetShininess(value unsafe.Pointer)
+	SpecularColor() GLKVector4
+	SetSpecularColor(value IGLKVector4)
 }
 
 // Surface appearance properties for use in GLKit rendering effects.

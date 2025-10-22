@@ -31,6 +31,10 @@ type _MTRRVCOperationalStateClusterResumeParamsClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterResumeParams] class.
 type IMTRRVCOperationalStateClusterResumeParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

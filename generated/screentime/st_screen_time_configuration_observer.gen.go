@@ -32,6 +32,9 @@ type ISTScreenTimeConfigurationObserver interface {
 	objectivec.IObject
 	StartObserving()
 	StopObserving()
+	Configuration() STScreenTimeConfiguration
+	EnforcesChildRestrictions() bool
+	SetEnforcesChildRestrictions(value bool)
 }
 
 // The object you use to observe changes to the current configuration.

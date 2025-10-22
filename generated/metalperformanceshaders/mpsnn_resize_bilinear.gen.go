@@ -31,6 +31,9 @@ type _ResizeBilinearClass struct {
 // An interface definition for the [ResizeBilinear] class.
 type IResizeBilinear interface {
 	objectivec.IObject
+	AlignCorners() bool
+	ResizeHeight() uint
+	ResizeWidth() uint
 }
 
 // A bilinear resizing filter.

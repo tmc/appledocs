@@ -29,6 +29,10 @@ type _RelativeSpecifierClass struct {
 // An interface definition for the [RelativeSpecifier] class.
 type IRelativeSpecifier interface {
 	IScriptObjectSpecifier
+	BaseSpecifier() NSScriptObjectSpecifier
+	SetBaseSpecifier(value IScriptObjectSpecifier)
+	RelativePosition() unsafe.Pointer
+	SetRelativePosition(value unsafe.Pointer)
 }
 
 // A specifier that indicates an object in a collection by its position relative to another object.

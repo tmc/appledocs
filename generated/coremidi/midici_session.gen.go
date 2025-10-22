@@ -31,6 +31,20 @@ type _MIDICISessionClass struct {
 // An interface definition for the [MIDICISession] class.
 type IMIDICISession interface {
 	objectivec.IObject
+	DeviceInfo() MIDICIDeviceInfo
+	MaxSysExSize() foundation.Number
+	MidiDestination() MIDIEntityRef
+	MaxPropertyRequests() foundation.Number
+	SetMaxPropertyRequests(value foundation.INumber)
+	ProfileChangedCallback() unsafe.Pointer
+	SetProfileChangedCallback(value unsafe.Pointer)
+	ProfileSpecificDataHandler() unsafe.Pointer
+	SetProfileSpecificDataHandler(value unsafe.Pointer)
+	SupportsProfileCapability() bool
+	SetSupportsProfileCapability(value bool)
+	SupportsPropertyCapability() bool
+	SetSupportsPropertyCapability(value bool)
+	MIDIChannelsWholePort() MIDIChannelNumber
 }
 
 // An object that represents a MIDI-CI session.

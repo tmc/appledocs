@@ -29,6 +29,10 @@ type _UnitConverterLinearClass struct {
 // An interface definition for the [UnitConverterLinear] class.
 type IUnitConverterLinear interface {
 	IUnitConverter
+	Coefficient() float64
+	SetCoefficient(value float64)
+	Constant() float64
+	SetConstant(value float64)
 }
 
 // A description of how to convert between units using a linear equation.

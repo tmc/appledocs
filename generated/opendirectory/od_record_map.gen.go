@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,14 @@ type _ODRecordMapClass struct {
 // An interface definition for the [ODRecordMap] class.
 type IODRecordMap interface {
 	objectivec.IObject
-	AttributeMapForStandardAttribute(standardAttribute appkit.string) ODAttributeMap
-	SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute appkit.string)
+	AttributeMapForStandardAttribute(standardAttribute string) ODAttributeMap
+	SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute string)
+	Attributes() objc.ID
+	Native() string
+	SetNative(value string)
+	OdPredicate() objc.ID
+	SetOdPredicate(value objc.ID)
+	StandardAttributeTypes() objc.ID
 }
 
 //
@@ -87,15 +92,15 @@ func (oc _ODRecordMapClass) RecordMap() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/attributeMap(forStandardAttribute:)
-func (o_ ODRecordMap) AttributeMapForStandardAttribute(standardAttribute appkit.string) ODAttributeMap {
-	rv := objc.Send[ODAttributeMap](o_.ID, objc.Sel("attributeMapForStandardAttribute:"), standardAttribute)
+func (o_ ODRecordMap) AttributeMapForStandardAttribute(standardAttribute string) ODAttributeMap {
+	rv := objc.Send[ODAttributeMap](o_.ID, objc.Sel("attributeMapForStandardAttribute:"), objc.String(standardAttribute))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/setAttribute(_:forStandardAttribute:)
-func (o_ ODRecordMap) SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAttributeMap:forStandardAttribute:"), attributeMap, standardAttribute)
+func (o_ ODRecordMap) SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAttributeMap:forStandardAttribute:"), attributeMap, objc.String(standardAttribute))
 }
 
 //
@@ -107,8 +112,8 @@ func (o_ ODRecordMap) Attributes() objc.ID {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) Native() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("native"))
+func (o_ ODRecordMap) Native() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("native"))
 	return rv
 }
 
@@ -116,8 +121,8 @@ func (o_ ODRecordMap) Native() appkit.string {
 // SetNative sets the value of the native property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) SetNative(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), value)
+func (o_ ODRecordMap) SetNative(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), objc.String(value))
 }
 
 //

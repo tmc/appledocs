@@ -29,6 +29,10 @@ type _PHASEMixerDefinitionClass struct {
 // An interface definition for the [PHASEMixerDefinition] class.
 type IPHASEMixerDefinition interface {
 	IPHASEDefinition
+	Gain() float64
+	SetGain(value float64)
+	GainMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	SetGainMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
 }
 
 // An object to initialize a mixer with a given configuration.
@@ -84,8 +88,8 @@ func NewPHASEMixerDefinition() PHASEMixerDefinition {
 // The mixer’s volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gain
-func (p_ PHASEMixerDefinition) Gain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gain"))
+func (p_ PHASEMixerDefinition) Gain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
@@ -95,7 +99,7 @@ func (p_ PHASEMixerDefinition) Gain() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gain
-func (p_ PHASEMixerDefinition) SetGain(value unsafe.Pointer) {
+func (p_ PHASEMixerDefinition) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
 

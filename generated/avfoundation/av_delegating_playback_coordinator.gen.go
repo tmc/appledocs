@@ -29,6 +29,10 @@ type _DelegatingPlaybackCoordinatorClass struct {
 // An interface definition for the [DelegatingPlaybackCoordinator] class.
 type IDelegatingPlaybackCoordinator interface {
 	IPlaybackCoordinator
+	CurrentItemIdentifier() string
+	SetCurrentItemIdentifier(value string)
+	PlaybackControlDelegate() unsafe.Pointer
+	SetPlaybackControlDelegate(value unsafe.Pointer)
 }
 
 // A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.

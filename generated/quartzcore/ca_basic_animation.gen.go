@@ -30,6 +30,18 @@ type _BasicAnimationClass struct {
 // An interface definition for the [BasicAnimation] class.
 type IBasicAnimation interface {
 	IPropertyAnimation
+	ByValue() objc.ID
+	SetByValue(value objc.ID)
+	FromValue() objc.ID
+	SetFromValue(value objc.ID)
+	ToValue() objc.ID
+	SetToValue(value objc.ID)
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.IColor)
+	Opacity() float32
+	SetOpacity(value float32)
+	Transform() unsafe.Pointer
+	SetTransform(value unsafe.Pointer)
 }
 
 // An object that provides basic, single-keyframe animation capabilities for a layer property.
@@ -157,8 +169,8 @@ func (b_ BasicAnimation) SetBackgroundColor(value appkit.IColor) {
 // The opacity of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/opacity
-func (b_ BasicAnimation) Opacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("opacity"))
+func (b_ BasicAnimation) Opacity() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("opacity"))
 	return rv
 }
 
@@ -168,7 +180,7 @@ func (b_ BasicAnimation) Opacity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/opacity
-func (b_ BasicAnimation) SetOpacity(value unsafe.Pointer) {
+func (b_ BasicAnimation) SetOpacity(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOpacity:"), value)
 }
 

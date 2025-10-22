@@ -30,6 +30,14 @@ type _MKMapConfigurationClass struct {
 // An interface definition for the [MKMapConfiguration] class.
 type IMKMapConfiguration interface {
 	objectivec.IObject
+	ElevationStyle() unsafe.Pointer
+	SetElevationStyle(value unsafe.Pointer)
+	PitchButtonVisibility() unsafe.Pointer
+	SetPitchButtonVisibility(value unsafe.Pointer)
+	PreferredConfiguration() MKMapConfiguration
+	SetPreferredConfiguration(value IMKMapConfiguration)
+	ShowsUserTrackingButton() bool
+	SetShowsUserTrackingButton(value bool)
 }
 
 // An abstract class that represents the shared elements of map configurations.

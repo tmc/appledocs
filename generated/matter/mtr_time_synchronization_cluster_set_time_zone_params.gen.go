@@ -31,6 +31,12 @@ type _MTRTimeSynchronizationClusterSetTimeZoneParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetTimeZoneParams] class.
 type IMTRTimeSynchronizationClusterSetTimeZoneParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimeZone() objc.ID
+	SetTimeZone(value objc.ID)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

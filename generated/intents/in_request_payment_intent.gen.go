@@ -29,6 +29,12 @@ type _INRequestPaymentIntentClass struct {
 // An interface definition for the [INRequestPaymentIntent] class.
 type IINRequestPaymentIntent interface {
 	IINIntent
+	CurrencyAmount() INCurrencyAmount
+	SetCurrencyAmount(value INCurrencyAmount)
+	Note() string
+	SetNote(value string)
+	Payer() INPerson
+	SetPayer(value INPerson)
 }
 
 // An intent for requesting money from another user’s account.
@@ -102,8 +108,8 @@ func (i_ INRequestPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 // A note associated with the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
-func (i_ INRequestPaymentIntent) Note() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("note"))
+func (i_ INRequestPaymentIntent) Note() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("note"))
 	return rv
 }
 
@@ -113,8 +119,8 @@ func (i_ INRequestPaymentIntent) Note() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
-func (i_ INRequestPaymentIntent) SetNote(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), value)
+func (i_ INRequestPaymentIntent) SetNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
 }
 
 // The recipient of the payment request.

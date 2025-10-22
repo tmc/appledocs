@@ -31,6 +31,21 @@ type _ExternalStorageDeviceClass struct {
 // An interface definition for the [ExternalStorageDevice] class.
 type IExternalStorageDevice interface {
 	objectivec.IObject
+	Connected() bool
+	DisplayName() string
+	SetDisplayName(value string)
+	FreeSize() int
+	SetFreeSize(value int)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	IsNotRecommendedForCaptureUse() bool
+	SetIsNotRecommendedForCaptureUse(value bool)
+	TotalSize() int
+	SetTotalSize(value int)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.IUUID)
+	ExternalStorageDevices() AVExternalStorageDevice
+	SetExternalStorageDevices(value IAVExternalStorageDevice)
 }
 
 // Represents a physical external storage device that stores media assets.

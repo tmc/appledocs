@@ -29,6 +29,9 @@ type _AXMathExpressionMultiscriptClass struct {
 // An interface definition for the [AXMathExpressionMultiscript] class.
 type IAXMathExpressionMultiscript interface {
 	IAXMathExpression
+	BaseExpression() AXMathExpression
+	PostscriptExpressions() []AXMathExpressionSubSuperscript
+	PrescriptExpressions() []AXMathExpressionSubSuperscript
 }
 
 //

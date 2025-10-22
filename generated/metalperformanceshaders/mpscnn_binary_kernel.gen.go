@@ -30,6 +30,58 @@ type _CNNBinaryKernelClass struct {
 // An interface definition for the [CNNBinaryKernel] class.
 type ICNNBinaryKernel interface {
 	IKernel
+	ClipRect() corelocation.Region
+	SetClipRect(value corelocation.IRegion)
+	DestinationFeatureChannelOffset() int
+	SetDestinationFeatureChannelOffset(value int)
+	DestinationImageAllocator() unsafe.Pointer
+	SetDestinationImageAllocator(value unsafe.Pointer)
+	IsBackwards() bool
+	SetIsBackwards(value bool)
+	IsStateModified() bool
+	SetIsStateModified(value bool)
+	Padding() unsafe.Pointer
+	SetPadding(value unsafe.Pointer)
+	PrimaryDilationRateX() int
+	SetPrimaryDilationRateX(value int)
+	PrimaryDilationRateY() int
+	SetPrimaryDilationRateY(value int)
+	PrimaryEdgeMode() unsafe.Pointer
+	SetPrimaryEdgeMode(value unsafe.Pointer)
+	PrimaryKernelHeight() int
+	SetPrimaryKernelHeight(value int)
+	PrimaryKernelWidth() int
+	SetPrimaryKernelWidth(value int)
+	PrimaryOffset() unsafe.Pointer
+	SetPrimaryOffset(value unsafe.Pointer)
+	PrimarySourceFeatureChannelMaxCount() int
+	SetPrimarySourceFeatureChannelMaxCount(value int)
+	PrimarySourceFeatureChannelOffset() int
+	SetPrimarySourceFeatureChannelOffset(value int)
+	PrimaryStrideInPixelsX() int
+	SetPrimaryStrideInPixelsX(value int)
+	PrimaryStrideInPixelsY() int
+	SetPrimaryStrideInPixelsY(value int)
+	SecondaryDilationRateX() int
+	SetSecondaryDilationRateX(value int)
+	SecondaryDilationRateY() int
+	SetSecondaryDilationRateY(value int)
+	SecondaryEdgeMode() unsafe.Pointer
+	SetSecondaryEdgeMode(value unsafe.Pointer)
+	SecondaryKernelHeight() int
+	SetSecondaryKernelHeight(value int)
+	SecondaryKernelWidth() int
+	SetSecondaryKernelWidth(value int)
+	SecondaryOffset() unsafe.Pointer
+	SetSecondaryOffset(value unsafe.Pointer)
+	SecondarySourceFeatureChannelMaxCount() int
+	SetSecondarySourceFeatureChannelMaxCount(value int)
+	SecondarySourceFeatureChannelOffset() int
+	SetSecondarySourceFeatureChannelOffset(value int)
+	SecondaryStrideInPixelsX() int
+	SetSecondaryStrideInPixelsX(value int)
+	SecondaryStrideInPixelsY() int
+	SetSecondaryStrideInPixelsY(value int)
 }
 
 // A convolution neural network kernel.

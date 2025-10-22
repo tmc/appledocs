@@ -29,6 +29,12 @@ type _DetectAnimalBodyPoseRequestClass struct {
 // An interface definition for the [DetectAnimalBodyPoseRequest] class.
 type IDetectAnimalBodyPoseRequest interface {
 	IImageBasedRequest
+	Results() VNAnimalBodyPoseObservation
+	SetResults(value IVNAnimalBodyPoseObservation)
+	SupportedJointNames() unsafe.Pointer
+	SetSupportedJointNames(value unsafe.Pointer)
+	SupportedJointsGroupNames() unsafe.Pointer
+	SetSupportedJointsGroupNames(value unsafe.Pointer)
 }
 
 // A request that detects an animal body pose.

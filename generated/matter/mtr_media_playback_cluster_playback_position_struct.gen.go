@@ -31,6 +31,10 @@ type _MTRMediaPlaybackClusterPlaybackPositionStructClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterPlaybackPositionStruct] class.
 type IMTRMediaPlaybackClusterPlaybackPositionStruct interface {
 	objectivec.IObject
+	Position() foundation.Number
+	SetPosition(value foundation.INumber)
+	UpdatedAt() foundation.Number
+	SetUpdatedAt(value foundation.INumber)
 }
 
 //

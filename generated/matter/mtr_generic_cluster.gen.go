@@ -29,6 +29,8 @@ type _MTRGenericClusterClass struct {
 // An interface definition for the [MTRGenericCluster] class.
 type IMTRGenericCluster interface {
 	IMTRCluster
+	Device() MTRDevice
+	SetDevice(value IMTRDevice)
 }
 
 //

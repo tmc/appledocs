@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [QuartzFilterView] class.
@@ -29,20 +28,20 @@ type _QuartzFilterViewClass struct {
 
 // An interface definition for the [QuartzFilterView] class.
 type IQuartzFilterView interface {
-	appkit.IView
+	IView
 	SizeToFit()
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilterView
 type QuartzFilterView struct {
-	appkit.View
+	View
 }
 
 // QuartzFilterViewFrom constructs a [QuartzFilterView] from an unsafe.Pointer.
 func QuartzFilterViewFrom(ptr unsafe.Pointer) QuartzFilterView {
 	return QuartzFilterView{
-		View: appkit.ViewFrom(ptr),
+		View: ViewFrom(ptr),
 	}
 }
 

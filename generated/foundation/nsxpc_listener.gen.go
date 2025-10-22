@@ -32,6 +32,9 @@ type IXPCListener interface {
 	objectivec.IObject
 	SetConnectionCodeSigningRequirement(requirement string)
 	Suspend()
+	Endpoint() NSXPCListenerEndpoint
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A listener that waits for new incoming connections, configures them, and accepts or rejects them.

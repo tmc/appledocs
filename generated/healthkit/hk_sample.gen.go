@@ -30,6 +30,14 @@ type _HKSampleClass struct {
 // An interface definition for the [HKSample] class.
 type IHKSample interface {
 	IHKObject
+	EndDate() foundation.NSDate
+	HasUndeterminedDuration() bool
+	SampleType() HKSampleType
+	StartDate() foundation.NSDate
+	HKPredicateKeyPathEndDate() string
+	HKPredicateKeyPathStartDate() string
+	HKSampleSortIdentifierEndDate() string
+	HKSampleSortIdentifierStartDate() string
 }
 
 // A HealthKit sample represents a piece of data associated with a start and end time.
@@ -117,32 +125,32 @@ func (h_ HKSample) StartDate() foundation.NSDate {
 // The key path for accessing the sample’s end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate
-func (h_ HKSample) HKPredicateKeyPathEndDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
+func (h_ HKSample) HKPredicateKeyPathEndDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
 	return rv
 }
 
 // The key path for accessing the sample’s start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate
-func (h_ HKSample) HKPredicateKeyPathStartDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
+func (h_ HKSample) HKPredicateKeyPathStartDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
 	return rv
 }
 
 // A constant for sorting samples based on their end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate
-func (h_ HKSample) HKSampleSortIdentifierEndDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
+func (h_ HKSample) HKSampleSortIdentifierEndDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
 	return rv
 }
 
 // A constant for sorting samples based on their start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate
-func (h_ HKSample) HKSampleSortIdentifierStartDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
+func (h_ HKSample) HKSampleSortIdentifierStartDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
 	return rv
 }
 

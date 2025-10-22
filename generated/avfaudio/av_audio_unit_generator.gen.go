@@ -29,6 +29,8 @@ type _AudioUnitGeneratorClass struct {
 // An interface definition for the [AudioUnitGenerator] class.
 type IAudioUnitGenerator interface {
 	IAudioUnit
+	Bypass() bool
+	SetBypass(value bool)
 }
 
 // An object that generates audio output.

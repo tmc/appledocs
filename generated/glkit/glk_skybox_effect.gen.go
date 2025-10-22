@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,6 +32,18 @@ type IGLKSkyboxEffect interface {
 	objectivec.IObject
 	Draw()
 	PrepareToDraw()
+	Center() GLKVector3
+	SetCenter(value IGLKVector3)
+	Label() string
+	SetLabel(value string)
+	TextureCubeMap() GLKEffectPropertyTexture
+	Transform() GLKEffectPropertyTransform
+	XSize() unsafe.Pointer
+	SetXSize(value unsafe.Pointer)
+	YSize() unsafe.Pointer
+	SetYSize(value unsafe.Pointer)
+	ZSize() unsafe.Pointer
+	SetZSize(value unsafe.Pointer)
 }
 
 // A simple skybox visual effect for use in shader-based OpenGL rendering.
@@ -118,8 +129,8 @@ func (g_ GLKSkyboxEffect) SetCenter(value IGLKVector3) {
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) Label() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("label"))
+func (g_ GLKSkyboxEffect) Label() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -129,8 +140,8 @@ func (g_ GLKSkyboxEffect) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
+func (g_ GLKSkyboxEffect) SetLabel(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The texture to apply to the skybox.

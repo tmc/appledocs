@@ -31,6 +31,28 @@ type _CKOperationConfigurationClass struct {
 // An interface definition for the [CKOperationConfiguration] class.
 type ICKOperationConfiguration interface {
 	objectivec.IObject
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	Container() CKContainer
+	SetContainer(value ICKContainer)
+	LongLived() bool
+	SetLongLived(value bool)
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
+	TimeoutIntervalForRequest() foundation.TimeInterval
+	SetTimeoutIntervalForRequest(value foundation.ITimeInterval)
+	TimeoutIntervalForResource() foundation.TimeInterval
+	SetTimeoutIntervalForResource(value foundation.ITimeInterval)
+	IsLongLived() bool
+	SetIsLongLived(value bool)
+	Configuration() CKOperationConfiguration
+	SetConfiguration(value ICKOperationConfiguration)
+	Group() CKOperationGroup
+	SetGroup(value ICKOperationGroup)
+	LongLivedOperationWasPersistedBlock() unsafe.Pointer
+	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
+	DefaultConfiguration() CKOperationConfiguration
+	SetDefaultConfiguration(value ICKOperationConfiguration)
 }
 
 // An object that describes how a CloudKit operation behaves.

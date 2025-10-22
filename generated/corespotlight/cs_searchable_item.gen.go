@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,30 @@ type _CSSearchableItemClass struct {
 type ICSSearchableItem interface {
 	objectivec.IObject
 	CompareByRank(other ICSSearchableItem) unsafe.Pointer
+	AttributeSet() CSSearchableItemAttributeSet
+	SetAttributeSet(value ICSSearchableItemAttributeSet)
+	DomainIdentifier() string
+	SetDomainIdentifier(value string)
+	ExpirationDate() foundation.NSDate
+	SetExpirationDate(value foundation.IDate)
+	IsUpdate() bool
+	SetIsUpdate(value bool)
+	UniqueIdentifier() string
+	SetUniqueIdentifier(value string)
+	UpdateListenerOptions() CSSearchableItemUpdateListenerOptions
+	SetUpdateListenerOptions(value CSSearchableItemUpdateListenerOptions)
+	CSQueryContinuationActionType() string
+	CSSearchQueryString() string
+	CSSearchableItemActionType() string
+	CSSearchableItemActivityIdentifier() string
+	ContentType() string
+	SetContentType(value string)
+	ContentURL() foundation.URL
+	SetContentURL(value foundation.IURL)
+	DisplayName() string
+	SetDisplayName(value string)
+	Title() string
+	SetTitle(value string)
 }
 
 // The details of your app-specific content that someone might search for on their devices.
@@ -88,9 +111,9 @@ func NewCSSearchableItem() CSSearchableItem {
 // Returns a searchable item associated with the specified identifier, domain identifier, and attribute set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)
-func NewCSSearchableItemWithUniqueIdentifierDomainIdentifierAttributeSet(uniqueIdentifier appkit.string, domainIdentifier appkit.string, attributeSet ICSSearchableItemAttributeSet) CSSearchableItem {
+func NewCSSearchableItemWithUniqueIdentifierDomainIdentifierAttributeSet(uniqueIdentifier string, domainIdentifier string, attributeSet ICSSearchableItemAttributeSet) CSSearchableItem {
 	instance := getCSSearchableItemClass().Alloc()
-	rv := objc.Send[CSSearchableItem](instance.ID, objc.Sel("initWithUniqueIdentifier:domainIdentifier:attributeSet:"), uniqueIdentifier, domainIdentifier, attributeSet)
+	rv := objc.Send[CSSearchableItem](instance.ID, objc.Sel("initWithUniqueIdentifier:domainIdentifier:attributeSet:"), objc.String(uniqueIdentifier), objc.String(domainIdentifier), attributeSet)
 	rv.Autorelease()
 	return rv
 }
@@ -125,8 +148,8 @@ func (c_ CSSearchableItem) SetAttributeSet(value ICSSearchableItemAttributeSet) 
 // An optional identifier that represents the domain or owner of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
-func (c_ CSSearchableItem) DomainIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("domainIdentifier"))
+func (c_ CSSearchableItem) DomainIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
@@ -136,8 +159,8 @@ func (c_ CSSearchableItem) DomainIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
-func (c_ CSSearchableItem) SetDomainIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), value)
+func (c_ CSSearchableItem) SetDomainIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), objc.String(value))
 }
 
 // The date after which the searchable item should no longer exist.
@@ -179,8 +202,8 @@ func (c_ CSSearchableItem) SetIsUpdate(value bool) {
 // The value that uniquely identifies the searchable item within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
-func (c_ CSSearchableItem) UniqueIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("uniqueIdentifier"))
+func (c_ CSSearchableItem) UniqueIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
@@ -190,8 +213,8 @@ func (c_ CSSearchableItem) UniqueIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
-func (c_ CSSearchableItem) SetUniqueIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), value)
+func (c_ CSSearchableItem) SetUniqueIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), objc.String(value))
 }
 
 //
@@ -212,40 +235,40 @@ func (c_ CSSearchableItem) SetUpdateListenerOptions(value CSSearchableItemUpdate
 // Indicates that the activity type to continue is a search or query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
-func (c_ CSSearchableItem) CSQueryContinuationActionType() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
+func (c_ CSSearchableItem) CSQueryContinuationActionType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
 	return rv
 }
 
 // Provides the key for the current query in the info dictionary of the user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
-func (c_ CSSearchableItem) CSSearchQueryString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSSearchQueryString"))
+func (c_ CSSearchableItem) CSSearchQueryString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
 	return rv
 }
 
 // Indicates that the activity type to continue is related to a searchable item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemactiontype
-func (c_ CSSearchableItem) CSSearchableItemActionType() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSSearchableItemActionType"))
+func (c_ CSSearchableItem) CSSearchableItemActionType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchableItemActionType"))
 	return rv
 }
 
 // The key you use to access a searchable item in a user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemactivityidentifier
-func (c_ CSSearchableItem) CSSearchableItemActivityIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSSearchableItemActivityIdentifier"))
+func (c_ CSSearchableItem) CSSearchableItemActivityIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchableItemActivityIdentifier"))
 	return rv
 }
 
 // The uniform type identifier (UTI) of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype
-func (c_ CSSearchableItem) ContentType() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("contentType"))
+func (c_ CSSearchableItem) ContentType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -255,8 +278,8 @@ func (c_ CSSearchableItem) ContentType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype
-func (c_ CSSearchableItem) SetContentType(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), value)
+func (c_ CSSearchableItem) SetContentType(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), objc.String(value))
 }
 
 // The file URL of the content to index.
@@ -280,8 +303,8 @@ func (c_ CSSearchableItem) SetContentURL(value foundation.IURL) {
 // A localized string that contains the name of the item, suitable to display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname
-func (c_ CSSearchableItem) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("displayName"))
+func (c_ CSSearchableItem) DisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -291,15 +314,15 @@ func (c_ CSSearchableItem) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname
-func (c_ CSSearchableItem) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), value)
+func (c_ CSSearchableItem) SetDisplayName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 // The title of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title
-func (c_ CSSearchableItem) Title() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("title"))
+func (c_ CSSearchableItem) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -309,8 +332,8 @@ func (c_ CSSearchableItem) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title
-func (c_ CSSearchableItem) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ CSSearchableItem) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

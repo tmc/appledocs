@@ -32,6 +32,22 @@ type IUSBHostCIPortStateMachine interface {
 	objectivec.IObject
 	RespondToCommandStatusError(command unsafe.Pointer, status unsafe.Pointer, error_ unsafe.Pointer) bool
 	UpdateLinkStateSpeedInhibitLinkStateChangeError(linkState unsafe.Pointer, speed unsafe.Pointer, inhibitLinkStateChange bool, error_ unsafe.Pointer) bool
+	Overcurrent() bool
+	SetOvercurrent(value bool)
+	PortStatus() unsafe.Pointer
+	Powered() bool
+	SetPowered(value bool)
+	Speed() unsafe.Pointer
+	Connected() bool
+	SetConnected(value bool)
+	ControllerInterface() IOUSBHostControllerInterface
+	SetControllerInterface(value IOUSBHostControllerInterface)
+	LinkState() unsafe.Pointer
+	SetLinkState(value unsafe.Pointer)
+	PortNumber() int
+	SetPortNumber(value int)
+	PortState() unsafe.Pointer
+	SetPortState(value unsafe.Pointer)
 }
 
 //

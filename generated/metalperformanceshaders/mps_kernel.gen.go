@@ -30,6 +30,12 @@ type _KernelClass struct {
 // An interface definition for the [Kernel] class.
 type IKernel interface {
 	objectivec.IObject
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
+	Label() string
+	SetLabel(value string)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
 }
 
 // A standard interface for Metal Performance Shaders kernels.
@@ -101,8 +107,8 @@ func (k_ Kernel) SetDevice(value unsafe.Pointer) {
 // The string that identifies the kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/label
-func (k_ Kernel) Label() appkit.string {
-	rv := objc.Send[appkit.string](k_.ID, objc.Sel("label"))
+func (k_ Kernel) Label() string {
+	rv := objc.Send[string](k_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -112,8 +118,8 @@ func (k_ Kernel) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/label
-func (k_ Kernel) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setLabel:"), value)
+func (k_ Kernel) SetLabel(value string) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The set of options used to run the kernel.

@@ -30,6 +30,10 @@ type _SFSafariExtensionStateClass struct {
 // An interface definition for the [SFSafariExtensionState] class.
 type ISFSafariExtensionState interface {
 	objectivec.IObject
+	Enabled() bool
+	SFExtensionProfileKey() string
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // The state of a Safari app extension.
@@ -89,8 +93,8 @@ func (s_ SFSafariExtensionState) Enabled() bool {
 // A string the system uses as a key in a user info dictionary to identify a profile identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariExtensionState) SFExtensionProfileKey() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+func (s_ SFSafariExtensionState) SFExtensionProfileKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
 	return rv
 }
 

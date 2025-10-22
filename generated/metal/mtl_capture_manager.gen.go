@@ -30,6 +30,10 @@ type _CaptureManagerClass struct {
 // An interface definition for the [CaptureManager] class.
 type ICaptureManager interface {
 	objectivec.IObject
+	DefaultCaptureScope() unsafe.Pointer
+	SetDefaultCaptureScope(value unsafe.Pointer)
+	IsCapturing() bool
+	SetIsCapturing(value bool)
 }
 
 // An instance you use to capture Metal command data in your app.

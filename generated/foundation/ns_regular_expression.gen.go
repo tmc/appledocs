@@ -30,6 +30,15 @@ type _RegularExpressionClass struct {
 // An interface definition for the [RegularExpression] class.
 type IRegularExpression interface {
 	objectivec.IObject
+	NSNotFound() int
+	NumberOfCaptureGroups() int
+	SetNumberOfCaptureGroups(value int)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
+	Pattern() string
+	SetPattern(value string)
+	Range() Range
+	SetRange(value IRange)
 }
 
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.

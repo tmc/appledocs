@@ -30,6 +30,75 @@ type _URLSessionConfigurationClass struct {
 // An interface definition for the [URLSessionConfiguration] class.
 type IURLSessionConfiguration interface {
 	objectivec.IObject
+	ProxyConfigurations() []Object
+	SetProxyConfigurations(value []Object)
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	AllowsConstrainedNetworkAccess() bool
+	SetAllowsConstrainedNetworkAccess(value bool)
+	AllowsExpensiveNetworkAccess() bool
+	SetAllowsExpensiveNetworkAccess(value bool)
+	ConnectionProxyDictionary() objc.ID
+	SetConnectionProxyDictionary(value objc.ID)
+	HTTPAdditionalHeaders() objc.ID
+	SetHTTPAdditionalHeaders(value objc.ID)
+	HTTPCookieAcceptPolicy() unsafe.Pointer
+	SetHTTPCookieAcceptPolicy(value unsafe.Pointer)
+	HTTPCookieStorage() NSHTTPCookieStorage
+	SetHTTPCookieStorage(value IHTTPCookieStorage)
+	HTTPMaximumConnectionsPerHost() int
+	SetHTTPMaximumConnectionsPerHost(value int)
+	HTTPShouldSetCookies() bool
+	SetHTTPShouldSetCookies(value bool)
+	HTTPShouldUsePipelining() bool
+	SetHTTPShouldUsePipelining(value bool)
+	Identifier() string
+	Discretionary() bool
+	SetDiscretionary(value bool)
+	MultipathServiceType() URLSessionMultipathServiceType
+	SetMultipathServiceType(value URLSessionMultipathServiceType)
+	NetworkServiceType() URLRequestNetworkServiceType
+	SetNetworkServiceType(value URLRequestNetworkServiceType)
+	SessionSendsLaunchEvents() bool
+	SetSessionSendsLaunchEvents(value bool)
+	SharedContainerIdentifier() string
+	SetSharedContainerIdentifier(value string)
+	ShouldUseExtendedBackgroundIdleMode() bool
+	SetShouldUseExtendedBackgroundIdleMode(value bool)
+	TimeoutIntervalForRequest() TimeInterval
+	SetTimeoutIntervalForRequest(value ITimeInterval)
+	TimeoutIntervalForResource() TimeInterval
+	SetTimeoutIntervalForResource(value ITimeInterval)
+	TLSMaximumSupportedProtocol() unsafe.Pointer
+	SetTLSMaximumSupportedProtocol(value unsafe.Pointer)
+	UsesClassicLoadingMode() bool
+	SetUsesClassicLoadingMode(value bool)
+	WaitsForConnectivity() bool
+	SetWaitsForConnectivity(value bool)
+	Configuration() NSURLSessionConfiguration
+	SetConfiguration(value IURLSessionConfiguration)
+	AllowsUltraConstrainedNetworkAccess() bool
+	SetAllowsUltraConstrainedNetworkAccess(value bool)
+	EnablesEarlyData() bool
+	SetEnablesEarlyData(value bool)
+	IsDiscretionary() bool
+	SetIsDiscretionary(value bool)
+	ProtocolClasses() unsafe.Pointer
+	SetProtocolClasses(value unsafe.Pointer)
+	RequestCachePolicy() unsafe.Pointer
+	SetRequestCachePolicy(value unsafe.Pointer)
+	RequiresDNSSECValidation() bool
+	SetRequiresDNSSECValidation(value bool)
+	TlsMaximumSupportedProtocolVersion() unsafe.Pointer
+	SetTlsMaximumSupportedProtocolVersion(value unsafe.Pointer)
+	TlsMinimumSupportedProtocol() unsafe.Pointer
+	SetTlsMinimumSupportedProtocol(value unsafe.Pointer)
+	TlsMinimumSupportedProtocolVersion() unsafe.Pointer
+	SetTlsMinimumSupportedProtocolVersion(value unsafe.Pointer)
+	UrlCache() NSURLCache
+	SetUrlCache(value IURLCache)
+	UrlCredentialStorage() NSURLCredentialStorage
+	SetUrlCredentialStorage(value IURLCredentialStorage)
 }
 
 // A configuration object that defines behavior and policies for a URL session.

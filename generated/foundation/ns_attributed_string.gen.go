@@ -64,6 +64,8 @@ type IAttributedString interface {
 	RTFDFileWrapperFromRangeDocumentAttributes(range_ IRange, dict unsafe.Pointer) FileWrapper
 	RulerAttributesInRange(range_ IRange) unsafe.Pointer
 	Size() coregraphics.CGSize
+	Length() uint
+	String() string
 }
 
 // A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.

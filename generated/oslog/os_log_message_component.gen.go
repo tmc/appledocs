@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,17 @@ type _OSLogMessageComponentClass struct {
 // An interface definition for the [OSLogMessageComponent] class.
 type IOSLogMessageComponent interface {
 	objectivec.IObject
+	ArgumentCategory() OSLogMessageComponentArgumentCategory
+	ArgumentDataValue() foundation.NSData
+	ArgumentDoubleValue() float64
+	ArgumentInt64Value() unsafe.Pointer
+	ArgumentNumberValue() foundation.Number
+	ArgumentStringValue() string
+	ArgumentUInt64Value() uint64
+	FormatSubstring() string
+	Placeholder() string
+	Argument() unsafe.Pointer
+	SetArgument(value unsafe.Pointer)
 }
 
 // The message arguments for a particular entry.
@@ -101,8 +111,8 @@ func (o_ OSLogMessageComponent) ArgumentDataValue() foundation.NSData {
 // The argument formatted as a double.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentDoubleValue
-func (o_ OSLogMessageComponent) ArgumentDoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argumentDoubleValue"))
+func (o_ OSLogMessageComponent) ArgumentDoubleValue() float64 {
+	rv := objc.Send[float64](o_.ID, objc.Sel("argumentDoubleValue"))
 	return rv
 }
 
@@ -125,8 +135,8 @@ func (o_ OSLogMessageComponent) ArgumentNumberValue() foundation.Number {
 // The argument formatted as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentStringValue
-func (o_ OSLogMessageComponent) ArgumentStringValue() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("argumentStringValue"))
+func (o_ OSLogMessageComponent) ArgumentStringValue() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("argumentStringValue"))
 	return rv
 }
 
@@ -141,16 +151,16 @@ func (o_ OSLogMessageComponent) ArgumentUInt64Value() uint64 {
 // The text immediately preceding a placeholder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/formatSubstring
-func (o_ OSLogMessageComponent) FormatSubstring() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("formatSubstring"))
+func (o_ OSLogMessageComponent) FormatSubstring() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("formatSubstring"))
 	return rv
 }
 
 // The placeholder text for the message component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/placeholder
-func (o_ OSLogMessageComponent) Placeholder() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("placeholder"))
+func (o_ OSLogMessageComponent) Placeholder() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("placeholder"))
 	return rv
 }
 

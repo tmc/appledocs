@@ -29,6 +29,7 @@ type _LightweightMigrationStageClass struct {
 // An interface definition for the [LightweightMigrationStage] class.
 type ILightweightMigrationStage interface {
 	IMigrationStage
+	VersionChecksums() []string
 }
 
 // An object that describes a series of models suitable for lightweight migration.

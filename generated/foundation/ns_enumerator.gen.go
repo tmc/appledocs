@@ -31,6 +31,7 @@ type _EnumeratorClass struct {
 type IEnumerator interface {
 	objectivec.IObject
 	NextObject() unsafe.Pointer
+	AllObjects() []objc.ID
 }
 
 // An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries.

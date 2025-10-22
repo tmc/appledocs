@@ -31,6 +31,12 @@ type _RasterizationRateLayerDescriptorClass struct {
 // An interface definition for the [RasterizationRateLayerDescriptor] class.
 type IRasterizationRateLayerDescriptor interface {
 	objectivec.IObject
+	Horizontal() MTLRasterizationRateSampleArray
+	HorizontalSampleStorage() unsafe.Pointer
+	MaxSampleCount() coregraphics.Size
+	SampleCount() coregraphics.Size
+	Vertical() MTLRasterizationRateSampleArray
+	VerticalSampleStorage() unsafe.Pointer
 }
 
 // The minimum rasterization rates to apply to sections of a layer in the render target.

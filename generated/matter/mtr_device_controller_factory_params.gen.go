@@ -31,6 +31,18 @@ type _MTRDeviceControllerFactoryParamsClass struct {
 // An interface definition for the [MTRDeviceControllerFactoryParams] class.
 type IMTRDeviceControllerFactoryParams interface {
 	objectivec.IObject
+	ProductAttestationAuthorityCertificates() []foundation.Data
+	SetProductAttestationAuthorityCertificates(value []foundation.IData)
+	CertificationDeclarationCertificates() foundation.Data
+	SetCertificationDeclarationCertificates(value foundation.IData)
+	OtaProviderDelegate() unsafe.Pointer
+	SetOtaProviderDelegate(value unsafe.Pointer)
+	Port() foundation.Number
+	SetPort(value foundation.INumber)
+	ShouldStartServer() bool
+	SetShouldStartServer(value bool)
+	Storage() unsafe.Pointer
+	SetStorage(value unsafe.Pointer)
 }
 
 //

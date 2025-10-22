@@ -32,6 +32,34 @@ type IICCameraDevice interface {
 	IICDevice
 	CancelDelete()
 	RequestSyncClock()
+	BatteryLevel() int
+	SetBatteryLevel(value int)
+	BatteryLevelAvailable() bool
+	SetBatteryLevelAvailable(value bool)
+	ContentCatalogPercentCompleted() int
+	SetContentCatalogPercentCompleted(value int)
+	Contents() ICCameraItem
+	SetContents(value ICCameraItem)
+	ICloudPhotosEnabled() bool
+	SetICloudPhotosEnabled(value bool)
+	IsAccessRestrictedAppleDevice() bool
+	SetIsAccessRestrictedAppleDevice(value bool)
+	IsEjectable() bool
+	SetIsEjectable(value bool)
+	IsLocked() bool
+	SetIsLocked(value bool)
+	MediaFiles() ICCameraItem
+	SetMediaFiles(value ICCameraItem)
+	MediaPresentation() unsafe.Pointer
+	SetMediaPresentation(value unsafe.Pointer)
+	MountPoint() string
+	SetMountPoint(value string)
+	PtpEventHandler() unsafe.Pointer
+	SetPtpEventHandler(value unsafe.Pointer)
+	TetheredCaptureEnabled() bool
+	SetTetheredCaptureEnabled(value bool)
+	TimeOffset() unsafe.Pointer
+	SetTimeOffset(value unsafe.Pointer)
 }
 
 // An object that represents a camera.
@@ -276,8 +304,8 @@ func (i_ ICCameraDevice) SetMediaPresentation(value unsafe.Pointer) {
 // The file system mount point for a camera using the mass storage transport type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
-func (i_ ICCameraDevice) MountPoint() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("mountPoint"))
+func (i_ ICCameraDevice) MountPoint() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("mountPoint"))
 	return rv
 }
 
@@ -287,8 +315,8 @@ func (i_ ICCameraDevice) MountPoint() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
-func (i_ ICCameraDevice) SetMountPoint(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMountPoint:"), value)
+func (i_ ICCameraDevice) SetMountPoint(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMountPoint:"), objc.String(value))
 }
 
 // A closure for handling PTP event packets.

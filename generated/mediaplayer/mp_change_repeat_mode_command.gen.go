@@ -29,6 +29,8 @@ type _ChangeRepeatModeCommandClass struct {
 // An interface definition for the [ChangeRepeatModeCommand] class.
 type IChangeRepeatModeCommand interface {
 	IRemoteCommand
+	CurrentRepeatType() RepeatType
+	SetCurrentRepeatType(value RepeatType)
 }
 
 // An object that responds to requests to change the current repeat mode used during playback.

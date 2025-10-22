@@ -33,6 +33,24 @@ type IAuthorizationProviderExtensionLoginManager interface {
 	BeginKeyRotationForKeyType(keyType unsafe.Pointer) unsafe.Pointer
 	CompleteKeyRotationForKeyType(keyType unsafe.Pointer)
 	SaveCertificateKeyType(certificate unsafe.Pointer, keyType unsafe.Pointer)
+	AuthenticationMethod() unsafe.Pointer
+	SetAuthenticationMethod(value unsafe.Pointer)
+	ExtensionData() unsafe.Pointer
+	SetExtensionData(value unsafe.Pointer)
+	IsDeviceRegistered() bool
+	SetIsDeviceRegistered(value bool)
+	IsUserRegistered() bool
+	SetIsUserRegistered(value bool)
+	LoginConfiguration() unsafe.Pointer
+	SetLoginConfiguration(value unsafe.Pointer)
+	LoginUserName() string
+	SetLoginUserName(value string)
+	RegistrationToken() string
+	SetRegistrationToken(value string)
+	SsoTokens() unsafe.Pointer
+	SetSsoTokens(value unsafe.Pointer)
+	UserLoginConfiguration() ASAuthorizationProviderExtensionUserLoginConfiguration
+	SetUserLoginConfiguration(value IASAuthorizationProviderExtensionUserLoginConfiguration)
 }
 
 // An interface to maintain platform single sign-on (SSO) during authentication and registration.
@@ -190,8 +208,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetLoginConfiguration(value
 // The user name to use when authenticating with the identity provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
-func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("loginUserName"))
+func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
 	return rv
 }
 
@@ -201,15 +219,15 @@ func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() appkit.stri
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
-func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), value)
+func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
 }
 
 // The device registration token from the mobile device management profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("registrationToken"))
+func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("registrationToken"))
 	return rv
 }
 
@@ -219,8 +237,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() appkit.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), value)
+func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), objc.String(value))
 }
 
 // The single sign-on response tokens for the current user and extension.

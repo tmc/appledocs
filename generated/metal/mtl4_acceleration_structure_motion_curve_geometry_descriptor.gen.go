@@ -29,6 +29,34 @@ type _MTL4AccelerationStructureMotionCurveGeometryDescriptorClass struct {
 // An interface definition for the [MTL4AccelerationStructureMotionCurveGeometryDescriptor] class.
 type IMTL4AccelerationStructureMotionCurveGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
+	ControlPointBuffers() unsafe.Pointer
+	SetControlPointBuffers(value unsafe.Pointer)
+	ControlPointCount() int
+	SetControlPointCount(value int)
+	ControlPointFormat() unsafe.Pointer
+	SetControlPointFormat(value unsafe.Pointer)
+	ControlPointStride() int
+	SetControlPointStride(value int)
+	CurveBasis() CurveBasis
+	SetCurveBasis(value ICurveBasis)
+	CurveEndCaps() CurveEndCaps
+	SetCurveEndCaps(value ICurveEndCaps)
+	CurveType() CurveType
+	SetCurveType(value CurveType)
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	RadiusBuffers() unsafe.Pointer
+	SetRadiusBuffers(value unsafe.Pointer)
+	RadiusFormat() unsafe.Pointer
+	SetRadiusFormat(value unsafe.Pointer)
+	RadiusStride() int
+	SetRadiusStride(value int)
+	SegmentControlPointCount() int
+	SetSegmentControlPointCount(value int)
+	SegmentCount() int
+	SetSegmentCount(value int)
 }
 
 // Describes motion curve geometry, suitable for motion ray tracing.

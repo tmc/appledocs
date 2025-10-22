@@ -30,6 +30,16 @@ type _SFVoiceAnalyticsClass struct {
 // An interface definition for the [SFVoiceAnalytics] class.
 type ISFVoiceAnalytics interface {
 	objectivec.IObject
+	IsFinal() bool
+	SetIsFinal(value bool)
+	Jitter() SFAcousticFeature
+	SetJitter(value ISFAcousticFeature)
+	Pitch() SFAcousticFeature
+	SetPitch(value ISFAcousticFeature)
+	Shimmer() SFAcousticFeature
+	SetShimmer(value ISFAcousticFeature)
+	Voicing() SFAcousticFeature
+	SetVoicing(value ISFAcousticFeature)
 }
 
 // A collection of vocal analysis metrics.

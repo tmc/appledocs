@@ -30,6 +30,21 @@ type _SampleBufferAudioRendererClass struct {
 // An interface definition for the [SampleBufferAudioRenderer] class.
 type ISampleBufferAudioRenderer interface {
 	objectivec.IObject
+	AudioOutputDeviceUniqueID() string
+	SetAudioOutputDeviceUniqueID(value string)
+	AllowedAudioSpatializationFormats() unsafe.Pointer
+	SetAllowedAudioSpatializationFormats(value unsafe.Pointer)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm
+	SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm)
+	Error() Error
+	SetError(value IError)
+	IsMuted() bool
+	SetIsMuted(value bool)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	Volume() float32
+	SetVolume(value float32)
+	AVSampleBufferAudioRendererFlushTimeKey() string
 }
 
 // An object used to decompress audio and play compressed or uncompressed audio.

@@ -31,6 +31,8 @@ type _RecursiveLockClass struct {
 type IRecursiveLock interface {
 	objectivec.IObject
 	TryLock() bool
+	Name() string
+	SetName(value string)
 }
 
 // A lock that may be acquired multiple times by the same thread without causing a deadlock.

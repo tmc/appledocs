@@ -30,6 +30,14 @@ type _AuthorizationSingleSignOnRequestClass struct {
 // An interface definition for the [AuthorizationSingleSignOnRequest] class.
 type IAuthorizationSingleSignOnRequest interface {
 	IAuthorizationOpenIDRequest
+	AuthorizationOptions() []foundation.URLQueryItem
+	SetAuthorizationOptions(value []foundation.IURLQueryItem)
+	UserInterfaceEnabled() bool
+	SetUserInterfaceEnabled(value bool)
+	CanPerformAuthorization() bool
+	SetCanPerformAuthorization(value bool)
+	IsUserInterfaceEnabled() bool
+	SetIsUserInterfaceEnabled(value bool)
 }
 
 // An OpenID authorization request that provides single sign-on (SSO) functionality.

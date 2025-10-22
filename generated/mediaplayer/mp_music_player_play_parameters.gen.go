@@ -30,6 +30,8 @@ type _MusicPlayerPlayParametersClass struct {
 // An interface definition for the [MusicPlayerPlayParameters] class.
 type IMusicPlayerPlayParameters interface {
 	objectivec.IObject
+	Dictionary() string
+	SetDictionary(value string)
 }
 
 // The MusicKit parameters that describe items to play.
@@ -81,8 +83,8 @@ func NewMusicPlayerPlayParameters() MusicPlayerPlayParameters {
 // The information returned from a MusicKit query and stored in a play parameters object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
-func (m_ MusicPlayerPlayParameters) Dictionary() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("dictionary"))
+func (m_ MusicPlayerPlayParameters) Dictionary() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("dictionary"))
 	return rv
 }
 
@@ -92,8 +94,8 @@ func (m_ MusicPlayerPlayParameters) Dictionary() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
-func (m_ MusicPlayerPlayParameters) SetDictionary(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), value)
+func (m_ MusicPlayerPlayParameters) SetDictionary(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), objc.String(value))
 }
 
 

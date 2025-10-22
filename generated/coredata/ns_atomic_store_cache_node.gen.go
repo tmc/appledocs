@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _AtomicStoreCacheNodeClass struct {
 // An interface definition for the [AtomicStoreCacheNode] class.
 type IAtomicStoreCacheNode interface {
 	objectivec.IObject
+	ObjectID() NSManagedObjectID
+	SetObjectID(value IManagedObjectID)
+	PropertyCache() foundation.MutableDictionary
+	SetPropertyCache(value foundation.IMutableDictionary)
 }
 
 // A concrete class that you use to represent basic nodes in a Core Data atomic store.
@@ -85,15 +88,15 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 // Sets the value for the given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/setValue(_:forKey:)
-func (a_ AtomicStoreCacheNode) SetValueForKey(value objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, key)
+func (a_ AtomicStoreCacheNode) SetValueForKey(value objectivec.IObject, key string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
 
 // Returns the value for a given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/value(forKey:)
-func (a_ AtomicStoreCacheNode) ValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
+func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 

@@ -29,6 +29,23 @@ type _CKFetchRecordChangesOperationClass struct {
 // An interface definition for the [CKFetchRecordChangesOperation] class.
 type ICKFetchRecordChangesOperation interface {
 	ICKDatabaseOperation
+	DesiredKeys() []string
+	SetDesiredKeys(value []string)
+	FetchRecordChangesCompletionBlock() unsafe.Pointer
+	SetFetchRecordChangesCompletionBlock(value unsafe.Pointer)
+	MoreComing() bool
+	PreviousServerChangeToken() CKServerChangeToken
+	SetPreviousServerChangeToken(value ICKServerChangeToken)
+	RecordChangedBlock() unsafe.Pointer
+	SetRecordChangedBlock(value unsafe.Pointer)
+	RecordWithIDWasDeletedBlock() unsafe.Pointer
+	SetRecordWithIDWasDeletedBlock(value unsafe.Pointer)
+	RecordZoneID() CKRecordZoneID
+	SetRecordZoneID(value ICKRecordZoneID)
+	ResultsLimit() uint
+	SetResultsLimit(value uint)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
 }
 
 // An operation that reports on the changed and deleted records in the specified record zone.

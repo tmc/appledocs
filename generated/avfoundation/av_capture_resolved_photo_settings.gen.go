@@ -30,6 +30,45 @@ type _CaptureResolvedPhotoSettingsClass struct {
 // An interface definition for the [CaptureResolvedPhotoSettings] class.
 type ICaptureResolvedPhotoSettings interface {
 	objectivec.IObject
+	EmbeddedThumbnailDimensions() unsafe.Pointer
+	FlashMode() unsafe.Pointer
+	SetFlashMode(value unsafe.Pointer)
+	PreviewPhotoFormat() string
+	SetPreviewPhotoFormat(value string)
+	UniqueID() unsafe.Pointer
+	SetUniqueID(value unsafe.Pointer)
+	DeferredPhotoProxyDimensions() unsafe.Pointer
+	SetDeferredPhotoProxyDimensions(value unsafe.Pointer)
+	ExpectedPhotoCount() int
+	SetExpectedPhotoCount(value int)
+	IsContentAwareDistortionCorrectionEnabled() bool
+	SetIsContentAwareDistortionCorrectionEnabled(value bool)
+	IsDualCameraFusionEnabled() bool
+	SetIsDualCameraFusionEnabled(value bool)
+	IsFastCapturePrioritizationEnabled() bool
+	SetIsFastCapturePrioritizationEnabled(value bool)
+	IsFlashEnabled() bool
+	SetIsFlashEnabled(value bool)
+	IsRedEyeReductionEnabled() bool
+	SetIsRedEyeReductionEnabled(value bool)
+	IsStillImageStabilizationEnabled() bool
+	SetIsStillImageStabilizationEnabled(value bool)
+	IsVirtualDeviceFusionEnabled() bool
+	SetIsVirtualDeviceFusionEnabled(value bool)
+	LivePhotoMovieDimensions() unsafe.Pointer
+	SetLivePhotoMovieDimensions(value unsafe.Pointer)
+	PhotoDimensions() unsafe.Pointer
+	SetPhotoDimensions(value unsafe.Pointer)
+	PhotoProcessingTimeRange() unsafe.Pointer
+	SetPhotoProcessingTimeRange(value unsafe.Pointer)
+	PortraitEffectsMatteDimensions() unsafe.Pointer
+	SetPortraitEffectsMatteDimensions(value unsafe.Pointer)
+	PreviewDimensions() unsafe.Pointer
+	SetPreviewDimensions(value unsafe.Pointer)
+	RawEmbeddedThumbnailDimensions() unsafe.Pointer
+	SetRawEmbeddedThumbnailDimensions(value unsafe.Pointer)
+	RawPhotoDimensions() unsafe.Pointer
+	SetRawPhotoDimensions(value unsafe.Pointer)
 }
 
 // A description of the features and settings in use for an in-progress or complete photo capture request.

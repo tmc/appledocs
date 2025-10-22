@@ -29,6 +29,8 @@ type _PHASECardioidDirectivityModelParametersClass struct {
 // An interface definition for the [PHASECardioidDirectivityModelParameters] class.
 type IPHASECardioidDirectivityModelParameters interface {
 	IPHASEDirectivityModelParameters
+	SubbandParameters() PHASECardioidDirectivityModelSubbandParameters
+	SetSubbandParameters(value IPHASECardioidDirectivityModelSubbandParameters)
 }
 
 // An object that directs sound in a heart-shaped curve surrounding a sound source.

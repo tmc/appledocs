@@ -30,6 +30,16 @@ type _CKShareRequestAccessOperationClass struct {
 // An interface definition for the [CKShareRequestAccessOperation] class.
 type ICKShareRequestAccessOperation interface {
 	ICKOperation
+	PerShareAccessRequestCompletionBlock() unsafe.Pointer
+	SetPerShareAccessRequestCompletionBlock(value unsafe.Pointer)
+	ShareRequestAccessCompletionBlock() func(error objc.ID)
+	SetShareRequestAccessCompletionBlock(value func(error objc.ID))
+	ShareURLs() []foundation.URL
+	SetShareURLs(value []foundation.IURL)
+	PerShareAccessRequestResultBlock() unsafe.Pointer
+	SetPerShareAccessRequestResultBlock(value unsafe.Pointer)
+	ShareAccessRequestResultBlock() unsafe.Pointer
+	SetShareAccessRequestResultBlock(value unsafe.Pointer)
 }
 
 //

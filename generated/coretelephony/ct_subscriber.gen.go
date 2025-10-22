@@ -31,6 +31,15 @@ type _SubscriberClass struct {
 // An interface definition for the [Subscriber] class.
 type ISubscriber interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	CarrierToken() foundation.Data
+	SetCarrierToken(value foundation.IData)
+	Identifier() string
+	SetIdentifier(value string)
+	IsSIMInserted() bool
+	SetIsSIMInserted(value bool)
+	CTSubscriberTokenRefreshed() string
 }
 
 // A cellular network subscriber.
@@ -118,8 +127,8 @@ func (s_ Subscriber) SetCarrierToken(value foundation.IData) {
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ Subscriber) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
+func (s_ Subscriber) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -129,8 +138,8 @@ func (s_ Subscriber) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ Subscriber) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
+func (s_ Subscriber) SetIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A Boolean property that indicates whether a SIM is present.
@@ -154,8 +163,8 @@ func (s_ Subscriber) SetIsSIMInserted(value bool) {
 // The name of the notification indicating that the carrier token is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
-func (s_ Subscriber) CTSubscriberTokenRefreshed() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
+func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv
 }
 

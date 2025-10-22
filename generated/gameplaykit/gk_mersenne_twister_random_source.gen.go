@@ -29,6 +29,8 @@ type _MersenneTwisterRandomSourceClass struct {
 // An interface definition for the [MersenneTwisterRandomSource] class.
 type IMersenneTwisterRandomSource interface {
 	IRandomSource
+	Seed() uint64
+	SetSeed(value uint64)
 }
 
 // A basic random number generator implementing the Mersenne Twister algorithm, which is more random, but slower than the default random source.

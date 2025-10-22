@@ -29,6 +29,18 @@ type _MutableDataClass struct {
 // An interface definition for the [MutableData] class.
 type IMutableData interface {
 	IData
+	NSCompressionErrorMaximum() int
+	SetNSCompressionErrorMaximum(value int)
+	NSCompressionErrorMinimum() int
+	SetNSCompressionErrorMinimum(value int)
+	NSCompressionFailedError() int
+	SetNSCompressionFailedError(value int)
+	NSDecompressionFailedError() int
+	SetNSDecompressionFailedError(value int)
+	Length() int
+	SetLength(value int)
+	MutableBytes() unsafe.Pointer
+	SetMutableBytes(value unsafe.Pointer)
 }
 
 // An object representing a dynamic byte buffer in memory.

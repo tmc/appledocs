@@ -33,6 +33,8 @@ type IUserDefaults interface {
 	SetURLForKey(url IURL, defaultName string)
 	SetObjectForKey(value objectivec.IObject, defaultName string)
 	StringForKey(defaultName string) String
+	VolatileDomainNames() string
+	SetVolatileDomainNames(value string)
 }
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.

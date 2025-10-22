@@ -31,6 +31,12 @@ type _AdTestPostbackResponseClass struct {
 // An interface definition for the [AdTestPostbackResponse] class.
 type IAdTestPostbackResponse interface {
 	objectivec.IObject
+	DidSucceed() bool
+	SetDidSucceed(value bool)
+	Error() foundation.Error
+	SetError(value foundation.IError)
+	HttpResponse() foundation.HTTPURLResponse
+	SetHttpResponse(value foundation.IHTTPURLResponse)
 }
 
 // The status and error information for a postback that the system sends in the testing environment.

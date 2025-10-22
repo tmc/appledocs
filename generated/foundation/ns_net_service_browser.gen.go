@@ -36,6 +36,10 @@ type INetServiceBrowser interface {
 	SearchForRegistrationDomains()
 	SearchForServicesOfTypeInDomain(type_ string, domainString string)
 	Stop()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	IncludesPeerToPeer() bool
+	SetIncludesPeerToPeer(value bool)
 }
 
 // A network service browser that finds published services on a network using multicast DNS.

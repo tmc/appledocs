@@ -33,6 +33,8 @@ type IUSBHostStream interface {
 	AbortWithError(error_ unsafe.Pointer) bool
 	AbortWithOptionError(option unsafe.Pointer, error_ unsafe.Pointer) bool
 	EnqueueIORequestWithDataErrorCompletionHandler(data foundation.IMutableData, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	HostPipe() IOUSBHostPipe
+	StreamID() uint
 }
 
 // The class responsible for sending stream data for function drivers.

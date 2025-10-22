@@ -31,6 +31,18 @@ type _MTRDoorLockClusterLockOperationEventClass struct {
 // An interface definition for the [MTRDoorLockClusterLockOperationEvent] class.
 type IMTRDoorLockClusterLockOperationEvent interface {
 	objectivec.IObject
+	Credentials() unsafe.Pointer
+	SetCredentials(value unsafe.Pointer)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	LockOperationType() foundation.Number
+	SetLockOperationType(value foundation.INumber)
+	OperationSource() foundation.Number
+	SetOperationSource(value foundation.INumber)
+	SourceNode() foundation.Number
+	SetSourceNode(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
 }
 
 //

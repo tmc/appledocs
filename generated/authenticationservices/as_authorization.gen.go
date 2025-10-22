@@ -30,6 +30,8 @@ type _AuthorizationClass struct {
 // An interface definition for the [Authorization] class.
 type IAuthorization interface {
 	objectivec.IObject
+	Credential() objc.ID
+	Provider() objc.ID
 }
 
 // The encapsulation of a successful authorization by a controller.

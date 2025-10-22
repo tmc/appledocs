@@ -31,6 +31,8 @@ type _FileProviderItemVersionClass struct {
 // An interface definition for the [FileProviderItemVersion] class.
 type IFileProviderItemVersion interface {
 	objectivec.IObject
+	ContentVersion() foundation.NSData
+	MetadataVersion() foundation.NSData
 }
 
 // The version of the item’s content and its metadata.

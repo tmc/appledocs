@@ -29,6 +29,14 @@ type _DirectoryEnumeratorClass struct {
 // An interface definition for the [DirectoryEnumerator] class.
 type IDirectoryEnumerator interface {
 	IEnumerator
+	DirectoryAttributes() FileAttributeKey
+	SetDirectoryAttributes(value IFileAttributeKey)
+	FileAttributes() FileAttributeKey
+	SetFileAttributes(value IFileAttributeKey)
+	IsEnumeratingDirectoryPostOrder() bool
+	SetIsEnumeratingDirectoryPostOrder(value bool)
+	Level() int
+	SetLevel(value int)
 }
 
 // An object that enumerates the contents of a directory.

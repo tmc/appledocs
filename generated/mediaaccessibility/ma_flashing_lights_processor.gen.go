@@ -33,6 +33,7 @@ type IMAFlashingLightsProcessor interface {
 	objectivec.IObject
 	CanProcessSurface(surface unsafe.Pointer) bool
 	ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) MAFlashingLightsProcessorResult
+	KMADimFlashingLightsChangedNotification() foundation.String
 }
 
 // A class that processes a framebuffer object to detect and dim sequences of flashing lights.

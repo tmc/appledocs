@@ -29,6 +29,22 @@ type _NEFilterSocketFlowClass struct {
 // An interface definition for the [NEFilterSocketFlow] class.
 type INEFilterSocketFlow interface {
 	INEFilterFlow
+	LocalEndpoint() NWEndpoint
+	SetLocalEndpoint(value INWEndpoint)
+	LocalFlowEndpoint() NWEndpoint
+	SetLocalFlowEndpoint(value INWEndpoint)
+	RemoteEndpoint() NWEndpoint
+	SetRemoteEndpoint(value INWEndpoint)
+	RemoteFlowEndpoint() NWEndpoint
+	SetRemoteFlowEndpoint(value INWEndpoint)
+	RemoteHostname() string
+	SetRemoteHostname(value string)
+	SocketFamily() unsafe.Pointer
+	SetSocketFamily(value unsafe.Pointer)
+	SocketProtocol() unsafe.Pointer
+	SetSocketProtocol(value unsafe.Pointer)
+	SocketType() unsafe.Pointer
+	SetSocketType(value unsafe.Pointer)
 }
 
 // A flow of network data that the filter examines.
@@ -148,8 +164,8 @@ func (n_ NEFilterSocketFlow) SetRemoteFlowEndpoint(value INWEndpoint) {
 // The flow’s remote hostname, if applicable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
-func (n_ NEFilterSocketFlow) RemoteHostname() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("remoteHostname"))
+func (n_ NEFilterSocketFlow) RemoteHostname() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
 	return rv
 }
 
@@ -159,8 +175,8 @@ func (n_ NEFilterSocketFlow) RemoteHostname() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
-func (n_ NEFilterSocketFlow) SetRemoteHostname(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteHostname:"), value)
+func (n_ NEFilterSocketFlow) SetRemoteHostname(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteHostname:"), objc.String(value))
 }
 
 // The protocol family of the socket.

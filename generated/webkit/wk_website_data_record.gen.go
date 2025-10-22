@@ -30,6 +30,9 @@ type _WebsiteDataRecordClass struct {
 // An interface definition for the [WebsiteDataRecord] class.
 type IWebsiteDataRecord interface {
 	objectivec.IObject
+	DataTypes() unsafe.Pointer
+	DisplayName() string
+	SetDisplayName(value string)
 }
 
 // A record of the data that a particular website stores persistently.
@@ -91,8 +94,8 @@ func (w_ WebsiteDataRecord) DataTypes() unsafe.Pointer {
 // The display name for the data record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
-func (w_ WebsiteDataRecord) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayName"))
+func (w_ WebsiteDataRecord) DisplayName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -102,8 +105,8 @@ func (w_ WebsiteDataRecord) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
-func (w_ WebsiteDataRecord) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), value)
+func (w_ WebsiteDataRecord) SetDisplayName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 

@@ -30,6 +30,8 @@ type _ProductsResponseClass struct {
 // An interface definition for the [ProductsResponse] class.
 type IProductsResponse interface {
 	objectivec.IObject
+	InvalidProductIdentifiers() []string
+	Products() []Product
 }
 
 // An App Store response to a request for information about a list of products.

@@ -30,6 +30,8 @@ type _MTRDeviceControllerAbstractParametersClass struct {
 // An interface definition for the [MTRDeviceControllerAbstractParameters] class.
 type IMTRDeviceControllerAbstractParameters interface {
 	objectivec.IObject
+	StartSuspended() bool
+	SetStartSuspended(value bool)
 }
 
 //

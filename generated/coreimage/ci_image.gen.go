@@ -34,11 +34,11 @@ type _ImageClass struct {
 // An interface definition for the [Image] class.
 type IImage interface {
 	objectivec.IObject
-	ImageByApplyingFilter(filterName appkit.string) Image
-	ImageByApplyingFilterWithInputParameters(filterName appkit.string, params unsafe.Pointer) Image
+	ImageByApplyingFilter(filterName string) Image
+	ImageByApplyingFilterWithInputParameters(filterName string, params unsafe.Pointer) Image
 	ImageByApplyingGainMap(gainmap ICIImage) Image
-	ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom unsafe.Pointer) Image
-	ImageByApplyingGaussianBlurWithSigma(sigma unsafe.Pointer) Image
+	ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float32) Image
+	ImageByApplyingGaussianBlurWithSigma(sigma float64) Image
 	AutoAdjustmentFilters() []Filter
 	AutoAdjustmentFiltersWithOptions(options unsafe.Pointer) []Filter
 	ImageByClampingToRect(rect coregraphics.CGRect) Image
@@ -54,20 +54,36 @@ type IImage interface {
 	ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace coregraphics.CGColorSpaceRef) Image
 	ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace coregraphics.CGColorSpaceRef) Image
 	ImageTransformForCGOrientation(orientation unsafe.Pointer) coregraphics.CGAffineTransform
-	ImageTransformForOrientation(orientation unsafe.Pointer) coregraphics.CGAffineTransform
+	ImageTransformForOrientation(orientation int) coregraphics.CGAffineTransform
 	ImageByApplyingCGOrientation(orientation unsafe.Pointer) Image
-	ImageByApplyingOrientation(orientation unsafe.Pointer) Image
+	ImageByApplyingOrientation(orientation int) Image
 	ImageByPremultiplyingAlpha() Image
 	RegionOfInterestForImageInRect(image ICIImage, rect coregraphics.CGRect) coregraphics.CGRect
 	ImageBySamplingLinear() Image
 	ImageBySamplingNearest() Image
 	ImageBySettingAlphaOneInExtent(extent coregraphics.CGRect) Image
-	ImageBySettingContentAverageLightLevel(average unsafe.Pointer) Image
-	ImageBySettingContentHeadroom(headroom unsafe.Pointer) Image
+	ImageBySettingContentAverageLightLevel(average float32) Image
+	ImageBySettingContentHeadroom(headroom float32) Image
 	ImageBySettingProperties(properties objectivec.IObject) Image
 	ImageByApplyingTransform(matrix coregraphics.CGAffineTransform) Image
 	ImageByApplyingTransformHighQualityDownsample(matrix coregraphics.CGAffineTransform, highQualityDownsample bool) Image
 	ImageByUnpremultiplyingAlpha() Image
+	CGImage() coregraphics.CGImageRef
+	ColorSpace() coregraphics.CGColorSpaceRef
+	ContentAverageLightLevel() float32
+	ContentHeadroom() float32
+	Definition() CIFilterShape
+	DepthData() avfoundation.DepthData
+	Extent() coregraphics.CGRect
+	Opaque() bool
+	MetalTexture() objc.ID
+	PixelBuffer() unsafe.Pointer
+	PortraitEffectsMatte() avfoundation.PortraitEffectsMatte
+	Properties() unsafe.Pointer
+	SemanticSegmentationMatte() avfoundation.SemanticSegmentationMatte
+	Url() foundation.URL
+	IsOpaque() bool
+	SetIsOpaque(value bool)
 }
 
 // A representation of an image to be processed or produced by Core Image filters.
@@ -123,7 +139,7 @@ func NewImage() Image {
 // Initializes an image object with bitmap data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(bitmapData:bytesPerRow:size:format:colorSpace:)
-func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.IData, bytesPerRow unsafe.Pointer, size coregraphics.CGSize, format Format, colorSpace coregraphics.CGColorSpaceRef) Image {
+func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.IData, bytesPerRow Iuintptr, size coregraphics.CGSize, format Format, colorSpace coregraphics.CGColorSpaceRef) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapData:bytesPerRow:size:format:colorSpace:"), data, bytesPerRow, size, format, colorSpace)
 	rv.Autorelease()
@@ -168,7 +184,7 @@ func NewImageWithCGImageOptions(image coregraphics.CGImageRef, options unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImageSource:index:options:)
-func NewImageWithCGImageSourceIndexOptions(source unsafe.Pointer, index unsafe.Pointer, dict unsafe.Pointer) Image {
+func NewImageWithCGImageSourceIndexOptions(source unsafe.Pointer, index Iuintptr, dict unsafe.Pointer) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImageSource:index:options:"), source, index, dict)
 	rv.Autorelease()
@@ -354,7 +370,7 @@ func NewImageWithIOSurfaceOptions(surface unsafe.Pointer, options unsafe.Pointer
 // Initializes, using the specified format and options, an image with the contents of a specific data plane in an IOSurface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:plane:format:options:)
-func NewImageWithIOSurfacePlaneFormatOptions(surface unsafe.Pointer, plane unsafe.Pointer, format Format, options unsafe.Pointer) Image {
+func NewImageWithIOSurfacePlaneFormatOptions(surface unsafe.Pointer, plane Iuintptr, format Format, options unsafe.Pointer) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:plane:format:options:"), surface, plane, format, options)
 	rv.Autorelease()
@@ -390,7 +406,7 @@ func NewImageWithImageOptions(image IImage, options unsafe.Pointer) Image {
 // Initializes an image object based on pixels from an image provider object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(imageProvider:size:_:format:colorSpace:options:)
-func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width unsafe.Pointer, height unsafe.Pointer, format Format, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Image {
+func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width Iuintptr, height Iuintptr, format Format, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImageProvider:size::format:colorSpace:options:"), provider, width, height, format, colorSpace, options)
 	rv.Autorelease()
@@ -481,7 +497,7 @@ func (ic _ImageClass) EmptyImage() Image {
 // Creates and returns an image object from bitmap data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithBitmapData:bytesPerRow:size:format:colorSpace:
-func (ic _ImageClass) ImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.IData, bytesPerRow unsafe.Pointer, size coregraphics.CGSize, format Format, colorSpace coregraphics.CGColorSpaceRef) Image {
+func (ic _ImageClass) ImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.IData, bytesPerRow Iuintptr, size coregraphics.CGSize, format Format, colorSpace coregraphics.CGColorSpaceRef) Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithBitmapData:bytesPerRow:size:format:colorSpace:"), data, bytesPerRow, size, format, colorSpace)
 	return rv
 }
@@ -504,7 +520,7 @@ func (ic _ImageClass) ImageWithCGImageOptions(image coregraphics.CGImageRef, opt
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCGImageSource:index:options:
-func (ic _ImageClass) ImageWithCGImageSourceIndexOptions(source unsafe.Pointer, index unsafe.Pointer, dict unsafe.Pointer) Image {
+func (ic _ImageClass) ImageWithCGImageSourceIndexOptions(source unsafe.Pointer, index Iuintptr, dict unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCGImageSource:index:options:"), source, index, dict)
 	return rv
 }
@@ -630,7 +646,7 @@ func (ic _ImageClass) ImageWithIOSurfaceOptions(surface unsafe.Pointer, options 
 // Create an image object based on pixels from an image provider object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithImageProvider:size::format:colorSpace:options:
-func (ic _ImageClass) ImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width unsafe.Pointer, height unsafe.Pointer, format Format, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Image {
+func (ic _ImageClass) ImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width Iuintptr, height Iuintptr, format Format, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer) Image {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithImageProvider:size::format:colorSpace:options:"), provider, width, height, format, colorSpace, options)
 	return rv
 }
@@ -750,16 +766,16 @@ func (ic _ImageClass) YellowImage() Image {
 // Applies the filter to an image and returns the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingFilter(_:)
-func (i_ Image) ImageByApplyingFilter(filterName appkit.string) Image {
-	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:"), filterName)
+func (i_ Image) ImageByApplyingFilter(filterName string) Image {
+	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:"), objc.String(filterName))
 	return rv
 }
 
 // Returns a new image created by applying a filter to the original image with the specified name and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingFilter(_:parameters:)
-func (i_ Image) ImageByApplyingFilterWithInputParameters(filterName appkit.string, params unsafe.Pointer) Image {
-	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:withInputParameters:"), filterName, params)
+func (i_ Image) ImageByApplyingFilterWithInputParameters(filterName string, params unsafe.Pointer) Image {
+	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:withInputParameters:"), objc.String(filterName), params)
 	return rv
 }
 
@@ -774,7 +790,7 @@ func (i_ Image) ImageByApplyingGainMap(gainmap ICIImage) Image {
 // Create an image that applies a gain map Core Image image with a specified headroom to the received Core Image image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingGainMap(_:headroom:)
-func (i_ Image) ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom unsafe.Pointer) Image {
+func (i_ Image) ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float32) Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingGainMap:headroom:"), gainmap, headroom)
 	return rv
 }
@@ -782,7 +798,7 @@ func (i_ Image) ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom unsafe
 // Create an image by applying a gaussian blur to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingGaussianBlur(sigma:)
-func (i_ Image) ImageByApplyingGaussianBlurWithSigma(sigma unsafe.Pointer) Image {
+func (i_ Image) ImageByApplyingGaussianBlurWithSigma(sigma float64) Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingGaussianBlurWithSigma:"), sigma)
 	return rv
 }
@@ -906,7 +922,7 @@ func (i_ Image) ImageTransformForCGOrientation(orientation unsafe.Pointer) coreg
 // Returns the transformation needed to reorient the image to the specified orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/orientationTransform(forExifOrientation:)
-func (i_ Image) ImageTransformForOrientation(orientation unsafe.Pointer) coregraphics.CGAffineTransform {
+func (i_ Image) ImageTransformForOrientation(orientation int) coregraphics.CGAffineTransform {
 	rv := objc.Send[coregraphics.CGAffineTransform](i_.ID, objc.Sel("imageTransformForOrientation:"), orientation)
 	return rv
 }
@@ -922,7 +938,7 @@ func (i_ Image) ImageByApplyingCGOrientation(orientation unsafe.Pointer) Image {
 // Returns a new image created by transforming the original image to the specified EXIF orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/oriented(forExifOrientation:)
-func (i_ Image) ImageByApplyingOrientation(orientation unsafe.Pointer) Image {
+func (i_ Image) ImageByApplyingOrientation(orientation int) Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingOrientation:"), orientation)
 	return rv
 }
@@ -970,7 +986,7 @@ func (i_ Image) ImageBySettingAlphaOneInExtent(extent coregraphics.CGRect) Image
 // Create an image by changing the receiver’s contentAverageLightLevel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/settingContentAverageLightLevel(_:)
-func (i_ Image) ImageBySettingContentAverageLightLevel(average unsafe.Pointer) Image {
+func (i_ Image) ImageBySettingContentAverageLightLevel(average float32) Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageBySettingContentAverageLightLevel:"), average)
 	return rv
 }
@@ -978,7 +994,7 @@ func (i_ Image) ImageBySettingContentAverageLightLevel(average unsafe.Pointer) I
 // Create an image by changing the receiver’s contentHeadroom property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/settingContentHeadroom(_:)
-func (i_ Image) ImageBySettingContentHeadroom(headroom unsafe.Pointer) Image {
+func (i_ Image) ImageBySettingContentHeadroom(headroom float32) Image {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageBySettingContentHeadroom:"), headroom)
 	return rv
 }
@@ -1054,16 +1070,16 @@ func (i_ Image) ColorSpace() coregraphics.CGColorSpaceRef {
 // Returns the content average light level of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/contentAverageLightLevel
-func (i_ Image) ContentAverageLightLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentAverageLightLevel"))
+func (i_ Image) ContentAverageLightLevel() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("contentAverageLightLevel"))
 	return rv
 }
 
 // Returns the content headroom of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/contentHeadroom
-func (i_ Image) ContentHeadroom() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentHeadroom"))
+func (i_ Image) ContentHeadroom() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("contentHeadroom"))
 	return rv
 }
 

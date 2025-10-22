@@ -31,6 +31,12 @@ type _MTRThermostatClusterPresetTypeStructClass struct {
 // An interface definition for the [MTRThermostatClusterPresetTypeStruct] class.
 type IMTRThermostatClusterPresetTypeStruct interface {
 	objectivec.IObject
+	NumberOfPresets() foundation.Number
+	SetNumberOfPresets(value foundation.INumber)
+	PresetScenario() foundation.Number
+	SetPresetScenario(value foundation.INumber)
+	PresetTypeFeatures() foundation.Number
+	SetPresetTypeFeatures(value foundation.INumber)
 }
 
 //

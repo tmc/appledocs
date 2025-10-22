@@ -43,8 +43,8 @@ type IMKMapView interface {
 	ConvertCoordinateToPointToView(coordinate unsafe.Pointer, view appkit.IView) coregraphics.CGPoint
 	ConvertRegionToRectToView(region unsafe.Pointer, view appkit.IView) coregraphics.CGRect
 	ConvertRectToRegionFromView(rect coregraphics.CGRect, view appkit.IView) unsafe.Pointer
-	DequeueReusableAnnotationViewWithIdentifier(identifier appkit.string) MKAnnotationView
-	DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier appkit.string, annotation objectivec.IObject) MKAnnotationView
+	DequeueReusableAnnotationViewWithIdentifier(identifier string) MKAnnotationView
+	DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier string, annotation objectivec.IObject) MKAnnotationView
 	DeselectAnnotationAnimated(annotation objectivec.IObject, animated bool)
 	ExchangeOverlayWithOverlay(overlay1 objectivec.IObject, overlay2 objectivec.IObject)
 	ExchangeOverlayAtIndexWithOverlayAtIndex(index1 uint, index2 uint)
@@ -56,7 +56,7 @@ type IMKMapView interface {
 	MapRectThatFitsEdgePadding(mapRect unsafe.Pointer, insets unsafe.Pointer) unsafe.Pointer
 	OverlaysInLevel(level MKOverlayLevel) []objc.ID
 	RegionThatFits(region unsafe.Pointer) unsafe.Pointer
-	RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier appkit.string)
+	RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier string)
 	RemoveAnnotation(annotation objectivec.IObject)
 	RemoveAnnotations(annotations []objc.ID)
 	RemoveOverlay(overlay objectivec.IObject)
@@ -74,6 +74,81 @@ type IMKMapView interface {
 	ShowAnnotationsAnimated(annotations []objc.ID, animated bool)
 	ViewForAnnotation(annotation objectivec.IObject) MKAnnotationView
 	ViewForOverlay(overlay objectivec.IObject) MKOverlayView
+	AnnotationVisibleRect() coregraphics.CGRect
+	Annotations() []objc.ID
+	Camera() unsafe.Pointer
+	SetCamera(value unsafe.Pointer)
+	CameraBoundary() MKMapCameraBoundary
+	SetCameraBoundary(value IMKMapCameraBoundary)
+	CameraZoomRange() MKMapCameraZoomRange
+	SetCameraZoomRange(value IMKMapCameraZoomRange)
+	CenterCoordinate() unsafe.Pointer
+	SetCenterCoordinate(value unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	PitchEnabled() bool
+	SetPitchEnabled(value bool)
+	RotateEnabled() bool
+	SetRotateEnabled(value bool)
+	ScrollEnabled() bool
+	SetScrollEnabled(value bool)
+	UserLocationVisible() bool
+	ZoomEnabled() bool
+	SetZoomEnabled(value bool)
+	MapType() MKMapType
+	SetMapType(value MKMapType)
+	Overlays() []objc.ID
+	PitchButtonVisibility() unsafe.Pointer
+	SetPitchButtonVisibility(value unsafe.Pointer)
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	PreferredConfiguration() MKMapConfiguration
+	SetPreferredConfiguration(value IMKMapConfiguration)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
+	SelectableMapFeatures() MKMapFeatureOptions
+	SetSelectableMapFeatures(value MKMapFeatureOptions)
+	SelectedAnnotations() []objc.ID
+	SetSelectedAnnotations(value []objc.ID)
+	ShowsBuildings() bool
+	SetShowsBuildings(value bool)
+	ShowsCompass() bool
+	SetShowsCompass(value bool)
+	ShowsPitchControl() bool
+	SetShowsPitchControl(value bool)
+	ShowsPointsOfInterest() bool
+	SetShowsPointsOfInterest(value bool)
+	ShowsScale() bool
+	SetShowsScale(value bool)
+	ShowsTraffic() bool
+	SetShowsTraffic(value bool)
+	ShowsUserLocation() bool
+	SetShowsUserLocation(value bool)
+	ShowsUserTrackingButton() bool
+	SetShowsUserTrackingButton(value bool)
+	ShowsZoomControls() bool
+	SetShowsZoomControls(value bool)
+	UserLocation() MKUserLocation
+	UserTrackingMode() MKUserTrackingMode
+	SetUserTrackingMode(value MKUserTrackingMode)
+	VisibleMapRect() unsafe.Pointer
+	SetVisibleMapRect(value unsafe.Pointer)
+	Appearance() appkit.Appearance
+	SetAppearance(value appkit.IAppearance)
+	EffectiveAppearance() appkit.Appearance
+	SetEffectiveAppearance(value appkit.IAppearance)
+	IsPitchEnabled() bool
+	SetIsPitchEnabled(value bool)
+	IsRotateEnabled() bool
+	SetIsRotateEnabled(value bool)
+	IsScrollEnabled() bool
+	SetIsScrollEnabled(value bool)
+	IsUserLocationVisible() bool
+	SetIsUserLocationVisible(value bool)
+	IsZoomEnabled() bool
+	SetIsZoomEnabled(value bool)
+	MKMapViewDefaultAnnotationViewReuseIdentifier() string
+	MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string
 }
 
 // An embeddable map interface, similar to the one that the Maps app provides.
@@ -211,16 +286,16 @@ func (m_ MKMapView) ConvertRectToRegionFromView(rect coregraphics.CGRect, view a
 // Returns a reusable annotation view using its identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/dequeueReusableAnnotationView(withIdentifier:)
-func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifier(identifier appkit.string) MKAnnotationView {
-	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:"), identifier)
+func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifier(identifier string) MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
 // Returns a reusable annotation view using the specified identifier with a specified existing annotation view, if possible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/dequeueReusableAnnotationView(withIdentifier:for:)
-func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier appkit.string, annotation objectivec.IObject) MKAnnotationView {
-	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:forAnnotation:"), identifier, annotation)
+func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier string, annotation objectivec.IObject) MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:forAnnotation:"), objc.String(identifier), annotation)
 	return rv
 }
 
@@ -308,8 +383,8 @@ func (m_ MKMapView) RegionThatFits(region unsafe.Pointer) unsafe.Pointer {
 // Registers an annotation view class that the map can create automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/register(_:forAnnotationViewWithReuseIdentifier:)
-func (m_ MKMapView) RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("registerClass:forAnnotationViewWithReuseIdentifier:"), viewClass, identifier)
+func (m_ MKMapView) RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("registerClass:forAnnotationViewWithReuseIdentifier:"), viewClass, objc.String(identifier))
 }
 
 // Removes the specified annotation object from the map view.
@@ -1099,16 +1174,16 @@ func (m_ MKMapView) SetIsZoomEnabled(value bool) {
 // The default reuse identifier for your map’s annotation views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
+func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
 	return rv
 }
 
 // The default reuse identifier for the annotation view representing a cluster of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
+func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
 	return rv
 }
 

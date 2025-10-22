@@ -32,6 +32,8 @@ type IRequest interface {
 	objectivec.IObject
 	Cancel()
 	Start()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An abstract class that represents a request to the App Store.

@@ -31,6 +31,16 @@ type _MetadataObjectClass struct {
 // An interface definition for the [MetadataObject] class.
 type IMetadataObject interface {
 	objectivec.IObject
+	Bounds() coregraphics.CGRect
+	CinematicVideoFocusMode() CaptureCinematicVideoFocusMode
+	Duration() unsafe.Pointer
+	GroupID() int
+	FixedFocus() bool
+	ObjectID() int
+	Time() unsafe.Pointer
+	Type() MetadataObjectType
+	IsFixedFocus() bool
+	SetIsFixedFocus(value bool)
 }
 
 // The abstract superclass for objects provided by a metadata capture output.

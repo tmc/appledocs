@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,9 +31,12 @@ type _DCAppAttestServiceClass struct {
 // An interface definition for the [DCAppAttestService] class.
 type IDCAppAttestService interface {
 	objectivec.IObject
-	AttestKeyClientDataHashCompletionHandler(keyId appkit.string, clientDataHash foundation.IData, completionHandler unsafe.Pointer)
-	GenerateAssertionClientDataHashCompletionHandler(keyId appkit.string, clientDataHash foundation.IData, completionHandler unsafe.Pointer)
+	AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer)
+	GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer)
 	GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer)
+	Supported() bool
+	IsSupported() bool
+	SetIsSupported(value bool)
 }
 
 // A service that you use to validate the instance of your app running on a device.
@@ -95,15 +97,15 @@ func (dc _DCAppAttestServiceClass) SharedService() DCAppAttestService {
 // Asks Apple to attest to the validity of a generated cryptographic key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId appkit.string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), keyId, clientDataHash, completionHandler)
+func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
 // Creates a block of data that demonstrates the legitimacy of an instance of your app running on a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId appkit.string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), keyId, clientDataHash, completionHandler)
+func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
 // Creates a new cryptographic key for use with the App Attest service.

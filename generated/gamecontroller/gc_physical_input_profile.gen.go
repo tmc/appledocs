@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,8 +32,40 @@ type _GCPhysicalInputProfileClass struct {
 type IGCPhysicalInputProfile interface {
 	objectivec.IObject
 	Capture() unsafe.Pointer
-	MappedElementAliasForPhysicalInputName(inputName appkit.string) foundation.String
-	MappedPhysicalInputNamesForElementAlias(elementAlias appkit.string) unsafe.Pointer
+	MappedElementAliasForPhysicalInputName(inputName string) foundation.String
+	MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer
+	AllAxes() unsafe.Pointer
+	AllButtons() unsafe.Pointer
+	AllDpads() unsafe.Pointer
+	AllElements() unsafe.Pointer
+	AllTouchpads() unsafe.Pointer
+	HasRemappedElements() bool
+	ExtendedGamepad() GCExtendedGamepad
+	SetExtendedGamepad(value IGCExtendedGamepad)
+	Gamepad() unsafe.Pointer
+	SetGamepad(value unsafe.Pointer)
+	MicroGamepad() GCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	PhysicalInputProfile() GCPhysicalInputProfile
+	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
+	Axes() GCControllerAxisInput
+	SetAxes(value IGCControllerAxisInput)
+	Buttons() GCControllerButtonInput
+	SetButtons(value IGCControllerButtonInput)
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
+	Dpads() GCControllerDirectionPad
+	SetDpads(value IGCControllerDirectionPad)
+	Elements() GCControllerElement
+	SetElements(value IGCControllerElement)
+	LastEventTimestamp() unsafe.Pointer
+	SetLastEventTimestamp(value unsafe.Pointer)
+	Touchpads() GCControllerTouchpad
+	SetTouchpads(value IGCControllerTouchpad)
+	ValueDidChangeHandler() unsafe.Pointer
+	SetValueDidChangeHandler(value unsafe.Pointer)
 }
 
 // The base class for controller profiles that support physical buttons, thumbsticks, and directional pads.
@@ -96,16 +127,16 @@ func (g_ GCPhysicalInputProfile) Capture() unsafe.Pointer {
 // Returns the name of the input element to which the user remaps the given physical element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)
-func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), inputName)
+func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string) foundation.String {
+	rv := objc.Send[foundation.String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
 	return rv
 }
 
 // Returns the physical input elements to which the user remaps the given input element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)
-func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), elementAlias)
+func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), objc.String(elementAlias))
 	return rv
 }
 

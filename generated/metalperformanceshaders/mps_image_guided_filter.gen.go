@@ -29,6 +29,14 @@ type _ImageGuidedFilterClass struct {
 // An interface definition for the [ImageGuidedFilter] class.
 type IImageGuidedFilter interface {
 	IKernel
+	Epsilon() float32
+	SetEpsilon(value float32)
+	KernelDiameter() int
+	SetKernelDiameter(value int)
+	ReconstructOffset() float32
+	SetReconstructOffset(value float32)
+	ReconstructScale() float32
+	SetReconstructScale(value float32)
 }
 
 // A filter that performs edge-aware filtering on an image.
@@ -81,8 +89,8 @@ func NewImageGuidedFilter() ImageGuidedFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/epsilon
-func (i_ ImageGuidedFilter) Epsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("epsilon"))
+func (i_ ImageGuidedFilter) Epsilon() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("epsilon"))
 	return rv
 }
 
@@ -90,7 +98,7 @@ func (i_ ImageGuidedFilter) Epsilon() unsafe.Pointer {
 // SetEpsilon sets the value of the epsilon property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/epsilon
-func (i_ ImageGuidedFilter) SetEpsilon(value unsafe.Pointer) {
+func (i_ ImageGuidedFilter) SetEpsilon(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEpsilon:"), value)
 }
 
@@ -111,8 +119,8 @@ func (i_ ImageGuidedFilter) SetKernelDiameter(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructoffset
-func (i_ ImageGuidedFilter) ReconstructOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reconstructOffset"))
+func (i_ ImageGuidedFilter) ReconstructOffset() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("reconstructOffset"))
 	return rv
 }
 
@@ -120,14 +128,14 @@ func (i_ ImageGuidedFilter) ReconstructOffset() unsafe.Pointer {
 // SetReconstructOffset sets the value of the reconstructOffset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructoffset
-func (i_ ImageGuidedFilter) SetReconstructOffset(value unsafe.Pointer) {
+func (i_ ImageGuidedFilter) SetReconstructOffset(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReconstructOffset:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructscale
-func (i_ ImageGuidedFilter) ReconstructScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reconstructScale"))
+func (i_ ImageGuidedFilter) ReconstructScale() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("reconstructScale"))
 	return rv
 }
 
@@ -135,7 +143,7 @@ func (i_ ImageGuidedFilter) ReconstructScale() unsafe.Pointer {
 // SetReconstructScale sets the value of the reconstructScale property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter/reconstructscale
-func (i_ ImageGuidedFilter) SetReconstructScale(value unsafe.Pointer) {
+func (i_ ImageGuidedFilter) SetReconstructScale(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReconstructScale:"), value)
 }
 

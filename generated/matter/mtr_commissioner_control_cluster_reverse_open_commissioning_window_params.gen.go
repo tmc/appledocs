@@ -31,6 +31,16 @@ type _MTRCommissionerControlClusterReverseOpenCommissioningWindowParamsClass str
 // An interface definition for the [MTRCommissionerControlClusterReverseOpenCommissioningWindowParams] class.
 type IMTRCommissionerControlClusterReverseOpenCommissioningWindowParams interface {
 	objectivec.IObject
+	CommissioningTimeout() foundation.Number
+	SetCommissioningTimeout(value foundation.INumber)
+	Discriminator() foundation.Number
+	SetDiscriminator(value foundation.INumber)
+	Iterations() foundation.Number
+	SetIterations(value foundation.INumber)
+	PakePasscodeVerifier() foundation.NSData
+	SetPakePasscodeVerifier(value foundation.IData)
+	Salt() foundation.NSData
+	SetSalt(value foundation.IData)
 }
 
 //

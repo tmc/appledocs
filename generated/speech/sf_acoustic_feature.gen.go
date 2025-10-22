@@ -30,6 +30,10 @@ type _SFAcousticFeatureClass struct {
 // An interface definition for the [SFAcousticFeature] class.
 type ISFAcousticFeature interface {
 	objectivec.IObject
+	AcousticFeatureValuePerFrame() float64
+	SetAcousticFeatureValuePerFrame(value float64)
+	FrameDuration() unsafe.Pointer
+	SetFrameDuration(value unsafe.Pointer)
 }
 
 // The value of a voice analysis metric.
@@ -81,8 +85,8 @@ func NewSFAcousticFeature() SFAcousticFeature {
 // An array of feature values, one value per audio frame, corresponding to a transcript segment of recorded audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfacousticfeature/acousticfeaturevalueperframe-5krkk
-func (s_ SFAcousticFeature) AcousticFeatureValuePerFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("acousticFeatureValuePerFrame"))
+func (s_ SFAcousticFeature) AcousticFeatureValuePerFrame() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("acousticFeatureValuePerFrame"))
 	return rv
 }
 
@@ -92,7 +96,7 @@ func (s_ SFAcousticFeature) AcousticFeatureValuePerFrame() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfacousticfeature/acousticfeaturevalueperframe-5krkk
-func (s_ SFAcousticFeature) SetAcousticFeatureValuePerFrame(value unsafe.Pointer) {
+func (s_ SFAcousticFeature) SetAcousticFeatureValuePerFrame(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAcousticFeatureValuePerFrame:"), value)
 }
 

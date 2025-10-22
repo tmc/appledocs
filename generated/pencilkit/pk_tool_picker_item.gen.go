@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _ToolPickerItemClass struct {
 // An interface definition for the [ToolPickerItem] class.
 type IToolPickerItem interface {
 	objectivec.IObject
+	Identifier() string
+	Tool() PKTool
 }
 
 // The base class for an item in the tool picker.
@@ -82,8 +83,8 @@ func NewToolPickerItem() ToolPickerItem {
 // A string that identifies the item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem/identifier
-func (t_ ToolPickerItem) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("identifier"))
+func (t_ ToolPickerItem) Identifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 

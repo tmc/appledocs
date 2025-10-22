@@ -17,3 +17,12 @@ func ExampleNewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition() {
 	)
 	// Output:
 }
+// ExampleNewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier demonstrates how to create a PHASEBlendNodeDefinition instance using NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier.
+// Creates a named blend node with a maxiumum blend range value.
+func ExampleNewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier() {
+	_ = phase.NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier(
+		phase.PHASENumberMetaParameterDefinition{}, // blendMetaParameterDefinition PHASENumberMetaParameterDefinition
+		"identifier", // identifier string
+	)
+	// Output:
+}

@@ -29,6 +29,12 @@ type _INAddMediaIntentClass struct {
 // An interface definition for the [INAddMediaIntent] class.
 type IINAddMediaIntent interface {
 	IINIntent
+	MediaDestination() unsafe.Pointer
+	SetMediaDestination(value unsafe.Pointer)
+	MediaItems() INMediaItem
+	SetMediaItems(value INMediaItem)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
 }
 
 // A request to add a media item.

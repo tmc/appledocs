@@ -31,6 +31,12 @@ type _MTRAccessControlClusterCommissioningAccessRestrictionEntryStructClass stru
 // An interface definition for the [MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct] class.
 type IMTRAccessControlClusterCommissioningAccessRestrictionEntryStruct interface {
 	objectivec.IObject
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	Restrictions() objc.ID
+	SetRestrictions(value objc.ID)
 }
 
 //

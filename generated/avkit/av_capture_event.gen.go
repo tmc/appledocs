@@ -31,6 +31,8 @@ type _CaptureEventClass struct {
 type ICaptureEvent interface {
 	objectivec.IObject
 	PlaySound(sound IAVCaptureEventSound) bool
+	Phase() CaptureEventPhase
+	ShouldPlaySound() bool
 }
 
 // An object that describes a user interaction with a system hardware button.

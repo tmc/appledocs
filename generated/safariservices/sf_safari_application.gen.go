@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -85,8 +84,8 @@ func NewSFSafariApplication() SFSafariApplication {
 // Sends a message to a Safari app extension, launching Safari if necessary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariApplication/dispatchMessage(withName:toExtensionWithIdentifier:userInfo:completionHandler:)
-func (sc _SFSafariApplicationClass) DispatchMessageWithNameToExtensionWithIdentifierUserInfoCompletionHandler(messageName appkit.string, identifier appkit.string, userInfo unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("dispatchMessageWithName:toExtensionWithIdentifier:userInfo:completionHandler:"), messageName, identifier, userInfo, completionHandler)
+func (sc _SFSafariApplicationClass) DispatchMessageWithNameToExtensionWithIdentifierUserInfoCompletionHandler(messageName string, identifier string, userInfo unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("dispatchMessageWithName:toExtensionWithIdentifier:userInfo:completionHandler:"), objc.String(messageName), objc.String(identifier), userInfo, completionHandler)
 }
 
 // Calls the completion handler with the active browser window.
@@ -125,8 +124,8 @@ func (sc _SFSafariApplicationClass) SetToolbarItemsNeedUpdate() {
 // Launches Safari and opens the preferences panel for a Safari app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariApplication/showPreferencesForExtension(withIdentifier:completionHandler:)
-func (sc _SFSafariApplicationClass) ShowPreferencesForExtensionWithIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("showPreferencesForExtensionWithIdentifier:completionHandler:"), identifier, completionHandler)
+func (sc _SFSafariApplicationClass) ShowPreferencesForExtensionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("showPreferencesForExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
 
 

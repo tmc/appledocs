@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,18 @@ type _DepthStencilDescriptorClass struct {
 // An interface definition for the [DepthStencilDescriptor] class.
 type IDepthStencilDescriptor interface {
 	objectivec.IObject
+	BackFaceStencil() MTLStencilDescriptor
+	SetBackFaceStencil(value IMTLStencilDescriptor)
+	DepthCompareFunction() unsafe.Pointer
+	SetDepthCompareFunction(value unsafe.Pointer)
+	FrontFaceStencil() MTLStencilDescriptor
+	SetFrontFaceStencil(value IMTLStencilDescriptor)
+	DepthWriteEnabled() bool
+	SetDepthWriteEnabled(value bool)
+	Label() string
+	SetLabel(value string)
+	IsDepthWriteEnabled() bool
+	SetIsDepthWriteEnabled(value bool)
 }
 
 // An instance that configures new instances.
@@ -156,8 +167,8 @@ func (d_ DepthStencilDescriptor) SetDepthWriteEnabled(value bool) {
 // A string that identifies this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("label"))
+func (d_ DepthStencilDescriptor) Label() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -167,8 +178,8 @@ func (d_ DepthStencilDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), value)
+func (d_ DepthStencilDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether depth values can be written to the depth attachment.

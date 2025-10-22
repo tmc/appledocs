@@ -31,6 +31,20 @@ type _CaptureTimecodeGeneratorClass struct {
 type ICaptureTimecodeGenerator interface {
 	objectivec.IObject
 	StartSynchronizationWithTimecodeSource(source unsafe.Pointer)
+	AvailableSources() unsafe.Pointer
+	SetAvailableSources(value unsafe.Pointer)
+	CurrentSource() unsafe.Pointer
+	SetCurrentSource(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DelegateCallbackQueue() unsafe.Pointer
+	SetDelegateCallbackQueue(value unsafe.Pointer)
+	SynchronizationTimeout() unsafe.Pointer
+	SetSynchronizationTimeout(value unsafe.Pointer)
+	TimecodeAlignmentOffset() unsafe.Pointer
+	SetTimecodeAlignmentOffset(value unsafe.Pointer)
+	TimecodeFrameDuration() unsafe.Pointer
+	SetTimecodeFrameDuration(value unsafe.Pointer)
 }
 
 // Generates and synchronizes timecode data from various sources for precise video and audio synchronization.

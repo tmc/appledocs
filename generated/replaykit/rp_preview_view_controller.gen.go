@@ -30,6 +30,10 @@ type _RPPreviewViewControllerClass struct {
 // An interface definition for the [RPPreviewViewController] class.
 type IRPPreviewViewController interface {
 	appkit.IViewController
+	Mode() RPPreviewViewControllerMode
+	SetMode(value RPPreviewViewControllerMode)
+	PreviewControllerDelegate() objc.ID
+	SetPreviewControllerDelegate(value objc.ID)
 }
 
 // An object that displays a user interface where users preview and edit a screen recording that you create with ReplayKit.

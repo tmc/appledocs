@@ -31,6 +31,12 @@ type _MTRUnitTestingClusterTestStructArgumentRequestParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestStructArgumentRequestParams] class.
 type IMTRUnitTestingClusterTestStructArgumentRequestParams interface {
 	objectivec.IObject
+	Arg1() MTRUnitTestingClusterSimpleStruct
+	SetArg1(value IMTRUnitTestingClusterSimpleStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParamsClass stru
 // An interface definition for the [MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams] class.
 type IMTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams interface {
 	objectivec.IObject
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

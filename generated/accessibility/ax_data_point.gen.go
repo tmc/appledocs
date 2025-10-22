@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,16 @@ type _AXDataPointClass struct {
 // An interface definition for the [AXDataPoint] class.
 type IAXDataPoint interface {
 	objectivec.IObject
+	AdditionalValues() []AXDataPointValue
+	SetAdditionalValues(value []AXDataPointValue)
+	AttributedLabel() foundation.AttributedString
+	SetAttributedLabel(value foundation.IAttributedString)
+	Label() string
+	SetLabel(value string)
+	XValue() AXDataPointValue
+	SetXValue(value IAXDataPointValue)
+	YValue() AXDataPointValue
+	SetYValue(value IAXDataPointValue)
 }
 
 // An object that represents a single data point in a chart.
@@ -109,9 +118,9 @@ func NewAXDataPointWithXYAdditionalValues(xValue IAXDataPointValue, yValue IAXDa
 // Creates a data point with the specified x-value, y-value, additional values, and label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:label:
-func NewAXDataPointWithXYAdditionalValuesLabel(xValue IAXDataPointValue, yValue IAXDataPointValue, additionalValues []AXDataPointValue, label appkit.string) AXDataPoint {
+func NewAXDataPointWithXYAdditionalValuesLabel(xValue IAXDataPointValue, yValue IAXDataPointValue, additionalValues []AXDataPointValue, label string) AXDataPoint {
 	instance := getAXDataPointClass().Alloc()
-	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:label:"), xValue, yValue, additionalValues, label)
+	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:label:"), xValue, yValue, additionalValues, objc.String(label))
 	rv.Autorelease()
 	return rv
 }
@@ -166,8 +175,8 @@ func (a_ AXDataPoint) SetAttributedLabel(value foundation.IAttributedString) {
 // The label for the data point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-func (a_ AXDataPoint) Label() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("label"))
+func (a_ AXDataPoint) Label() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -177,8 +186,8 @@ func (a_ AXDataPoint) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-func (a_ AXDataPoint) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
+func (a_ AXDataPoint) SetLabel(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The value of the x-axis for the data point.

@@ -36,6 +36,16 @@ type IScreenSaverView interface {
 	DrawRect(rect coregraphics.CGRect)
 	StartAnimation()
 	StopAnimation()
+	AnimationTimeInterval() foundation.TimeInterval
+	SetAnimationTimeInterval(value foundation.ITimeInterval)
+	ConfigureSheet() appkit.Window
+	HasConfigureSheet() bool
+	Animating() bool
+	Preview() bool
+	IsAnimating() bool
+	SetIsAnimating(value bool)
+	IsPreview() bool
+	SetIsPreview(value bool)
 }
 
 // An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.

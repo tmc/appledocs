@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,7 +33,7 @@ type IModelAsset interface {
 	objectivec.IObject
 	FunctionNamesWithCompletionHandler(handler unsafe.Pointer)
 	ModelDescriptionWithCompletionHandler(handler unsafe.Pointer)
-	ModelDescriptionOfFunctionNamedCompletionHandler(functionName appkit.string, handler unsafe.Pointer)
+	ModelDescriptionOfFunctionNamedCompletionHandler(functionName string, handler unsafe.Pointer)
 }
 
 // An abstraction of a compiled Core ML model asset.
@@ -157,8 +156,8 @@ func (m_ ModelAsset) ModelDescriptionWithCompletionHandler(handler unsafe.Pointe
 // The model descripton for a specified function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/modelDescription(ofFunctionNamed:completionHandler:)
-func (m_ ModelAsset) ModelDescriptionOfFunctionNamedCompletionHandler(functionName appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("modelDescriptionOfFunctionNamed:completionHandler:"), functionName, handler)
+func (m_ ModelAsset) ModelDescriptionOfFunctionNamedCompletionHandler(functionName string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("modelDescriptionOfFunctionNamed:completionHandler:"), objc.String(functionName), handler)
 }
 
 

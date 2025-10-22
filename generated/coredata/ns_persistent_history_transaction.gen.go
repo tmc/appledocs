@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,15 @@ type _PersistentHistoryTransactionClass struct {
 type IPersistentHistoryTransaction interface {
 	objectivec.IObject
 	ObjectIDNotification() foundation.Notification
+	Author() string
+	BundleID() string
+	Changes() []PersistentHistoryChange
+	ContextName() string
+	ProcessID() string
+	StoreID() string
+	Timestamp() foundation.NSDate
+	Token() NSPersistentHistoryToken
+	TransactionNumber() unsafe.Pointer
 }
 
 // A set of changes in the persistent history based on a context save or batch operation.
@@ -114,16 +122,16 @@ func (p_ PersistentHistoryTransaction) ObjectIDNotification() foundation.Notific
 // A granular description of the context that made the persistent history change, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/author
-func (p_ PersistentHistoryTransaction) Author() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("author"))
+func (p_ PersistentHistoryTransaction) Author() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("author"))
 	return rv
 }
 
 // The originating bundle’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/bundleID
-func (p_ PersistentHistoryTransaction) BundleID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("bundleID"))
+func (p_ PersistentHistoryTransaction) BundleID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("bundleID"))
 	return rv
 }
 
@@ -138,8 +146,8 @@ func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 // The originating context’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/contextName
-func (p_ PersistentHistoryTransaction) ContextName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("contextName"))
+func (p_ PersistentHistoryTransaction) ContextName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contextName"))
 	return rv
 }
 
@@ -162,16 +170,16 @@ func (p_ PersistentHistoryTransaction) FetchRequest() NSFetchRequest {
 // The originating process’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/processID
-func (p_ PersistentHistoryTransaction) ProcessID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("processID"))
+func (p_ PersistentHistoryTransaction) ProcessID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("processID"))
 	return rv
 }
 
 // The originating store’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/storeID
-func (p_ PersistentHistoryTransaction) StoreID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("storeID"))
+func (p_ PersistentHistoryTransaction) StoreID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("storeID"))
 	return rv
 }
 

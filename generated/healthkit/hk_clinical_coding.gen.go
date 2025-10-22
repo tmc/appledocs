@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _HKClinicalCodingClass struct {
 // An interface definition for the [HKClinicalCoding] class.
 type IHKClinicalCoding interface {
 	objectivec.IObject
+	Code() string
+	System() string
+	Version() string
 }
 
 // A clinical coding that represents a medical concept using a standardized coding system.
@@ -86,9 +88,9 @@ func NewHKClinicalCoding() HKClinicalCoding {
 // Creates a clinical coding with the specified system, version, and code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/init(system:version:code:)
-func NewHKClinicalCodingWithSystemVersionCode(system appkit.string, version appkit.string, code appkit.string) HKClinicalCoding {
+func NewHKClinicalCodingWithSystemVersionCode(system string, version string, code string) HKClinicalCoding {
 	instance := getHKClinicalCodingClass().Alloc()
-	rv := objc.Send[HKClinicalCoding](instance.ID, objc.Sel("initWithSystem:version:code:"), system, version, code)
+	rv := objc.Send[HKClinicalCoding](instance.ID, objc.Sel("initWithSystem:version:code:"), objc.String(system), objc.String(version), objc.String(code))
 	rv.Autorelease()
 	return rv
 }
@@ -97,24 +99,24 @@ func NewHKClinicalCodingWithSystemVersionCode(system appkit.string, version appk
 // The clinical code that represents a medical concept inside the coding system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/code
-func (h_ HKClinicalCoding) Code() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("code"))
+func (h_ HKClinicalCoding) Code() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("code"))
 	return rv
 }
 
 // The string that identifies the coding system that defines this clinical code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/system
-func (h_ HKClinicalCoding) System() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("system"))
+func (h_ HKClinicalCoding) System() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("system"))
 	return rv
 }
 
 // The version of the coding system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalCoding/version
-func (h_ HKClinicalCoding) Version() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("version"))
+func (h_ HKClinicalCoding) Version() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv
 }
 

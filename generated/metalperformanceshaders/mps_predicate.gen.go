@@ -30,6 +30,10 @@ type _PredicateClass struct {
 // An interface definition for the [Predicate] class.
 type IPredicate interface {
 	objectivec.IObject
+	PredicateBuffer() unsafe.Pointer
+	SetPredicateBuffer(value unsafe.Pointer)
+	PredicateOffset() int
+	SetPredicateOffset(value int)
 }
 
 //

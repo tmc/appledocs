@@ -31,6 +31,12 @@ type _MTRGroupsClusterGetGroupMembershipResponseParamsClass struct {
 // An interface definition for the [MTRGroupsClusterGetGroupMembershipResponseParams] class.
 type IMTRGroupsClusterGetGroupMembershipResponseParams interface {
 	objectivec.IObject
+	Capacity() foundation.Number
+	SetCapacity(value foundation.INumber)
+	GroupList() unsafe.Pointer
+	SetGroupList(value unsafe.Pointer)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

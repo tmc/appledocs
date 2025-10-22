@@ -29,6 +29,9 @@ type _NEFilterProviderClass struct {
 // An interface definition for the [NEFilterProvider] class.
 type INEFilterProvider interface {
 	INEProvider
+	NEFilterErrorDomain() string
+	FilterConfiguration() NEFilterProviderConfiguration
+	SetFilterConfiguration(value INEFilterProviderConfiguration)
 }
 
 // An abstract base class shared by content filters.
@@ -84,8 +87,8 @@ func NewNEFilterProvider() NEFilterProvider {
 // The domain for errors resulting from calls to the filter manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterProvider) NEFilterErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+func (n_ NEFilterProvider) NEFilterErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [NWBonjourServiceEndpoint] class.
@@ -30,6 +29,10 @@ type _NWBonjourServiceEndpointClass struct {
 // An interface definition for the [NWBonjourServiceEndpoint] class.
 type INWBonjourServiceEndpoint interface {
 	INWEndpoint
+	Domain() string
+	Type() string
+	Name() string
+	SetName(value string)
 }
 
 // A network endpoint specified as a Bonjour service name, type, and domain.
@@ -87,8 +90,8 @@ func NewNWBonjourServiceEndpoint() NWBonjourServiceEndpoint {
 // Create an endpoint with a Bonjour service name, type, and domain. All fields must be specified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/init(name:type:domain:)
-func NewNWBonjourServiceEndpointWithNameTypeDomain(name appkit.string, type_ appkit.string, domain appkit.string) NWBonjourServiceEndpoint {
-	rv := objc.Send[NWBonjourServiceEndpoint](objc.ID(getNWBonjourServiceEndpointClass().class), objc.Sel("endpointWithName:type:domain:"), name, type_, domain)
+func NewNWBonjourServiceEndpointWithNameTypeDomain(name string, type_ string, domain string) NWBonjourServiceEndpoint {
+	rv := objc.Send[NWBonjourServiceEndpoint](objc.ID(getNWBonjourServiceEndpointClass().class), objc.Sel("endpointWithName:type:domain:"), objc.String(name), objc.String(type_), objc.String(domain))
 	return rv
 }
 
@@ -96,32 +99,32 @@ func NewNWBonjourServiceEndpointWithNameTypeDomain(name appkit.string, type_ app
 // Create an endpoint with a Bonjour service name, type, and domain. All fields must be specified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/init(name:type:domain:)
-func (nc _NWBonjourServiceEndpointClass) EndpointWithNameTypeDomain(name appkit.string, type_ appkit.string, domain appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("endpointWithName:type:domain:"), name, type_, domain)
+func (nc _NWBonjourServiceEndpointClass) EndpointWithNameTypeDomain(name string, type_ string, domain string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("endpointWithName:type:domain:"), objc.String(name), objc.String(type_), objc.String(domain))
 	return rv
 }
 
 // The endpoint’s Bonjour service domain, such as .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/domain
-func (n_ NWBonjourServiceEndpoint) Domain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("domain"))
+func (n_ NWBonjourServiceEndpoint) Domain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // The endpoint’s Bonjour service type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWBonjourServiceEndpoint/type
-func (n_ NWBonjourServiceEndpoint) Type() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("type"))
+func (n_ NWBonjourServiceEndpoint) Type() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv
 }
 
 // The endpoint’s Bonjour service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint/name
-func (n_ NWBonjourServiceEndpoint) Name() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("name"))
+func (n_ NWBonjourServiceEndpoint) Name() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -131,8 +134,8 @@ func (n_ NWBonjourServiceEndpoint) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint/name
-func (n_ NWBonjourServiceEndpoint) SetName(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), value)
+func (n_ NWBonjourServiceEndpoint) SetName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

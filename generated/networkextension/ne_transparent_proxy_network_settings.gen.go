@@ -29,6 +29,10 @@ type _NETransparentProxyNetworkSettingsClass struct {
 // An interface definition for the [NETransparentProxyNetworkSettings] class.
 type INETransparentProxyNetworkSettings interface {
 	INETunnelNetworkSettings
+	ExcludedNetworkRules() []NENetworkRule
+	SetExcludedNetworkRules(value []NENetworkRule)
+	IncludedNetworkRules() []NENetworkRule
+	SetIncludedNetworkRules(value []NENetworkRule)
 }
 
 // A specification of what traffic to route through a transparent proxy.

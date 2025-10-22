@@ -30,6 +30,30 @@ type _INSetClimateSettingsInCarIntentClass struct {
 // An interface definition for the [INSetClimateSettingsInCarIntent] class.
 type IINSetClimateSettingsInCarIntent interface {
 	IINIntent
+	AirCirculationMode() unsafe.Pointer
+	SetAirCirculationMode(value unsafe.Pointer)
+	CarName() INSpeakableString
+	SetCarName(value INSpeakableString)
+	ClimateZone() unsafe.Pointer
+	SetClimateZone(value unsafe.Pointer)
+	EnableAirConditioner() bool
+	SetEnableAirConditioner(value bool)
+	EnableAutoMode() bool
+	SetEnableAutoMode(value bool)
+	EnableClimateControl() bool
+	SetEnableClimateControl(value bool)
+	EnableFan() bool
+	SetEnableFan(value bool)
+	FanSpeedIndex() int
+	SetFanSpeedIndex(value int)
+	FanSpeedPercentage() float64
+	SetFanSpeedPercentage(value float64)
+	RelativeFanSpeedSetting() unsafe.Pointer
+	SetRelativeFanSpeedSetting(value unsafe.Pointer)
+	RelativeTemperatureSetting() unsafe.Pointer
+	SetRelativeTemperatureSetting(value unsafe.Pointer)
+	Temperature() foundation.UnitTemperature
+	SetTemperature(value foundation.IUnitTemperature)
 }
 
 // A request to change the climate settings in a CarPlay-enabled vehicle.
@@ -229,8 +253,8 @@ func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedIndex(value int) {
 // A floating-point value indicating the requested fan speed specified as a percentage of the maximum speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/fanspeedpercentage-7i2hq
-func (i_ INSetClimateSettingsInCarIntent) FanSpeedPercentage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fanSpeedPercentage"))
+func (i_ INSetClimateSettingsInCarIntent) FanSpeedPercentage() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("fanSpeedPercentage"))
 	return rv
 }
 
@@ -240,7 +264,7 @@ func (i_ INSetClimateSettingsInCarIntent) FanSpeedPercentage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/fanspeedpercentage-7i2hq
-func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedPercentage(value unsafe.Pointer) {
+func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedPercentage(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFanSpeedPercentage:"), value)
 }
 

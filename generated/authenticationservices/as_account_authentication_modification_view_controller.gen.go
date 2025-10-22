@@ -32,6 +32,8 @@ type _AccountAuthenticationModificationViewControllerClass struct {
 type IAccountAuthenticationModificationViewController interface {
 	appkit.IViewController
 	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject)
+	ExtensionContext() ASAccountAuthenticationModificationExtensionContext
+	SetExtensionContext(value IASAccountAuthenticationModificationExtensionContext)
 }
 
 // A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.

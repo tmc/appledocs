@@ -29,6 +29,7 @@ type _CBCentralClass struct {
 // An interface definition for the [CBCentral] class.
 type ICBCentral interface {
 	ICBPeer
+	MaximumUpdateValueLength() uint
 }
 
 // A remote device connected to a local app, which is acting as a peripheral.

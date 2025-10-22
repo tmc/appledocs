@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _MTROvenCavityOperationalStateClusterOperationalStateStructClass struct {
 // An interface definition for the [MTROvenCavityOperationalStateClusterOperationalStateStruct] class.
 type IMTROvenCavityOperationalStateClusterOperationalStateStruct interface {
 	objectivec.IObject
+	OperationalStateID() foundation.Number
+	SetOperationalStateID(value foundation.INumber)
+	OperationalStateLabel() string
+	SetOperationalStateLabel(value string)
 }
 
 //
@@ -94,8 +97,8 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("operationalStateLabel"))
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
 	return rv
 }
 
@@ -103,8 +106,8 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 // SetOperationalStateLabel sets the value of the operationalStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), value)
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
 }
 
 

@@ -30,6 +30,10 @@ type _FileProviderStringSearchRequestClass struct {
 // An interface definition for the [FileProviderStringSearchRequest] class.
 type IFileProviderStringSearchRequest interface {
 	objectivec.IObject
+	DesiredNumberOfResults() int
+	SetDesiredNumberOfResults(value int)
+	Query() string
+	SetQuery(value string)
 }
 
 // A type that contains details of a string-based search request.
@@ -99,8 +103,8 @@ func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int) {
 // A plaintext string, representing the query a person entered into the system search UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
-func (f_ FileProviderStringSearchRequest) Query() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("query"))
+func (f_ FileProviderStringSearchRequest) Query() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("query"))
 	return rv
 }
 
@@ -110,8 +114,8 @@ func (f_ FileProviderStringSearchRequest) Query() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
-func (f_ FileProviderStringSearchRequest) SetQuery(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setQuery:"), value)
+func (f_ FileProviderStringSearchRequest) SetQuery(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setQuery:"), objc.String(value))
 }
 
 

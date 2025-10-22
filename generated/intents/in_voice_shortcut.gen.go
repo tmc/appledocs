@@ -31,6 +31,12 @@ type _INVoiceShortcutClass struct {
 // An interface definition for the [INVoiceShortcut] class.
 type IINVoiceShortcut interface {
 	objectivec.IObject
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	InvocationPhrase() string
+	SetInvocationPhrase(value string)
+	Shortcut() INShortcut
+	SetShortcut(value INShortcut)
 }
 
 // A shortcut the user added to Siri.
@@ -102,8 +108,8 @@ func (i_ INVoiceShortcut) SetIdentifier(value foundation.IUUID) {
 // The phrase the user speaks to invoke the shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/invocationphrase
-func (i_ INVoiceShortcut) InvocationPhrase() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("invocationPhrase"))
+func (i_ INVoiceShortcut) InvocationPhrase() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("invocationPhrase"))
 	return rv
 }
 
@@ -113,8 +119,8 @@ func (i_ INVoiceShortcut) InvocationPhrase() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/invocationphrase
-func (i_ INVoiceShortcut) SetInvocationPhrase(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInvocationPhrase:"), value)
+func (i_ INVoiceShortcut) SetInvocationPhrase(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInvocationPhrase:"), objc.String(value))
 }
 
 // The shortcut Siri invokes when the user speaks the invocation phrase.

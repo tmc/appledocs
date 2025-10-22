@@ -31,6 +31,22 @@ type _MTRChannelClusterGetProgramGuideParamsClass struct {
 // An interface definition for the [MTRChannelClusterGetProgramGuideParams] class.
 type IMTRChannelClusterGetProgramGuideParams interface {
 	objectivec.IObject
+	ChannelList() objc.ID
+	SetChannelList(value objc.ID)
+	Data() foundation.NSData
+	SetData(value foundation.IData)
+	EndTime() foundation.Number
+	SetEndTime(value foundation.INumber)
+	PageToken() MTRChannelClusterPageTokenStruct
+	SetPageToken(value IMTRChannelClusterPageTokenStruct)
+	RecordingFlag() foundation.Number
+	SetRecordingFlag(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StartTime() foundation.Number
+	SetStartTime(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

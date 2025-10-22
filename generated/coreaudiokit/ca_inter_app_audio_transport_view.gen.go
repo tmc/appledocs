@@ -30,6 +30,30 @@ type _InterAppAudioTransportViewClass struct {
 // An interface definition for the [InterAppAudioTransportView] class.
 type IInterAppAudioTransportView interface {
 	appkit.IView
+	CurrentTimeLabelFont() appkit.Font
+	SetCurrentTimeLabelFont(value appkit.IFont)
+	Connected() bool
+	Enabled() bool
+	SetEnabled(value bool)
+	Playing() bool
+	LabelColor() appkit.Color
+	SetLabelColor(value appkit.IColor)
+	RecordButtonColor() appkit.Color
+	SetRecordButtonColor(value appkit.IColor)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
+	IsRecording() bool
+	SetIsRecording(value bool)
+	PauseButtonColor() appkit.Color
+	SetPauseButtonColor(value appkit.IColor)
+	PlayButtonColor() appkit.Color
+	SetPlayButtonColor(value appkit.IColor)
+	RewindButtonColor() appkit.Color
+	SetRewindButtonColor(value appkit.IColor)
 }
 
 // A view that provides an audio transport user interface.

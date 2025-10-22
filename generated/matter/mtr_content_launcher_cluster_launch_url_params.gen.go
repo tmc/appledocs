@@ -31,6 +31,16 @@ type _MTRContentLauncherClusterLaunchURLParamsClass struct {
 // An interface definition for the [MTRContentLauncherClusterLaunchURLParams] class.
 type IMTRContentLauncherClusterLaunchURLParams interface {
 	objectivec.IObject
+	BrandingInformation() MTRContentLauncherClusterBrandingInformationStruct
+	SetBrandingInformation(value IMTRContentLauncherClusterBrandingInformationStruct)
+	ContentURL() string
+	SetContentURL(value string)
+	DisplayString() string
+	SetDisplayString(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -93,8 +103,8 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) SetBrandingInformation(value 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
-func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("contentURL"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("contentURL"))
 	return rv
 }
 
@@ -102,14 +112,14 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() appkit.string {
 // SetContentURL sets the value of the contentURL property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), value)
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
-func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("displayString"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("displayString"))
 	return rv
 }
 
@@ -117,8 +127,8 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() appkit.string
 // SetDisplayString sets the value of the displayString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), value)
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), objc.String(value))
 }
 
 //

@@ -31,6 +31,19 @@ type _MultiArrayConstraintClass struct {
 // An interface definition for the [MultiArrayConstraint] class.
 type IMultiArrayConstraint interface {
 	objectivec.IObject
+	DataType() MultiArrayDataType
+	Shape() []foundation.Number
+	ShapeConstraint() MLMultiArrayShapeConstraint
+	DictionaryConstraint() MLDictionaryConstraint
+	SetDictionaryConstraint(value IMLDictionaryConstraint)
+	ImageConstraint() MLImageConstraint
+	SetImageConstraint(value IMLImageConstraint)
+	MultiArrayConstraint() MLMultiArrayConstraint
+	SetMultiArrayConstraint(value IMLMultiArrayConstraint)
+	SequenceConstraint() MLSequenceConstraint
+	SetSequenceConstraint(value IMLSequenceConstraint)
+	StateConstraint() MLStateConstraint
+	SetStateConstraint(value IMLStateConstraint)
 }
 
 // The shape and data type constraints for a multidimensional array feature.

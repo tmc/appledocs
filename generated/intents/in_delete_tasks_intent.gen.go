@@ -29,6 +29,12 @@ type _INDeleteTasksIntentClass struct {
 // An interface definition for the [INDeleteTasksIntent] class.
 type IINDeleteTasksIntent interface {
 	IINIntent
+	All() bool
+	SetAll(value bool)
+	TaskList() unsafe.Pointer
+	SetTaskList(value unsafe.Pointer)
+	Tasks() unsafe.Pointer
+	SetTasks(value unsafe.Pointer)
 }
 
 // A request to delete one or more tasks.

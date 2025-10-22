@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DDMatchPostalAddress] class.
@@ -30,6 +29,11 @@ type _DDMatchPostalAddressClass struct {
 // An interface definition for the [DDMatchPostalAddress] class.
 type IDDMatchPostalAddress interface {
 	IDDMatch
+	City() string
+	Country() string
+	PostalCode() string
+	State() string
+	Street() string
 }
 
 // An object that contains a postal address that the data detection system matches.
@@ -85,40 +89,40 @@ func NewDDMatchPostalAddress() DDMatchPostalAddress {
 // The city name in a postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/city
-func (d_ DDMatchPostalAddress) City() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("city"))
+func (d_ DDMatchPostalAddress) City() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("city"))
 	return rv
 }
 
 // The country or region name in a postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/country
-func (d_ DDMatchPostalAddress) Country() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("country"))
+func (d_ DDMatchPostalAddress) Country() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("country"))
 	return rv
 }
 
 // The postal code in a postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/postalCode
-func (d_ DDMatchPostalAddress) PostalCode() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("postalCode"))
+func (d_ DDMatchPostalAddress) PostalCode() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
 // The state name in a postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/state
-func (d_ DDMatchPostalAddress) State() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("state"))
+func (d_ DDMatchPostalAddress) State() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("state"))
 	return rv
 }
 
 // The street name in a postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/street
-func (d_ DDMatchPostalAddress) Street() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("street"))
+func (d_ DDMatchPostalAddress) Street() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("street"))
 	return rv
 }
 

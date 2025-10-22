@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,6 +34,24 @@ type INEVPNManager interface {
 	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SetAuthorization(authorization unsafe.Pointer)
+	Connection() NEVPNConnection
+	Enabled() bool
+	SetEnabled(value bool)
+	OnDemandEnabled() bool
+	SetOnDemandEnabled(value bool)
+	LocalizedDescription() string
+	SetLocalizedDescription(value string)
+	OnDemandRules() []NEOnDemandRule
+	SetOnDemandRules(value []NEOnDemandRule)
+	Protocol() NEVPNProtocol
+	SetProtocol(value INEVPNProtocol)
+	ProtocolConfiguration() NEVPNProtocol
+	SetProtocolConfiguration(value INEVPNProtocol)
+	NEVPNErrorDomain() string
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsOnDemandEnabled() bool
+	SetIsOnDemandEnabled(value bool)
 }
 
 // An object to create and manage a Personal VPN configuration.
@@ -167,8 +184,8 @@ func (n_ NEVPNManager) SetOnDemandEnabled(value bool) {
 // A string containing the display name of the VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
-func (n_ NEVPNManager) LocalizedDescription() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEVPNManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -178,8 +195,8 @@ func (n_ NEVPNManager) LocalizedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
-func (n_ NEVPNManager) SetLocalizedDescription(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NEVPNManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
 // An ordered list of Connect On Demand rules.
@@ -248,8 +265,8 @@ func (n_ NEVPNManager) SetProtocolConfiguration(value INEVPNProtocol) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnerrordomain
-func (n_ NEVPNManager) NEVPNErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEVPNErrorDomain"))
+func (n_ NEVPNManager) NEVPNErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNErrorDomain"))
 	return rv
 }
 

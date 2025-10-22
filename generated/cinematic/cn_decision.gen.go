@@ -30,6 +30,8 @@ type _CNDecisionClass struct {
 // An interface definition for the [CNDecision] class.
 type ICNDecision interface {
 	objectivec.IObject
+	StrongDecision() bool
+	UserDecision() bool
 }
 
 // An object that represents a decision to focus on a particular detection, or group of detections, at a particular time.

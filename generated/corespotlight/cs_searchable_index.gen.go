@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -38,9 +37,13 @@ type ICSSearchableIndex interface {
 	DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string, completionHandler unsafe.Pointer)
 	EndIndexBatchWithClientStateCompletionHandler(clientState foundation.IData, completionHandler unsafe.Pointer)
 	EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.IData, newClientState foundation.IData, completionHandler unsafe.Pointer)
-	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier appkit.string, itemIdentifier appkit.string, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
+	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
 	FetchLastClientStateWithCompletionHandler(completionHandler unsafe.Pointer)
 	IndexSearchableItemsCompletionHandler(items []CSSearchableItem, completionHandler unsafe.Pointer)
+	IndexDelegate() objc.ID
+	SetIndexDelegate(value objc.ID)
+	IsEligibleForSearch() bool
+	SetIsEligibleForSearch(value bool)
 }
 
 // An on-device index for your app’s searchable content.
@@ -96,9 +99,9 @@ func NewCSSearchableIndex() CSSearchableIndex {
 // Returns an on-device index with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
-func NewCSSearchableIndexWithName(name appkit.string) CSSearchableIndex {
+func NewCSSearchableIndexWithName(name string) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
-	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), name)
+	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -108,9 +111,9 @@ func NewCSSearchableIndexWithName(name appkit.string) CSSearchableIndex {
 // Returns an on-device index with the specified name and data protection class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)
-func NewCSSearchableIndexWithNameProtectionClass(name appkit.string, protectionClass unsafe.Pointer) CSSearchableIndex {
+func NewCSSearchableIndexWithNameProtectionClass(name string, protectionClass unsafe.Pointer) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
-	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), name, protectionClass)
+	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), objc.String(name), protectionClass)
 	rv.Autorelease()
 	return rv
 }
@@ -177,8 +180,8 @@ func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCo
 // Fetches data from an external provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)
-func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier appkit.string, itemIdentifier appkit.string, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), bundleIdentifier, itemIdentifier, contentType, completionHandler)
+func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), objc.String(bundleIdentifier), objc.String(itemIdentifier), contentType, completionHandler)
 }
 
 // Fetches the app’s most recent client state information asynchronously.

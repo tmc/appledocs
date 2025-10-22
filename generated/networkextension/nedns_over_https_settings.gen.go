@@ -30,6 +30,12 @@ type _NEDNSOverHTTPSSettingsClass struct {
 // An interface definition for the [NEDNSOverHTTPSSettings] class.
 type INEDNSOverHTTPSSettings interface {
 	INEDNSSettings
+	IdentityReference() foundation.Data
+	SetIdentityReference(value foundation.IData)
+	ServerURL() foundation.URL
+	SetServerURL(value foundation.IURL)
+	MatchDomains() string
+	SetMatchDomains(value string)
 }
 
 // The DNS resolver settings for a DNS-over-HTTPS server.
@@ -119,8 +125,8 @@ func (n_ NEDNSOverHTTPSSettings) SetServerURL(value foundation.IURL) {
 // A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
-func (n_ NEDNSOverHTTPSSettings) MatchDomains() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchDomains"))
+func (n_ NEDNSOverHTTPSSettings) MatchDomains() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("matchDomains"))
 	return rv
 }
 
@@ -130,8 +136,8 @@ func (n_ NEDNSOverHTTPSSettings) MatchDomains() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
-func (n_ NEDNSOverHTTPSSettings) SetMatchDomains(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
+func (n_ NEDNSOverHTTPSSettings) SetMatchDomains(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), objc.String(value))
 }
 
 

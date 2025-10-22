@@ -35,6 +35,53 @@ type IView interface {
 	objectivec.IObject
 	Draw()
 	ReleaseDrawables()
+	AutoResizeDrawable() bool
+	SetAutoResizeDrawable(value bool)
+	ClearColor() unsafe.Pointer
+	SetClearColor(value unsafe.Pointer)
+	ClearDepth() float64
+	SetClearDepth(value float64)
+	ClearStencil() uint32
+	SetClearStencil(value Iuint32)
+	ColorPixelFormat() unsafe.Pointer
+	SetColorPixelFormat(value unsafe.Pointer)
+	Colorspace() coregraphics.CGColorSpaceRef
+	SetColorspace(value coregraphics.CGColorSpaceRef)
+	CurrentDrawable() objc.ID
+	CurrentMTL4RenderPassDescriptor() metal.MTL4RenderPassDescriptor
+	CurrentRenderPassDescriptor() metal.RenderPassDescriptor
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DepthStencilAttachmentTextureUsage() unsafe.Pointer
+	SetDepthStencilAttachmentTextureUsage(value unsafe.Pointer)
+	DepthStencilPixelFormat() unsafe.Pointer
+	SetDepthStencilPixelFormat(value unsafe.Pointer)
+	DepthStencilStorageMode() unsafe.Pointer
+	SetDepthStencilStorageMode(value unsafe.Pointer)
+	DepthStencilTexture() objc.ID
+	Device() objc.ID
+	SetDevice(value objc.ID)
+	DrawableSize() coregraphics.CGSize
+	SetDrawableSize(value coregraphics.CGSize)
+	EnableSetNeedsDisplay() bool
+	SetEnableSetNeedsDisplay(value bool)
+	FramebufferOnly() bool
+	SetFramebufferOnly(value bool)
+	Paused() bool
+	SetPaused(value bool)
+	MultisampleColorAttachmentTextureUsage() unsafe.Pointer
+	SetMultisampleColorAttachmentTextureUsage(value unsafe.Pointer)
+	MultisampleColorTexture() objc.ID
+	PreferredDevice() objc.ID
+	PreferredDrawableSize() coregraphics.CGSize
+	PreferredFramesPerSecond() int
+	SetPreferredFramesPerSecond(value int)
+	PresentsWithTransaction() bool
+	SetPresentsWithTransaction(value bool)
+	SampleCount() uint
+	SetSampleCount(value uint)
+	IsPaused() bool
+	SetIsPaused(value bool)
 }
 
 // A specialized view that creates, configures, and displays Metal objects.
@@ -163,8 +210,8 @@ func (v_ View) SetClearColor(value unsafe.Pointer) {
 // The depth value to use to clear the depth target when creating a render pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearDepth
-func (v_ View) ClearDepth() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("clearDepth"))
+func (v_ View) ClearDepth() float64 {
+	rv := objc.Send[float64](v_.ID, objc.Sel("clearDepth"))
 	return rv
 }
 
@@ -174,15 +221,15 @@ func (v_ View) ClearDepth() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearDepth
-func (v_ View) SetClearDepth(value unsafe.Pointer) {
+func (v_ View) SetClearDepth(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClearDepth:"), value)
 }
 
 // The stencil value to use to clear the stencil target when creating a render pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearStencil
-func (v_ View) ClearStencil() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("clearStencil"))
+func (v_ View) ClearStencil() uint32 {
+	rv := objc.Send[uint32](v_.ID, objc.Sel("clearStencil"))
 	return rv
 }
 
@@ -192,7 +239,7 @@ func (v_ View) ClearStencil() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/clearStencil
-func (v_ View) SetClearStencil(value unsafe.Pointer) {
+func (v_ View) SetClearStencil(value Iuint32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClearStencil:"), value)
 }
 

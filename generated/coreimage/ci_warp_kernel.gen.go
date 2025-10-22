@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -89,8 +88,8 @@ func NewWarpKernel() WarpKernel {
 // Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func NewWarpKernelWithString(string_ appkit.string) WarpKernel {
-	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), string_)
+func NewWarpKernelWithString(string_ string) WarpKernel {
+	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 
@@ -98,8 +97,8 @@ func NewWarpKernelWithString(string_ appkit.string) WarpKernel {
 // Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func (wc _WarpKernelClass) KernelWithString(string_ appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), string_)
+func (wc _WarpKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 

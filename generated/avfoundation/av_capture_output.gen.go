@@ -30,6 +30,12 @@ type _CaptureOutputClass struct {
 // An interface definition for the [CaptureOutput] class.
 type ICaptureOutput interface {
 	objectivec.IObject
+	Connections() AVCaptureConnection
+	SetConnections(value IAVCaptureConnection)
+	IsDeferredStartEnabled() bool
+	SetIsDeferredStartEnabled(value bool)
+	IsDeferredStartSupported() bool
+	SetIsDeferredStartSupported(value bool)
 }
 
 // An abstract superclass for objects that provide media output destinations for a capture session.

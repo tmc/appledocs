@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,12 @@ type _MEDecodedMessageBannerClass struct {
 // An interface definition for the [MEDecodedMessageBanner] class.
 type IMEDecodedMessageBanner interface {
 	objectivec.IObject
+	Dismissable() bool
+	PrimaryActionTitle() string
+	IsDismissable() bool
+	SetIsDismissable(value bool)
+	Title() string
+	SetTitle(value string)
 }
 
 //
@@ -78,9 +83,9 @@ func NewMEDecodedMessageBanner() MEDecodedMessageBanner {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/init(title:primaryActionTitle:dismissable:)
-func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title appkit.string, primaryActionTitle appkit.string, dismissable bool) MEDecodedMessageBanner {
+func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title string, primaryActionTitle string, dismissable bool) MEDecodedMessageBanner {
 	instance := getMEDecodedMessageBannerClass().Alloc()
-	rv := objc.Send[MEDecodedMessageBanner](instance.ID, objc.Sel("initWithTitle:primaryActionTitle:dismissable:"), title, primaryActionTitle, dismissable)
+	rv := objc.Send[MEDecodedMessageBanner](instance.ID, objc.Sel("initWithTitle:primaryActionTitle:dismissable:"), objc.String(title), objc.String(primaryActionTitle), dismissable)
 	rv.Autorelease()
 	return rv
 }
@@ -95,8 +100,8 @@ func (m_ MEDecodedMessageBanner) Dismissable() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/primaryActionTitle
-func (m_ MEDecodedMessageBanner) PrimaryActionTitle() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("primaryActionTitle"))
+func (m_ MEDecodedMessageBanner) PrimaryActionTitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("primaryActionTitle"))
 	return rv
 }
 
@@ -117,8 +122,8 @@ func (m_ MEDecodedMessageBanner) SetIsDismissable(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
-func (m_ MEDecodedMessageBanner) Title() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
+func (m_ MEDecodedMessageBanner) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -126,8 +131,8 @@ func (m_ MEDecodedMessageBanner) Title() appkit.string {
 // SetTitle sets the value of the title property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
-func (m_ MEDecodedMessageBanner) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+func (m_ MEDecodedMessageBanner) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

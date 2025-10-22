@@ -31,6 +31,8 @@ type _MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParamsClass struct
 // An interface definition for the [MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams] class.
 type IMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams interface {
 	objectivec.IObject
+	Passphrase() foundation.NSData
+	SetPassphrase(value foundation.IData)
 }
 
 //

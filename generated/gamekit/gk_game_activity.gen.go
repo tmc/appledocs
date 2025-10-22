@@ -32,8 +32,33 @@ type _GameActivityClass struct {
 // An interface definition for the [GameActivity] class.
 type IGameActivity interface {
 	objectivec.IObject
-	SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete unsafe.Pointer)
+	SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64)
 	SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int)
+	Duration() foundation.TimeInterval
+	Achievements() GKAchievement
+	SetAchievements(value IGKAchievement)
+	ActivityDefinition() GKGameActivityDefinition
+	SetActivityDefinition(value IGKGameActivityDefinition)
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	Identifier() string
+	SetIdentifier(value string)
+	LastResumeDate() foundation.Date
+	SetLastResumeDate(value foundation.IDate)
+	LeaderboardScores() GKLeaderboardScore
+	SetLeaderboardScores(value IGKLeaderboardScore)
+	PartyCode() string
+	SetPartyCode(value string)
+	PartyURL() foundation.URL
+	SetPartyURL(value foundation.IURL)
+	Properties() string
+	SetProperties(value string)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	State() coreml.State
+	SetState(value coreml.State)
 }
 
 // An object that represents a single instance of a game activity for the current game.
@@ -85,7 +110,7 @@ func NewGameActivity() GameActivity {
 // Set a progress for an achievement for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/setProgress(on:to:)
-func (g_ GameActivity) SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete unsafe.Pointer) {
+func (g_ GameActivity) SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProgressOnAchievement:toPercentComplete:"), achievement, percentComplete)
 }
 
@@ -179,8 +204,8 @@ func (g_ GameActivity) SetEndDate(value foundation.IDate) {
 // The identifier of this activity instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
-func (g_ GameActivity) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("identifier"))
+func (g_ GameActivity) Identifier() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -190,8 +215,8 @@ func (g_ GameActivity) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
-func (g_ GameActivity) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), value)
+func (g_ GameActivity) SetIdentifier(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The date when the activity was last resumed.
@@ -233,8 +258,8 @@ func (g_ GameActivity) SetLeaderboardScores(value IGKLeaderboardScore) {
 // If the game supports party code, this is the party code that can be shared among players to join the party.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
-func (g_ GameActivity) PartyCode() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("partyCode"))
+func (g_ GameActivity) PartyCode() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("partyCode"))
 	return rv
 }
 
@@ -244,8 +269,8 @@ func (g_ GameActivity) PartyCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
-func (g_ GameActivity) SetPartyCode(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyCode:"), value)
+func (g_ GameActivity) SetPartyCode(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyCode:"), objc.String(value))
 }
 
 // If the game supports party code, this is the URL that can be shared among players to join the party.
@@ -269,8 +294,8 @@ func (g_ GameActivity) SetPartyURL(value foundation.IURL) {
 // Properties that contain additional information about the activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/properties
-func (g_ GameActivity) Properties() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("properties"))
+func (g_ GameActivity) Properties() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -280,8 +305,8 @@ func (g_ GameActivity) Properties() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/properties
-func (g_ GameActivity) SetProperties(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setProperties:"), value)
+func (g_ GameActivity) SetProperties(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setProperties:"), objc.String(value))
 }
 
 // The date when the activity was initially started.

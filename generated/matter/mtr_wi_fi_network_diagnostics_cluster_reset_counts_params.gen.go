@@ -31,6 +31,10 @@ type _MTRWiFiNetworkDiagnosticsClusterResetCountsParamsClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterResetCountsParams] class.
 type IMTRWiFiNetworkDiagnosticsClusterResetCountsParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

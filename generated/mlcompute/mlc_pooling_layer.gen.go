@@ -29,6 +29,8 @@ type _CPoolingLayerClass struct {
 // An interface definition for the [CPoolingLayer] class.
 type ICPoolingLayer interface {
 	ICLayer
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
 }
 
 // A layer that summarizes the average presence of a feature.

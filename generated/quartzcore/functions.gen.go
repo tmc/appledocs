@@ -17,14 +17,14 @@ import (
 
 var (
 	_CACurrentMediaTime func() unsafe.Pointer
-	_CAFrameRateRangeIsEqualToRange func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CAFrameRateRangeIsEqualToRange func(unsafe.Pointer, unsafe.Pointer) bool
 	_CAFrameRateRangeMake func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CATransform3DConcat func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CATransform3DEqualToTransform func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CATransform3DEqualToTransform func(unsafe.Pointer, unsafe.Pointer) bool
 	_CATransform3DGetAffineTransform func(unsafe.Pointer) coregraphics.CGAffineTransform
 	_CATransform3DInvert func(unsafe.Pointer) unsafe.Pointer
-	_CATransform3DIsAffine func(unsafe.Pointer) unsafe.Pointer
-	_CATransform3DIsIdentity func(unsafe.Pointer) unsafe.Pointer
+	_CATransform3DIsAffine func(unsafe.Pointer) bool
+	_CATransform3DIsIdentity func(unsafe.Pointer) bool
 	_CATransform3DMakeAffineTransform func(coregraphics.CGAffineTransform) unsafe.Pointer
 	_CATransform3DMakeRotation func(float64, float64, float64, float64) unsafe.Pointer
 	_CATransform3DMakeScale func(float64, float64, float64) unsafe.Pointer
@@ -86,7 +86,7 @@ func CACurrentMediaTime() unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAFrameRateRangeIsEqualToRange
-func CAFrameRateRangeIsEqualToRange(range_ unsafe.Pointer, other unsafe.Pointer) unsafe.Pointer {
+func CAFrameRateRangeIsEqualToRange(range_ unsafe.Pointer, other unsafe.Pointer) bool {
 	return _CAFrameRateRangeIsEqualToRange(range_, other)
 	}
 
@@ -116,7 +116,7 @@ func CATransform3DConcat(a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DEqualToTransform(_:_:)
-func CATransform3DEqualToTransform(a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
+func CATransform3DEqualToTransform(a unsafe.Pointer, b unsafe.Pointer) bool {
 	return _CATransform3DEqualToTransform(a, b)
 	}
 
@@ -146,7 +146,7 @@ func CATransform3DInvert(t unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DIsAffine(_:)
-func CATransform3DIsAffine(t unsafe.Pointer) unsafe.Pointer {
+func CATransform3DIsAffine(t unsafe.Pointer) bool {
 	return _CATransform3DIsAffine(t)
 	}
 
@@ -156,7 +156,7 @@ func CATransform3DIsAffine(t unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransform3DIsIdentity(_:)
-func CATransform3DIsIdentity(t unsafe.Pointer) unsafe.Pointer {
+func CATransform3DIsIdentity(t unsafe.Pointer) bool {
 	return _CATransform3DIsIdentity(t)
 	}
 

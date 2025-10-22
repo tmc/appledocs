@@ -31,6 +31,10 @@ type _FileCoordinatorClass struct {
 type IFileCoordinator interface {
 	objectivec.IObject
 	CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer)
+	PurposeIdentifier() string
+	SetPurposeIdentifier(value string)
+	NSUserCancelledError() int
+	SetNSUserCancelledError(value int)
 }
 
 // An object that coordinates the reading and writing of files and directories among file presenters.

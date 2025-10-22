@@ -30,6 +30,22 @@ type _NIDLTDOAMeasurementClass struct {
 // An interface definition for the [NIDLTDOAMeasurement] class.
 type INIDLTDOAMeasurement interface {
 	objectivec.IObject
+	Address() int
+	SetAddress(value int)
+	CarrierFrequencyOffset() float64
+	SetCarrierFrequencyOffset(value float64)
+	Coordinates() unsafe.Pointer
+	SetCoordinates(value unsafe.Pointer)
+	CoordinatesType() NIDLTDOACoordinatesType
+	SetCoordinatesType(value NIDLTDOACoordinatesType)
+	MeasurementType() NIDLTDOAMeasurementType
+	SetMeasurementType(value NIDLTDOAMeasurementType)
+	ReceiveTime() float64
+	SetReceiveTime(value float64)
+	SignalStrength() float64
+	SetSignalStrength(value float64)
+	TransmitTime() float64
+	SetTransmitTime(value float64)
 }
 
 // Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
@@ -101,8 +117,8 @@ func (n_ NIDLTDOAMeasurement) SetAddress(value int) {
 // The drift, as a ratio, across the frequencies of the receiver and the anchor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/carrierfrequencyoffset
-func (n_ NIDLTDOAMeasurement) CarrierFrequencyOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("carrierFrequencyOffset"))
+func (n_ NIDLTDOAMeasurement) CarrierFrequencyOffset() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("carrierFrequencyOffset"))
 	return rv
 }
 
@@ -112,7 +128,7 @@ func (n_ NIDLTDOAMeasurement) CarrierFrequencyOffset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/carrierfrequencyoffset
-func (n_ NIDLTDOAMeasurement) SetCarrierFrequencyOffset(value unsafe.Pointer) {
+func (n_ NIDLTDOAMeasurement) SetCarrierFrequencyOffset(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCarrierFrequencyOffset:"), value)
 }
 
@@ -173,8 +189,8 @@ func (n_ NIDLTDOAMeasurement) SetMeasurementType(value NIDLTDOAMeasurementType) 
 // A timestamp, in seconds, for the time that the device receives the measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/receivetime
-func (n_ NIDLTDOAMeasurement) ReceiveTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("receiveTime"))
+func (n_ NIDLTDOAMeasurement) ReceiveTime() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("receiveTime"))
 	return rv
 }
 
@@ -184,15 +200,15 @@ func (n_ NIDLTDOAMeasurement) ReceiveTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/receivetime
-func (n_ NIDLTDOAMeasurement) SetReceiveTime(value unsafe.Pointer) {
+func (n_ NIDLTDOAMeasurement) SetReceiveTime(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setReceiveTime:"), value)
 }
 
 // A value that represents the signal strength, in dBm, to the anchor that provides the measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/signalstrength
-func (n_ NIDLTDOAMeasurement) SignalStrength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("signalStrength"))
+func (n_ NIDLTDOAMeasurement) SignalStrength() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("signalStrength"))
 	return rv
 }
 
@@ -202,15 +218,15 @@ func (n_ NIDLTDOAMeasurement) SignalStrength() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/signalstrength
-func (n_ NIDLTDOAMeasurement) SetSignalStrength(value unsafe.Pointer) {
+func (n_ NIDLTDOAMeasurement) SetSignalStrength(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
 }
 
 // A timestamp, in seconds, for the elapsed message transmission time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/transmittime
-func (n_ NIDLTDOAMeasurement) TransmitTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("transmitTime"))
+func (n_ NIDLTDOAMeasurement) TransmitTime() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("transmitTime"))
 	return rv
 }
 
@@ -220,7 +236,7 @@ func (n_ NIDLTDOAMeasurement) TransmitTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/transmittime
-func (n_ NIDLTDOAMeasurement) SetTransmitTime(value unsafe.Pointer) {
+func (n_ NIDLTDOAMeasurement) SetTransmitTime(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTransmitTime:"), value)
 }
 

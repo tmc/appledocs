@@ -30,6 +30,8 @@ type _BlitPassSampleBufferAttachmentDescriptorArrayClass struct {
 // An interface definition for the [BlitPassSampleBufferAttachmentDescriptorArray] class.
 type IBlitPassSampleBufferAttachmentDescriptorArray interface {
 	objectivec.IObject
+	CounterSets() unsafe.Pointer
+	SetCounterSets(value unsafe.Pointer)
 }
 
 // A container that stores an array of sample buffer attachments for a blit pass.

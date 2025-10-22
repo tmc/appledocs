@@ -32,6 +32,9 @@ type _AuthorizationSingleSignOnProviderClass struct {
 type IAuthorizationSingleSignOnProvider interface {
 	objectivec.IObject
 	CreateRequest() AuthorizationSingleSignOnRequest
+	CanPerformAuthorization() bool
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A mechanism for generating requests to authenticate users with third-party providers.

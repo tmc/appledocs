@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,12 @@ type _GLKSubmeshClass struct {
 // An interface definition for the [GLKSubmesh] class.
 type IGLKSubmesh interface {
 	objectivec.IObject
+	ElementBuffer() GLKMeshBuffer
+	ElementCount() unsafe.Pointer
+	Mesh() GLKMesh
+	Mode() unsafe.Pointer
+	Name() string
+	Type() unsafe.Pointer
 }
 
 //
@@ -106,8 +111,8 @@ func (g_ GLKSubmesh) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/name
-func (g_ GLKSubmesh) Name() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("name"))
+func (g_ GLKSubmesh) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

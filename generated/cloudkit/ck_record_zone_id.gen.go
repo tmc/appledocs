@@ -30,6 +30,9 @@ type _CKRecordZoneIDClass struct {
 // An interface definition for the [CKRecordZoneID] class.
 type ICKRecordZoneID interface {
 	objectivec.IObject
+	OwnerName() string
+	ZoneName() string
+	CKCurrentUserDefaultName() string
 }
 
 // An object that uniquely identifies a record zone in a database.

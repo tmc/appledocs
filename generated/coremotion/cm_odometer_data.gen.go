@@ -31,6 +31,18 @@ type _OdometerDataClass struct {
 // An interface definition for the [OdometerData] class.
 type IOdometerData interface {
 	objectivec.IObject
+	DeltaAltitude() unsafe.Pointer
+	DeltaDistance() unsafe.Pointer
+	DeltaDistanceAccuracy() unsafe.Pointer
+	EndDate() foundation.NSDate
+	GpsDate() foundation.NSDate
+	MaxAbsSlope() foundation.Number
+	OriginDevice() OdometerOriginDevice
+	Slope() foundation.Number
+	Speed() unsafe.Pointer
+	SpeedAccuracy() unsafe.Pointer
+	StartDate() foundation.NSDate
+	VerticalAccuracy() unsafe.Pointer
 }
 
 // A class that represents odometer data for workouts.

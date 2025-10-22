@@ -30,6 +30,10 @@ type _DelegatingPlaybackCoordinatorPlaybackControlCommandClass struct {
 // An interface definition for the [DelegatingPlaybackCoordinatorPlaybackControlCommand] class.
 type IDelegatingPlaybackCoordinatorPlaybackControlCommand interface {
 	objectivec.IObject
+	ExpectedCurrentItemIdentifier() string
+	SetExpectedCurrentItemIdentifier(value string)
+	Originator() AVCoordinatedPlaybackParticipant
+	SetOriginator(value IAVCoordinatedPlaybackParticipant)
 }
 
 // An abstract superclass for playback commands.

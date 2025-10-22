@@ -31,6 +31,12 @@ type _DateRangeMetadataGroupClass struct {
 // An interface definition for the [DateRangeMetadataGroup] class.
 type IDateRangeMetadataGroup interface {
 	objectivec.IObject
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	Items() AVMetadataItem
+	SetItems(value IAVMetadataItem)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
 }
 
 // A collection of metadata items that are valid for use within a specific date range.

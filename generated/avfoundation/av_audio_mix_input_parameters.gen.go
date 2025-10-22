@@ -30,6 +30,12 @@ type _AudioMixInputParametersClass struct {
 // An interface definition for the [AudioMixInputParameters] class.
 type IAudioMixInputParameters interface {
 	objectivec.IObject
+	AudioTapProcessor() unsafe.Pointer
+	SetAudioTapProcessor(value unsafe.Pointer)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm
+	SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm)
+	TrackID() unsafe.Pointer
+	SetTrackID(value unsafe.Pointer)
 }
 
 // An object that represents the parameters that you apply when adding an audio track to a mix.

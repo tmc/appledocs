@@ -30,6 +30,16 @@ type _CaptureAudioChannelClass struct {
 // An interface definition for the [CaptureAudioChannel] class.
 type ICaptureAudioChannel interface {
 	objectivec.IObject
+	AveragePowerLevel() float32
+	SetAveragePowerLevel(value float32)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	PeakHoldLevel() float32
+	SetPeakHoldLevel(value float32)
+	Volume() float32
+	SetVolume(value float32)
+	Connections() AVCaptureConnection
+	SetConnections(value IAVCaptureConnection)
 }
 
 // An object that monitors average and peak power levels for an audio channel in a capture connection.

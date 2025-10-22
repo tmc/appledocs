@@ -29,6 +29,7 @@ type _TrackHomographicImageRegistrationRequestClass struct {
 // An interface definition for the [TrackHomographicImageRegistrationRequest] class.
 type ITrackHomographicImageRegistrationRequest interface {
 	IStatefulRequest
+	Results() []ImageHomographicAlignmentObservation
 }
 
 // An image-analysis request, as a stateful request you track over time, that determines the perspective warp matrix necessary to align the content of two images.

@@ -29,6 +29,18 @@ type _MTL4PrimitiveAccelerationStructureDescriptorClass struct {
 // An interface definition for the [MTL4PrimitiveAccelerationStructureDescriptor] class.
 type IMTL4PrimitiveAccelerationStructureDescriptor interface {
 	IMTL4AccelerationStructureDescriptor
+	GeometryDescriptors() MTL4AccelerationStructureGeometryDescriptor
+	SetGeometryDescriptors(value IMTL4AccelerationStructureGeometryDescriptor)
+	MotionEndBorderMode() unsafe.Pointer
+	SetMotionEndBorderMode(value unsafe.Pointer)
+	MotionEndTime() float32
+	SetMotionEndTime(value float32)
+	MotionKeyframeCount() int
+	SetMotionKeyframeCount(value int)
+	MotionStartBorderMode() unsafe.Pointer
+	SetMotionStartBorderMode(value unsafe.Pointer)
+	MotionStartTime() float32
+	SetMotionStartTime(value float32)
 }
 
 // Descriptor for a primitive acceleration structure that directly references geometric shapes, such as triangles and bounding boxes.
@@ -118,8 +130,8 @@ func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetMotionEndBorderMode(va
 // Configures the motion end time for this geometry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor/motionendtime
-func (m_ MTL4PrimitiveAccelerationStructureDescriptor) MotionEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionEndTime"))
+func (m_ MTL4PrimitiveAccelerationStructureDescriptor) MotionEndTime() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("motionEndTime"))
 	return rv
 }
 
@@ -129,7 +141,7 @@ func (m_ MTL4PrimitiveAccelerationStructureDescriptor) MotionEndTime() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor/motionendtime
-func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value unsafe.Pointer) {
+func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionEndTime:"), value)
 }
 
@@ -172,8 +184,8 @@ func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetMotionStartBorderMode(
 // Configures the motion start time for this geometry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor/motionstarttime
-func (m_ MTL4PrimitiveAccelerationStructureDescriptor) MotionStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionStartTime"))
+func (m_ MTL4PrimitiveAccelerationStructureDescriptor) MotionStartTime() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("motionStartTime"))
 	return rv
 }
 
@@ -183,7 +195,7 @@ func (m_ MTL4PrimitiveAccelerationStructureDescriptor) MotionStartTime() unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor/motionstarttime
-func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value unsafe.Pointer) {
+func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionStartTime:"), value)
 }
 

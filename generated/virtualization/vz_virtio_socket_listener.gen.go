@@ -30,6 +30,8 @@ type _VZVirtioSocketListenerClass struct {
 // An interface definition for the [VZVirtioSocketListener] class.
 type IVZVirtioSocketListener interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An object that listens for port-based connection requests from the guest operating system.

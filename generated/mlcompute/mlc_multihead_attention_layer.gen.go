@@ -29,6 +29,18 @@ type _CMultiheadAttentionLayerClass struct {
 // An interface definition for the [CMultiheadAttentionLayer] class.
 type ICMultiheadAttentionLayer interface {
 	ICLayer
+	AttentionBiases() MLCTensor
+	SetAttentionBiases(value IMLCTensor)
+	Biases() MLCTensor
+	SetBiases(value IMLCTensor)
+	BiasesParameters() MLCTensorParameter
+	SetBiasesParameters(value IMLCTensorParameter)
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
+	Weights() MLCTensor
+	SetWeights(value IMLCTensor)
+	WeightsParameters() MLCTensorParameter
+	SetWeightsParameters(value IMLCTensorParameter)
 }
 
 // A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.

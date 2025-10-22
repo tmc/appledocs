@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,17 @@ type _ProductDiscountClass struct {
 // An interface definition for the [ProductDiscount] class.
 type IProductDiscount interface {
 	objectivec.IObject
+	Identifier() string
+	NumberOfPeriods() uint
+	PaymentMode() ProductDiscountPaymentMode
+	Price() foundation.DecimalNumber
+	PriceLocale() foundation.Locale
+	SubscriptionPeriod() unsafe.Pointer
+	Type() ProductDiscountType
+	Discounts() SKProductDiscount
+	SetDiscounts(value ISKProductDiscount)
+	IntroductoryPrice() SKProductDiscount
+	SetIntroductoryPrice(value ISKProductDiscount)
 }
 
 // The details of an introductory offer or a promotional offer for an auto-renewable subscription.
@@ -85,8 +95,8 @@ func NewProductDiscount() ProductDiscount {
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/identifier
-func (p_ ProductDiscount) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ ProductDiscount) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

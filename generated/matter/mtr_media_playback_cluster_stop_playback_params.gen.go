@@ -30,6 +30,10 @@ type _MTRMediaPlaybackClusterStopPlaybackParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterStopPlaybackParams] class.
 type IMTRMediaPlaybackClusterStopPlaybackParams interface {
 	IMTRMediaPlaybackClusterStopParams
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -29,6 +29,26 @@ type _CKFetchDatabaseChangesOperationClass struct {
 // An interface definition for the [CKFetchDatabaseChangesOperation] class.
 type ICKFetchDatabaseChangesOperation interface {
 	ICKDatabaseOperation
+	ChangeTokenUpdatedBlock() unsafe.Pointer
+	SetChangeTokenUpdatedBlock(value unsafe.Pointer)
+	FetchAllChanges() bool
+	SetFetchAllChanges(value bool)
+	FetchDatabaseChangesCompletionBlock() unsafe.Pointer
+	SetFetchDatabaseChangesCompletionBlock(value unsafe.Pointer)
+	PreviousServerChangeToken() CKServerChangeToken
+	SetPreviousServerChangeToken(value ICKServerChangeToken)
+	RecordZoneWithIDChangedBlock() unsafe.Pointer
+	SetRecordZoneWithIDChangedBlock(value unsafe.Pointer)
+	RecordZoneWithIDWasDeletedBlock() unsafe.Pointer
+	SetRecordZoneWithIDWasDeletedBlock(value unsafe.Pointer)
+	RecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock() unsafe.Pointer
+	SetRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value unsafe.Pointer)
+	RecordZoneWithIDWasPurgedBlock() unsafe.Pointer
+	SetRecordZoneWithIDWasPurgedBlock(value unsafe.Pointer)
+	ResultsLimit() uint
+	SetResultsLimit(value uint)
+	FetchDatabaseChangesResultBlock() unsafe.Pointer
+	SetFetchDatabaseChangesResultBlock(value unsafe.Pointer)
 }
 
 // An operation that fetches database changes.

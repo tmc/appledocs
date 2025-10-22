@@ -30,6 +30,8 @@ type _ResourceStatePassDescriptorClass struct {
 // An interface definition for the [ResourceStatePassDescriptor] class.
 type IResourceStatePassDescriptor interface {
 	objectivec.IObject
+	SampleBufferAttachments() MTLResourceStatePassSampleBufferAttachmentDescriptorArray
+	SetSampleBufferAttachments(value IMTLResourceStatePassSampleBufferAttachmentDescriptorArray)
 }
 
 // A configuration for a resource state pass, used to create a resource state command encoder.

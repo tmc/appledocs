@@ -31,6 +31,35 @@ type _CaptureDeviceInputClass struct {
 type ICaptureDeviceInput interface {
 	ICaptureInput
 	FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice unsafe.Pointer, frameDuration unsafe.Pointer, delegate objectivec.IObject)
+	ActiveLockedVideoFrameDuration() unsafe.Pointer
+	SetActiveLockedVideoFrameDuration(value unsafe.Pointer)
+	ExternalSyncDevice() unsafe.Pointer
+	CinematicVideoCaptureSupported() bool
+	LockedVideoFrameDurationSupported() bool
+	MultichannelAudioMode() unsafe.Pointer
+	SetMultichannelAudioMode(value unsafe.Pointer)
+	UnifiedAutoExposureDefaultsEnabled() bool
+	SetUnifiedAutoExposureDefaultsEnabled(value bool)
+	VideoMinFrameDurationOverride() unsafe.Pointer
+	SetVideoMinFrameDurationOverride(value unsafe.Pointer)
+	ActiveExternalSyncVideoFrameDuration() unsafe.Pointer
+	SetActiveExternalSyncVideoFrameDuration(value unsafe.Pointer)
+	Device() AVCaptureDevice
+	SetDevice(value IAVCaptureDevice)
+	IsCinematicVideoCaptureEnabled() bool
+	SetIsCinematicVideoCaptureEnabled(value bool)
+	IsCinematicVideoCaptureSupported() bool
+	SetIsCinematicVideoCaptureSupported(value bool)
+	IsExternalSyncSupported() bool
+	SetIsExternalSyncSupported(value bool)
+	IsLockedVideoFrameDurationSupported() bool
+	SetIsLockedVideoFrameDurationSupported(value bool)
+	IsWindNoiseRemovalEnabled() bool
+	SetIsWindNoiseRemovalEnabled(value bool)
+	IsWindNoiseRemovalSupported() bool
+	SetIsWindNoiseRemovalSupported(value bool)
+	SimulatedAperture() float32
+	SetSimulatedAperture(value float32)
 }
 
 // An object that provides media input from a capture device to a capture session.

@@ -34,6 +34,7 @@ type IComponent interface {
 	DidAddToEntity()
 	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	WillRemoveFromEntity()
+	Entity() GKEntity
 }
 
 // The abstract superclass for creating objects that add specific gameplay functionality to an entity.

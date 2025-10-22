@@ -31,6 +31,22 @@ type _PHPickerConfigurationClass struct {
 // An interface definition for the [PHPickerConfiguration] class.
 type IPHPickerConfiguration interface {
 	objectivec.IObject
+	DisabledCapabilities() PHPickerCapabilities
+	SetDisabledCapabilities(value IPHPickerCapabilities)
+	EdgesWithoutContentMargins() unsafe.Pointer
+	SetEdgesWithoutContentMargins(value unsafe.Pointer)
+	Filter() PHPickerFilter
+	SetFilter(value IPHPickerFilter)
+	Mode() PHPickerMode
+	SetMode(value PHPickerMode)
+	PreferredAssetRepresentationMode() PHPickerConfigurationAssetRepresentationMode
+	SetPreferredAssetRepresentationMode(value PHPickerConfigurationAssetRepresentationMode)
+	PreselectedAssetIdentifiers() []string
+	SetPreselectedAssetIdentifiers(value []string)
+	Selection() PHPickerConfigurationSelection
+	SetSelection(value IPHPickerConfigurationSelection)
+	SelectionLimit() int
+	SetSelectionLimit(value int)
 }
 
 // An object that contains information about how to configure a picker view controller.

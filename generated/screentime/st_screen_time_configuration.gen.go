@@ -30,6 +30,7 @@ type _STScreenTimeConfigurationClass struct {
 // An interface definition for the [STScreenTimeConfiguration] class.
 type ISTScreenTimeConfiguration interface {
 	objectivec.IObject
+	EnforcesChildRestrictions() bool
 }
 
 // The configuration for this device.

@@ -31,6 +31,12 @@ type _MTRIdentifyClusterIdentifyParamsClass struct {
 // An interface definition for the [MTRIdentifyClusterIdentifyParams] class.
 type IMTRIdentifyClusterIdentifyParams interface {
 	objectivec.IObject
+	IdentifyTime() foundation.Number
+	SetIdentifyTime(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

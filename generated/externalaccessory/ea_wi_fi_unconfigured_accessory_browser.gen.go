@@ -35,6 +35,9 @@ type IEAWiFiUnconfiguredAccessoryBrowser interface {
 	ConfigureAccessoryWithConfigurationUIOnViewController(accessory IEAWiFiUnconfiguredAccessory, viewController appkit.IViewController)
 	StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.IPredicate)
 	StopSearchingForUnconfiguredAccessories()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	UnconfiguredAccessories() unsafe.Pointer
 }
 
 // An object you use to scan for wireless accessories and configure them for use with the user’s app.

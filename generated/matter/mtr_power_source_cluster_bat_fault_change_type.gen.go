@@ -30,6 +30,10 @@ type _MTRPowerSourceClusterBatFaultChangeTypeClass struct {
 // An interface definition for the [MTRPowerSourceClusterBatFaultChangeType] class.
 type IMTRPowerSourceClusterBatFaultChangeType interface {
 	objectivec.IObject
+	Current() unsafe.Pointer
+	SetCurrent(value unsafe.Pointer)
+	Previous() unsafe.Pointer
+	SetPrevious(value unsafe.Pointer)
 }
 
 //

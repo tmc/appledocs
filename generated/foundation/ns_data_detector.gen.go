@@ -29,6 +29,17 @@ type _DataDetectorClass struct {
 // An interface definition for the [DataDetector] class.
 type IDataDetector interface {
 	IRegularExpression
+	CheckingTypes() unsafe.Pointer
+	SetCheckingTypes(value unsafe.Pointer)
+	NSNotFound() int
+	Date() Date
+	SetDate(value IDate)
+	Duration() TimeInterval
+	SetDuration(value ITimeInterval)
+	TimeZone() TimeZone
+	SetTimeZone(value ITimeZone)
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // A specialized regular expression object that matches natural language text for predefined data patterns.

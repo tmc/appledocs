@@ -30,6 +30,8 @@ type _HKPHQ9AssessmentClass struct {
 // An interface definition for the [HKPHQ9Assessment] class.
 type IHKPHQ9Assessment interface {
 	IHKScoredAssessment
+	Answers() []foundation.Number
+	Risk() HKPHQ9AssessmentRisk
 }
 
 //

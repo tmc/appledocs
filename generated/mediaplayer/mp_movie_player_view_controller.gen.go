@@ -31,6 +31,12 @@ type _MoviePlayerViewControllerClass struct {
 // An interface definition for the [MoviePlayerViewController] class.
 type IMoviePlayerViewController interface {
 	appkit.IViewController
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	MoviePlayer() MPMoviePlayerController
+	SetMoviePlayer(value IMPMoviePlayerController)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // A simple view controller for displaying full-screen movies.

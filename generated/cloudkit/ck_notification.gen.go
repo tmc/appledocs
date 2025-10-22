@@ -31,6 +31,42 @@ type _CKNotificationClass struct {
 // An interface definition for the [CKNotification] class.
 type ICKNotification interface {
 	objectivec.IObject
+	ContainerIdentifier() string
+	NotificationID() unsafe.Pointer
+	NotificationType() CKNotificationType
+	SubscriptionOwnerUserRecordID() CKRecordID
+	AlertActionLocalizationKey() string
+	SetAlertActionLocalizationKey(value string)
+	AlertBody() string
+	SetAlertBody(value string)
+	AlertLaunchImage() string
+	SetAlertLaunchImage(value string)
+	AlertLocalizationArgs() string
+	SetAlertLocalizationArgs(value string)
+	AlertLocalizationKey() string
+	SetAlertLocalizationKey(value string)
+	Badge() foundation.Number
+	SetBadge(value foundation.INumber)
+	Category() string
+	SetCategory(value string)
+	IsPruned() bool
+	SetIsPruned(value bool)
+	SoundName() string
+	SetSoundName(value string)
+	SubscriptionID() unsafe.Pointer
+	SetSubscriptionID(value unsafe.Pointer)
+	Subtitle() string
+	SetSubtitle(value string)
+	SubtitleLocalizationArgs() string
+	SetSubtitleLocalizationArgs(value string)
+	SubtitleLocalizationKey() string
+	SetSubtitleLocalizationKey(value string)
+	Title() string
+	SetTitle(value string)
+	TitleLocalizationArgs() string
+	SetTitleLocalizationArgs(value string)
+	TitleLocalizationKey() string
+	SetTitleLocalizationKey(value string)
 }
 
 // The abstract base class for CloudKit notifications.

@@ -30,6 +30,8 @@ type _MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEventClass stru
 // An interface definition for the [MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent] class.
 type IMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent interface {
 	objectivec.IObject
+	Ranges() unsafe.Pointer
+	SetRanges(value unsafe.Pointer)
 }
 
 //

@@ -29,6 +29,10 @@ type _INAnswerCallIntentClass struct {
 // An interface definition for the [INAnswerCallIntent] class.
 type IINAnswerCallIntent interface {
 	IINIntent
+	AudioRoute() INCallAudioRoute
+	SetAudioRoute(value INCallAudioRoute)
+	CallIdentifier() string
+	SetCallIdentifier(value string)
 }
 
 //
@@ -93,8 +97,8 @@ func (i_ INAnswerCallIntent) SetAudioRoute(value INCallAudioRoute) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
-func (i_ INAnswerCallIntent) CallIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("callIdentifier"))
+func (i_ INAnswerCallIntent) CallIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("callIdentifier"))
 	return rv
 }
 
@@ -102,8 +106,8 @@ func (i_ INAnswerCallIntent) CallIdentifier() appkit.string {
 // SetCallIdentifier sets the value of the callIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
-func (i_ INAnswerCallIntent) SetCallIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), value)
+func (i_ INAnswerCallIntent) SetCallIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), objc.String(value))
 }
 
 

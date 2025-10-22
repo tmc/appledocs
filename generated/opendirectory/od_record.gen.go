@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,11 +36,11 @@ type IODRecord interface {
 	AddMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool
 	AddValueToAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool
 	AuthenticationAllowedAndReturnError(error_ unsafe.Pointer) bool
-	ChangePasswordToPasswordError(oldPassword appkit.string, newPassword appkit.string, outError unsafe.Pointer) bool
+	ChangePasswordToPasswordError(oldPassword string, newPassword string, outError unsafe.Pointer) bool
 	DeleteRecordAndReturnError(outError unsafe.Pointer) bool
 	EffectivePoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
 	IsMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool
-	PasswordChangeAllowedError(newPassword appkit.string, error_ unsafe.Pointer) bool
+	PasswordChangeAllowedError(newPassword string, error_ unsafe.Pointer) bool
 	PasswordPolicyAndReturnError(outError unsafe.Pointer) foundation.Dictionary
 	PoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
 	RecordDetailsForAttributesError(inAttributes objectivec.IObject, outError unsafe.Pointer) foundation.Dictionary
@@ -51,8 +50,8 @@ type IODRecord interface {
 	RemoveValueFromAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool
 	RemoveValuesForAttributeError(inAttribute ODAttributeType, outError unsafe.Pointer) bool
 	SetAccountPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool
-	SetNodeCredentialsPasswordError(inUsername appkit.string, inPassword appkit.string, outError unsafe.Pointer) bool
-	SetNodeCredentialsUsingKerberosCacheError(inCacheName appkit.string, outError unsafe.Pointer) bool
+	SetNodeCredentialsPasswordError(inUsername string, inPassword string, outError unsafe.Pointer) bool
+	SetNodeCredentialsUsingKerberosCacheError(inCacheName string, outError unsafe.Pointer) bool
 	SetNodeCredentialsWithRecordTypeAuthenticationTypeAuthenticationItemsContinueItemsContextError(inRecordType unsafe.Pointer, inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool
 	SetPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool
 	SetPolicyValueError(policy ODPolicyType, value objectivec.IObject, error_ unsafe.Pointer) bool
@@ -61,9 +60,13 @@ type IODRecord interface {
 	SynchronizeAndReturnError(outError unsafe.Pointer) bool
 	ValuesForAttributeError(inAttribute ODAttributeType, outError unsafe.Pointer) foundation.Array
 	VerifyExtendedWithAuthenticationTypeAuthenticationItemsContinueItemsContextError(inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool
-	VerifyPasswordError(inPassword appkit.string, outError unsafe.Pointer) bool
+	VerifyPasswordError(inPassword string, outError unsafe.Pointer) bool
 	WillAuthenticationsExpire(willExpireIn uint64) bool
 	WillPasswordExpire(willExpireIn uint64) bool
+	RecordName() string
+	RecordType() string
+	SecondsUntilAuthenticationsExpire() unsafe.Pointer
+	SecondsUntilPasswordExpires() unsafe.Pointer
 }
 
 // An object serves as a Cocoa wrapper for an Open Directory record.
@@ -152,8 +155,8 @@ func (o_ ODRecord) AuthenticationAllowedAndReturnError(error_ unsafe.Pointer) bo
 // Changes the record’s password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/changePassword(_:toPassword:)
-func (o_ ODRecord) ChangePasswordToPasswordError(oldPassword appkit.string, newPassword appkit.string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("changePassword:toPassword:error:"), oldPassword, newPassword, outError)
+func (o_ ODRecord) ChangePasswordToPasswordError(oldPassword string, newPassword string, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("changePassword:toPassword:error:"), objc.String(oldPassword), objc.String(newPassword), outError)
 	return rv
 }
 
@@ -182,8 +185,8 @@ func (o_ ODRecord) IsMemberRecordError(inRecord IODRecord, outError unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/passwordChangeAllowed(_:)
-func (o_ ODRecord) PasswordChangeAllowedError(newPassword appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("passwordChangeAllowed:error:"), newPassword, error_)
+func (o_ ODRecord) PasswordChangeAllowedError(newPassword string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("passwordChangeAllowed:error:"), objc.String(newPassword), error_)
 	return rv
 }
 
@@ -258,16 +261,16 @@ func (o_ ODRecord) SetAccountPoliciesError(policies objectivec.IObject, error_ u
 // Sets credentials for the record’s node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setNodeCredentials(_:password:)
-func (o_ ODRecord) SetNodeCredentialsPasswordError(inUsername appkit.string, inPassword appkit.string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentials:password:error:"), inUsername, inPassword, outError)
+func (o_ ODRecord) SetNodeCredentialsPasswordError(inUsername string, inPassword string, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentials:password:error:"), objc.String(inUsername), objc.String(inPassword), outError)
 	return rv
 }
 
 // Sets the credentials for interaction with the record’s node using a Kerberos cache.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setNodeCredentialsUsingKerberosCache:error:
-func (o_ ODRecord) SetNodeCredentialsUsingKerberosCacheError(inCacheName appkit.string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentialsUsingKerberosCache:error:"), inCacheName, outError)
+func (o_ ODRecord) SetNodeCredentialsUsingKerberosCacheError(inCacheName string, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentialsUsingKerberosCache:error:"), objc.String(inCacheName), outError)
 	return rv
 }
 
@@ -335,8 +338,8 @@ func (o_ ODRecord) VerifyExtendedWithAuthenticationTypeAuthenticationItemsContin
 // Verifies the password for interaction with the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/verifyPassword(_:)
-func (o_ ODRecord) VerifyPasswordError(inPassword appkit.string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("verifyPassword:error:"), inPassword, outError)
+func (o_ ODRecord) VerifyPasswordError(inPassword string, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("verifyPassword:error:"), objc.String(inPassword), outError)
 	return rv
 }
 
@@ -357,16 +360,16 @@ func (o_ ODRecord) WillPasswordExpire(willExpireIn uint64) bool {
 // The official name of the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordName
-func (o_ ODRecord) RecordName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("recordName"))
+func (o_ ODRecord) RecordName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("recordName"))
 	return rv
 }
 
 // The record’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordType
-func (o_ ODRecord) RecordType() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("recordType"))
+func (o_ ODRecord) RecordType() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("recordType"))
 	return rv
 }
 

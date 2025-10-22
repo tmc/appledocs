@@ -31,6 +31,12 @@ type _MTRAudioOutputClusterOutputInfoStructClass struct {
 // An interface definition for the [MTRAudioOutputClusterOutputInfoStruct] class.
 type IMTRAudioOutputClusterOutputInfoStruct interface {
 	objectivec.IObject
+	Index() foundation.Number
+	SetIndex(value foundation.INumber)
+	Name() string
+	SetName(value string)
+	OutputType() foundation.Number
+	SetOutputType(value foundation.INumber)
 }
 
 //
@@ -93,8 +99,8 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value foundation.INumbe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
-func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +108,8 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

@@ -29,6 +29,7 @@ type _INPauseWorkoutIntentClass struct {
 // An interface definition for the [INPauseWorkoutIntent] class.
 type IINPauseWorkoutIntent interface {
 	IINIntent
+	WorkoutName() INSpeakableString
 }
 
 // A request to pause the current workout that also stops the gathering of workout data.

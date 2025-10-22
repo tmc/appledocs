@@ -30,6 +30,12 @@ type _BeaconIdentityConstraintClass struct {
 // An interface definition for the [BeaconIdentityConstraint] class.
 type IBeaconIdentityConstraint interface {
 	IBeaconIdentityCondition
+	Major() foundation.Number
+	SetMajor(value foundation.INumber)
+	Minor() foundation.Number
+	SetMinor(value foundation.INumber)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.IUUID)
 }
 
 // Identity characteristics that can match one or more beacons.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MTRContentAppObserverClusterContentAppMessageResponseParamsClass struct {
 // An interface definition for the [MTRContentAppObserverClusterContentAppMessageResponseParams] class.
 type IMTRContentAppObserverClusterContentAppMessageResponseParams interface {
 	objectivec.IObject
+	Data() string
+	SetData(value string)
+	EncodingHint() string
+	SetEncodingHint(value string)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
 }
 
 //
@@ -92,8 +97,8 @@ func NewMTRContentAppObserverClusterContentAppMessageResponseParamsWithResponseV
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Data() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -101,14 +106,14 @@ func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Data() app
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetData(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHint() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("encodingHint"))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHint() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("encodingHint"))
 	return rv
 }
 
@@ -116,8 +121,8 @@ func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHi
 // SetEncodingHint sets the value of the encodingHint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetEncodingHint(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), value)
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetEncodingHint(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
 }
 
 //

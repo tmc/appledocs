@@ -31,6 +31,10 @@ type _ShareableContentInfoClass struct {
 // An interface definition for the [ShareableContentInfo] class.
 type IShareableContentInfo interface {
 	objectivec.IObject
+	ContentRect() coregraphics.CGRect
+	Style() ShareableContentStyle
+	PointPixelScale() float32
+	SetPointPixelScale(value float32)
 }
 
 // An instance that provides information for the content in a given stream.
@@ -98,8 +102,8 @@ func (s_ ShareableContentInfo) Style() ShareableContentStyle {
 // The scaling from points to output pixel resolution for the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/pointpixelscale
-func (s_ ShareableContentInfo) PointPixelScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pointPixelScale"))
+func (s_ ShareableContentInfo) PointPixelScale() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("pointPixelScale"))
 	return rv
 }
 
@@ -109,7 +113,7 @@ func (s_ ShareableContentInfo) PointPixelScale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/pointpixelscale
-func (s_ ShareableContentInfo) SetPointPixelScale(value unsafe.Pointer) {
+func (s_ ShareableContentInfo) SetPointPixelScale(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPointPixelScale:"), value)
 }
 

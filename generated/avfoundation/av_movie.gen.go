@@ -30,6 +30,16 @@ type _MovieClass struct {
 // An interface definition for the [Movie] class.
 type IMovie interface {
 	IAsset
+	CanContainMovieFragments() bool
+	Data() foundation.NSData
+	ContainsMovieFragments() bool
+	SetContainsMovieFragments(value bool)
+	DefaultMediaDataStorage() AVMediaDataStorage
+	SetDefaultMediaDataStorage(value IAVMediaDataStorage)
+	Tracks() AVMovieTrack
+	SetTracks(value IAVMovieTrack)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // An object that represents an audiovisual container that conforms to the QuickTime movie file format or a related format like MPEG-4.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +31,12 @@ type _ABMutableMultiValueClass struct {
 // An interface definition for the [ABMutableMultiValue] class.
 type IABMutableMultiValue interface {
 	IABMultiValue
-	AddValueWithLabel(value objectivec.IObject, label appkit.string) foundation.String
-	InsertValueWithLabelAtIndex(value objectivec.IObject, label appkit.string, index uint) foundation.String
+	AddValueWithLabel(value objectivec.IObject, label string) foundation.String
+	InsertValueWithLabelAtIndex(value objectivec.IObject, label string, index uint) foundation.String
 	RemoveValueAndLabelAtIndex(index uint) bool
 	ReplaceValueAtIndexWithValue(index uint, value objectivec.IObject) bool
-	ReplaceLabelAtIndexWithLabel(index uint, label appkit.string) bool
-	SetPrimaryIdentifier(identifier appkit.string) bool
+	ReplaceLabelAtIndexWithLabel(index uint, label string) bool
+	SetPrimaryIdentifier(identifier string) bool
 }
 
 // A mutable representation of a property that might have multiple values.
@@ -93,16 +92,16 @@ func NewABMutableMultiValue() ABMutableMultiValue {
 // Adds a value and its label to a multivalue list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/add(_:withLabel:)
-func (a_ ABMutableMultiValue) AddValueWithLabel(value objectivec.IObject, label appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("addValue:withLabel:"), value, label)
+func (a_ ABMutableMultiValue) AddValueWithLabel(value objectivec.IObject, label string) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("addValue:withLabel:"), value, objc.String(label))
 	return rv
 }
 
 // Inserts a value and its label at the given index in a multivalue list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/insert(_:withLabel:at:)
-func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objectivec.IObject, label appkit.string, index uint) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, label, index)
+func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objectivec.IObject, label string, index uint) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, objc.String(label), index)
 	return rv
 }
 
@@ -125,16 +124,16 @@ func (a_ ABMutableMultiValue) ReplaceValueAtIndexWithValue(index uint, value obj
 // Replaces the label at the given index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/replaceLabel(at:withLabel:)
-func (a_ ABMutableMultiValue) ReplaceLabelAtIndexWithLabel(index uint, label appkit.string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("replaceLabelAtIndex:withLabel:"), index, label)
+func (a_ ABMutableMultiValue) ReplaceLabelAtIndexWithLabel(index uint, label string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("replaceLabelAtIndex:withLabel:"), index, objc.String(label))
 	return rv
 }
 
 // Sets the primary value to be the value for the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/setPrimaryIdentifier(_:)
-func (a_ ABMutableMultiValue) SetPrimaryIdentifier(identifier appkit.string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setPrimaryIdentifier:"), identifier)
+func (a_ ABMutableMultiValue) SetPrimaryIdentifier(identifier string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setPrimaryIdentifier:"), objc.String(identifier))
 	return rv
 }
 

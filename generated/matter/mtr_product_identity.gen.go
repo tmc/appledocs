@@ -31,6 +31,10 @@ type _MTRProductIdentityClass struct {
 // An interface definition for the [MTRProductIdentity] class.
 type IMTRProductIdentity interface {
 	objectivec.IObject
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
 }
 
 //

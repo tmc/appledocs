@@ -31,6 +31,12 @@ type _MTRMessagesClusterCancelMessagesRequestParamsClass struct {
 // An interface definition for the [MTRMessagesClusterCancelMessagesRequestParams] class.
 type IMTRMessagesClusterCancelMessagesRequestParams interface {
 	objectivec.IObject
+	MessageIDs() objc.ID
+	SetMessageIDs(value objc.ID)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,8 @@ type _TKSmartCardSlotNFCSessionClass struct {
 type ITKSmartCardSlotNFCSession interface {
 	objectivec.IObject
 	EndSession()
-	UpdateWithMessageError(message appkit.string, error_ unsafe.Pointer) bool
+	UpdateWithMessageError(message string, error_ unsafe.Pointer) bool
+	SlotName() string
 }
 
 // NFC session that’s related to NFC smart card slot which was created.
@@ -93,16 +93,16 @@ func (t_ TKSmartCardSlotNFCSession) EndSession() {
 // Updates the message of the system-presented NFC UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/update(message:)
-func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("updateWithMessage:error:"), message, error_)
+func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("updateWithMessage:error:"), objc.String(message), error_)
 	return rv
 }
 
 // Smart card slot name of the NFC slot that was created together with this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/slotName
-func (t_ TKSmartCardSlotNFCSession) SlotName() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("slotName"))
+func (t_ TKSmartCardSlotNFCSession) SlotName() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv
 }
 

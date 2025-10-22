@@ -29,6 +29,28 @@ type _GraphImToColOpDescriptorClass struct {
 // An interface definition for the [GraphImToColOpDescriptor] class.
 type IGraphImToColOpDescriptor interface {
 	IGraphObject
+	DilationRateInX() uint
+	SetDilationRateInX(value uint)
+	StrideInY() uint
+	SetStrideInY(value uint)
+	DataLayout() GraphTensorNamedDataLayout
+	SetDataLayout(value IGraphTensorNamedDataLayout)
+	DilationRateInY() int
+	SetDilationRateInY(value int)
+	KernelHeight() int
+	SetKernelHeight(value int)
+	KernelWidth() int
+	SetKernelWidth(value int)
+	PaddingBottom() int
+	SetPaddingBottom(value int)
+	PaddingLeft() int
+	SetPaddingLeft(value int)
+	PaddingRight() int
+	SetPaddingRight(value int)
+	PaddingTop() int
+	SetPaddingTop(value int)
+	StrideInX() int
+	SetStrideInX(value int)
 }
 
 // The class that defines the parameters for an image to column or column to image operation.

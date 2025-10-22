@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,6 +32,20 @@ type ICSSearchQuery interface {
 	objectivec.IObject
 	Cancel()
 	Start()
+	CompletionHandler() unsafe.Pointer
+	SetCompletionHandler(value unsafe.Pointer)
+	FoundItemCount() uint
+	FoundItemsHandler() unsafe.Pointer
+	SetFoundItemsHandler(value unsafe.Pointer)
+	Cancelled() bool
+	ProtectionClasses() []string
+	SetProtectionClasses(value []string)
+	CSQueryContinuationActionType() string
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	Results() unsafe.Pointer
+	SetResults(value unsafe.Pointer)
+	CSSearchQueryString() string
 }
 
 // A type you use to programmatically search the indexed app content.
@@ -88,9 +101,9 @@ func NewCSSearchQuery() CSSearchQuery {
 // Initializes and returns a query object with the specified query string and item attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/init(queryString:attributes:)
-func NewCSSearchQueryWithQueryStringAttributes(queryString appkit.string, attributes []string) CSSearchQuery {
+func NewCSSearchQueryWithQueryStringAttributes(queryString string, attributes []string) CSSearchQuery {
 	instance := getCSSearchQueryClass().Alloc()
-	rv := objc.Send[CSSearchQuery](instance.ID, objc.Sel("initWithQueryString:attributes:"), queryString, attributes)
+	rv := objc.Send[CSSearchQuery](instance.ID, objc.Sel("initWithQueryString:attributes:"), objc.String(queryString), attributes)
 	rv.Autorelease()
 	return rv
 }
@@ -100,9 +113,9 @@ func NewCSSearchQueryWithQueryStringAttributes(queryString appkit.string, attrib
 // Initializes and returns a query object with the specified query string and query context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQuery/init(queryString:queryContext:)
-func NewCSSearchQueryWithQueryStringQueryContext(queryString appkit.string, queryContext ICSSearchQueryContext) CSSearchQuery {
+func NewCSSearchQueryWithQueryStringQueryContext(queryString string, queryContext ICSSearchQueryContext) CSSearchQuery {
 	instance := getCSSearchQueryClass().Alloc()
-	rv := objc.Send[CSSearchQuery](instance.ID, objc.Sel("initWithQueryString:queryContext:"), queryString, queryContext)
+	rv := objc.Send[CSSearchQuery](instance.ID, objc.Sel("initWithQueryString:queryContext:"), objc.String(queryString), queryContext)
 	rv.Autorelease()
 	return rv
 }
@@ -205,8 +218,8 @@ func (c_ CSSearchQuery) SetProtectionClasses(value []string) {
 // Indicates that the activity type to continue is a search or query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
-func (c_ CSSearchQuery) CSQueryContinuationActionType() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
+func (c_ CSSearchQuery) CSQueryContinuationActionType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
 	return rv
 }
 
@@ -249,8 +262,8 @@ func (c_ CSSearchQuery) SetResults(value unsafe.Pointer) {
 // Provides the key for the current query in the info dictionary of the user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
-func (c_ CSSearchQuery) CSSearchQueryString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSSearchQueryString"))
+func (c_ CSSearchQuery) CSSearchQueryString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
 	return rv
 }
 

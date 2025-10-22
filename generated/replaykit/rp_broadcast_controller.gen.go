@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,6 +35,17 @@ type IRPBroadcastController interface {
 	PauseBroadcast()
 	ResumeBroadcast()
 	StartBroadcastWithHandler(handler func(error objc.ID))
+	BroadcastExtensionBundleID() string
+	BroadcastURL() foundation.URL
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Broadcasting() bool
+	Paused() bool
+	ServiceInfo() unsafe.Pointer
+	IsBroadcasting() bool
+	SetIsBroadcasting(value bool)
+	IsPaused() bool
+	SetIsPaused(value bool)
 }
 
 // An object containing methods for starting and controlling a broadcast.
@@ -115,8 +125,8 @@ func (r_ RPBroadcastController) StartBroadcastWithHandler(handler func(error obj
 // The bundle ID for the selected broadcast service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/broadcastExtensionBundleID
-func (r_ RPBroadcastController) BroadcastExtensionBundleID() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("broadcastExtensionBundleID"))
+func (r_ RPBroadcastController) BroadcastExtensionBundleID() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("broadcastExtensionBundleID"))
 	return rv
 }
 

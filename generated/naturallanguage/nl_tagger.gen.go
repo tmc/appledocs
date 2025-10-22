@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -44,6 +43,10 @@ type ITagger interface {
 	TagsInRangeUnitSchemeOptionsTokenRanges(range_ foundation.IRange, unit ITokenUnit, scheme ITagScheme, options TaggerOptions, tokenRanges []foundation.IValue) []string
 	TokenRangeAtIndexUnit(characterIndex uint, unit ITokenUnit) foundation.Range
 	TokenRangeForRangeUnit(range_ foundation.IRange, unit ITokenUnit) foundation.Range
+	DominantLanguage() Language
+	String() string
+	SetString(value string)
+	TagSchemes() []string
 }
 
 // A tagger that analyzes natural language text.
@@ -224,8 +227,8 @@ func (t_ Tagger) DominantLanguage() Language {
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/string
-func (t_ Tagger) String() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("string"))
+func (t_ Tagger) String() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -235,8 +238,8 @@ func (t_ Tagger) String() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/string
-func (t_ Tagger) SetString(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
+func (t_ Tagger) SetString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 // The tag schemes configured for this linguistic tagger.

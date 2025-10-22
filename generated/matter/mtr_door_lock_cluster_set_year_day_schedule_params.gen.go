@@ -31,6 +31,18 @@ type _MTRDoorLockClusterSetYearDayScheduleParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterSetYearDayScheduleParams] class.
 type IMTRDoorLockClusterSetYearDayScheduleParams interface {
 	objectivec.IObject
+	LocalEndTime() foundation.Number
+	SetLocalEndTime(value foundation.INumber)
+	LocalStartTime() foundation.Number
+	SetLocalStartTime(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
+	YearDayIndex() foundation.Number
+	SetYearDayIndex(value foundation.INumber)
 }
 
 //

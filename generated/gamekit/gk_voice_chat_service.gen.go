@@ -30,6 +30,22 @@ type _VoiceChatServiceClass struct {
 // An interface definition for the [VoiceChatService] class.
 type IVoiceChatService interface {
 	objectivec.IObject
+	KAudioSessionCategory_PlayAndRecord() int
+	SetKAudioSessionCategory_PlayAndRecord(value int)
+	Client() unsafe.Pointer
+	SetClient(value unsafe.Pointer)
+	InputMeterLevel() float32
+	SetInputMeterLevel(value float32)
+	IsInputMeteringEnabled() bool
+	SetIsInputMeteringEnabled(value bool)
+	IsMicrophoneMuted() bool
+	SetIsMicrophoneMuted(value bool)
+	IsOutputMeteringEnabled() bool
+	SetIsOutputMeteringEnabled(value bool)
+	OutputMeterLevel() float32
+	SetOutputMeterLevel(value float32)
+	RemoteParticipantVolume() float32
+	SetRemoteParticipantVolume(value float32)
 }
 
 // The class allows your application to connect two iOS devices into a voice chat.
@@ -119,8 +135,8 @@ func (v_ VoiceChatService) SetClient(value unsafe.Pointer) {
 // The volume, in decibels (db), being received by the microphone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/inputmeterlevel
-func (v_ VoiceChatService) InputMeterLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("inputMeterLevel"))
+func (v_ VoiceChatService) InputMeterLevel() float32 {
+	rv := objc.Send[float32](v_.ID, objc.Sel("inputMeterLevel"))
 	return rv
 }
 
@@ -130,7 +146,7 @@ func (v_ VoiceChatService) InputMeterLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/inputmeterlevel
-func (v_ VoiceChatService) SetInputMeterLevel(value unsafe.Pointer) {
+func (v_ VoiceChatService) SetInputMeterLevel(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInputMeterLevel:"), value)
 }
 
@@ -191,8 +207,8 @@ func (v_ VoiceChatService) SetIsOutputMeteringEnabled(value bool) {
 // The volume, in decibels (db), being received from all other participants.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/outputmeterlevel
-func (v_ VoiceChatService) OutputMeterLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("outputMeterLevel"))
+func (v_ VoiceChatService) OutputMeterLevel() float32 {
+	rv := objc.Send[float32](v_.ID, objc.Sel("outputMeterLevel"))
 	return rv
 }
 
@@ -202,15 +218,15 @@ func (v_ VoiceChatService) OutputMeterLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/outputmeterlevel
-func (v_ VoiceChatService) SetOutputMeterLevel(value unsafe.Pointer) {
+func (v_ VoiceChatService) SetOutputMeterLevel(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOutputMeterLevel:"), value)
 }
 
 // A float that scales the volume of all remote participants.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/remoteparticipantvolume
-func (v_ VoiceChatService) RemoteParticipantVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("remoteParticipantVolume"))
+func (v_ VoiceChatService) RemoteParticipantVolume() float32 {
+	rv := objc.Send[float32](v_.ID, objc.Sel("remoteParticipantVolume"))
 	return rv
 }
 
@@ -220,7 +236,7 @@ func (v_ VoiceChatService) RemoteParticipantVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechatservice/remoteparticipantvolume
-func (v_ VoiceChatService) SetRemoteParticipantVolume(value unsafe.Pointer) {
+func (v_ VoiceChatService) SetRemoteParticipantVolume(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRemoteParticipantVolume:"), value)
 }
 

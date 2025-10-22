@@ -30,6 +30,11 @@ type _CaptureDataOutputSynchronizerClass struct {
 // An interface definition for the [CaptureDataOutputSynchronizer] class.
 type ICaptureDataOutputSynchronizer interface {
 	objectivec.IObject
+	DelegateCallbackQueue() unsafe.Pointer
+	DataOutputs() AVCaptureOutput
+	SetDataOutputs(value IAVCaptureOutput)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // An object that coordinates time-matched delivery of data from multiple capture outputs.

@@ -29,6 +29,14 @@ type _AccelerationStructureClass struct {
 // An interface definition for the [AccelerationStructure] class.
 type IAccelerationStructure interface {
 	IKernel
+	BoundingBox() unsafe.Pointer
+	SetBoundingBox(value unsafe.Pointer)
+	Group() MPSAccelerationStructureGroup
+	SetGroup(value IMPSAccelerationStructureGroup)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	Usage() unsafe.Pointer
+	SetUsage(value unsafe.Pointer)
 }
 
 // The base class for data structures that are built over geometry and used to accelerate ray tracing.

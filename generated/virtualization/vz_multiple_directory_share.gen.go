@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,7 @@ type _VZMultipleDirectoryShareClass struct {
 // An interface definition for the [VZMultipleDirectoryShare] class.
 type IVZMultipleDirectoryShare interface {
 	IVZDirectoryShare
+	Directories() unsafe.Pointer
 }
 
 // An object that describes a directory share for multiple directories.
@@ -99,16 +99,16 @@ func NewVZMultipleDirectoryShareWithDirectories(directories unsafe.Pointer) VZMu
 // Transforms a string to be a valid directory name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/canonicalizedName(from:)
-func (vc _VZMultipleDirectoryShareClass) CanonicalizedNameFromName(name appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(vc.class), objc.Sel("canonicalizedNameFromName:"), name)
+func (vc _VZMultipleDirectoryShareClass) CanonicalizedNameFromName(name string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(vc.class), objc.Sel("canonicalizedNameFromName:"), objc.String(name))
 	return rv
 }
 
 // Check if a name is a valid directory name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/validateName(_:)
-func (vc _VZMultipleDirectoryShareClass) ValidateNameError(name appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateName:error:"), name, error_)
+func (vc _VZMultipleDirectoryShareClass) ValidateNameError(name string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateName:error:"), objc.String(name), error_)
 	return rv
 }
 

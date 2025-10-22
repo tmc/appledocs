@@ -31,6 +31,14 @@ type _MTROTASoftwareUpdateRequestorClusterStateTransitionEventClass struct {
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterStateTransitionEvent] class.
 type IMTROTASoftwareUpdateRequestorClusterStateTransitionEvent interface {
 	objectivec.IObject
+	NewState() foundation.Number
+	SetNewState(value foundation.INumber)
+	PreviousState() foundation.Number
+	SetPreviousState(value foundation.INumber)
+	Reason() foundation.Number
+	SetReason(value foundation.INumber)
+	TargetSoftwareVersion() foundation.Number
+	SetTargetSoftwareVersion(value foundation.INumber)
 }
 
 //

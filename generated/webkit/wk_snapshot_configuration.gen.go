@@ -32,6 +32,12 @@ type _SnapshotConfigurationClass struct {
 // An interface definition for the [SnapshotConfiguration] class.
 type ISnapshotConfiguration interface {
 	objectivec.IObject
+	Rect() coregraphics.CGRect
+	SetRect(value coregraphics.CGRect)
+	AfterScreenUpdates() bool
+	SetAfterScreenUpdates(value bool)
+	SnapshotWidth() foundation.Number
+	SetSnapshotWidth(value foundation.INumber)
 }
 
 // The configuration data to use when generating an image from a web view’s contents.

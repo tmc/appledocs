@@ -29,6 +29,14 @@ type _MeasurementFormatterClass struct {
 // An interface definition for the [MeasurementFormatter] class.
 type IMeasurementFormatter interface {
 	IFormatter
+	Locale() Locale
+	SetLocale(value ILocale)
+	NumberFormatter() NSNumberFormatter
+	SetNumberFormatter(value INumberFormatter)
+	UnitOptions() unsafe.Pointer
+	SetUnitOptions(value unsafe.Pointer)
+	UnitStyle() unsafe.Pointer
+	SetUnitStyle(value unsafe.Pointer)
 }
 
 // A formatter that provides localized representations of units and measurements.

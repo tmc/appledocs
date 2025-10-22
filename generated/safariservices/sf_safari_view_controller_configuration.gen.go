@@ -30,6 +30,14 @@ type _SFSafariViewControllerConfigurationClass struct {
 // An interface definition for the [SFSafariViewControllerConfiguration] class.
 type ISFSafariViewControllerConfiguration interface {
 	objectivec.IObject
+	ActivityButton() SFSafariViewControllerActivityButton
+	SetActivityButton(value ISFSafariViewControllerActivityButton)
+	BarCollapsingEnabled() bool
+	SetBarCollapsingEnabled(value bool)
+	EntersReaderIfAvailable() bool
+	SetEntersReaderIfAvailable(value bool)
+	EventAttribution() unsafe.Pointer
+	SetEventAttribution(value unsafe.Pointer)
 }
 
 // A configuration object that defines how a Safari view controller should be initialized.

@@ -31,6 +31,12 @@ type _PHProjectRegionOfInterestClass struct {
 // An interface definition for the [PHProjectRegionOfInterest] class.
 type IPHProjectRegionOfInterest interface {
 	objectivec.IObject
+	Quality() float64
+	Weight() float64
+	Identifier() unsafe.Pointer
+	SetIdentifier(value unsafe.Pointer)
+	Rect() coregraphics.CGRect
+	SetRect(value coregraphics.CGRect)
 }
 
 // A representation of a region of interest in a photo asset.
@@ -84,16 +90,16 @@ func NewPHProjectRegionOfInterest() PHProjectRegionOfInterest {
 // The region’s quality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/quality
-func (p_ PHProjectRegionOfInterest) Quality() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("quality"))
+func (p_ PHProjectRegionOfInterest) Quality() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("quality"))
 	return rv
 }
 
 // The face region’s weight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/weight
-func (p_ PHProjectRegionOfInterest) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("weight"))
+func (p_ PHProjectRegionOfInterest) Weight() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("weight"))
 	return rv
 }
 

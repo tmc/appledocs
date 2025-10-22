@@ -30,6 +30,14 @@ type _PlayerLooperClass struct {
 // An interface definition for the [PlayerLooper] class.
 type IPlayerLooper interface {
 	objectivec.IObject
+	Error() Error
+	SetError(value IError)
+	LoopCount() int
+	SetLoopCount(value int)
+	LoopingPlayerItems() AVPlayerItem
+	SetLoopingPlayerItems(value IAVPlayerItem)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // An object that loops media content using a queue player.

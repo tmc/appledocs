@@ -30,6 +30,44 @@ type _LSTMDescriptorClass struct {
 // An interface definition for the [LSTMDescriptor] class.
 type ILSTMDescriptor interface {
 	objectivec.IObject
+	CellGateInputWeights() unsafe.Pointer
+	SetCellGateInputWeights(value unsafe.Pointer)
+	CellGateMemoryWeights() unsafe.Pointer
+	SetCellGateMemoryWeights(value unsafe.Pointer)
+	CellGateRecurrentWeights() unsafe.Pointer
+	SetCellGateRecurrentWeights(value unsafe.Pointer)
+	CellToOutputNeuronParamA() float32
+	SetCellToOutputNeuronParamA(value float32)
+	CellToOutputNeuronParamB() float32
+	SetCellToOutputNeuronParamB(value float32)
+	CellToOutputNeuronParamC() float32
+	SetCellToOutputNeuronParamC(value float32)
+	CellToOutputNeuronType() unsafe.Pointer
+	SetCellToOutputNeuronType(value unsafe.Pointer)
+	ForgetGateInputWeights() unsafe.Pointer
+	SetForgetGateInputWeights(value unsafe.Pointer)
+	ForgetGateMemoryWeights() unsafe.Pointer
+	SetForgetGateMemoryWeights(value unsafe.Pointer)
+	ForgetGateRecurrentWeights() unsafe.Pointer
+	SetForgetGateRecurrentWeights(value unsafe.Pointer)
+	InputGateInputWeights() unsafe.Pointer
+	SetInputGateInputWeights(value unsafe.Pointer)
+	InputGateMemoryWeights() unsafe.Pointer
+	SetInputGateMemoryWeights(value unsafe.Pointer)
+	InputGateRecurrentWeights() unsafe.Pointer
+	SetInputGateRecurrentWeights(value unsafe.Pointer)
+	MemoryWeightsAreDiagonal() bool
+	SetMemoryWeightsAreDiagonal(value bool)
+	OutputGateInputWeights() unsafe.Pointer
+	SetOutputGateInputWeights(value unsafe.Pointer)
+	OutputGateMemoryWeights() unsafe.Pointer
+	SetOutputGateMemoryWeights(value unsafe.Pointer)
+	OutputGateRecurrentWeights() unsafe.Pointer
+	SetOutputGateRecurrentWeights(value unsafe.Pointer)
+	InputFeatureChannels() int
+	SetInputFeatureChannels(value int)
+	OutputFeatureChannels() int
+	SetOutputFeatureChannels(value int)
 }
 
 // A description of a long short-term memory block or layer.
@@ -127,8 +165,8 @@ func (l_ LSTMDescriptor) SetCellGateRecurrentWeights(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/celltooutputneuronparama
-func (l_ LSTMDescriptor) CellToOutputNeuronParamA() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("cellToOutputNeuronParamA"))
+func (l_ LSTMDescriptor) CellToOutputNeuronParamA() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("cellToOutputNeuronParamA"))
 	return rv
 }
 
@@ -136,14 +174,14 @@ func (l_ LSTMDescriptor) CellToOutputNeuronParamA() unsafe.Pointer {
 // SetCellToOutputNeuronParamA sets the value of the cellToOutputNeuronParamA property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/celltooutputneuronparama
-func (l_ LSTMDescriptor) SetCellToOutputNeuronParamA(value unsafe.Pointer) {
+func (l_ LSTMDescriptor) SetCellToOutputNeuronParamA(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronParamA:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/celltooutputneuronparamb
-func (l_ LSTMDescriptor) CellToOutputNeuronParamB() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("cellToOutputNeuronParamB"))
+func (l_ LSTMDescriptor) CellToOutputNeuronParamB() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("cellToOutputNeuronParamB"))
 	return rv
 }
 
@@ -151,14 +189,14 @@ func (l_ LSTMDescriptor) CellToOutputNeuronParamB() unsafe.Pointer {
 // SetCellToOutputNeuronParamB sets the value of the cellToOutputNeuronParamB property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/celltooutputneuronparamb
-func (l_ LSTMDescriptor) SetCellToOutputNeuronParamB(value unsafe.Pointer) {
+func (l_ LSTMDescriptor) SetCellToOutputNeuronParamB(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronParamB:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/celltooutputneuronparamc
-func (l_ LSTMDescriptor) CellToOutputNeuronParamC() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("cellToOutputNeuronParamC"))
+func (l_ LSTMDescriptor) CellToOutputNeuronParamC() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("cellToOutputNeuronParamC"))
 	return rv
 }
 
@@ -166,7 +204,7 @@ func (l_ LSTMDescriptor) CellToOutputNeuronParamC() unsafe.Pointer {
 // SetCellToOutputNeuronParamC sets the value of the cellToOutputNeuronParamC property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor/celltooutputneuronparamc
-func (l_ LSTMDescriptor) SetCellToOutputNeuronParamC(value unsafe.Pointer) {
+func (l_ LSTMDescriptor) SetCellToOutputNeuronParamC(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCellToOutputNeuronParamC:"), value)
 }
 

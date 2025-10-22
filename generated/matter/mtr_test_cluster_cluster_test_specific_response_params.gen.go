@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTestSpecificResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestSpecificResponseParams] class.
 type IMTRTestClusterClusterTestSpecificResponseParams interface {
 	IMTRUnitTestingClusterTestSpecificResponseParams
+	ReturnValue() foundation.Number
+	SetReturnValue(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

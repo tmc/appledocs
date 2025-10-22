@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTimedInvokeRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTimedInvokeRequestParams] class.
 type IMTRTestClusterClusterTimedInvokeRequestParams interface {
 	IMTRUnitTestingClusterTimedInvokeRequestParams
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

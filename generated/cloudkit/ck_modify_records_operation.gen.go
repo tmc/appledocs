@@ -30,6 +30,34 @@ type _CKModifyRecordsOperationClass struct {
 // An interface definition for the [CKModifyRecordsOperation] class.
 type ICKModifyRecordsOperation interface {
 	ICKDatabaseOperation
+	PerRecordDeleteBlock() unsafe.Pointer
+	SetPerRecordDeleteBlock(value unsafe.Pointer)
+	PerRecordProgressBlock() unsafe.Pointer
+	SetPerRecordProgressBlock(value unsafe.Pointer)
+	ClientChangeTokenData() foundation.Data
+	SetClientChangeTokenData(value foundation.IData)
+	IsAtomic() bool
+	SetIsAtomic(value bool)
+	ModifyRecordsCompletionBlock() unsafe.Pointer
+	SetModifyRecordsCompletionBlock(value unsafe.Pointer)
+	ModifyRecordsResultBlock() unsafe.Pointer
+	SetModifyRecordsResultBlock(value unsafe.Pointer)
+	PerRecordCompletionBlock() unsafe.Pointer
+	SetPerRecordCompletionBlock(value unsafe.Pointer)
+	PerRecordSaveBlock() unsafe.Pointer
+	SetPerRecordSaveBlock(value unsafe.Pointer)
+	RecordIDsToDelete() CKRecordID
+	SetRecordIDsToDelete(value ICKRecordID)
+	RecordsToSave() CKRecord
+	SetRecordsToSave(value ICKRecord)
+	SavePolicy() unsafe.Pointer
+	SetSavePolicy(value unsafe.Pointer)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	Parent() CKReference
+	SetParent(value ICKReference)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
 }
 
 // An operation that modifies one or more records.

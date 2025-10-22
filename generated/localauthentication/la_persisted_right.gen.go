@@ -29,6 +29,8 @@ type _PersistedRightClass struct {
 // An interface definition for the [PersistedRight] class.
 type IPersistedRight interface {
 	IRight
+	Key() LAPrivateKey
+	Secret() LASecret
 }
 
 // A right that gates access to a key and a secret.

@@ -29,6 +29,10 @@ type _CircleObstacleClass struct {
 // An interface definition for the [CircleObstacle] class.
 type ICircleObstacle interface {
 	IObstacle
+	Position() unsafe.Pointer
+	SetPosition(value unsafe.Pointer)
+	Radius() float32
+	SetRadius(value float32)
 }
 
 // A circular impassable area to be avoided by agents.
@@ -86,7 +90,7 @@ func NewCircleObstacle() CircleObstacle {
 // Initializes a circular obstacle with the specified radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/init(radius:)
-func NewCircleObstacleWithRadius(radius unsafe.Pointer) CircleObstacle {
+func NewCircleObstacleWithRadius(radius float32) CircleObstacle {
 	instance := getCircleObstacleClass().Alloc()
 	rv := objc.Send[CircleObstacle](instance.ID, objc.Sel("initWithRadius:"), radius)
 	rv.Autorelease()
@@ -97,7 +101,7 @@ func NewCircleObstacleWithRadius(radius unsafe.Pointer) CircleObstacle {
 // Creates a circular obstacle with the specified radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/obstacleWithRadius:
-func (cc _CircleObstacleClass) ObstacleWithRadius(radius unsafe.Pointer) unsafe.Pointer {
+func (cc _CircleObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("obstacleWithRadius:"), radius)
 	return rv
 }
@@ -123,8 +127,8 @@ func (c_ CircleObstacle) SetPosition(value unsafe.Pointer) {
 // The radius of the obstacle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
-func (c_ CircleObstacle) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
+func (c_ CircleObstacle) Radius() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("radius"))
 	return rv
 }
 
@@ -134,7 +138,7 @@ func (c_ CircleObstacle) Radius() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
-func (c_ CircleObstacle) SetRadius(value unsafe.Pointer) {
+func (c_ CircleObstacle) SetRadius(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }
 

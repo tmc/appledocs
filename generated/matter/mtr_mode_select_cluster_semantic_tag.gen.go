@@ -30,6 +30,10 @@ type _MTRModeSelectClusterSemanticTagClass struct {
 // An interface definition for the [MTRModeSelectClusterSemanticTag] class.
 type IMTRModeSelectClusterSemanticTag interface {
 	IMTRModeSelectClusterSemanticTagStruct
+	MfgCode() foundation.Number
+	SetMfgCode(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

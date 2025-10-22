@@ -30,6 +30,9 @@ type _CDeviceClass struct {
 // An interface definition for the [CDevice] class.
 type ICDevice interface {
 	objectivec.IObject
+	ActualDeviceType() CDeviceType
+	GpuDevices() []objc.ID
+	Type() CDeviceType
 }
 
 // An object that represents the CPU or one or more GPUs the framework uses to execute a neural network.

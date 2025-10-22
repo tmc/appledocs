@@ -17,3 +17,11 @@ func ExampleNewBatchUpdateRequestWithEntity() {
 	)
 	// Output:
 }
+// ExampleNewBatchUpdateRequestWithEntityName demonstrates how to create a BatchUpdateRequest instance using NewBatchUpdateRequestWithEntityName.
+// Creates a batch-update request for a named managed entity.
+func ExampleNewBatchUpdateRequestWithEntityName() {
+	_ = coredata.NewBatchUpdateRequestWithEntityName(
+		"entityName", // entityName string
+	)
+	// Output:
+}

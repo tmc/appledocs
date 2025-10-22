@@ -31,6 +31,18 @@ type _MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStructClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct] class.
 type IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct interface {
 	objectivec.IObject
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	EmergencyBoost() foundation.Number
+	SetEmergencyBoost(value foundation.INumber)
+	OneShot() foundation.Number
+	SetOneShot(value foundation.INumber)
+	TargetPercentage() foundation.Number
+	SetTargetPercentage(value foundation.INumber)
+	TargetReheat() foundation.Number
+	SetTargetReheat(value foundation.INumber)
+	TemporarySetpoint() foundation.Number
+	SetTemporarySetpoint(value foundation.INumber)
 }
 
 //

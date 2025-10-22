@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZVirtioFileSystemDeviceConfiguration] class.
@@ -30,6 +29,10 @@ type _VZVirtioFileSystemDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioFileSystemDeviceConfiguration] class.
 type IVZVirtioFileSystemDeviceConfiguration interface {
 	IVZDirectorySharingDeviceConfiguration
+	Share() VZDirectoryShare
+	SetShare(value IVZDirectoryShare)
+	Tag() string
+	SetTag(value string)
 }
 
 // An object that represents the configuration of a Virtio file system device.
@@ -87,9 +90,9 @@ func NewVZVirtioFileSystemDeviceConfiguration() VZVirtioFileSystemDeviceConfigur
 // Creates a configuration for a VIRTIO file system device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)
-func NewVZVirtioFileSystemDeviceConfigurationWithTag(tag appkit.string) VZVirtioFileSystemDeviceConfiguration {
+func NewVZVirtioFileSystemDeviceConfigurationWithTag(tag string) VZVirtioFileSystemDeviceConfiguration {
 	instance := getVZVirtioFileSystemDeviceConfigurationClass().Alloc()
-	rv := objc.Send[VZVirtioFileSystemDeviceConfiguration](instance.ID, objc.Sel("initWithTag:"), tag)
+	rv := objc.Send[VZVirtioFileSystemDeviceConfiguration](instance.ID, objc.Sel("initWithTag:"), objc.String(tag))
 	rv.Autorelease()
 	return rv
 }
@@ -98,23 +101,23 @@ func NewVZVirtioFileSystemDeviceConfigurationWithTag(tag appkit.string) VZVirtio
 // Checks to see whether a Virtio tag is valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/validateTag(_:)
-func (vc _VZVirtioFileSystemDeviceConfigurationClass) ValidateTagError(tag appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateTag:error:"), tag, error_)
+func (vc _VZVirtioFileSystemDeviceConfigurationClass) ValidateTagError(tag string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateTag:error:"), objc.String(tag), error_)
 	return rv
 }
 
 // A value that indicates that the guest needs to automount this file system device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
-func (vc _VZVirtioFileSystemDeviceConfigurationClass) MacOSGuestAutomountTag() appkit.string {
-	rv := objc.Send[appkit.string](objc.ID(vc.class), objc.Sel("macOSGuestAutomountTag"))
+func (vc _VZVirtioFileSystemDeviceConfigurationClass) MacOSGuestAutomountTag() string {
+	rv := objc.Send[string](objc.ID(vc.class), objc.Sel("macOSGuestAutomountTag"))
 	return rv
 }
 // A value that indicates that the guest needs to automount this file system device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
-func (v_ VZVirtioFileSystemDeviceConfiguration) MacOSGuestAutomountTag() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("macOSGuestAutomountTag"))
+func (v_ VZVirtioFileSystemDeviceConfiguration) MacOSGuestAutomountTag() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("macOSGuestAutomountTag"))
 	return rv
 }
 
@@ -139,8 +142,8 @@ func (v_ VZVirtioFileSystemDeviceConfiguration) SetShare(value IVZDirectoryShare
 // A label that identifies this device in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
-func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("tag"))
+func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
 	return rv
 }
 
@@ -150,8 +153,8 @@ func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
-func (v_ VZVirtioFileSystemDeviceConfiguration) SetTag(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setTag:"), value)
+func (v_ VZVirtioFileSystemDeviceConfiguration) SetTag(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setTag:"), objc.String(value))
 }
 
 

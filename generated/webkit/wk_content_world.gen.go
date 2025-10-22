@@ -30,6 +30,8 @@ type _ContentWorldClass struct {
 // An interface definition for the [ContentWorld] class.
 type IContentWorld interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
 }
 
 // An object that defines a scope of execution for JavaScript code, and which you use to prevent conflicts between different scripts.
@@ -98,8 +100,8 @@ func (c_ ContentWorld) PageWorld() WKContentWorld {
 // The name of a custom content world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
-func (c_ ContentWorld) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ ContentWorld) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -109,8 +111,8 @@ func (c_ ContentWorld) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
-func (c_ ContentWorld) SetName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
+func (c_ ContentWorld) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

@@ -30,6 +30,8 @@ type _MTRRVCOperationalStateClusterOperationalErrorEventClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterOperationalErrorEvent] class.
 type IMTRRVCOperationalStateClusterOperationalErrorEvent interface {
 	objectivec.IObject
+	ErrorState() MTRRVCOperationalStateClusterErrorStateStruct
+	SetErrorState(value IMTRRVCOperationalStateClusterErrorStateStruct)
 }
 
 //

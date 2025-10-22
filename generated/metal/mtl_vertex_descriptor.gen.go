@@ -31,6 +31,11 @@ type _VertexDescriptorClass struct {
 type IVertexDescriptor interface {
 	objectivec.IObject
 	Reset()
+	Attributes() MTLVertexAttributeDescriptorArray
+	Layouts() MTLVertexBufferLayoutDescriptorArray
+	MTLBufferLayoutStrideDynamic() int
+	VertexDescriptor() MTLVertexDescriptor
+	SetVertexDescriptor(value IMTLVertexDescriptor)
 }
 
 // An object that describes how to organize and map data to a vertex function.

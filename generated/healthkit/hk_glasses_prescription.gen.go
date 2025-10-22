@@ -29,6 +29,11 @@ type _HKGlassesPrescriptionClass struct {
 // An interface definition for the [HKGlassesPrescription] class.
 type IHKGlassesPrescription interface {
 	IHKVisionPrescription
+	LeftEye() HKGlassesLensSpecification
+	SetLeftEye(value IHKGlassesLensSpecification)
+	RightEye() HKGlassesLensSpecification
+	SetRightEye(value IHKGlassesLensSpecification)
+	HKMetadataKeyGlassesPrescriptionDescription() string
 }
 
 // A sample that stores a prescription for glasses.
@@ -120,8 +125,8 @@ func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 // A description of the glasses prescription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription
-func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
+func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
 	return rv
 }
 

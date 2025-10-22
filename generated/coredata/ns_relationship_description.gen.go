@@ -30,6 +30,22 @@ type _RelationshipDescriptionClass struct {
 // An interface definition for the [RelationshipDescription] class.
 type IRelationshipDescription interface {
 	IPropertyDescription
+	DeleteRule() DeleteRule
+	SetDeleteRule(value IDeleteRule)
+	DestinationEntity() NSEntityDescription
+	SetDestinationEntity(value IEntityDescription)
+	InverseRelationship() NSRelationshipDescription
+	SetInverseRelationship(value IRelationshipDescription)
+	IsOrdered() bool
+	SetIsOrdered(value bool)
+	IsToMany() bool
+	SetIsToMany(value bool)
+	MaxCount() int
+	SetMaxCount(value int)
+	MinCount() int
+	SetMinCount(value int)
+	VersionHash() foundation.Data
+	SetVersionHash(value foundation.IData)
 }
 
 // A description of a relationship between two entities.

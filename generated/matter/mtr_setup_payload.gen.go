@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,30 @@ type _MTRSetupPayloadClass struct {
 // An interface definition for the [MTRSetupPayload] class.
 type IMTRSetupPayload interface {
 	objectivec.IObject
+	CommissioningFlow() MTRCommissioningFlow
+	SetCommissioningFlow(value IMTRCommissioningFlow)
+	DiscoveryCapabilities() MTRDiscoveryCapabilities
+	SetDiscoveryCapabilities(value IMTRDiscoveryCapabilities)
+	Discriminator() foundation.Number
+	SetDiscriminator(value foundation.INumber)
+	HasShortDiscriminator() bool
+	SetHasShortDiscriminator(value bool)
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	RendezvousInformation() foundation.Number
+	SetRendezvousInformation(value foundation.INumber)
+	SerialNumber() string
+	SetSerialNumber(value string)
+	SetUpPINCode() foundation.Number
+	SetSetUpPINCode(value foundation.INumber)
+	SetupPasscode() foundation.Number
+	SetSetupPasscode(value foundation.INumber)
+	VendorElements() MTROptionalQRCodeInfo
+	SetVendorElements(value IMTROptionalQRCodeInfo)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
+	Version() foundation.Number
+	SetVersion(value foundation.INumber)
 }
 
 //
@@ -79,16 +102,16 @@ func NewMTRSetupPayload() MTRSetupPayload {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)
-func NewMTRSetupPayloadWithOnboardingPayloadError(onboardingPayload appkit.string, error_ unsafe.Pointer) MTRSetupPayload {
-	rv := objc.Send[MTRSetupPayload](objc.ID(getMTRSetupPayloadClass().class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), onboardingPayload, error_)
+func NewMTRSetupPayloadWithOnboardingPayloadError(onboardingPayload string, error_ unsafe.Pointer) MTRSetupPayload {
+	rv := objc.Send[MTRSetupPayload](objc.ID(getMTRSetupPayloadClass().class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), objc.String(onboardingPayload), error_)
 	return rv
 }
 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)
-func (mc _MTRSetupPayloadClass) SetupPayloadWithOnboardingPayloadError(onboardingPayload appkit.string, error_ unsafe.Pointer) MTRSetupPayload {
-	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), onboardingPayload, error_)
+func (mc _MTRSetupPayloadClass) SetupPayloadWithOnboardingPayloadError(onboardingPayload string, error_ unsafe.Pointer) MTRSetupPayload {
+	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), objc.String(onboardingPayload), error_)
 	return rv
 }
 
@@ -184,8 +207,8 @@ func (m_ MTRSetupPayload) SetRendezvousInformation(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/serialnumber
-func (m_ MTRSetupPayload) SerialNumber() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serialNumber"))
+func (m_ MTRSetupPayload) SerialNumber() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serialNumber"))
 	return rv
 }
 
@@ -193,8 +216,8 @@ func (m_ MTRSetupPayload) SerialNumber() appkit.string {
 // SetSerialNumber sets the value of the serialNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/serialnumber
-func (m_ MTRSetupPayload) SetSerialNumber(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSerialNumber:"), value)
+func (m_ MTRSetupPayload) SetSerialNumber(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSerialNumber:"), objc.String(value))
 }
 
 //

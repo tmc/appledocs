@@ -30,6 +30,13 @@ type _CKQuerySubscriptionClass struct {
 // An interface definition for the [CKQuerySubscription] class.
 type ICKQuerySubscription interface {
 	ICKSubscription
+	Predicate() foundation.Predicate
+	QuerySubscriptionOptions() CKQuerySubscriptionOptions
+	RecordType() unsafe.Pointer
+	ZoneID() CKRecordZoneID
+	SetZoneID(value ICKRecordZoneID)
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // A subscription that generates push notifications when CloudKit modifies records that match a predicate.

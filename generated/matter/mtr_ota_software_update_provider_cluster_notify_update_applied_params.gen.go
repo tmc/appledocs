@@ -30,6 +30,14 @@ type _MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParamsClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams] class.
 type IMTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams interface {
 	IMTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UpdateToken() foundation.Data
+	SetUpdateToken(value foundation.IData)
 }
 
 //

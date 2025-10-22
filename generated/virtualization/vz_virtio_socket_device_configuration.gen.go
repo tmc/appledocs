@@ -29,6 +29,8 @@ type _VZVirtioSocketDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioSocketDeviceConfiguration] class.
 type IVZVirtioSocketDeviceConfiguration interface {
 	IVZSocketDeviceConfiguration
+	SocketDevices() VZSocketDeviceConfiguration
+	SetSocketDevices(value IVZSocketDeviceConfiguration)
 }
 
 // A configuration object that requests the creation of a socket device to communicate with the guest system.

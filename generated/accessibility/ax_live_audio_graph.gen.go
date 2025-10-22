@@ -97,7 +97,7 @@ func (ac _AXLiveAudioGraphClass) Stop() {
 // Sets the pitch of the audio graph’s tone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/updateValue(_:)
-func (ac _AXLiveAudioGraphClass) UpdateValue(value unsafe.Pointer) {
+func (ac _AXLiveAudioGraphClass) UpdateValue(value float64) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("updateValue:"), value)
 }
 

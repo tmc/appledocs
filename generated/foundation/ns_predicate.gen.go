@@ -34,6 +34,7 @@ type IPredicate interface {
 	EvaluateWithObject(object objectivec.IObject) bool
 	EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings unsafe.Pointer) bool
 	PredicateWithSubstitutionVariables(variables unsafe.Pointer) unsafe.Pointer
+	PredicateFormat() string
 }
 
 // A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.

@@ -30,6 +30,12 @@ type _IndexPathClass struct {
 // An interface definition for the [IndexPath] class.
 type IIndexPath interface {
 	objectivec.IObject
+	Row() int
+	Section() int
+	Item() int
+	SetItem(value int)
+	Length() int
+	SetLength(value int)
 }
 
 // A list of indexes that together represent the path to a specific location in a tree of nested arrays.

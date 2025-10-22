@@ -30,6 +30,8 @@ type _InvocationOperationClass struct {
 // An interface definition for the [InvocationOperation] class.
 type IInvocationOperation interface {
 	IOperation
+	Invocation() NSInvocation
+	Result() objc.ID
 }
 
 // An operation that manages the execution of a single encapsulated task specified as an invocation.

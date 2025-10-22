@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,11 @@ type _VZVirtioConsolePortClass struct {
 // An interface definition for the [VZVirtioConsolePort] class.
 type IVZVirtioConsolePort interface {
 	objectivec.IObject
+	Attachment() VZSerialPortAttachment
+	SetAttachment(value IVZSerialPortAttachment)
+	Name() string
+	Ports() VZVirtioConsolePortArray
+	SetPorts(value IVZVirtioConsolePortArray)
 }
 
 // A class that represents a Virtio console port in a VM.
@@ -102,8 +106,8 @@ func (v_ VZVirtioConsolePort) SetAttachment(value IVZSerialPortAttachment) {
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/name
-func (v_ VZVirtioConsolePort) Name() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePort) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 

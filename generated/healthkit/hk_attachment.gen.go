@@ -32,6 +32,18 @@ type _HKAttachmentClass struct {
 // An interface definition for the [HKAttachment] class.
 type IHKAttachment interface {
 	objectivec.IObject
+	ContentType() uniformtypeidentifiers.UTType
+	SetContentType(value uniformtypeidentifiers.UTType)
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	Metadata() string
+	SetMetadata(value string)
+	Name() string
+	SetName(value string)
+	Size() int
+	SetSize(value int)
 }
 
 // A file that is attached to a sample in the HealthKit store.
@@ -139,8 +151,8 @@ func (h_ HKAttachment) SetIdentifier(value foundation.IUUID) {
 // Additional data associated with the attachment in the HealthKit store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) Metadata() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("metadata"))
+func (h_ HKAttachment) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -150,15 +162,15 @@ func (h_ HKAttachment) Metadata() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) SetMetadata(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
+func (h_ HKAttachment) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
 // The name of the attached file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
-func (h_ HKAttachment) Name() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("name"))
+func (h_ HKAttachment) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -168,8 +180,8 @@ func (h_ HKAttachment) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
-func (h_ HKAttachment) SetName(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
+func (h_ HKAttachment) SetName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The attachment’s size (in bytes).

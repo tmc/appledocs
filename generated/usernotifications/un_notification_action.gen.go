@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _UNNotificationActionClass struct {
 // An interface definition for the [UNNotificationAction] class.
 type IUNNotificationAction interface {
 	objectivec.IObject
+	Icon() UNNotificationActionIcon
+	Identifier() string
+	Options() UNNotificationActionOptions
+	Title() string
 }
 
 // A task your app performs in response to a notification that the system delivers.
@@ -86,8 +89,8 @@ func NewUNNotificationAction() UNNotificationAction {
 // Creates an action object by using the specified title and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/init(identifier:title:options:)
-func NewUNNotificationActionWithIdentifierTitleOptions(identifier appkit.string, title appkit.string, options UNNotificationActionOptions) UNNotificationAction {
-	rv := objc.Send[UNNotificationAction](objc.ID(getUNNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:"), identifier, title, options)
+func NewUNNotificationActionWithIdentifierTitleOptions(identifier string, title string, options UNNotificationActionOptions) UNNotificationAction {
+	rv := objc.Send[UNNotificationAction](objc.ID(getUNNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:"), objc.String(identifier), objc.String(title), options)
 	return rv
 }
 
@@ -96,8 +99,8 @@ func NewUNNotificationActionWithIdentifierTitleOptions(identifier appkit.string,
 // Creates an action object by using the specified title, options, and icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/init(identifier:title:options:icon:)
-func NewUNNotificationActionWithIdentifierTitleOptionsIcon(identifier appkit.string, title appkit.string, options UNNotificationActionOptions, icon IUNNotificationActionIcon) UNNotificationAction {
-	rv := objc.Send[UNNotificationAction](objc.ID(getUNNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:icon:"), identifier, title, options, icon)
+func NewUNNotificationActionWithIdentifierTitleOptionsIcon(identifier string, title string, options UNNotificationActionOptions, icon IUNNotificationActionIcon) UNNotificationAction {
+	rv := objc.Send[UNNotificationAction](objc.ID(getUNNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:icon:"), objc.String(identifier), objc.String(title), options, icon)
 	return rv
 }
 
@@ -105,16 +108,16 @@ func NewUNNotificationActionWithIdentifierTitleOptionsIcon(identifier appkit.str
 // Creates an action object by using the specified title and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/init(identifier:title:options:)
-func (uc _UNNotificationActionClass) ActionWithIdentifierTitleOptions(identifier appkit.string, title appkit.string, options UNNotificationActionOptions) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:"), identifier, title, options)
+func (uc _UNNotificationActionClass) ActionWithIdentifierTitleOptions(identifier string, title string, options UNNotificationActionOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:"), objc.String(identifier), objc.String(title), options)
 	return rv
 }
 
 // Creates an action object by using the specified title, options, and icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/init(identifier:title:options:icon:)
-func (uc _UNNotificationActionClass) ActionWithIdentifierTitleOptionsIcon(identifier appkit.string, title appkit.string, options UNNotificationActionOptions, icon IUNNotificationActionIcon) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:icon:"), identifier, title, options, icon)
+func (uc _UNNotificationActionClass) ActionWithIdentifierTitleOptionsIcon(identifier string, title string, options UNNotificationActionOptions, icon IUNNotificationActionIcon) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:icon:"), objc.String(identifier), objc.String(title), options, icon)
 	return rv
 }
 
@@ -129,8 +132,8 @@ func (u_ UNNotificationAction) Icon() UNNotificationActionIcon {
 // The unique string that your app uses to identify the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/identifier
-func (u_ UNNotificationAction) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationAction) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -145,8 +148,8 @@ func (u_ UNNotificationAction) Options() UNNotificationActionOptions {
 // The localized string to use as the title of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAction/title
-func (u_ UNNotificationAction) Title() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("title"))
+func (u_ UNNotificationAction) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 

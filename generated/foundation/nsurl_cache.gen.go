@@ -30,6 +30,14 @@ type _URLCacheClass struct {
 // An interface definition for the [URLCache] class.
 type IURLCache interface {
 	objectivec.IObject
+	CurrentDiskUsage() int
+	SetCurrentDiskUsage(value int)
+	CurrentMemoryUsage() int
+	SetCurrentMemoryUsage(value int)
+	DiskCapacity() int
+	SetDiskCapacity(value int)
+	MemoryCapacity() int
+	SetMemoryCapacity(value int)
 }
 
 // An object that maps URL requests to cached response objects.

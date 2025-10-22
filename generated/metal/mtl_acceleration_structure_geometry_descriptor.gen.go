@@ -30,6 +30,22 @@ type _AccelerationStructureGeometryDescriptorClass struct {
 // An interface definition for the [AccelerationStructureGeometryDescriptor] class.
 type IAccelerationStructureGeometryDescriptor interface {
 	objectivec.IObject
+	AllowDuplicateIntersectionFunctionInvocation() bool
+	SetAllowDuplicateIntersectionFunctionInvocation(value bool)
+	IntersectionFunctionTableOffset() int
+	SetIntersectionFunctionTableOffset(value int)
+	Label() string
+	SetLabel(value string)
+	Opaque() bool
+	SetOpaque(value bool)
+	PrimitiveDataBuffer() unsafe.Pointer
+	SetPrimitiveDataBuffer(value unsafe.Pointer)
+	PrimitiveDataBufferOffset() int
+	SetPrimitiveDataBufferOffset(value int)
+	PrimitiveDataElementSize() int
+	SetPrimitiveDataElementSize(value int)
+	PrimitiveDataStride() int
+	SetPrimitiveDataStride(value int)
 }
 
 // A base class for descriptors that contain geometry data to convert into a ray-tracing acceleration structure.
@@ -119,8 +135,8 @@ func (a_ AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTableOf
 // A label for the geometry structure, suitable for debugging.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/label
-func (a_ AccelerationStructureGeometryDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("label"))
+func (a_ AccelerationStructureGeometryDescriptor) Label() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -130,8 +146,8 @@ func (a_ AccelerationStructureGeometryDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/label
-func (a_ AccelerationStructureGeometryDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
+func (a_ AccelerationStructureGeometryDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // A Boolean value that determines whether the geometry data in the acceleration structure needs to skip triangle-intersection tests.

@@ -29,6 +29,8 @@ type _MXHangDiagnosticClass struct {
 // An interface definition for the [MXHangDiagnostic] class.
 type IMXHangDiagnostic interface {
 	IMXDiagnostic
+	CallStackTree() MXCallStackTree
+	HangDuration() unsafe.Pointer
 }
 
 // An object representing a diagnostic report for an app that is too busy to handle user input responsively.

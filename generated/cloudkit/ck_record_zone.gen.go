@@ -30,6 +30,11 @@ type _CKRecordZoneClass struct {
 // An interface definition for the [CKRecordZone] class.
 type ICKRecordZone interface {
 	objectivec.IObject
+	Capabilities() CKRecordZoneCapabilities
+	EncryptionScope() CKRecordZoneEncryptionScope
+	SetEncryptionScope(value ICKRecordZoneEncryptionScope)
+	Share() CKReference
+	ZoneID() CKRecordZoneID
 }
 
 // A database partition that contains related records.

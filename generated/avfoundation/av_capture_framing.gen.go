@@ -30,6 +30,11 @@ type _CaptureFramingClass struct {
 // An interface definition for the [CaptureFraming] class.
 type ICaptureFraming interface {
 	objectivec.IObject
+	ZoomFactor() float32
+	SmartFramingMonitor() AVCaptureSmartFramingMonitor
+	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
+	AspectRatio() unsafe.Pointer
+	SetAspectRatio(value unsafe.Pointer)
 }
 
 // A framing, consisting of an aspect ratio and a zoom factor.

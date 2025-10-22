@@ -30,6 +30,8 @@ type _SpecifierTestClass struct {
 // An interface definition for the [SpecifierTest] class.
 type ISpecifierTest interface {
 	IScriptWhoseTest
+	ContainerIsObjectBeingTested() bool
+	SetContainerIsObjectBeingTested(value bool)
 }
 
 // A comparison between an object specifier and a test object.

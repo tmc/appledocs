@@ -53,6 +53,8 @@ type ICTrainingGraph interface {
 	SourceGradientTensorsForLayer(layer IMLCLayer) []CTensor
 	StopGradientForTensors(tensors []CTensor) bool
 	SynchronizeUpdates()
+	DeviceMemorySize() uint
+	Optimizer() unsafe.Pointer
 }
 
 // A training graph that you create from one or more graph objects plus additional layers you add directly to the training graph.

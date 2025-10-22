@@ -36,6 +36,36 @@ type IToolPicker interface {
 	FrameObscuredInView(view appkit.IView) coregraphics.CGRect
 	RemoveObserver(observer objectivec.IObject)
 	SetVisibleForFirstResponder(visible bool, responder appkit.IResponder)
+	AccessoryItem() unsafe.Pointer
+	SetAccessoryItem(value unsafe.Pointer)
+	ColorMaximumLinearExposure() float64
+	SetColorMaximumLinearExposure(value float64)
+	ColorUserInterfaceStyle() unsafe.Pointer
+	SetColorUserInterfaceStyle(value unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	RulerActive() bool
+	SetRulerActive(value bool)
+	IsVisible() bool
+	MaximumSupportedContentVersion() ContentVersion
+	SetMaximumSupportedContentVersion(value IContentVersion)
+	OverrideUserInterfaceStyle() unsafe.Pointer
+	SetOverrideUserInterfaceStyle(value unsafe.Pointer)
+	PrefersDismissControlVisible() bool
+	SetPrefersDismissControlVisible(value bool)
+	SelectedTool() PKTool
+	SetSelectedTool(value IPKTool)
+	SelectedToolItem() PKToolPickerItem
+	SetSelectedToolItem(value IPKToolPickerItem)
+	SelectedToolItemIdentifier() string
+	SetSelectedToolItemIdentifier(value string)
+	ShowsDrawingPolicyControls() bool
+	SetShowsDrawingPolicyControls(value bool)
+	StateAutosaveName() string
+	SetStateAutosaveName(value string)
+	ToolItems() []ToolPickerItem
+	IsRulerActive() bool
+	SetIsRulerActive(value bool)
 }
 
 // A tool palette that displays a selection of drawing tools and colors for tools that a person can choose from.
@@ -342,8 +372,8 @@ func (t_ ToolPicker) SetSelectedToolItem(value IPKToolPickerItem) {
 // The identifier of the selected tool item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier
-func (t_ ToolPicker) SelectedToolItemIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("selectedToolItemIdentifier"))
+func (t_ ToolPicker) SelectedToolItemIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("selectedToolItemIdentifier"))
 	return rv
 }
 
@@ -353,8 +383,8 @@ func (t_ ToolPicker) SelectedToolItemIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier
-func (t_ ToolPicker) SetSelectedToolItemIdentifier(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedToolItemIdentifier:"), value)
+func (t_ ToolPicker) SetSelectedToolItemIdentifier(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedToolItemIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the default drawing policy UI is visible.
@@ -378,8 +408,8 @@ func (t_ ToolPicker) SetShowsDrawingPolicyControls(value bool) {
 // The name used to automatically save the tool picker’s state in the defaults system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/stateAutosaveName
-func (t_ ToolPicker) StateAutosaveName() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("stateAutosaveName"))
+func (t_ ToolPicker) StateAutosaveName() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("stateAutosaveName"))
 	return rv
 }
 
@@ -389,8 +419,8 @@ func (t_ ToolPicker) StateAutosaveName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/stateAutosaveName
-func (t_ ToolPicker) SetStateAutosaveName(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStateAutosaveName:"), value)
+func (t_ ToolPicker) SetStateAutosaveName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStateAutosaveName:"), objc.String(value))
 }
 
 // All tool items in the tool picker.

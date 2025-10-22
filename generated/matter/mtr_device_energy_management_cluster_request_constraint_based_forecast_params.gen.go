@@ -31,6 +31,14 @@ type _MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParamsClass 
 // An interface definition for the [MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams] class.
 type IMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
+	Constraints() objc.ID
+	SetConstraints(value objc.ID)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

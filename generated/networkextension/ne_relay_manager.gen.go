@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,6 +35,33 @@ type INERelayManager interface {
 	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
+	ExcludedDomains() []string
+	SetExcludedDomains(value []string)
+	ExcludedFQDNs() []string
+	SetExcludedFQDNs(value []string)
+	AllowDNSFailover() bool
+	SetAllowDNSFailover(value bool)
+	Enabled() bool
+	SetEnabled(value bool)
+	UIToggleEnabled() bool
+	SetUIToggleEnabled(value bool)
+	LocalizedDescription() string
+	SetLocalizedDescription(value string)
+	MatchDomains() []string
+	SetMatchDomains(value []string)
+	MatchFQDNs() []string
+	SetMatchFQDNs(value []string)
+	OnDemandRules() []NEOnDemandRule
+	SetOnDemandRules(value []NEOnDemandRule)
+	Relays() []NERelay
+	SetRelays(value []NERelay)
+	NERelayErrorDomain() string
+	IsDNSFailoverAllowed() bool
+	SetIsDNSFailoverAllowed(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsUIToggleEnabled() bool
+	SetIsUIToggleEnabled(value bool)
 }
 
 // An object you use to create and manage a network relay configuration.
@@ -232,8 +258,8 @@ func (n_ NERelayManager) SetUIToggleEnabled(value bool) {
 // A string that contains the display name of the relay configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
-func (n_ NERelayManager) LocalizedDescription() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NERelayManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -243,8 +269,8 @@ func (n_ NERelayManager) LocalizedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
-func (n_ NERelayManager) SetLocalizedDescription(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NERelayManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
 // A list of domain strings used to determine which connections will use the relay configuration contained in this object.
@@ -359,8 +385,8 @@ func (n_ NERelayManager) SetRelays(value []NERelay) {
 // The domain for errors resulting from calls to the relay manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelayerrordomain
-func (n_ NERelayManager) NERelayErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NERelayErrorDomain"))
+func (n_ NERelayManager) NERelayErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NERelayErrorDomain"))
 	return rv
 }
 

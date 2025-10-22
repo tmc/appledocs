@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,11 @@ type _MKGeoJSONFeatureClass struct {
 // An interface definition for the [MKGeoJSONFeature] class.
 type IMKGeoJSONFeature interface {
 	objectivec.IObject
+	Identifier() string
+	Geometry() unsafe.Pointer
+	SetGeometry(value unsafe.Pointer)
+	Properties() foundation.Data
+	SetProperties(value foundation.IData)
 }
 
 // The decoded representation of a GeoJSON feature.
@@ -85,8 +89,8 @@ func NewMKGeoJSONFeature() MKGeoJSONFeature {
 // An optional identifier the class returns as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature/identifier
-func (m_ MKGeoJSONFeature) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
+func (m_ MKGeoJSONFeature) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 

@@ -29,6 +29,14 @@ type _TrackOpticalFlowRequestClass struct {
 // An interface definition for the [TrackOpticalFlowRequest] class.
 type ITrackOpticalFlowRequest interface {
 	IStatefulRequest
+	ComputationAccuracy() unsafe.Pointer
+	SetComputationAccuracy(value unsafe.Pointer)
+	KeepNetworkOutput() bool
+	SetKeepNetworkOutput(value bool)
+	OutputPixelFormat() unsafe.Pointer
+	SetOutputPixelFormat(value unsafe.Pointer)
+	Results() VNPixelBufferObservation
+	SetResults(value IVNPixelBufferObservation)
 }
 
 // An object that determines the direction change of vectors for each pixel from a previous to current image.

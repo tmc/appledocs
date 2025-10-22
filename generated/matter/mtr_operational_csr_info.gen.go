@@ -31,6 +31,14 @@ type _MTROperationalCSRInfoClass struct {
 // An interface definition for the [MTROperationalCSRInfo] class.
 type IMTROperationalCSRInfo interface {
 	objectivec.IObject
+	AttestationSignature() foundation.Data
+	SetAttestationSignature(value foundation.IData)
+	Csr() foundation.Data
+	SetCsr(value foundation.IData)
+	CsrElementsTLV() foundation.Data
+	SetCsrElementsTLV(value foundation.IData)
+	CsrNonce() foundation.Data
+	SetCsrNonce(value foundation.IData)
 }
 
 //

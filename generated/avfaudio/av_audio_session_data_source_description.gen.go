@@ -33,6 +33,23 @@ type _AudioSessionDataSourceDescriptionClass struct {
 type IAudioSessionDataSourceDescription interface {
 	objectivec.IObject
 	SetPreferredPolarPatternError(pattern IAudioSessionPolarPattern, outError unsafe.Pointer) bool
+	PreferredPolarPattern() AudioSessionPolarPattern
+	SelectedPolarPattern() AudioSessionPolarPattern
+	SupportedPolarPatterns() []string
+	OutputDataSource() AVAudioSessionDataSourceDescription
+	SetOutputDataSource(value IAVAudioSessionDataSourceDescription)
+	OutputDataSources() AVAudioSessionDataSourceDescription
+	SetOutputDataSources(value IAVAudioSessionDataSourceDescription)
+	DataSourceID() foundation.Number
+	SetDataSourceID(value foundation.INumber)
+	DataSourceName() string
+	SetDataSourceName(value string)
+	Location() corelocation.Location
+	SetLocation(value corelocation.ILocation)
+	Orientation() unsafe.Pointer
+	SetOrientation(value unsafe.Pointer)
+	DataSources() AVAudioSessionDataSourceDescription
+	SetDataSources(value IAVAudioSessionDataSourceDescription)
 }
 
 // An object that defines a data source for an audio input or output, giving information such as the source’s name, location, and orientation.
@@ -172,8 +189,8 @@ func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.INu
 // A human-readable name for the data source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
-func (a_ AudioSessionDataSourceDescription) DataSourceName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("dataSourceName"))
+func (a_ AudioSessionDataSourceDescription) DataSourceName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("dataSourceName"))
 	return rv
 }
 
@@ -183,8 +200,8 @@ func (a_ AudioSessionDataSourceDescription) DataSourceName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
-func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceName:"), value)
+func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceName:"), objc.String(value))
 }
 
 // The location of the data source on the device.

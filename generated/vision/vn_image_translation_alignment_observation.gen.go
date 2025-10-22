@@ -30,6 +30,9 @@ type _ImageTranslationAlignmentObservationClass struct {
 // An interface definition for the [ImageTranslationAlignmentObservation] class.
 type IImageTranslationAlignmentObservation interface {
 	IImageAlignmentObservation
+	AlignmentTransform() coregraphics.CGAffineTransform
+	SetAlignmentTransform(value coregraphics.CGAffineTransform)
+	VNTranslationalImageRegistrationRequestRevision1() int
 }
 
 // Affine transform information that an image-alignment request produces.

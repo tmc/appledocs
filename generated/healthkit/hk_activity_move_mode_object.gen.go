@@ -30,6 +30,7 @@ type _HKActivityMoveModeObjectClass struct {
 // An interface definition for the [HKActivityMoveModeObject] class.
 type IHKActivityMoveModeObject interface {
 	objectivec.IObject
+	ActivityMoveMode() HKActivityMoveMode
 }
 
 // An object that contains a movement mode value.

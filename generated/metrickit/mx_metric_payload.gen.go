@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,26 @@ type IMXMetricPayload interface {
 	objectivec.IObject
 	DictionaryRepresentation() foundation.Dictionary
 	JSONRepresentation() foundation.Data
+	AnimationMetrics() MXAnimationMetric
+	ApplicationExitMetrics() MXAppExitMetric
+	ApplicationLaunchMetrics() MXAppLaunchMetric
+	ApplicationResponsivenessMetrics() MXAppResponsivenessMetric
+	ApplicationTimeMetrics() MXAppRunTimeMetric
+	CellularConditionMetrics() MXCellularConditionMetric
+	CpuMetrics() MXCPUMetric
+	DiskIOMetrics() MXDiskIOMetric
+	DiskSpaceUsageMetrics() MXDiskSpaceUsageMetric
+	DisplayMetrics() MXDisplayMetric
+	GpuMetrics() MXGPUMetric
+	IncludesMultipleApplicationVersions() bool
+	LatestApplicationVersion() string
+	LocationActivityMetrics() MXLocationActivityMetric
+	MemoryMetrics() MXMemoryMetric
+	MetaData() MXMetaData
+	NetworkTransferMetrics() MXNetworkTransferMetric
+	SignpostMetrics() []MXSignpostMetric
+	TimeStampBegin() foundation.NSDate
+	TimeStampEnd() foundation.NSDate
 }
 
 // An object that encapsulates a daily metrics report.
@@ -196,8 +215,8 @@ func (m_ MXMetricPayload) IncludesMultipleApplicationVersions() bool {
 // The version of the app on the device at the end of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/latestApplicationVersion
-func (m_ MXMetricPayload) LatestApplicationVersion() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("latestApplicationVersion"))
+func (m_ MXMetricPayload) LatestApplicationVersion() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("latestApplicationVersion"))
 	return rv
 }
 

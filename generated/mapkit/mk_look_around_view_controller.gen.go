@@ -30,6 +30,18 @@ type _MKLookAroundViewControllerClass struct {
 // An interface definition for the [MKLookAroundViewController] class.
 type IMKLookAroundViewController interface {
 	appkit.IViewController
+	BadgePosition() unsafe.Pointer
+	SetBadgePosition(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsNavigationEnabled() bool
+	SetIsNavigationEnabled(value bool)
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	Scene() MKLookAroundScene
+	SetScene(value IMKLookAroundScene)
+	ShowsRoadLabels() bool
+	SetShowsRoadLabels(value bool)
 }
 
 // A class that manages the presentation and display of a LookAround view.

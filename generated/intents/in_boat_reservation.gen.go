@@ -29,6 +29,10 @@ type _INBoatReservationClass struct {
 // An interface definition for the [INBoatReservation] class.
 type IINBoatReservation interface {
 	IINReservation
+	BoatTrip() unsafe.Pointer
+	SetBoatTrip(value unsafe.Pointer)
+	ReservedSeat() INSeat
+	SetReservedSeat(value INSeat)
 }
 
 // The information that describes a boat reservation.

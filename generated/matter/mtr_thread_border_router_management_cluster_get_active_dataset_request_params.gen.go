@@ -31,6 +31,10 @@ type _MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParamsClass s
 // An interface definition for the [MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams] class.
 type IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

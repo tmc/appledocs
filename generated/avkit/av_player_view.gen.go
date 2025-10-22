@@ -34,9 +34,52 @@ type _PlayerViewClass struct {
 type IPlayerView interface {
 	appkit.IView
 	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
-	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle appkit.string)
+	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string)
 	SelectSpeed(speed IAVPlaybackSpeed)
 	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
+	ActionPopUpButtonMenu() appkit.Menu
+	SetActionPopUpButtonMenu(value appkit.IMenu)
+	AllowsMagnification() bool
+	SetAllowsMagnification(value bool)
+	AllowsPictureInPicturePlayback() bool
+	SetAllowsPictureInPicturePlayback(value bool)
+	AllowsVideoFrameAnalysis() bool
+	SetAllowsVideoFrameAnalysis(value bool)
+	CanBeginTrimming() bool
+	ContentOverlayView() CaptureView
+	ControlsStyle() PlayerViewControlsStyle
+	SetControlsStyle(value PlayerViewControlsStyle)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ReadyForDisplay() bool
+	Magnification() float64
+	SetMagnification(value float64)
+	PictureInPictureDelegate() objc.ID
+	SetPictureInPictureDelegate(value objc.ID)
+	Player() avfoundation.Player
+	SetPlayer(value avfoundation.IPlayer)
+	PreferredDisplayDynamicRange() DisplayDynamicRange
+	SetPreferredDisplayDynamicRange(value IDisplayDynamicRange)
+	SelectedSpeed() AVPlaybackSpeed
+	ShowsFrameSteppingButtons() bool
+	SetShowsFrameSteppingButtons(value bool)
+	ShowsFullScreenToggleButton() bool
+	SetShowsFullScreenToggleButton(value bool)
+	ShowsSharingServiceButton() bool
+	SetShowsSharingServiceButton(value bool)
+	ShowsTimecodes() bool
+	SetShowsTimecodes(value bool)
+	Speeds() []PlaybackSpeed
+	SetSpeeds(value []PlaybackSpeed)
+	UpdatesNowPlayingInfoCenter() bool
+	SetUpdatesNowPlayingInfoCenter(value bool)
+	VideoBounds() foundation.Rect
+	VideoFrameAnalysisTypes() VideoFrameAnalysisType
+	SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType)
+	VideoGravity() unsafe.Pointer
+	SetVideoGravity(value unsafe.Pointer)
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
 }
 
 // A view that displays content from a player and presents a native user interface to control playback.
@@ -99,8 +142,8 @@ func (p_ PlayerView) BeginTrimmingWithCompletionHandler(handler unsafe.Pointer) 
 // Displays the chapter number and title in the player view for a brief moment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/flashChapterNumber(_:chapterTitle:)
-func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, chapterTitle)
+func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, objc.String(chapterTitle))
 }
 
 // Selects a specified playback speed.
@@ -200,8 +243,8 @@ func (p_ PlayerView) CanBeginTrimming() bool {
 // A view that adds additional custom views between the video content and the controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/contentOverlayView
-func (p_ PlayerView) ContentOverlayView() appkit.View {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
+func (p_ PlayerView) ContentOverlayView() CaptureView {
+	rv := objc.Send[CaptureView](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 

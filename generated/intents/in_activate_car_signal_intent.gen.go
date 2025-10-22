@@ -29,6 +29,10 @@ type _INActivateCarSignalIntentClass struct {
 // An interface definition for the [INActivateCarSignalIntent] class.
 type IINActivateCarSignalIntent interface {
 	IINIntent
+	CarName() INSpeakableString
+	SetCarName(value INSpeakableString)
+	Signals() unsafe.Pointer
+	SetSignals(value unsafe.Pointer)
 }
 
 // A request to activate the signals on the user’s car.

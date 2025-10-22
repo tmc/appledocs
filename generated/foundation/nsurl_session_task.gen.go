@@ -33,6 +33,32 @@ type IURLSessionTask interface {
 	Cancel()
 	Resume()
 	Suspend()
+	CountOfBytesClientExpectsToReceive() unsafe.Pointer
+	SetCountOfBytesClientExpectsToReceive(value unsafe.Pointer)
+	CountOfBytesClientExpectsToSend() unsafe.Pointer
+	SetCountOfBytesClientExpectsToSend(value unsafe.Pointer)
+	CountOfBytesExpectedToReceive() unsafe.Pointer
+	CountOfBytesExpectedToSend() unsafe.Pointer
+	CountOfBytesReceived() unsafe.Pointer
+	CountOfBytesSent() unsafe.Pointer
+	CurrentRequest() NSURLRequest
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	EarliestBeginDate() NSDate
+	SetEarliestBeginDate(value IDate)
+	Error() NSError
+	OriginalRequest() NSURLRequest
+	PrefersIncrementalDelivery() bool
+	SetPrefersIncrementalDelivery(value bool)
+	Priority() float32
+	SetPriority(value float32)
+	Progress() NSProgress
+	Response() NSURLResponse
+	State() URLSessionTaskState
+	TaskDescription() string
+	SetTaskDescription(value string)
+	TaskIdentifier() uint
+	NSURLSessionTransferSizeUnknown() unsafe.Pointer
 }
 
 // A task, like downloading a specific resource, performed in a URL session.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,6 +31,51 @@ type _ICCameraFileClass struct {
 type IICCameraFile interface {
 	IICCameraItem
 	RequestSecurityScopedURLWithCompletion(completion unsafe.Pointer)
+	BurstUUID() string
+	Duration() float64
+	Width() int
+	BurstFavorite() bool
+	SetBurstFavorite(value bool)
+	BurstPicked() bool
+	SetBurstPicked(value bool)
+	CreatedFilename() string
+	SetCreatedFilename(value string)
+	ExifCreationDate() foundation.Date
+	SetExifCreationDate(value foundation.IDate)
+	ExifModificationDate() foundation.Date
+	SetExifModificationDate(value foundation.IDate)
+	FileCreationDate() foundation.Date
+	SetFileCreationDate(value foundation.IDate)
+	FileModificationDate() foundation.Date
+	SetFileModificationDate(value foundation.IDate)
+	FileSize() unsafe.Pointer
+	SetFileSize(value unsafe.Pointer)
+	Fingerprint() string
+	SetFingerprint(value string)
+	FirstPicked() bool
+	SetFirstPicked(value bool)
+	GpsString() string
+	SetGpsString(value string)
+	GroupUUID() string
+	SetGroupUUID(value string)
+	Height() int
+	SetHeight(value int)
+	HighFramerate() bool
+	SetHighFramerate(value bool)
+	Orientation() unsafe.Pointer
+	SetOrientation(value unsafe.Pointer)
+	OriginalFilename() string
+	SetOriginalFilename(value string)
+	OriginatingAssetID() string
+	SetOriginatingAssetID(value string)
+	PairedRawImage() ICCameraFile
+	SetPairedRawImage(value ICCameraFile)
+	RelatedUUID() string
+	SetRelatedUUID(value string)
+	SidecarFiles() ICCameraItem
+	SetSidecarFiles(value ICCameraItem)
+	TimeLapse() bool
+	SetTimeLapse(value bool)
 }
 
 // An object that represents a file on a camera.
@@ -91,16 +135,16 @@ func (i_ ICCameraFile) RequestSecurityScopedURLWithCompletion(completion unsafe.
 // The burst UUID of the file if it is in a burst.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/burstUUID
-func (i_ ICCameraFile) BurstUUID() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("burstUUID"))
+func (i_ ICCameraFile) BurstUUID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("burstUUID"))
 	return rv
 }
 
 // The duration, in seconds, of an audio or video file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/duration
-func (i_ ICCameraFile) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("duration"))
+func (i_ ICCameraFile) Duration() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -151,8 +195,8 @@ func (i_ ICCameraFile) SetBurstPicked(value bool) {
 // The created name of the file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/createdfilename
-func (i_ ICCameraFile) CreatedFilename() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("createdFilename"))
+func (i_ ICCameraFile) CreatedFilename() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("createdFilename"))
 	return rv
 }
 
@@ -162,8 +206,8 @@ func (i_ ICCameraFile) CreatedFilename() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/createdfilename
-func (i_ ICCameraFile) SetCreatedFilename(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCreatedFilename:"), value)
+func (i_ ICCameraFile) SetCreatedFilename(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCreatedFilename:"), objc.String(value))
 }
 
 // The
@@ -258,8 +302,8 @@ func (i_ ICCameraFile) SetFileSize(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/fingerprint
-func (i_ ICCameraFile) Fingerprint() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("fingerprint"))
+func (i_ ICCameraFile) Fingerprint() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("fingerprint"))
 	return rv
 }
 
@@ -267,8 +311,8 @@ func (i_ ICCameraFile) Fingerprint() appkit.string {
 // SetFingerprint sets the value of the fingerprint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/fingerprint
-func (i_ ICCameraFile) SetFingerprint(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setFingerprint:"), value)
+func (i_ ICCameraFile) SetFingerprint(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFingerprint:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether a file is autopicked by Photos to represent the burst.
@@ -292,8 +336,8 @@ func (i_ ICCameraFile) SetFirstPicked(value bool) {
 // The GPS String of the file in standard format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/gpsstring
-func (i_ ICCameraFile) GpsString() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("gpsString"))
+func (i_ ICCameraFile) GpsString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("gpsString"))
 	return rv
 }
 
@@ -303,15 +347,15 @@ func (i_ ICCameraFile) GpsString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/gpsstring
-func (i_ ICCameraFile) SetGpsString(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGpsString:"), value)
+func (i_ ICCameraFile) SetGpsString(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGpsString:"), objc.String(value))
 }
 
 // The group
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/groupuuid
-func (i_ ICCameraFile) GroupUUID() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("groupUUID"))
+func (i_ ICCameraFile) GroupUUID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("groupUUID"))
 	return rv
 }
 
@@ -321,8 +365,8 @@ func (i_ ICCameraFile) GroupUUID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/groupuuid
-func (i_ ICCameraFile) SetGroupUUID(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupUUID:"), value)
+func (i_ ICCameraFile) SetGroupUUID(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupUUID:"), objc.String(value))
 }
 
 // The height of an image or movie frame.
@@ -382,8 +426,8 @@ func (i_ ICCameraFile) SetOrientation(value unsafe.Pointer) {
 // The original name of the file on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originalfilename
-func (i_ ICCameraFile) OriginalFilename() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("originalFilename"))
+func (i_ ICCameraFile) OriginalFilename() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("originalFilename"))
 	return rv
 }
 
@@ -393,15 +437,15 @@ func (i_ ICCameraFile) OriginalFilename() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originalfilename
-func (i_ ICCameraFile) SetOriginalFilename(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginalFilename:"), value)
+func (i_ ICCameraFile) SetOriginalFilename(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginalFilename:"), objc.String(value))
 }
 
 // The originating asset ID of an
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originatingassetid
-func (i_ ICCameraFile) OriginatingAssetID() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("originatingAssetID"))
+func (i_ ICCameraFile) OriginatingAssetID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("originatingAssetID"))
 	return rv
 }
 
@@ -411,8 +455,8 @@ func (i_ ICCameraFile) OriginatingAssetID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originatingassetid
-func (i_ ICCameraFile) SetOriginatingAssetID(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginatingAssetID:"), value)
+func (i_ ICCameraFile) SetOriginatingAssetID(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginatingAssetID:"), objc.String(value))
 }
 
 // A sidecar file containing the logical
@@ -436,8 +480,8 @@ func (i_ ICCameraFile) SetPairedRawImage(value ICCameraFile) {
 // A related UUID correlating several images from an Apple device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/relateduuid
-func (i_ ICCameraFile) RelatedUUID() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("relatedUUID"))
+func (i_ ICCameraFile) RelatedUUID() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("relatedUUID"))
 	return rv
 }
 
@@ -447,8 +491,8 @@ func (i_ ICCameraFile) RelatedUUID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/relateduuid
-func (i_ ICCameraFile) SetRelatedUUID(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRelatedUUID:"), value)
+func (i_ ICCameraFile) SetRelatedUUID(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRelatedUUID:"), objc.String(value))
 }
 
 // An array of two camera files associated with this file.

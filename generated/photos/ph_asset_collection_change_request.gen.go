@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHAssetCollectionChangeRequest] class.
@@ -30,6 +29,10 @@ type _PHAssetCollectionChangeRequestClass struct {
 // An interface definition for the [PHAssetCollectionChangeRequest] class.
 type IPHAssetCollectionChangeRequest interface {
 	IPHChangeRequest
+	PlaceholderForCreatedAssetCollection() PHObjectPlaceholder
+	SetPlaceholderForCreatedAssetCollection(value IPHObjectPlaceholder)
+	Title() string
+	SetTitle(value string)
 }
 
 // A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.
@@ -85,8 +88,8 @@ func NewPHAssetCollectionChangeRequest() PHAssetCollectionChangeRequest {
 // Creates a request for adding a new asset collection to the Photos library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollectionChangeRequest/creationRequestForAssetCollection(withTitle:)
-func (pc _PHAssetCollectionChangeRequestClass) CreationRequestForAssetCollectionWithTitle(title appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForAssetCollectionWithTitle:"), title)
+func (pc _PHAssetCollectionChangeRequestClass) CreationRequestForAssetCollectionWithTitle(title string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForAssetCollectionWithTitle:"), objc.String(title))
 	return rv
 }
 
@@ -111,8 +114,8 @@ func (p_ PHAssetCollectionChangeRequest) SetPlaceholderForCreatedAssetCollection
 // The displayed name of the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
-func (p_ PHAssetCollectionChangeRequest) Title() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
+func (p_ PHAssetCollectionChangeRequest) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -122,8 +125,8 @@ func (p_ PHAssetCollectionChangeRequest) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
-func (p_ PHAssetCollectionChangeRequest) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+func (p_ PHAssetCollectionChangeRequest) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

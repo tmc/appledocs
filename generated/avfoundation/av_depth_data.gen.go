@@ -30,6 +30,20 @@ type _DepthDataClass struct {
 // An interface definition for the [DepthData] class.
 type IDepthData interface {
 	objectivec.IObject
+	AvailableDepthDataTypes() unsafe.Pointer
+	SetAvailableDepthDataTypes(value unsafe.Pointer)
+	CameraCalibrationData() AVCameraCalibrationData
+	SetCameraCalibrationData(value IAVCameraCalibrationData)
+	DepthDataAccuracy() unsafe.Pointer
+	SetDepthDataAccuracy(value unsafe.Pointer)
+	DepthDataMap() unsafe.Pointer
+	SetDepthDataMap(value unsafe.Pointer)
+	DepthDataQuality() unsafe.Pointer
+	SetDepthDataQuality(value unsafe.Pointer)
+	DepthDataType() unsafe.Pointer
+	SetDepthDataType(value unsafe.Pointer)
+	IsDepthDataFiltered() bool
+	SetIsDepthDataFiltered(value bool)
 }
 
 // A container for per-pixel distance or disparity information captured by compatible camera devices.

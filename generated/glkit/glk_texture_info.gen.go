@@ -30,6 +30,16 @@ type _GLKTextureInfoClass struct {
 // An interface definition for the [GLKTextureInfo] class.
 type IGLKTextureInfo interface {
 	objectivec.IObject
+	AlphaState() GLKTextureInfoAlphaState
+	ArrayLength() unsafe.Pointer
+	ContainsMipmaps() bool
+	Depth() unsafe.Pointer
+	Height() unsafe.Pointer
+	MimapLevelCount() unsafe.Pointer
+	Name() unsafe.Pointer
+	Target() unsafe.Pointer
+	TextureOrigin() GLKTextureInfoOrigin
+	Width() unsafe.Pointer
 }
 
 // Information about OpenGL textures created by the class.

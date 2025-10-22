@@ -29,6 +29,12 @@ type _AccelerationStructureMotionBoundingBoxGeometryDescriptorClass struct {
 // An interface definition for the [AccelerationStructureMotionBoundingBoxGeometryDescriptor] class.
 type IAccelerationStructureMotionBoundingBoxGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	BoundingBoxBuffers() MTLMotionKeyframeData
+	SetBoundingBoxBuffers(value IMTLMotionKeyframeData)
+	BoundingBoxCount() int
+	SetBoundingBoxCount(value int)
+	BoundingBoxStride() int
+	SetBoundingBoxStride(value int)
 }
 
 // A description of a list of bounding boxes, as motion keyframe data, to turn into an acceleration structure.

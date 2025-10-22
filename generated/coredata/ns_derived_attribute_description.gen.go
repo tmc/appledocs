@@ -29,6 +29,8 @@ type _DerivedAttributeDescriptionClass struct {
 // An interface definition for the [DerivedAttributeDescription] class.
 type IDerivedAttributeDescription interface {
 	IAttributeDescription
+	DerivationExpression() FetchRequestExpression
+	SetDerivationExpression(value IFetchRequestExpression)
 }
 
 // A description of an attribute that derives its value by performing a calculation on a related attribute.
@@ -84,8 +86,8 @@ func NewDerivedAttributeDescription() DerivedAttributeDescription {
 // An expression for generating derived data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-func (d_ DerivedAttributeDescription) DerivationExpression() Expression {
-	rv := objc.Send[Expression](d_.ID, objc.Sel("derivationExpression"))
+func (d_ DerivedAttributeDescription) DerivationExpression() FetchRequestExpression {
+	rv := objc.Send[FetchRequestExpression](d_.ID, objc.Sel("derivationExpression"))
 	return rv
 }
 
@@ -95,7 +97,7 @@ func (d_ DerivedAttributeDescription) DerivationExpression() Expression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-func (d_ DerivedAttributeDescription) SetDerivationExpression(value IExpression) {
+func (d_ DerivedAttributeDescription) SetDerivationExpression(value IFetchRequestExpression) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDerivationExpression:"), value)
 }
 

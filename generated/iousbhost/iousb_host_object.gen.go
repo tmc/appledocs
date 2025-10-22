@@ -34,6 +34,15 @@ type IUSBHostObject interface {
 	Destroy()
 	ReferenceMicroframeWithTimeError(time unsafe.Pointer, error_ unsafe.Pointer) uint64
 	SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.IMutableData, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool
+	IoService() unsafe.Pointer
+	Queue() unsafe.Pointer
+	IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer
+	CapabilityDescriptors() unsafe.Pointer
+	SetCapabilityDescriptors(value unsafe.Pointer)
+	DeviceAddress() int
+	SetDeviceAddress(value int)
+	DeviceDescriptor() unsafe.Pointer
+	SetDeviceDescriptor(value unsafe.Pointer)
 }
 
 // This class provides basic functionality for sending device requests and retrieving descriptors.

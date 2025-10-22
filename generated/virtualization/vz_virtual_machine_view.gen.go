@@ -30,6 +30,12 @@ type _VZVirtualMachineViewClass struct {
 // An interface definition for the [VZVirtualMachineView] class.
 type IVZVirtualMachineView interface {
 	appkit.IView
+	AutomaticallyReconfiguresDisplay() bool
+	SetAutomaticallyReconfiguresDisplay(value bool)
+	CapturesSystemKeys() bool
+	SetCapturesSystemKeys(value bool)
+	VirtualMachine() VZVirtualMachine
+	SetVirtualMachine(value IVZVirtualMachine)
 }
 
 // A view that allows user interaction with a VM.

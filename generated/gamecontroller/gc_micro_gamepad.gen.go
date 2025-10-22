@@ -31,6 +31,27 @@ type IGCMicroGamepad interface {
 	IGCPhysicalInputProfile
 	SaveSnapshot() unsafe.Pointer
 	SetStateFromMicroGamepad(microGamepad IGCMicroGamepad)
+	AllowsRotation() bool
+	SetAllowsRotation(value bool)
+	ButtonA() GCControllerButtonInput
+	ButtonMenu() GCControllerButtonInput
+	ButtonX() GCControllerButtonInput
+	Controller() GCController
+	Dpad() GCControllerDirectionPad
+	ReportsAbsoluteDpadValues() bool
+	SetReportsAbsoluteDpadValues(value bool)
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
+	ExtendedGamepad() GCExtendedGamepad
+	SetExtendedGamepad(value IGCExtendedGamepad)
+	Gamepad() unsafe.Pointer
+	SetGamepad(value unsafe.Pointer)
+	MicroGamepad() GCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	PhysicalInputProfile() GCPhysicalInputProfile
+	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
 }
 
 // A controller profile that supports the Siri Remote.

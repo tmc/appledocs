@@ -31,6 +31,18 @@ type _MTRNetworkCommissioningClusterWiFiInterfaceScanResultStructClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterWiFiInterfaceScanResultStruct] class.
 type IMTRNetworkCommissioningClusterWiFiInterfaceScanResultStruct interface {
 	objectivec.IObject
+	Bssid() foundation.Data
+	SetBssid(value foundation.IData)
+	Channel() foundation.Number
+	SetChannel(value foundation.INumber)
+	Rssi() foundation.Number
+	SetRssi(value foundation.INumber)
+	Security() foundation.Number
+	SetSecurity(value foundation.INumber)
+	Ssid() foundation.Data
+	SetSsid(value foundation.IData)
+	WiFiBand() foundation.Number
+	SetWiFiBand(value foundation.INumber)
 }
 
 //

@@ -32,6 +32,42 @@ type IFSItemAttributes interface {
 	objectivec.IObject
 	InvalidateAllProperties()
 	IsValid(attribute FSItemAttribute) bool
+	AddedTime() unsafe.Pointer
+	SetAddedTime(value unsafe.Pointer)
+	FileID() FSItemID
+	SetFileID(value IFSItemID)
+	Mode() uint32
+	SetMode(value Iuint32)
+	SupportsLimitedXAttrs() bool
+	SetSupportsLimitedXAttrs(value bool)
+	AccessTime() unsafe.Pointer
+	SetAccessTime(value unsafe.Pointer)
+	AllocSize() uint64
+	SetAllocSize(value uint64)
+	BackupTime() unsafe.Pointer
+	SetBackupTime(value unsafe.Pointer)
+	BirthTime() unsafe.Pointer
+	SetBirthTime(value unsafe.Pointer)
+	ChangeTime() unsafe.Pointer
+	SetChangeTime(value unsafe.Pointer)
+	Flags() unsafe.Pointer
+	SetFlags(value unsafe.Pointer)
+	Gid() unsafe.Pointer
+	SetGid(value unsafe.Pointer)
+	InhibitKernelOffloadedIO() bool
+	SetInhibitKernelOffloadedIO(value bool)
+	LinkCount() unsafe.Pointer
+	SetLinkCount(value unsafe.Pointer)
+	ModifyTime() unsafe.Pointer
+	SetModifyTime(value unsafe.Pointer)
+	ParentID() unsafe.Pointer
+	SetParentID(value unsafe.Pointer)
+	Size() uint64
+	SetSize(value uint64)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
+	Uid() unsafe.Pointer
+	SetUid(value unsafe.Pointer)
 }
 
 // Attributes of an item, such as size, creation and modification times, and user and group identifiers.
@@ -134,8 +170,8 @@ func (f_ FSItemAttributes) SetFileID(value IFSItemID) {
 // The mode of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
-func (f_ FSItemAttributes) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mode"))
+func (f_ FSItemAttributes) Mode() uint32 {
+	rv := objc.Send[uint32](f_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -145,7 +181,7 @@ func (f_ FSItemAttributes) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
-func (f_ FSItemAttributes) SetMode(value unsafe.Pointer) {
+func (f_ FSItemAttributes) SetMode(value Iuint32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMode:"), value)
 }
 

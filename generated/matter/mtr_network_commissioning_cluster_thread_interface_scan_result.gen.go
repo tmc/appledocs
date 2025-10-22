@@ -30,6 +30,22 @@ type _MTRNetworkCommissioningClusterThreadInterfaceScanResultClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterThreadInterfaceScanResult] class.
 type IMTRNetworkCommissioningClusterThreadInterfaceScanResult interface {
 	IMTRNetworkCommissioningClusterThreadInterfaceScanResultStruct
+	Channel() foundation.Number
+	SetChannel(value foundation.INumber)
+	ExtendedAddress() foundation.Data
+	SetExtendedAddress(value foundation.IData)
+	ExtendedPanId() foundation.Number
+	SetExtendedPanId(value foundation.INumber)
+	Lqi() foundation.Number
+	SetLqi(value foundation.INumber)
+	NetworkName() string
+	SetNetworkName(value string)
+	PanId() foundation.Number
+	SetPanId(value foundation.INumber)
+	Rssi() foundation.Number
+	SetRssi(value foundation.INumber)
+	Version() foundation.Number
+	SetVersion(value foundation.INumber)
 }
 
 //
@@ -139,8 +155,8 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetLqi(value f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/networkname
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) NetworkName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) NetworkName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -148,8 +164,8 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) NetworkName() 
 // SetNetworkName sets the value of the networkName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/networkname
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetNetworkName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetNetworkName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }
 
 //

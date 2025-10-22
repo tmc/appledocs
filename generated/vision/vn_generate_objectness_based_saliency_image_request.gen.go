@@ -29,6 +29,9 @@ type _GenerateObjectnessBasedSaliencyImageRequestClass struct {
 // An interface definition for the [GenerateObjectnessBasedSaliencyImageRequest] class.
 type IGenerateObjectnessBasedSaliencyImageRequest interface {
 	IImageBasedRequest
+	Results() VNSaliencyImageObservation
+	SetResults(value IVNSaliencyImageObservation)
+	VNGenerateObjectnessBasedSaliencyImageRequestRevision1() int
 }
 
 // A request that generates a heat map that identifies the parts of an image most likely to represent objects.

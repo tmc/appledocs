@@ -33,6 +33,13 @@ type IInputPickerInteraction interface {
 	objectivec.IObject
 	Dismiss()
 	Present()
+	AudioSession() avfaudio.AudioSession
+	SetAudioSession(value avfaudio.IAudioSession)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Presented() bool
+	IsPresented() bool
+	SetIsPresented(value bool)
 }
 
 // Use to present an input picker.

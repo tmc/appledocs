@@ -29,6 +29,16 @@ type _GenerateOpticalFlowRequestClass struct {
 // An interface definition for the [GenerateOpticalFlowRequest] class.
 type IGenerateOpticalFlowRequest interface {
 	ITargetedImageRequest
+	ComputationAccuracy() unsafe.Pointer
+	SetComputationAccuracy(value unsafe.Pointer)
+	KeepNetworkOutput() bool
+	SetKeepNetworkOutput(value bool)
+	OutputPixelFormat() unsafe.Pointer
+	SetOutputPixelFormat(value unsafe.Pointer)
+	Results() VNPixelBufferObservation
+	SetResults(value IVNPixelBufferObservation)
+	VNGenerateOpticalFlowRequestRevision1() int
+	VNGenerateOpticalFlowRequestRevision2() int
 }
 
 // An object that generates directional change vectors for each pixel in the targeted image.

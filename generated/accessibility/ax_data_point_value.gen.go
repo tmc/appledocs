@@ -30,6 +30,10 @@ type _AXDataPointValueClass struct {
 // An interface definition for the [AXDataPointValue] class.
 type IAXDataPointValue interface {
 	objectivec.IObject
+	XValue() AXDataPointValue
+	SetXValue(value IAXDataPointValue)
+	YValue() AXDataPointValue
+	SetYValue(value IAXDataPointValue)
 }
 
 // A single data value.

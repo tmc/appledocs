@@ -29,6 +29,10 @@ type _MutableTimedMetadataGroupClass struct {
 // An interface definition for the [MutableTimedMetadataGroup] class.
 type IMutableTimedMetadataGroup interface {
 	ITimedMetadataGroup
+	Items() AVMetadataItem
+	SetItems(value IAVMetadataItem)
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
 }
 
 // A mutable collection of metadata items that are valid for use during a specific time range.

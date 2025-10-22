@@ -30,6 +30,15 @@ type _URLResponseClass struct {
 // An interface definition for the [URLResponse] class.
 type IURLResponse interface {
 	objectivec.IObject
+	URL() URL
+	ExpectedContentLength() unsafe.Pointer
+	SetExpectedContentLength(value unsafe.Pointer)
+	MimeType() string
+	SetMimeType(value string)
+	SuggestedFilename() string
+	SetSuggestedFilename(value string)
+	TextEncodingName() string
+	SetTextEncodingName(value string)
 }
 
 // The metadata associated with the response to a URL load request, independent of protocol and URL scheme.

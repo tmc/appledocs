@@ -29,6 +29,8 @@ type _CompositeAttributeDescriptionClass struct {
 // An interface definition for the [CompositeAttributeDescription] class.
 type ICompositeAttributeDescription interface {
 	IAttributeDescription
+	Elements() []AttributeDescription
+	SetElements(value []AttributeDescription)
 }
 
 // A description of an attribute that derives its value by composing other attributes.

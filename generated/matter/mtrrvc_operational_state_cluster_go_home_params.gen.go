@@ -31,6 +31,10 @@ type _MTRRVCOperationalStateClusterGoHomeParamsClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterGoHomeParams] class.
 type IMTRRVCOperationalStateClusterGoHomeParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

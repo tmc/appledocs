@@ -30,6 +30,20 @@ type _MTL4AccelerationStructureGeometryDescriptorClass struct {
 // An interface definition for the [MTL4AccelerationStructureGeometryDescriptor] class.
 type IMTL4AccelerationStructureGeometryDescriptor interface {
 	objectivec.IObject
+	AllowDuplicateIntersectionFunctionInvocation() bool
+	SetAllowDuplicateIntersectionFunctionInvocation(value bool)
+	IntersectionFunctionTableOffset() int
+	SetIntersectionFunctionTableOffset(value int)
+	Label() string
+	SetLabel(value string)
+	Opaque() bool
+	SetOpaque(value bool)
+	PrimitiveDataBuffer() unsafe.Pointer
+	SetPrimitiveDataBuffer(value unsafe.Pointer)
+	PrimitiveDataElementSize() int
+	SetPrimitiveDataElementSize(value int)
+	PrimitiveDataStride() int
+	SetPrimitiveDataStride(value int)
 }
 
 // Base class for all Metal 4 acceleration structure geometry descriptors.
@@ -119,8 +133,8 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTab
 // Assigns an optional label you can assign to this geometry for debugging purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -130,8 +144,8 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // Provides a hint to Metal that this geometry is opaque, potentially accelerating the ray/primitive intersection process.

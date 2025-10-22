@@ -37,21 +37,21 @@ type IWebView interface {
 	CloseAllMediaPresentationsWithCompletionHandler(completionHandler Ifunc())
 	CreatePDFWithConfigurationCompletionHandler(pdfConfiguration IWKPDFConfiguration, completionHandler unsafe.Pointer)
 	CreateWebArchiveDataWithCompletionHandler(completionHandler unsafe.Pointer)
-	EvaluateJavaScriptCompletionHandler(javaScriptString appkit.string, completionHandler unsafe.Pointer)
+	EvaluateJavaScriptCompletionHandler(javaScriptString string, completionHandler unsafe.Pointer)
 	FetchDataOfTypesCompletionHandler(dataTypes WebViewDataType, completionHandler unsafe.Pointer)
-	FindStringWithConfigurationCompletionHandler(string_ appkit.string, configuration IWKFindConfiguration, completionHandler unsafe.Pointer)
+	FindStringWithConfigurationCompletionHandler(string_ string, configuration IWKFindConfiguration, completionHandler unsafe.Pointer)
 	GoToBackForwardListItem(item IWKBackForwardListItem) Navigation
 	GoBack() Navigation
 	GoForward() Navigation
 	LoadRequest(request foundation.IURLRequest) Navigation
-	LoadDataMIMETypeCharacterEncodingNameBaseURL(data foundation.IData, MIMEType appkit.string, characterEncodingName appkit.string, baseURL foundation.IURL) Navigation
+	LoadDataMIMETypeCharacterEncodingNameBaseURL(data foundation.IData, MIMEType string, characterEncodingName string, baseURL foundation.IURL) Navigation
 	LoadFileRequestAllowingReadAccessToURL(request foundation.IURLRequest, readAccessURL foundation.IURL) Navigation
 	LoadFileURLAllowingReadAccessToURL(URL foundation.IURL, readAccessURL foundation.IURL) Navigation
-	LoadHTMLStringBaseURL(string_ appkit.string, baseURL foundation.IURL) Navigation
+	LoadHTMLStringBaseURL(string_ string, baseURL foundation.IURL) Navigation
 	LoadSimulatedRequestResponseResponseData(request foundation.IURLRequest, response foundation.IURLResponse, data foundation.IData) Navigation
-	LoadSimulatedRequestResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation
+	LoadSimulatedRequestResponseHTMLString(request foundation.IURLRequest, string_ string) Navigation
 	LoadSimulatedRequestWithResponseResponseData(request foundation.IURLRequest, response foundation.IURLResponse, data foundation.IData) Navigation
-	LoadSimulatedRequestWithResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation
+	LoadSimulatedRequestWithResponseHTMLString(request foundation.IURLRequest, string_ string) Navigation
 	PauseAllMediaPlaybackWithCompletionHandler(completionHandler Ifunc())
 	PauseAllMediaPlayback(completionHandler Ifunc())
 	PrintOperationWithPrintInfo(printInfo appkit.IPrintInfo) appkit.PrintOperation
@@ -71,6 +71,63 @@ type IWebView interface {
 	StopLoading()
 	SuspendAllMediaPlayback(completionHandler Ifunc())
 	TakeSnapshotWithConfigurationCompletionHandler(snapshotConfiguration IWKSnapshotConfiguration, completionHandler unsafe.Pointer)
+	AllowsBackForwardNavigationGestures() bool
+	SetAllowsBackForwardNavigationGestures(value bool)
+	AllowsLinkPreview() bool
+	SetAllowsLinkPreview(value bool)
+	AllowsMagnification() bool
+	SetAllowsMagnification(value bool)
+	BackForwardList() WKBackForwardList
+	CameraCaptureState() MediaCaptureState
+	CanGoBack() bool
+	CanGoForward() bool
+	CertificateChain() objc.ID
+	Configuration() WKWebViewConfiguration
+	CustomUserAgent() string
+	SetCustomUserAgent(value string)
+	EstimatedProgress() float64
+	FindInteraction() unsafe.Pointer
+	FullscreenState() FullscreenState
+	HasOnlySecureContent() bool
+	InteractionState() objc.ID
+	SetInteractionState(value objc.ID)
+	IsBlockedByScreenTime() bool
+	FindInteractionEnabled() bool
+	SetFindInteractionEnabled(value bool)
+	Inspectable() bool
+	SetInspectable(value bool)
+	Loading() bool
+	WritingToolsActive() bool
+	Magnification() float64
+	SetMagnification(value float64)
+	MaximumViewportInset() unsafe.Pointer
+	MediaType() string
+	SetMediaType(value string)
+	MicrophoneCaptureState() MediaCaptureState
+	MinimumViewportInset() unsafe.Pointer
+	NavigationDelegate() objc.ID
+	SetNavigationDelegate(value objc.ID)
+	ObscuredContentInsets() unsafe.Pointer
+	SetObscuredContentInsets(value unsafe.Pointer)
+	PageZoom() float64
+	SetPageZoom(value float64)
+	ScrollView() appkit.ScrollView
+	ServerTrust() unsafe.Pointer
+	ThemeColor() appkit.Color
+	Title() string
+	UIDelegate() objc.ID
+	SetUIDelegate(value objc.ID)
+	UnderPageBackgroundColor() appkit.Color
+	SetUnderPageBackgroundColor(value appkit.IColor)
+	URL() foundation.URL
+	IsFindInteractionEnabled() bool
+	SetIsFindInteractionEnabled(value bool)
+	IsInspectable() bool
+	SetIsInspectable(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
+	IsWritingToolsActive() bool
+	SetIsWritingToolsActive(value bool)
 }
 
 // An object that displays interactive web content, such as for an in-app browser.
@@ -151,8 +208,8 @@ func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration I
 // Returns a Boolean value that indicates whether WebKit natively supports resources with the specified URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/handlesURLScheme(_:)
-func (wc _WebViewClass) HandlesURLScheme(urlScheme appkit.string) bool {
-	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("handlesURLScheme:"), urlScheme)
+func (wc _WebViewClass) HandlesURLScheme(urlScheme string) bool {
+	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("handlesURLScheme:"), objc.String(urlScheme))
 	return rv
 }
 
@@ -186,8 +243,8 @@ func (w_ WebView) CreateWebArchiveDataWithCompletionHandler(completionHandler un
 // Evaluates the specified JavaScript string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/evaluateJavaScript(_:completionHandler:)
-func (w_ WebView) EvaluateJavaScriptCompletionHandler(javaScriptString appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("evaluateJavaScript:completionHandler:"), javaScriptString, completionHandler)
+func (w_ WebView) EvaluateJavaScriptCompletionHandler(javaScriptString string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("evaluateJavaScript:completionHandler:"), objc.String(javaScriptString), completionHandler)
 }
 
 //
@@ -199,8 +256,8 @@ func (w_ WebView) FetchDataOfTypesCompletionHandler(dataTypes WebViewDataType, c
 // Searches for the specified string in the web view’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/findString:withConfiguration:completionHandler:
-func (w_ WebView) FindStringWithConfigurationCompletionHandler(string_ appkit.string, configuration IWKFindConfiguration, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("findString:withConfiguration:completionHandler:"), string_, configuration, completionHandler)
+func (w_ WebView) FindStringWithConfigurationCompletionHandler(string_ string, configuration IWKFindConfiguration, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("findString:withConfiguration:completionHandler:"), objc.String(string_), configuration, completionHandler)
 }
 
 // Navigates to an item from the back-forward list and sets it as the current item.
@@ -238,8 +295,8 @@ func (w_ WebView) LoadRequest(request foundation.IURLRequest) Navigation {
 // Loads the content of the specified data object and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/load(_:mimeType:characterEncodingName:baseURL:)
-func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data foundation.IData, MIMEType appkit.string, characterEncodingName appkit.string, baseURL foundation.IURL) Navigation {
-	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadData:MIMEType:characterEncodingName:baseURL:"), data, MIMEType, characterEncodingName, baseURL)
+func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data foundation.IData, MIMEType string, characterEncodingName string, baseURL foundation.IURL) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadData:MIMEType:characterEncodingName:baseURL:"), data, objc.String(MIMEType), objc.String(characterEncodingName), baseURL)
 	return rv
 }
 
@@ -262,8 +319,8 @@ func (w_ WebView) LoadFileURLAllowingReadAccessToURL(URL foundation.IURL, readAc
 // Loads the contents of the specified HTML string and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)
-func (w_ WebView) LoadHTMLStringBaseURL(string_ appkit.string, baseURL foundation.IURL) Navigation {
-	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadHTMLString:baseURL:"), string_, baseURL)
+func (w_ WebView) LoadHTMLStringBaseURL(string_ string, baseURL foundation.IURL) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadHTMLString:baseURL:"), objc.String(string_), baseURL)
 	return rv
 }
 
@@ -278,8 +335,8 @@ func (w_ WebView) LoadSimulatedRequestResponseResponseData(request foundation.IU
 // Loads the web content from the HTML you provide as if the HTML were the response to the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadSimulatedRequest(_:responseHTML:)
-func (w_ WebView) LoadSimulatedRequestResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation {
-	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:responseHTMLString:"), request, string_)
+func (w_ WebView) LoadSimulatedRequestResponseHTMLString(request foundation.IURLRequest, string_ string) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:responseHTMLString:"), request, objc.String(string_))
 	return rv
 }
 
@@ -292,8 +349,8 @@ func (w_ WebView) LoadSimulatedRequestWithResponseResponseData(request foundatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadSimulatedRequest(_:withResponseHTML:)
-func (w_ WebView) LoadSimulatedRequestWithResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation {
-	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:withResponseHTMLString:"), request, string_)
+func (w_ WebView) LoadSimulatedRequestWithResponseHTMLString(request foundation.IURLRequest, string_ string) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:withResponseHTMLString:"), request, objc.String(string_))
 	return rv
 }
 
@@ -536,8 +593,8 @@ func (w_ WebView) Configuration() WKWebViewConfiguration {
 // The custom user agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/customUserAgent
-func (w_ WebView) CustomUserAgent() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("customUserAgent"))
+func (w_ WebView) CustomUserAgent() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("customUserAgent"))
 	return rv
 }
 
@@ -547,15 +604,15 @@ func (w_ WebView) CustomUserAgent() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/customUserAgent
-func (w_ WebView) SetCustomUserAgent(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), value)
+func (w_ WebView) SetCustomUserAgent(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), objc.String(value))
 }
 
 // An estimate of what fraction of the current navigation has been loaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/estimatedProgress
-func (w_ WebView) EstimatedProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("estimatedProgress"))
+func (w_ WebView) EstimatedProgress() float64 {
+	rv := objc.Send[float64](w_.ID, objc.Sel("estimatedProgress"))
 	return rv
 }
 
@@ -682,8 +739,8 @@ func (w_ WebView) MaximumViewportInset() unsafe.Pointer {
 // The media type for the contents of the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/mediaType
-func (w_ WebView) MediaType() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("mediaType"))
+func (w_ WebView) MediaType() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -693,8 +750,8 @@ func (w_ WebView) MediaType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/mediaType
-func (w_ WebView) SetMediaType(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), value)
+func (w_ WebView) SetMediaType(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), objc.String(value))
 }
 
 // An enumeration case that indicates whether the webpage is using the microphone to capture audio.
@@ -790,8 +847,8 @@ func (w_ WebView) ThemeColor() appkit.Color {
 // The page title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/title
-func (w_ WebView) Title() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("title"))
+func (w_ WebView) Title() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
 

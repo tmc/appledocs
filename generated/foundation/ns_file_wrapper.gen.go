@@ -35,6 +35,27 @@ type IFileWrapper interface {
 	NeedsToBeUpdatedFromPath(path string) bool
 	SymbolicLinkDestination() String
 	WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool
+	Filename() string
+	SetFilename(value string)
+	SerializedRepresentation() NSData
+	FileAttributes() string
+	SetFileAttributes(value string)
+	FileWrappers() NSFileWrapper
+	SetFileWrappers(value IFileWrapper)
+	Icon() appkit.Image
+	SetIcon(value appkit.IImage)
+	IsDirectory() bool
+	SetIsDirectory(value bool)
+	IsRegularFile() bool
+	SetIsRegularFile(value bool)
+	IsSymbolicLink() bool
+	SetIsSymbolicLink(value bool)
+	PreferredFilename() string
+	SetPreferredFilename(value string)
+	RegularFileContents() Data
+	SetRegularFileContents(value IData)
+	SymbolicLinkDestinationURL() URL
+	SetSymbolicLinkDestinationURL(value IURL)
 }
 
 // A representation of a node (a file, directory, or symbolic link) in the file system.

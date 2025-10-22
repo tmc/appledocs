@@ -30,6 +30,8 @@ type _AudioMixingDestinationClass struct {
 // An interface definition for the [AudioMixingDestination] class.
 type IAudioMixingDestination interface {
 	objectivec.IObject
+	ConnectionPoint() unsafe.Pointer
+	SetConnectionPoint(value unsafe.Pointer)
 }
 
 // An object that represents a connection to a mixer node from a node that conforms to the audio mixing protocol.

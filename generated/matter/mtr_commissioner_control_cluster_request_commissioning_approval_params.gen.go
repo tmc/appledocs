@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,18 @@ type _MTRCommissionerControlClusterRequestCommissioningApprovalParamsClass struc
 // An interface definition for the [MTRCommissionerControlClusterRequestCommissioningApprovalParams] class.
 type IMTRCommissionerControlClusterRequestCommissioningApprovalParams interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	RequestID() foundation.Number
+	SetRequestID(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
 }
 
 //
@@ -79,8 +90,8 @@ func NewMTRCommissionerControlClusterRequestCommissioningApprovalParams() MTRCom
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -88,8 +99,8 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label(
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

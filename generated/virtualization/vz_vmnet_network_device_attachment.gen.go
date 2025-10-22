@@ -29,6 +29,8 @@ type _VZVmnetNetworkDeviceAttachmentClass struct {
 // An interface definition for the [VZVmnetNetworkDeviceAttachment] class.
 type IVZVmnetNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
+	Network() unsafe.Pointer
+	SetNetwork(value unsafe.Pointer)
 }
 
 // A network device attachment that allows a custom network topology.

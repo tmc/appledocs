@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = vision.NewPoint
 
+// ExampleNewPointWithXY demonstrates how to create a Point instance using NewPointWithXY.
+// Creates a point object with the specified coordinates.
+func ExampleNewPointWithXY() {
+	_ = vision.NewPointWithXY(
+		0.0, // x float64
+		0.0, // y float64
+	)
+	// Output:
+}

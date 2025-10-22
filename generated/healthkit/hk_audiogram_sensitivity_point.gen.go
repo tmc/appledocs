@@ -30,6 +30,14 @@ type _HKAudiogramSensitivityPointClass struct {
 // An interface definition for the [HKAudiogramSensitivityPoint] class.
 type IHKAudiogramSensitivityPoint interface {
 	objectivec.IObject
+	Frequency() HKQuantity
+	SetFrequency(value IHKQuantity)
+	LeftEarSensitivity() HKQuantity
+	SetLeftEarSensitivity(value IHKQuantity)
+	RightEarSensitivity() HKQuantity
+	SetRightEarSensitivity(value IHKQuantity)
+	Tests() HKAudiogramSensitivityTest
+	SetTests(value IHKAudiogramSensitivityTest)
 }
 
 // A hearing sensitivity reading associated with a hearing test.

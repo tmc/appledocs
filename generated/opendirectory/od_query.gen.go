@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,10 +31,14 @@ type _ODQueryClass struct {
 // An interface definition for the [ODQuery] class.
 type IODQuery interface {
 	objectivec.IObject
-	RemoveFromRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string)
+	RemoveFromRunLoopForMode(inRunLoop foundation.IRunLoop, inMode string)
 	ResultsAllowingPartialError(inAllowPartialResults bool, outError unsafe.Pointer) foundation.Array
-	ScheduleInRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string)
+	ScheduleInRunLoopForMode(inRunLoop foundation.IRunLoop, inMode string)
 	Synchronize()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	OperationQueue() foundation.OperationQueue
+	SetOperationQueue(value foundation.IOperationQueue)
 }
 
 // An object serves as a Cocoa wrapper for an Open Directory query.
@@ -108,8 +111,8 @@ func (oc _ODQueryClass) QueryWithNodeForRecordTypesAttributeMatchTypeQueryValues
 // Removes the query from a specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/remove(from:forMode:)
-func (o_ ODQuery) RemoveFromRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("removeFromRunLoop:forMode:"), inRunLoop, inMode)
+func (o_ ODQuery) RemoveFromRunLoopForMode(inRunLoop foundation.IRunLoop, inMode string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeFromRunLoop:forMode:"), inRunLoop, objc.String(inMode))
 }
 
 // Returns results from a query synchronously.
@@ -123,8 +126,8 @@ func (o_ ODQuery) ResultsAllowingPartialError(inAllowPartialResults bool, outErr
 // Retrieves results from a query asynchronously by scheduling the query in a run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/schedule(in:forMode:)
-func (o_ ODQuery) ScheduleInRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("scheduleInRunLoop:forMode:"), inRunLoop, inMode)
+func (o_ ODQuery) ScheduleInRunLoopForMode(inRunLoop foundation.IRunLoop, inMode string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("scheduleInRunLoop:forMode:"), inRunLoop, objc.String(inMode))
 }
 
 // Restarts a query, disposing of any results it has obtained.

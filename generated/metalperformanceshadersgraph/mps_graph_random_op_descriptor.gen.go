@@ -29,6 +29,24 @@ type _GraphRandomOpDescriptorClass struct {
 // An interface definition for the [GraphRandomOpDescriptor] class.
 type IGraphRandomOpDescriptor interface {
 	IGraphObject
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
+	Distribution() GraphRandomDistribution
+	SetDistribution(value IGraphRandomDistribution)
+	Max() float32
+	SetMax(value float32)
+	MaxInteger() int
+	SetMaxInteger(value int)
+	Mean() float32
+	SetMean(value float32)
+	Min() float32
+	SetMin(value float32)
+	MinInteger() int
+	SetMinInteger(value int)
+	SamplingMethod() GraphRandomNormalSamplingMethod
+	SetSamplingMethod(value IGraphRandomNormalSamplingMethod)
+	StandardDeviation() float32
+	SetStandardDeviation(value float32)
 }
 
 // A class that describes the random operation.
@@ -118,8 +136,8 @@ func (g_ GraphRandomOpDescriptor) SetDistribution(value IGraphRandomDistribution
 // The upper range of the distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/max
-func (g_ GraphRandomOpDescriptor) Max() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("max"))
+func (g_ GraphRandomOpDescriptor) Max() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("max"))
 	return rv
 }
 
@@ -129,7 +147,7 @@ func (g_ GraphRandomOpDescriptor) Max() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/max
-func (g_ GraphRandomOpDescriptor) SetMax(value unsafe.Pointer) {
+func (g_ GraphRandomOpDescriptor) SetMax(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMax:"), value)
 }
 
@@ -154,8 +172,8 @@ func (g_ GraphRandomOpDescriptor) SetMaxInteger(value int) {
 // The mean of the distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/mean
-func (g_ GraphRandomOpDescriptor) Mean() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mean"))
+func (g_ GraphRandomOpDescriptor) Mean() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("mean"))
 	return rv
 }
 
@@ -165,15 +183,15 @@ func (g_ GraphRandomOpDescriptor) Mean() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/mean
-func (g_ GraphRandomOpDescriptor) SetMean(value unsafe.Pointer) {
+func (g_ GraphRandomOpDescriptor) SetMean(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMean:"), value)
 }
 
 // The lower range of the distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/min
-func (g_ GraphRandomOpDescriptor) Min() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("min"))
+func (g_ GraphRandomOpDescriptor) Min() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("min"))
 	return rv
 }
 
@@ -183,7 +201,7 @@ func (g_ GraphRandomOpDescriptor) Min() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/min
-func (g_ GraphRandomOpDescriptor) SetMin(value unsafe.Pointer) {
+func (g_ GraphRandomOpDescriptor) SetMin(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMin:"), value)
 }
 
@@ -226,8 +244,8 @@ func (g_ GraphRandomOpDescriptor) SetSamplingMethod(value IGraphRandomNormalSamp
 // The standard deviation of the distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/standarddeviation
-func (g_ GraphRandomOpDescriptor) StandardDeviation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("standardDeviation"))
+func (g_ GraphRandomOpDescriptor) StandardDeviation() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("standardDeviation"))
 	return rv
 }
 
@@ -237,7 +255,7 @@ func (g_ GraphRandomOpDescriptor) StandardDeviation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/standarddeviation
-func (g_ GraphRandomOpDescriptor) SetStandardDeviation(value unsafe.Pointer) {
+func (g_ GraphRandomOpDescriptor) SetStandardDeviation(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStandardDeviation:"), value)
 }
 

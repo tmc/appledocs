@@ -29,6 +29,7 @@ type _RecognizedObjectObservationClass struct {
 // An interface definition for the [RecognizedObjectObservation] class.
 type IRecognizedObjectObservation interface {
 	IDetectedObjectObservation
+	Labels() []ClassificationObservation
 }
 
 // A detected object observation with an array of classification labels that classify the recognized object.

@@ -31,6 +31,12 @@ type _MTRWaterHeaterManagementClusterBoostParamsClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterBoostParams] class.
 type IMTRWaterHeaterManagementClusterBoostParams interface {
 	objectivec.IObject
+	BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
+	SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

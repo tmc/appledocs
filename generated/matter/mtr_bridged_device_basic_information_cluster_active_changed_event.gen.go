@@ -31,6 +31,8 @@ type _MTRBridgedDeviceBasicInformationClusterActiveChangedEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterActiveChangedEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterActiveChangedEvent interface {
 	objectivec.IObject
+	PromisedActiveDuration() foundation.Number
+	SetPromisedActiveDuration(value foundation.INumber)
 }
 
 //

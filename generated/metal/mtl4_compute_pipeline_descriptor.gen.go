@@ -30,6 +30,20 @@ type _MTL4ComputePipelineDescriptorClass struct {
 // An interface definition for the [MTL4ComputePipelineDescriptor] class.
 type IMTL4ComputePipelineDescriptor interface {
 	IMTL4PipelineDescriptor
+	MaxTotalThreadsPerThreadgroup() uint
+	SetMaxTotalThreadsPerThreadgroup(value uint)
+	ComputeFunctionDescriptor() unsafe.Pointer
+	SetComputeFunctionDescriptor(value unsafe.Pointer)
+	RequiredThreadsPerThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerThreadgroup(value coregraphics.ISize)
+	StaticLinkingDescriptor() unsafe.Pointer
+	SetStaticLinkingDescriptor(value unsafe.Pointer)
+	SupportBinaryLinking() bool
+	SetSupportBinaryLinking(value bool)
+	SupportIndirectCommandBuffers() unsafe.Pointer
+	SetSupportIndirectCommandBuffers(value unsafe.Pointer)
+	ThreadGroupSizeIsMultipleOfThreadExecutionWidth() bool
+	SetThreadGroupSizeIsMultipleOfThreadExecutionWidth(value bool)
 }
 
 // Describes a compute pipeline state.

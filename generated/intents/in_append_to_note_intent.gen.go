@@ -29,6 +29,10 @@ type _INAppendToNoteIntentClass struct {
 // An interface definition for the [INAppendToNoteIntent] class.
 type IINAppendToNoteIntent interface {
 	IINIntent
+	Content() unsafe.Pointer
+	SetContent(value unsafe.Pointer)
+	TargetNote() unsafe.Pointer
+	SetTargetNote(value unsafe.Pointer)
 }
 
 // A request to append content to a note.

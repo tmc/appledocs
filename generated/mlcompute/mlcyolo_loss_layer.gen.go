@@ -29,6 +29,8 @@ type _CYOLOLossLayerClass struct {
 // An interface definition for the [CYOLOLossLayer] class.
 type ICYOLOLossLayer interface {
 	ICLossLayer
+	YoloLossDescriptor() unsafe.Pointer
+	SetYoloLossDescriptor(value unsafe.Pointer)
 }
 
 // A layer that estimates loss for the YOLO algorithm.

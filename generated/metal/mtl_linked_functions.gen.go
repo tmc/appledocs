@@ -30,6 +30,24 @@ type _LinkedFunctionsClass struct {
 // An interface definition for the [LinkedFunctions] class.
 type ILinkedFunctions interface {
 	objectivec.IObject
+	BinaryFunctions() []objc.ID
+	SetBinaryFunctions(value []objc.ID)
+	Functions() []objc.ID
+	SetFunctions(value []objc.ID)
+	Groups() unsafe.Pointer
+	SetGroups(value unsafe.Pointer)
+	PrivateFunctions() []objc.ID
+	SetPrivateFunctions(value []objc.ID)
+	BinaryArchives() unsafe.Pointer
+	SetBinaryArchives(value unsafe.Pointer)
+	ConstantValues() unsafe.Pointer
+	SetConstantValues(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	Options() FunctionOptions
+	SetOptions(value FunctionOptions)
+	SpecializedName() string
+	SetSpecializedName(value string)
 }
 
 // A set of related functions that Metal links to when necessary to create the function instance.
@@ -229,8 +247,8 @@ func (l_ LinkedFunctions) SetConstantValues(value unsafe.Pointer) {
 // The name of the function to fetch from the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
-func (l_ LinkedFunctions) Name() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("name"))
+func (l_ LinkedFunctions) Name() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -240,8 +258,8 @@ func (l_ LinkedFunctions) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
-func (l_ LinkedFunctions) SetName(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
+func (l_ LinkedFunctions) SetName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // Flags specifying how Metal should create the new function object.
@@ -265,8 +283,8 @@ func (l_ LinkedFunctions) SetOptions(value FunctionOptions) {
 // A new name for the created function object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
-func (l_ LinkedFunctions) SpecializedName() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("specializedName"))
+func (l_ LinkedFunctions) SpecializedName() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("specializedName"))
 	return rv
 }
 
@@ -276,8 +294,8 @@ func (l_ LinkedFunctions) SpecializedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
-func (l_ LinkedFunctions) SetSpecializedName(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setSpecializedName:"), value)
+func (l_ LinkedFunctions) SetSpecializedName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setSpecializedName:"), objc.String(value))
 }
 
 

@@ -30,6 +30,9 @@ type _PHAssetResourceUploadJobClass struct {
 // An interface definition for the [PHAssetResourceUploadJob] class.
 type IPHAssetResourceUploadJob interface {
 	IPHObject
+	Destination() foundation.URLRequest
+	Resource() PHAssetResource
+	State() PHAssetResourceUploadJobState
 }
 
 // Represents a request to upload a

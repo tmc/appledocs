@@ -31,6 +31,8 @@ type _MTRSwitchClusterSwitchLatchedEventClass struct {
 // An interface definition for the [MTRSwitchClusterSwitchLatchedEvent] class.
 type IMTRSwitchClusterSwitchLatchedEvent interface {
 	objectivec.IObject
+	NewPosition() foundation.Number
+	SetNewPosition(value foundation.INumber)
 }
 
 //

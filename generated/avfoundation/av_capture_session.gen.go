@@ -52,6 +52,49 @@ type ICaptureSession interface {
 	SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objectivec.IObject, deferredStartDelegateCallbackQueue unsafe.Pointer)
 	StartRunning()
 	StopRunning()
+	AutomaticallyConfiguresApplicationAudioSession() bool
+	SetAutomaticallyConfiguresApplicationAudioSession(value bool)
+	AutomaticallyConfiguresCaptureDeviceForWideColor() bool
+	SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool)
+	AutomaticallyRunsDeferredStart() bool
+	SetAutomaticallyRunsDeferredStart(value bool)
+	ConfiguresApplicationAudioSessionForBluetoothHighQualityRecording() bool
+	SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool)
+	ConfiguresApplicationAudioSessionToMixWithOthers() bool
+	SetConfiguresApplicationAudioSessionToMixWithOthers(value bool)
+	Connections() []CaptureConnection
+	Controls() []unsafe.Pointer
+	ControlsDelegate() objc.ID
+	ControlsDelegateCallbackQueue() unsafe.Pointer
+	DeferredStartDelegate() objc.ID
+	DeferredStartDelegateCallbackQueue() unsafe.Pointer
+	HardwareCost() float32
+	Inputs() []CaptureInput
+	Interrupted() bool
+	ManualDeferredStartSupported() bool
+	MultitaskingCameraAccessEnabled() bool
+	SetMultitaskingCameraAccessEnabled(value bool)
+	MultitaskingCameraAccessSupported() bool
+	Running() bool
+	MasterClock() unsafe.Pointer
+	MaxControlsCount() int
+	Outputs() []CaptureOutput
+	SessionPreset() CaptureSessionPreset
+	SetSessionPreset(value ICaptureSessionPreset)
+	SupportsControls() bool
+	SynchronizationClock() unsafe.Pointer
+	UsesApplicationAudioSession() bool
+	SetUsesApplicationAudioSession(value bool)
+	IsInterrupted() bool
+	SetIsInterrupted(value bool)
+	IsManualDeferredStartSupported() bool
+	SetIsManualDeferredStartSupported(value bool)
+	IsMultitaskingCameraAccessEnabled() bool
+	SetIsMultitaskingCameraAccessEnabled(value bool)
+	IsMultitaskingCameraAccessSupported() bool
+	SetIsMultitaskingCameraAccessSupported(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
 }
 
 // An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.

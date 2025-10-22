@@ -31,6 +31,10 @@ type _MTROvenCavityOperationalStateClusterStopParamsClass struct {
 // An interface definition for the [MTROvenCavityOperationalStateClusterStopParams] class.
 type IMTROvenCavityOperationalStateClusterStopParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

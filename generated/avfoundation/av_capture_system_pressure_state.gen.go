@@ -30,6 +30,13 @@ type _CaptureSystemPressureStateClass struct {
 // An interface definition for the [CaptureSystemPressureState] class.
 type ICaptureSystemPressureState interface {
 	objectivec.IObject
+	Factors() unsafe.Pointer
+	SetFactors(value unsafe.Pointer)
+	Level() unsafe.Pointer
+	SetLevel(value unsafe.Pointer)
+	SystemPressureState() AVCaptureSystemPressureState
+	SetSystemPressureState(value AVCaptureSystemPressureState)
+	AVCaptureSessionInterruptionSystemPressureStateKey() string
 }
 
 // An object that provides information about OS and hardware status affecting capture system performance and availability.

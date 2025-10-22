@@ -31,6 +31,24 @@ type _MTRMediaPlaybackClusterStateChangedEventClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterStateChangedEvent] class.
 type IMTRMediaPlaybackClusterStateChangedEvent interface {
 	objectivec.IObject
+	AudioAdvanceUnmuted() foundation.Number
+	SetAudioAdvanceUnmuted(value foundation.INumber)
+	CurrentState() foundation.Number
+	SetCurrentState(value foundation.INumber)
+	Data() foundation.NSData
+	SetData(value foundation.IData)
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	PlaybackSpeed() foundation.Number
+	SetPlaybackSpeed(value foundation.INumber)
+	SampledPosition() MTRMediaPlaybackClusterPlaybackPositionStruct
+	SetSampledPosition(value IMTRMediaPlaybackClusterPlaybackPositionStruct)
+	SeekRangeEnd() foundation.Number
+	SetSeekRangeEnd(value foundation.INumber)
+	SeekRangeStart() foundation.Number
+	SetSeekRangeStart(value foundation.INumber)
+	StartTime() foundation.Number
+	SetStartTime(value foundation.INumber)
 }
 
 //

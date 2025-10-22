@@ -30,6 +30,39 @@ type _AudioEnvironmentNodeClass struct {
 // An interface definition for the [AudioEnvironmentNode] class.
 type IAudioEnvironmentNode interface {
 	IAudioNode
+	ApplicableRenderingAlgorithms() []foundation.Number
+	ListenerHeadTrackingEnabled() bool
+	SetListenerHeadTrackingEnabled(value bool)
+	ListenerAngularOrientation() unsafe.Pointer
+	SetListenerAngularOrientation(value unsafe.Pointer)
+	DistanceAttenuationParameters() AVAudioEnvironmentDistanceAttenuationParameters
+	SetDistanceAttenuationParameters(value IAVAudioEnvironmentDistanceAttenuationParameters)
+	IsListenerHeadTrackingEnabled() bool
+	SetIsListenerHeadTrackingEnabled(value bool)
+	ListenerPosition() unsafe.Pointer
+	SetListenerPosition(value unsafe.Pointer)
+	ListenerVectorOrientation() unsafe.Pointer
+	SetListenerVectorOrientation(value unsafe.Pointer)
+	NextAvailableInputBus() AudioNodeBus
+	SetNextAvailableInputBus(value IAudioNodeBus)
+	OutputType() AudioEnvironmentOutputType
+	SetOutputType(value AudioEnvironmentOutputType)
+	OutputVolume() float32
+	SetOutputVolume(value float32)
+	ReverbParameters() AVAudioEnvironmentReverbParameters
+	SetReverbParameters(value IAVAudioEnvironmentReverbParameters)
+	KAudioChannelLayoutTag_AudioUnit_4() unsafe.Pointer
+	SetKAudioChannelLayoutTag_AudioUnit_4(value unsafe.Pointer)
+	KAudioChannelLayoutTag_AudioUnit_5_0() unsafe.Pointer
+	SetKAudioChannelLayoutTag_AudioUnit_5_0(value unsafe.Pointer)
+	KAudioChannelLayoutTag_AudioUnit_6_0() unsafe.Pointer
+	SetKAudioChannelLayoutTag_AudioUnit_6_0(value unsafe.Pointer)
+	KAudioChannelLayoutTag_AudioUnit_7_0() unsafe.Pointer
+	SetKAudioChannelLayoutTag_AudioUnit_7_0(value unsafe.Pointer)
+	KAudioChannelLayoutTag_AudioUnit_7_0_Front() unsafe.Pointer
+	SetKAudioChannelLayoutTag_AudioUnit_7_0_Front(value unsafe.Pointer)
+	KAudioChannelLayoutTag_AudioUnit_8() unsafe.Pointer
+	SetKAudioChannelLayoutTag_AudioUnit_8(value unsafe.Pointer)
 }
 
 // An object that simulates a 3D audio environment.
@@ -238,8 +271,8 @@ func (a_ AudioEnvironmentNode) SetOutputType(value AudioEnvironmentOutputType) {
 // The mixer’s output volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
-func (a_ AudioEnvironmentNode) OutputVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputVolume"))
+func (a_ AudioEnvironmentNode) OutputVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
 
@@ -249,7 +282,7 @@ func (a_ AudioEnvironmentNode) OutputVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
-func (a_ AudioEnvironmentNode) SetOutputVolume(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 

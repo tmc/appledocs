@@ -30,6 +30,27 @@ type _CanvasViewClass struct {
 // An interface definition for the [CanvasView] class.
 type ICanvasView interface {
 	appkit.IScrollView
+	AllowsFingerDrawing() bool
+	SetAllowsFingerDrawing(value bool)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Drawing() PKDrawing
+	SetDrawing(value IPKDrawing)
+	DrawingGestureRecognizer() appkit.GestureRecognizer
+	DrawingPolicy() CanvasViewDrawingPolicy
+	SetDrawingPolicy(value CanvasViewDrawingPolicy)
+	DrawingEnabled() bool
+	SetDrawingEnabled(value bool)
+	RulerActive() bool
+	SetRulerActive(value bool)
+	MaximumSupportedContentVersion() ContentVersion
+	SetMaximumSupportedContentVersion(value IContentVersion)
+	Tool() PKTool
+	SetTool(value IPKTool)
+	IsDrawingEnabled() bool
+	SetIsDrawingEnabled(value bool)
+	IsRulerActive() bool
+	SetIsRulerActive(value bool)
 }
 
 // A view that captures Apple Pencil input and displays the rendered results in an iOS app.

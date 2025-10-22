@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +32,43 @@ type _CapturePhotoClass struct {
 type ICapturePhoto interface {
 	objectivec.IObject
 	CGImageRepresentation() coregraphics.CGImageRef
-	FileDataRepresentation() foundation.Data
+	FileDataRepresentation() CaptureSynchronizedData
+	RawPhoto() bool
+	PixelBuffer() unsafe.Pointer
+	BracketSettings() unsafe.Pointer
+	SetBracketSettings(value unsafe.Pointer)
+	CameraCalibrationData() AVCameraCalibrationData
+	SetCameraCalibrationData(value IAVCameraCalibrationData)
+	ConstantColorCenterWeightedMeanConfidenceLevel() float32
+	SetConstantColorCenterWeightedMeanConfidenceLevel(value float32)
+	ConstantColorConfidenceMap() unsafe.Pointer
+	SetConstantColorConfidenceMap(value unsafe.Pointer)
+	DepthData() AVDepthData
+	SetDepthData(value IAVDepthData)
+	EmbeddedThumbnailPhotoFormat() string
+	SetEmbeddedThumbnailPhotoFormat(value string)
+	IsConstantColorFallbackPhoto() bool
+	SetIsConstantColorFallbackPhoto(value bool)
+	IsRawPhoto() bool
+	SetIsRawPhoto(value bool)
+	LensStabilizationStatus() unsafe.Pointer
+	SetLensStabilizationStatus(value unsafe.Pointer)
+	Metadata() string
+	SetMetadata(value string)
+	PhotoCount() int
+	SetPhotoCount(value int)
+	PortraitEffectsMatte() AVPortraitEffectsMatte
+	SetPortraitEffectsMatte(value IAVPortraitEffectsMatte)
+	PreviewPixelBuffer() unsafe.Pointer
+	SetPreviewPixelBuffer(value unsafe.Pointer)
+	ResolvedSettings() AVCaptureResolvedPhotoSettings
+	SetResolvedSettings(value IAVCaptureResolvedPhotoSettings)
+	SequenceCount() int
+	SetSequenceCount(value int)
+	SourceDeviceType() unsafe.Pointer
+	SetSourceDeviceType(value unsafe.Pointer)
+	Timestamp() unsafe.Pointer
+	SetTimestamp(value unsafe.Pointer)
 }
 
 // A container for image data from a photo capture output.
@@ -95,8 +130,8 @@ func (c_ CapturePhoto) CGImageRepresentation() coregraphics.CGImageRef {
 // Generates and returns a flat data representation of the photo and its attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()
-func (c_ CapturePhoto) FileDataRepresentation() foundation.Data {
-	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("fileDataRepresentation"))
+func (c_ CapturePhoto) FileDataRepresentation() CaptureSynchronizedData {
+	rv := objc.Send[CaptureSynchronizedData](c_.ID, objc.Sel("fileDataRepresentation"))
 	return rv
 }
 

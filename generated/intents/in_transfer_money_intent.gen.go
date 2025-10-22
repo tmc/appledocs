@@ -29,6 +29,15 @@ type _INTransferMoneyIntentClass struct {
 // An interface definition for the [INTransferMoneyIntent] class.
 type IINTransferMoneyIntent interface {
 	IINIntent
+	FromAccount() unsafe.Pointer
+	ToAccount() unsafe.Pointer
+	SetToAccount(value unsafe.Pointer)
+	TransactionAmount() unsafe.Pointer
+	SetTransactionAmount(value unsafe.Pointer)
+	TransactionNote() string
+	SetTransactionNote(value string)
+	TransactionScheduledDate() INDateComponentsRange
+	SetTransactionScheduledDate(value INDateComponentsRange)
 }
 
 // A request to transfer money between two accounts.
@@ -128,8 +137,8 @@ func (i_ INTransferMoneyIntent) SetTransactionAmount(value unsafe.Pointer) {
 // An optional note associated with the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionnote
-func (i_ INTransferMoneyIntent) TransactionNote() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("transactionNote"))
+func (i_ INTransferMoneyIntent) TransactionNote() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
 	return rv
 }
 
@@ -139,8 +148,8 @@ func (i_ INTransferMoneyIntent) TransactionNote() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionnote
-func (i_ INTransferMoneyIntent) SetTransactionNote(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), value)
+func (i_ INTransferMoneyIntent) SetTransactionNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
 }
 
 // The date on which to transfer the funds.

@@ -30,6 +30,14 @@ type _AudioEnvironmentDistanceAttenuationParametersClass struct {
 // An interface definition for the [AudioEnvironmentDistanceAttenuationParameters] class.
 type IAudioEnvironmentDistanceAttenuationParameters interface {
 	objectivec.IObject
+	DistanceAttenuationModel() unsafe.Pointer
+	SetDistanceAttenuationModel(value unsafe.Pointer)
+	MaximumDistance() float32
+	SetMaximumDistance(value float32)
+	ReferenceDistance() float32
+	SetReferenceDistance(value float32)
+	RolloffFactor() float32
+	SetRolloffFactor(value float32)
 }
 
 // An object that specifies the amount of attenuation distance, the gradual loss in audio intensity, and other characteristics.
@@ -99,8 +107,8 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetDistanceAttenuationMo
 // The distance beyond which the node applies no further attenuation, in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/maximumdistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("maximumDistance"))
+func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("maximumDistance"))
 	return rv
 }
 
@@ -110,15 +118,15 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/maximumdistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value unsafe.Pointer) {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumDistance:"), value)
 }
 
 // The minimum distance at which the node applies attenuation, in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/referencedistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("referenceDistance"))
+func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("referenceDistance"))
 	return rv
 }
 
@@ -128,15 +136,15 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/referencedistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(value unsafe.Pointer) {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReferenceDistance:"), value)
 }
 
 // A factor that determines the attenuation curve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
-func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rolloffFactor"))
+func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("rolloffFactor"))
 	return rv
 }
 
@@ -146,7 +154,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value unsafe.Pointer) {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRolloffFactor:"), value)
 }
 

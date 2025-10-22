@@ -31,6 +31,16 @@ type _MTRCommissionableBrowserResultClass struct {
 // An interface definition for the [MTRCommissionableBrowserResult] class.
 type IMTRCommissionableBrowserResult interface {
 	objectivec.IObject
+	CommissioningMode() bool
+	SetCommissioningMode(value bool)
+	Discriminator() foundation.Number
+	SetDiscriminator(value foundation.INumber)
+	InstanceName() string
+	SetInstanceName(value string)
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
 }
 
 //
@@ -108,8 +118,8 @@ func (m_ MTRCommissionableBrowserResult) SetDiscriminator(value foundation.INumb
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
-func (m_ MTRCommissionableBrowserResult) InstanceName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("instanceName"))
+func (m_ MTRCommissionableBrowserResult) InstanceName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("instanceName"))
 	return rv
 }
 
@@ -117,8 +127,8 @@ func (m_ MTRCommissionableBrowserResult) InstanceName() appkit.string {
 // SetInstanceName sets the value of the instanceName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
-func (m_ MTRCommissionableBrowserResult) SetInstanceName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceName:"), value)
+func (m_ MTRCommissionableBrowserResult) SetInstanceName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceName:"), objc.String(value))
 }
 
 //

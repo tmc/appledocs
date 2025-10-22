@@ -31,6 +31,50 @@ type _UserNotificationClass struct {
 // An interface definition for the [UserNotification] class.
 type IUserNotification interface {
 	objectivec.IObject
+	ActionButtonTitle() string
+	SetActionButtonTitle(value string)
+	ActivationType() UserNotificationActivationType
+	AdditionalActions() []UserNotificationAction
+	SetAdditionalActions(value []UserNotificationAction)
+	AdditionalActivationAction() NSUserNotificationAction
+	ContentImage() appkit.Image
+	SetContentImage(value appkit.IImage)
+	DeliveryDate() NSDate
+	SetDeliveryDate(value IDate)
+	InformativeText() string
+	SetInformativeText(value string)
+	Presented() bool
+	Remote() bool
+	OtherButtonTitle() string
+	SetOtherButtonTitle(value string)
+	Response() NSAttributedString
+	Title() string
+	SetTitle(value string)
+	ActualDeliveryDate() Date
+	SetActualDeliveryDate(value IDate)
+	DeliveryRepeatInterval() DateComponents
+	SetDeliveryRepeatInterval(value IDateComponents)
+	DeliveryTimeZone() TimeZone
+	SetDeliveryTimeZone(value ITimeZone)
+	HasActionButton() bool
+	SetHasActionButton(value bool)
+	HasReplyButton() bool
+	SetHasReplyButton(value bool)
+	Identifier() string
+	SetIdentifier(value string)
+	IsPresented() bool
+	SetIsPresented(value bool)
+	IsRemote() bool
+	SetIsRemote(value bool)
+	ResponsePlaceholder() string
+	SetResponsePlaceholder(value string)
+	SoundName() string
+	SetSoundName(value string)
+	Subtitle() string
+	SetSubtitle(value string)
+	UserInfo() string
+	SetUserInfo(value string)
+	NSUserNotificationDefaultSoundName() string
 }
 
 // A notification that can be scheduled for display in the notification center.

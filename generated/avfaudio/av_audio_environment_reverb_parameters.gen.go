@@ -30,6 +30,11 @@ type _AudioEnvironmentReverbParametersClass struct {
 // An interface definition for the [AudioEnvironmentReverbParameters] class.
 type IAudioEnvironmentReverbParameters interface {
 	objectivec.IObject
+	Enable() bool
+	SetEnable(value bool)
+	FilterParameters() unsafe.Pointer
+	Level() float32
+	SetLevel(value float32)
 }
 
 // A class that encapsulates the parameters that you use to control the reverb of the environment node class.
@@ -109,8 +114,8 @@ func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
 // Controls the amount of reverb, in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-func (a_ AudioEnvironmentReverbParameters) Level() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("level"))
+func (a_ AudioEnvironmentReverbParameters) Level() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("level"))
 	return rv
 }
 
@@ -120,7 +125,7 @@ func (a_ AudioEnvironmentReverbParameters) Level() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-func (a_ AudioEnvironmentReverbParameters) SetLevel(value unsafe.Pointer) {
+func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLevel:"), value)
 }
 

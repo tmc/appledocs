@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -33,6 +32,36 @@ type _INRideStatusClass struct {
 // An interface definition for the [INRideStatus] class.
 type IINRideStatus interface {
 	objectivec.IObject
+	CompletionStatus() unsafe.Pointer
+	SetCompletionStatus(value unsafe.Pointer)
+	Driver() unsafe.Pointer
+	SetDriver(value unsafe.Pointer)
+	Phase() INRidePhase
+	SetPhase(value INRidePhase)
+	RideIdentifier() string
+	SetRideIdentifier(value string)
+	RideOption() unsafe.Pointer
+	SetRideOption(value unsafe.Pointer)
+	UserActivityForCancelingInApplication() foundation.UserActivity
+	SetUserActivityForCancelingInApplication(value foundation.IUserActivity)
+	Vehicle() INRideVehicle
+	SetVehicle(value INRideVehicle)
+	AdditionalActionActivities() foundation.UserActivity
+	SetAdditionalActionActivities(value foundation.IUserActivity)
+	DropOffLocation() corelocation.Placemark
+	SetDropOffLocation(value corelocation.IPlacemark)
+	EstimatedDropOffDate() foundation.Date
+	SetEstimatedDropOffDate(value foundation.IDate)
+	EstimatedPickupDate() foundation.Date
+	SetEstimatedPickupDate(value foundation.IDate)
+	EstimatedPickupEndDate() foundation.Date
+	SetEstimatedPickupEndDate(value foundation.IDate)
+	PickupLocation() corelocation.Placemark
+	SetPickupLocation(value corelocation.IPlacemark)
+	ScheduledPickupTime() INDateComponentsRange
+	SetScheduledPickupTime(value INDateComponentsRange)
+	Waypoints() corelocation.Placemark
+	SetWaypoints(value corelocation.IPlacemark)
 }
 
 // The status of a ride booked through a ride-booking service.
@@ -140,8 +169,8 @@ func (i_ INRideStatus) SetPhase(value INRidePhase) {
 // The unique string that you use to identify the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
-func (i_ INRideStatus) RideIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INRideStatus) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 
@@ -151,8 +180,8 @@ func (i_ INRideStatus) RideIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
-func (i_ INRideStatus) SetRideIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), value)
+func (i_ INRideStatus) SetRideIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), objc.String(value))
 }
 
 // Information about the type of ride that you are offering to the user.

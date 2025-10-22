@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _CustomRoutingActionItemClass struct {
 // An interface definition for the [CustomRoutingActionItem] class.
 type ICustomRoutingActionItem interface {
 	objectivec.IObject
+	OverrideTitle() string
+	SetOverrideTitle(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 }
 
 // An object that represents a custom action item to display in a device route picker.
@@ -84,8 +87,8 @@ func NewCustomRoutingActionItem() CustomRoutingActionItem {
 // A string to use to override the title of the item’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) OverrideTitle() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("overrideTitle"))
+func (c_ CustomRoutingActionItem) OverrideTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("overrideTitle"))
 	return rv
 }
 
@@ -95,8 +98,8 @@ func (c_ CustomRoutingActionItem) OverrideTitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) SetOverrideTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), value)
+func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
 }
 
 // A type with an identifier that matches a value in the app’s configuration.

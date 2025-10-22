@@ -86,7 +86,7 @@ func NewRidgedNoiseSource() RidgedNoiseSource {
 // Initializes a ridged noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/init(frequency:octaveCount:lacunarity:seed:)
-func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency unsafe.Pointer, octaveCount int, lacunarity unsafe.Pointer, seed unsafe.Pointer) RidgedNoiseSource {
+func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64, octaveCount int, lacunarity float64, seed unsafe.Pointer) RidgedNoiseSource {
 	instance := getRidgedNoiseSourceClass().Alloc()
 	rv := objc.Send[RidgedNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:lacunarity:seed:"), frequency, octaveCount, lacunarity, seed)
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency unsafe
 // Creates a ridged noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:
-func (rc _RidgedNoiseSourceClass) RidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency unsafe.Pointer, octaveCount int, lacunarity unsafe.Pointer, seed unsafe.Pointer) unsafe.Pointer {
+func (rc _RidgedNoiseSourceClass) RidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64, octaveCount int, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:"), frequency, octaveCount, lacunarity, seed)
 	return rv
 }

@@ -31,6 +31,8 @@ type _PHLivePhotoClass struct {
 // An interface definition for the [PHLivePhoto] class.
 type IPHLivePhoto interface {
 	objectivec.IObject
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
 }
 
 // A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture.

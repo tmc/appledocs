@@ -30,6 +30,8 @@ type _FSItemSetAttributesRequestClass struct {
 type IFSItemSetAttributesRequest interface {
 	IFSItemAttributes
 	WasAttributeConsumed(attribute FSItemAttribute) bool
+	ConsumedAttributes() FSItemAttribute
+	SetConsumedAttributes(value FSItemAttribute)
 }
 
 // A request to set attributes on an item.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,9 +35,14 @@ type IAMWorkflow interface {
 	InsertActionAtIndex(action IAMAction, index uint)
 	MoveActionAtIndexToIndex(startIndex uint, endIndex uint)
 	RemoveAction(action IAMAction)
-	SetValueForVariableWithName(value objectivec.IObject, variableName appkit.string) bool
-	ValueForVariableWithName(variableName appkit.string) objc.ID
+	SetValueForVariableWithName(value objectivec.IObject, variableName string) bool
+	ValueForVariableWithName(variableName string) objc.ID
 	WriteToURLError(fileURL foundation.IURL, outError unsafe.Pointer) bool
+	Actions() []AMAction
+	FileURL() foundation.URL
+	Input() objc.ID
+	SetInput(value objc.ID)
+	Output() objc.ID
 }
 
 // An object that lets you use an Automator workflow in your app.
@@ -141,16 +145,16 @@ func (a_ AMWorkflow) RemoveAction(action IAMAction) {
 // Sets the value of the workflow variable with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/setValue(_:forVariableWithName:)
-func (a_ AMWorkflow) SetValueForVariableWithName(value objectivec.IObject, variableName appkit.string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forVariableWithName:"), value, variableName)
+func (a_ AMWorkflow) SetValueForVariableWithName(value objectivec.IObject, variableName string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forVariableWithName:"), value, objc.String(variableName))
 	return rv
 }
 
 // Returns the value of the workflow variable with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/valueForVariable(withName:)
-func (a_ AMWorkflow) ValueForVariableWithName(variableName appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForVariableWithName:"), variableName)
+func (a_ AMWorkflow) ValueForVariableWithName(variableName string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForVariableWithName:"), objc.String(variableName))
 	return rv
 }
 

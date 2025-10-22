@@ -29,6 +29,10 @@ type _VZVirtioNetworkDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioNetworkDeviceConfiguration] class.
 type IVZVirtioNetworkDeviceConfiguration interface {
 	IVZNetworkDeviceConfiguration
+	Attachment() VZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	NetworkDevices() VZNetworkDeviceConfiguration
+	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
 }
 
 // A configuration object that requests the creation of a network device for the guest system.

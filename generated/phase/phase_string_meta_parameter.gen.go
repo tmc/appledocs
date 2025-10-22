@@ -29,6 +29,10 @@ type _PHASEStringMetaParameterClass struct {
 // An interface definition for the [PHASEStringMetaParameter] class.
 type IPHASEStringMetaParameter interface {
 	IPHASEMetaParameter
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
+	MetaParameters() PHASEMetaParameter
+	SetMetaParameters(value IPHASEMetaParameter)
 }
 
 // A metaparameter with a text definition that can change over time.

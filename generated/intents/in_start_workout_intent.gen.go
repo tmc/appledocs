@@ -30,6 +30,14 @@ type _INStartWorkoutIntentClass struct {
 // An interface definition for the [INStartWorkoutIntent] class.
 type IINStartWorkoutIntent interface {
 	IINIntent
+	WorkoutGoalUnitType() unsafe.Pointer
+	WorkoutName() INSpeakableString
+	GoalValue() float64
+	SetGoalValue(value float64)
+	IsOpenEnded() bool
+	SetIsOpenEnded(value bool)
+	WorkoutLocationType() unsafe.Pointer
+	SetWorkoutLocationType(value unsafe.Pointer)
 }
 
 // A request to start a workout for the user.
@@ -114,8 +122,8 @@ func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
 // The user-supplied numerical goal of the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/goalvalue-5oazy
-func (i_ INStartWorkoutIntent) GoalValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("goalValue"))
+func (i_ INStartWorkoutIntent) GoalValue() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("goalValue"))
 	return rv
 }
 
@@ -125,7 +133,7 @@ func (i_ INStartWorkoutIntent) GoalValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/goalvalue-5oazy
-func (i_ INStartWorkoutIntent) SetGoalValue(value unsafe.Pointer) {
+func (i_ INStartWorkoutIntent) SetGoalValue(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGoalValue:"), value)
 }
 

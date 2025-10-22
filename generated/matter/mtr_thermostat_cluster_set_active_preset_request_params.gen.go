@@ -31,6 +31,12 @@ type _MTRThermostatClusterSetActivePresetRequestParamsClass struct {
 // An interface definition for the [MTRThermostatClusterSetActivePresetRequestParams] class.
 type IMTRThermostatClusterSetActivePresetRequestParams interface {
 	objectivec.IObject
+	PresetHandle() foundation.NSData
+	SetPresetHandle(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

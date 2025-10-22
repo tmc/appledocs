@@ -29,6 +29,9 @@ type _BatchUpdateResultClass struct {
 // An interface definition for the [BatchUpdateResult] class.
 type IBatchUpdateResult interface {
 	IPersistentStoreResult
+	ResultType() unsafe.Pointer
+	Result() unsafe.Pointer
+	SetResult(value unsafe.Pointer)
 }
 
 // The result returned when executing a batch update request.

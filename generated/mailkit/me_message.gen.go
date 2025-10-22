@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,25 @@ type _MEMessageClass struct {
 // An interface definition for the [MEMessage] class.
 type IMEMessage interface {
 	objectivec.IObject
+	AllRecipientAddresses() []MEEmailAddress
+	DateReceived() foundation.NSDate
+	EncryptionState() MEMessageEncryptionState
+	Headers() unsafe.Pointer
+	Subject() string
+	BccAddresses() MEEmailAddress
+	SetBccAddresses(value IMEEmailAddress)
+	CcAddresses() MEEmailAddress
+	SetCcAddresses(value IMEEmailAddress)
+	FromAddress() MEEmailAddress
+	SetFromAddress(value IMEEmailAddress)
+	RawData() foundation.Data
+	SetRawData(value foundation.IData)
+	ReplyToAddresses() MEEmailAddress
+	SetReplyToAddresses(value IMEEmailAddress)
+	State() MEMessageState
+	SetState(value MEMessageState)
+	ToAddresses() MEEmailAddress
+	SetToAddresses(value IMEEmailAddress)
 }
 
 // An object that contains information about a mail message, such as the subject, addressees, date sent, and the message contents.
@@ -114,8 +132,8 @@ func (m_ MEMessage) Headers() unsafe.Pointer {
 // The subject of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/subject
-func (m_ MEMessage) Subject() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subject"))
+func (m_ MEMessage) Subject() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subject"))
 	return rv
 }
 

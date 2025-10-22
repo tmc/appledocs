@@ -21,7 +21,7 @@ var (
 	_hv_vcpu_apic_ctrl func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_apic_get_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_apic_lsc_enter_imm32 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vcpu_apic_lsc_enter_r32 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vcpu_apic_lsc_enter_r32 func(unsafe.Pointer, bool, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_apic_lsc_invalidate func(unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_apic_put_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_apic_read func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -31,10 +31,10 @@ var (
 	_hv_vcpu_destroy func(unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_exit_apic_access_read func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_exit_info func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vcpu_exit_init_ap func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vcpu_exit_init_ap func(unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_exit_inject_excp func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_exit_ioapic_eoi func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vcpu_exit_startup_ap func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vcpu_exit_startup_ap func(unsafe.Pointer, bool, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_get_exec_time func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_get_idle_time func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_get_pending_interrupt func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -48,25 +48,25 @@ var (
 	_hv_vcpu_inject_extint func(unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_run func(unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_run_until func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vcpu_set_pending_interrupt func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vcpu_set_pending_interrupt func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_hv_vcpu_set_sme_p_reg func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_set_sme_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_set_sme_z_reg func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_set_sme_za_reg func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_set_sme_zt0_reg func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_set_tsc_relative func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vcpu_set_vtimer_mask func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vcpu_set_vtimer_mask func(unsafe.Pointer, bool) unsafe.Pointer
 	_hv_vcpu_set_vtimer_offset func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpu_vmx_status func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vcpus_exit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_add_pio_notifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_allocate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vm_atpic_assert_irq func(unsafe.Pointer) unsafe.Pointer
-	_hv_vm_atpic_deassert_irq func(unsafe.Pointer) unsafe.Pointer
-	_hv_vm_atpic_get_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vm_atpic_port_read func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vm_atpic_port_write func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_hv_vm_atpic_put_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vm_atpic_assert_irq func(int) unsafe.Pointer
+	_hv_vm_atpic_deassert_irq func(int) unsafe.Pointer
+	_hv_vm_atpic_get_state func(unsafe.Pointer, bool) unsafe.Pointer
+	_hv_vm_atpic_port_read func(int, unsafe.Pointer) unsafe.Pointer
+	_hv_vm_atpic_port_write func(int, unsafe.Pointer) unsafe.Pointer
+	_hv_vm_atpic_put_state func(unsafe.Pointer, bool) unsafe.Pointer
 	_hv_vm_config_create func() unsafe.Pointer
 	_hv_vm_config_get_default_ipa_granule func(unsafe.Pointer) unsafe.Pointer
 	_hv_vm_config_get_default_ipa_size func(unsafe.Pointer) unsafe.Pointer
@@ -75,17 +75,17 @@ var (
 	_hv_vm_config_get_ipa_granule func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_config_get_ipa_size func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_config_get_max_ipa_size func(unsafe.Pointer) unsafe.Pointer
-	_hv_vm_config_set_el2_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_hv_vm_config_set_el2_enabled func(unsafe.Pointer, bool) unsafe.Pointer
 	_hv_vm_config_set_ipa_granule func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_config_set_ipa_size func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_create func(unsafe.Pointer) unsafe.Pointer
 	_hv_vm_deallocate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_destroy func() unsafe.Pointer
 	_hv_vm_get_max_vcpu_count func(unsafe.Pointer) unsafe.Pointer
-	_hv_vm_ioapic_assert_irq func(unsafe.Pointer) unsafe.Pointer
-	_hv_vm_ioapic_deassert_irq func(unsafe.Pointer) unsafe.Pointer
+	_hv_vm_ioapic_assert_irq func(int) unsafe.Pointer
+	_hv_vm_ioapic_deassert_irq func(int) unsafe.Pointer
 	_hv_vm_ioapic_get_state func(unsafe.Pointer) unsafe.Pointer
-	_hv_vm_ioapic_pulse_irq func(unsafe.Pointer) unsafe.Pointer
+	_hv_vm_ioapic_pulse_irq func(int) unsafe.Pointer
 	_hv_vm_ioapic_put_state func(unsafe.Pointer) unsafe.Pointer
 	_hv_vm_ioapic_read func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_hv_vm_ioapic_write func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -279,7 +279,7 @@ func hv_vcpu_apic_lsc_enter_imm32(vcpu unsafe.Pointer, rip unsafe.Pointer, ilen 
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_lsc_enter_r32(_:_:_:_:_:_:_:_:)
-func hv_vcpu_apic_lsc_enter_r32(vcpu unsafe.Pointer, is_load unsafe.Pointer, rip unsafe.Pointer, ilen unsafe.Pointer, cs unsafe.Pointer, reg unsafe.Pointer, uva unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func hv_vcpu_apic_lsc_enter_r32(vcpu unsafe.Pointer, is_load bool, rip unsafe.Pointer, ilen unsafe.Pointer, cs unsafe.Pointer, reg unsafe.Pointer, uva unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
 	return _hv_vcpu_apic_lsc_enter_r32(vcpu, is_load, rip, ilen, cs, reg, uva, count)
 	}
 
@@ -379,7 +379,7 @@ func hv_vcpu_exit_info(vcpu unsafe.Pointer, code unsafe.Pointer) unsafe.Pointer 
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_init_ap(_:_:_:)
-func hv_vcpu_exit_init_ap(vcpu unsafe.Pointer, is_actv unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func hv_vcpu_exit_init_ap(vcpu unsafe.Pointer, is_actv bool, count unsafe.Pointer) unsafe.Pointer {
 	return _hv_vcpu_exit_init_ap(vcpu, is_actv, count)
 	}
 
@@ -409,7 +409,7 @@ func hv_vcpu_exit_ioapic_eoi(vcpu unsafe.Pointer, vec unsafe.Pointer) unsafe.Poi
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_startup_ap(_:_:_:_:)
-func hv_vcpu_exit_startup_ap(vcpu unsafe.Pointer, is_actv unsafe.Pointer, count unsafe.Pointer, ap_rip unsafe.Pointer) unsafe.Pointer {
+func hv_vcpu_exit_startup_ap(vcpu unsafe.Pointer, is_actv bool, count unsafe.Pointer, ap_rip unsafe.Pointer) unsafe.Pointer {
 	return _hv_vcpu_exit_startup_ap(vcpu, is_actv, count, ap_rip)
 	}
 
@@ -549,7 +549,7 @@ func hv_vcpu_run_until(vcpu unsafe.Pointer, deadline unsafe.Pointer) unsafe.Poin
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_pending_interrupt(_:_:_:)
-func hv_vcpu_set_pending_interrupt(vcpu unsafe.Pointer, type_ unsafe.Pointer, pending unsafe.Pointer) unsafe.Pointer {
+func hv_vcpu_set_pending_interrupt(vcpu unsafe.Pointer, type_ unsafe.Pointer, pending bool) unsafe.Pointer {
 	return _hv_vcpu_set_pending_interrupt(vcpu, type_, pending)
 	}
 
@@ -619,7 +619,7 @@ func hv_vcpu_set_tsc_relative(vcpu unsafe.Pointer, offset unsafe.Pointer) unsafe
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_vtimer_mask(_:_:)
-func hv_vcpu_set_vtimer_mask(vcpu unsafe.Pointer, vtimer_is_masked unsafe.Pointer) unsafe.Pointer {
+func hv_vcpu_set_vtimer_mask(vcpu unsafe.Pointer, vtimer_is_masked bool) unsafe.Pointer {
 	return _hv_vcpu_set_vtimer_mask(vcpu, vtimer_is_masked)
 	}
 
@@ -679,7 +679,7 @@ func hv_vm_allocate(uvap unsafe.Pointer, size unsafe.Pointer, flags unsafe.Point
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_assert_irq(_:)
-func hv_vm_atpic_assert_irq(irq unsafe.Pointer) unsafe.Pointer {
+func hv_vm_atpic_assert_irq(irq int) unsafe.Pointer {
 	return _hv_vm_atpic_assert_irq(irq)
 	}
 
@@ -689,7 +689,7 @@ func hv_vm_atpic_assert_irq(irq unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_deassert_irq(_:)
-func hv_vm_atpic_deassert_irq(irq unsafe.Pointer) unsafe.Pointer {
+func hv_vm_atpic_deassert_irq(irq int) unsafe.Pointer {
 	return _hv_vm_atpic_deassert_irq(irq)
 	}
 
@@ -699,7 +699,7 @@ func hv_vm_atpic_deassert_irq(irq unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_get_state(_:_:)
-func hv_vm_atpic_get_state(state unsafe.Pointer, is_primary unsafe.Pointer) unsafe.Pointer {
+func hv_vm_atpic_get_state(state unsafe.Pointer, is_primary bool) unsafe.Pointer {
 	return _hv_vm_atpic_get_state(state, is_primary)
 	}
 
@@ -707,7 +707,7 @@ func hv_vm_atpic_get_state(state unsafe.Pointer, is_primary unsafe.Pointer) unsa
 // hv_vm_atpic_port_read is a Hypervisor function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_port_read(_:_:)
-func hv_vm_atpic_port_read(port unsafe.Pointer, valuep unsafe.Pointer) unsafe.Pointer {
+func hv_vm_atpic_port_read(port int, valuep unsafe.Pointer) unsafe.Pointer {
 	return _hv_vm_atpic_port_read(port, valuep)
 	}
 
@@ -715,7 +715,7 @@ func hv_vm_atpic_port_read(port unsafe.Pointer, valuep unsafe.Pointer) unsafe.Po
 // hv_vm_atpic_port_write is a Hypervisor function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_port_write(_:_:)
-func hv_vm_atpic_port_write(port unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func hv_vm_atpic_port_write(port int, value unsafe.Pointer) unsafe.Pointer {
 	return _hv_vm_atpic_port_write(port, value)
 	}
 
@@ -725,7 +725,7 @@ func hv_vm_atpic_port_write(port unsafe.Pointer, value unsafe.Pointer) unsafe.Po
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_put_state(_:_:)
-func hv_vm_atpic_put_state(state unsafe.Pointer, is_primary unsafe.Pointer) unsafe.Pointer {
+func hv_vm_atpic_put_state(state unsafe.Pointer, is_primary bool) unsafe.Pointer {
 	return _hv_vm_atpic_put_state(state, is_primary)
 	}
 
@@ -815,7 +815,7 @@ func hv_vm_config_get_max_ipa_size(ipa_bit_length unsafe.Pointer) unsafe.Pointer
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_set_el2_enabled(_:_:)
-func hv_vm_config_set_el2_enabled(config unsafe.Pointer, el2_enabled unsafe.Pointer) unsafe.Pointer {
+func hv_vm_config_set_el2_enabled(config unsafe.Pointer, el2_enabled bool) unsafe.Pointer {
 	return _hv_vm_config_set_el2_enabled(config, el2_enabled)
 	}
 
@@ -885,7 +885,7 @@ func hv_vm_get_max_vcpu_count(max_vcpu_count unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_assert_irq(_:)
-func hv_vm_ioapic_assert_irq(intin unsafe.Pointer) unsafe.Pointer {
+func hv_vm_ioapic_assert_irq(intin int) unsafe.Pointer {
 	return _hv_vm_ioapic_assert_irq(intin)
 	}
 
@@ -895,7 +895,7 @@ func hv_vm_ioapic_assert_irq(intin unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_deassert_irq(_:)
-func hv_vm_ioapic_deassert_irq(intin unsafe.Pointer) unsafe.Pointer {
+func hv_vm_ioapic_deassert_irq(intin int) unsafe.Pointer {
 	return _hv_vm_ioapic_deassert_irq(intin)
 	}
 
@@ -915,7 +915,7 @@ func hv_vm_ioapic_get_state(state unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_pulse_irq(_:)
-func hv_vm_ioapic_pulse_irq(intin unsafe.Pointer) unsafe.Pointer {
+func hv_vm_ioapic_pulse_irq(intin int) unsafe.Pointer {
 	return _hv_vm_ioapic_pulse_irq(intin)
 	}
 

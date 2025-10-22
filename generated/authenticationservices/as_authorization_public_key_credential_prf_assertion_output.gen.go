@@ -31,6 +31,7 @@ type _AuthorizationPublicKeyCredentialPRFAssertionOutputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFAssertionOutput] class.
 type IAuthorizationPublicKeyCredentialPRFAssertionOutput interface {
 	objectivec.IObject
+	First() foundation.NSData
 }
 
 //

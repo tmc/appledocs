@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AMShellScriptAction] class.
@@ -30,6 +29,9 @@ type _AMShellScriptActionClass struct {
 // An interface definition for the [AMShellScriptAction] class.
 type IAMShellScriptAction interface {
 	IAMBundleAction
+	InputFieldSeparator() string
+	OutputFieldSeparator() string
+	RemapLineEndings() bool
 }
 
 // An object that represents Automator actions whose runtime behavior is driven by a shell script or by a Perl or Python script.
@@ -85,16 +87,16 @@ func NewAMShellScriptAction() AMShellScriptAction {
 // A string to use as the delimiter between items in the string passed to the action through standard input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/inputFieldSeparator
-func (a_ AMShellScriptAction) InputFieldSeparator() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("inputFieldSeparator"))
+func (a_ AMShellScriptAction) InputFieldSeparator() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("inputFieldSeparator"))
 	return rv
 }
 
 // A string to use as a delimiter in the string output by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMShellScriptAction/outputFieldSeparator
-func (a_ AMShellScriptAction) OutputFieldSeparator() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("outputFieldSeparator"))
+func (a_ AMShellScriptAction) OutputFieldSeparator() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("outputFieldSeparator"))
 	return rv
 }
 

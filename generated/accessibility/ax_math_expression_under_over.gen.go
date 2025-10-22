@@ -29,6 +29,11 @@ type _AXMathExpressionUnderOverClass struct {
 // An interface definition for the [AXMathExpressionUnderOver] class.
 type IAXMathExpressionUnderOver interface {
 	IAXMathExpression
+	UnderExpression() AXMathExpression
+	BaseExpression() AXMathExpression
+	SetBaseExpression(value IAXMathExpression)
+	OverExpression() AXMathExpression
+	SetOverExpression(value IAXMathExpression)
 }
 
 //

@@ -31,6 +31,20 @@ type _MTRThreadOperationalDatasetClass struct {
 // An interface definition for the [MTRThreadOperationalDataset] class.
 type IMTRThreadOperationalDataset interface {
 	objectivec.IObject
+	Channel() unsafe.Pointer
+	SetChannel(value unsafe.Pointer)
+	ChannelNumber() foundation.Number
+	SetChannelNumber(value foundation.INumber)
+	ExtendedPANID() foundation.Data
+	SetExtendedPANID(value foundation.IData)
+	MasterKey() foundation.Data
+	SetMasterKey(value foundation.IData)
+	NetworkName() string
+	SetNetworkName(value string)
+	PanID() foundation.Data
+	SetPanID(value foundation.IData)
+	PsKc() foundation.Data
+	SetPsKc(value foundation.IData)
 }
 
 //
@@ -138,8 +152,8 @@ func (m_ MTRThreadOperationalDataset) SetMasterKey(value foundation.IData) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/networkname
-func (m_ MTRThreadOperationalDataset) NetworkName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRThreadOperationalDataset) NetworkName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -147,8 +161,8 @@ func (m_ MTRThreadOperationalDataset) NetworkName() appkit.string {
 // SetNetworkName sets the value of the networkName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/networkname
-func (m_ MTRThreadOperationalDataset) SetNetworkName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
+func (m_ MTRThreadOperationalDataset) SetNetworkName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }
 
 //

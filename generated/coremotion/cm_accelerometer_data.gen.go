@@ -29,6 +29,11 @@ type _AccelerometerDataClass struct {
 // An interface definition for the [AccelerometerData] class.
 type IAccelerometerData interface {
 	ILogItem
+	Acceleration() unsafe.Pointer
+	Timestamp() unsafe.Pointer
+	SetTimestamp(value unsafe.Pointer)
+	AccelerometerData() CMAccelerometerData
+	SetAccelerometerData(value ICMAccelerometerData)
 }
 
 // A data sample from the device’s three accelerometers.

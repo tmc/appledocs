@@ -45,6 +45,10 @@ type IDecimalNumber interface {
 	DecimalNumberByRoundingAccordingToBehavior(behavior objectivec.IObject) DecimalNumber
 	DecimalNumberBySubtracting(decimalNumber IDecimalNumber) DecimalNumber
 	DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) DecimalNumber
+	DecimalValue() unsafe.Pointer
+	DoubleValue() float64
+	ObjCType() unsafe.Pointer
+	SetObjCType(value unsafe.Pointer)
 }
 
 // An object for representing and performing arithmetic on base-10 numbers.

@@ -31,6 +31,36 @@ type _MTRDeviceControllerStartupParamsClass struct {
 // An interface definition for the [MTRDeviceControllerStartupParams] class.
 type IMTRDeviceControllerStartupParams interface {
 	objectivec.IObject
+	CaseAuthenticatedTags() foundation.Number
+	SetCaseAuthenticatedTags(value foundation.INumber)
+	FabricID() foundation.Number
+	SetFabricID(value foundation.INumber)
+	FabricId() uint64
+	SetFabricId(value uint64)
+	IntermediateCertificate() foundation.Data
+	SetIntermediateCertificate(value foundation.IData)
+	Ipk() foundation.Data
+	SetIpk(value foundation.IData)
+	NocSigner() unsafe.Pointer
+	SetNocSigner(value unsafe.Pointer)
+	NodeID() foundation.Number
+	SetNodeID(value foundation.INumber)
+	NodeId() foundation.Number
+	SetNodeId(value foundation.INumber)
+	OperationalCertificate() foundation.Data
+	SetOperationalCertificate(value foundation.IData)
+	OperationalCertificateIssuer() unsafe.Pointer
+	SetOperationalCertificateIssuer(value unsafe.Pointer)
+	OperationalCertificateIssuerQueue() unsafe.Pointer
+	SetOperationalCertificateIssuerQueue(value unsafe.Pointer)
+	OperationalKeypair() unsafe.Pointer
+	SetOperationalKeypair(value unsafe.Pointer)
+	RootCertificate() foundation.Data
+	SetRootCertificate(value foundation.IData)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
+	VendorId() foundation.Number
+	SetVendorId(value foundation.INumber)
 }
 
 //

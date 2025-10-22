@@ -29,6 +29,8 @@ type _LinearCongruentialRandomSourceClass struct {
 // An interface definition for the [LinearCongruentialRandomSource] class.
 type ILinearCongruentialRandomSource interface {
 	IRandomSource
+	Seed() uint64
+	SetSeed(value uint64)
 }
 
 // A basic random number generator implementing the linear congruential generator algorithm, which is faster but less random than the default random source.

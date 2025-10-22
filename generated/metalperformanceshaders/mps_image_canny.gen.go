@@ -29,6 +29,15 @@ type _ImageCannyClass struct {
 // An interface definition for the [ImageCanny] class.
 type IImageCanny interface {
 	IUnaryImageKernel
+	Sigma() float32
+	UseFastMode() bool
+	SetUseFastMode(value bool)
+	ColorTransform() float32
+	SetColorTransform(value float32)
+	HighThreshold() float32
+	SetHighThreshold(value float32)
+	LowThreshold() float32
+	SetLowThreshold(value float32)
 }
 
 //
@@ -78,8 +87,8 @@ func NewImageCanny() ImageCanny {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageCanny/sigma
-func (i_ ImageCanny) Sigma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sigma"))
+func (i_ ImageCanny) Sigma() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("sigma"))
 	return rv
 }
 
@@ -100,8 +109,8 @@ func (i_ ImageCanny) SetUseFastMode(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny/colortransform
-func (i_ ImageCanny) ColorTransform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("colorTransform"))
+func (i_ ImageCanny) ColorTransform() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("colorTransform"))
 	return rv
 }
 
@@ -109,14 +118,14 @@ func (i_ ImageCanny) ColorTransform() unsafe.Pointer {
 // SetColorTransform sets the value of the colorTransform property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny/colortransform
-func (i_ ImageCanny) SetColorTransform(value unsafe.Pointer) {
+func (i_ ImageCanny) SetColorTransform(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setColorTransform:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny/highthreshold
-func (i_ ImageCanny) HighThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("highThreshold"))
+func (i_ ImageCanny) HighThreshold() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("highThreshold"))
 	return rv
 }
 
@@ -124,14 +133,14 @@ func (i_ ImageCanny) HighThreshold() unsafe.Pointer {
 // SetHighThreshold sets the value of the highThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny/highthreshold
-func (i_ ImageCanny) SetHighThreshold(value unsafe.Pointer) {
+func (i_ ImageCanny) SetHighThreshold(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHighThreshold:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny/lowthreshold
-func (i_ ImageCanny) LowThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("lowThreshold"))
+func (i_ ImageCanny) LowThreshold() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("lowThreshold"))
 	return rv
 }
 
@@ -139,7 +148,7 @@ func (i_ ImageCanny) LowThreshold() unsafe.Pointer {
 // SetLowThreshold sets the value of the lowThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny/lowthreshold
-func (i_ ImageCanny) SetLowThreshold(value unsafe.Pointer) {
+func (i_ ImageCanny) SetLowThreshold(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLowThreshold:"), value)
 }
 

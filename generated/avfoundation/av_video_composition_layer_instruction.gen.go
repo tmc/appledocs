@@ -30,6 +30,8 @@ type _VideoCompositionLayerInstructionClass struct {
 // An interface definition for the [VideoCompositionLayerInstruction] class.
 type IVideoCompositionLayerInstruction interface {
 	objectivec.IObject
+	TrackID() unsafe.Pointer
+	SetTrackID(value unsafe.Pointer)
 }
 
 // An object used to modify the transform, cropping, and opacity ramps applied to a given track in a composition.

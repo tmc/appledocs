@@ -30,6 +30,10 @@ type _RoutingPlaybackArbiterClass struct {
 // An interface definition for the [RoutingPlaybackArbiter] class.
 type IRoutingPlaybackArbiter interface {
 	objectivec.IObject
+	PreferredParticipantForExternalPlayback() objc.ID
+	SetPreferredParticipantForExternalPlayback(value objc.ID)
+	PreferredParticipantForNonMixableAudioRoutes() objc.ID
+	SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID)
 }
 
 // An object that manages playback routing preferences.

@@ -29,6 +29,7 @@ type _VZSingleDirectoryShareClass struct {
 // An interface definition for the [VZSingleDirectoryShare] class.
 type IVZSingleDirectoryShare interface {
 	IVZDirectoryShare
+	Directory() VZSharedDirectory
 }
 
 // An object that defines the directory share for a single directory.

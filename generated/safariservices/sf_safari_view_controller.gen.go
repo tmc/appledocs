@@ -31,6 +31,17 @@ type _SFSafariViewControllerClass struct {
 // An interface definition for the [SFSafariViewController] class.
 type ISFSafariViewController interface {
 	appkit.IViewController
+	Configuration() SFSafariViewControllerConfiguration
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DismissButtonStyle() SFSafariViewControllerDismissButtonStyle
+	SetDismissButtonStyle(value SFSafariViewControllerDismissButtonStyle)
+	PreferredBarTintColor() appkit.Color
+	SetPreferredBarTintColor(value appkit.IColor)
+	PreferredControlTintColor() appkit.Color
+	SetPreferredControlTintColor(value appkit.IColor)
+	EventAttribution() unsafe.Pointer
+	SetEventAttribution(value unsafe.Pointer)
 }
 
 // An object that provides a visible standard interface for browsing the web.

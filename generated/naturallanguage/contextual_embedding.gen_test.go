@@ -17,6 +17,14 @@ func ExampleNewContextualEmbeddingWithLanguage() {
 	)
 	// Output:
 }
+// ExampleNewContextualEmbeddingWithModelIdentifier demonstrates how to create a ContextualEmbedding instance using NewContextualEmbeddingWithModelIdentifier.
+// Creates a contextual embedding from a model identifier.
+func ExampleNewContextualEmbeddingWithModelIdentifier() {
+	_ = naturallanguage.NewContextualEmbeddingWithModelIdentifier(
+		"modelIdentifier", // modelIdentifier string
+	)
+	// Output:
+}
 // ExampleNewContextualEmbeddingWithScript demonstrates how to create a ContextualEmbedding instance using NewContextualEmbeddingWithScript.
 // Creates a contextual embedding from a script.
 func ExampleNewContextualEmbeddingWithScript() {

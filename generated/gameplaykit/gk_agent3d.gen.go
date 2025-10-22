@@ -31,6 +31,13 @@ type _Agent3DClass struct {
 type IAgent3D interface {
 	IAgent
 	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
+	Position() unsafe.Pointer
+	SetPosition(value unsafe.Pointer)
+	RightHanded() bool
+	SetRightHanded(value bool)
+	Rotation() unsafe.Pointer
+	SetRotation(value unsafe.Pointer)
+	Velocity() unsafe.Pointer
 }
 
 // An agent that operates in a three-dimensional space.

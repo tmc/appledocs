@@ -34,6 +34,43 @@ type IValue interface {
 	GetValue(value unsafe.Pointer)
 	GetValueSize(value unsafe.Pointer, size uint)
 	IsEqualToValue(value IValue) bool
+	CATransform3DValue() unsafe.Pointer
+	CGAffineTransformValue() coregraphics.CGAffineTransform
+	CGPointValue() coregraphics.CGPoint
+	CGRectValue() coregraphics.CGRect
+	CGSizeValue() coregraphics.CGSize
+	CGVectorValue() coregraphics.CGVector
+	DirectionalEdgeInsetsValue() unsafe.Pointer
+	EdgeInsetsValue() unsafe.Pointer
+	GCPoint2Value() unsafe.Pointer
+	MKCoordinateSpanValue() unsafe.Pointer
+	MKCoordinateValue() unsafe.Pointer
+	NonretainedObjectValue() objc.ID
+	ObjCType() unsafe.Pointer
+	PointValue() Point
+	PointerValue() unsafe.Pointer
+	RangeValue() Range
+	RectValue() Rect
+	SCNMatrix4Value() unsafe.Pointer
+	SCNVector3Value() unsafe.Pointer
+	SCNVector4Value() unsafe.Pointer
+	SizeValue() Size
+	CMTimeMappingValue() unsafe.Pointer
+	CMTimeRangeValue() unsafe.Pointer
+	CMTimeValue() unsafe.Pointer
+	UIEdgeInsetsValue() unsafe.Pointer
+	UIOffsetValue() unsafe.Pointer
+	CMVideoDimensionsValue() unsafe.Pointer
+	Hash() int
+	SetHash(value int)
+	TimeMappingValue() unsafe.Pointer
+	SetTimeMappingValue(value unsafe.Pointer)
+	TimeRangeValue() unsafe.Pointer
+	SetTimeRangeValue(value unsafe.Pointer)
+	TimeValue() unsafe.Pointer
+	SetTimeValue(value unsafe.Pointer)
+	VideoDimensionsValue() unsafe.Pointer
+	SetVideoDimensionsValue(value unsafe.Pointer)
 }
 
 // A simple container for a single C or Objective-C data item.

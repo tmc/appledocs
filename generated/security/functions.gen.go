@@ -356,7 +356,7 @@ var (
 	_SecAsn1DecodeData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecAsn1EncodeItem func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecAsn1Malloc func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SecAsn1OidCompare func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SecAsn1OidCompare func(unsafe.Pointer, unsafe.Pointer) bool
 	_SecCertificateCopyData func(unsafe.Pointer) unsafe.Pointer
 	_SecCertificateCopyNotValidAfterDate func(unsafe.Pointer) unsafe.Pointer
 	_SecCertificateCopyNotValidBeforeDate func(unsafe.Pointer) unsafe.Pointer
@@ -408,7 +408,7 @@ var (
 	_SecPolicyCreateBasicX509 func() unsafe.Pointer
 	_SecPolicyCreateSSL func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecPolicyCreateWithProperties func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SecRandomCopyBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SecRandomCopyBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_SecRequestSharedWebCredential func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecRequirementCopyData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecRequirementCopyString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -454,7 +454,7 @@ var (
 	_SecTrustCopyKey func(unsafe.Pointer) unsafe.Pointer
 	_SecTrustCreateWithCertificates func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecTrustEvaluate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SecTrustEvaluateWithError func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SecTrustEvaluateWithError func(unsafe.Pointer, unsafe.Pointer) bool
 	_SecTrustGetTrustResult func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecTrustSetAnchorCertificates func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecTrustSetVerifyDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -471,69 +471,69 @@ var (
 	_SessionCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SessionGetInfo func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_cssmAlgToOid func(unsafe.Pointer) unsafe.Pointer
-	_cssmOidToAlg func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_cssmOidToAlg func(unsafe.Pointer, unsafe.Pointer) bool
 	_cssmPerror func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_certificate_copy_ref func(unsafe.Pointer) unsafe.Pointer
 	_sec_certificate_create func(unsafe.Pointer) unsafe.Pointer
-	_sec_identity_access_certificates func(unsafe.Pointer) unsafe.Pointer
+	_sec_identity_access_certificates func(unsafe.Pointer) bool
 	_sec_identity_copy_certificates_ref func(unsafe.Pointer) unsafe.Pointer
 	_sec_identity_copy_ref func(unsafe.Pointer) unsafe.Pointer
 	_sec_identity_create func(unsafe.Pointer) unsafe.Pointer
 	_sec_identity_create_with_certificates func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_access_distinguished_names func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_access_ocsp_response func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_access_peer_certificate_chain func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_access_pre_shared_keys func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_access_supported_signature_algorithms func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_challenge_parameters_are_equal func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_metadata_access_distinguished_names func(unsafe.Pointer) bool
+	_sec_protocol_metadata_access_ocsp_response func(unsafe.Pointer) bool
+	_sec_protocol_metadata_access_peer_certificate_chain func(unsafe.Pointer) bool
+	_sec_protocol_metadata_access_pre_shared_keys func(unsafe.Pointer) bool
+	_sec_protocol_metadata_access_supported_signature_algorithms func(unsafe.Pointer) bool
+	_sec_protocol_metadata_challenge_parameters_are_equal func(unsafe.Pointer, unsafe.Pointer) bool
 	_sec_protocol_metadata_copy_negotiated_protocol func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_copy_peer_public_key func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_copy_server_name func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_create_secret func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_create_secret_with_context func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_get_early_data_accepted func(unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_metadata_get_early_data_accepted func(unsafe.Pointer) bool
 	_sec_protocol_metadata_get_negotiated_ciphersuite func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_get_negotiated_protocol func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_get_negotiated_protocol_version func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_get_negotiated_tls_ciphersuite func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_get_negotiated_tls_protocol_version func(unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_metadata_get_server_name func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_metadata_peers_are_equal func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_metadata_peers_are_equal func(unsafe.Pointer, unsafe.Pointer) bool
 	_sec_protocol_options_add_pre_shared_key func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_add_tls_application_protocol func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_add_tls_ciphersuite func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_add_tls_ciphersuite_group func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_append_tls_ciphersuite func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_append_tls_ciphersuite_group func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_are_equal func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_are_equal func(unsafe.Pointer, unsafe.Pointer) bool
 	_sec_protocol_options_get_default_max_dtls_protocol_version func() unsafe.Pointer
 	_sec_protocol_options_get_default_max_tls_protocol_version func() unsafe.Pointer
 	_sec_protocol_options_get_default_min_dtls_protocol_version func() unsafe.Pointer
 	_sec_protocol_options_get_default_min_tls_protocol_version func() unsafe.Pointer
-	_sec_protocol_options_get_enable_encrypted_client_hello func(unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_get_quic_use_legacy_codepoint func(unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_get_enable_encrypted_client_hello func(unsafe.Pointer) bool
+	_sec_protocol_options_get_quic_use_legacy_codepoint func(unsafe.Pointer) bool
 	_sec_protocol_options_set_challenge_block func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_enable_encrypted_client_hello func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_enable_encrypted_client_hello func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_key_update_block func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_set_local_identity func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_set_max_tls_protocol_version func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_set_min_tls_protocol_version func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_peer_authentication_optional func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_peer_authentication_required func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_peer_authentication_optional func(unsafe.Pointer, bool) unsafe.Pointer
+	_sec_protocol_options_set_peer_authentication_required func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_pre_shared_key_selection_block func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_quic_use_legacy_codepoint func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_quic_use_legacy_codepoint func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_tls_diffie_hellman_parameters func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_false_start_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_is_fallback_attempt func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_tls_false_start_enabled func(unsafe.Pointer, bool) unsafe.Pointer
+	_sec_protocol_options_set_tls_is_fallback_attempt func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_tls_max_version func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_protocol_options_set_tls_min_version func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_ocsp_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_tls_ocsp_enabled func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_tls_pre_shared_key_identity_hint func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_renegotiation_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_resumption_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_sct_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_tls_renegotiation_enabled func(unsafe.Pointer, bool) unsafe.Pointer
+	_sec_protocol_options_set_tls_resumption_enabled func(unsafe.Pointer, bool) unsafe.Pointer
+	_sec_protocol_options_set_tls_sct_enabled func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_tls_server_name func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sec_protocol_options_set_tls_tickets_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sec_protocol_options_set_tls_tickets_enabled func(unsafe.Pointer, bool) unsafe.Pointer
 	_sec_protocol_options_set_verify_block func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sec_release func(unsafe.Pointer) unsafe.Pointer
 	_sec_retain func(unsafe.Pointer) unsafe.Pointer
@@ -5083,7 +5083,7 @@ func SecAsn1Malloc(coder unsafe.Pointer, len_ unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1OidCompare
-func SecAsn1OidCompare(oid1 unsafe.Pointer, oid2 unsafe.Pointer) unsafe.Pointer {
+func SecAsn1OidCompare(oid1 unsafe.Pointer, oid2 unsafe.Pointer) bool {
 	return _SecAsn1OidCompare(oid1, oid2)
 	}
 
@@ -5637,7 +5637,7 @@ func SecPolicyCreateWithProperties(policyIdentifier unsafe.Pointer, properties u
 // Added in macOS 10.7.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRandomCopyBytes(_:_:_:)
-func SecRandomCopyBytes(rnd unsafe.Pointer, count unsafe.Pointer, bytes unsafe.Pointer) unsafe.Pointer {
+func SecRandomCopyBytes(rnd unsafe.Pointer, count unsafe.Pointer, bytes unsafe.Pointer) int {
 	return _SecRandomCopyBytes(rnd, count, bytes)
 	}
 
@@ -6143,7 +6143,7 @@ func SecTrustEvaluate(trust unsafe.Pointer, result unsafe.Pointer) unsafe.Pointe
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustEvaluateWithError(_:_:)
-func SecTrustEvaluateWithError(trust unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func SecTrustEvaluateWithError(trust unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _SecTrustEvaluateWithError(trust, error_)
 	}
 
@@ -6333,7 +6333,7 @@ func cssmAlgToOid(algId unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/cssmOidToAlg(_:_:)
-func cssmOidToAlg(oid unsafe.Pointer, alg unsafe.Pointer) unsafe.Pointer {
+func cssmOidToAlg(oid unsafe.Pointer, alg unsafe.Pointer) bool {
 	return _cssmOidToAlg(oid, alg)
 	}
 
@@ -6373,7 +6373,7 @@ func sec_certificate_create(certificate unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_identity_access_certificates(_:_:)
-func sec_identity_access_certificates(identity unsafe.Pointer) unsafe.Pointer {
+func sec_identity_access_certificates(identity unsafe.Pointer) bool {
 	return _sec_identity_access_certificates(identity)
 	}
 
@@ -6423,7 +6423,7 @@ func sec_identity_create_with_certificates(identity unsafe.Pointer, certificates
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_access_distinguished_names(_:_:)
-func sec_protocol_metadata_access_distinguished_names(metadata unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_access_distinguished_names(metadata unsafe.Pointer) bool {
 	return _sec_protocol_metadata_access_distinguished_names(metadata)
 	}
 
@@ -6433,7 +6433,7 @@ func sec_protocol_metadata_access_distinguished_names(metadata unsafe.Pointer) u
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_access_ocsp_response(_:_:)
-func sec_protocol_metadata_access_ocsp_response(metadata unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_access_ocsp_response(metadata unsafe.Pointer) bool {
 	return _sec_protocol_metadata_access_ocsp_response(metadata)
 	}
 
@@ -6443,7 +6443,7 @@ func sec_protocol_metadata_access_ocsp_response(metadata unsafe.Pointer) unsafe.
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_access_peer_certificate_chain(_:_:)
-func sec_protocol_metadata_access_peer_certificate_chain(metadata unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_access_peer_certificate_chain(metadata unsafe.Pointer) bool {
 	return _sec_protocol_metadata_access_peer_certificate_chain(metadata)
 	}
 
@@ -6453,7 +6453,7 @@ func sec_protocol_metadata_access_peer_certificate_chain(metadata unsafe.Pointer
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_access_pre_shared_keys(_:_:)
-func sec_protocol_metadata_access_pre_shared_keys(metadata unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_access_pre_shared_keys(metadata unsafe.Pointer) bool {
 	return _sec_protocol_metadata_access_pre_shared_keys(metadata)
 	}
 
@@ -6463,7 +6463,7 @@ func sec_protocol_metadata_access_pre_shared_keys(metadata unsafe.Pointer) unsaf
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_access_supported_signature_algorithms(_:_:)
-func sec_protocol_metadata_access_supported_signature_algorithms(metadata unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_access_supported_signature_algorithms(metadata unsafe.Pointer) bool {
 	return _sec_protocol_metadata_access_supported_signature_algorithms(metadata)
 	}
 
@@ -6473,7 +6473,7 @@ func sec_protocol_metadata_access_supported_signature_algorithms(metadata unsafe
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_challenge_parameters_are_equal(_:_:)
-func sec_protocol_metadata_challenge_parameters_are_equal(metadataA unsafe.Pointer, metadataB unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_challenge_parameters_are_equal(metadataA unsafe.Pointer, metadataB unsafe.Pointer) bool {
 	return _sec_protocol_metadata_challenge_parameters_are_equal(metadataA, metadataB)
 	}
 
@@ -6533,7 +6533,7 @@ func sec_protocol_metadata_create_secret_with_context(metadata unsafe.Pointer, l
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_get_early_data_accepted(_:)
-func sec_protocol_metadata_get_early_data_accepted(metadata unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_get_early_data_accepted(metadata unsafe.Pointer) bool {
 	return _sec_protocol_metadata_get_early_data_accepted(metadata)
 	}
 
@@ -6611,7 +6611,7 @@ func sec_protocol_metadata_get_server_name(metadata unsafe.Pointer) unsafe.Point
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_peers_are_equal(_:_:)
-func sec_protocol_metadata_peers_are_equal(metadataA unsafe.Pointer, metadataB unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_metadata_peers_are_equal(metadataA unsafe.Pointer, metadataB unsafe.Pointer) bool {
 	return _sec_protocol_metadata_peers_are_equal(metadataA, metadataB)
 	}
 
@@ -6685,7 +6685,7 @@ func sec_protocol_options_append_tls_ciphersuite_group(options unsafe.Pointer, g
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_are_equal(_:_:)
-func sec_protocol_options_are_equal(optionsA unsafe.Pointer, optionsB unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_options_are_equal(optionsA unsafe.Pointer, optionsB unsafe.Pointer) bool {
 	return _sec_protocol_options_are_equal(optionsA, optionsB)
 	}
 
@@ -6733,7 +6733,7 @@ func sec_protocol_options_get_default_min_tls_protocol_version() unsafe.Pointer 
 // sec_protocol_options_get_enable_encrypted_client_hello is a Security function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_get_enable_encrypted_client_hello
-func sec_protocol_options_get_enable_encrypted_client_hello(options unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_options_get_enable_encrypted_client_hello(options unsafe.Pointer) bool {
 	return _sec_protocol_options_get_enable_encrypted_client_hello(options)
 	}
 
@@ -6741,7 +6741,7 @@ func sec_protocol_options_get_enable_encrypted_client_hello(options unsafe.Point
 // sec_protocol_options_get_quic_use_legacy_codepoint is a Security function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_get_quic_use_legacy_codepoint
-func sec_protocol_options_get_quic_use_legacy_codepoint(options unsafe.Pointer) unsafe.Pointer {
+func sec_protocol_options_get_quic_use_legacy_codepoint(options unsafe.Pointer) bool {
 	return _sec_protocol_options_get_quic_use_legacy_codepoint(options)
 	}
 
@@ -6759,7 +6759,7 @@ func sec_protocol_options_set_challenge_block(options unsafe.Pointer, challenge_
 // sec_protocol_options_set_enable_encrypted_client_hello is a Security function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_enable_encrypted_client_hello
-func sec_protocol_options_set_enable_encrypted_client_hello(options unsafe.Pointer, enable_encrypted_client_hello unsafe.Pointer) {
+func sec_protocol_options_set_enable_encrypted_client_hello(options unsafe.Pointer, enable_encrypted_client_hello bool) {
 	_sec_protocol_options_set_enable_encrypted_client_hello(options, enable_encrypted_client_hello)
 	}
 
@@ -6807,7 +6807,7 @@ func sec_protocol_options_set_min_tls_protocol_version(options unsafe.Pointer, v
 // sec_protocol_options_set_peer_authentication_optional is a Security function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_peer_authentication_optional
-func sec_protocol_options_set_peer_authentication_optional(options unsafe.Pointer, peer_authentication_optional unsafe.Pointer) {
+func sec_protocol_options_set_peer_authentication_optional(options unsafe.Pointer, peer_authentication_optional bool) {
 	_sec_protocol_options_set_peer_authentication_optional(options, peer_authentication_optional)
 	}
 
@@ -6817,7 +6817,7 @@ func sec_protocol_options_set_peer_authentication_optional(options unsafe.Pointe
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_peer_authentication_required(_:_:)
-func sec_protocol_options_set_peer_authentication_required(options unsafe.Pointer, peer_authentication_required unsafe.Pointer) {
+func sec_protocol_options_set_peer_authentication_required(options unsafe.Pointer, peer_authentication_required bool) {
 	_sec_protocol_options_set_peer_authentication_required(options, peer_authentication_required)
 	}
 
@@ -6835,7 +6835,7 @@ func sec_protocol_options_set_pre_shared_key_selection_block(options unsafe.Poin
 // sec_protocol_options_set_quic_use_legacy_codepoint is a Security function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_quic_use_legacy_codepoint
-func sec_protocol_options_set_quic_use_legacy_codepoint(options unsafe.Pointer, quic_use_legacy_codepoint unsafe.Pointer) {
+func sec_protocol_options_set_quic_use_legacy_codepoint(options unsafe.Pointer, quic_use_legacy_codepoint bool) {
 	_sec_protocol_options_set_quic_use_legacy_codepoint(options, quic_use_legacy_codepoint)
 	}
 
@@ -6857,7 +6857,7 @@ func sec_protocol_options_set_tls_diffie_hellman_parameters(options unsafe.Point
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_false_start_enabled(_:_:)
-func sec_protocol_options_set_tls_false_start_enabled(options unsafe.Pointer, false_start_enabled unsafe.Pointer) {
+func sec_protocol_options_set_tls_false_start_enabled(options unsafe.Pointer, false_start_enabled bool) {
 	_sec_protocol_options_set_tls_false_start_enabled(options, false_start_enabled)
 	}
 
@@ -6867,7 +6867,7 @@ func sec_protocol_options_set_tls_false_start_enabled(options unsafe.Pointer, fa
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_is_fallback_attempt(_:_:)
-func sec_protocol_options_set_tls_is_fallback_attempt(options unsafe.Pointer, is_fallback_attempt unsafe.Pointer) {
+func sec_protocol_options_set_tls_is_fallback_attempt(options unsafe.Pointer, is_fallback_attempt bool) {
 	_sec_protocol_options_set_tls_is_fallback_attempt(options, is_fallback_attempt)
 	}
 
@@ -6901,7 +6901,7 @@ func sec_protocol_options_set_tls_min_version(options unsafe.Pointer, version un
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_ocsp_enabled(_:_:)
-func sec_protocol_options_set_tls_ocsp_enabled(options unsafe.Pointer, ocsp_enabled unsafe.Pointer) {
+func sec_protocol_options_set_tls_ocsp_enabled(options unsafe.Pointer, ocsp_enabled bool) {
 	_sec_protocol_options_set_tls_ocsp_enabled(options, ocsp_enabled)
 	}
 
@@ -6921,7 +6921,7 @@ func sec_protocol_options_set_tls_pre_shared_key_identity_hint(options unsafe.Po
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_renegotiation_enabled(_:_:)
-func sec_protocol_options_set_tls_renegotiation_enabled(options unsafe.Pointer, renegotiation_enabled unsafe.Pointer) {
+func sec_protocol_options_set_tls_renegotiation_enabled(options unsafe.Pointer, renegotiation_enabled bool) {
 	_sec_protocol_options_set_tls_renegotiation_enabled(options, renegotiation_enabled)
 	}
 
@@ -6931,7 +6931,7 @@ func sec_protocol_options_set_tls_renegotiation_enabled(options unsafe.Pointer, 
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_resumption_enabled(_:_:)
-func sec_protocol_options_set_tls_resumption_enabled(options unsafe.Pointer, resumption_enabled unsafe.Pointer) {
+func sec_protocol_options_set_tls_resumption_enabled(options unsafe.Pointer, resumption_enabled bool) {
 	_sec_protocol_options_set_tls_resumption_enabled(options, resumption_enabled)
 	}
 
@@ -6941,7 +6941,7 @@ func sec_protocol_options_set_tls_resumption_enabled(options unsafe.Pointer, res
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_sct_enabled(_:_:)
-func sec_protocol_options_set_tls_sct_enabled(options unsafe.Pointer, sct_enabled unsafe.Pointer) {
+func sec_protocol_options_set_tls_sct_enabled(options unsafe.Pointer, sct_enabled bool) {
 	_sec_protocol_options_set_tls_sct_enabled(options, sct_enabled)
 	}
 
@@ -6961,7 +6961,7 @@ func sec_protocol_options_set_tls_server_name(options unsafe.Pointer, server_nam
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_set_tls_tickets_enabled(_:_:)
-func sec_protocol_options_set_tls_tickets_enabled(options unsafe.Pointer, tickets_enabled unsafe.Pointer) {
+func sec_protocol_options_set_tls_tickets_enabled(options unsafe.Pointer, tickets_enabled bool) {
 	_sec_protocol_options_set_tls_tickets_enabled(options, tickets_enabled)
 	}
 

@@ -30,6 +30,20 @@ type _MatchmakerViewControllerClass struct {
 // An interface definition for the [MatchmakerViewController] class.
 type IMatchmakerViewController interface {
 	appkit.IViewController
+	DefaultInvitationMessage() string
+	SetDefaultInvitationMessage(value string)
+	Hosted() bool
+	SetHosted(value bool)
+	MatchmakerDelegate() objc.ID
+	SetMatchmakerDelegate(value objc.ID)
+	CanStartWithMinimumPlayers() bool
+	SetCanStartWithMinimumPlayers(value bool)
+	IsHosted() bool
+	SetIsHosted(value bool)
+	MatchRequest() GKMatchRequest
+	SetMatchRequest(value IGKMatchRequest)
+	MatchmakingMode() unsafe.Pointer
+	SetMatchmakingMode(value unsafe.Pointer)
 }
 
 // An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.
@@ -98,8 +112,8 @@ func NewMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) Matchm
 // The default invitation message sent to a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) DefaultInvitationMessage() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("defaultInvitationMessage"))
+func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("defaultInvitationMessage"))
 	return rv
 }
 
@@ -109,8 +123,8 @@ func (m_ MatchmakerViewController) DefaultInvitationMessage() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), value)
+func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.

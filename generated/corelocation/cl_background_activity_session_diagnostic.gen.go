@@ -30,6 +30,12 @@ type _BackgroundActivitySessionDiagnosticClass struct {
 // An interface definition for the [BackgroundActivitySessionDiagnostic] class.
 type IBackgroundActivitySessionDiagnostic interface {
 	objectivec.IObject
+	AuthorizationDenied() bool
+	AuthorizationDeniedGlobally() bool
+	AuthorizationRequestInProgress() bool
+	AuthorizationRestricted() bool
+	InsufficientlyInUse() bool
+	ServiceSessionRequired() bool
 }
 
 //

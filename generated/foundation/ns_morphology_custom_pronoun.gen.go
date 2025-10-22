@@ -30,6 +30,8 @@ type _MorphologyCustomPronounClass struct {
 // An interface definition for the [MorphologyCustomPronoun] class.
 type IMorphologyCustomPronoun interface {
 	objectivec.IObject
+	ReflexiveForm() string
+	SetReflexiveForm(value string)
 }
 
 // A custom pronoun behavior for use in a specific langauge.

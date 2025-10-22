@@ -30,6 +30,22 @@ type _FaceFeatureClass struct {
 // An interface definition for the [FaceFeature] class.
 type IFaceFeature interface {
 	IFeature
+	Bounds() coregraphics.CGRect
+	FaceAngle() float32
+	HasFaceAngle() bool
+	HasLeftEyePosition() bool
+	HasMouthPosition() bool
+	HasRightEyePosition() bool
+	HasSmile() bool
+	HasTrackingFrameCount() bool
+	HasTrackingID() bool
+	LeftEyeClosed() bool
+	LeftEyePosition() coregraphics.CGPoint
+	MouthPosition() coregraphics.CGPoint
+	RightEyeClosed() bool
+	RightEyePosition() coregraphics.CGPoint
+	TrackingFrameCount() int
+	TrackingID() int
 }
 
 // Information about a face detected in a still or video image.
@@ -93,8 +109,8 @@ func (f_ FaceFeature) Bounds() coregraphics.CGRect {
 // The rotation of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/faceAngle-swift.property
-func (f_ FaceFeature) FaceAngle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("faceAngle"))
+func (f_ FaceFeature) FaceAngle() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("faceAngle"))
 	return rv
 }
 
@@ -197,16 +213,16 @@ func (f_ FaceFeature) RightEyePosition() coregraphics.CGPoint {
 // The tracking frame count of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingFrameCount-swift.property
-func (f_ FaceFeature) TrackingFrameCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("trackingFrameCount"))
+func (f_ FaceFeature) TrackingFrameCount() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("trackingFrameCount"))
 	return rv
 }
 
 // The tracking identifier of the face object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingID-swift.property
-func (f_ FaceFeature) TrackingID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("trackingID"))
+func (f_ FaceFeature) TrackingID() int {
+	rv := objc.Send[int](f_.ID, objc.Sel("trackingID"))
 	return rv
 }
 

@@ -31,6 +31,8 @@ type _MTRSwitchClusterLongPressEventClass struct {
 // An interface definition for the [MTRSwitchClusterLongPressEvent] class.
 type IMTRSwitchClusterLongPressEvent interface {
 	objectivec.IObject
+	NewPosition() foundation.Number
+	SetNewPosition(value foundation.INumber)
 }
 
 //

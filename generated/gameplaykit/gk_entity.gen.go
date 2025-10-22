@@ -35,6 +35,7 @@ type IEntity interface {
 	ComponentForClass(componentClass objc.Class) Component
 	RemoveComponentForClass(componentClass objc.Class)
 	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
+	Components() []Component
 }
 
 // An object relevant to gameplay, with functionality entirely provided by a collection of component objects.

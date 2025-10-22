@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -34,6 +33,17 @@ type _FeatureValueClass struct {
 type IFeatureValue interface {
 	objectivec.IObject
 	IsEqualToFeatureValue(value IMLFeatureValue) bool
+	DictionaryValue() unsafe.Pointer
+	DoubleValue() float64
+	ImageBufferValue() unsafe.Pointer
+	Int64Value() unsafe.Pointer
+	Undefined() bool
+	MultiArrayValue() MLMultiArray
+	SequenceValue() MLSequence
+	StringValue() string
+	Type() FeatureType
+	IsUndefined() bool
+	SetIsUndefined(value bool)
 }
 
 // A generic wrapper around an underlying value and the value’s type.
@@ -149,7 +159,7 @@ func NewFeatureValueWithDictionaryError(value unsafe.Pointer, error_ unsafe.Poin
 // Creates a feature value that contains a double.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(double:)
-func NewFeatureValueWithDouble(value unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithDouble(value float64) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithDouble:"), value)
 	return rv
 }
@@ -239,8 +249,8 @@ func NewFeatureValueWithSequence(sequence IMLSequence) FeatureValue {
 // Creates a feature value that contains a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(string:)
-func NewFeatureValueWithString(value appkit.string) FeatureValue {
-	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithString:"), value)
+func NewFeatureValueWithString(value string) FeatureValue {
+	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithString:"), objc.String(value))
 	return rv
 }
 
@@ -288,7 +298,7 @@ func (fc _FeatureValueClass) FeatureValueWithDictionaryError(value unsafe.Pointe
 // Creates a feature value that contains a double.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(double:)
-func (fc _FeatureValueClass) FeatureValueWithDouble(value unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithDouble(value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithDouble:"), value)
 	return rv
 }
@@ -360,8 +370,8 @@ func (fc _FeatureValueClass) FeatureValueWithSequence(sequence IMLSequence) unsa
 // Creates a feature value that contains a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(string:)
-func (fc _FeatureValueClass) FeatureValueWithString(value appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithString:"), value)
+func (fc _FeatureValueClass) FeatureValueWithString(value string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithString:"), objc.String(value))
 	return rv
 }
 
@@ -392,8 +402,8 @@ func (f_ FeatureValue) DictionaryValue() unsafe.Pointer {
 // The underlying double of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/doubleValue
-func (f_ FeatureValue) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("doubleValue"))
+func (f_ FeatureValue) DoubleValue() float64 {
+	rv := objc.Send[float64](f_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -440,8 +450,8 @@ func (f_ FeatureValue) SequenceValue() MLSequence {
 // The underlying string of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/stringValue
-func (f_ FeatureValue) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("stringValue"))
+func (f_ FeatureValue) StringValue() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("stringValue"))
 	return rv
 }
 

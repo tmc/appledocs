@@ -31,6 +31,16 @@ type _CaptionClass struct {
 // An interface definition for the [Caption] class.
 type ICaption interface {
 	objectivec.IObject
+	Animation() appkit.Animation
+	SetAnimation(value appkit.IAnimation)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
+	Text() string
+	SetText(value string)
+	TextAlignment() unsafe.Pointer
+	SetTextAlignment(value unsafe.Pointer)
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
 }
 
 // An object that represents text to present over a time range.

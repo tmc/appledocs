@@ -30,6 +30,18 @@ type _MXBackgroundExitDataClass struct {
 // An interface definition for the [MXBackgroundExitData] class.
 type IMXBackgroundExitData interface {
 	objectivec.IObject
+	CumulativeAbnormalExitCount() uint
+	CumulativeAppWatchdogExitCount() uint
+	CumulativeBackgroundTaskAssertionTimeoutExitCount() uint
+	CumulativeBadAccessExitCount() uint
+	CumulativeCPUResourceLimitExitCount() uint
+	CumulativeIllegalInstructionExitCount() uint
+	CumulativeMemoryPressureExitCount() uint
+	CumulativeMemoryResourceLimitExitCount() uint
+	CumulativeNormalAppExitCount() uint
+	CumulativeSuspendedWithLockedFileExitCount() uint
+	BackgroundExitData() MXBackgroundExitData
+	SetBackgroundExitData(value IMXBackgroundExitData)
 }
 
 // An object representing counts for the different types of background app exits.

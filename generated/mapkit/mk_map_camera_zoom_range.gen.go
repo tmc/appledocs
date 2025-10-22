@@ -30,6 +30,15 @@ type _MKMapCameraZoomRangeClass struct {
 // An interface definition for the [MKMapCameraZoomRange] class.
 type IMKMapCameraZoomRange interface {
 	objectivec.IObject
+	MKMapCameraZoomDefault() unsafe.Pointer
+	MaxCenterCoordinateDistance() unsafe.Pointer
+	SetMaxCenterCoordinateDistance(value unsafe.Pointer)
+	MinCenterCoordinateDistance() unsafe.Pointer
+	SetMinCenterCoordinateDistance(value unsafe.Pointer)
+	CameraBoundary() MKMapCameraBoundary
+	SetCameraBoundary(value IMKMapCameraBoundary)
+	CameraZoomRange() MKMapCameraZoomRange
+	SetCameraZoomRange(value IMKMapCameraZoomRange)
 }
 
 // A camera zoom range that limits the distances to which the user can zoom.

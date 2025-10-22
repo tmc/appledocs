@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _PHASEDefinitionClass struct {
 // An interface definition for the [PHASEDefinition] class.
 type IPHASEDefinition interface {
 	objectivec.IObject
+	Identifier() string
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
 }
 
 // A base class that adds a name to framework definitions.
@@ -84,8 +86,8 @@ func NewPHASEDefinition() PHASEDefinition {
 // A unique name for the definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDefinition/identifier
-func (p_ PHASEDefinition) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDefinition) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

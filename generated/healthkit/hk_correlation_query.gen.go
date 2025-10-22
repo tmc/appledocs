@@ -30,6 +30,8 @@ type _HKCorrelationQueryClass struct {
 // An interface definition for the [HKCorrelationQuery] class.
 type IHKCorrelationQuery interface {
 	IHKQuery
+	CorrelationType() HKCorrelationType
+	SamplePredicates() unsafe.Pointer
 }
 
 // A query that performs complex searches based on the correlation’s contents, and returns a snapshot of all matching samples.

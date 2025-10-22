@@ -30,6 +30,9 @@ type _MetalDisplayLinkUpdateClass struct {
 // An interface definition for the [MetalDisplayLinkUpdate] class.
 type IMetalDisplayLinkUpdate interface {
 	objectivec.IObject
+	Drawable() objc.ID
+	TargetPresentationTimestamp() TimeInterval
+	TargetTimestamp() TimeInterval
 }
 
 // Stores information about a single update from a Metal display link instance.

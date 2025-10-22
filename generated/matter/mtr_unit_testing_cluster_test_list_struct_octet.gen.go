@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterTestListStructOctetClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestListStructOctet] class.
 type IMTRUnitTestingClusterTestListStructOctet interface {
 	objectivec.IObject
+	Member1() foundation.Number
+	SetMember1(value foundation.INumber)
+	Member2() foundation.Data
+	SetMember2(value foundation.IData)
 }
 
 //

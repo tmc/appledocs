@@ -31,6 +31,8 @@ type _MTRICDManagementClusterStayActiveResponseParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterStayActiveResponseParams] class.
 type IMTRICDManagementClusterStayActiveResponseParams interface {
 	objectivec.IObject
+	PromisedActiveDuration() foundation.Number
+	SetPromisedActiveDuration(value foundation.INumber)
 }
 
 //

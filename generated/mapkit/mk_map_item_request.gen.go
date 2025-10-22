@@ -30,6 +30,23 @@ type _MKMapItemRequestClass struct {
 // An interface definition for the [MKMapItemRequest] class.
 type IMKMapItemRequest interface {
 	objectivec.IObject
+	Loading() bool
+	Feature() unsafe.Pointer
+	SetFeature(value unsafe.Pointer)
+	FeatureAnnotation() MKMapFeatureAnnotation
+	SetFeatureAnnotation(value IMKMapFeatureAnnotation)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
+	MapFeature() unsafe.Pointer
+	SetMapFeature(value unsafe.Pointer)
+	MapFeatureAnnotation() MKMapFeatureAnnotation
+	SetMapFeatureAnnotation(value IMKMapFeatureAnnotation)
+	MapItemIdentifier() MKMapItemIdentifier
+	SetMapItemIdentifier(value IMKMapItemIdentifier)
+	PlaceDescriptor() unsafe.Pointer
+	SetPlaceDescriptor(value unsafe.Pointer)
 }
 
 // A utility class you use to request additional information about a map feature.

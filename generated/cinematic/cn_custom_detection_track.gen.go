@@ -29,6 +29,7 @@ type _CNCustomDetectionTrackClass struct {
 // An interface definition for the [CNCustomDetectionTrack] class.
 type ICNCustomDetectionTrack interface {
 	ICNDetectionTrack
+	AllDetections() []CNDetection
 }
 
 // An object representing a discrete detection track composed of individual detections.

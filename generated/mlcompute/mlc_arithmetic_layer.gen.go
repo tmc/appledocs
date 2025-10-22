@@ -29,6 +29,7 @@ type _CArithmeticLayerClass struct {
 // An interface definition for the [CArithmeticLayer] class.
 type ICArithmeticLayer interface {
 	ICLayer
+	Operation() unsafe.Pointer
 }
 
 // A layer that performs an arithmetic operation.

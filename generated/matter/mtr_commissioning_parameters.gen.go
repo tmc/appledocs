@@ -31,6 +31,28 @@ type _MTRCommissioningParametersClass struct {
 // An interface definition for the [MTRCommissioningParameters] class.
 type IMTRCommissioningParameters interface {
 	objectivec.IObject
+	AttestationNonce() foundation.Data
+	SetAttestationNonce(value foundation.IData)
+	CountryCode() string
+	SetCountryCode(value string)
+	CsrNonce() foundation.Data
+	SetCsrNonce(value foundation.IData)
+	DeviceAttestationDelegate() unsafe.Pointer
+	SetDeviceAttestationDelegate(value unsafe.Pointer)
+	FailSafeExpiryTimeoutSecs() foundation.Number
+	SetFailSafeExpiryTimeoutSecs(value foundation.INumber)
+	FailSafeTimeout() foundation.Number
+	SetFailSafeTimeout(value foundation.INumber)
+	ReadEndpointInformation() bool
+	SetReadEndpointInformation(value bool)
+	SkipCommissioningComplete() bool
+	SetSkipCommissioningComplete(value bool)
+	ThreadOperationalDataset() foundation.Data
+	SetThreadOperationalDataset(value foundation.IData)
+	WifiCredentials() foundation.Data
+	SetWifiCredentials(value foundation.IData)
+	WifiSSID() foundation.Data
+	SetWifiSSID(value foundation.IData)
 }
 
 //
@@ -93,8 +115,8 @@ func (m_ MTRCommissioningParameters) SetAttestationNonce(value foundation.IData)
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) CountryCode() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("countryCode"))
+func (m_ MTRCommissioningParameters) CountryCode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -102,8 +124,8 @@ func (m_ MTRCommissioningParameters) CountryCode() appkit.string {
 // SetCountryCode sets the value of the countryCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) SetCountryCode(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
+func (m_ MTRCommissioningParameters) SetCountryCode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
 }
 
 //

@@ -29,6 +29,8 @@ type _INHangUpCallIntentResponseClass struct {
 // An interface definition for the [INHangUpCallIntentResponse] class.
 type IINHangUpCallIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 //

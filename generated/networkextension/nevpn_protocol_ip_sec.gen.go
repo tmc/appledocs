@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,16 @@ type _NEVPNProtocolIPSecClass struct {
 // An interface definition for the [NEVPNProtocolIPSec] class.
 type INEVPNProtocolIPSec interface {
 	INEVPNProtocol
+	AuthenticationMethod() NEVPNIKEAuthenticationMethod
+	SetAuthenticationMethod(value INEVPNIKEAuthenticationMethod)
+	LocalIdentifier() string
+	SetLocalIdentifier(value string)
+	RemoteIdentifier() string
+	SetRemoteIdentifier(value string)
+	SharedSecretReference() foundation.NSData
+	SetSharedSecretReference(value foundation.IData)
+	UseExtendedAuthentication() bool
+	SetUseExtendedAuthentication(value bool)
 }
 
 // Settings for an IPsec VPN configuration.
@@ -104,8 +113,8 @@ func (n_ NEVPNProtocolIPSec) SetAuthenticationMethod(value INEVPNIKEAuthenticati
 // A string identifying the iOS or macOS device for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
-func (n_ NEVPNProtocolIPSec) LocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localIdentifier"))
+func (n_ NEVPNProtocolIPSec) LocalIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -115,15 +124,15 @@ func (n_ NEVPNProtocolIPSec) LocalIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
-func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), value)
+func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
 
 // A string identifying the IPSec server for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
-func (n_ NEVPNProtocolIPSec) RemoteIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("remoteIdentifier"))
+func (n_ NEVPNProtocolIPSec) RemoteIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("remoteIdentifier"))
 	return rv
 }
 
@@ -133,8 +142,8 @@ func (n_ NEVPNProtocolIPSec) RemoteIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
-func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), value)
+func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), objc.String(value))
 }
 
 // A persistent keychain reference to a keychain item containing the IKE shared secret.

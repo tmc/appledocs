@@ -31,6 +31,24 @@ type _MTRDeviceEnergyManagementClusterForecastStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterForecastStruct] class.
 type IMTRDeviceEnergyManagementClusterForecastStruct interface {
 	objectivec.IObject
+	ActiveSlotNumber() foundation.Number
+	SetActiveSlotNumber(value foundation.INumber)
+	EarliestStartTime() foundation.Number
+	SetEarliestStartTime(value foundation.INumber)
+	EndTime() foundation.Number
+	SetEndTime(value foundation.INumber)
+	ForecastID() foundation.Number
+	SetForecastID(value foundation.INumber)
+	ForecastUpdateReason() foundation.Number
+	SetForecastUpdateReason(value foundation.INumber)
+	IsPausable() foundation.Number
+	SetIsPausable(value foundation.INumber)
+	LatestEndTime() foundation.Number
+	SetLatestEndTime(value foundation.INumber)
+	Slots() objc.ID
+	SetSlots(value objc.ID)
+	StartTime() foundation.Number
+	SetStartTime(value foundation.INumber)
 }
 
 //

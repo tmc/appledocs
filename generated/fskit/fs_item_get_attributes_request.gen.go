@@ -31,6 +31,8 @@ type _FSItemGetAttributesRequestClass struct {
 type IFSItemGetAttributesRequest interface {
 	objectivec.IObject
 	IsAttributeWanted(attribute FSItemAttribute) bool
+	WantedAttributes() FSItemAttribute
+	SetWantedAttributes(value FSItemAttribute)
 }
 
 // A request to get attributes from an item.

@@ -31,10 +31,19 @@ type _SActivityClass struct {
 type ISActivity interface {
 	ISObject
 	AddAdditionalActivityItem(activityItem ICLSActivityItem)
-	AddProgressRangeFromStartToEnd(start unsafe.Pointer, end unsafe.Pointer)
+	AddProgressRangeFromStartToEnd(start float64, end float64)
 	RemoveAllActivityItems()
 	Start()
 	Stop()
+	AdditionalActivityItems() []SActivityItem
+	Duration() foundation.TimeInterval
+	Started() bool
+	PrimaryActivityItem() CLSActivityItem
+	SetPrimaryActivityItem(value ICLSActivityItem)
+	Progress() float64
+	SetProgress(value float64)
+	IsStarted() bool
+	SetIsStarted(value bool)
 }
 
 // A representation of user interaction with a context.
@@ -97,7 +106,7 @@ func (s_ SActivity) AddAdditionalActivityItem(activityItem ICLSActivityItem) {
 // Adds a progress range to a given activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/addProgressRange(fromStart:toEnd:)
-func (s_ SActivity) AddProgressRangeFromStartToEnd(start unsafe.Pointer, end unsafe.Pointer) {
+func (s_ SActivity) AddProgressRangeFromStartToEnd(start float64, end float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addProgressRangeFromStart:toEnd:"), start, end)
 }
 
@@ -167,8 +176,8 @@ func (s_ SActivity) SetPrimaryActivityItem(value ICLSActivityItem) {
 // A measure of progress through the task, given as a fraction in the range [0, 1].
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
-func (s_ SActivity) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("progress"))
+func (s_ SActivity) Progress() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("progress"))
 	return rv
 }
 
@@ -178,7 +187,7 @@ func (s_ SActivity) Progress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/progress
-func (s_ SActivity) SetProgress(value unsafe.Pointer) {
+func (s_ SActivity) SetProgress(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProgress:"), value)
 }
 

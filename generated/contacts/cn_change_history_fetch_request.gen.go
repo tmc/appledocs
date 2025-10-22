@@ -30,6 +30,18 @@ type _CNChangeHistoryFetchRequestClass struct {
 // An interface definition for the [CNChangeHistoryFetchRequest] class.
 type ICNChangeHistoryFetchRequest interface {
 	ICNFetchRequest
+	AdditionalContactKeyDescriptors() []objc.ID
+	SetAdditionalContactKeyDescriptors(value []objc.ID)
+	ExcludedTransactionAuthors() []string
+	SetExcludedTransactionAuthors(value []string)
+	IncludeGroupChanges() bool
+	SetIncludeGroupChanges(value bool)
+	MutableObjects() bool
+	SetMutableObjects(value bool)
+	ShouldUnifyResults() bool
+	SetShouldUnifyResults(value bool)
+	StartingToken() foundation.NSData
+	SetStartingToken(value foundation.IData)
 }
 
 // An object that specifies the criteria for fetching change history.

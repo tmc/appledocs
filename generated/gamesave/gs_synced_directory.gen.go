@@ -33,6 +33,7 @@ type IGSSyncedDirectory interface {
 	objectivec.IObject
 	FinishSyncingCompletionHandler(statusDisplay appkit.IWindow, completion unsafe.Pointer)
 	FinishSyncingWithCompletionHandler(completion unsafe.Pointer)
+	DirectoryState() unsafe.Pointer
 }
 
 // A cloud-synced directory for game-save data.
@@ -86,8 +87,8 @@ func NewGSSyncedDirectory() GSSyncedDirectory {
 // Requests an instance of the game-save directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/open(forContainerIdentifier:)
-func (gc _GSSyncedDirectoryClass) OpenDirectoryForContainerIdentifier(containerIdentifier appkit.string) GSSyncedDirectory {
-	rv := objc.Send[GSSyncedDirectory](objc.ID(gc.class), objc.Sel("openDirectoryForContainerIdentifier:"), containerIdentifier)
+func (gc _GSSyncedDirectoryClass) OpenDirectoryForContainerIdentifier(containerIdentifier string) GSSyncedDirectory {
+	rv := objc.Send[GSSyncedDirectory](objc.ID(gc.class), objc.Sel("openDirectoryForContainerIdentifier:"), objc.String(containerIdentifier))
 	return rv
 }
 

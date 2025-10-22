@@ -32,6 +32,37 @@ type IMetadataQuery interface {
 	objectivec.IObject
 	EnumerateResultsUsingBlock(block unsafe.Pointer)
 	ResultAtIndex(idx uint) objc.ID
+	NotificationBatchingInterval() TimeInterval
+	SetNotificationBatchingInterval(value ITimeInterval)
+	OperationQueue() NSOperationQueue
+	SetOperationQueue(value IOperationQueue)
+	Predicate() NSPredicate
+	SetPredicate(value IPredicate)
+	Results() objc.ID
+	SearchScopes() objc.ID
+	SetSearchScopes(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	GroupedResults() unsafe.Pointer
+	SetGroupedResults(value unsafe.Pointer)
+	GroupingAttributes() string
+	SetGroupingAttributes(value string)
+	IsGathering() bool
+	SetIsGathering(value bool)
+	IsStarted() bool
+	SetIsStarted(value bool)
+	IsStopped() bool
+	SetIsStopped(value bool)
+	ResultCount() int
+	SetResultCount(value int)
+	SearchItems() unsafe.Pointer
+	SetSearchItems(value unsafe.Pointer)
+	SortDescriptors() NSSortDescriptor
+	SetSortDescriptors(value ISortDescriptor)
+	ValueListAttributes() string
+	SetValueListAttributes(value string)
+	ValueLists() unsafe.Pointer
+	SetValueLists(value unsafe.Pointer)
 }
 
 // A query that you perform against Spotlight metadata.

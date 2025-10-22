@@ -32,6 +32,22 @@ type _ICDeviceBrowserClass struct {
 type IICDeviceBrowser interface {
 	objectivec.IObject
 	Start()
+	BrowsedDeviceTypeMask() unsafe.Pointer
+	SetBrowsedDeviceTypeMask(value unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ContentsAuthorizationStatus() ICAuthorizationStatus
+	SetContentsAuthorizationStatus(value ICAuthorizationStatus)
+	ControlAuthorizationStatus() ICAuthorizationStatus
+	SetControlAuthorizationStatus(value ICAuthorizationStatus)
+	Devices() mlcompute.ICDevice
+	SetDevices(value mlcompute.ICDevice)
+	IsBrowsing() bool
+	SetIsBrowsing(value bool)
+	IsSuspended() bool
+	SetIsSuspended(value bool)
+	PreferredDevice() mlcompute.ICDevice
+	SetPreferredDevice(value mlcompute.ICDevice)
 }
 
 // An object for finding digital cameras and scanners.

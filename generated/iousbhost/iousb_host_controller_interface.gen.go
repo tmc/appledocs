@@ -34,6 +34,16 @@ type IUSBHostControllerInterface interface {
 	DescriptionForMessage(message unsafe.Pointer) foundation.String
 	Destroy()
 	EnqueueInterruptsCountExpediteError(interrupts unsafe.Pointer, count uint, expedite bool, error_ unsafe.Pointer) bool
+	Capabilities() unsafe.Pointer
+	SetCapabilities(value unsafe.Pointer)
+	ControllerStateMachine() IOUSBHostCIControllerStateMachine
+	SetControllerStateMachine(value IOUSBHostCIControllerStateMachine)
+	InterruptRateHz() int
+	SetInterruptRateHz(value int)
+	Queue() unsafe.Pointer
+	SetQueue(value unsafe.Pointer)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.IUUID)
 }
 
 //

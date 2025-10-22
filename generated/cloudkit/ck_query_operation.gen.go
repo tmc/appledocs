@@ -29,6 +29,26 @@ type _CKQueryOperationClass struct {
 // An interface definition for the [CKQueryOperation] class.
 type ICKQueryOperation interface {
 	ICKDatabaseOperation
+	Cursor() CKQueryCursor
+	SetCursor(value ICKQueryCursor)
+	DesiredKeys() []string
+	SetDesiredKeys(value []string)
+	Query() CKQuery
+	SetQuery(value ICKQuery)
+	QueryCompletionBlock() unsafe.Pointer
+	SetQueryCompletionBlock(value unsafe.Pointer)
+	RecordFetchedBlock() unsafe.Pointer
+	SetRecordFetchedBlock(value unsafe.Pointer)
+	RecordMatchedBlock() unsafe.Pointer
+	SetRecordMatchedBlock(value unsafe.Pointer)
+	ResultsLimit() uint
+	SetResultsLimit(value uint)
+	ZoneID() CKRecordZoneID
+	SetZoneID(value ICKRecordZoneID)
+	QueryResultBlock() unsafe.Pointer
+	SetQueryResultBlock(value unsafe.Pointer)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
 }
 
 // An operation for executing queries in a database.

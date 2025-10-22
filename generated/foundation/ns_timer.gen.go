@@ -32,6 +32,15 @@ type ITimer interface {
 	objectivec.IObject
 	Fire()
 	Invalidate()
+	FireDate() NSDate
+	SetFireDate(value IDate)
+	Valid() bool
+	TimeInterval() TimeInterval
+	Tolerance() TimeInterval
+	SetTolerance(value ITimeInterval)
+	UserInfo() objc.ID
+	IsValid() bool
+	SetIsValid(value bool)
 }
 
 // A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.

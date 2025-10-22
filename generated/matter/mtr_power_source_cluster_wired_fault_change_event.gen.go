@@ -30,6 +30,10 @@ type _MTRPowerSourceClusterWiredFaultChangeEventClass struct {
 // An interface definition for the [MTRPowerSourceClusterWiredFaultChangeEvent] class.
 type IMTRPowerSourceClusterWiredFaultChangeEvent interface {
 	objectivec.IObject
+	Current() unsafe.Pointer
+	SetCurrent(value unsafe.Pointer)
+	Previous() unsafe.Pointer
+	SetPrevious(value unsafe.Pointer)
 }
 
 //

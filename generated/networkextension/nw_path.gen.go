@@ -30,6 +30,12 @@ type _NWPathClass struct {
 // An interface definition for the [NWPath] class.
 type INWPath interface {
 	objectivec.IObject
+	IsConstrained() bool
+	SetIsConstrained(value bool)
+	IsExpensive() bool
+	SetIsExpensive(value bool)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // The path made by a network connection, including information about its viability.

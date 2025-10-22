@@ -30,9 +30,15 @@ type _NoiseMapClass struct {
 // An interface definition for the [NoiseMap] class.
 type INoiseMap interface {
 	objectivec.IObject
-	InterpolatedValueAtPosition(position unsafe.Pointer) unsafe.Pointer
-	SetValueAtPosition(value unsafe.Pointer, position unsafe.Pointer)
-	ValueAtPosition(position unsafe.Pointer) unsafe.Pointer
+	InterpolatedValueAtPosition(position unsafe.Pointer) float32
+	SetValueAtPosition(value float32, position unsafe.Pointer)
+	ValueAtPosition(position unsafe.Pointer) float32
+	Seamless() bool
+	Origin() unsafe.Pointer
+	SampleCount() unsafe.Pointer
+	Size() unsafe.Pointer
+	IsSeamless() bool
+	SetIsSeamless(value bool)
 }
 
 // A sample of procedural noise data from which you can read noise values directly or create noise textures.
@@ -127,23 +133,23 @@ func (nc _NoiseMapClass) NoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IG
 // Returns the value at the specified position in the noise map, interpolating results for positions not on the discrete sample grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/interpolatedValue(at:)
-func (n_ NoiseMap) InterpolatedValueAtPosition(position unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interpolatedValueAtPosition:"), position)
+func (n_ NoiseMap) InterpolatedValueAtPosition(position unsafe.Pointer) float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("interpolatedValueAtPosition:"), position)
 	return rv
 }
 
 // Sets the value at the specified position in the noise map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/setValue(_:at:)
-func (n_ NoiseMap) SetValueAtPosition(value unsafe.Pointer, position unsafe.Pointer) {
+func (n_ NoiseMap) SetValueAtPosition(value float32, position unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setValue:atPosition:"), value, position)
 }
 
 // Returns the value at the specified position in the noise map’s discrete sample grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/value(at:)
-func (n_ NoiseMap) ValueAtPosition(position unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("valueAtPosition:"), position)
+func (n_ NoiseMap) ValueAtPosition(position unsafe.Pointer) float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("valueAtPosition:"), position)
 	return rv
 }
 

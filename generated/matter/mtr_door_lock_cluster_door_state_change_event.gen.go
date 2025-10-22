@@ -31,6 +31,8 @@ type _MTRDoorLockClusterDoorStateChangeEventClass struct {
 // An interface definition for the [MTRDoorLockClusterDoorStateChangeEvent] class.
 type IMTRDoorLockClusterDoorStateChangeEvent interface {
 	objectivec.IObject
+	DoorState() foundation.Number
+	SetDoorState(value foundation.INumber)
 }
 
 //

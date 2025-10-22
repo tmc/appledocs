@@ -32,6 +32,18 @@ type _PlayerLayerClass struct {
 type IPlayerLayer interface {
 	quartzcore.ILayer
 	CopyDisplayedPixelBuffer() unsafe.Pointer
+	ReadyForDisplay() bool
+	PixelBufferAttributes() unsafe.Pointer
+	SetPixelBufferAttributes(value unsafe.Pointer)
+	Player() AVPlayer
+	SetPlayer(value IAVPlayer)
+	VideoGravity() LayerVideoGravity
+	SetVideoGravity(value ILayerVideoGravity)
+	VideoRect() coregraphics.CGRect
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
+	Contents() unsafe.Pointer
+	SetContents(value unsafe.Pointer)
 }
 
 // An object that presents the visual contents of a player object.

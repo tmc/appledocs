@@ -31,6 +31,12 @@ type _MTRTimeSynchronizationClusterTimeZoneStructClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterTimeZoneStruct] class.
 type IMTRTimeSynchronizationClusterTimeZoneStruct interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
+	Offset() foundation.Number
+	SetOffset(value foundation.INumber)
+	ValidAt() foundation.Number
+	SetValidAt(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRTimeSynchronizationClusterTimeZoneStruct() MTRTimeSynchronizationClus
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonestruct/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRTimeSynchronizationClusterTimeZoneStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

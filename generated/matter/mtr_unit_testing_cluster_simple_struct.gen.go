@@ -31,6 +31,22 @@ type _MTRUnitTestingClusterSimpleStructClass struct {
 // An interface definition for the [MTRUnitTestingClusterSimpleStruct] class.
 type IMTRUnitTestingClusterSimpleStruct interface {
 	objectivec.IObject
+	A() foundation.Number
+	SetA(value foundation.INumber)
+	B() foundation.Number
+	SetB(value foundation.INumber)
+	C() foundation.Number
+	SetC(value foundation.INumber)
+	D() foundation.Data
+	SetD(value foundation.IData)
+	E() string
+	SetE(value string)
+	F() foundation.Number
+	SetF(value foundation.INumber)
+	G() foundation.Number
+	SetG(value foundation.INumber)
+	H() foundation.Number
+	SetH(value foundation.INumber)
 }
 
 //
@@ -138,8 +154,8 @@ func (m_ MTRUnitTestingClusterSimpleStruct) SetD(value foundation.IData) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustersimplestruct/e
-func (m_ MTRUnitTestingClusterSimpleStruct) E() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("e"))
+func (m_ MTRUnitTestingClusterSimpleStruct) E() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("e"))
 	return rv
 }
 
@@ -147,8 +163,8 @@ func (m_ MTRUnitTestingClusterSimpleStruct) E() appkit.string {
 // SetE sets the value of the e property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustersimplestruct/e
-func (m_ MTRUnitTestingClusterSimpleStruct) SetE(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), value)
+func (m_ MTRUnitTestingClusterSimpleStruct) SetE(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), objc.String(value))
 }
 
 //

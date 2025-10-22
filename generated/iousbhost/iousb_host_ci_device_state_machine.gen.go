@@ -32,6 +32,11 @@ type IUSBHostCIDeviceStateMachine interface {
 	objectivec.IObject
 	InspectCommandError(command unsafe.Pointer, error_ unsafe.Pointer) bool
 	RespondToCommandStatusError(command unsafe.Pointer, status unsafe.Pointer, error_ unsafe.Pointer) bool
+	ControllerInterface() IOUSBHostControllerInterface
+	DeviceAddress() uint
+	DeviceState() unsafe.Pointer
+	CompleteRoute() int
+	SetCompleteRoute(value int)
 }
 
 //

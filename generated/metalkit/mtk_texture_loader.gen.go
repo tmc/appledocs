@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -39,16 +38,17 @@ type ITextureLoader interface {
 	NewTextureWithCGImageOptionsCompletionHandler(cgImage coregraphics.CGImageRef, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTextureWithDataOptionsError(data foundation.IData, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	NewTextureWithDataOptionsCompletionHandler(data foundation.IData, options unsafe.Pointer, completionHandler unsafe.Pointer)
-	NewTextureWithNameScaleFactorBundleOptionsError(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
-	NewTextureWithNameScaleFactorBundleOptionsCompletionHandler(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer)
-	NewTextureWithNameScaleFactorDisplayGamutBundleOptionsError(name appkit.string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
-	NewTextureWithNameScaleFactorDisplayGamutBundleOptionsCompletionHandler(name appkit.string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithNameScaleFactorBundleOptionsError(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	NewTextureWithNameScaleFactorBundleOptionsCompletionHandler(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	NewTextureWithNameScaleFactorDisplayGamutBundleOptionsError(name string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	NewTextureWithNameScaleFactorDisplayGamutBundleOptionsCompletionHandler(name string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTextureWithMDLTextureOptionsError(texture unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID
 	NewTextureWithMDLTextureOptionsCompletionHandler(texture unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTexturesWithContentsOfURLsOptionsCompletionHandler(URLs []foundation.IURL, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTexturesWithContentsOfURLsOptionsError(URLs []foundation.IURL, options unsafe.Pointer, error_ unsafe.Pointer) []objc.ID
 	NewTexturesWithNamesScaleFactorBundleOptionsCompletionHandler(names []string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer)
 	NewTexturesWithNamesScaleFactorDisplayGamutBundleOptionsCompletionHandler(names []string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer)
+	Device() objc.ID
 }
 
 // An object that creates textures from existing data in common image formats.
@@ -160,31 +160,31 @@ func (t_ TextureLoader) NewTextureWithDataOptionsCompletionHandler(data foundati
 // Synchronously loads image data and creates a Metal texture from the named texture asset in an asset catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/newTexture(name:scaleFactor:bundle:options:)
-func (t_ TextureLoader) NewTextureWithNameScaleFactorBundleOptionsError(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:bundle:options:error:"), name, scaleFactor, bundle, options, error_)
+func (t_ TextureLoader) NewTextureWithNameScaleFactorBundleOptionsError(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:bundle:options:error:"), objc.String(name), scaleFactor, bundle, options, error_)
 	return rv
 }
 
 // Asynchronously loads image data and creates a Metal texture from the named texture asset in an asset catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/newTexture(name:scaleFactor:bundle:options:completionHandler:)
-func (t_ TextureLoader) NewTextureWithNameScaleFactorBundleOptionsCompletionHandler(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:bundle:options:completionHandler:"), name, scaleFactor, bundle, options, completionHandler)
+func (t_ TextureLoader) NewTextureWithNameScaleFactorBundleOptionsCompletionHandler(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:bundle:options:completionHandler:"), objc.String(name), scaleFactor, bundle, options, completionHandler)
 }
 
 // Synchronously loads image data and creates a Metal texture from the named texture asset in an asset catalog, using a specified display gamut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/newTexture(name:scaleFactor:displayGamut:bundle:options:)
-func (t_ TextureLoader) NewTextureWithNameScaleFactorDisplayGamutBundleOptionsError(name appkit.string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:displayGamut:bundle:options:error:"), name, scaleFactor, displayGamut, bundle, options, error_)
+func (t_ TextureLoader) NewTextureWithNameScaleFactorDisplayGamutBundleOptionsError(name string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:displayGamut:bundle:options:error:"), objc.String(name), scaleFactor, displayGamut, bundle, options, error_)
 	return rv
 }
 
 // Asynchronously loads image data and creates a Metal texture from the named texture asset in an asset catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/newTexture(name:scaleFactor:displayGamut:bundle:options:completionHandler:)
-func (t_ TextureLoader) NewTextureWithNameScaleFactorDisplayGamutBundleOptionsCompletionHandler(name appkit.string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:"), name, scaleFactor, displayGamut, bundle, options, completionHandler)
+func (t_ TextureLoader) NewTextureWithNameScaleFactorDisplayGamutBundleOptionsCompletionHandler(name string, scaleFactor float64, displayGamut unsafe.Pointer, bundle foundation.IBundle, options unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:"), objc.String(name), scaleFactor, displayGamut, bundle, options, completionHandler)
 }
 
 // Synchronously loads image data and creates a Metal texture from the specified Model I/O texture.

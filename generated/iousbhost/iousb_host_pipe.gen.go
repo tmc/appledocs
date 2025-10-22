@@ -36,6 +36,13 @@ type IUSBHostPipe interface {
 	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data foundation.IMutableData, completionTimeout foundation.ITimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
 	SendControlRequestError(request unsafe.Pointer, error_ unsafe.Pointer) bool
 	SendIORequestWithDataBytesTransferredCompletionTimeoutError(data foundation.IMutableData, bytesTransferred unsafe.Pointer, completionTimeout foundation.ITimeInterval, error_ unsafe.Pointer) bool
+	IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer
+	Descriptors() unsafe.Pointer
+	SetDescriptors(value unsafe.Pointer)
+	IdleTimeout() unsafe.Pointer
+	SetIdleTimeout(value unsafe.Pointer)
+	OriginalDescriptors() unsafe.Pointer
+	SetOriginalDescriptors(value unsafe.Pointer)
 }
 
 // The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.

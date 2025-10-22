@@ -31,6 +31,16 @@ type _MTRBindingClusterTargetStructClass struct {
 // An interface definition for the [MTRBindingClusterTargetStruct] class.
 type IMTRBindingClusterTargetStruct interface {
 	objectivec.IObject
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	Group() foundation.Number
+	SetGroup(value foundation.INumber)
+	Node() foundation.Number
+	SetNode(value foundation.INumber)
 }
 
 //

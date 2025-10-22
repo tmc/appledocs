@@ -30,6 +30,7 @@ type _DDMatchLinkClass struct {
 // An interface definition for the [DDMatchLink] class.
 type IDDMatchLink interface {
 	IDDMatch
+	URL() foundation.URL
 }
 
 // An object that contains a web link that the data detection system matches.

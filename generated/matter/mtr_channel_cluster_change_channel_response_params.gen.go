@@ -31,6 +31,12 @@ type _MTRChannelClusterChangeChannelResponseParamsClass struct {
 // An interface definition for the [MTRChannelClusterChangeChannelResponseParams] class.
 type IMTRChannelClusterChangeChannelResponseParams interface {
 	objectivec.IObject
+	Data() string
+	SetData(value string)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRChannelClusterChangeChannelResponseParams() MTRChannelClusterChangeCh
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
-func (m_ MTRChannelClusterChangeChannelResponseParams) Data() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
+func (m_ MTRChannelClusterChangeChannelResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRChannelClusterChangeChannelResponseParams) Data() appkit.string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
-func (m_ MTRChannelClusterChangeChannelResponseParams) SetData(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRChannelClusterChangeChannelResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 
 //

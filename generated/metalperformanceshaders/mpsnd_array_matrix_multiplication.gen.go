@@ -29,6 +29,10 @@ type _NDArrayMatrixMultiplicationClass struct {
 // An interface definition for the [NDArrayMatrixMultiplication] class.
 type INDArrayMatrixMultiplication interface {
 	INDArrayMultiaryKernel
+	Alpha() float64
+	SetAlpha(value float64)
+	Beta() float64
+	SetBeta(value float64)
 }
 
 //
@@ -78,8 +82,8 @@ func NewNDArrayMatrixMultiplication() NDArrayMatrixMultiplication {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/alpha
-func (n_ NDArrayMatrixMultiplication) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("alpha"))
+func (n_ NDArrayMatrixMultiplication) Alpha() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("alpha"))
 	return rv
 }
 
@@ -87,14 +91,14 @@ func (n_ NDArrayMatrixMultiplication) Alpha() unsafe.Pointer {
 // SetAlpha sets the value of the alpha property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/alpha
-func (n_ NDArrayMatrixMultiplication) SetAlpha(value unsafe.Pointer) {
+func (n_ NDArrayMatrixMultiplication) SetAlpha(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAlpha:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
-func (n_ NDArrayMatrixMultiplication) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("beta"))
+func (n_ NDArrayMatrixMultiplication) Beta() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("beta"))
 	return rv
 }
 
@@ -102,7 +106,7 @@ func (n_ NDArrayMatrixMultiplication) Beta() unsafe.Pointer {
 // SetBeta sets the value of the beta property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
-func (n_ NDArrayMatrixMultiplication) SetBeta(value unsafe.Pointer) {
+func (n_ NDArrayMatrixMultiplication) SetBeta(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setBeta:"), value)
 }
 

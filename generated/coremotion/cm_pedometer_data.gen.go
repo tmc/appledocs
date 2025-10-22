@@ -31,6 +31,15 @@ type _PedometerDataClass struct {
 // An interface definition for the [PedometerData] class.
 type IPedometerData interface {
 	objectivec.IObject
+	AverageActivePace() foundation.Number
+	CurrentCadence() foundation.Number
+	CurrentPace() foundation.Number
+	Distance() foundation.Number
+	EndDate() foundation.NSDate
+	FloorsAscended() foundation.Number
+	FloorsDescended() foundation.Number
+	NumberOfSteps() foundation.Number
+	StartDate() foundation.NSDate
 }
 
 // Information about the distance traveled by a user on foot.

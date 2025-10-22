@@ -30,6 +30,15 @@ type _InviteClass struct {
 // An interface definition for the [Invite] class.
 type IInvite interface {
 	objectivec.IObject
+	PlayerGroup() uint
+	Inviter() string
+	SetInviter(value string)
+	IsHosted() bool
+	SetIsHosted(value bool)
+	PlayerAttributes() unsafe.Pointer
+	SetPlayerAttributes(value unsafe.Pointer)
+	Sender() GKPlayer
+	SetSender(value IGKPlayer)
 }
 
 // An invitation to join a match sent to the local player from another player.
@@ -91,8 +100,8 @@ func (i_ Invite) PlayerGroup() uint {
 // The identifier for the player who sends the invitation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) Inviter() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("inviter"))
+func (i_ Invite) Inviter() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("inviter"))
 	return rv
 }
 
@@ -102,8 +111,8 @@ func (i_ Invite) Inviter() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) SetInviter(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), value)
+func (i_ Invite) SetInviter(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether you host the game on your own servers.

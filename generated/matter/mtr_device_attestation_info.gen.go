@@ -31,6 +31,22 @@ type _MTRDeviceAttestationInfoClass struct {
 // An interface definition for the [MTRDeviceAttestationInfo] class.
 type IMTRDeviceAttestationInfo interface {
 	objectivec.IObject
+	CertificationDeclaration() foundation.Data
+	SetCertificationDeclaration(value foundation.IData)
+	Challenge() foundation.Data
+	SetChallenge(value foundation.IData)
+	DeviceAttestationCertificate() foundation.Data
+	SetDeviceAttestationCertificate(value foundation.IData)
+	ElementsSignature() foundation.Data
+	SetElementsSignature(value foundation.IData)
+	ElementsTLV() foundation.Data
+	SetElementsTLV(value foundation.IData)
+	FirmwareInfo() foundation.Data
+	SetFirmwareInfo(value foundation.IData)
+	Nonce() foundation.Data
+	SetNonce(value foundation.IData)
+	ProductAttestationIntermediateCertificate() foundation.Data
+	SetProductAttestationIntermediateCertificate(value foundation.IData)
 }
 
 //

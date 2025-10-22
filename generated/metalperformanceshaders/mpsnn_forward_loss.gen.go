@@ -32,6 +32,20 @@ type _ForwardLossClass struct {
 type IForwardLoss interface {
 	objectivec.IObject
 	EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer)
+	Delta() float32
+	SetDelta(value float32)
+	Epsilon() float32
+	SetEpsilon(value float32)
+	ReduceAcrossBatch() bool
+	ReductionType() unsafe.Pointer
+	LabelSmoothing() float32
+	SetLabelSmoothing(value float32)
+	LossType() unsafe.Pointer
+	SetLossType(value unsafe.Pointer)
+	NumberOfClasses() int
+	SetNumberOfClasses(value int)
+	Weight() float32
+	SetWeight(value float32)
 }
 
 //
@@ -104,8 +118,8 @@ func (f_ ForwardLoss) EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestina
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/delta
-func (f_ ForwardLoss) Delta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delta"))
+func (f_ ForwardLoss) Delta() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("delta"))
 	return rv
 }
 
@@ -113,14 +127,14 @@ func (f_ ForwardLoss) Delta() unsafe.Pointer {
 // SetDelta sets the value of the delta property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/delta
-func (f_ ForwardLoss) SetDelta(value unsafe.Pointer) {
+func (f_ ForwardLoss) SetDelta(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
-func (f_ ForwardLoss) Epsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("epsilon"))
+func (f_ ForwardLoss) Epsilon() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("epsilon"))
 	return rv
 }
 
@@ -128,7 +142,7 @@ func (f_ ForwardLoss) Epsilon() unsafe.Pointer {
 // SetEpsilon sets the value of the epsilon property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
-func (f_ ForwardLoss) SetEpsilon(value unsafe.Pointer) {
+func (f_ ForwardLoss) SetEpsilon(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
 }
 
@@ -148,8 +162,8 @@ func (f_ ForwardLoss) ReductionType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/labelsmoothing
-func (f_ ForwardLoss) LabelSmoothing() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("labelSmoothing"))
+func (f_ ForwardLoss) LabelSmoothing() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("labelSmoothing"))
 	return rv
 }
 
@@ -157,7 +171,7 @@ func (f_ ForwardLoss) LabelSmoothing() unsafe.Pointer {
 // SetLabelSmoothing sets the value of the labelSmoothing property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/labelsmoothing
-func (f_ ForwardLoss) SetLabelSmoothing(value unsafe.Pointer) {
+func (f_ ForwardLoss) SetLabelSmoothing(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLabelSmoothing:"), value)
 }
 
@@ -193,8 +207,8 @@ func (f_ ForwardLoss) SetNumberOfClasses(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/weight
-func (f_ ForwardLoss) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("weight"))
+func (f_ ForwardLoss) Weight() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("weight"))
 	return rv
 }
 
@@ -202,7 +216,7 @@ func (f_ ForwardLoss) Weight() unsafe.Pointer {
 // SetWeight sets the value of the weight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/weight
-func (f_ ForwardLoss) SetWeight(value unsafe.Pointer) {
+func (f_ ForwardLoss) SetWeight(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)
 }
 

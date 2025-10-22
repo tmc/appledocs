@@ -30,6 +30,17 @@ type _VZNetworkBlockDeviceStorageDeviceAttachmentClass struct {
 // An interface definition for the [VZNetworkBlockDeviceStorageDeviceAttachment] class.
 type IVZNetworkBlockDeviceStorageDeviceAttachment interface {
 	IVZStorageDeviceAttachment
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ForcedReadOnly() bool
+	IsForcedReadOnly() bool
+	SetIsForcedReadOnly(value bool)
+	SynchronizationMode() VZDiskSynchronizationMode
+	SetSynchronizationMode(value VZDiskSynchronizationMode)
+	Timeout() unsafe.Pointer
+	SetTimeout(value unsafe.Pointer)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A storage device attachment backed by a Network Block Device (NBD) client.

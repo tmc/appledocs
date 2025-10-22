@@ -30,6 +30,38 @@ type _FSStatFSResultClass struct {
 // An interface definition for the [FSStatFSResult] class.
 type IFSStatFSResult interface {
 	objectivec.IObject
+	AvailableBlocks() uint64
+	SetAvailableBlocks(value uint64)
+	AvailableBytes() uint64
+	SetAvailableBytes(value uint64)
+	BlockSize() int
+	SetBlockSize(value int)
+	FileSystemSubType() int
+	SetFileSystemSubType(value int)
+	FileSystemTypeName() string
+	SetFileSystemTypeName(value string)
+	FreeBlocks() uint64
+	SetFreeBlocks(value uint64)
+	FreeBytes() uint64
+	SetFreeBytes(value uint64)
+	FreeFiles() uint64
+	SetFreeFiles(value uint64)
+	IoSize() int
+	SetIoSize(value int)
+	TotalBlocks() uint64
+	SetTotalBlocks(value uint64)
+	TotalBytes() uint64
+	SetTotalBytes(value uint64)
+	TotalFiles() uint64
+	SetTotalFiles(value uint64)
+	UsedBlocks() uint64
+	SetUsedBlocks(value uint64)
+	UsedBytes() uint64
+	SetUsedBytes(value uint64)
+	SupportedVolumeCapabilities() FSVolumeSupportedCapabilities
+	SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities)
+	VolumeStatistics() FSStatFSResult
+	SetVolumeStatistics(value IFSStatFSResult)
 }
 
 // A type used to report a volume’s statistics.
@@ -155,8 +187,8 @@ func (f_ FSStatFSResult) SetFileSystemSubType(value int) {
 // A property for the file system type name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename
-func (f_ FSStatFSResult) FileSystemTypeName() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("fileSystemTypeName"))
+func (f_ FSStatFSResult) FileSystemTypeName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("fileSystemTypeName"))
 	return rv
 }
 
@@ -166,8 +198,8 @@ func (f_ FSStatFSResult) FileSystemTypeName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename
-func (f_ FSStatFSResult) SetFileSystemTypeName(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemTypeName:"), value)
+func (f_ FSStatFSResult) SetFileSystemTypeName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemTypeName:"), objc.String(value))
 }
 
 // A property for the number of free blocks in the volume.

@@ -32,6 +32,14 @@ type IGraphExecutionDescriptor interface {
 	IGraphObject
 	SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage IGraphExecutionStage, value uint64)
 	WaitForEventValue(event objectivec.IObject, value uint64)
+	CompilationDescriptor() MPSGraphCompilationDescriptor
+	SetCompilationDescriptor(value IMPSGraphCompilationDescriptor)
+	CompletionHandler() unsafe.Pointer
+	SetCompletionHandler(value unsafe.Pointer)
+	ScheduledHandler() unsafe.Pointer
+	SetScheduledHandler(value unsafe.Pointer)
+	WaitUntilCompleted() bool
+	SetWaitUntilCompleted(value bool)
 }
 
 // A class that consists of all the levers to synchronize and schedule graph execution.

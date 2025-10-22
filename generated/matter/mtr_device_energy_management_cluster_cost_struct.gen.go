@@ -31,6 +31,14 @@ type _MTRDeviceEnergyManagementClusterCostStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterCostStruct] class.
 type IMTRDeviceEnergyManagementClusterCostStruct interface {
 	objectivec.IObject
+	CostType() foundation.Number
+	SetCostType(value foundation.INumber)
+	Currency() foundation.Number
+	SetCurrency(value foundation.INumber)
+	DecimalPoints() foundation.Number
+	SetDecimalPoints(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

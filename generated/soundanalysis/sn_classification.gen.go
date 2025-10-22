@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,13 @@ type _SNClassificationClass struct {
 // An interface definition for the [SNClassification] class.
 type ISNClassification interface {
 	objectivec.IObject
+	Identifier() string
+	Confidence() float64
+	SetConfidence(value float64)
+	Classifications() SNClassification
+	SetClassifications(value ISNClassification)
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
 }
 
 // A type that pairs a sound classifier’s prediction with its confidence in that prediction.
@@ -84,16 +90,16 @@ func NewSNClassification() SNClassification {
 // A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier
-func (s_ SNClassification) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
+func (s_ SNClassification) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The confidence value the model has in its prediction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/confidence
-func (s_ SNClassification) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("confidence"))
+func (s_ SNClassification) Confidence() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -103,7 +109,7 @@ func (s_ SNClassification) Confidence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/confidence
-func (s_ SNClassification) SetConfidence(value unsafe.Pointer) {
+func (s_ SNClassification) SetConfidence(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setConfidence:"), value)
 }
 

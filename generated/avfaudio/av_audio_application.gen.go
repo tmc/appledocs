@@ -32,6 +32,11 @@ type IAudioApplication interface {
 	objectivec.IObject
 	SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool
 	SetInputMutedError(muted bool, outError unsafe.Pointer) bool
+	InputMuted() bool
+	MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission
+	RecordPermission() AudioApplicationRecordPermission
+	IsInputMuted() bool
+	SetIsInputMuted(value bool)
 }
 
 // An object that manages one or more audio sessions that belong to an app.

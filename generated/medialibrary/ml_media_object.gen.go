@@ -32,6 +32,25 @@ type _MediaObjectClass struct {
 // An interface definition for the [MediaObject] class.
 type IMediaObject interface {
 	objectivec.IObject
+	Attributes() unsafe.Pointer
+	ContentType() string
+	FileSize() uint
+	Identifier() string
+	MediaSourceIdentifier() string
+	Name() string
+	ThumbnailURL() foundation.URL
+	ArtworkImage() appkit.Image
+	SetArtworkImage(value appkit.IImage)
+	MediaLibrary() MLMediaLibrary
+	SetMediaLibrary(value IMLMediaLibrary)
+	MediaType() unsafe.Pointer
+	SetMediaType(value unsafe.Pointer)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.IDate)
+	OriginalURL() foundation.URL
+	SetOriginalURL(value foundation.IURL)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // The class describes a single media file, such as a photo, song, or movie. Each media object contains basic metadata including a name, media type, URL, and so on. Additional information about each object is stored in its list of attributes. For a list of possible object attribute keys, see .
@@ -93,8 +112,8 @@ func (m_ MediaObject) Attributes() unsafe.Pointer {
 // The UTI associated with the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/contentType
-func (m_ MediaObject) ContentType() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("contentType"))
+func (m_ MediaObject) ContentType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -109,24 +128,24 @@ func (m_ MediaObject) FileSize() uint {
 // An identifier for the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/identifier
-func (m_ MediaObject) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
+func (m_ MediaObject) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // An identifier for the source that loaded the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/mediaSourceIdentifier
-func (m_ MediaObject) MediaSourceIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("mediaSourceIdentifier"))
+func (m_ MediaObject) MediaSourceIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
 	return rv
 }
 
 // The name of the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/name
-func (m_ MediaObject) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MediaObject) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

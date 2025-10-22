@@ -30,6 +30,20 @@ type _MTRSubscribeParamsClass struct {
 // An interface definition for the [MTRSubscribeParams] class.
 type IMTRSubscribeParams interface {
 	IMTRReadParams
+	AutoResubscribe() foundation.Number
+	SetAutoResubscribe(value foundation.INumber)
+	KeepPreviousSubscriptions() foundation.Number
+	SetKeepPreviousSubscriptions(value foundation.INumber)
+	MaxInterval() foundation.Number
+	SetMaxInterval(value foundation.INumber)
+	MinInterval() foundation.Number
+	SetMinInterval(value foundation.INumber)
+	ShouldReplaceExistingSubscriptions() bool
+	SetShouldReplaceExistingSubscriptions(value bool)
+	ShouldReportEventsUrgently() bool
+	SetShouldReportEventsUrgently(value bool)
+	ShouldResubscribeAutomatically() bool
+	SetShouldResubscribeAutomatically(value bool)
 }
 
 //

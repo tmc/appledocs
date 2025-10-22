@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,16 @@ type _MonitoringEventClass struct {
 // An interface definition for the [MonitoringEvent] class.
 type IMonitoringEvent interface {
 	objectivec.IObject
+	AuthorizationDeniedGlobally() bool
+	AuthorizationRequestInProgress() bool
+	ConditionLimitExceeded() bool
+	ConditionUnsupported() bool
+	Date() foundation.NSDate
+	Identifier() string
+	InsufficientlyInUse() bool
+	PersistenceUnavailable() bool
+	ServiceSessionRequired() bool
+	State() MonitoringState
 }
 
 // The object that the framework passes to the monitor’s callback handler upon receiving an event.
@@ -124,8 +133,8 @@ func (m_ MonitoringEvent) Date() foundation.NSDate {
 // A string that represents the identifier of a monitored condition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/identifier
-func (m_ MonitoringEvent) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
+func (m_ MonitoringEvent) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _MTRTestClusterClusterTestFabricScopedEventEventClass struct {
 // An interface definition for the [MTRTestClusterClusterTestFabricScopedEventEvent] class.
 type IMTRTestClusterClusterTestFabricScopedEventEvent interface {
 	IMTRUnitTestingClusterTestFabricScopedEventEvent
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
 }
 
 //

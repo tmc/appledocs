@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,7 @@ type _TKSmartCardTokenClass struct {
 // An interface definition for the [TKSmartCardToken] class.
 type ITKSmartCardToken interface {
 	ITKToken
+	AID() foundation.NSData
 }
 
 // A representation of a smart card based cryptographic token.
@@ -86,9 +86,9 @@ func NewTKSmartCardToken() TKSmartCardToken {
 // Initializes a smart card token with the specified smart card, application identifier, and token driver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/init(smartCard:aid:instanceID:tokenDriver:)
-func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.IData, instanceID appkit.string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
+func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.IData, instanceID string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
 	instance := getTKSmartCardTokenClass().Alloc()
-	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, instanceID, tokenDriver)
+	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, objc.String(instanceID), tokenDriver)
 	rv.Autorelease()
 	return rv
 }

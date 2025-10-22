@@ -33,6 +33,12 @@ type IRule interface {
 	objectivec.IObject
 	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 	PerformActionWithSystem(system IGKRuleSystem)
+	Salience() int
+	SetSalience(value int)
+	Facts() unsafe.Pointer
+	SetFacts(value unsafe.Pointer)
+	State() foundation.MutableDictionary
+	SetState(value foundation.IMutableDictionary)
 }
 
 // A rule to be used in the context of a rule system, with a predicate to be tested and an action to be executed when the test succeeds.
@@ -98,7 +104,7 @@ func NewRuleWithBlockPredicateAction(predicate unsafe.Pointer, action unsafe.Poi
 // Creates a data-driven rule with the specified predicate, whose action asserts a fact in the rule system evaluating the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:assertingFact:grade:)
-func NewRuleWithPredicateAssertingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade unsafe.Pointer) Rule {
+func NewRuleWithPredicateAssertingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade float32) Rule {
 	rv := objc.Send[Rule](objc.ID(getRuleClass().class), objc.Sel("ruleWithPredicate:assertingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -108,7 +114,7 @@ func NewRuleWithPredicateAssertingFactGrade(predicate foundation.IPredicate, fac
 // Creates a data-driven rule with the specified predicate, whose action retracts a fact in the rule system evaluating the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:retractingFact:grade:)
-func NewRuleWithPredicateRetractingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade unsafe.Pointer) Rule {
+func NewRuleWithPredicateRetractingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade float32) Rule {
 	rv := objc.Send[Rule](objc.ID(getRuleClass().class), objc.Sel("ruleWithPredicate:retractingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -125,7 +131,7 @@ func (rc _RuleClass) RuleWithBlockPredicateAction(predicate unsafe.Pointer, acti
 // Creates a data-driven rule with the specified predicate, whose action asserts a fact in the rule system evaluating the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:assertingFact:grade:)
-func (rc _RuleClass) RuleWithPredicateAssertingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade unsafe.Pointer) unsafe.Pointer {
+func (rc _RuleClass) RuleWithPredicateAssertingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ruleWithPredicate:assertingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -133,7 +139,7 @@ func (rc _RuleClass) RuleWithPredicateAssertingFactGrade(predicate foundation.IP
 // Creates a data-driven rule with the specified predicate, whose action retracts a fact in the rule system evaluating the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:retractingFact:grade:)
-func (rc _RuleClass) RuleWithPredicateRetractingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade unsafe.Pointer) unsafe.Pointer {
+func (rc _RuleClass) RuleWithPredicateRetractingFactGrade(predicate foundation.IPredicate, fact objectivec.IObject, grade float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ruleWithPredicate:retractingFact:grade:"), predicate, fact, grade)
 	return rv
 }

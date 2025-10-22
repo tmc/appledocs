@@ -30,6 +30,10 @@ type _MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEventClass stru
 // An interface definition for the [MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent] class.
 type IMTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent interface {
 	objectivec.IObject
+	EnergyExported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
+	SetEnergyExported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct)
+	EnergyImported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
+	SetEnergyImported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct)
 }
 
 //

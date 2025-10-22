@@ -31,6 +31,12 @@ type _GCVirtualControllerElementConfigurationClass struct {
 // An interface definition for the [GCVirtualControllerElementConfiguration] class.
 type IGCVirtualControllerElementConfiguration interface {
 	objectivec.IObject
+	ActsAsTouchpad() bool
+	SetActsAsTouchpad(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	Path() appkit.BezierPath
+	SetPath(value appkit.IBezierPath)
 }
 
 // The properties of a virtual controller’s element that you can customize.

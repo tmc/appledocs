@@ -31,6 +31,8 @@ type _MTRAccessControlClusterReviewFabricRestrictionsResponseParamsClass struct 
 // An interface definition for the [MTRAccessControlClusterReviewFabricRestrictionsResponseParams] class.
 type IMTRAccessControlClusterReviewFabricRestrictionsResponseParams interface {
 	objectivec.IObject
+	Token() foundation.Number
+	SetToken(value foundation.INumber)
 }
 
 //

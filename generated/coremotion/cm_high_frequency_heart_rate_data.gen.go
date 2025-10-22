@@ -30,6 +30,9 @@ type _HighFrequencyHeartRateDataClass struct {
 // An interface definition for the [HighFrequencyHeartRateData] class.
 type IHighFrequencyHeartRateData interface {
 	ILogItem
+	Confidence() HighFrequencyHeartRateDataConfidence
+	Date() foundation.NSDate
+	HeartRate() float64
 }
 
 // A class that represents heart rate data collected at 1 Hz.
@@ -101,8 +104,8 @@ func (h_ HighFrequencyHeartRateData) Date() foundation.NSDate {
 // The heart rate value in units of beats per minute (BPM).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/heartRate
-func (h_ HighFrequencyHeartRateData) HeartRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("heartRate"))
+func (h_ HighFrequencyHeartRateData) HeartRate() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("heartRate"))
 	return rv
 }
 

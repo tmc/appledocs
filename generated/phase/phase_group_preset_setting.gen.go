@@ -30,6 +30,10 @@ type _PHASEGroupPresetSettingClass struct {
 // An interface definition for the [PHASEGroupPresetSetting] class.
 type IPHASEGroupPresetSetting interface {
 	objectivec.IObject
+	Gain() float64
+	GainCurveType() PHASECurveType
+	Rate() float64
+	RateCurveType() PHASECurveType
 }
 
 // Settings for group presets.
@@ -85,7 +89,7 @@ func NewPHASEGroupPresetSetting() PHASEGroupPresetSetting {
 // Creates a group preset setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/init(gain:rate:gainCurveType:rateCurveType:)
-func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain unsafe.Pointer, rate unsafe.Pointer, gainCurveType PHASECurveType, rateCurveType PHASECurveType) PHASEGroupPresetSetting {
+func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain float64, rate float64, gainCurveType PHASECurveType, rateCurveType PHASECurveType) PHASEGroupPresetSetting {
 	instance := getPHASEGroupPresetSettingClass().Alloc()
 	rv := objc.Send[PHASEGroupPresetSetting](instance.ID, objc.Sel("initWithGain:rate:gainCurveType:rateCurveType:"), gain, rate, gainCurveType, rateCurveType)
 	rv.Autorelease()
@@ -96,8 +100,8 @@ func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain unsaf
 // The volume of audio playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/gain
-func (p_ PHASEGroupPresetSetting) Gain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gain"))
+func (p_ PHASEGroupPresetSetting) Gain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
@@ -112,8 +116,8 @@ func (p_ PHASEGroupPresetSetting) GainCurveType() PHASECurveType {
 // The playback speed for audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/rate
-func (p_ PHASEGroupPresetSetting) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rate"))
+func (p_ PHASEGroupPresetSetting) Rate() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("rate"))
 	return rv
 }
 

@@ -30,6 +30,13 @@ type _HostClass struct {
 // An interface definition for the [Host] class.
 type IHost interface {
 	objectivec.IObject
+	Addresses() []string
+	LocalizedName() string
+	Name() string
+	Address() string
+	SetAddress(value string)
+	Names() string
+	SetNames(value string)
 }
 
 // A representation of an individual host on the network.

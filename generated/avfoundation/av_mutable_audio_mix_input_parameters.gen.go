@@ -29,6 +29,12 @@ type _MutableAudioMixInputParametersClass struct {
 // An interface definition for the [MutableAudioMixInputParameters] class.
 type IMutableAudioMixInputParameters interface {
 	IAudioMixInputParameters
+	AudioTapProcessor() unsafe.Pointer
+	SetAudioTapProcessor(value unsafe.Pointer)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm
+	SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm)
+	TrackID() unsafe.Pointer
+	SetTrackID(value unsafe.Pointer)
 }
 
 // The parameters you use when adding an audio track to a mix.

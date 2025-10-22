@@ -31,6 +31,10 @@ type _MTRAccessControlClusterAccessRestrictionStructClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessRestrictionStruct] class.
 type IMTRAccessControlClusterAccessRestrictionStruct interface {
 	objectivec.IObject
+	Id() foundation.Number
+	SetId(value foundation.INumber)
+	Type() foundation.Number
+	SetType(value foundation.INumber)
 }
 
 //

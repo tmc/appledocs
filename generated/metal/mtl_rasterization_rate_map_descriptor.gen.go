@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,12 @@ type IRasterizationRateMapDescriptor interface {
 	objectivec.IObject
 	LayerAtIndex(layerIndex uint) RasterizationRateLayerDescriptor
 	SetLayerAtIndex(layer IMTLRasterizationRateLayerDescriptor, layerIndex uint)
+	Label() string
+	SetLabel(value string)
+	LayerCount() uint
+	Layers() MTLRasterizationRateLayerArray
+	ScreenSize() coregraphics.Size
+	SetScreenSize(value coregraphics.ISize)
 }
 
 // An object that you use to configure new rasterization rate maps.
@@ -126,8 +131,8 @@ func (r_ RasterizationRateMapDescriptor) SetLayerAtIndex(layer IMTLRasterization
 // A string used to identify the rate map you create with the descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/label
-func (r_ RasterizationRateMapDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("label"))
+func (r_ RasterizationRateMapDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -137,8 +142,8 @@ func (r_ RasterizationRateMapDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/label
-func (r_ RasterizationRateMapDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ RasterizationRateMapDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The number of layers in the rate map.

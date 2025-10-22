@@ -29,6 +29,10 @@ type _HKContactsLensSpecificationClass struct {
 // An interface definition for the [HKContactsLensSpecification] class.
 type IHKContactsLensSpecification interface {
 	IHKLensSpecification
+	BaseCurve() HKQuantity
+	SetBaseCurve(value IHKQuantity)
+	Diameter() HKQuantity
+	SetDiameter(value IHKQuantity)
 }
 
 // An object that contains the contacts prescription data for one eye.

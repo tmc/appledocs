@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _RunningApplicationClass struct {
 // An interface definition for the [RunningApplication] class.
 type IRunningApplication interface {
 	objectivec.IObject
+	ApplicationName() string
+	BundleIdentifier() string
+	ProcessID() unsafe.Pointer
 }
 
 // An instance that represents an app running on a device.
@@ -84,16 +86,16 @@ func NewRunningApplication() RunningApplication {
 // The display name of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/applicationName
-func (r_ RunningApplication) ApplicationName() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("applicationName"))
+func (r_ RunningApplication) ApplicationName() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("applicationName"))
 	return rv
 }
 
 // The unique bundle identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/bundleIdentifier
-func (r_ RunningApplication) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("bundleIdentifier"))
+func (r_ RunningApplication) BundleIdentifier() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 

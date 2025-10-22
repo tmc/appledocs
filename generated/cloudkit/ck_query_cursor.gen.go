@@ -31,6 +31,16 @@ type _CKQueryCursorClass struct {
 // An interface definition for the [CKQueryCursor] class.
 type ICKQueryCursor interface {
 	objectivec.IObject
+	Cursor() CKQueryCursor
+	SetCursor(value ICKQueryCursor)
+	DesiredKeys() unsafe.Pointer
+	SetDesiredKeys(value unsafe.Pointer)
+	Query() CKQuery
+	SetQuery(value ICKQuery)
+	ResultsLimit() int
+	SetResultsLimit(value int)
+	ZoneID() CKRecordZoneID
+	SetZoneID(value ICKRecordZoneID)
 }
 
 // An object that marks the stopping point for a query and the starting point for retrieving the remaining results.

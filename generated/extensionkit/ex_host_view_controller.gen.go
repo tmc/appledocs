@@ -31,6 +31,8 @@ type _EXHostViewControllerClass struct {
 type IEXHostViewController interface {
 	appkit.IViewController
 	MakeXPCConnection()
+	Configuration() unsafe.Pointer
+	SetConfiguration(value unsafe.Pointer)
 }
 
 // A view controller that hosts remote views provided by an app extension.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,6 +34,385 @@ type ICSSearchableItemAttributeSet interface {
 	MoveFrom(sourceAttributeSet ICSSearchableItemAttributeSet)
 	SetValueForCustomKey(value objectivec.IObject, key ICSCustomAttributeKey)
 	ValueForCustomKey(key ICSCustomAttributeKey) objc.ID
+	Authors() CSPerson
+	SetAuthors(value ICSPerson)
+	AccountHandles() []string
+	SetAccountHandles(value []string)
+	AccountIdentifier() string
+	SetAccountIdentifier(value string)
+	AcquisitionMake() string
+	SetAcquisitionMake(value string)
+	AcquisitionModel() string
+	SetAcquisitionModel(value string)
+	ActionIdentifiers() []string
+	SetActionIdentifiers(value []string)
+	AddedDate() foundation.NSDate
+	SetAddedDate(value foundation.IDate)
+	AdditionalRecipients() []CSPerson
+	SetAdditionalRecipients(value []CSPerson)
+	Album() string
+	SetAlbum(value string)
+	AllDay() foundation.Number
+	SetAllDay(value foundation.INumber)
+	AlternateNames() []string
+	SetAlternateNames(value []string)
+	Altitude() foundation.Number
+	SetAltitude(value foundation.INumber)
+	Aperture() foundation.Number
+	SetAperture(value foundation.INumber)
+	Artist() string
+	SetArtist(value string)
+	Audiences() []string
+	SetAudiences(value []string)
+	AudioBitRate() foundation.Number
+	SetAudioBitRate(value foundation.INumber)
+	AudioChannelCount() foundation.Number
+	SetAudioChannelCount(value foundation.INumber)
+	AudioEncodingApplication() string
+	SetAudioEncodingApplication(value string)
+	AudioSampleRate() foundation.Number
+	SetAudioSampleRate(value foundation.INumber)
+	AudioTrackNumber() foundation.Number
+	SetAudioTrackNumber(value foundation.INumber)
+	AuthorAddresses() []string
+	SetAuthorAddresses(value []string)
+	AuthorEmailAddresses() []string
+	SetAuthorEmailAddresses(value []string)
+	AuthorNames() []string
+	SetAuthorNames(value []string)
+	BitsPerSample() foundation.Number
+	SetBitsPerSample(value foundation.INumber)
+	CameraOwner() string
+	SetCameraOwner(value string)
+	City() string
+	SetCity(value string)
+	Codecs() []string
+	SetCodecs(value []string)
+	ColorSpace() string
+	SetColorSpace(value string)
+	Comment() string
+	SetComment(value string)
+	CompletionDate() foundation.NSDate
+	SetCompletionDate(value foundation.IDate)
+	ContactKeywords() []string
+	SetContactKeywords(value []string)
+	ContainerDisplayName() string
+	SetContainerDisplayName(value string)
+	ContainerIdentifier() string
+	SetContainerIdentifier(value string)
+	ContainerOrder() foundation.Number
+	SetContainerOrder(value foundation.INumber)
+	ContainerTitle() string
+	SetContainerTitle(value string)
+	ContentCreationDate() foundation.NSDate
+	SetContentCreationDate(value foundation.IDate)
+	ContentDescription() string
+	SetContentDescription(value string)
+	ContentModificationDate() foundation.NSDate
+	SetContentModificationDate(value foundation.IDate)
+	ContentRating() foundation.Number
+	SetContentRating(value foundation.INumber)
+	ContentSources() []string
+	SetContentSources(value []string)
+	ContentType() string
+	SetContentType(value string)
+	ContentTypeTree() []string
+	SetContentTypeTree(value []string)
+	ContentURL() foundation.URL
+	SetContentURL(value foundation.IURL)
+	Contributors() []string
+	SetContributors(value []string)
+	Copyright() string
+	SetCopyright(value string)
+	Country() string
+	SetCountry(value string)
+	Coverage() []string
+	SetCoverage(value []string)
+	Creator() string
+	SetCreator(value string)
+	DarkThumbnailURL() foundation.URL
+	SetDarkThumbnailURL(value foundation.IURL)
+	DeliveryType() foundation.Number
+	SetDeliveryType(value foundation.INumber)
+	Director() string
+	SetDirector(value string)
+	DisplayName() string
+	SetDisplayName(value string)
+	DomainIdentifier() string
+	SetDomainIdentifier(value string)
+	DownloadedDate() foundation.NSDate
+	SetDownloadedDate(value foundation.IDate)
+	DueDate() foundation.NSDate
+	SetDueDate(value foundation.IDate)
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	Editors() []string
+	SetEditors(value []string)
+	EmailAddresses() []string
+	SetEmailAddresses(value []string)
+	EmailHeaders() unsafe.Pointer
+	SetEmailHeaders(value unsafe.Pointer)
+	EncodingApplications() []string
+	SetEncodingApplications(value []string)
+	EndDate() foundation.NSDate
+	SetEndDate(value foundation.IDate)
+	EXIFVersion() string
+	SetEXIFVersion(value string)
+	EXIFGPSVersion() string
+	SetEXIFGPSVersion(value string)
+	ExposureMode() foundation.Number
+	SetExposureMode(value foundation.INumber)
+	ExposureProgram() string
+	SetExposureProgram(value string)
+	ExposureTime() foundation.Number
+	SetExposureTime(value foundation.INumber)
+	ExposureTimeString() string
+	SetExposureTimeString(value string)
+	FNumber() foundation.Number
+	SetFNumber(value foundation.INumber)
+	FileSize() foundation.Number
+	SetFileSize(value foundation.INumber)
+	FlashOn() foundation.Number
+	SetFlashOn(value foundation.INumber)
+	FocalLength() foundation.Number
+	SetFocalLength(value foundation.INumber)
+	FocalLength35mm() foundation.Number
+	SetFocalLength35mm(value foundation.INumber)
+	FontNames() []string
+	SetFontNames(value []string)
+	FullyFormattedAddress() string
+	SetFullyFormattedAddress(value string)
+	GeneralMIDISequence() foundation.Number
+	SetGeneralMIDISequence(value foundation.INumber)
+	Genre() string
+	SetGenre(value string)
+	GPSAreaInformation() string
+	SetGPSAreaInformation(value string)
+	GPSDateStamp() foundation.NSDate
+	SetGPSDateStamp(value foundation.IDate)
+	GPSDestBearing() foundation.Number
+	SetGPSDestBearing(value foundation.INumber)
+	GPSDestDistance() foundation.Number
+	SetGPSDestDistance(value foundation.INumber)
+	GPSDestLatitude() foundation.Number
+	SetGPSDestLatitude(value foundation.INumber)
+	GPSDestLongitude() foundation.Number
+	SetGPSDestLongitude(value foundation.INumber)
+	GPSDifferental() foundation.Number
+	SetGPSDifferental(value foundation.INumber)
+	GPSMapDatum() string
+	SetGPSMapDatum(value string)
+	GPSMeasureMode() string
+	SetGPSMeasureMode(value string)
+	GPSProcessingMethod() string
+	SetGPSProcessingMethod(value string)
+	GPSStatus() string
+	SetGPSStatus(value string)
+	GPSTrack() foundation.Number
+	SetGPSTrack(value foundation.INumber)
+	GPSDOP() foundation.Number
+	SetGPSDOP(value foundation.INumber)
+	HasAlphaChannel() foundation.Number
+	SetHasAlphaChannel(value foundation.INumber)
+	Headline() string
+	SetHeadline(value string)
+	HiddenAdditionalRecipients() []CSPerson
+	SetHiddenAdditionalRecipients(value []CSPerson)
+	HTMLContentData() foundation.NSData
+	SetHTMLContentData(value foundation.IData)
+	Identifier() string
+	SetIdentifier(value string)
+	ImageDirection() foundation.Number
+	SetImageDirection(value foundation.INumber)
+	ImportantDates() []foundation.Date
+	SetImportantDates(value []foundation.IDate)
+	Information() string
+	SetInformation(value string)
+	InstantMessageAddresses() []string
+	SetInstantMessageAddresses(value []string)
+	Instructions() string
+	SetInstructions(value string)
+	IsPriority() foundation.Number
+	ISOSpeed() foundation.Number
+	SetISOSpeed(value foundation.INumber)
+	KeySignature() string
+	SetKeySignature(value string)
+	Keywords() []string
+	SetKeywords(value []string)
+	Kind() string
+	SetKind(value string)
+	Languages() []string
+	SetLanguages(value []string)
+	LastUsedDate() foundation.NSDate
+	SetLastUsedDate(value foundation.IDate)
+	Latitude() foundation.Number
+	SetLatitude(value foundation.INumber)
+	LayerNames() []string
+	SetLayerNames(value []string)
+	LensModel() string
+	SetLensModel(value string)
+	LikelyJunk() foundation.Number
+	SetLikelyJunk(value foundation.INumber)
+	Local() foundation.Number
+	SetLocal(value foundation.INumber)
+	Longitude() foundation.Number
+	SetLongitude(value foundation.INumber)
+	Lyricist() string
+	SetLyricist(value string)
+	MailboxIdentifiers() []string
+	SetMailboxIdentifiers(value []string)
+	MaxAperture() foundation.Number
+	SetMaxAperture(value foundation.INumber)
+	MediaTypes() []string
+	SetMediaTypes(value []string)
+	MetadataModificationDate() foundation.NSDate
+	SetMetadataModificationDate(value foundation.IDate)
+	MeteringMode() string
+	SetMeteringMode(value string)
+	MusicalGenre() string
+	SetMusicalGenre(value string)
+	MusicalInstrumentCategory() string
+	SetMusicalInstrumentCategory(value string)
+	MusicalInstrumentName() string
+	SetMusicalInstrumentName(value string)
+	NamedLocation() string
+	SetNamedLocation(value string)
+	Organizations() []string
+	SetOrganizations(value []string)
+	Orientation() foundation.Number
+	SetOrientation(value foundation.INumber)
+	OriginalFormat() string
+	SetOriginalFormat(value string)
+	OriginalSource() string
+	SetOriginalSource(value string)
+	PageCount() foundation.Number
+	SetPageCount(value foundation.INumber)
+	PageHeight() foundation.Number
+	SetPageHeight(value foundation.INumber)
+	PageWidth() foundation.Number
+	SetPageWidth(value foundation.INumber)
+	Participants() []string
+	SetParticipants(value []string)
+	Path() string
+	SetPath(value string)
+	Performers() []string
+	SetPerformers(value []string)
+	PhoneNumbers() []string
+	SetPhoneNumbers(value []string)
+	PixelCount() foundation.Number
+	SetPixelCount(value foundation.INumber)
+	PixelHeight() foundation.Number
+	SetPixelHeight(value foundation.INumber)
+	PixelWidth() foundation.Number
+	SetPixelWidth(value foundation.INumber)
+	PlayCount() foundation.Number
+	SetPlayCount(value foundation.INumber)
+	PostalCode() string
+	SetPostalCode(value string)
+	PrimaryRecipients() []CSPerson
+	SetPrimaryRecipients(value []CSPerson)
+	Producer() string
+	SetProducer(value string)
+	ProfileName() string
+	SetProfileName(value string)
+	Projects() []string
+	SetProjects(value []string)
+	ProviderDataTypeIdentifiers() []string
+	SetProviderDataTypeIdentifiers(value []string)
+	ProviderFileTypeIdentifiers() []string
+	SetProviderFileTypeIdentifiers(value []string)
+	ProviderInPlaceFileTypeIdentifiers() []string
+	SetProviderInPlaceFileTypeIdentifiers(value []string)
+	Publishers() []string
+	SetPublishers(value []string)
+	RankingHint() foundation.Number
+	SetRankingHint(value foundation.INumber)
+	Rating() foundation.Number
+	SetRating(value foundation.INumber)
+	RatingDescription() string
+	SetRatingDescription(value string)
+	RecipientAddresses() []string
+	SetRecipientAddresses(value []string)
+	RecipientEmailAddresses() []string
+	SetRecipientEmailAddresses(value []string)
+	RecipientNames() []string
+	SetRecipientNames(value []string)
+	RecordingDate() foundation.NSDate
+	SetRecordingDate(value foundation.IDate)
+	RedEyeOn() foundation.Number
+	SetRedEyeOn(value foundation.INumber)
+	RelatedUniqueIdentifier() string
+	SetRelatedUniqueIdentifier(value string)
+	ResolutionHeightDPI() foundation.Number
+	SetResolutionHeightDPI(value foundation.INumber)
+	ResolutionWidthDPI() foundation.Number
+	SetResolutionWidthDPI(value foundation.INumber)
+	Rights() string
+	SetRights(value string)
+	Role() string
+	SetRole(value string)
+	SecurityMethod() string
+	SetSecurityMethod(value string)
+	SharedItemContentType() unsafe.Pointer
+	SetSharedItemContentType(value unsafe.Pointer)
+	Speed() foundation.Number
+	SetSpeed(value foundation.INumber)
+	StartDate() foundation.NSDate
+	SetStartDate(value foundation.IDate)
+	StateOrProvince() string
+	SetStateOrProvince(value string)
+	Streamable() foundation.Number
+	SetStreamable(value foundation.INumber)
+	SubThoroughfare() string
+	SetSubThoroughfare(value string)
+	Subject() string
+	SetSubject(value string)
+	SupportsNavigation() foundation.Number
+	SetSupportsNavigation(value foundation.INumber)
+	SupportsPhoneCall() foundation.Number
+	SetSupportsPhoneCall(value foundation.INumber)
+	Tempo() foundation.Number
+	SetTempo(value foundation.INumber)
+	TextContent() string
+	SetTextContent(value string)
+	TextContentSummary() string
+	Theme() string
+	SetTheme(value string)
+	Thoroughfare() string
+	SetThoroughfare(value string)
+	ThumbnailData() foundation.NSData
+	SetThumbnailData(value foundation.IData)
+	ThumbnailURL() foundation.URL
+	SetThumbnailURL(value foundation.IURL)
+	TimeSignature() string
+	SetTimeSignature(value string)
+	Timestamp() foundation.NSDate
+	SetTimestamp(value foundation.IDate)
+	Title() string
+	SetTitle(value string)
+	TotalBitRate() foundation.Number
+	SetTotalBitRate(value foundation.INumber)
+	TranscribedTextContent() string
+	SetTranscribedTextContent(value string)
+	URL() foundation.URL
+	SetURL(value foundation.IURL)
+	UserCreated() foundation.Number
+	SetUserCreated(value foundation.INumber)
+	UserCurated() foundation.Number
+	SetUserCurated(value foundation.INumber)
+	UserOwned() foundation.Number
+	SetUserOwned(value foundation.INumber)
+	Version() string
+	SetVersion(value string)
+	VideoBitRate() foundation.Number
+	SetVideoBitRate(value foundation.INumber)
+	WeakRelatedUniqueIdentifier() string
+	SetWeakRelatedUniqueIdentifier(value string)
+	WhiteBalance() foundation.Number
+	SetWhiteBalance(value foundation.INumber)
+	CSActionIdentifier() string
+	Composer() string
+	SetComposer(value string)
 }
 
 // The detailed metadata for a searchable item.
@@ -102,9 +480,9 @@ func NewCSSearchableItemAttributeSetWithContentType(contentType unsafe.Pointer) 
 // Creates an attribute set for the specified content type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/init(itemContentType:)
-func NewCSSearchableItemAttributeSetWithItemContentType(itemContentType appkit.string) CSSearchableItemAttributeSet {
+func NewCSSearchableItemAttributeSetWithItemContentType(itemContentType string) CSSearchableItemAttributeSet {
 	instance := getCSSearchableItemAttributeSetClass().Alloc()
-	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithItemContentType:"), itemContentType)
+	rv := objc.Send[CSSearchableItemAttributeSet](instance.ID, objc.Sel("initWithItemContentType:"), objc.String(itemContentType))
 	rv.Autorelease()
 	return rv
 }
@@ -180,8 +558,8 @@ func (c_ CSSearchableItemAttributeSet) SetAccountHandles(value []string) {
 // The unique identifier for the account with which the message is associated, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/accountIdentifier
-func (c_ CSSearchableItemAttributeSet) AccountIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("accountIdentifier"))
+func (c_ CSSearchableItemAttributeSet) AccountIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("accountIdentifier"))
 	return rv
 }
 
@@ -191,15 +569,15 @@ func (c_ CSSearchableItemAttributeSet) AccountIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/accountIdentifier
-func (c_ CSSearchableItemAttributeSet) SetAccountIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAccountIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAccountIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAccountIdentifier:"), objc.String(value))
 }
 
 // The manufacturer of the device that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionMake
-func (c_ CSSearchableItemAttributeSet) AcquisitionMake() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("acquisitionMake"))
+func (c_ CSSearchableItemAttributeSet) AcquisitionMake() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("acquisitionMake"))
 	return rv
 }
 
@@ -209,15 +587,15 @@ func (c_ CSSearchableItemAttributeSet) AcquisitionMake() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionMake
-func (c_ CSSearchableItemAttributeSet) SetAcquisitionMake(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionMake:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAcquisitionMake(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionMake:"), objc.String(value))
 }
 
 // The model of the device that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionModel
-func (c_ CSSearchableItemAttributeSet) AcquisitionModel() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("acquisitionModel"))
+func (c_ CSSearchableItemAttributeSet) AcquisitionModel() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("acquisitionModel"))
 	return rv
 }
 
@@ -227,8 +605,8 @@ func (c_ CSSearchableItemAttributeSet) AcquisitionModel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/acquisitionModel
-func (c_ CSSearchableItemAttributeSet) SetAcquisitionModel(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionModel:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAcquisitionModel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAcquisitionModel:"), objc.String(value))
 }
 
 // The identifiers that specify custom actions the app supports for the item.
@@ -308,8 +686,8 @@ func (c_ CSSearchableItemAttributeSet) SetAdditionalRecipients(value []CSPerson)
 // The title for a collection of audio media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/album
-func (c_ CSSearchableItemAttributeSet) Album() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("album"))
+func (c_ CSSearchableItemAttributeSet) Album() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("album"))
 	return rv
 }
 
@@ -319,8 +697,8 @@ func (c_ CSSearchableItemAttributeSet) Album() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/album
-func (c_ CSSearchableItemAttributeSet) SetAlbum(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlbum:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAlbum(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlbum:"), objc.String(value))
 }
 
 // A value that indicates if the event covers an entire day.
@@ -408,8 +786,8 @@ func (c_ CSSearchableItemAttributeSet) SetAperture(value foundation.INumber) {
 // The artist associated with the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/artist
-func (c_ CSSearchableItemAttributeSet) Artist() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("artist"))
+func (c_ CSSearchableItemAttributeSet) Artist() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("artist"))
 	return rv
 }
 
@@ -419,8 +797,8 @@ func (c_ CSSearchableItemAttributeSet) Artist() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/artist
-func (c_ CSSearchableItemAttributeSet) SetArtist(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setArtist:"), value)
+func (c_ CSSearchableItemAttributeSet) SetArtist(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setArtist:"), objc.String(value))
 }
 
 // A class of entity for which the item is intended or useful.
@@ -490,8 +868,8 @@ func (c_ CSSearchableItemAttributeSet) SetAudioChannelCount(value foundation.INu
 // The name of the application that encoded the data the audio file contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/audioEncodingApplication
-func (c_ CSSearchableItemAttributeSet) AudioEncodingApplication() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("audioEncodingApplication"))
+func (c_ CSSearchableItemAttributeSet) AudioEncodingApplication() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("audioEncodingApplication"))
 	return rv
 }
 
@@ -501,8 +879,8 @@ func (c_ CSSearchableItemAttributeSet) AudioEncodingApplication() appkit.string 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/audioEncodingApplication
-func (c_ CSSearchableItemAttributeSet) SetAudioEncodingApplication(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioEncodingApplication:"), value)
+func (c_ CSSearchableItemAttributeSet) SetAudioEncodingApplication(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioEncodingApplication:"), objc.String(value))
 }
 
 // The sample rate of the audio data the file contains, as a float value representing Hz (audio frames per second), such as 44100.0 or 22254.54.
@@ -646,8 +1024,8 @@ func (c_ CSSearchableItemAttributeSet) SetBitsPerSample(value foundation.INumber
 // The owner of the camera that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/cameraOwner
-func (c_ CSSearchableItemAttributeSet) CameraOwner() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("cameraOwner"))
+func (c_ CSSearchableItemAttributeSet) CameraOwner() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("cameraOwner"))
 	return rv
 }
 
@@ -657,15 +1035,15 @@ func (c_ CSSearchableItemAttributeSet) CameraOwner() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/cameraOwner
-func (c_ CSSearchableItemAttributeSet) SetCameraOwner(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCameraOwner:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCameraOwner(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCameraOwner:"), objc.String(value))
 }
 
 // The city of the item’s origin according to guidelines that the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/city
-func (c_ CSSearchableItemAttributeSet) City() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("city"))
+func (c_ CSSearchableItemAttributeSet) City() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("city"))
 	return rv
 }
 
@@ -675,8 +1053,8 @@ func (c_ CSSearchableItemAttributeSet) City() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/city
-func (c_ CSSearchableItemAttributeSet) SetCity(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCity:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCity(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCity:"), objc.String(value))
 }
 
 // The codecs used to encode/decode the media.
@@ -710,8 +1088,8 @@ func (c_ CSSearchableItemAttributeSet) SetCodecs(value []string) {
 // The color space model the image uses, such as RGB, CMYK, YUV, or YCbCr.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/colorSpace
-func (c_ CSSearchableItemAttributeSet) ColorSpace() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("colorSpace"))
+func (c_ CSSearchableItemAttributeSet) ColorSpace() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -721,15 +1099,15 @@ func (c_ CSSearchableItemAttributeSet) ColorSpace() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/colorSpace
-func (c_ CSSearchableItemAttributeSet) SetColorSpace(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpace:"), value)
+func (c_ CSSearchableItemAttributeSet) SetColorSpace(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpace:"), objc.String(value))
 }
 
 // A comment related to the media file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/comment
-func (c_ CSSearchableItemAttributeSet) Comment() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("comment"))
+func (c_ CSSearchableItemAttributeSet) Comment() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -739,8 +1117,8 @@ func (c_ CSSearchableItemAttributeSet) Comment() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/comment
-func (c_ CSSearchableItemAttributeSet) SetComment(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setComment:"), value)
+func (c_ CSSearchableItemAttributeSet) SetComment(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 
 // The date on which the item was completed.
@@ -792,8 +1170,8 @@ func (c_ CSSearchableItemAttributeSet) SetContactKeywords(value []string) {
 // A localized string that specifies the name of a container to which the item belongs, suitable to display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerDisplayName
-func (c_ CSSearchableItemAttributeSet) ContainerDisplayName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("containerDisplayName"))
+func (c_ CSSearchableItemAttributeSet) ContainerDisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerDisplayName"))
 	return rv
 }
 
@@ -803,15 +1181,15 @@ func (c_ CSSearchableItemAttributeSet) ContainerDisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerDisplayName
-func (c_ CSSearchableItemAttributeSet) SetContainerDisplayName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerDisplayName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContainerDisplayName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerDisplayName:"), objc.String(value))
 }
 
 // The identifier of the container to which the item belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerIdentifier
-func (c_ CSSearchableItemAttributeSet) ContainerIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CSSearchableItemAttributeSet) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
@@ -821,8 +1199,8 @@ func (c_ CSSearchableItemAttributeSet) ContainerIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerIdentifier
-func (c_ CSSearchableItemAttributeSet) SetContainerIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContainerIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
 }
 
 // The order of the item within the container.
@@ -846,8 +1224,8 @@ func (c_ CSSearchableItemAttributeSet) SetContainerOrder(value foundation.INumbe
 // The title of the container to which the item belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerTitle
-func (c_ CSSearchableItemAttributeSet) ContainerTitle() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("containerTitle"))
+func (c_ CSSearchableItemAttributeSet) ContainerTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerTitle"))
 	return rv
 }
 
@@ -857,8 +1235,8 @@ func (c_ CSSearchableItemAttributeSet) ContainerTitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/containerTitle
-func (c_ CSSearchableItemAttributeSet) SetContainerTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerTitle:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContainerTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerTitle:"), objc.String(value))
 }
 
 // The creation date of an edited or optimized version of the song or composition.
@@ -882,8 +1260,8 @@ func (c_ CSSearchableItemAttributeSet) SetContentCreationDate(value foundation.I
 // A description of the item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentDescription
-func (c_ CSSearchableItemAttributeSet) ContentDescription() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("contentDescription"))
+func (c_ CSSearchableItemAttributeSet) ContentDescription() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contentDescription"))
 	return rv
 }
 
@@ -893,8 +1271,8 @@ func (c_ CSSearchableItemAttributeSet) ContentDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentDescription
-func (c_ CSSearchableItemAttributeSet) SetContentDescription(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContentDescription:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContentDescription(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentDescription:"), objc.String(value))
 }
 
 // The date on which the contents of the file was last modified.
@@ -964,8 +1342,8 @@ func (c_ CSSearchableItemAttributeSet) SetContentSources(value []string) {
 // The uniform type identifier (UTI) of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType
-func (c_ CSSearchableItemAttributeSet) ContentType() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("contentType"))
+func (c_ CSSearchableItemAttributeSet) ContentType() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -975,8 +1353,8 @@ func (c_ CSSearchableItemAttributeSet) ContentType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType
-func (c_ CSSearchableItemAttributeSet) SetContentType(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), value)
+func (c_ CSSearchableItemAttributeSet) SetContentType(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), objc.String(value))
 }
 
 // An attribute type that identifies a custom hierarchy of types to describe the attributes of your item.
@@ -1056,8 +1434,8 @@ func (c_ CSSearchableItemAttributeSet) SetContributors(value []string) {
 // The copyright date of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/copyright
-func (c_ CSSearchableItemAttributeSet) Copyright() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("copyright"))
+func (c_ CSSearchableItemAttributeSet) Copyright() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("copyright"))
 	return rv
 }
 
@@ -1067,15 +1445,15 @@ func (c_ CSSearchableItemAttributeSet) Copyright() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/copyright
-func (c_ CSSearchableItemAttributeSet) SetCopyright(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCopyright:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCopyright(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCopyright:"), objc.String(value))
 }
 
 // The full, publishable name of the country or region in which the intellectual property of the item was created, according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/country
-func (c_ CSSearchableItemAttributeSet) Country() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("country"))
+func (c_ CSSearchableItemAttributeSet) Country() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("country"))
 	return rv
 }
 
@@ -1085,8 +1463,8 @@ func (c_ CSSearchableItemAttributeSet) Country() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/country
-func (c_ CSSearchableItemAttributeSet) SetCountry(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCountry:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCountry(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCountry:"), objc.String(value))
 }
 
 // A list of descriptors that specify the extent or scope of the media.
@@ -1120,8 +1498,8 @@ func (c_ CSSearchableItemAttributeSet) SetCoverage(value []string) {
 // The name of the app that created the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/creator
-func (c_ CSSearchableItemAttributeSet) Creator() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("creator"))
+func (c_ CSSearchableItemAttributeSet) Creator() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("creator"))
 	return rv
 }
 
@@ -1131,8 +1509,8 @@ func (c_ CSSearchableItemAttributeSet) Creator() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/creator
-func (c_ CSSearchableItemAttributeSet) SetCreator(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCreator:"), value)
+func (c_ CSSearchableItemAttributeSet) SetCreator(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCreator:"), objc.String(value))
 }
 
 // The local file URL of the thumbnail image for the item when Dark Mode is active.
@@ -1174,8 +1552,8 @@ func (c_ CSSearchableItemAttributeSet) SetDeliveryType(value foundation.INumber)
 // The name of the director of the media (for example, a movie director).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/director
-func (c_ CSSearchableItemAttributeSet) Director() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("director"))
+func (c_ CSSearchableItemAttributeSet) Director() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("director"))
 	return rv
 }
 
@@ -1185,15 +1563,15 @@ func (c_ CSSearchableItemAttributeSet) Director() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/director
-func (c_ CSSearchableItemAttributeSet) SetDirector(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDirector:"), value)
+func (c_ CSSearchableItemAttributeSet) SetDirector(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDirector:"), objc.String(value))
 }
 
 // A localized string that contains the name of the item, suitable to display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName
-func (c_ CSSearchableItemAttributeSet) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("displayName"))
+func (c_ CSSearchableItemAttributeSet) DisplayName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -1203,15 +1581,15 @@ func (c_ CSSearchableItemAttributeSet) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName
-func (c_ CSSearchableItemAttributeSet) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetDisplayName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 // An identifier that represents the domain or owner of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/domainIdentifier
-func (c_ CSSearchableItemAttributeSet) DomainIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("domainIdentifier"))
+func (c_ CSSearchableItemAttributeSet) DomainIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
@@ -1221,8 +1599,8 @@ func (c_ CSSearchableItemAttributeSet) DomainIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/domainIdentifier
-func (c_ CSSearchableItemAttributeSet) SetDomainIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetDomainIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), objc.String(value))
 }
 
 // The most recent date on which the file was downloaded or received.
@@ -1402,8 +1780,8 @@ func (c_ CSSearchableItemAttributeSet) SetEndDate(value foundation.IDate) {
 // The version of the EXIF header that was used to generate the metadata for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifVersion
-func (c_ CSSearchableItemAttributeSet) EXIFVersion() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("EXIFVersion"))
+func (c_ CSSearchableItemAttributeSet) EXIFVersion() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("EXIFVersion"))
 	return rv
 }
 
@@ -1413,15 +1791,15 @@ func (c_ CSSearchableItemAttributeSet) EXIFVersion() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifVersion
-func (c_ CSSearchableItemAttributeSet) SetEXIFVersion(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFVersion:"), value)
+func (c_ CSSearchableItemAttributeSet) SetEXIFVersion(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFVersion:"), objc.String(value))
 }
 
 // The version of GPS Info IFD header that was used to generate the metadata for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifgpsVersion
-func (c_ CSSearchableItemAttributeSet) EXIFGPSVersion() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("EXIFGPSVersion"))
+func (c_ CSSearchableItemAttributeSet) EXIFGPSVersion() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("EXIFGPSVersion"))
 	return rv
 }
 
@@ -1431,8 +1809,8 @@ func (c_ CSSearchableItemAttributeSet) EXIFGPSVersion() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exifgpsVersion
-func (c_ CSSearchableItemAttributeSet) SetEXIFGPSVersion(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFGPSVersion:"), value)
+func (c_ CSSearchableItemAttributeSet) SetEXIFGPSVersion(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEXIFGPSVersion:"), objc.String(value))
 }
 
 // The mode the camera used for the exposure of the image.
@@ -1456,8 +1834,8 @@ func (c_ CSSearchableItemAttributeSet) SetExposureMode(value foundation.INumber)
 // The class of the program the camera used to set exposure when capturing the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureProgram
-func (c_ CSSearchableItemAttributeSet) ExposureProgram() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("exposureProgram"))
+func (c_ CSSearchableItemAttributeSet) ExposureProgram() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("exposureProgram"))
 	return rv
 }
 
@@ -1467,8 +1845,8 @@ func (c_ CSSearchableItemAttributeSet) ExposureProgram() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureProgram
-func (c_ CSSearchableItemAttributeSet) SetExposureProgram(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureProgram:"), value)
+func (c_ CSSearchableItemAttributeSet) SetExposureProgram(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureProgram:"), objc.String(value))
 }
 
 // The time that the lens was open during exposure, in seconds.
@@ -1492,8 +1870,8 @@ func (c_ CSSearchableItemAttributeSet) SetExposureTime(value foundation.INumber)
 // The time that the lens was open during exposure, in a string, such as “1/250 seconds”.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureTimeString
-func (c_ CSSearchableItemAttributeSet) ExposureTimeString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("exposureTimeString"))
+func (c_ CSSearchableItemAttributeSet) ExposureTimeString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("exposureTimeString"))
 	return rv
 }
 
@@ -1503,8 +1881,8 @@ func (c_ CSSearchableItemAttributeSet) ExposureTimeString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/exposureTimeString
-func (c_ CSSearchableItemAttributeSet) SetExposureTimeString(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTimeString:"), value)
+func (c_ CSSearchableItemAttributeSet) SetExposureTimeString(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTimeString:"), objc.String(value))
 }
 
 // The focal length of the lens, divided by the diameter of the aperture when the camera captured the image.
@@ -1628,8 +2006,8 @@ func (c_ CSSearchableItemAttributeSet) SetFontNames(value []string) {
 // The fully formatted address of the item, received from MapKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/fullyFormattedAddress
-func (c_ CSSearchableItemAttributeSet) FullyFormattedAddress() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("fullyFormattedAddress"))
+func (c_ CSSearchableItemAttributeSet) FullyFormattedAddress() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("fullyFormattedAddress"))
 	return rv
 }
 
@@ -1639,8 +2017,8 @@ func (c_ CSSearchableItemAttributeSet) FullyFormattedAddress() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/fullyFormattedAddress
-func (c_ CSSearchableItemAttributeSet) SetFullyFormattedAddress(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFullyFormattedAddress:"), value)
+func (c_ CSSearchableItemAttributeSet) SetFullyFormattedAddress(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFullyFormattedAddress:"), objc.String(value))
 }
 
 // A value that indicates whether the MIDI sequence the file contains is set up for use with a general MIDI device.
@@ -1664,8 +2042,8 @@ func (c_ CSSearchableItemAttributeSet) SetGeneralMIDISequence(value foundation.I
 // The genre of the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/genre
-func (c_ CSSearchableItemAttributeSet) Genre() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("genre"))
+func (c_ CSSearchableItemAttributeSet) Genre() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("genre"))
 	return rv
 }
 
@@ -1675,15 +2053,15 @@ func (c_ CSSearchableItemAttributeSet) Genre() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/genre
-func (c_ CSSearchableItemAttributeSet) SetGenre(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGenre:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGenre(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGenre:"), objc.String(value))
 }
 
 // Information about the GPS area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsAreaInformation
-func (c_ CSSearchableItemAttributeSet) GPSAreaInformation() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("GPSAreaInformation"))
+func (c_ CSSearchableItemAttributeSet) GPSAreaInformation() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSAreaInformation"))
 	return rv
 }
 
@@ -1693,8 +2071,8 @@ func (c_ CSSearchableItemAttributeSet) GPSAreaInformation() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsAreaInformation
-func (c_ CSSearchableItemAttributeSet) SetGPSAreaInformation(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSAreaInformation:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSAreaInformation(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSAreaInformation:"), objc.String(value))
 }
 
 // The date and time related to the GPS value.
@@ -1808,8 +2186,8 @@ func (c_ CSSearchableItemAttributeSet) SetGPSDifferental(value foundation.INumbe
 // The geodetic data that the GPS receiver uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMapDatum
-func (c_ CSSearchableItemAttributeSet) GPSMapDatum() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("GPSMapDatum"))
+func (c_ CSSearchableItemAttributeSet) GPSMapDatum() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSMapDatum"))
 	return rv
 }
 
@@ -1819,15 +2197,15 @@ func (c_ CSSearchableItemAttributeSet) GPSMapDatum() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMapDatum
-func (c_ CSSearchableItemAttributeSet) SetGPSMapDatum(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMapDatum:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSMapDatum(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMapDatum:"), objc.String(value))
 }
 
 // The measurement precision mode in use by the GPS receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMeasureMode
-func (c_ CSSearchableItemAttributeSet) GPSMeasureMode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("GPSMeasureMode"))
+func (c_ CSSearchableItemAttributeSet) GPSMeasureMode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSMeasureMode"))
 	return rv
 }
 
@@ -1837,15 +2215,15 @@ func (c_ CSSearchableItemAttributeSet) GPSMeasureMode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsMeasureMode
-func (c_ CSSearchableItemAttributeSet) SetGPSMeasureMode(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMeasureMode:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSMeasureMode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSMeasureMode:"), objc.String(value))
 }
 
 // The location finding method that the GPS receiver uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsProcessingMethod
-func (c_ CSSearchableItemAttributeSet) GPSProcessingMethod() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("GPSProcessingMethod"))
+func (c_ CSSearchableItemAttributeSet) GPSProcessingMethod() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSProcessingMethod"))
 	return rv
 }
 
@@ -1855,15 +2233,15 @@ func (c_ CSSearchableItemAttributeSet) GPSProcessingMethod() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsProcessingMethod
-func (c_ CSSearchableItemAttributeSet) SetGPSProcessingMethod(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSProcessingMethod:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSProcessingMethod(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSProcessingMethod:"), objc.String(value))
 }
 
 // The status of the GPS receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsStatus
-func (c_ CSSearchableItemAttributeSet) GPSStatus() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("GPSStatus"))
+func (c_ CSSearchableItemAttributeSet) GPSStatus() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("GPSStatus"))
 	return rv
 }
 
@@ -1873,8 +2251,8 @@ func (c_ CSSearchableItemAttributeSet) GPSStatus() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/gpsStatus
-func (c_ CSSearchableItemAttributeSet) SetGPSStatus(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSStatus:"), value)
+func (c_ CSSearchableItemAttributeSet) SetGPSStatus(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGPSStatus:"), objc.String(value))
 }
 
 // The direction of travel of the item in degrees from true north.
@@ -1934,8 +2312,8 @@ func (c_ CSSearchableItemAttributeSet) SetHasAlphaChannel(value foundation.INumb
 // A publishable string that provides a synopsis of the contents of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/headline
-func (c_ CSSearchableItemAttributeSet) Headline() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("headline"))
+func (c_ CSSearchableItemAttributeSet) Headline() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("headline"))
 	return rv
 }
 
@@ -1945,8 +2323,8 @@ func (c_ CSSearchableItemAttributeSet) Headline() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/headline
-func (c_ CSSearchableItemAttributeSet) SetHeadline(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHeadline:"), value)
+func (c_ CSSearchableItemAttributeSet) SetHeadline(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHeadline:"), objc.String(value))
 }
 
 // An array of objects representing the content of the Bcc: field in an email message.
@@ -1998,8 +2376,8 @@ func (c_ CSSearchableItemAttributeSet) SetHTMLContentData(value foundation.IData
 // A formal identifier that references the document the item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/identifier
-func (c_ CSSearchableItemAttributeSet) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
+func (c_ CSSearchableItemAttributeSet) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -2009,8 +2387,8 @@ func (c_ CSSearchableItemAttributeSet) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/identifier
-func (c_ CSSearchableItemAttributeSet) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The direction of the item’s image in degrees from true north.
@@ -2062,8 +2440,8 @@ func (c_ CSSearchableItemAttributeSet) SetImportantDates(value []foundation.IDat
 // Information about the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/information
-func (c_ CSSearchableItemAttributeSet) Information() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("information"))
+func (c_ CSSearchableItemAttributeSet) Information() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("information"))
 	return rv
 }
 
@@ -2073,8 +2451,8 @@ func (c_ CSSearchableItemAttributeSet) Information() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/information
-func (c_ CSSearchableItemAttributeSet) SetInformation(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInformation:"), value)
+func (c_ CSSearchableItemAttributeSet) SetInformation(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInformation:"), objc.String(value))
 }
 
 // An array of instant message addresses for the message.
@@ -2108,8 +2486,8 @@ func (c_ CSSearchableItemAttributeSet) SetInstantMessageAddresses(value []string
 // Instructions that concern the use of the item, such as an embargo or warning.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/instructions
-func (c_ CSSearchableItemAttributeSet) Instructions() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("instructions"))
+func (c_ CSSearchableItemAttributeSet) Instructions() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("instructions"))
 	return rv
 }
 
@@ -2119,8 +2497,8 @@ func (c_ CSSearchableItemAttributeSet) Instructions() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/instructions
-func (c_ CSSearchableItemAttributeSet) SetInstructions(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInstructions:"), value)
+func (c_ CSSearchableItemAttributeSet) SetInstructions(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInstructions:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the mail or messages content represents a prioritized item.
@@ -2152,8 +2530,8 @@ func (c_ CSSearchableItemAttributeSet) SetISOSpeed(value foundation.INumber) {
 // The musical key of the song or audio composition that the file contains, such as C, Dm, or F#m.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/keySignature
-func (c_ CSSearchableItemAttributeSet) KeySignature() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("keySignature"))
+func (c_ CSSearchableItemAttributeSet) KeySignature() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keySignature"))
 	return rv
 }
 
@@ -2163,8 +2541,8 @@ func (c_ CSSearchableItemAttributeSet) KeySignature() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/keySignature
-func (c_ CSSearchableItemAttributeSet) SetKeySignature(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySignature:"), value)
+func (c_ CSSearchableItemAttributeSet) SetKeySignature(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySignature:"), objc.String(value))
 }
 
 // An array of keywords associated with the item, such as work, birthday, important, and so on.
@@ -2198,8 +2576,8 @@ func (c_ CSSearchableItemAttributeSet) SetKeywords(value []string) {
 // A description of the kind of document the item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/kind
-func (c_ CSSearchableItemAttributeSet) Kind() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("kind"))
+func (c_ CSSearchableItemAttributeSet) Kind() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("kind"))
 	return rv
 }
 
@@ -2209,8 +2587,8 @@ func (c_ CSSearchableItemAttributeSet) Kind() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/kind
-func (c_ CSSearchableItemAttributeSet) SetKind(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKind:"), value)
+func (c_ CSSearchableItemAttributeSet) SetKind(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKind:"), objc.String(value))
 }
 
 // A list of the included languages for the intellectual content of the media.
@@ -2308,8 +2686,8 @@ func (c_ CSSearchableItemAttributeSet) SetLayerNames(value []string) {
 // The model of the lens that captured the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lensModel
-func (c_ CSSearchableItemAttributeSet) LensModel() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("lensModel"))
+func (c_ CSSearchableItemAttributeSet) LensModel() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("lensModel"))
 	return rv
 }
 
@@ -2319,8 +2697,8 @@ func (c_ CSSearchableItemAttributeSet) LensModel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lensModel
-func (c_ CSSearchableItemAttributeSet) SetLensModel(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLensModel:"), value)
+func (c_ CSSearchableItemAttributeSet) SetLensModel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLensModel:"), objc.String(value))
 }
 
 // A value that indicates if the message is likely to be considered junk.
@@ -2380,8 +2758,8 @@ func (c_ CSSearchableItemAttributeSet) SetLongitude(value foundation.INumber) {
 // The lyricist or text writer for the song or audio composition that the file contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lyricist
-func (c_ CSSearchableItemAttributeSet) Lyricist() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("lyricist"))
+func (c_ CSSearchableItemAttributeSet) Lyricist() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("lyricist"))
 	return rv
 }
 
@@ -2391,8 +2769,8 @@ func (c_ CSSearchableItemAttributeSet) Lyricist() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/lyricist
-func (c_ CSSearchableItemAttributeSet) SetLyricist(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLyricist:"), value)
+func (c_ CSSearchableItemAttributeSet) SetLyricist(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLyricist:"), objc.String(value))
 }
 
 // An array of mailbox identifiers associated with the message.
@@ -2490,8 +2868,8 @@ func (c_ CSSearchableItemAttributeSet) SetMetadataModificationDate(value foundat
 // The metering mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/meteringMode
-func (c_ CSSearchableItemAttributeSet) MeteringMode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("meteringMode"))
+func (c_ CSSearchableItemAttributeSet) MeteringMode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("meteringMode"))
 	return rv
 }
 
@@ -2501,15 +2879,15 @@ func (c_ CSSearchableItemAttributeSet) MeteringMode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/meteringMode
-func (c_ CSSearchableItemAttributeSet) SetMeteringMode(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMeteringMode:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMeteringMode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMeteringMode:"), objc.String(value))
 }
 
 // The musical genre of the song or audio composition that the file contains, such as jazz, pop, rock, or classical.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalGenre
-func (c_ CSSearchableItemAttributeSet) MusicalGenre() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("musicalGenre"))
+func (c_ CSSearchableItemAttributeSet) MusicalGenre() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("musicalGenre"))
 	return rv
 }
 
@@ -2519,15 +2897,15 @@ func (c_ CSSearchableItemAttributeSet) MusicalGenre() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalGenre
-func (c_ CSSearchableItemAttributeSet) SetMusicalGenre(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalGenre:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMusicalGenre(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalGenre:"), objc.String(value))
 }
 
 // The category of the instrument associated with the audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentCategory
-func (c_ CSSearchableItemAttributeSet) MusicalInstrumentCategory() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("musicalInstrumentCategory"))
+func (c_ CSSearchableItemAttributeSet) MusicalInstrumentCategory() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("musicalInstrumentCategory"))
 	return rv
 }
 
@@ -2537,15 +2915,15 @@ func (c_ CSSearchableItemAttributeSet) MusicalInstrumentCategory() appkit.string
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentCategory
-func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentCategory(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentCategory:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentCategory(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentCategory:"), objc.String(value))
 }
 
 // The name of an instrument within the context of an instrument category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentName
-func (c_ CSSearchableItemAttributeSet) MusicalInstrumentName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("musicalInstrumentName"))
+func (c_ CSSearchableItemAttributeSet) MusicalInstrumentName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("musicalInstrumentName"))
 	return rv
 }
 
@@ -2555,15 +2933,15 @@ func (c_ CSSearchableItemAttributeSet) MusicalInstrumentName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/musicalInstrumentName
-func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetMusicalInstrumentName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMusicalInstrumentName:"), objc.String(value))
 }
 
 // The name of the location or point of interest associated with the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/namedLocation
-func (c_ CSSearchableItemAttributeSet) NamedLocation() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("namedLocation"))
+func (c_ CSSearchableItemAttributeSet) NamedLocation() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("namedLocation"))
 	return rv
 }
 
@@ -2573,8 +2951,8 @@ func (c_ CSSearchableItemAttributeSet) NamedLocation() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/namedLocation
-func (c_ CSSearchableItemAttributeSet) SetNamedLocation(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNamedLocation:"), value)
+func (c_ CSSearchableItemAttributeSet) SetNamedLocation(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNamedLocation:"), objc.String(value))
 }
 
 // A list of companies or organizations that created the content.
@@ -2626,8 +3004,8 @@ func (c_ CSSearchableItemAttributeSet) SetOrientation(value foundation.INumber) 
 // The original format of the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalFormat
-func (c_ CSSearchableItemAttributeSet) OriginalFormat() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("originalFormat"))
+func (c_ CSSearchableItemAttributeSet) OriginalFormat() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("originalFormat"))
 	return rv
 }
 
@@ -2637,15 +3015,15 @@ func (c_ CSSearchableItemAttributeSet) OriginalFormat() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalFormat
-func (c_ CSSearchableItemAttributeSet) SetOriginalFormat(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalFormat:"), value)
+func (c_ CSSearchableItemAttributeSet) SetOriginalFormat(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalFormat:"), objc.String(value))
 }
 
 // The original source of the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalSource
-func (c_ CSSearchableItemAttributeSet) OriginalSource() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("originalSource"))
+func (c_ CSSearchableItemAttributeSet) OriginalSource() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("originalSource"))
 	return rv
 }
 
@@ -2655,8 +3033,8 @@ func (c_ CSSearchableItemAttributeSet) OriginalSource() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/originalSource
-func (c_ CSSearchableItemAttributeSet) SetOriginalSource(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalSource:"), value)
+func (c_ CSSearchableItemAttributeSet) SetOriginalSource(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOriginalSource:"), objc.String(value))
 }
 
 // The number of pages in the document.
@@ -2744,8 +3122,8 @@ func (c_ CSSearchableItemAttributeSet) SetParticipants(value []string) {
 // The complete path to the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/path
-func (c_ CSSearchableItemAttributeSet) Path() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("path"))
+func (c_ CSSearchableItemAttributeSet) Path() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -2755,8 +3133,8 @@ func (c_ CSSearchableItemAttributeSet) Path() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/path
-func (c_ CSSearchableItemAttributeSet) SetPath(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPath:"), value)
+func (c_ CSSearchableItemAttributeSet) SetPath(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPath:"), objc.String(value))
 }
 
 // A list of performers in the media.
@@ -2890,8 +3268,8 @@ func (c_ CSSearchableItemAttributeSet) SetPlayCount(value foundation.INumber) {
 // The postal code for the item according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/postalCode
-func (c_ CSSearchableItemAttributeSet) PostalCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("postalCode"))
+func (c_ CSSearchableItemAttributeSet) PostalCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
@@ -2901,8 +3279,8 @@ func (c_ CSSearchableItemAttributeSet) PostalCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/postalCode
-func (c_ CSSearchableItemAttributeSet) SetPostalCode(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalCode:"), value)
+func (c_ CSSearchableItemAttributeSet) SetPostalCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalCode:"), objc.String(value))
 }
 
 // An array of objects representing the content of the To: field in an email message.
@@ -2936,8 +3314,8 @@ func (c_ CSSearchableItemAttributeSet) SetPrimaryRecipients(value []CSPerson) {
 // The producer of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/producer
-func (c_ CSSearchableItemAttributeSet) Producer() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("producer"))
+func (c_ CSSearchableItemAttributeSet) Producer() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("producer"))
 	return rv
 }
 
@@ -2947,15 +3325,15 @@ func (c_ CSSearchableItemAttributeSet) Producer() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/producer
-func (c_ CSSearchableItemAttributeSet) SetProducer(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setProducer:"), value)
+func (c_ CSSearchableItemAttributeSet) SetProducer(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setProducer:"), objc.String(value))
 }
 
 // The name of the color profile the camera used for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/profileName
-func (c_ CSSearchableItemAttributeSet) ProfileName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("profileName"))
+func (c_ CSSearchableItemAttributeSet) ProfileName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("profileName"))
 	return rv
 }
 
@@ -2965,8 +3343,8 @@ func (c_ CSSearchableItemAttributeSet) ProfileName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/profileName
-func (c_ CSSearchableItemAttributeSet) SetProfileName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setProfileName:"), value)
+func (c_ CSSearchableItemAttributeSet) SetProfileName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setProfileName:"), objc.String(value))
 }
 
 // A list of projects of which this file is a part.
@@ -3148,8 +3526,8 @@ func (c_ CSSearchableItemAttributeSet) SetRating(value foundation.INumber) {
 // A description of the rating.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/ratingDescription
-func (c_ CSSearchableItemAttributeSet) RatingDescription() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("ratingDescription"))
+func (c_ CSSearchableItemAttributeSet) RatingDescription() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ratingDescription"))
 	return rv
 }
 
@@ -3159,8 +3537,8 @@ func (c_ CSSearchableItemAttributeSet) RatingDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/ratingDescription
-func (c_ CSSearchableItemAttributeSet) SetRatingDescription(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRatingDescription:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRatingDescription(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRatingDescription:"), objc.String(value))
 }
 
 // An array of addresses associated with the recipients of the message.
@@ -3286,8 +3664,8 @@ func (c_ CSSearchableItemAttributeSet) SetRedEyeOn(value foundation.INumber) {
 // The unique identifier for the item to which the activity is related.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/relatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) RelatedUniqueIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("relatedUniqueIdentifier"))
+func (c_ CSSearchableItemAttributeSet) RelatedUniqueIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("relatedUniqueIdentifier"))
 	return rv
 }
 
@@ -3297,8 +3675,8 @@ func (c_ CSSearchableItemAttributeSet) RelatedUniqueIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/relatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) SetRelatedUniqueIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRelatedUniqueIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRelatedUniqueIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRelatedUniqueIdentifier:"), objc.String(value))
 }
 
 // The resolution height of the image, in DPI.
@@ -3340,8 +3718,8 @@ func (c_ CSSearchableItemAttributeSet) SetResolutionWidthDPI(value foundation.IN
 // A link to information about the rights held in and over the media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/rights
-func (c_ CSSearchableItemAttributeSet) Rights() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("rights"))
+func (c_ CSSearchableItemAttributeSet) Rights() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("rights"))
 	return rv
 }
 
@@ -3351,15 +3729,15 @@ func (c_ CSSearchableItemAttributeSet) Rights() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/rights
-func (c_ CSSearchableItemAttributeSet) SetRights(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRights:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRights(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRights:"), objc.String(value))
 }
 
 // Indicates the role of the content creator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/role
-func (c_ CSSearchableItemAttributeSet) Role() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("role"))
+func (c_ CSSearchableItemAttributeSet) Role() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("role"))
 	return rv
 }
 
@@ -3369,15 +3747,15 @@ func (c_ CSSearchableItemAttributeSet) Role() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/role
-func (c_ CSSearchableItemAttributeSet) SetRole(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRole:"), value)
+func (c_ CSSearchableItemAttributeSet) SetRole(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRole:"), objc.String(value))
 }
 
 // The security method (a type of encryption) that protects the document file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/securityMethod
-func (c_ CSSearchableItemAttributeSet) SecurityMethod() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("securityMethod"))
+func (c_ CSSearchableItemAttributeSet) SecurityMethod() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("securityMethod"))
 	return rv
 }
 
@@ -3387,8 +3765,8 @@ func (c_ CSSearchableItemAttributeSet) SecurityMethod() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/securityMethod
-func (c_ CSSearchableItemAttributeSet) SetSecurityMethod(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurityMethod:"), value)
+func (c_ CSSearchableItemAttributeSet) SetSecurityMethod(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurityMethod:"), objc.String(value))
 }
 
 // The file type of the item to enable the user to share items from Spotlight.
@@ -3448,8 +3826,8 @@ func (c_ CSSearchableItemAttributeSet) SetStartDate(value foundation.IDate) {
 // The province or state of origin according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/stateOrProvince
-func (c_ CSSearchableItemAttributeSet) StateOrProvince() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("stateOrProvince"))
+func (c_ CSSearchableItemAttributeSet) StateOrProvince() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stateOrProvince"))
 	return rv
 }
 
@@ -3459,8 +3837,8 @@ func (c_ CSSearchableItemAttributeSet) StateOrProvince() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/stateOrProvince
-func (c_ CSSearchableItemAttributeSet) SetStateOrProvince(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStateOrProvince:"), value)
+func (c_ CSSearchableItemAttributeSet) SetStateOrProvince(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStateOrProvince:"), objc.String(value))
 }
 
 // A value that indicates if the content is prepared for streaming.
@@ -3484,8 +3862,8 @@ func (c_ CSSearchableItemAttributeSet) SetStreamable(value foundation.INumber) {
 // The sublocation, such as a street number, for the item according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subThoroughfare
-func (c_ CSSearchableItemAttributeSet) SubThoroughfare() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("subThoroughfare"))
+func (c_ CSSearchableItemAttributeSet) SubThoroughfare() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subThoroughfare"))
 	return rv
 }
 
@@ -3495,15 +3873,15 @@ func (c_ CSSearchableItemAttributeSet) SubThoroughfare() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subThoroughfare
-func (c_ CSSearchableItemAttributeSet) SetSubThoroughfare(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubThoroughfare:"), value)
+func (c_ CSSearchableItemAttributeSet) SetSubThoroughfare(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubThoroughfare:"), objc.String(value))
 }
 
 // The subject of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subject
-func (c_ CSSearchableItemAttributeSet) Subject() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("subject"))
+func (c_ CSSearchableItemAttributeSet) Subject() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subject"))
 	return rv
 }
 
@@ -3513,8 +3891,8 @@ func (c_ CSSearchableItemAttributeSet) Subject() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/subject
-func (c_ CSSearchableItemAttributeSet) SetSubject(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubject:"), value)
+func (c_ CSSearchableItemAttributeSet) SetSubject(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubject:"), objc.String(value))
 }
 
 // A value that indicates whether the item contains information sufficient to provide navigation to the location it represents.
@@ -3574,8 +3952,8 @@ func (c_ CSSearchableItemAttributeSet) SetTempo(value foundation.INumber) {
 // The textual content of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/textContent
-func (c_ CSSearchableItemAttributeSet) TextContent() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("textContent"))
+func (c_ CSSearchableItemAttributeSet) TextContent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("textContent"))
 	return rv
 }
 
@@ -3585,23 +3963,23 @@ func (c_ CSSearchableItemAttributeSet) TextContent() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/textContent
-func (c_ CSSearchableItemAttributeSet) SetTextContent(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTextContent:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTextContent(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTextContent:"), objc.String(value))
 }
 
 // A string that presents the Apple Intelligence summarization of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/textContentSummary
-func (c_ CSSearchableItemAttributeSet) TextContentSummary() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("textContentSummary"))
+func (c_ CSSearchableItemAttributeSet) TextContentSummary() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("textContentSummary"))
 	return rv
 }
 
 // The theme of the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/theme
-func (c_ CSSearchableItemAttributeSet) Theme() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("theme"))
+func (c_ CSSearchableItemAttributeSet) Theme() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("theme"))
 	return rv
 }
 
@@ -3611,15 +3989,15 @@ func (c_ CSSearchableItemAttributeSet) Theme() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/theme
-func (c_ CSSearchableItemAttributeSet) SetTheme(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTheme:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTheme(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTheme:"), objc.String(value))
 }
 
 // The thoroughfare, such as a street name, associated with the location for the item according to guidelines the provider establishes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/thoroughfare
-func (c_ CSSearchableItemAttributeSet) Thoroughfare() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("thoroughfare"))
+func (c_ CSSearchableItemAttributeSet) Thoroughfare() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("thoroughfare"))
 	return rv
 }
 
@@ -3629,8 +4007,8 @@ func (c_ CSSearchableItemAttributeSet) Thoroughfare() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/thoroughfare
-func (c_ CSSearchableItemAttributeSet) SetThoroughfare(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setThoroughfare:"), value)
+func (c_ CSSearchableItemAttributeSet) SetThoroughfare(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setThoroughfare:"), objc.String(value))
 }
 
 // Image data that represents the thumbnail of the item.
@@ -3672,8 +4050,8 @@ func (c_ CSSearchableItemAttributeSet) SetThumbnailURL(value foundation.IURL) {
 // The time signature of the musical composition that the audio or MIDI file contains, in a string, such as “4/4” or “7/8”.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/timeSignature
-func (c_ CSSearchableItemAttributeSet) TimeSignature() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("timeSignature"))
+func (c_ CSSearchableItemAttributeSet) TimeSignature() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("timeSignature"))
 	return rv
 }
 
@@ -3683,8 +4061,8 @@ func (c_ CSSearchableItemAttributeSet) TimeSignature() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/timeSignature
-func (c_ CSSearchableItemAttributeSet) SetTimeSignature(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeSignature:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTimeSignature(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeSignature:"), objc.String(value))
 }
 
 // The timestamp on the item.
@@ -3708,8 +4086,8 @@ func (c_ CSSearchableItemAttributeSet) SetTimestamp(value foundation.IDate) {
 // The title of the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title
-func (c_ CSSearchableItemAttributeSet) Title() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("title"))
+func (c_ CSSearchableItemAttributeSet) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -3719,8 +4097,8 @@ func (c_ CSSearchableItemAttributeSet) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title
-func (c_ CSSearchableItemAttributeSet) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The total bit rate of the media, combining audio and video.
@@ -3744,8 +4122,8 @@ func (c_ CSSearchableItemAttributeSet) SetTotalBitRate(value foundation.INumber)
 // A string that represents the text the system transcribed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/transcribedTextContent
-func (c_ CSSearchableItemAttributeSet) TranscribedTextContent() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("transcribedTextContent"))
+func (c_ CSSearchableItemAttributeSet) TranscribedTextContent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("transcribedTextContent"))
 	return rv
 }
 
@@ -3755,8 +4133,8 @@ func (c_ CSSearchableItemAttributeSet) TranscribedTextContent() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/transcribedTextContent
-func (c_ CSSearchableItemAttributeSet) SetTranscribedTextContent(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTranscribedTextContent:"), value)
+func (c_ CSSearchableItemAttributeSet) SetTranscribedTextContent(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTranscribedTextContent:"), objc.String(value))
 }
 
 // The URL associated with the media.
@@ -3834,8 +4212,8 @@ func (c_ CSSearchableItemAttributeSet) SetUserOwned(value foundation.INumber) {
 // A version string associated with the file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/version
-func (c_ CSSearchableItemAttributeSet) Version() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("version"))
+func (c_ CSSearchableItemAttributeSet) Version() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -3845,8 +4223,8 @@ func (c_ CSSearchableItemAttributeSet) Version() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/version
-func (c_ CSSearchableItemAttributeSet) SetVersion(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVersion:"), value)
+func (c_ CSSearchableItemAttributeSet) SetVersion(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 
 // The video bit rate of the media.
@@ -3870,8 +4248,8 @@ func (c_ CSSearchableItemAttributeSet) SetVideoBitRate(value foundation.INumber)
 // The unique identifier for the item to which the activity is related, but not linked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/weakRelatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) WeakRelatedUniqueIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("weakRelatedUniqueIdentifier"))
+func (c_ CSSearchableItemAttributeSet) WeakRelatedUniqueIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("weakRelatedUniqueIdentifier"))
 	return rv
 }
 
@@ -3881,8 +4259,8 @@ func (c_ CSSearchableItemAttributeSet) WeakRelatedUniqueIdentifier() appkit.stri
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItemAttributeSet/weakRelatedUniqueIdentifier
-func (c_ CSSearchableItemAttributeSet) SetWeakRelatedUniqueIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeakRelatedUniqueIdentifier:"), value)
+func (c_ CSSearchableItemAttributeSet) SetWeakRelatedUniqueIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setWeakRelatedUniqueIdentifier:"), objc.String(value))
 }
 
 // The white balance setting when the camera captured the image.
@@ -3906,16 +4284,16 @@ func (c_ CSSearchableItemAttributeSet) SetWhiteBalance(value foundation.INumber)
 // A key that specifies the action’s identifier in a user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csactionidentifier
-func (c_ CSSearchableItemAttributeSet) CSActionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CSActionIdentifier"))
+func (c_ CSSearchableItemAttributeSet) CSActionIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CSActionIdentifier"))
 	return rv
 }
 
 // The composer of the song or audio composition that the audio file contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/composer
-func (c_ CSSearchableItemAttributeSet) Composer() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("composer"))
+func (c_ CSSearchableItemAttributeSet) Composer() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("composer"))
 	return rv
 }
 
@@ -3925,8 +4303,8 @@ func (c_ CSSearchableItemAttributeSet) Composer() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/composer
-func (c_ CSSearchableItemAttributeSet) SetComposer(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setComposer:"), value)
+func (c_ CSSearchableItemAttributeSet) SetComposer(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setComposer:"), objc.String(value))
 }
 
 

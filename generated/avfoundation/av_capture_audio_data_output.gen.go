@@ -29,6 +29,14 @@ type _CaptureAudioDataOutputClass struct {
 // An interface definition for the [CaptureAudioDataOutput] class.
 type ICaptureAudioDataOutput interface {
 	ICaptureOutput
+	AudioSettings() string
+	SetAudioSettings(value string)
+	SampleBufferCallbackQueue() unsafe.Pointer
+	SetSampleBufferCallbackQueue(value unsafe.Pointer)
+	SampleBufferDelegate() unsafe.Pointer
+	SetSampleBufferDelegate(value unsafe.Pointer)
+	SpatialAudioChannelLayoutTag() unsafe.Pointer
+	SetSpatialAudioChannelLayoutTag(value unsafe.Pointer)
 }
 
 // A capture output that records audio and provides access to audio sample buffers as they are recorded.

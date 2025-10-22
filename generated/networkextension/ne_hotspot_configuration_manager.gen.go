@@ -30,6 +30,7 @@ type _NEHotspotConfigurationManagerClass struct {
 // An interface definition for the [NEHotspotConfigurationManager] class.
 type INEHotspotConfigurationManager interface {
 	objectivec.IObject
+	NEHotspotConfigurationErrorDomain() string
 }
 
 // A manager that applies and removes hotspot configurations of Wi-Fi networks.
@@ -83,8 +84,8 @@ func NewNEHotspotConfigurationManager() NEHotspotConfigurationManager {
 // The domain string for errors involving hotspot configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain
-func (n_ NEHotspotConfigurationManager) NEHotspotConfigurationErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEHotspotConfigurationErrorDomain"))
+func (n_ NEHotspotConfigurationManager) NEHotspotConfigurationErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEHotspotConfigurationErrorDomain"))
 	return rv
 }
 

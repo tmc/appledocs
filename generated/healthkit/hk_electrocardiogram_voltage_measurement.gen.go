@@ -30,6 +30,8 @@ type _HKElectrocardiogramVoltageMeasurementClass struct {
 // An interface definition for the [HKElectrocardiogramVoltageMeasurement] class.
 type IHKElectrocardiogramVoltageMeasurement interface {
 	objectivec.IObject
+	TimeSinceSampleStart() unsafe.Pointer
+	SetTimeSinceSampleStart(value unsafe.Pointer)
 }
 
 // The voltage for all leads at a single point in time.

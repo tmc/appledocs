@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,18 +31,22 @@ type _EmbeddingClass struct {
 // An interface definition for the [Embedding] class.
 type IEmbedding interface {
 	objectivec.IObject
-	ContainsString(string_ appkit.string) bool
-	DistanceBetweenStringAndStringDistanceType(firstString appkit.string, secondString appkit.string, distanceType DistanceType) Distance
-	EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, distanceType DistanceType, block unsafe.Pointer)
-	EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer)
+	ContainsString(string_ string) bool
+	DistanceBetweenStringAndStringDistanceType(firstString string, secondString string, distanceType DistanceType) Distance
+	EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ string, maxCount uint, distanceType DistanceType, block unsafe.Pointer)
+	EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ string, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer)
 	EnumerateNeighborsForVectorMaximumCountDistanceTypeUsingBlock(vector []foundation.INumber, maxCount uint, distanceType DistanceType, block unsafe.Pointer)
 	EnumerateNeighborsForVectorMaximumCountMaximumDistanceDistanceTypeUsingBlock(vector []foundation.INumber, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer)
-	GetVectorForString(vector unsafe.Pointer, string_ appkit.string) bool
-	NeighborsForStringMaximumCountDistanceType(string_ appkit.string, maxCount uint, distanceType DistanceType) []string
-	NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string
+	GetVectorForString(vector unsafe.Pointer, string_ string) bool
+	NeighborsForStringMaximumCountDistanceType(string_ string, maxCount uint, distanceType DistanceType) []string
+	NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ string, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string
 	NeighborsForVectorMaximumCountDistanceType(vector []foundation.INumber, maxCount uint, distanceType DistanceType) []string
 	NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector []foundation.INumber, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string
-	VectorForString(string_ appkit.string) []foundation.Number
+	VectorForString(string_ string) []foundation.Number
+	Dimension() uint
+	Language() Language
+	Revision() uint
+	VocabularySize() uint
 }
 
 // A map of strings to vectors, which locates neighboring, similar strings.
@@ -188,31 +191,31 @@ func (ec _EmbeddingClass) WriteEmbeddingForDictionaryLanguageRevisionToURLError(
 // Requests a Boolean value that indicates whether the term is in the vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/contains(_:)
-func (e_ Embedding) ContainsString(string_ appkit.string) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("containsString:"), string_)
+func (e_ Embedding) ContainsString(string_ string) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("containsString:"), objc.String(string_))
 	return rv
 }
 
 // Calculates the distance between two strings in the vocabulary space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/distanceBetweenString:andString:distanceType:
-func (e_ Embedding) DistanceBetweenStringAndStringDistanceType(firstString appkit.string, secondString appkit.string, distanceType DistanceType) Distance {
-	rv := objc.Send[Distance](e_.ID, objc.Sel("distanceBetweenString:andString:distanceType:"), firstString, secondString, distanceType)
+func (e_ Embedding) DistanceBetweenStringAndStringDistanceType(firstString string, secondString string, distanceType DistanceType) Distance {
+	rv := objc.Send[Distance](e_.ID, objc.Sel("distanceBetweenString:andString:distanceType:"), objc.String(firstString), objc.String(secondString), distanceType)
 	return rv
 }
 
 // Passes the nearest strings of a string in the vocabulary to a block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/enumerateNeighborsForString:maximumCount:distanceType:usingBlock:
-func (e_ Embedding) EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, distanceType DistanceType, block unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:distanceType:usingBlock:"), string_, maxCount, distanceType, block)
+func (e_ Embedding) EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ string, maxCount uint, distanceType DistanceType, block unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:distanceType:usingBlock:"), objc.String(string_), maxCount, distanceType, block)
 }
 
 // Passes the nearest strings, within a radius of a string in the vocabulary, to a block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:
-func (e_ Embedding) EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:"), string_, maxCount, maxDistance, distanceType, block)
+func (e_ Embedding) EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ string, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:"), objc.String(string_), maxCount, maxDistance, distanceType, block)
 }
 
 // Passes the nearest strings of a location in the vocabulary space to a closure.
@@ -232,24 +235,24 @@ func (e_ Embedding) EnumerateNeighborsForVectorMaximumCountMaximumDistanceDistan
 // Copies a vector into the given a pointer to a float array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/getVector:forString:
-func (e_ Embedding) GetVectorForString(vector unsafe.Pointer, string_ appkit.string) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("getVector:forString:"), vector, string_)
+func (e_ Embedding) GetVectorForString(vector unsafe.Pointer, string_ string) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("getVector:forString:"), vector, objc.String(string_))
 	return rv
 }
 
 // Retrieves a limited number of strings near a string in the vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/neighborsForString:maximumCount:distanceType:
-func (e_ Embedding) NeighborsForStringMaximumCountDistanceType(string_ appkit.string, maxCount uint, distanceType DistanceType) []string {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:distanceType:"), string_, maxCount, distanceType)
+func (e_ Embedding) NeighborsForStringMaximumCountDistanceType(string_ string, maxCount uint, distanceType DistanceType) []string {
+	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:distanceType:"), objc.String(string_), maxCount, distanceType)
 	return rv
 }
 
 // Retrieves a limited number of strings, within a radius of a string, in the vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/neighborsForString:maximumCount:maximumDistance:distanceType:
-func (e_ Embedding) NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:maximumDistance:distanceType:"), string_, maxCount, maxDistance, distanceType)
+func (e_ Embedding) NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ string, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string {
+	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:maximumDistance:distanceType:"), objc.String(string_), maxCount, maxDistance, distanceType)
 	return rv
 }
 
@@ -272,8 +275,8 @@ func (e_ Embedding) NeighborsForVectorMaximumCountMaximumDistanceDistanceType(ve
 // Requests the vector for the given term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/vectorForString:
-func (e_ Embedding) VectorForString(string_ appkit.string) []foundation.Number {
-	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("vectorForString:"), string_)
+func (e_ Embedding) VectorForString(string_ string) []foundation.Number {
+	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("vectorForString:"), objc.String(string_))
 	return rv
 }
 

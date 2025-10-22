@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SceneAnchoringStrategy] class.
@@ -30,6 +29,7 @@ type _SceneAnchoringStrategyClass struct {
 // An interface definition for the [SceneAnchoringStrategy] class.
 type ISceneAnchoringStrategy interface {
 	IAnchoringStrategy
+	SceneIdentifier() string
 }
 
 // Anchor to the visual center of a particular UIScene.
@@ -82,9 +82,9 @@ func NewSceneAnchoringStrategy() SceneAnchoringStrategy {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/initWithSceneIdentifier:
-func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier appkit.string) SceneAnchoringStrategy {
+func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string) SceneAnchoringStrategy {
 	instance := getSceneAnchoringStrategyClass().Alloc()
-	rv := objc.Send[SceneAnchoringStrategy](instance.ID, objc.Sel("initWithSceneIdentifier:"), sceneIdentifier)
+	rv := objc.Send[SceneAnchoringStrategy](instance.ID, objc.Sel("initWithSceneIdentifier:"), objc.String(sceneIdentifier))
 	rv.Autorelease()
 	return rv
 }
@@ -92,8 +92,8 @@ func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier appkit.string)
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/sceneIdentifier
-func (s_ SceneAnchoringStrategy) SceneIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("sceneIdentifier"))
+func (s_ SceneAnchoringStrategy) SceneIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("sceneIdentifier"))
 	return rv
 }
 

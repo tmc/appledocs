@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CNChangeHistoryAddGroupEvent] class.
@@ -30,6 +29,8 @@ type _CNChangeHistoryAddGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryAddGroupEvent] class.
 type ICNChangeHistoryAddGroupEvent interface {
 	ICNChangeHistoryEvent
+	ContainerIdentifier() string
+	Group() CNGroup
 }
 
 // An object that represents a user adding a group.
@@ -83,8 +84,8 @@ func NewCNChangeHistoryAddGroupEvent() CNChangeHistoryAddGroupEvent {
 // A string that uniquely identifies the container where the user added the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/containerIdentifier
-func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

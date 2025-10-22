@@ -31,6 +31,16 @@ type _MTRUnitTestingClusterTestNullableOptionalResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestNullableOptionalResponseParams] class.
 type IMTRUnitTestingClusterTestNullableOptionalResponseParams interface {
 	objectivec.IObject
+	OriginalValue() foundation.Number
+	SetOriginalValue(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
+	WasNull() foundation.Number
+	SetWasNull(value foundation.INumber)
+	WasPresent() foundation.Number
+	SetWasPresent(value foundation.INumber)
 }
 
 //

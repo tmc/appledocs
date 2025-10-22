@@ -30,6 +30,12 @@ type _MTRTestClusterClusterTestNullableOptionalRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestNullableOptionalRequestParams] class.
 type IMTRTestClusterClusterTestNullableOptionalRequestParams interface {
 	IMTRUnitTestingClusterTestNullableOptionalRequestParams
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

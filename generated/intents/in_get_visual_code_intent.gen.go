@@ -29,6 +29,7 @@ type _INGetVisualCodeIntentClass struct {
 // An interface definition for the [INGetVisualCodeIntent] class.
 type IINGetVisualCodeIntent interface {
 	IINIntent
+	VisualCodeType() unsafe.Pointer
 }
 
 // A request for a visual code to use for exchanging payment and contact information.

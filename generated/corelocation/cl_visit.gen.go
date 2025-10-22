@@ -31,6 +31,10 @@ type _VisitClass struct {
 // An interface definition for the [Visit] class.
 type IVisit interface {
 	objectivec.IObject
+	ArrivalDate() foundation.NSDate
+	Coordinate() unsafe.Pointer
+	DepartureDate() foundation.NSDate
+	HorizontalAccuracy() unsafe.Pointer
 }
 
 // Information about the user’s location during a specific period of time.

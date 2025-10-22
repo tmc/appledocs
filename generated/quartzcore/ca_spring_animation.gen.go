@@ -29,6 +29,21 @@ type _SpringAnimationClass struct {
 // An interface definition for the [SpringAnimation] class.
 type ISpringAnimation interface {
 	IBasicAnimation
+	AllowsOverdamping() bool
+	SetAllowsOverdamping(value bool)
+	Bounce() float64
+	Damping() float64
+	SetDamping(value float64)
+	InitialVelocity() float64
+	SetInitialVelocity(value float64)
+	Mass() float64
+	SetMass(value float64)
+	PerceptualDuration() TimeInterval
+	SettlingDuration() TimeInterval
+	Stiffness() float64
+	SetStiffness(value float64)
+	ToValue() unsafe.Pointer
+	SetToValue(value unsafe.Pointer)
 }
 
 // An animation that applies a spring-like force to a layer’s properties.

@@ -29,6 +29,8 @@ type _CActivationLayerClass struct {
 // An interface definition for the [CActivationLayer] class.
 type ICActivationLayer interface {
 	ICLayer
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
 }
 
 // A layer that applies an activation function to the source tensor and produces an output.

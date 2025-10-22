@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -35,6 +34,32 @@ type IPHAsset interface {
 	CanPerformEditOperation(editOperation IPHAssetEditOperation) bool
 	CancelContentEditingInputRequest(requestID IPHContentEditingInputRequestID)
 	RequestContentEditingInputWithOptionsCompletionHandler(options PHContentEditingInputRequestOptions, completionHandler unsafe.Pointer) PHContentEditingInputRequestID
+	AddedDate() foundation.NSDate
+	AdjustmentFormatIdentifier() string
+	BurstIdentifier() string
+	BurstSelectionTypes() PHAssetBurstSelectionType
+	ContentType() unsafe.Pointer
+	CreationDate() foundation.NSDate
+	Duration() foundation.TimeInterval
+	HasAdjustments() bool
+	Favorite() bool
+	Hidden() bool
+	SyncFailureHidden() bool
+	Location() corelocation.Location
+	MediaSubtypes() PHAssetMediaSubtype
+	MediaType() PHAssetMediaType
+	ModificationDate() foundation.NSDate
+	PixelHeight() uint
+	PixelWidth() uint
+	PlaybackStyle() PHAssetPlaybackStyle
+	RepresentsBurst() bool
+	SourceType() PHAssetSourceType
+	IsFavorite() bool
+	SetIsFavorite(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsSyncFailureHidden() bool
+	SetIsSyncFailureHidden(value bool)
 }
 
 // A representation of an image, video, or Live Photo in the Photos library.
@@ -122,8 +147,8 @@ func (pc _PHAssetClass) FetchAssetsWithALAssetURLsOptions(assetURLs []foundation
 // Retrieves assets with the specified burst photo sequence identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(withBurstIdentifier:options:)
-func (pc _PHAssetClass) FetchAssetsWithBurstIdentifierOptions(burstIdentifier appkit.string, options PHFetchOptions) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithBurstIdentifier:options:"), burstIdentifier, options)
+func (pc _PHAssetClass) FetchAssetsWithBurstIdentifierOptions(burstIdentifier string, options PHFetchOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithBurstIdentifier:options:"), objc.String(burstIdentifier), options)
 	return rv
 }
 
@@ -177,16 +202,16 @@ func (p_ PHAsset) AddedDate() foundation.NSDate {
 // The identifier that describes the adjustment format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/adjustmentFormatIdentifier
-func (p_ PHAsset) AdjustmentFormatIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("adjustmentFormatIdentifier"))
+func (p_ PHAsset) AdjustmentFormatIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("adjustmentFormatIdentifier"))
 	return rv
 }
 
 // The unique identifier shared by photo assets from the same burst sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/burstIdentifier
-func (p_ PHAsset) BurstIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("burstIdentifier"))
+func (p_ PHAsset) BurstIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
 	return rv
 }
 

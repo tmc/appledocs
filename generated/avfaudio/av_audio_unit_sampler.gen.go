@@ -29,6 +29,14 @@ type _AudioUnitSamplerClass struct {
 // An interface definition for the [AudioUnitSampler] class.
 type IAudioUnitSampler interface {
 	IAudioUnitMIDIInstrument
+	GlobalTuning() float32
+	SetGlobalTuning(value float32)
+	MasterGain() float32
+	SetMasterGain(value float32)
+	OverallGain() float32
+	SetOverallGain(value float32)
+	StereoPan() float32
+	SetStereoPan(value float32)
 }
 
 // An object that you configure with one or more instrument samples, based on Apple’s Sampler audio unit.
@@ -84,8 +92,8 @@ func NewAudioUnitSampler() AudioUnitSampler {
 // An adjustment for the tuning of all the played notes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
-func (a_ AudioUnitSampler) GlobalTuning() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("globalTuning"))
+func (a_ AudioUnitSampler) GlobalTuning() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("globalTuning"))
 	return rv
 }
 
@@ -95,15 +103,15 @@ func (a_ AudioUnitSampler) GlobalTuning() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
-func (a_ AudioUnitSampler) SetGlobalTuning(value unsafe.Pointer) {
+func (a_ AudioUnitSampler) SetGlobalTuning(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGlobalTuning:"), value)
 }
 
 // An adjustment for the gain of all the played notes, in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
-func (a_ AudioUnitSampler) MasterGain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("masterGain"))
+func (a_ AudioUnitSampler) MasterGain() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("masterGain"))
 	return rv
 }
 
@@ -113,15 +121,15 @@ func (a_ AudioUnitSampler) MasterGain() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
-func (a_ AudioUnitSampler) SetMasterGain(value unsafe.Pointer) {
+func (a_ AudioUnitSampler) SetMasterGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMasterGain:"), value)
 }
 
 // An adjustment for the gain of all the played notes, in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
-func (a_ AudioUnitSampler) OverallGain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("overallGain"))
+func (a_ AudioUnitSampler) OverallGain() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("overallGain"))
 	return rv
 }
 
@@ -131,15 +139,15 @@ func (a_ AudioUnitSampler) OverallGain() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
-func (a_ AudioUnitSampler) SetOverallGain(value unsafe.Pointer) {
+func (a_ AudioUnitSampler) SetOverallGain(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallGain:"), value)
 }
 
 // An adjustment for the stereo panning of all the played notes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
-func (a_ AudioUnitSampler) StereoPan() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("stereoPan"))
+func (a_ AudioUnitSampler) StereoPan() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("stereoPan"))
 	return rv
 }
 
@@ -149,7 +157,7 @@ func (a_ AudioUnitSampler) StereoPan() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
-func (a_ AudioUnitSampler) SetStereoPan(value unsafe.Pointer) {
+func (a_ AudioUnitSampler) SetStereoPan(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStereoPan:"), value)
 }
 

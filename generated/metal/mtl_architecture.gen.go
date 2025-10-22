@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,27 @@ type _ArchitectureClass struct {
 // An interface definition for the [Architecture] class.
 type IArchitecture interface {
 	objectivec.IObject
+	Name() string
+	Architecture() MTLArchitecture
+	SetArchitecture(value IMTLArchitecture)
+	IsHeadless() bool
+	SetIsHeadless(value bool)
+	IsLowPower() bool
+	SetIsLowPower(value bool)
+	IsRemovable() bool
+	SetIsRemovable(value bool)
+	Location() DeviceLocation
+	SetLocation(value IDeviceLocation)
+	LocationNumber() int
+	SetLocationNumber(value int)
+	PeerCount() unsafe.Pointer
+	SetPeerCount(value unsafe.Pointer)
+	PeerGroupID() uint64
+	SetPeerGroupID(value uint64)
+	PeerIndex() unsafe.Pointer
+	SetPeerIndex(value unsafe.Pointer)
+	RegistryID() uint64
+	SetRegistryID(value uint64)
 }
 
 // A class that contains the architectural details of a GPU device.
@@ -82,8 +102,8 @@ func NewArchitecture() Architecture {
 // The name of a GPU device’s architecture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArchitecture/name
-func (a_ Architecture) Name() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
+func (a_ Architecture) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 

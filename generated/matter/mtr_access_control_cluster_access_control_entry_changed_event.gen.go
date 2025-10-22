@@ -31,6 +31,16 @@ type _MTRAccessControlClusterAccessControlEntryChangedEventClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessControlEntryChangedEvent] class.
 type IMTRAccessControlClusterAccessControlEntryChangedEvent interface {
 	objectivec.IObject
+	AdminNodeID() foundation.Number
+	SetAdminNodeID(value foundation.INumber)
+	AdminPasscodeID() foundation.Number
+	SetAdminPasscodeID(value foundation.INumber)
+	ChangeType() foundation.Number
+	SetChangeType(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	LatestValue() MTRAccessControlClusterAccessControlEntryStruct
+	SetLatestValue(value IMTRAccessControlClusterAccessControlEntryStruct)
 }
 
 //

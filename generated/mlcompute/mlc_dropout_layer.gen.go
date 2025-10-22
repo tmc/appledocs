@@ -29,6 +29,10 @@ type _CDropoutLayerClass struct {
 // An interface definition for the [CDropoutLayer] class.
 type ICDropoutLayer interface {
 	ICLayer
+	Rate() float32
+	SetRate(value float32)
+	Seed() int
+	SetSeed(value int)
 }
 
 // A layer that deactivates neurons randomly to avoid overfitting.
@@ -82,8 +86,8 @@ func NewCDropoutLayer() CDropoutLayer {
 // The dropout rate you use for each element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/rate
-func (c_ CDropoutLayer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rate"))
+func (c_ CDropoutLayer) Rate() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -93,7 +97,7 @@ func (c_ CDropoutLayer) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/rate
-func (c_ CDropoutLayer) SetRate(value unsafe.Pointer) {
+func (c_ CDropoutLayer) SetRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRate:"), value)
 }
 

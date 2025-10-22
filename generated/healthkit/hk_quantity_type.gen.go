@@ -30,6 +30,7 @@ type _HKQuantityTypeClass struct {
 type IHKQuantityType interface {
 	IHKSampleType
 	IsCompatibleWithUnit(unit IHKUnit) bool
+	AggregationStyle() HKQuantityAggregationStyle
 }
 
 // A type that identifies samples that store numerical values.

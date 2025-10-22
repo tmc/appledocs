@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CBUserIdentity] class.
@@ -30,7 +29,12 @@ type _CBUserIdentityClass struct {
 // An interface definition for the [CBUserIdentity] class.
 type ICBUserIdentity interface {
 	ICBIdentity
-	AuthenticateWithPassword(password appkit.string) bool
+	AuthenticateWithPassword(password string) bool
+	Certificate() unsafe.Pointer
+	Enabled() bool
+	PosixUID() unsafe.Pointer
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // An object of the class represents a user identity and is used for accessing the attributes of a user identity from an identity authority. The principal attributes of are a POSIX user identifier (UID), password, and certificate.
@@ -84,8 +88,8 @@ func NewCBUserIdentity() CBUserIdentity {
 // Returns a Boolean value indicating whether the given password is correct for the identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/authenticate(withPassword:)
-func (c_ CBUserIdentity) AuthenticateWithPassword(password appkit.string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("authenticateWithPassword:"), password)
+func (c_ CBUserIdentity) AuthenticateWithPassword(password string) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("authenticateWithPassword:"), objc.String(password))
 	return rv
 }
 

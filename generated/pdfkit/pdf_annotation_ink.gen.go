@@ -34,6 +34,12 @@ type IPDFAnnotationInk interface {
 	AddBezierPath(path appkit.IBezierPath)
 	Paths() foundation.Array
 	RemoveBezierPath(path appkit.IBezierPath)
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	Style() PDFBorderStyle
+	SetStyle(value PDFBorderStyle)
 }
 
 //

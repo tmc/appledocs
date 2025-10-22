@@ -30,6 +30,9 @@ type _SFContentBlockerStateClass struct {
 // An interface definition for the [SFContentBlockerState] class.
 type ISFContentBlockerState interface {
 	objectivec.IObject
+	Enabled() bool
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // The state of a content blocker extension.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -32,6 +31,17 @@ type _BarcodeObservationClass struct {
 // An interface definition for the [BarcodeObservation] class.
 type IBarcodeObservation interface {
 	IRectangleObservation
+	BarcodeDescriptor() coreimage.BarcodeDescriptor
+	IsColorInverted() bool
+	IsGS1DataCarrier() bool
+	PayloadData() foundation.NSData
+	PayloadStringValue() string
+	SupplementalCompositeType() BarcodeCompositeType
+	SupplementalPayloadData() foundation.NSData
+	SupplementalPayloadString() string
+	Symbology() unsafe.Pointer
+	Results() VNBarcodeObservation
+	SetResults(value IVNBarcodeObservation)
 }
 
 // An object that represents barcode information that an image analysis request detects.
@@ -119,8 +129,8 @@ func (b_ BarcodeObservation) PayloadData() foundation.NSData {
 // A string value that represents the barcode payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/payloadStringValue
-func (b_ BarcodeObservation) PayloadStringValue() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("payloadStringValue"))
+func (b_ BarcodeObservation) PayloadStringValue() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("payloadStringValue"))
 	return rv
 }
 
@@ -142,8 +152,8 @@ func (b_ BarcodeObservation) SupplementalPayloadData() foundation.NSData {
 // The supplemental code decoded as a string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalPayloadString
-func (b_ BarcodeObservation) SupplementalPayloadString() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("supplementalPayloadString"))
+func (b_ BarcodeObservation) SupplementalPayloadString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("supplementalPayloadString"))
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _FindResultClass struct {
 // An interface definition for the [FindResult] class.
 type IFindResult interface {
 	objectivec.IObject
+	MatchFound() bool
+	SetMatchFound(value bool)
 }
 
 // An object that contains the results of searching the web view’s contents.

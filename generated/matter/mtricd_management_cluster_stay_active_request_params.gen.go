@@ -31,6 +31,12 @@ type _MTRICDManagementClusterStayActiveRequestParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterStayActiveRequestParams] class.
 type IMTRICDManagementClusterStayActiveRequestParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StayActiveDuration() foundation.Number
+	SetStayActiveDuration(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

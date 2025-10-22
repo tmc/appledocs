@@ -31,6 +31,12 @@ type _SVGFDenoiserClass struct {
 type ISVGFDenoiser interface {
 	objectivec.IObject
 	EncodeToCommandBufferSourceTextureDestinationTextureSourceTexture2DestinationTexture2MotionVectorTextureDepthNormalTexturePreviousDepthNormalTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, destinationTexture objectivec.IObject, sourceTexture2 objectivec.IObject, destinationTexture2 objectivec.IObject, motionVectorTexture objectivec.IObject, depthNormalTexture objectivec.IObject, previousDepthNormalTexture objectivec.IObject)
+	BilateralFilterIterations() int
+	SetBilateralFilterIterations(value int)
+	Svgf() MPSSVGF
+	SetSvgf(value IMPSSVGF)
+	TextureAllocator() unsafe.Pointer
+	SetTextureAllocator(value unsafe.Pointer)
 }
 
 //

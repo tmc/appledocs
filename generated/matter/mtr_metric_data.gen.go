@@ -31,6 +31,12 @@ type _MTRMetricDataClass struct {
 // An interface definition for the [MTRMetricData] class.
 type IMTRMetricData interface {
 	objectivec.IObject
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	ErrorCode() foundation.Number
+	SetErrorCode(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

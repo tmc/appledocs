@@ -31,6 +31,16 @@ type _MTRFanControlClusterStepParamsClass struct {
 // An interface definition for the [MTRFanControlClusterStepParams] class.
 type IMTRFanControlClusterStepParams interface {
 	objectivec.IObject
+	Direction() foundation.Number
+	SetDirection(value foundation.INumber)
+	LowestOff() foundation.Number
+	SetLowestOff(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Wrap() foundation.Number
+	SetWrap(value foundation.INumber)
 }
 
 //

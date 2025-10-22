@@ -31,6 +31,12 @@ type _MTRGroupKeyManagementClusterKeySetReadAllIndicesParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetReadAllIndicesParams] class.
 type IMTRGroupKeyManagementClusterKeySetReadAllIndicesParams interface {
 	objectivec.IObject
+	GroupKeySetIDs() unsafe.Pointer
+	SetGroupKeySetIDs(value unsafe.Pointer)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

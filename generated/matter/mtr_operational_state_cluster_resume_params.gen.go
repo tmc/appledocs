@@ -31,6 +31,10 @@ type _MTROperationalStateClusterResumeParamsClass struct {
 // An interface definition for the [MTROperationalStateClusterResumeParams] class.
 type IMTROperationalStateClusterResumeParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

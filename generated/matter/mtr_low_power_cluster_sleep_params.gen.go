@@ -31,6 +31,10 @@ type _MTRLowPowerClusterSleepParamsClass struct {
 // An interface definition for the [MTRLowPowerClusterSleepParams] class.
 type IMTRLowPowerClusterSleepParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -29,6 +29,8 @@ type _MKMultiPolygonClass struct {
 // An interface definition for the [MKMultiPolygon] class.
 type IMKMultiPolygon interface {
 	IMKShape
+	Polygons() MKPolygon
+	SetPolygons(value IMKPolygon)
 }
 
 // A collection of multiple closed polygon overlays.

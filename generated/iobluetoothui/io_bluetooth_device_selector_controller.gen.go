@@ -37,7 +37,7 @@ type IBluetoothDeviceSelectorController interface {
 	GetPrompt() foundation.String
 	GetSearchAttributes() unsafe.Pointer
 	SetSearchAttributes(searchAttributes unsafe.Pointer)
-	SetTitle(windowTitle appkit.string)
+	SetTitle(windowTitle string)
 }
 
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
@@ -131,8 +131,8 @@ func (b_ BluetoothDeviceSelectorController) SetSearchAttributes(searchAttributes
 // Sets the title of the panel when not run as a sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/setTitle(_:)
-func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), windowTitle)
+func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(windowTitle))
 }
 
 

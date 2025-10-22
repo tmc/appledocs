@@ -41,6 +41,21 @@ type IPreferencePane interface {
 	UpdateHelpMenuWithArray(inArrayOfMenuItems []foundation.IDictionary)
 	WillSelect()
 	WillUnselect()
+	AutoSaveTextFields() bool
+	Bundle() foundation.Bundle
+	FirstKeyView() appkit.View
+	SetFirstKeyView(value appkit.IView)
+	InitialKeyView() appkit.View
+	SetInitialKeyView(value appkit.IView)
+	Selected() bool
+	LastKeyView() appkit.View
+	SetLastKeyView(value appkit.IView)
+	MainNibName() string
+	MainView() appkit.View
+	SetMainView(value appkit.IView)
+	ShouldUnselect() PreferencePaneUnselectReply
+	IsSelected() bool
+	SetIsSelected(value bool)
 }
 
 // The interface for providing preference panes to System Preferences or other apps.
@@ -249,8 +264,8 @@ func (p_ PreferencePane) SetLastKeyView(value appkit.IView) {
 // The name of the preference pane’s nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/mainNibName
-func (p_ PreferencePane) MainNibName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("mainNibName"))
+func (p_ PreferencePane) MainNibName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("mainNibName"))
 	return rv
 }
 

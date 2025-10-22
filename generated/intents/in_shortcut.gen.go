@@ -31,6 +31,8 @@ type _INShortcutClass struct {
 // An interface definition for the [INShortcut] class.
 type IINShortcut interface {
 	objectivec.IObject
+	Intent() INIntent
+	UserActivity() foundation.UserActivity
 }
 
 // An object representing an action available in your app that the system may suggest to a user or a user may add to Siri.

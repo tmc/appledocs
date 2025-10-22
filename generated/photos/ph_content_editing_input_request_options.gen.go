@@ -30,6 +30,14 @@ type _PHContentEditingInputRequestOptionsClass struct {
 // An interface definition for the [PHContentEditingInputRequestOptions] class.
 type IPHContentEditingInputRequestOptions interface {
 	objectivec.IObject
+	CanHandleAdjustmentData() unsafe.Pointer
+	SetCanHandleAdjustmentData(value unsafe.Pointer)
+	NetworkAccessAllowed() bool
+	SetNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	IsNetworkAccessAllowed() bool
+	SetIsNetworkAccessAllowed(value bool)
 }
 
 // A set of options affecting the delivery of image or video data when you request to edit the content of a Photos asset.

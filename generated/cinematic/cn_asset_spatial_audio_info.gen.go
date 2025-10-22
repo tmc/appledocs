@@ -32,6 +32,8 @@ type _CNAssetSpatialAudioInfoClass struct {
 // An interface definition for the [CNAssetSpatialAudioInfo] class.
 type ICNAssetSpatialAudioInfo interface {
 	objectivec.IObject
+	DefaultRenderingStyle() CNSpatialAudioRenderingStyle
+	SpatialAudioMixMetadata() foundation.NSData
 }
 
 //

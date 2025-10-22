@@ -33,7 +33,10 @@ type IRandomDistribution interface {
 	NextBool() bool
 	NextInt() int
 	NextIntWithUpperBound(upperBound uint) uint
-	NextUniform() unsafe.Pointer
+	NextUniform() float32
+	HighestValue() int
+	LowestValue() int
+	NumberOfPossibleOutcomes() uint
 }
 
 // A generator for random numbers that fall within a specific range and that exhibit a specific distribution over multiple samplings.
@@ -176,8 +179,8 @@ func (r_ RandomDistribution) NextIntWithUpperBound(upperBound uint) uint {
 // Generates and returns a new random floating-point value within the characteristics of the distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextUniform()
-func (r_ RandomDistribution) NextUniform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("nextUniform"))
+func (r_ RandomDistribution) NextUniform() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("nextUniform"))
 	return rv
 }
 

@@ -31,6 +31,9 @@ type _FallDetectionManagerClass struct {
 type IFallDetectionManager interface {
 	objectivec.IObject
 	RequestAuthorizationWithHandler(handler unsafe.Pointer)
+	AuthorizationStatus() AuthorizationStatus
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An object for managing fall detection events.

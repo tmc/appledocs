@@ -30,6 +30,17 @@ type _CaptureMetadataOutputClass struct {
 // An interface definition for the [CaptureMetadataOutput] class.
 type ICaptureMetadataOutput interface {
 	ICaptureOutput
+	MetadataObjectsCallbackQueue() unsafe.Pointer
+	AvailableMetadataObjectTypes() unsafe.Pointer
+	SetAvailableMetadataObjectTypes(value unsafe.Pointer)
+	MetadataObjectTypes() unsafe.Pointer
+	SetMetadataObjectTypes(value unsafe.Pointer)
+	MetadataObjectsDelegate() unsafe.Pointer
+	SetMetadataObjectsDelegate(value unsafe.Pointer)
+	RectOfInterest() coregraphics.CGRect
+	SetRectOfInterest(value coregraphics.CGRect)
+	RequiredMetadataObjectTypesForCinematicVideoCapture() unsafe.Pointer
+	SetRequiredMetadataObjectTypesForCinematicVideoCapture(value unsafe.Pointer)
 }
 
 // A capture output for processing timed metadata produced by a capture session.

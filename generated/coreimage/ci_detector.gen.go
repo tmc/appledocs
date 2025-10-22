@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,8 +87,8 @@ func NewDetector() Detector {
 // Creates and returns a configured detector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
-func NewDetectorOfTypeContextOptions(type_ appkit.string, context ICIContext, options unsafe.Pointer) Detector {
-	rv := objc.Send[Detector](objc.ID(getDetectorClass().class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
+func NewDetectorOfTypeContextOptions(type_ string, context ICIContext, options unsafe.Pointer) Detector {
+	rv := objc.Send[Detector](objc.ID(getDetectorClass().class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
 
@@ -97,8 +96,8 @@ func NewDetectorOfTypeContextOptions(type_ appkit.string, context ICIContext, op
 // Creates and returns a configured detector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
-func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ appkit.string, context ICIContext, options unsafe.Pointer) Detector {
-	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
+func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context ICIContext, options unsafe.Pointer) Detector {
+	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
 

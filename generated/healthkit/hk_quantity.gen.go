@@ -31,7 +31,7 @@ type _HKQuantityClass struct {
 type IHKQuantity interface {
 	objectivec.IObject
 	Compare(quantity IHKQuantity) unsafe.Pointer
-	DoubleValueForUnit(unit IHKUnit) unsafe.Pointer
+	DoubleValueForUnit(unit IHKUnit) float64
 	IsCompatibleWithUnit(unit IHKUnit) bool
 }
 
@@ -88,7 +88,7 @@ func NewHKQuantity() HKQuantity {
 // Instantiates and returns a new quantity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)
-func NewHKQuantityWithUnitDoubleValue(unit IHKUnit, value unsafe.Pointer) HKQuantity {
+func NewHKQuantityWithUnitDoubleValue(unit IHKUnit, value float64) HKQuantity {
 	rv := objc.Send[HKQuantity](objc.ID(getHKQuantityClass().class), objc.Sel("quantityWithUnit:doubleValue:"), unit, value)
 	return rv
 }
@@ -97,7 +97,7 @@ func NewHKQuantityWithUnitDoubleValue(unit IHKUnit, value unsafe.Pointer) HKQuan
 // Instantiates and returns a new quantity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)
-func (hc _HKQuantityClass) QuantityWithUnitDoubleValue(unit IHKUnit, value unsafe.Pointer) unsafe.Pointer {
+func (hc _HKQuantityClass) QuantityWithUnitDoubleValue(unit IHKUnit, value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantityWithUnit:doubleValue:"), unit, value)
 	return rv
 }
@@ -113,8 +113,8 @@ func (h_ HKQuantity) Compare(quantity IHKQuantity) unsafe.Pointer {
 // Returns the quantity’s value in the provided unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/doubleValue(for:)
-func (h_ HKQuantity) DoubleValueForUnit(unit IHKUnit) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("doubleValueForUnit:"), unit)
+func (h_ HKQuantity) DoubleValueForUnit(unit IHKUnit) float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("doubleValueForUnit:"), unit)
 	return rv
 }
 

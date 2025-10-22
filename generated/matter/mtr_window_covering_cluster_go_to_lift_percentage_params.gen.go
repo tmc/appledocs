@@ -31,6 +31,12 @@ type _MTRWindowCoveringClusterGoToLiftPercentageParamsClass struct {
 // An interface definition for the [MTRWindowCoveringClusterGoToLiftPercentageParams] class.
 type IMTRWindowCoveringClusterGoToLiftPercentageParams interface {
 	objectivec.IObject
+	LiftPercent100thsValue() foundation.Number
+	SetLiftPercent100thsValue(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

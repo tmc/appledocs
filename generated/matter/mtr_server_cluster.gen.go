@@ -31,6 +31,14 @@ type _MTRServerClusterClass struct {
 // An interface definition for the [MTRServerCluster] class.
 type IMTRServerCluster interface {
 	objectivec.IObject
+	AccessGrants() MTRAccessGrant
+	SetAccessGrants(value IMTRAccessGrant)
+	Attributes() MTRServerAttribute
+	SetAttributes(value MTRServerAttribute)
+	ClusterID() foundation.Number
+	SetClusterID(value foundation.INumber)
+	ClusterRevision() foundation.Number
+	SetClusterRevision(value foundation.INumber)
 }
 
 //

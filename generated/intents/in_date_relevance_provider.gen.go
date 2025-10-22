@@ -31,6 +31,9 @@ type _INDateRelevanceProviderClass struct {
 // An interface definition for the [INDateRelevanceProvider] class.
 type IINDateRelevanceProvider interface {
 	objectivec.IObject
+	StartDate() foundation.NSDate
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
 }
 
 // The provider class that specifies a relevant day and time.

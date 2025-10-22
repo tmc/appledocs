@@ -29,7 +29,13 @@ type _GCDualSenseAdaptiveTriggerClass struct {
 // An interface definition for the [GCDualSenseAdaptiveTrigger] class.
 type IGCDualSenseAdaptiveTrigger interface {
 	IGCControllerButtonInput
-	SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency unsafe.Pointer)
+	SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32)
+	ArmPosition() float32
+	SetArmPosition(value float32)
+	Mode() unsafe.Pointer
+	SetMode(value unsafe.Pointer)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // A class that encapsulates the features of a DualSense adaptive trigger.
@@ -85,15 +91,15 @@ func NewGCDualSenseAdaptiveTrigger() GCDualSenseAdaptiveTrigger {
 // Sets the mode to vibrate with the specified amplitudes for each possible trigger position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualSenseAdaptiveTrigger/setModeVibration(amplitudes:frequency:)
-func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency unsafe.Pointer) {
+func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModeVibrationWithAmplitudes:frequency:"), positionalAmplitudes, frequency)
 }
 
 // The position of the trigger’s arm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
-func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("armPosition"))
+func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("armPosition"))
 	return rv
 }
 
@@ -103,7 +109,7 @@ func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
-func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value unsafe.Pointer) {
+func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setArmPosition:"), value)
 }
 

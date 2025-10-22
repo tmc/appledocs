@@ -30,6 +30,8 @@ type _CKSyncEngineSendChangesContextClass struct {
 // An interface definition for the [CKSyncEngineSendChangesContext] class.
 type ICKSyncEngineSendChangesContext interface {
 	objectivec.IObject
+	Options() CKSyncEngineSendChangesOptions
+	Reason() CKSyncEngineSyncReason
 }
 
 // An object that describes a single attempt to send changes to the iCloud servers.

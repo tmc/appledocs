@@ -31,6 +31,16 @@ type _PasskeyRegistrationCredentialClass struct {
 // An interface definition for the [PasskeyRegistrationCredential] class.
 type IPasskeyRegistrationCredential interface {
 	objectivec.IObject
+	AttestationObject() foundation.Data
+	SetAttestationObject(value foundation.IData)
+	ClientDataHash() foundation.Data
+	SetClientDataHash(value foundation.IData)
+	CredentialID() foundation.Data
+	SetCredentialID(value foundation.IData)
+	ExtensionOutput() PasskeyRegistrationCredentialExtensionOutput
+	SetExtensionOutput(value IPasskeyRegistrationCredentialExtensionOutput)
+	RelyingParty() string
+	SetRelyingParty(value string)
 }
 
 // A passkey registration credential.
@@ -153,8 +163,8 @@ func (p_ PasskeyRegistrationCredential) SetExtensionOutput(value IPasskeyRegistr
 // The relying party associated with this passkey.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
-func (p_ PasskeyRegistrationCredential) RelyingParty() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("relyingParty"))
+func (p_ PasskeyRegistrationCredential) RelyingParty() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
 	return rv
 }
 
@@ -164,8 +174,8 @@ func (p_ PasskeyRegistrationCredential) RelyingParty() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
-func (p_ PasskeyRegistrationCredential) SetRelyingParty(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), value)
+func (p_ PasskeyRegistrationCredential) SetRelyingParty(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }
 
 

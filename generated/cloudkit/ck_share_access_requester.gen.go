@@ -31,6 +31,9 @@ type _CKShareAccessRequesterClass struct {
 // An interface definition for the [CKShareAccessRequester] class.
 type ICKShareAccessRequester interface {
 	objectivec.IObject
+	Contact() contacts.CNContact
+	ParticipantLookupInfo() CKUserIdentityLookupInfo
+	UserIdentity() CKUserIdentity
 }
 
 //

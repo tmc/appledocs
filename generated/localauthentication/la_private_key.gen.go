@@ -37,6 +37,7 @@ type IPrivateKey interface {
 	DecryptDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer)
 	ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey foundation.IData, algorithm unsafe.Pointer, parameters objectivec.IObject, handler unsafe.Pointer)
 	SignDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer)
+	PublicKey() LAPublicKey
 }
 
 // The private portion of an asymmetric key pair.

@@ -30,6 +30,15 @@ type _NINearbyAccessoryConfigurationClass struct {
 // An interface definition for the [NINearbyAccessoryConfiguration] class.
 type ININearbyAccessoryConfiguration interface {
 	INIConfiguration
+	AccessoryDiscoveryToken() NIDiscoveryToken
+	CameraAssistanceEnabled() bool
+	SetCameraAssistanceEnabled(value bool)
+	IsCameraAssistanceEnabled() bool
+	SetIsCameraAssistanceEnabled(value bool)
+	Distance() float32
+	SetDistance(value float32)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A configuration that enables interaction between iPhone and third-party accessories.
@@ -154,8 +163,8 @@ func (n_ NINearbyAccessoryConfiguration) SetIsCameraAssistanceEnabled(value bool
 // The distance from the user’s device to the peer device in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
-func (n_ NINearbyAccessoryConfiguration) Distance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("distance"))
+func (n_ NINearbyAccessoryConfiguration) Distance() float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("distance"))
 	return rv
 }
 
@@ -165,7 +174,7 @@ func (n_ NINearbyAccessoryConfiguration) Distance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
-func (n_ NINearbyAccessoryConfiguration) SetDistance(value unsafe.Pointer) {
+func (n_ NINearbyAccessoryConfiguration) SetDistance(value float32) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
 }
 

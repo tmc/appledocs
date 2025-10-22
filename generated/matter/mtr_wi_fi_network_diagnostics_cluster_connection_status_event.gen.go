@@ -31,6 +31,8 @@ type _MTRWiFiNetworkDiagnosticsClusterConnectionStatusEventClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent] class.
 type IMTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent interface {
 	objectivec.IObject
+	ConnectionStatus() foundation.Number
+	SetConnectionStatus(value foundation.INumber)
 }
 
 //

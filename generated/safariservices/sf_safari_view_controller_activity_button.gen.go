@@ -31,6 +31,9 @@ type _SFSafariViewControllerActivityButtonClass struct {
 // An interface definition for the [SFSafariViewControllerActivityButton] class.
 type ISFSafariViewControllerActivityButton interface {
 	objectivec.IObject
+	ExtensionIdentifier() string
+	TemplateImage() appkit.Image
+	SetTemplateImage(value appkit.IImage)
 }
 
 //
@@ -78,9 +81,9 @@ func NewSFSafariViewControllerActivityButton() SFSafariViewControllerActivityBut
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/init(templateImage:extensionIdentifier:)
-func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage appkit.IImage, extensionIdentifier appkit.string) SFSafariViewControllerActivityButton {
+func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage appkit.IImage, extensionIdentifier string) SFSafariViewControllerActivityButton {
 	instance := getSFSafariViewControllerActivityButtonClass().Alloc()
-	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, extensionIdentifier)
+	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, objc.String(extensionIdentifier))
 	rv.Autorelease()
 	return rv
 }
@@ -88,8 +91,8 @@ func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/extensionIdentifier
-func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("extensionIdentifier"))
+func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("extensionIdentifier"))
 	return rv
 }
 

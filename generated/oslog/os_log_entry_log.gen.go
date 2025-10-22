@@ -29,6 +29,7 @@ type _OSLogEntryLogClass struct {
 // An interface definition for the [OSLogEntryLog] class.
 type IOSLogEntryLog interface {
 	IOSLogEntry
+	Level() OSLogEntryLogLevel
 }
 
 // A log entry.

@@ -31,6 +31,8 @@ type _MTRDeviceEnergyManagementClusterResumedEventClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterResumedEvent] class.
 type IMTRDeviceEnergyManagementClusterResumedEvent interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
 }
 
 //

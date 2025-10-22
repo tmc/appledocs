@@ -31,6 +31,14 @@ type _HKWorkoutEventClass struct {
 // An interface definition for the [HKWorkoutEvent] class.
 type IHKWorkoutEvent interface {
 	objectivec.IObject
+	Type() unsafe.Pointer
+	Date() foundation.Date
+	SetDate(value foundation.IDate)
+	DateInterval() foundation.DateInterval
+	SetDateInterval(value foundation.IDateInterval)
+	Metadata() string
+	SetMetadata(value string)
+	HKWorkoutTypeIdentifier() string
 }
 
 // An object representing an important event during a workout.
@@ -128,8 +136,8 @@ func (h_ HKWorkoutEvent) SetDateInterval(value foundation.IDateInterval) {
 // The metadata associated with the workout event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
-func (h_ HKWorkoutEvent) Metadata() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("metadata"))
+func (h_ HKWorkoutEvent) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -139,15 +147,15 @@ func (h_ HKWorkoutEvent) Metadata() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
-func (h_ HKWorkoutEvent) SetMetadata(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
+func (h_ HKWorkoutEvent) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
 // The workout type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }
 

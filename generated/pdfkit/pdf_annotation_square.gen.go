@@ -30,6 +30,12 @@ type _PDFAnnotationSquareClass struct {
 // An interface definition for the [PDFAnnotationSquare] class.
 type IPDFAnnotationSquare interface {
 	IPDFAnnotation
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	Style() PDFBorderStyle
+	SetStyle(value PDFBorderStyle)
 }
 
 // A rectangle annotation on a page.

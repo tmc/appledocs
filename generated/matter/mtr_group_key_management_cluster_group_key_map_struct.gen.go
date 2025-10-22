@@ -31,6 +31,12 @@ type _MTRGroupKeyManagementClusterGroupKeyMapStructClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterGroupKeyMapStruct] class.
 type IMTRGroupKeyManagementClusterGroupKeyMapStruct interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	GroupId() foundation.Number
+	SetGroupId(value foundation.INumber)
+	GroupKeySetID() foundation.Number
+	SetGroupKeySetID(value foundation.INumber)
 }
 
 //

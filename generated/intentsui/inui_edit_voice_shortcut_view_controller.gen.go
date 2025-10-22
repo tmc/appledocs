@@ -31,6 +31,8 @@ type _INUIEditVoiceShortcutViewControllerClass struct {
 // An interface definition for the [INUIEditVoiceShortcutViewController] class.
 type IINUIEditVoiceShortcutViewController interface {
 	appkit.IViewController
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A view controller that lets the user edit or remove an existing shortcut.

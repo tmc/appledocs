@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +31,14 @@ type _CWWiFiClientClass struct {
 type ICWWiFiClient interface {
 	objectivec.IObject
 	Interface() CWInterface
-	InterfaceWithName(interfaceName appkit.string) CWInterface
+	InterfaceWithName(interfaceName string) CWInterface
 	InterfaceNames() []string
 	Interfaces() []CWInterface
 	StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
 	StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool
 	StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.
@@ -116,8 +117,8 @@ func (c_ CWWiFiClient) Interface() CWInterface {
 // Returns the Wi-Fi interface with the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interface(withName:)
-func (c_ CWWiFiClient) InterfaceWithName(interfaceName appkit.string) CWInterface {
-	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interfaceWithName:"), interfaceName)
+func (c_ CWWiFiClient) InterfaceWithName(interfaceName string) CWInterface {
+	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interfaceWithName:"), objc.String(interfaceName))
 	return rv
 }
 

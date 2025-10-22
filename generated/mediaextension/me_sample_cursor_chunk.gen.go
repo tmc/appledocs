@@ -30,6 +30,13 @@ type _MESampleCursorChunkClass struct {
 // An interface definition for the [MESampleCursorChunk] class.
 type IMESampleCursorChunk interface {
 	objectivec.IObject
+	ByteSource() MEByteSource
+	ChunkInfo() unsafe.Pointer
+	SetChunkInfo(value unsafe.Pointer)
+	ChunkStorageRange() unsafe.Pointer
+	SetChunkStorageRange(value unsafe.Pointer)
+	SampleIndexWithinChunk() unsafe.Pointer
+	SetSampleIndexWithinChunk(value unsafe.Pointer)
 }
 
 // An object that provides information about the chunk of media at the location of a sample.

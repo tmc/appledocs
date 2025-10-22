@@ -31,6 +31,14 @@ type _DisplayManagerClass struct {
 // An interface definition for the [DisplayManager] class.
 type IDisplayManager interface {
 	objectivec.IObject
+	DisplayCriteriaMatchingEnabled() bool
+	DisplayModeSwitchInProgress() bool
+	PreferredDisplayCriteria() avfoundation.DisplayCriteria
+	SetPreferredDisplayCriteria(value avfoundation.IDisplayCriteria)
+	IsDisplayCriteriaMatchingEnabled() bool
+	SetIsDisplayCriteriaMatchingEnabled(value bool)
+	IsDisplayModeSwitchInProgress() bool
+	SetIsDisplayModeSwitchInProgress(value bool)
 }
 
 // A tvOS management object that controls whether a TV switches modes to match the video’s native mode.

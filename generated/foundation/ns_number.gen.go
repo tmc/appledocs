@@ -33,6 +33,43 @@ type INumber interface {
 	Compare(otherNumber INumber) ComparisonResult
 	DescriptionWithLocale(locale objectivec.IObject) String
 	IsEqualToNumber(number INumber) bool
+	BoolValue() bool
+	DecimalValue() unsafe.Pointer
+	DoubleValue() float64
+	FloatValue() float32
+	ShortValue() unsafe.Pointer
+	IntValue() int
+	LongLongValue() unsafe.Pointer
+	CharValue() unsafe.Pointer
+	IntegerValue() int
+	LongValue() unsafe.Pointer
+	StringValue() string
+	UnsignedShortValue() unsafe.Pointer
+	UnsignedIntValue() unsafe.Pointer
+	UnsignedLongLongValue() uint64
+	UnsignedCharValue() unsafe.Pointer
+	UnsignedIntegerValue() uint
+	UnsignedLongValue() unsafe.Pointer
+	Int16Value() unsafe.Pointer
+	SetInt16Value(value unsafe.Pointer)
+	Int32Value() unsafe.Pointer
+	SetInt32Value(value unsafe.Pointer)
+	Int64Value() unsafe.Pointer
+	SetInt64Value(value unsafe.Pointer)
+	Int8Value() unsafe.Pointer
+	SetInt8Value(value unsafe.Pointer)
+	Uint16Value() unsafe.Pointer
+	SetUint16Value(value unsafe.Pointer)
+	Uint32Value() unsafe.Pointer
+	SetUint32Value(value unsafe.Pointer)
+	Uint64Value() uint64
+	SetUint64Value(value uint64)
+	Uint8Value() unsafe.Pointer
+	SetUint8Value(value unsafe.Pointer)
+	UintValue() uint
+	SetUintValue(value uint)
+	ObjCType() unsafe.Pointer
+	SetObjCType(value unsafe.Pointer)
 }
 
 // An object wrapper for primitive scalar numeric values.

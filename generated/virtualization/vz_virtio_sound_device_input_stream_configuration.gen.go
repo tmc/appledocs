@@ -29,6 +29,8 @@ type _VZVirtioSoundDeviceInputStreamConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceInputStreamConfiguration] class.
 type IVZVirtioSoundDeviceInputStreamConfiguration interface {
 	IVZVirtioSoundDeviceStreamConfiguration
+	Source() VZAudioInputStreamSource
+	SetSource(value IVZAudioInputStreamSource)
 }
 
 // A PCM stream of input audio data, such as from a microphone.

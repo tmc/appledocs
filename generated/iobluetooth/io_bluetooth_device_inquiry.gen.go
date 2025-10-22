@@ -36,6 +36,14 @@ type IBluetoothDeviceInquiry interface {
 	SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor IBluetoothServiceClassMajor, inMajorDeviceClass IBluetoothDeviceClassMajor, inMinorDeviceClass IBluetoothDeviceClassMinor)
 	Start() unsafe.Pointer
 	Stop() unsafe.Pointer
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	InquiryLength() unsafe.Pointer
+	SetInquiryLength(value unsafe.Pointer)
+	SearchType() BluetoothDeviceSearchTypes
+	SetSearchType(value IBluetoothDeviceSearchTypes)
+	UpdateNewDeviceNames() bool
+	SetUpdateNewDeviceNames(value bool)
 }
 
 // Object representing a device inquiry that finds Bluetooth devices in-range of the computer, and (optionally) retrieves name information for them.

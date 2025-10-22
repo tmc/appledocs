@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewCylindersNoiseSource
 
+// ExampleNewCylindersNoiseSourceWithFrequency demonstrates how to create a CylindersNoiseSource instance using NewCylindersNoiseSourceWithFrequency.
+// Initializes a cylinder noise source with the specified frequency.
+func ExampleNewCylindersNoiseSourceWithFrequency() {
+	_ = gameplaykit.NewCylindersNoiseSourceWithFrequency(
+		0.0, // frequency float64
+	)
+	// Output:
+}

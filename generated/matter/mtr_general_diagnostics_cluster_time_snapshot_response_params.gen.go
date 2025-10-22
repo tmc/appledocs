@@ -31,6 +31,10 @@ type _MTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams] class.
 type IMTRGeneralDiagnosticsClusterTimeSnapshotResponseParams interface {
 	objectivec.IObject
+	PosixTimeMs() foundation.Number
+	SetPosixTimeMs(value foundation.INumber)
+	SystemTimeMs() foundation.Number
+	SetSystemTimeMs(value foundation.INumber)
 }
 
 //

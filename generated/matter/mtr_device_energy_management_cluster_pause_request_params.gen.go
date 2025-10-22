@@ -31,6 +31,14 @@ type _MTRDeviceEnergyManagementClusterPauseRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPauseRequestParams] class.
 type IMTRDeviceEnergyManagementClusterPauseRequestParams interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

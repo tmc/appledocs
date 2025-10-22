@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,11 @@ type _UserContentControllerClass struct {
 // An interface definition for the [UserContentController] class.
 type IUserContentController interface {
 	objectivec.IObject
-	RemoveScriptMessageHandlerForNameContentWorld(name appkit.string, contentWorld IWKContentWorld)
+	RemoveScriptMessageHandlerForNameContentWorld(name string, contentWorld IWKContentWorld)
+	UserScripts() WKUserScript
+	SetUserScripts(value IWKUserScript)
+	UserContentController() WKUserContentController
+	SetUserContentController(value IWKUserContentController)
 }
 
 // An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.
@@ -85,8 +88,8 @@ func NewUserContentController() UserContentController {
 // Uninstalls a custom message handler from the specified content world in your JavaScript code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)
-func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(name appkit.string, contentWorld IWKContentWorld) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), name, contentWorld)
+func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(name string, contentWorld IWKContentWorld) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), objc.String(name), contentWorld)
 }
 
 // The user scripts associated with the user content controller.

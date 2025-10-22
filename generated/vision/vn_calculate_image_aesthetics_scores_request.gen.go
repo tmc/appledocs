@@ -29,6 +29,7 @@ type _CalculateImageAestheticsScoresRequestClass struct {
 // An interface definition for the [CalculateImageAestheticsScoresRequest] class.
 type ICalculateImageAestheticsScoresRequest interface {
 	IImageBasedRequest
+	Results() []ImageAestheticsScoresObservation
 }
 
 // An object that analyzes an image for aesthetically pleasing attributes.

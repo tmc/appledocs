@@ -30,6 +30,7 @@ type _RemoteLayerServerClass struct {
 // An interface definition for the [RemoteLayerServer] class.
 type IRemoteLayerServer interface {
 	objectivec.IObject
+	ServerPort() unsafe.Pointer
 }
 
 // A legacy class for cross-process rendering.

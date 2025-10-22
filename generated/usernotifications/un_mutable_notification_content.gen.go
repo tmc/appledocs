@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,38 @@ type _UNMutableNotificationContentClass struct {
 // An interface definition for the [UNMutableNotificationContent] class.
 type IUNMutableNotificationContent interface {
 	IUNNotificationContent
+	Attachments() []UNNotificationAttachment
+	SetAttachments(value []UNNotificationAttachment)
+	Badge() foundation.Number
+	SetBadge(value foundation.INumber)
+	Body() string
+	SetBody(value string)
+	CategoryIdentifier() string
+	SetCategoryIdentifier(value string)
+	FilterCriteria() string
+	SetFilterCriteria(value string)
+	InterruptionLevel() UNNotificationInterruptionLevel
+	SetInterruptionLevel(value UNNotificationInterruptionLevel)
+	LaunchImageName() string
+	SetLaunchImageName(value string)
+	RelevanceScore() float64
+	SetRelevanceScore(value float64)
+	Sound() UNNotificationSound
+	SetSound(value IUNNotificationSound)
+	Subtitle() string
+	SetSubtitle(value string)
+	SummaryArgument() string
+	SetSummaryArgument(value string)
+	SummaryArgumentCount() uint
+	SetSummaryArgumentCount(value uint)
+	TargetContentIdentifier() string
+	SetTargetContentIdentifier(value string)
+	ThreadIdentifier() string
+	SetThreadIdentifier(value string)
+	Title() string
+	SetTitle(value string)
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
 }
 
 // The editable content for a notification.
@@ -132,8 +163,8 @@ func (u_ UNMutableNotificationContent) SetBadge(value foundation.INumber) {
 // The localized text that provides the notification’s main content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/body
-func (u_ UNMutableNotificationContent) Body() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("body"))
+func (u_ UNMutableNotificationContent) Body() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("body"))
 	return rv
 }
 
@@ -143,15 +174,15 @@ func (u_ UNMutableNotificationContent) Body() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/body
-func (u_ UNMutableNotificationContent) SetBody(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setBody:"), value)
+func (u_ UNMutableNotificationContent) SetBody(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setBody:"), objc.String(value))
 }
 
 // The identifier of the notification’s category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier
-func (u_ UNMutableNotificationContent) CategoryIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("categoryIdentifier"))
+func (u_ UNMutableNotificationContent) CategoryIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("categoryIdentifier"))
 	return rv
 }
 
@@ -161,15 +192,15 @@ func (u_ UNMutableNotificationContent) CategoryIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier
-func (u_ UNMutableNotificationContent) SetCategoryIdentifier(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCategoryIdentifier:"), value)
+func (u_ UNMutableNotificationContent) SetCategoryIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCategoryIdentifier:"), objc.String(value))
 }
 
 // The criteria the system evaluates to determine if it displays the notification in the current Focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/filterCriteria
-func (u_ UNMutableNotificationContent) FilterCriteria() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("filterCriteria"))
+func (u_ UNMutableNotificationContent) FilterCriteria() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("filterCriteria"))
 	return rv
 }
 
@@ -179,8 +210,8 @@ func (u_ UNMutableNotificationContent) FilterCriteria() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/filterCriteria
-func (u_ UNMutableNotificationContent) SetFilterCriteria(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setFilterCriteria:"), value)
+func (u_ UNMutableNotificationContent) SetFilterCriteria(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setFilterCriteria:"), objc.String(value))
 }
 
 // The notification’s importance and required delivery timing.
@@ -204,8 +235,8 @@ func (u_ UNMutableNotificationContent) SetInterruptionLevel(value UNNotification
 // The name of the image or storyboard to use when your app launches because of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/launchImageName
-func (u_ UNMutableNotificationContent) LaunchImageName() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("launchImageName"))
+func (u_ UNMutableNotificationContent) LaunchImageName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("launchImageName"))
 	return rv
 }
 
@@ -215,15 +246,15 @@ func (u_ UNMutableNotificationContent) LaunchImageName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/launchImageName
-func (u_ UNMutableNotificationContent) SetLaunchImageName(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setLaunchImageName:"), value)
+func (u_ UNMutableNotificationContent) SetLaunchImageName(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setLaunchImageName:"), objc.String(value))
 }
 
 // The score the system uses to determine if the notification is the summary’s featured notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/relevanceScore
-func (u_ UNMutableNotificationContent) RelevanceScore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("relevanceScore"))
+func (u_ UNMutableNotificationContent) RelevanceScore() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("relevanceScore"))
 	return rv
 }
 
@@ -233,7 +264,7 @@ func (u_ UNMutableNotificationContent) RelevanceScore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/relevanceScore
-func (u_ UNMutableNotificationContent) SetRelevanceScore(value unsafe.Pointer) {
+func (u_ UNMutableNotificationContent) SetRelevanceScore(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRelevanceScore:"), value)
 }
 
@@ -258,8 +289,8 @@ func (u_ UNMutableNotificationContent) SetSound(value IUNNotificationSound) {
 // The localized text that provides the notification’s secondary description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/subtitle
-func (u_ UNMutableNotificationContent) Subtitle() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("subtitle"))
+func (u_ UNMutableNotificationContent) Subtitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -269,15 +300,15 @@ func (u_ UNMutableNotificationContent) Subtitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/subtitle
-func (u_ UNMutableNotificationContent) SetSubtitle(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), value)
+func (u_ UNMutableNotificationContent) SetSubtitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
 // The text the system adds to the notification summary to provide additional context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/summaryArgument
-func (u_ UNMutableNotificationContent) SummaryArgument() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("summaryArgument"))
+func (u_ UNMutableNotificationContent) SummaryArgument() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("summaryArgument"))
 	return rv
 }
 
@@ -287,8 +318,8 @@ func (u_ UNMutableNotificationContent) SummaryArgument() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/summaryArgument
-func (u_ UNMutableNotificationContent) SetSummaryArgument(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSummaryArgument:"), value)
+func (u_ UNMutableNotificationContent) SetSummaryArgument(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSummaryArgument:"), objc.String(value))
 }
 
 // The number the system adds to the notification summary when the notification represents multiple items.
@@ -312,8 +343,8 @@ func (u_ UNMutableNotificationContent) SetSummaryArgumentCount(value uint) {
 // The value your app uses to determine which scene to display to handle the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/targetContentIdentifier
-func (u_ UNMutableNotificationContent) TargetContentIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("targetContentIdentifier"))
+func (u_ UNMutableNotificationContent) TargetContentIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
 
@@ -323,15 +354,15 @@ func (u_ UNMutableNotificationContent) TargetContentIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/targetContentIdentifier
-func (u_ UNMutableNotificationContent) SetTargetContentIdentifier(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), value)
+func (u_ UNMutableNotificationContent) SetTargetContentIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), objc.String(value))
 }
 
 // The identifier that groups related notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/threadIdentifier
-func (u_ UNMutableNotificationContent) ThreadIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("threadIdentifier"))
+func (u_ UNMutableNotificationContent) ThreadIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("threadIdentifier"))
 	return rv
 }
 
@@ -341,15 +372,15 @@ func (u_ UNMutableNotificationContent) ThreadIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/threadIdentifier
-func (u_ UNMutableNotificationContent) SetThreadIdentifier(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setThreadIdentifier:"), value)
+func (u_ UNMutableNotificationContent) SetThreadIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setThreadIdentifier:"), objc.String(value))
 }
 
 // The localized text that provides the notification’s primary description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/title
-func (u_ UNMutableNotificationContent) Title() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("title"))
+func (u_ UNMutableNotificationContent) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -359,8 +390,8 @@ func (u_ UNMutableNotificationContent) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/title
-func (u_ UNMutableNotificationContent) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
+func (u_ UNMutableNotificationContent) SetTitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The custom data to associate with the notification.

@@ -32,6 +32,18 @@ type _SFSpeechRecognizerClass struct {
 type ISFSpeechRecognizer interface {
 	objectivec.IObject
 	RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate objectivec.IObject) SFSpeechRecognitionTask
+	SupportsOnDeviceRecognition() bool
+	SetSupportsOnDeviceRecognition(value bool)
+	DefaultTaskHint() SFSpeechRecognitionTaskHint
+	SetDefaultTaskHint(value ISFSpeechRecognitionTaskHint)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsAvailable() bool
+	SetIsAvailable(value bool)
+	Locale() foundation.Locale
+	SetLocale(value foundation.ILocale)
+	Queue() foundation.OperationQueue
+	SetQueue(value foundation.IOperationQueue)
 }
 
 // An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.

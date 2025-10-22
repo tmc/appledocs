@@ -30,6 +30,7 @@ type _UnitClass struct {
 // An interface definition for the [Unit] class.
 type IUnit interface {
 	objectivec.IObject
+	Symbol() string
 }
 
 // An abstract class representing a unit of measure.

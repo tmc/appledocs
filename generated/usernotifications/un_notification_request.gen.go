@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _UNNotificationRequestClass struct {
 // An interface definition for the [UNNotificationRequest] class.
 type IUNNotificationRequest interface {
 	objectivec.IObject
+	Content() UNNotificationContent
+	Identifier() string
+	Trigger() UNNotificationTrigger
 }
 
 // A request to schedule a local notification, which includes the content of the notification and the trigger conditions for delivery.
@@ -86,8 +88,8 @@ func NewUNNotificationRequest() UNNotificationRequest {
 // Creates a notification request object that you use to schedule a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/init(identifier:content:trigger:)
-func NewUNNotificationRequestWithIdentifierContentTrigger(identifier appkit.string, content IUNNotificationContent, trigger IUNNotificationTrigger) UNNotificationRequest {
-	rv := objc.Send[UNNotificationRequest](objc.ID(getUNNotificationRequestClass().class), objc.Sel("requestWithIdentifier:content:trigger:"), identifier, content, trigger)
+func NewUNNotificationRequestWithIdentifierContentTrigger(identifier string, content IUNNotificationContent, trigger IUNNotificationTrigger) UNNotificationRequest {
+	rv := objc.Send[UNNotificationRequest](objc.ID(getUNNotificationRequestClass().class), objc.Sel("requestWithIdentifier:content:trigger:"), objc.String(identifier), content, trigger)
 	return rv
 }
 
@@ -95,8 +97,8 @@ func NewUNNotificationRequestWithIdentifierContentTrigger(identifier appkit.stri
 // Creates a notification request object that you use to schedule a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/init(identifier:content:trigger:)
-func (uc _UNNotificationRequestClass) RequestWithIdentifierContentTrigger(identifier appkit.string, content IUNNotificationContent, trigger IUNNotificationTrigger) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("requestWithIdentifier:content:trigger:"), identifier, content, trigger)
+func (uc _UNNotificationRequestClass) RequestWithIdentifierContentTrigger(identifier string, content IUNNotificationContent, trigger IUNNotificationTrigger) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("requestWithIdentifier:content:trigger:"), objc.String(identifier), content, trigger)
 	return rv
 }
 
@@ -111,8 +113,8 @@ func (u_ UNNotificationRequest) Content() UNNotificationContent {
 // The unique identifier for this notification request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/identifier
-func (u_ UNNotificationRequest) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationRequest) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 

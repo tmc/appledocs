@@ -31,6 +31,16 @@ type _MTRCertificateInfoClass struct {
 // An interface definition for the [MTRCertificateInfo] class.
 type IMTRCertificateInfo interface {
 	objectivec.IObject
+	Issuer() MTRDistinguishedNameInfo
+	SetIssuer(value IMTRDistinguishedNameInfo)
+	NotAfter() foundation.Date
+	SetNotAfter(value foundation.IDate)
+	NotBefore() foundation.Date
+	SetNotBefore(value foundation.IDate)
+	PublicKeyData() foundation.Data
+	SetPublicKeyData(value foundation.IData)
+	Subject() MTRDistinguishedNameInfo
+	SetSubject(value IMTRDistinguishedNameInfo)
 }
 
 //

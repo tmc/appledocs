@@ -31,6 +31,10 @@ type _MTRDeviceEnergyManagementClusterCancelRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterCancelRequestParams] class.
 type IMTRDeviceEnergyManagementClusterCancelRequestParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

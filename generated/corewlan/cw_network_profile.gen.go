@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,9 @@ type _CWNetworkProfileClass struct {
 type ICWNetworkProfile interface {
 	objectivec.IObject
 	IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool
+	Security() CWSecurity
+	Ssid() string
+	SsidData() foundation.NSData
 }
 
 // Encapsulates an immutable network profile entry.
@@ -129,8 +131,8 @@ func (c_ CWNetworkProfile) Security() CWSecurity {
 // The service set identifier (SSID) for the network profile, encoded as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/ssid
-func (c_ CWNetworkProfile) Ssid() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("ssid"))
+func (c_ CWNetworkProfile) Ssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 

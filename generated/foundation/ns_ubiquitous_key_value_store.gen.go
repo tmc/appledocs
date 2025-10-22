@@ -48,6 +48,10 @@ type IUbiquitousKeyValueStore interface {
 	SetDictionaryForKey(aDictionary unsafe.Pointer, aKey string)
 	StringForKey(aKey string) String
 	Synchronize() bool
+	DictionaryRepresentation() unsafe.Pointer
+	NSUbiquitousKeyValueStoreChangeReasonKey() string
+	NSUbiquitousKeyValueStoreQuotaViolationChange() int
+	SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int)
 }
 
 // An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.

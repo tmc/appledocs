@@ -31,6 +31,12 @@ type _MTRAccountLoginClusterGetSetupPINParamsClass struct {
 // An interface definition for the [MTRAccountLoginClusterGetSetupPINParams] class.
 type IMTRAccountLoginClusterGetSetupPINParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TempAccountIdentifier() string
+	SetTempAccountIdentifier(value string)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -93,8 +99,8 @@ func (m_ MTRAccountLoginClusterGetSetupPINParams) SetServerSideProcessingTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/tempaccountidentifier
-func (m_ MTRAccountLoginClusterGetSetupPINParams) TempAccountIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("tempAccountIdentifier"))
+func (m_ MTRAccountLoginClusterGetSetupPINParams) TempAccountIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("tempAccountIdentifier"))
 	return rv
 }
 
@@ -102,8 +108,8 @@ func (m_ MTRAccountLoginClusterGetSetupPINParams) TempAccountIdentifier() appkit
 // SetTempAccountIdentifier sets the value of the tempAccountIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinparams/tempaccountidentifier
-func (m_ MTRAccountLoginClusterGetSetupPINParams) SetTempAccountIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), value)
+func (m_ MTRAccountLoginClusterGetSetupPINParams) SetTempAccountIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), objc.String(value))
 }
 
 //

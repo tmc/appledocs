@@ -31,6 +31,13 @@ type _MXHistogramClass struct {
 // An interface definition for the [MXHistogram] class.
 type IMXHistogram interface {
 	objectivec.IObject
+	BucketEnumerator() unsafe.Pointer
+	TotalBucketCount() uint
+	MXErrorDomain() string
+	BucketEnd() foundation.Measurement
+	SetBucketEnd(value foundation.IMeasurement)
+	BucketStart() foundation.Measurement
+	SetBucketStart(value foundation.IMeasurement)
 }
 
 // An object representing a histogram of data values of the same type of unit.
@@ -100,8 +107,8 @@ func (m_ MXHistogram) TotalBucketCount() uint {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXHistogram) MXErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXHistogram) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

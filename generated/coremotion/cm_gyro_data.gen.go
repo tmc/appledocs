@@ -29,6 +29,7 @@ type _GyroDataClass struct {
 // An interface definition for the [GyroData] class.
 type IGyroData interface {
 	ILogItem
+	RotationRate() unsafe.Pointer
 }
 
 // A single measurement of the device’s rotation rate.

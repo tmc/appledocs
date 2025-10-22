@@ -29,6 +29,11 @@ type _DetectTextRectanglesRequestClass struct {
 // An interface definition for the [DetectTextRectanglesRequest] class.
 type IDetectTextRectanglesRequest interface {
 	IImageBasedRequest
+	ReportCharacterBoxes() bool
+	SetReportCharacterBoxes(value bool)
+	Results() VNTextObservation
+	SetResults(value IVNTextObservation)
+	VNDetectTextRectanglesRequestRevision1() int
 }
 
 // An image-analysis request that finds regions of visible text in an image.

@@ -30,6 +30,12 @@ type _MTRTestClusterClusterTestListInt8UArgumentRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestListInt8UArgumentRequestParams] class.
 type IMTRTestClusterClusterTestListInt8UArgumentRequestParams interface {
 	IMTRUnitTestingClusterTestListInt8UArgumentRequestParams
+	Arg1() unsafe.Pointer
+	SetArg1(value unsafe.Pointer)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

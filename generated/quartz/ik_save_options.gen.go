@@ -30,6 +30,16 @@ type _IKSaveOptionsClass struct {
 // An interface definition for the [IKSaveOptions] class.
 type IIKSaveOptions interface {
 	objectivec.IObject
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ImageProperties() unsafe.Pointer
+	SetImageProperties(value unsafe.Pointer)
+	ImageUTType() string
+	SetImageUTType(value string)
+	RememberLastSetting() bool
+	SetRememberLastSetting(value bool)
+	UserSelection() unsafe.Pointer
+	SetUserSelection(value unsafe.Pointer)
 }
 
 // The class initializes, adds, and manages user interface options for saving image data.
@@ -117,8 +127,8 @@ func (i_ IKSaveOptions) SetImageProperties(value unsafe.Pointer) {
 // Returns the uniform type identifier that reflects the user’s selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageuttype
-func (i_ IKSaveOptions) ImageUTType() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("imageUTType"))
+func (i_ IKSaveOptions) ImageUTType() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("imageUTType"))
 	return rv
 }
 
@@ -128,8 +138,8 @@ func (i_ IKSaveOptions) ImageUTType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageuttype
-func (i_ IKSaveOptions) SetImageUTType(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setImageUTType:"), value)
+func (i_ IKSaveOptions) SetImageUTType(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageUTType:"), objc.String(value))
 }
 
 //

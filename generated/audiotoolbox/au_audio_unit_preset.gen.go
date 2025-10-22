@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,14 @@ type _AudioUnitPresetClass struct {
 // An interface definition for the [AudioUnitPreset] class.
 type IAudioUnitPreset interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
+	Number() int
+	SetNumber(value int)
+	FullState() string
+	SetFullState(value string)
+	FullStateForDocument() string
+	SetFullStateForDocument(value string)
 }
 
 // A class that describes an interface for custom parameter settings provided by the audio unit developer.
@@ -84,8 +91,8 @@ func NewAudioUnitPreset() AudioUnitPreset {
 // The preset’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) Name() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
+func (a_ AudioUnitPreset) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -95,8 +102,8 @@ func (a_ AudioUnitPreset) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) SetName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
+func (a_ AudioUnitPreset) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The preset’s unique numeric identifier.
@@ -120,8 +127,8 @@ func (a_ AudioUnitPreset) SetNumber(value int) {
 // A persistable snapshot of the audio unit’s properties and parameters, suitable for saving as a user preset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-func (a_ AudioUnitPreset) FullState() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("fullState"))
+func (a_ AudioUnitPreset) FullState() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("fullState"))
 	return rv
 }
 
@@ -131,15 +138,15 @@ func (a_ AudioUnitPreset) FullState() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-func (a_ AudioUnitPreset) SetFullState(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), value)
+func (a_ AudioUnitPreset) SetFullState(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), objc.String(value))
 }
 
 // A persistable snapshot of the audio unit’s properties and parameters, suitable for saving in a user’s document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-func (a_ AudioUnitPreset) FullStateForDocument() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("fullStateForDocument"))
+func (a_ AudioUnitPreset) FullStateForDocument() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("fullStateForDocument"))
 	return rv
 }
 
@@ -149,8 +156,8 @@ func (a_ AudioUnitPreset) FullStateForDocument() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-func (a_ AudioUnitPreset) SetFullStateForDocument(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), value)
+func (a_ AudioUnitPreset) SetFullStateForDocument(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), objc.String(value))
 }
 
 

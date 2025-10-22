@@ -31,6 +31,16 @@ type _MTREnergyEVSEClusterEnableChargingParamsClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEnableChargingParams] class.
 type IMTREnergyEVSEClusterEnableChargingParams interface {
 	objectivec.IObject
+	ChargingEnabledUntil() foundation.Number
+	SetChargingEnabledUntil(value foundation.INumber)
+	MaximumChargeCurrent() foundation.Number
+	SetMaximumChargeCurrent(value foundation.INumber)
+	MinimumChargeCurrent() foundation.Number
+	SetMinimumChargeCurrent(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

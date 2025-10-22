@@ -39,6 +39,27 @@ type IItemProvider interface {
 	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress
 	RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container cloudkit.ICKContainer, allowedOptions cloudkit.CKAllowedSharingOptions, preparationHandler unsafe.Pointer)
 	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
+	PreferredPresentationStyle() unsafe.Pointer
+	SetPreferredPresentationStyle(value unsafe.Pointer)
+	SourceFrame() Rect
+	Attachments() NSItemProvider
+	SetAttachments(value IItemProvider)
+	ContainerFrame() Rect
+	SetContainerFrame(value IRect)
+	PreferredPresentationSize() coregraphics.CGSize
+	SetPreferredPresentationSize(value coregraphics.CGSize)
+	PreviewImageHandler() unsafe.Pointer
+	SetPreviewImageHandler(value unsafe.Pointer)
+	RegisteredContentTypes() unsafe.Pointer
+	SetRegisteredContentTypes(value unsafe.Pointer)
+	RegisteredContentTypesForOpenInPlace() unsafe.Pointer
+	SetRegisteredContentTypesForOpenInPlace(value unsafe.Pointer)
+	RegisteredTypeIdentifiers() string
+	SetRegisteredTypeIdentifiers(value string)
+	SuggestedName() string
+	SetSuggestedName(value string)
+	TeamData() Data
+	SetTeamData(value IData)
 }
 
 // An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.

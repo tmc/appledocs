@@ -31,6 +31,12 @@ type _DisplayClass struct {
 // An interface definition for the [Display] class.
 type IDisplay interface {
 	objectivec.IObject
+	DisplayID() unsafe.Pointer
+	Frame() coregraphics.CGRect
+	Height() int
+	SetHeight(value int)
+	Width() int
+	SetWidth(value int)
 }
 
 // An instance that represents a display device.

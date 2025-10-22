@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DDMatchPhoneNumber] class.
@@ -30,6 +29,8 @@ type _DDMatchPhoneNumberClass struct {
 // An interface definition for the [DDMatchPhoneNumber] class.
 type IDDMatchPhoneNumber interface {
 	IDDMatch
+	Label() string
+	PhoneNumber() string
 }
 
 // An object that contains a phone number that the data detection system matches.
@@ -85,16 +86,16 @@ func NewDDMatchPhoneNumber() DDMatchPhoneNumber {
 // A string that categorizes a phone number, such as Home or Work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/label
-func (d_ DDMatchPhoneNumber) Label() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("label"))
+func (d_ DDMatchPhoneNumber) Label() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 
 // A string that represents a phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/phoneNumber
-func (d_ DDMatchPhoneNumber) PhoneNumber() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("phoneNumber"))
+func (d_ DDMatchPhoneNumber) PhoneNumber() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 

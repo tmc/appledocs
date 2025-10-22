@@ -29,6 +29,10 @@ type _MKUserLocationViewClass struct {
 // An interface definition for the [MKUserLocationView] class.
 type IMKUserLocationView interface {
 	IMKAnnotationView
+	ZPriority() unsafe.Pointer
+	SetZPriority(value unsafe.Pointer)
+	ShowsUserLocation() bool
+	SetShowsUserLocation(value bool)
 }
 
 // A configurable annotation that shows the user’s location using the default MapKit style.

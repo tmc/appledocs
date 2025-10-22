@@ -29,6 +29,22 @@ type _GCDualShockGamepadClass struct {
 // An interface definition for the [GCDualShockGamepad] class.
 type IGCDualShockGamepad interface {
 	IGCExtendedGamepad
+	ExtendedGamepad() GCExtendedGamepad
+	SetExtendedGamepad(value IGCExtendedGamepad)
+	Gamepad() unsafe.Pointer
+	SetGamepad(value unsafe.Pointer)
+	MicroGamepad() GCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	PhysicalInputProfile() GCPhysicalInputProfile
+	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
+	TouchpadButton() GCControllerButtonInput
+	SetTouchpadButton(value IGCControllerButtonInput)
+	TouchpadPrimary() GCControllerDirectionPad
+	SetTouchpadPrimary(value IGCControllerDirectionPad)
+	TouchpadSecondary() GCControllerDirectionPad
+	SetTouchpadSecondary(value IGCControllerDirectionPad)
 }
 
 // A controller profile that supports the DualShock 4 controller.

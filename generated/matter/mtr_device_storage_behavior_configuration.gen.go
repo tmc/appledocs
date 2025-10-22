@@ -30,6 +30,22 @@ type _MTRDeviceStorageBehaviorConfigurationClass struct {
 // An interface definition for the [MTRDeviceStorageBehaviorConfiguration] class.
 type IMTRDeviceStorageBehaviorConfiguration interface {
 	objectivec.IObject
+	DeviceReportingExcessivelyIntervalThreshold() unsafe.Pointer
+	SetDeviceReportingExcessivelyIntervalThreshold(value unsafe.Pointer)
+	DisableStorageBehaviorOptimization() bool
+	SetDisableStorageBehaviorOptimization(value bool)
+	RecentReportTimesMaxCount() int
+	SetRecentReportTimesMaxCount(value int)
+	ReportToPersistenceDelayMaxMultiplier() float64
+	SetReportToPersistenceDelayMaxMultiplier(value float64)
+	ReportToPersistenceDelayTime() unsafe.Pointer
+	SetReportToPersistenceDelayTime(value unsafe.Pointer)
+	ReportToPersistenceDelayTimeMax() unsafe.Pointer
+	SetReportToPersistenceDelayTimeMax(value unsafe.Pointer)
+	TimeBetweenReportsTooShortMinThreshold() unsafe.Pointer
+	SetTimeBetweenReportsTooShortMinThreshold(value unsafe.Pointer)
+	TimeBetweenReportsTooShortThreshold() unsafe.Pointer
+	SetTimeBetweenReportsTooShortThreshold(value unsafe.Pointer)
 }
 
 // Class that configures how MTRDevice objects persist their attributes to storage, so as to not overwhelm the underlying storage system.
@@ -128,8 +144,8 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) SetRecentReportTimesMaxCount(val
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/reporttopersistencedelaymaxmultiplier
-func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayMaxMultiplier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("reportToPersistenceDelayMaxMultiplier"))
+func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayMaxMultiplier() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("reportToPersistenceDelayMaxMultiplier"))
 	return rv
 }
 
@@ -137,7 +153,7 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayMaxMulti
 // SetReportToPersistenceDelayMaxMultiplier sets the value of the reportToPersistenceDelayMaxMultiplier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/reporttopersistencedelaymaxmultiplier
-func (m_ MTRDeviceStorageBehaviorConfiguration) SetReportToPersistenceDelayMaxMultiplier(value unsafe.Pointer) {
+func (m_ MTRDeviceStorageBehaviorConfiguration) SetReportToPersistenceDelayMaxMultiplier(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReportToPersistenceDelayMaxMultiplier:"), value)
 }
 

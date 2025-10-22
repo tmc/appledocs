@@ -31,6 +31,14 @@ type _MTRICDManagementClusterUnregisterClientParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterUnregisterClientParams] class.
 type IMTRICDManagementClusterUnregisterClientParams interface {
 	objectivec.IObject
+	CheckInNodeID() foundation.Number
+	SetCheckInNodeID(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	VerificationKey() foundation.NSData
+	SetVerificationKey(value foundation.IData)
 }
 
 //

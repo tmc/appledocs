@@ -32,6 +32,14 @@ type _MKReverseGeocodingRequestClass struct {
 // An interface definition for the [MKReverseGeocodingRequest] class.
 type IMKReverseGeocodingRequest interface {
 	objectivec.IObject
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
+	Location() corelocation.Location
+	SetLocation(value corelocation.ILocation)
+	PreferredLocale() foundation.Locale
+	SetPreferredLocale(value foundation.ILocale)
 }
 
 // A class that looks up address strings for the provided geographic coordinates.

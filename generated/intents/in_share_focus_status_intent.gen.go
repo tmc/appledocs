@@ -29,6 +29,7 @@ type _INShareFocusStatusIntentClass struct {
 // An interface definition for the [INShareFocusStatusIntent] class.
 type IINShareFocusStatusIntent interface {
 	IINIntent
+	FocusStatus() INFocusStatus
 }
 
 // An object that indicates the user’s focus status is changing.

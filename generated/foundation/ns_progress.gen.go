@@ -37,6 +37,59 @@ type IProgress interface {
 	Pause()
 	ResignCurrent()
 	Resume()
+	EstimatedTimeRemaining() Number
+	SetEstimatedTimeRemaining(value INumber)
+	FileCompletedCount() Number
+	SetFileCompletedCount(value INumber)
+	FileTotalCount() Number
+	SetFileTotalCount(value INumber)
+	CancellationHandler() unsafe.Pointer
+	SetCancellationHandler(value unsafe.Pointer)
+	CompletedUnitCount() unsafe.Pointer
+	SetCompletedUnitCount(value unsafe.Pointer)
+	FileOperationKind() ProgressFileOperationKind
+	SetFileOperationKind(value ProgressFileOperationKind)
+	FileURL() URL
+	SetFileURL(value IURL)
+	FractionCompleted() float64
+	Cancellable() bool
+	SetCancellable(value bool)
+	Cancelled() bool
+	Finished() bool
+	Old() bool
+	Pausable() bool
+	SetPausable(value bool)
+	Paused() bool
+	Kind() unsafe.Pointer
+	SetKind(value unsafe.Pointer)
+	LocalizedAdditionalDescription() string
+	SetLocalizedAdditionalDescription(value string)
+	LocalizedDescription() string
+	SetLocalizedDescription(value string)
+	PausingHandler() unsafe.Pointer
+	SetPausingHandler(value unsafe.Pointer)
+	ResumingHandler() unsafe.Pointer
+	SetResumingHandler(value unsafe.Pointer)
+	TotalUnitCount() unsafe.Pointer
+	SetTotalUnitCount(value unsafe.Pointer)
+	IsCancellable() bool
+	SetIsCancellable(value bool)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsFinished() bool
+	SetIsFinished(value bool)
+	IsIndeterminate() bool
+	SetIsIndeterminate(value bool)
+	IsOld() bool
+	SetIsOld(value bool)
+	IsPausable() bool
+	SetIsPausable(value bool)
+	IsPaused() bool
+	SetIsPaused(value bool)
+	Throughput() int
+	SetThroughput(value int)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 }
 
 // An object that conveys ongoing progress to the user for a specified task.

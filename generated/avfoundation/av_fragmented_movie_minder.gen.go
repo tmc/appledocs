@@ -30,6 +30,10 @@ type _FragmentedMovieMinderClass struct {
 // An interface definition for the [FragmentedMovieMinder] class.
 type IFragmentedMovieMinder interface {
 	objectivec.IObject
+	MindingInterval() unsafe.Pointer
+	SetMindingInterval(value unsafe.Pointer)
+	Movies() AVFragmentedMovie
+	SetMovies(value IAVFragmentedMovie)
 }
 
 // An object that checks whether a fragmented movie appends additional movie fragments.

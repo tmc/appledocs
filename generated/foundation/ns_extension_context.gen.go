@@ -45,6 +45,16 @@ type IExtensionContext interface {
 	OpenURLCompletionHandler(URL IURL, completionHandler unsafe.Pointer)
 	PerformNotificationDefaultAction()
 	WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) coregraphics.CGSize
+	HostedViewMaximumAllowedSize() coregraphics.CGSize
+	HostedViewMinimumAllowedSize() coregraphics.CGSize
+	InputItems() objc.ID
+	Intent() intents.INIntent
+	NotificationActions() []objc.ID
+	SetNotificationActions(value []objc.ID)
+	WidgetActiveDisplayMode() unsafe.Pointer
+	WidgetLargestAvailableDisplayMode() unsafe.Pointer
+	SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer)
+	NSExtensionItemsAndErrorsKey() string
 }
 
 // The host app context from which an app extension is invoked.

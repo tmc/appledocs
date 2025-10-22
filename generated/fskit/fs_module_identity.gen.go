@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,11 @@ type _FSModuleIdentityClass struct {
 // An interface definition for the [FSModuleIdentity] class.
 type IFSModuleIdentity interface {
 	objectivec.IObject
+	BundleIdentifier() string
+	Enabled() bool
+	Url() foundation.URL
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // An installed file system module.
@@ -83,8 +87,8 @@ func NewFSModuleIdentity() FSModuleIdentity {
 // The module’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/bundleIdentifier
-func (f_ FSModuleIdentity) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("bundleIdentifier"))
+func (f_ FSModuleIdentity) BundleIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 

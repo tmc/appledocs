@@ -30,6 +30,10 @@ type _QRCodeDescriptorClass struct {
 // An interface definition for the [QRCodeDescriptor] class.
 type IQRCodeDescriptor interface {
 	IBarcodeDescriptor
+	ErrorCorrectedPayload() foundation.NSData
+	ErrorCorrectionLevel() QRCodeErrorCorrectionLevel
+	MaskPattern() unsafe.Pointer
+	SymbolVersion() int
 }
 
 // A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol.

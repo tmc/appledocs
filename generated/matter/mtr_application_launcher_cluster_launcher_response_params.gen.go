@@ -31,6 +31,12 @@ type _MTRApplicationLauncherClusterLauncherResponseParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterLauncherResponseParams] class.
 type IMTRApplicationLauncherClusterLauncherResponseParams interface {
 	objectivec.IObject
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

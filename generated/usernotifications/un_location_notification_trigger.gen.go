@@ -30,6 +30,11 @@ type _UNLocationNotificationTriggerClass struct {
 // An interface definition for the [UNLocationNotificationTrigger] class.
 type IUNLocationNotificationTrigger interface {
 	IUNNotificationTrigger
+	Region() corelocation.Region
+	NotifyOnEntry() bool
+	SetNotifyOnEntry(value bool)
+	NotifyOnExit() bool
+	SetNotifyOnExit(value bool)
 }
 
 // A trigger condition that causes the system to deliver a notification when the user’s device enters or exits a geographic region you specify.

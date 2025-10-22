@@ -29,6 +29,12 @@ type _GraphExecutableSerializationDescriptorClass struct {
 // An interface definition for the [GraphExecutableSerializationDescriptor] class.
 type IGraphExecutableSerializationDescriptor interface {
 	IGraphObject
+	Append() bool
+	SetAppend(value bool)
+	DeploymentPlatform() GraphDeploymentPlatform
+	SetDeploymentPlatform(value IGraphDeploymentPlatform)
+	MinimumDeploymentTarget() string
+	SetMinimumDeploymentTarget(value string)
 }
 
 // A class that consists of all the levers to serialize an executable.
@@ -118,8 +124,8 @@ func (g_ GraphExecutableSerializationDescriptor) SetDeploymentPlatform(value IGr
 // The minimum deployment target to serialize the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
-func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("minimumDeploymentTarget"))
+func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("minimumDeploymentTarget"))
 	return rv
 }
 
@@ -129,8 +135,8 @@ func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() appki
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
-func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), value)
+func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), objc.String(value))
 }
 
 

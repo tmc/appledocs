@@ -31,6 +31,10 @@ type _MTRBarrierControlClusterBarrierControlStopParamsClass struct {
 // An interface definition for the [MTRBarrierControlClusterBarrierControlStopParams] class.
 type IMTRBarrierControlClusterBarrierControlStopParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

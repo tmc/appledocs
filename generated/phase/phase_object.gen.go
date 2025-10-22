@@ -33,6 +33,12 @@ type IPHASEObject interface {
 	AddChildError(child IPHASEObject, error_ unsafe.Pointer) bool
 	RemoveChild(child IPHASEObject)
 	RemoveChildren()
+	Children() []PHASEObject
+	Parent() PHASEObject
+	Transform() unsafe.Pointer
+	SetTransform(value unsafe.Pointer)
+	WorldTransform() unsafe.Pointer
+	SetWorldTransform(value unsafe.Pointer)
 }
 
 // An object in the scene.

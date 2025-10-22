@@ -98,7 +98,7 @@ var (
 	_AudioFileComponentInitialize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_AudioFileComponentInitializeWithCallbacks func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_AudioFileComponentOpenFile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_AudioFileComponentOpenURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_AudioFileComponentOpenURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, int) unsafe.Pointer
 	_AudioFileComponentOpenWithCallbacks func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_AudioFileComponentOptimize func(unsafe.Pointer) unsafe.Pointer
 	_AudioFileComponentReadBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -1585,7 +1585,7 @@ func AudioFileComponentOpenFile(inComponent unsafe.Pointer, inFileRef unsafe.Poi
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileComponentOpenURL(_:_:_:_:)
-func AudioFileComponentOpenURL(inComponent unsafe.Pointer, inFileRef unsafe.Pointer, inPermissions unsafe.Pointer, inFileDescriptor unsafe.Pointer) unsafe.Pointer {
+func AudioFileComponentOpenURL(inComponent unsafe.Pointer, inFileRef unsafe.Pointer, inPermissions unsafe.Pointer, inFileDescriptor int) unsafe.Pointer {
 	return _AudioFileComponentOpenURL(inComponent, inFileRef, inPermissions, inFileDescriptor)
 	}
 

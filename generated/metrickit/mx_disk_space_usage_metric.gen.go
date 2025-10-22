@@ -29,6 +29,14 @@ type _MXDiskSpaceUsageMetricClass struct {
 // An interface definition for the [MXDiskSpaceUsageMetric] class.
 type IMXDiskSpaceUsageMetric interface {
 	IMXMetric
+	TotalBinaryFileCount() int
+	TotalBinaryFileSize() unsafe.Pointer
+	TotalCacheFolderSize() unsafe.Pointer
+	TotalCloneSize() unsafe.Pointer
+	TotalDataFileCount() int
+	TotalDataFileSize() unsafe.Pointer
+	TotalDiskSpaceCapacity() unsafe.Pointer
+	TotalDiskSpaceUsedSize() unsafe.Pointer
 }
 
 // An object representing metrics about your app’s disk space usage.

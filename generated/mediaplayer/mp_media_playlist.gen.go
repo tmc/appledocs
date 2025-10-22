@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MediaPlaylist] class.
@@ -31,7 +30,14 @@ type _MediaPlaylistClass struct {
 type IMediaPlaylist interface {
 	IMediaItemCollection
 	AddMediaItemsCompletionHandler(mediaItems []MediaItem, completionHandler unsafe.Pointer)
-	AddItemWithProductIDCompletionHandler(productID appkit.string, completionHandler unsafe.Pointer)
+	AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer)
+	AuthorDisplayName() string
+	CloudGlobalID() string
+	DescriptionText() string
+	Name() string
+	PersistentID() MediaEntityPersistentID
+	PlaylistAttributes() MediaPlaylistAttribute
+	SeedItems() []MediaItem
 }
 
 // A playable collection of related media items.
@@ -94,39 +100,39 @@ func (m_ MediaPlaylist) AddMediaItemsCompletionHandler(mediaItems []MediaItem, c
 // Adds the item associated with the product identifier to the end of the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/addItem(withProductID:completionHandler:)
-func (m_ MediaPlaylist) AddItemWithProductIDCompletionHandler(productID appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), productID, completionHandler)
+func (m_ MediaPlaylist) AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), objc.String(productID), completionHandler)
 }
 
 // The display name for the playlist defined in the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/authorDisplayName
-func (m_ MediaPlaylist) AuthorDisplayName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("authorDisplayName"))
+func (m_ MediaPlaylist) AuthorDisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("authorDisplayName"))
 	return rv
 }
 
 // The cloud identifier for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/cloudGlobalID
-func (m_ MediaPlaylist) CloudGlobalID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("cloudGlobalID"))
+func (m_ MediaPlaylist) CloudGlobalID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("cloudGlobalID"))
 	return rv
 }
 
 // User supplied text that describes the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/descriptionText
-func (m_ MediaPlaylist) DescriptionText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("descriptionText"))
+func (m_ MediaPlaylist) DescriptionText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("descriptionText"))
 	return rv
 }
 
 // The name of the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/name
-func (m_ MediaPlaylist) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MediaPlaylist) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

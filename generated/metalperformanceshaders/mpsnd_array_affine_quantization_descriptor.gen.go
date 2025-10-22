@@ -29,6 +29,12 @@ type _NDArrayAffineQuantizationDescriptorClass struct {
 // An interface definition for the [NDArrayAffineQuantizationDescriptor] class.
 type INDArrayAffineQuantizationDescriptor interface {
 	INDArrayQuantizationDescriptor
+	HasMinValue() bool
+	SetHasMinValue(value bool)
+	HasZeroPoint() bool
+	SetHasZeroPoint(value bool)
+	ImplicitZeroPoint() bool
+	SetImplicitZeroPoint(value bool)
 }
 
 //
@@ -118,8 +124,8 @@ func (n_ NDArrayAffineQuantizationDescriptor) SetHasZeroPoint(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/implicitZeroPoint
-func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("implicitZeroPoint"))
+func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("implicitZeroPoint"))
 	return rv
 }
 
@@ -127,7 +133,7 @@ func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() unsafe.Pointer
 // SetImplicitZeroPoint sets the value of the implicitZeroPoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/implicitZeroPoint
-func (n_ NDArrayAffineQuantizationDescriptor) SetImplicitZeroPoint(value unsafe.Pointer) {
+func (n_ NDArrayAffineQuantizationDescriptor) SetImplicitZeroPoint(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setImplicitZeroPoint:"), value)
 }
 

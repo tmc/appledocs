@@ -31,6 +31,13 @@ type _HKObjectClass struct {
 // An interface definition for the [HKObject] class.
 type IHKObject interface {
 	objectivec.IObject
+	Device() HKDevice
+	Metadata() unsafe.Pointer
+	Source() HKSource
+	SourceRevision() HKSourceRevision
+	UUID() foundation.UUID
+	HKPredicateKeyPathMetadata() string
+	HKPredicateKeyPathUUID() string
 }
 
 // A piece of data that can be stored inside the HealthKit store.
@@ -124,16 +131,16 @@ func (h_ HKObject) UUID() foundation.UUID {
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-func (h_ HKObject) HKPredicateKeyPathMetadata() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
+func (h_ HKObject) HKPredicateKeyPathMetadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
 
 // The key path for accessing the object’s UUID inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-func (h_ HKObject) HKPredicateKeyPathUUID() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
+func (h_ HKObject) HKPredicateKeyPathUUID() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }
 

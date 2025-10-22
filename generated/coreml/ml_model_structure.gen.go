@@ -31,6 +31,9 @@ type _ModelStructureClass struct {
 // An interface definition for the [ModelStructure] class.
 type IModelStructure interface {
 	objectivec.IObject
+	NeuralNetwork() MLModelStructureNeuralNetwork
+	Pipeline() MLModelStructurePipeline
+	Program() MLModelStructureProgram
 }
 
 // A class representing the structure of a model.

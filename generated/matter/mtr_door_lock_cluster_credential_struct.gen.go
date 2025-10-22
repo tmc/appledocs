@@ -31,6 +31,10 @@ type _MTRDoorLockClusterCredentialStructClass struct {
 // An interface definition for the [MTRDoorLockClusterCredentialStruct] class.
 type IMTRDoorLockClusterCredentialStruct interface {
 	objectivec.IObject
+	CredentialIndex() foundation.Number
+	SetCredentialIndex(value foundation.INumber)
+	CredentialType() foundation.Number
+	SetCredentialType(value foundation.INumber)
 }
 
 //

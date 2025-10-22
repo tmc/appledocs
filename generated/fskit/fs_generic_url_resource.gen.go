@@ -30,6 +30,7 @@ type _FSGenericURLResourceClass struct {
 // An interface definition for the [FSGenericURLResource] class.
 type IFSGenericURLResource interface {
 	IFSResource
+	Url() foundation.URL
 }
 
 // A resource representing an abstract URL

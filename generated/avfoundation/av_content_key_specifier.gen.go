@@ -30,6 +30,12 @@ type _ContentKeySpecifierClass struct {
 // An interface definition for the [ContentKeySpecifier] class.
 type IContentKeySpecifier interface {
 	objectivec.IObject
+	Identifier() unsafe.Pointer
+	SetIdentifier(value unsafe.Pointer)
+	KeySystem() unsafe.Pointer
+	SetKeySystem(value unsafe.Pointer)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
 }
 
 // An object that uniquely identifies a content key.

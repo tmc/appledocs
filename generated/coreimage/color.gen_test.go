@@ -37,3 +37,11 @@ func ExampleNewColorWithRedGreenBlueAlpha() {
 	)
 	// Output:
 }
+// ExampleNewColorWithString demonstrates how to create a Color instance using NewColorWithString.
+// Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
+func ExampleNewColorWithString() {
+	_ = coreimage.NewColorWithString(
+		"representation", // representation string
+	)
+	// Output:
+}

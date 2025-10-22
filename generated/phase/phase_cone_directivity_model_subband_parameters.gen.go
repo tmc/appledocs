@@ -30,7 +30,13 @@ type _PHASEConeDirectivityModelSubbandParametersClass struct {
 // An interface definition for the [PHASEConeDirectivityModelSubbandParameters] class.
 type IPHASEConeDirectivityModelSubbandParameters interface {
 	objectivec.IObject
-	SetInnerAngleOuterAngle(innerAngle unsafe.Pointer, outerAngle unsafe.Pointer)
+	SetInnerAngleOuterAngle(innerAngle float64, outerAngle float64)
+	Frequency() float64
+	SetFrequency(value float64)
+	InnerAngle() float64
+	OuterAngle() float64
+	OuterGain() float64
+	SetOuterGain(value float64)
 }
 
 // A data set that projects sound of a certain frequency outward in the shape of a cone.
@@ -85,15 +91,15 @@ func NewPHASEConeDirectivityModelSubbandParameters() PHASEConeDirectivityModelSu
 // Configures a focus area for cone-based sound directivity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/setAngles(innerAngle:outerAngle:)
-func (p_ PHASEConeDirectivityModelSubbandParameters) SetInnerAngleOuterAngle(innerAngle unsafe.Pointer, outerAngle unsafe.Pointer) {
+func (p_ PHASEConeDirectivityModelSubbandParameters) SetInnerAngleOuterAngle(innerAngle float64, outerAngle float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInnerAngle:outerAngle:"), innerAngle, outerAngle)
 }
 
 // A frequency in the audio spectrum where the subband resonates most.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/frequency
-func (p_ PHASEConeDirectivityModelSubbandParameters) Frequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("frequency"))
+func (p_ PHASEConeDirectivityModelSubbandParameters) Frequency() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("frequency"))
 	return rv
 }
 
@@ -103,31 +109,31 @@ func (p_ PHASEConeDirectivityModelSubbandParameters) Frequency() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/frequency
-func (p_ PHASEConeDirectivityModelSubbandParameters) SetFrequency(value unsafe.Pointer) {
+func (p_ PHASEConeDirectivityModelSubbandParameters) SetFrequency(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFrequency:"), value)
 }
 
 // An angle, in degrees, that determines the size of the audio emitting area inside the cone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/innerAngle
-func (p_ PHASEConeDirectivityModelSubbandParameters) InnerAngle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("innerAngle"))
+func (p_ PHASEConeDirectivityModelSubbandParameters) InnerAngle() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("innerAngle"))
 	return rv
 }
 
 // An angle, in degrees, that determines the size of the audio emitting area outside the cone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/outerAngle
-func (p_ PHASEConeDirectivityModelSubbandParameters) OuterAngle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("outerAngle"))
+func (p_ PHASEConeDirectivityModelSubbandParameters) OuterAngle() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("outerAngle"))
 	return rv
 }
 
 // The loudness of the audio the outside area of the cone emits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/outerGain
-func (p_ PHASEConeDirectivityModelSubbandParameters) OuterGain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("outerGain"))
+func (p_ PHASEConeDirectivityModelSubbandParameters) OuterGain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("outerGain"))
 	return rv
 }
 
@@ -137,7 +143,7 @@ func (p_ PHASEConeDirectivityModelSubbandParameters) OuterGain() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/outerGain
-func (p_ PHASEConeDirectivityModelSubbandParameters) SetOuterGain(value unsafe.Pointer) {
+func (p_ PHASEConeDirectivityModelSubbandParameters) SetOuterGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOuterGain:"), value)
 }
 

@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewVector
 
+// ExampleNewVectorWithString demonstrates how to create a Vector instance using NewVectorWithString.
+// Initialize a Core Image vector object with values provided in a string representation.
+func ExampleNewVectorWithString() {
+	_ = coreimage.NewVectorWithString(
+		"representation", // representation string
+	)
+	// Output:
+}
 // ExampleNewVectorWithX demonstrates how to create a Vector instance using NewVectorWithX.
 // Initialize a Core Image vector object with one value.
 func ExampleNewVectorWithX() {

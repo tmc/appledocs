@@ -30,6 +30,8 @@ type _AccelerationStructureGroupClass struct {
 // An interface definition for the [AccelerationStructureGroup] class.
 type IAccelerationStructureGroup interface {
 	objectivec.IObject
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
 }
 
 // A group of acceleration structures.

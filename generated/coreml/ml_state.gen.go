@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _StateClass struct {
 // An interface definition for the [State] class.
 type IState interface {
 	objectivec.IObject
-	GetMultiArrayForStateNamedHandler(stateName appkit.string, handler unsafe.Pointer)
+	GetMultiArrayForStateNamedHandler(stateName string, handler unsafe.Pointer)
 }
 
 // Handle to the state buffers.
@@ -85,8 +84,8 @@ func NewState() State {
 // Gets a mutable view into a state buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLState/getMultiArrayForStateNamed:handler:
-func (s_ State) GetMultiArrayForStateNamedHandler(stateName appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("getMultiArrayForStateNamed:handler:"), stateName, handler)
+func (s_ State) GetMultiArrayForStateNamedHandler(stateName string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("getMultiArrayForStateNamed:handler:"), objc.String(stateName), handler)
 }
 
 

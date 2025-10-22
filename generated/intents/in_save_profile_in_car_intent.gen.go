@@ -29,6 +29,12 @@ type _INSaveProfileInCarIntentClass struct {
 // An interface definition for the [INSaveProfileInCarIntent] class.
 type IINSaveProfileInCarIntent interface {
 	IINIntent
+	ProfileLabel() string
+	SetProfileLabel(value string)
+	ProfileName() string
+	SetProfileName(value string)
+	ProfileNumber() int
+	SetProfileNumber(value int)
 }
 
 // A request to save the user’s vehicle environment settings in a CarPlay-enabled vehicle.
@@ -84,8 +90,8 @@ func NewINSaveProfileInCarIntent() INSaveProfileInCarIntent {
 // The name to assign to the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilelabel
-func (i_ INSaveProfileInCarIntent) ProfileLabel() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("profileLabel"))
+func (i_ INSaveProfileInCarIntent) ProfileLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("profileLabel"))
 	return rv
 }
 
@@ -95,15 +101,15 @@ func (i_ INSaveProfileInCarIntent) ProfileLabel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilelabel
-func (i_ INSaveProfileInCarIntent) SetProfileLabel(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), value)
+func (i_ INSaveProfileInCarIntent) SetProfileLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
 }
 
 // The name to assign to the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilename
-func (i_ INSaveProfileInCarIntent) ProfileName() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("profileName"))
+func (i_ INSaveProfileInCarIntent) ProfileName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("profileName"))
 	return rv
 }
 
@@ -113,8 +119,8 @@ func (i_ INSaveProfileInCarIntent) ProfileName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilename
-func (i_ INSaveProfileInCarIntent) SetProfileName(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), value)
+func (i_ INSaveProfileInCarIntent) SetProfileName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
 }
 
 // The profile index in which to save the settings.

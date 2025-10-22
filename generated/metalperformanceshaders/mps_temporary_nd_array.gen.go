@@ -29,6 +29,8 @@ type _TemporaryNDArrayClass struct {
 // An interface definition for the [TemporaryNDArray] class.
 type ITemporaryNDArray interface {
 	INDArray
+	ReadCount() uint
+	SetReadCount(value uint)
 }
 
 //

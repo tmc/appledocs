@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,8 @@ type _PHASEMixerParametersClass struct {
 // An interface definition for the [PHASEMixerParameters] class.
 type IPHASEMixerParameters interface {
 	objectivec.IObject
-	AddAmbientMixerParametersWithIdentifierListener(identifier appkit.string, listener IPHASEListener)
-	AddSpatialMixerParametersWithIdentifierSourceListener(identifier appkit.string, source IPHASESource, listener IPHASEListener)
+	AddAmbientMixerParametersWithIdentifierListener(identifier string, listener IPHASEListener)
+	AddSpatialMixerParametersWithIdentifierSourceListener(identifier string, source IPHASESource, listener IPHASEListener)
 }
 
 // An object that specifies a mixer for sound events and orients them in 3D space.
@@ -86,15 +85,15 @@ func NewPHASEMixerParameters() PHASEMixerParameters {
 // Adds runtime parameters for an ambient mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerParameters/addAmbientMixerParameters(identifier:listener:)
-func (p_ PHASEMixerParameters) AddAmbientMixerParametersWithIdentifierListener(identifier appkit.string, listener IPHASEListener) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addAmbientMixerParametersWithIdentifier:listener:"), identifier, listener)
+func (p_ PHASEMixerParameters) AddAmbientMixerParametersWithIdentifierListener(identifier string, listener IPHASEListener) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addAmbientMixerParametersWithIdentifier:listener:"), objc.String(identifier), listener)
 }
 
 // Adds runtime parameters for a spatial mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerParameters/addSpatialMixerParameters(identifier:source:listener:)
-func (p_ PHASEMixerParameters) AddSpatialMixerParametersWithIdentifierSourceListener(identifier appkit.string, source IPHASESource, listener IPHASEListener) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addSpatialMixerParametersWithIdentifier:source:listener:"), identifier, source, listener)
+func (p_ PHASEMixerParameters) AddSpatialMixerParametersWithIdentifierSourceListener(identifier string, source IPHASESource, listener IPHASEListener) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addSpatialMixerParametersWithIdentifier:source:listener:"), objc.String(identifier), source, listener)
 }
 
 

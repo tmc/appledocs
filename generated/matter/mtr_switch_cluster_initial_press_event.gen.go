@@ -31,6 +31,8 @@ type _MTRSwitchClusterInitialPressEventClass struct {
 // An interface definition for the [MTRSwitchClusterInitialPressEvent] class.
 type IMTRSwitchClusterInitialPressEvent interface {
 	objectivec.IObject
+	NewPosition() foundation.Number
+	SetNewPosition(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,9 @@ type _CallCenterClass struct {
 // An interface definition for the [CallCenter] class.
 type ICallCenter interface {
 	objectivec.IObject
+	CurrentCalls() unsafe.Pointer
+	CallEventHandler() unsafe.Pointer
+	SetCallEventHandler(value unsafe.Pointer)
 }
 
 // An object that provides a list of current cellular calls, and provides the ability to respond to state changes for calls.

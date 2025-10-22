@@ -29,6 +29,13 @@ type _SocketPortClass struct {
 // An interface definition for the [SocketPort] class.
 type ISocketPort interface {
 	IPort
+	Address() NSData
+	Protocol() int
+	Socket() SocketNativeHandle
+	ProtocolFamily() unsafe.Pointer
+	SetProtocolFamily(value unsafe.Pointer)
+	SocketType() unsafe.Pointer
+	SetSocketType(value unsafe.Pointer)
 }
 
 // A port that represents a BSD socket.

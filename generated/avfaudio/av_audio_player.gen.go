@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/audiotoolbox"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -33,15 +32,49 @@ type _AudioPlayerClass struct {
 // An interface definition for the [AudioPlayer] class.
 type IAudioPlayer interface {
 	objectivec.IObject
-	AveragePowerForChannel(channelNumber uint) unsafe.Pointer
+	AveragePowerForChannel(channelNumber uint) float32
 	Pause()
-	PeakPowerForChannel(channelNumber uint) unsafe.Pointer
+	PeakPowerForChannel(channelNumber uint) float32
 	Play() bool
 	PlayAtTime(time foundation.ITimeInterval) bool
 	PrepareToPlay() bool
-	SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.ITimeInterval)
+	SetVolumeFadeDuration(volume float32, duration foundation.ITimeInterval)
 	Stop()
 	UpdateMeters()
+	ChannelAssignments() []unsafe.Pointer
+	SetChannelAssignments(value []unsafe.IPointer)
+	CurrentDevice() string
+	SetCurrentDevice(value string)
+	CurrentTime() foundation.TimeInterval
+	SetCurrentTime(value foundation.ITimeInterval)
+	Data() foundation.NSData
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DeviceCurrentTime() foundation.TimeInterval
+	Duration() foundation.TimeInterval
+	EnableRate() bool
+	SetEnableRate(value bool)
+	Format() AVAudioFormat
+	IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience
+	SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience)
+	MeteringEnabled() bool
+	SetMeteringEnabled(value bool)
+	Playing() bool
+	NumberOfChannels() uint
+	NumberOfLoops() int
+	SetNumberOfLoops(value int)
+	Pan() float32
+	SetPan(value float32)
+	Rate() float32
+	SetRate(value float32)
+	Settings() unsafe.Pointer
+	Url() foundation.URL
+	Volume() float32
+	SetVolume(value float32)
+	IsMeteringEnabled() bool
+	SetIsMeteringEnabled(value bool)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
 }
 
 // An object that plays audio data from a file or buffer.
@@ -109,9 +142,9 @@ func NewAudioPlayerWithContentsOfURLError(url foundation.IURL, outError unsafe.P
 // Creates a player to play audio from a file of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:fileTypeHint:)
-func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.IURL, utiString appkit.string, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.IURL, utiString string, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, utiString, outError)
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, objc.String(utiString), outError)
 	rv.Autorelease()
 	return rv
 }
@@ -133,9 +166,9 @@ func NewAudioPlayerWithDataError(data foundation.IData, outError unsafe.Pointer)
 // Creates a player to play in-memory audio data of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(data:fileTypeHint:)
-func NewAudioPlayerWithDataFileTypeHintError(data foundation.IData, utiString appkit.string, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithDataFileTypeHintError(data foundation.IData, utiString string, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, utiString, outError)
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, objc.String(utiString), outError)
 	rv.Autorelease()
 	return rv
 }
@@ -144,8 +177,8 @@ func NewAudioPlayerWithDataFileTypeHintError(data foundation.IData, utiString ap
 // Returns the average power, in decibels full-scale (dBFS), for an audio channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/averagePower(forChannel:)
-func (a_ AudioPlayer) AveragePowerForChannel(channelNumber uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("averagePowerForChannel:"), channelNumber)
+func (a_ AudioPlayer) AveragePowerForChannel(channelNumber uint) float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("averagePowerForChannel:"), channelNumber)
 	return rv
 }
 
@@ -159,8 +192,8 @@ func (a_ AudioPlayer) Pause() {
 // Returns the peak power, in decibels full-scale (dBFS), for an audio channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/peakPower(forChannel:)
-func (a_ AudioPlayer) PeakPowerForChannel(channelNumber uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("peakPowerForChannel:"), channelNumber)
+func (a_ AudioPlayer) PeakPowerForChannel(channelNumber uint) float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("peakPowerForChannel:"), channelNumber)
 	return rv
 }
 
@@ -191,7 +224,7 @@ func (a_ AudioPlayer) PrepareToPlay() bool {
 // Changes the audio player’s volume over a duration of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/setVolume(_:fadeDuration:)
-func (a_ AudioPlayer) SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.ITimeInterval) {
+func (a_ AudioPlayer) SetVolumeFadeDuration(volume float32, duration foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:fadeDuration:"), volume, duration)
 }
 
@@ -240,8 +273,8 @@ func (a_ AudioPlayer) SetChannelAssignments(value []unsafe.IPointer) {
 // The unique identifier of the current audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) CurrentDevice() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("currentDevice"))
+func (a_ AudioPlayer) CurrentDevice() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("currentDevice"))
 	return rv
 }
 
@@ -251,8 +284,8 @@ func (a_ AudioPlayer) CurrentDevice() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) SetCurrentDevice(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), value)
+func (a_ AudioPlayer) SetCurrentDevice(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), objc.String(value))
 }
 
 // The current playback time, in seconds, within the audio timeline.
@@ -411,8 +444,8 @@ func (a_ AudioPlayer) SetNumberOfLoops(value int) {
 // The audio player’s stereo pan position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/pan
-func (a_ AudioPlayer) Pan() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pan"))
+func (a_ AudioPlayer) Pan() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("pan"))
 	return rv
 }
 
@@ -422,15 +455,15 @@ func (a_ AudioPlayer) Pan() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/pan
-func (a_ AudioPlayer) SetPan(value unsafe.Pointer) {
+func (a_ AudioPlayer) SetPan(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPan:"), value)
 }
 
 // The audio player’s playback rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/rate
-func (a_ AudioPlayer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rate"))
+func (a_ AudioPlayer) Rate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -440,7 +473,7 @@ func (a_ AudioPlayer) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/rate
-func (a_ AudioPlayer) SetRate(value unsafe.Pointer) {
+func (a_ AudioPlayer) SetRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -463,8 +496,8 @@ func (a_ AudioPlayer) Url() foundation.URL {
 // The audio player’s volume relative to other audio output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/volume
-func (a_ AudioPlayer) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("volume"))
+func (a_ AudioPlayer) Volume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -474,7 +507,7 @@ func (a_ AudioPlayer) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/volume
-func (a_ AudioPlayer) SetVolume(value unsafe.Pointer) {
+func (a_ AudioPlayer) SetVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:"), value)
 }
 

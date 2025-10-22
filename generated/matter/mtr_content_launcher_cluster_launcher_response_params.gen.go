@@ -31,6 +31,12 @@ type _MTRContentLauncherClusterLauncherResponseParamsClass struct {
 // An interface definition for the [MTRContentLauncherClusterLauncherResponseParams] class.
 type IMTRContentLauncherClusterLauncherResponseParams interface {
 	objectivec.IObject
+	Data() string
+	SetData(value string)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRContentLauncherClusterLauncherResponseParams() MTRContentLauncherClus
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/data
-func (m_ MTRContentLauncherClusterLauncherResponseParams) Data() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentLauncherClusterLauncherResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRContentLauncherClusterLauncherResponseParams) Data() appkit.string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlauncherresponseparams/data
-func (m_ MTRContentLauncherClusterLauncherResponseParams) SetData(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRContentLauncherClusterLauncherResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 
 //

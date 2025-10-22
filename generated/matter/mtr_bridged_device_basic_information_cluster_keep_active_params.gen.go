@@ -31,6 +31,14 @@ type _MTRBridgedDeviceBasicInformationClusterKeepActiveParamsClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterKeepActiveParams] class.
 type IMTRBridgedDeviceBasicInformationClusterKeepActiveParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StayActiveDuration() foundation.Number
+	SetStayActiveDuration(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TimeoutMs() foundation.Number
+	SetTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -29,6 +29,10 @@ type _PHObjectPlaceholderClass struct {
 // An interface definition for the [PHObjectPlaceholder] class.
 type IPHObjectPlaceholder interface {
 	IPHObject
+	Hash() int
+	SetHash(value int)
+	LocalIdentifier() string
+	SetLocalIdentifier(value string)
 }
 
 // A read-only proxy object that represents a Photos asset or collection to create.
@@ -102,8 +106,8 @@ func (p_ PHObjectPlaceholder) SetHash(value int) {
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHObjectPlaceholder) LocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHObjectPlaceholder) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -113,8 +117,8 @@ func (p_ PHObjectPlaceholder) LocalIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHObjectPlaceholder) SetLocalIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
+func (p_ PHObjectPlaceholder) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
 
 

@@ -31,6 +31,8 @@ type _GramMatrixCalculationClass struct {
 // An interface definition for the [GramMatrixCalculation] class.
 type IGramMatrixCalculation interface {
 	objectivec.IObject
+	Alpha() float32
+	SetAlpha(value float32)
 }
 
 //
@@ -88,8 +90,8 @@ func NewGramMatrixCalculationWithCoderDevice(aDecoder foundation.ICoder, device 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation/alpha
-func (g_ GramMatrixCalculation) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alpha"))
+func (g_ GramMatrixCalculation) Alpha() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
 	return rv
 }
 
@@ -97,7 +99,7 @@ func (g_ GramMatrixCalculation) Alpha() unsafe.Pointer {
 // SetAlpha sets the value of the alpha property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation/alpha
-func (g_ GramMatrixCalculation) SetAlpha(value unsafe.Pointer) {
+func (g_ GramMatrixCalculation) SetAlpha(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
 }
 

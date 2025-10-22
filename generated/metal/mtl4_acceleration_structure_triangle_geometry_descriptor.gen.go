@@ -29,6 +29,22 @@ type _MTL4AccelerationStructureTriangleGeometryDescriptorClass struct {
 // An interface definition for the [MTL4AccelerationStructureTriangleGeometryDescriptor] class.
 type IMTL4AccelerationStructureTriangleGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	TransformationMatrixBuffer() unsafe.Pointer
+	SetTransformationMatrixBuffer(value unsafe.Pointer)
+	TransformationMatrixLayout() unsafe.Pointer
+	SetTransformationMatrixLayout(value unsafe.Pointer)
+	TriangleCount() int
+	SetTriangleCount(value int)
+	VertexBuffer() unsafe.Pointer
+	SetVertexBuffer(value unsafe.Pointer)
+	VertexFormat() unsafe.Pointer
+	SetVertexFormat(value unsafe.Pointer)
+	VertexStride() int
+	SetVertexStride(value int)
 }
 
 // Describes triangle geometry suitable for ray tracing.

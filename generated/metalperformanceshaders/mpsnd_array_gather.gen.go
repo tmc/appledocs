@@ -29,6 +29,8 @@ type _NDArrayGatherClass struct {
 // An interface definition for the [NDArrayGather] class.
 type INDArrayGather interface {
 	INDArrayBinaryKernel
+	Axis() int
+	SetAxis(value int)
 }
 
 //

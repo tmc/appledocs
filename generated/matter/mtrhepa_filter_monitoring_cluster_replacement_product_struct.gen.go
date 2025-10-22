@@ -31,6 +31,10 @@ type _MTRHEPAFilterMonitoringClusterReplacementProductStructClass struct {
 // An interface definition for the [MTRHEPAFilterMonitoringClusterReplacementProductStruct] class.
 type IMTRHEPAFilterMonitoringClusterReplacementProductStruct interface {
 	objectivec.IObject
+	ProductIdentifierType() foundation.Number
+	SetProductIdentifierType(value foundation.INumber)
+	ProductIdentifierValue() string
+	SetProductIdentifierValue(value string)
 }
 
 //
@@ -93,8 +97,8 @@ func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdent
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("productIdentifierValue"))
+func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifierValue"))
 	return rv
 }
 
@@ -102,8 +106,8 @@ func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifi
 // SetProductIdentifierValue sets the value of the productIdentifierValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), value)
+func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), objc.String(value))
 }
 
 

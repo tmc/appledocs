@@ -29,6 +29,8 @@ type _INResumeWorkoutIntentClass struct {
 // An interface definition for the [INResumeWorkoutIntent] class.
 type IINResumeWorkoutIntent interface {
 	IINIntent
+	WorkoutName() INSpeakableString
+	SetWorkoutName(value INSpeakableString)
 }
 
 // A request to resume a paused workout.

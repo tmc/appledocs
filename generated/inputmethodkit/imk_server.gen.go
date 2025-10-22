@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -88,9 +87,9 @@ func NewIMKServer() IMKServer {
 // Creates and returns a server object from property list information contained in the provided bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:bundleIdentifier:)
-func NewIMKServerWithNameBundleIdentifier(name appkit.string, bundleIdentifier appkit.string) IMKServer {
+func NewIMKServerWithNameBundleIdentifier(name string, bundleIdentifier string) IMKServer {
 	instance := getIMKServerClass().Alloc()
-	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), name, bundleIdentifier)
+	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), objc.String(name), objc.String(bundleIdentifier))
 	rv.Autorelease()
 	return rv
 }
@@ -100,9 +99,9 @@ func NewIMKServerWithNameBundleIdentifier(name appkit.string, bundleIdentifier a
 // Creates and returns a server object initialized with the provided parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:controllerClass:delegateClass:)
-func NewIMKServerWithNameControllerClassDelegateClass(name appkit.string, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
+func NewIMKServerWithNameControllerClassDelegateClass(name string, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
 	instance := getIMKServerClass().Alloc()
-	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), name, controllerClassID, delegateClassID)
+	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), objc.String(name), controllerClassID, delegateClassID)
 	rv.Autorelease()
 	return rv
 }

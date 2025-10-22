@@ -31,6 +31,8 @@ type _PHProjectElementClass struct {
 // An interface definition for the [PHProjectElement] class.
 type IPHProjectElement interface {
 	objectivec.IObject
+	Placement() coregraphics.CGRect
+	Weight() float64
 }
 
 // The superclass for all element objects.
@@ -92,8 +94,8 @@ func (p_ PHProjectElement) Placement() coregraphics.CGRect {
 // A value between 0 and 1 representing relative significance of the element in its section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectElement/weight
-func (p_ PHProjectElement) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("weight"))
+func (p_ PHProjectElement) Weight() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("weight"))
 	return rv
 }
 

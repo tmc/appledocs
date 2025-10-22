@@ -31,6 +31,12 @@ type _MTRDeviceEnergyManagementClusterSlotAdjustmentStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterSlotAdjustmentStruct] class.
 type IMTRDeviceEnergyManagementClusterSlotAdjustmentStruct interface {
 	objectivec.IObject
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	NominalPower() foundation.Number
+	SetNominalPower(value foundation.INumber)
+	SlotIndex() foundation.Number
+	SetSlotIndex(value foundation.INumber)
 }
 
 //

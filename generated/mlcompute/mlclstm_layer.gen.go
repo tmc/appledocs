@@ -29,6 +29,30 @@ type _CLSTMLayerClass struct {
 // An interface definition for the [CLSTMLayer] class.
 type ICLSTMLayer interface {
 	ICLayer
+	LayerCount() int
+	SetLayerCount(value int)
+	Biases() MLCTensor
+	SetBiases(value IMLCTensor)
+	BiasesParameters() MLCTensorParameter
+	SetBiasesParameters(value IMLCTensorParameter)
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
+	GateActivations() unsafe.Pointer
+	SetGateActivations(value unsafe.Pointer)
+	HiddenWeights() MLCTensor
+	SetHiddenWeights(value IMLCTensor)
+	HiddenWeightsParameters() MLCTensorParameter
+	SetHiddenWeightsParameters(value IMLCTensorParameter)
+	InputWeights() MLCTensor
+	SetInputWeights(value IMLCTensor)
+	InputWeightsParameters() MLCTensorParameter
+	SetInputWeightsParameters(value IMLCTensorParameter)
+	OutputResultActivation() unsafe.Pointer
+	SetOutputResultActivation(value unsafe.Pointer)
+	PeepholeWeights() MLCTensor
+	SetPeepholeWeights(value IMLCTensor)
+	PeepholeWeightsParameters() MLCTensorParameter
+	SetPeepholeWeightsParameters(value IMLCTensorParameter)
 }
 
 // A layer that represents long short-term memory (LSTM) networks.

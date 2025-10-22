@@ -31,6 +31,8 @@ type _MTRBooleanStateClusterStateChangeEventClass struct {
 // An interface definition for the [MTRBooleanStateClusterStateChangeEvent] class.
 type IMTRBooleanStateClusterStateChangeEvent interface {
 	objectivec.IObject
+	StateValue() foundation.Number
+	SetStateValue(value foundation.INumber)
 }
 
 //

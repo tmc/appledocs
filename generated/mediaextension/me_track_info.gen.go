@@ -32,6 +32,26 @@ type _METrackInfoClass struct {
 // An interface definition for the [METrackInfo] class.
 type IMETrackInfo interface {
 	objectivec.IObject
+	NaturalTimescale() unsafe.Pointer
+	SetNaturalTimescale(value unsafe.Pointer)
+	NominalFrameRate() unsafe.Pointer
+	SetNominalFrameRate(value unsafe.Pointer)
+	TrackEdits() []foundation.Value
+	SetTrackEdits(value []foundation.IValue)
+	ExtendedLanguageTag() string
+	SetExtendedLanguageTag(value string)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	MediaType() unsafe.Pointer
+	SetMediaType(value unsafe.Pointer)
+	NaturalSize() coregraphics.CGSize
+	SetNaturalSize(value coregraphics.CGSize)
+	PreferredTransform() coregraphics.CGAffineTransform
+	SetPreferredTransform(value coregraphics.CGAffineTransform)
+	RequiresFrameReordering() bool
+	SetRequiresFrameReordering(value bool)
+	TrackID() unsafe.Pointer
+	SetTrackID(value unsafe.Pointer)
 }
 
 // An object that includes track properties parsed from the media asset.
@@ -160,8 +180,8 @@ func (m_ METrackInfo) SetTrackEdits(value []foundation.IValue) {
 // A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
-func (m_ METrackInfo) ExtendedLanguageTag() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("extendedLanguageTag"))
+func (m_ METrackInfo) ExtendedLanguageTag() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -171,8 +191,8 @@ func (m_ METrackInfo) ExtendedLanguageTag() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
-func (m_ METrackInfo) SetExtendedLanguageTag(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
+func (m_ METrackInfo) SetExtendedLanguageTag(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the track is enabled by default.

@@ -32,6 +32,15 @@ type IUSBHostCIEndpointStateMachine interface {
 	objectivec.IObject
 	InspectCommandError(command unsafe.Pointer, error_ unsafe.Pointer) bool
 	ProcessDoorbellError(doorbell IUSBHostCIDoorbell, error_ unsafe.Pointer) bool
+	ControllerInterface() IOUSBHostControllerInterface
+	CurrentTransferMessage() unsafe.Pointer
+	SetCurrentTransferMessage(value unsafe.Pointer)
+	DeviceAddress() int
+	SetDeviceAddress(value int)
+	EndpointAddress() int
+	SetEndpointAddress(value int)
+	EndpointState() unsafe.Pointer
+	SetEndpointState(value unsafe.Pointer)
 }
 
 //

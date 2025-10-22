@@ -30,6 +30,8 @@ type _ComputePlanDeviceUsageClass struct {
 // An interface definition for the [ComputePlanDeviceUsage] class.
 type IComputePlanDeviceUsage interface {
 	objectivec.IObject
+	PreferredComputeDevice() objc.ID
+	SupportedComputeDevices() []objc.ID
 }
 
 // The anticipated compute devices to use for executing a layer or operation.

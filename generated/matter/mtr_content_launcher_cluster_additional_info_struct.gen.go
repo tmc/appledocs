@@ -30,6 +30,10 @@ type _MTRContentLauncherClusterAdditionalInfoStructClass struct {
 // An interface definition for the [MTRContentLauncherClusterAdditionalInfoStruct] class.
 type IMTRContentLauncherClusterAdditionalInfoStruct interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
+	Value() string
+	SetValue(value string)
 }
 
 //
@@ -77,8 +81,8 @@ func NewMTRContentLauncherClusterAdditionalInfoStruct() MTRContentLauncherCluste
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/name
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -86,14 +90,14 @@ func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/name
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/value
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Value() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,8 +105,8 @@ func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Value() appkit.string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/value
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

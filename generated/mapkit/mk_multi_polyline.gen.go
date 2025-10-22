@@ -29,6 +29,8 @@ type _MKMultiPolylineClass struct {
 // An interface definition for the [MKMultiPolyline] class.
 type IMKMultiPolyline interface {
 	IMKShape
+	Polylines() MKPolyline
+	SetPolylines(value IMKPolyline)
 }
 
 // A collection of multipolyline shapes, each consisting of one or more connected line segments.

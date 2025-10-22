@@ -29,6 +29,16 @@ type _CSUserQueryContextClass struct {
 // An interface definition for the [CSUserQueryContext] class.
 type ICSUserQueryContext interface {
 	ICSSearchQueryContext
+	DisableSemanticSearch() bool
+	SetDisableSemanticSearch(value bool)
+	EnableRankedResults() bool
+	SetEnableRankedResults(value bool)
+	MaxRankedResultCount() int
+	SetMaxRankedResultCount(value int)
+	MaxResultCount() int
+	SetMaxResultCount(value int)
+	MaxSuggestionCount() int
+	SetMaxSuggestionCount(value int)
 }
 
 // The configuration details to apply to a user query.

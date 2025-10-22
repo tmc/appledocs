@@ -30,6 +30,14 @@ type _ImageConstraintClass struct {
 // An interface definition for the [ImageConstraint] class.
 type IImageConstraint interface {
 	objectivec.IObject
+	PixelFormatType() unsafe.Pointer
+	PixelsHigh() int
+	PixelsWide() int
+	SizeConstraint() MLImageSizeConstraint
+	ImageConstraint() MLImageConstraint
+	SetImageConstraint(value IMLImageConstraint)
+	Type() FeatureType
+	SetType(value FeatureType)
 }
 
 // The width, height, and pixel format constraints of an image feature.

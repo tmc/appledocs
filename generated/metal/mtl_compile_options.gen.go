@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,36 @@ type _CompileOptionsClass struct {
 // An interface definition for the [CompileOptions] class.
 type ICompileOptions interface {
 	objectivec.IObject
+	AllowReferencingUndefinedSymbols() bool
+	SetAllowReferencingUndefinedSymbols(value bool)
+	CompileSymbolVisibility() unsafe.Pointer
+	SetCompileSymbolVisibility(value unsafe.Pointer)
+	EnableLogging() bool
+	SetEnableLogging(value bool)
+	FastMathEnabled() bool
+	SetFastMathEnabled(value bool)
+	InstallName() string
+	SetInstallName(value string)
+	LanguageVersion() unsafe.Pointer
+	SetLanguageVersion(value unsafe.Pointer)
+	Libraries() []objc.ID
+	SetLibraries(value []objc.ID)
+	LibraryType() unsafe.Pointer
+	SetLibraryType(value unsafe.Pointer)
+	MathFloatingPointFunctions() MathFloatingPointFunctions
+	SetMathFloatingPointFunctions(value IMathFloatingPointFunctions)
+	MathMode() unsafe.Pointer
+	SetMathMode(value unsafe.Pointer)
+	MaxTotalThreadsPerThreadgroup() uint
+	SetMaxTotalThreadsPerThreadgroup(value uint)
+	OptimizationLevel() unsafe.Pointer
+	SetOptimizationLevel(value unsafe.Pointer)
+	PreprocessorMacros() unsafe.Pointer
+	SetPreprocessorMacros(value unsafe.Pointer)
+	PreserveInvariance() bool
+	SetPreserveInvariance(value bool)
+	RequiredThreadsPerThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerThreadgroup(value coregraphics.ISize)
 }
 
 // Compilation settings for a Metal shader library.
@@ -151,8 +180,8 @@ func (c_ CompileOptions) SetFastMathEnabled(value bool) {
 // For a dynamic library, the name to use when installing the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
-func (c_ CompileOptions) InstallName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("installName"))
+func (c_ CompileOptions) InstallName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("installName"))
 	return rv
 }
 
@@ -162,8 +191,8 @@ func (c_ CompileOptions) InstallName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
-func (c_ CompileOptions) SetInstallName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), value)
+func (c_ CompileOptions) SetInstallName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), objc.String(value))
 }
 
 // The language version for interpreting the library source code.

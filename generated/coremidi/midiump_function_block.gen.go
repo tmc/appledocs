@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,17 @@ type _MIDIUMPFunctionBlockClass struct {
 // An interface definition for the [MIDIUMPFunctionBlock] class.
 type IMIDIUMPFunctionBlock interface {
 	objectivec.IObject
+	Direction() MIDIUMPFunctionBlockDirection
+	FirstGroup() MIDIUMPGroupNumber
+	FunctionBlockID() MIDIUMPFunctionBlockID
+	IsEnabled() bool
+	MaxSysEx8Streams() unsafe.Pointer
+	MIDI1Info() MIDIUMPFunctionBlockMIDI1Info
+	MidiCIDevice() MIDICIDevice
+	Name() string
+	TotalGroupsSpanned() MIDIUInteger7
+	UIHint() MIDIUMPFunctionBlockUIHint
+	UMPEndpoint() MIDIUMPEndpoint
 }
 
 //
@@ -127,8 +137,8 @@ func (m_ MIDIUMPFunctionBlock) MidiCIDevice() MIDICIDevice {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/name
-func (m_ MIDIUMPFunctionBlock) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPFunctionBlock) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

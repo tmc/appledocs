@@ -36,6 +36,8 @@ type IExceptionHandler interface {
 	SetDelegate(anObject objectivec.IObject)
 	SetExceptionHandlingMask(aMask uint)
 	SetExceptionHangingMask(aMask uint)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 }
 
 // The class provides facilities for monitoring and debugging exceptional conditions in Objective-C programs. It works by installing a special uncaught exception handler via the function. Consequently, to use the services of , you must not install your own custom uncaught exception handler.

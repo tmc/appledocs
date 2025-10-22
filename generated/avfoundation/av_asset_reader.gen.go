@@ -32,6 +32,16 @@ type IAssetReader interface {
 	objectivec.IObject
 	CanAddOutput(output IAVAssetReaderOutput) bool
 	StartReading() bool
+	Asset() AVAsset
+	SetAsset(value IAVAsset)
+	Error() Error
+	SetError(value IError)
+	Outputs() AVAssetReaderOutput
+	SetOutputs(value IAVAssetReaderOutput)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
 }
 
 // An object that reads media data from an asset.

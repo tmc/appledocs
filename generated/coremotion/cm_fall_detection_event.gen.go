@@ -31,6 +31,8 @@ type _FallDetectionEventClass struct {
 // An interface definition for the [FallDetectionEvent] class.
 type IFallDetectionEvent interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	Resolution() FallDetectionEventUserResolution
 }
 
 // An object that contains data about a fall detection event.

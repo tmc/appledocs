@@ -32,6 +32,12 @@ type _PreviewReplyClass struct {
 // An interface definition for the [PreviewReply] class.
 type IPreviewReply interface {
 	objectivec.IObject
+	Attachments() unsafe.Pointer
+	SetAttachments(value unsafe.Pointer)
+	StringEncoding() unsafe.Pointer
+	SetStringEncoding(value unsafe.Pointer)
+	Title() string
+	SetTitle(value string)
 }
 
 // The class you create when providing a data-based Quick Look preview extension.
@@ -161,8 +167,8 @@ func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
 // The title for the system to display with the preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
-func (p_ PreviewReply) Title() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
+func (p_ PreviewReply) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -172,8 +178,8 @@ func (p_ PreviewReply) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
-func (p_ PreviewReply) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+func (p_ PreviewReply) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

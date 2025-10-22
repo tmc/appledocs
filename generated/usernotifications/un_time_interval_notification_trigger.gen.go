@@ -31,6 +31,7 @@ type _UNTimeIntervalNotificationTriggerClass struct {
 type IUNTimeIntervalNotificationTrigger interface {
 	IUNNotificationTrigger
 	NextTriggerDate() foundation.Date
+	TimeInterval() foundation.TimeInterval
 }
 
 // A trigger condition that causes the system to deliver a notification after the amount of time you specify elapses.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +31,9 @@ type _GazetteerClass struct {
 // An interface definition for the [Gazetteer] class.
 type IGazetteer interface {
 	objectivec.IObject
-	LabelForString(string_ appkit.string) foundation.String
+	LabelForString(string_ string) foundation.String
+	Data() foundation.NSData
+	Language() Language
 }
 
 // A collection of terms and their labels, which take precedence over a word tagger.
@@ -139,8 +140,8 @@ func (gc _GazetteerClass) WriteGazetteerForDictionaryLanguageToURLError(dictiona
 // Retrieves the label for the given term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/label(for:)
-func (g_ Gazetteer) LabelForString(string_ appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](g_.ID, objc.Sel("labelForString:"), string_)
+func (g_ Gazetteer) LabelForString(string_ string) foundation.String {
+	rv := objc.Send[foundation.String](g_.ID, objc.Sel("labelForString:"), objc.String(string_))
 	return rv
 }
 

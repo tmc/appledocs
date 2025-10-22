@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -35,7 +34,17 @@ type IParameter interface {
 	SetValueOriginatorAtHostTime(value IValue, originator IParameterObserverToken, hostTime uint64)
 	SetValueOriginatorAtHostTimeEventType(value IValue, originator IParameterObserverToken, hostTime uint64, eventType ParameterAutomationEventType)
 	StringFromValue(value IAUValue) foundation.String
-	ValueFromString(string_ appkit.string) Value
+	ValueFromString(string_ string) Value
+	Address() ParameterAddress
+	DependentParameters() []foundation.Number
+	Flags() AudioUnitParameterOptions
+	MaxValue() Value
+	MinValue() Value
+	Unit() AudioUnitParameterUnit
+	UnitName() string
+	Value() Value
+	SetValue(value IValue)
+	ValueStrings() []string
 }
 
 // An object that represents a single audio unit parameter.
@@ -117,8 +126,8 @@ func (p_ Parameter) StringFromValue(value IAUValue) foundation.String {
 // Converts a string into a parameter value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value(from:)
-func (p_ Parameter) ValueFromString(string_ appkit.string) Value {
-	rv := objc.Send[Value](p_.ID, objc.Sel("valueFromString:"), string_)
+func (p_ Parameter) ValueFromString(string_ string) Value {
+	rv := objc.Send[Value](p_.ID, objc.Sel("valueFromString:"), objc.String(string_))
 	return rv
 }
 
@@ -173,8 +182,8 @@ func (p_ Parameter) Unit() AudioUnitParameterUnit {
 // The parameter’s localized unit name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unitName
-func (p_ Parameter) UnitName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("unitName"))
+func (p_ Parameter) UnitName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("unitName"))
 	return rv
 }
 

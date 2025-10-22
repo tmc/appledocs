@@ -30,6 +30,8 @@ type _GraphDeviceClass struct {
 // An interface definition for the [GraphDevice] class.
 type IGraphDevice interface {
 	IGraphObject
+	MetalDevice() objc.ID
+	Type() GraphDeviceType
 }
 
 // A class that describes the compute device.

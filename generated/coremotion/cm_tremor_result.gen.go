@@ -31,6 +31,14 @@ type _TremorResultClass struct {
 // An interface definition for the [TremorResult] class.
 type ITremorResult interface {
 	objectivec.IObject
+	EndDate() foundation.NSDate
+	PercentMild() float32
+	PercentModerate() float32
+	PercentNone() float32
+	PercentSlight() float32
+	PercentStrong() float32
+	PercentUnknown() float32
+	StartDate() foundation.NSDate
 }
 
 // A result object that contains data about the presence and strength of tremors during a one-minute interval.
@@ -92,48 +100,48 @@ func (t_ TremorResult) EndDate() foundation.NSDate {
 // The percentage of time when a tremor was likely, and the displacement amplitude was mild.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentMild
-func (t_ TremorResult) PercentMild() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("percentMild"))
+func (t_ TremorResult) PercentMild() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("percentMild"))
 	return rv
 }
 
 // The percentage of time when a tremor was likely, and the displacement amplitude was moderate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentModerate
-func (t_ TremorResult) PercentModerate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("percentModerate"))
+func (t_ TremorResult) PercentModerate() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("percentModerate"))
 	return rv
 }
 
 // The percentage of time when no tremor was detected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentNone
-func (t_ TremorResult) PercentNone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("percentNone"))
+func (t_ TremorResult) PercentNone() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("percentNone"))
 	return rv
 }
 
 // The percentage of time when a tremor was likely, and the displacement amplitude was slight.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentSlight
-func (t_ TremorResult) PercentSlight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("percentSlight"))
+func (t_ TremorResult) PercentSlight() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("percentSlight"))
 	return rv
 }
 
 // The percentage of time when a tremor was likely, and the displacement amplitude was strong.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentStrong
-func (t_ TremorResult) PercentStrong() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("percentStrong"))
+func (t_ TremorResult) PercentStrong() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("percentStrong"))
 	return rv
 }
 
 // The percentage of time when the algorithm couldn’t make a determination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentUnknown
-func (t_ TremorResult) PercentUnknown() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("percentUnknown"))
+func (t_ TremorResult) PercentUnknown() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("percentUnknown"))
 	return rv
 }
 

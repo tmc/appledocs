@@ -31,6 +31,10 @@ type _MTRKeypadInputClusterSendKeyResponseParamsClass struct {
 // An interface definition for the [MTRKeypadInputClusterSendKeyResponseParams] class.
 type IMTRKeypadInputClusterSendKeyResponseParams interface {
 	objectivec.IObject
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

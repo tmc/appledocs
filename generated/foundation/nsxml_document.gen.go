@@ -36,6 +36,19 @@ type IXMLDocument interface {
 	RemoveChildAtIndex(index uint)
 	RootElement() XMLElement
 	SetRootElement(root IXMLElement)
+	MIMEType() string
+	SetMIMEType(value string)
+	XMLData() NSData
+	CharacterEncoding() string
+	SetCharacterEncoding(value string)
+	DocumentContentKind() unsafe.Pointer
+	SetDocumentContentKind(value unsafe.Pointer)
+	Dtd() NSXMLDTD
+	SetDtd(value IXMLDTD)
+	IsStandalone() bool
+	SetIsStandalone(value bool)
+	Version() string
+	SetVersion(value string)
 }
 
 // An XML document as internalized into a logical tree structure.

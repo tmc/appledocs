@@ -31,6 +31,12 @@ type _MTROperationalStateClusterOperationCompletionEventClass struct {
 // An interface definition for the [MTROperationalStateClusterOperationCompletionEvent] class.
 type IMTROperationalStateClusterOperationCompletionEvent interface {
 	objectivec.IObject
+	CompletionErrorCode() foundation.Number
+	SetCompletionErrorCode(value foundation.INumber)
+	PausedTime() foundation.Number
+	SetPausedTime(value foundation.INumber)
+	TotalOperationalTime() foundation.Number
+	SetTotalOperationalTime(value foundation.INumber)
 }
 
 //

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,22 @@ type _FeatureDescriptionClass struct {
 // An interface definition for the [FeatureDescription] class.
 type IFeatureDescription interface {
 	objectivec.IObject
+	DictionaryConstraint() MLDictionaryConstraint
+	ImageConstraint() MLImageConstraint
+	Optional() bool
+	MultiArrayConstraint() MLMultiArrayConstraint
+	Name() string
+	SequenceConstraint() MLSequenceConstraint
+	StateConstraint() MLStateConstraint
+	Type() FeatureType
+	IsOptional() bool
+	SetIsOptional(value bool)
+	InputDescriptionsByName() MLFeatureDescription
+	SetInputDescriptionsByName(value IMLFeatureDescription)
+	OutputDescriptionsByName() MLFeatureDescription
+	SetOutputDescriptionsByName(value IMLFeatureDescription)
+	StateDescriptionsByName() MLFeatureDescription
+	SetStateDescriptionsByName(value IMLFeatureDescription)
 }
 
 // The name, type, and constraints of an input or output feature.
@@ -116,8 +131,8 @@ func (f_ FeatureDescription) MultiArrayConstraint() MLMultiArrayConstraint {
 // The name of this feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/name
-func (f_ FeatureDescription) Name() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("name"))
+func (f_ FeatureDescription) Name() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
 }
 

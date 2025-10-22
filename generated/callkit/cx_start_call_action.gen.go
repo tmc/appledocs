@@ -31,6 +31,14 @@ type _CXStartCallActionClass struct {
 type ICXStartCallAction interface {
 	ICXCallAction
 	FulfillWithDateStarted(dateStarted foundation.IDate)
+	ContactIdentifier() string
+	SetContactIdentifier(value string)
+	Handle() CXHandle
+	SetHandle(value ICXHandle)
+	Video() bool
+	SetVideo(value bool)
+	IsVideo() bool
+	SetIsVideo(value bool)
 }
 
 // An encapsulation of the act of initiating an outgoing call.

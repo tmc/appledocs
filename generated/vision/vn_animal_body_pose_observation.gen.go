@@ -31,6 +31,9 @@ type IAnimalBodyPoseObservation interface {
 	IRecognizedPointsObservation
 	RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) RecognizedPoint
 	RecognizedPointsForJointsGroupNameError(jointsGroupName IAnimalBodyPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer
+	AvailableJointGroupNames() []string
+	AvailableJointNames() unsafe.Pointer
+	SetAvailableJointNames(value unsafe.Pointer)
 }
 
 // An observation that provides the animal body points the analysis recognizes.

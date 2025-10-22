@@ -31,6 +31,8 @@ type _MTRICDManagementClusterRegisterClientResponseParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterRegisterClientResponseParams] class.
 type IMTRICDManagementClusterRegisterClientResponseParams interface {
 	objectivec.IObject
+	IcdCounter() foundation.Number
+	SetIcdCounter(value foundation.INumber)
 }
 
 //

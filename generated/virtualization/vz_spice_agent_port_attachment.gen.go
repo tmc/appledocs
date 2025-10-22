@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZSpiceAgentPortAttachment] class.
@@ -30,6 +29,8 @@ type _VZSpiceAgentPortAttachmentClass struct {
 // An interface definition for the [VZSpiceAgentPortAttachment] class.
 type IVZSpiceAgentPortAttachment interface {
 	IVZSerialPortAttachment
+	SharesClipboard() bool
+	SetSharesClipboard(value bool)
 }
 
 // An attachment point that enables the Spice clipboard sharing capability.
@@ -84,8 +85,8 @@ func NewVZSpiceAgentPortAttachment() VZSpiceAgentPortAttachment {
 // The name of the Virtio console port for the Spice guest agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSpiceAgentPortAttachment/spiceAgentPortName
-func (vc _VZSpiceAgentPortAttachmentClass) SpiceAgentPortName() appkit.string {
-	rv := objc.Send[appkit.string](objc.ID(vc.class), objc.Sel("spiceAgentPortName"))
+func (vc _VZSpiceAgentPortAttachmentClass) SpiceAgentPortName() string {
+	rv := objc.Send[string](objc.ID(vc.class), objc.Sel("spiceAgentPortName"))
 	return rv
 }
 // A Boolean value that indicates whether the framework needs to share the clipboard between the host and the VM.
@@ -109,8 +110,8 @@ func (v_ VZSpiceAgentPortAttachment) SetSharesClipboard(value bool) {
 // The name of the Virtio console port for the Spice guest agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSpiceAgentPortAttachment/spiceAgentPortName
-func (v_ VZSpiceAgentPortAttachment) SpiceAgentPortName() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("spiceAgentPortName"))
+func (v_ VZSpiceAgentPortAttachment) SpiceAgentPortName() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("spiceAgentPortName"))
 	return rv
 }
 

@@ -31,6 +31,8 @@ type _INFocusStatusCenterClass struct {
 type IINFocusStatusCenter interface {
 	objectivec.IObject
 	RequestAuthorizationWithCompletionHandler(completionHandler unsafe.Pointer)
+	AuthorizationStatus() INFocusStatusAuthorizationStatus
+	FocusStatus() INFocusStatus
 }
 
 // An object that maintains the user’s current focus status and your app’s ability to access it.

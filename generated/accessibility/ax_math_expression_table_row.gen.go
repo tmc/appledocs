@@ -29,6 +29,7 @@ type _AXMathExpressionTableRowClass struct {
 // An interface definition for the [AXMathExpressionTableRow] class.
 type IAXMathExpressionTableRow interface {
 	IAXMathExpression
+	Expressions() []AXMathExpression
 }
 
 //

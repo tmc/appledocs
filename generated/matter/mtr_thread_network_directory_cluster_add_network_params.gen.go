@@ -31,6 +31,12 @@ type _MTRThreadNetworkDirectoryClusterAddNetworkParamsClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterAddNetworkParams] class.
 type IMTRThreadNetworkDirectoryClusterAddNetworkParams interface {
 	objectivec.IObject
+	OperationalDataset() foundation.NSData
+	SetOperationalDataset(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

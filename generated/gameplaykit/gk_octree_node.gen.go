@@ -30,6 +30,7 @@ type _OctreeNodeClass struct {
 // An interface definition for the [OctreeNode] class.
 type IOctreeNode interface {
 	objectivec.IObject
+	Box() unsafe.Pointer
 }
 
 // A helper class for managing the objects you organize in an octree.

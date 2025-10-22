@@ -29,6 +29,8 @@ type _BatchDeleteResultClass struct {
 // An interface definition for the [BatchDeleteResult] class.
 type IBatchDeleteResult interface {
 	IPersistentStoreResult
+	Result() objc.ID
+	ResultType() BatchDeleteRequestResultType
 }
 
 // An object that describes the result of a batch delete request.

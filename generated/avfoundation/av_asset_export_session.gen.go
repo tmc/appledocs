@@ -34,6 +34,51 @@ type IAssetExportSession interface {
 	CancelExport()
 	DetermineCompatibleFileTypesWithCompletionHandler(handler unsafe.Pointer)
 	ExportAsynchronouslyWithCompletionHandler(handler unsafe.Pointer)
+	AllowsParallelizedExport() bool
+	SetAllowsParallelizedExport(value bool)
+	CanPerformMultiplePassesOverSourceMediaData() bool
+	SetCanPerformMultiplePassesOverSourceMediaData(value bool)
+	DirectoryForTemporaryFiles() foundation.URL
+	SetDirectoryForTemporaryFiles(value foundation.IURL)
+	FileLengthLimit() unsafe.Pointer
+	SetFileLengthLimit(value unsafe.Pointer)
+	OutputFileType() FileType
+	SetOutputFileType(value FileType)
+	OutputURL() foundation.URL
+	SetOutputURL(value foundation.IURL)
+	ShouldOptimizeForNetworkUse() bool
+	SetShouldOptimizeForNetworkUse(value bool)
+	SupportedFileTypes() []string
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
+	Asset() AVAsset
+	SetAsset(value IAVAsset)
+	AudioMix() AVAudioMix
+	SetAudioMix(value IAVAudioMix)
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm
+	SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm)
+	AudioTrackGroupHandling() unsafe.Pointer
+	SetAudioTrackGroupHandling(value unsafe.Pointer)
+	CustomVideoCompositor() unsafe.Pointer
+	SetCustomVideoCompositor(value unsafe.Pointer)
+	Error() Error
+	SetError(value IError)
+	EstimatedOutputFileLength() unsafe.Pointer
+	SetEstimatedOutputFileLength(value unsafe.Pointer)
+	MaxDuration() unsafe.Pointer
+	SetMaxDuration(value unsafe.Pointer)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
+	MetadataItemFilter() unsafe.Pointer
+	SetMetadataItemFilter(value unsafe.Pointer)
+	PresetName() string
+	SetPresetName(value string)
+	Progress() float32
+	SetProgress(value float32)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	VideoComposition() AVVideoComposition
+	SetVideoComposition(value IAVVideoComposition)
 }
 
 // An object that exports assets in a format that you specify using an export preset.

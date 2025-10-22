@@ -30,6 +30,9 @@ type _INSearchForMessagesIntentResponseClass struct {
 // An interface definition for the [INSearchForMessagesIntentResponse] class.
 type IINSearchForMessagesIntentResponse interface {
 	IINIntentResponse
+	Code() INSearchForMessagesIntentResponseCode
+	Messages() []INMessage
+	SetMessages(value []INMessage)
 }
 
 // Your app’s response to a search for messages intent.

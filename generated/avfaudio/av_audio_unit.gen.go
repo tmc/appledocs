@@ -31,6 +31,17 @@ type _AudioUnitClass struct {
 type IAudioUnit interface {
 	IAudioNode
 	LoadAudioUnitPresetAtURLError(url foundation.IURL, outError unsafe.Pointer) bool
+	AudioUnit() AudioUnit
+	AuAudioUnit() AudioUnit
+	SetAuAudioUnit(value IAudioUnit)
+	AudioComponentDescription() unsafe.Pointer
+	SetAudioComponentDescription(value unsafe.Pointer)
+	ManufacturerName() string
+	SetManufacturerName(value string)
+	Name() string
+	SetName(value string)
+	Version() int
+	SetVersion(value int)
 }
 
 // A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.
@@ -136,8 +147,8 @@ func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
 // The name of the manufacturer of the audio unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
-func (a_ AudioUnit) ManufacturerName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("manufacturerName"))
+func (a_ AudioUnit) ManufacturerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
 	return rv
 }
 
@@ -147,15 +158,15 @@ func (a_ AudioUnit) ManufacturerName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
-func (a_ AudioUnit) SetManufacturerName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), value)
+func (a_ AudioUnit) SetManufacturerName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), objc.String(value))
 }
 
 // The name of the audio unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
-func (a_ AudioUnit) Name() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
+func (a_ AudioUnit) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -165,8 +176,8 @@ func (a_ AudioUnit) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
-func (a_ AudioUnit) SetName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
+func (a_ AudioUnit) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The version number of the audio unit.

@@ -30,6 +30,49 @@ type _GCExtendedGamepadClass struct {
 type IGCExtendedGamepad interface {
 	IGCPhysicalInputProfile
 	SaveSnapshot() GCExtendedGamepadSnapshot
+	ButtonHome() GCControllerButtonInput
+	ButtonY() GCControllerButtonInput
+	Dpad() GCControllerDirectionPad
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
+	ExtendedGamepad() GCExtendedGamepad
+	SetExtendedGamepad(value IGCExtendedGamepad)
+	Gamepad() unsafe.Pointer
+	SetGamepad(value unsafe.Pointer)
+	MicroGamepad() GCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	PhysicalInputProfile() GCPhysicalInputProfile
+	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
+	ButtonA() GCControllerButtonInput
+	SetButtonA(value IGCControllerButtonInput)
+	ButtonB() GCControllerButtonInput
+	SetButtonB(value IGCControllerButtonInput)
+	ButtonMenu() GCControllerButtonInput
+	SetButtonMenu(value IGCControllerButtonInput)
+	ButtonOptions() GCControllerButtonInput
+	SetButtonOptions(value IGCControllerButtonInput)
+	ButtonX() GCControllerButtonInput
+	SetButtonX(value IGCControllerButtonInput)
+	Controller() GCController
+	SetController(value IGCController)
+	LeftShoulder() GCControllerButtonInput
+	SetLeftShoulder(value IGCControllerButtonInput)
+	LeftThumbstick() GCControllerDirectionPad
+	SetLeftThumbstick(value IGCControllerDirectionPad)
+	LeftThumbstickButton() GCControllerButtonInput
+	SetLeftThumbstickButton(value IGCControllerButtonInput)
+	LeftTrigger() GCControllerButtonInput
+	SetLeftTrigger(value IGCControllerButtonInput)
+	RightShoulder() GCControllerButtonInput
+	SetRightShoulder(value IGCControllerButtonInput)
+	RightThumbstick() GCControllerDirectionPad
+	SetRightThumbstick(value IGCControllerDirectionPad)
+	RightThumbstickButton() GCControllerButtonInput
+	SetRightThumbstickButton(value IGCControllerButtonInput)
+	RightTrigger() GCControllerButtonInput
+	SetRightTrigger(value IGCControllerButtonInput)
 }
 
 // A controller profile that supports the extended set of gamepad controls.

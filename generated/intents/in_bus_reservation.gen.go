@@ -29,6 +29,10 @@ type _INBusReservationClass struct {
 // An interface definition for the [INBusReservation] class.
 type IINBusReservation interface {
 	IINReservation
+	BusTrip() unsafe.Pointer
+	SetBusTrip(value unsafe.Pointer)
+	ReservedSeat() INSeat
+	SetReservedSeat(value INSeat)
 }
 
 // The information that describes a bus reservation.

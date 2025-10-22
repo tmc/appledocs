@@ -30,6 +30,15 @@ type _HKLiveWorkoutBuilderClass struct {
 // An interface definition for the [HKLiveWorkoutBuilder] class.
 type IHKLiveWorkoutBuilder interface {
 	IHKWorkoutBuilder
+	CurrentWorkoutActivity() HKWorkoutActivity
+	DataSource() HKLiveWorkoutDataSource
+	SetDataSource(value IHKLiveWorkoutDataSource)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ElapsedTime() foundation.TimeInterval
+	ShouldCollectWorkoutEvents() bool
+	SetShouldCollectWorkoutEvents(value bool)
+	WorkoutSession() HKWorkoutSession
 }
 
 // A builder object that constructs a workout incrementally based on live data from an active workout session.

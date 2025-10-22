@@ -29,6 +29,7 @@ type _MXDisplayMetricClass struct {
 // An interface definition for the [MXDisplayMetric] class.
 type IMXDisplayMetric interface {
 	IMXMetric
+	AveragePixelLuminance() unsafe.Pointer
 }
 
 // An object representing metrics about the power used to display the app on the screen.

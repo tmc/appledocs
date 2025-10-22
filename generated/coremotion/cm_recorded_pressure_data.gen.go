@@ -30,6 +30,8 @@ type _RecordedPressureDataClass struct {
 // An interface definition for the [RecordedPressureData] class.
 type IRecordedPressureData interface {
 	IAmbientPressureData
+	Identifier() uint64
+	StartDate() foundation.NSDate
 }
 
 // A recorded measurement of pressure data.

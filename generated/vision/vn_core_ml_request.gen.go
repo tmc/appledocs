@@ -30,6 +30,16 @@ type _CoreMLRequestClass struct {
 // An interface definition for the [CoreMLRequest] class.
 type ICoreMLRequest interface {
 	IImageBasedRequest
+	ImageCropAndScaleOption() ImageCropAndScaleOption
+	SetImageCropAndScaleOption(value IImageCropAndScaleOption)
+	Model() VNCoreMLModel
+	ModelDescription() coreml.ModelDescription
+	SetModelDescription(value coreml.IModelDescription)
+	PredictedFeatureName() string
+	SetPredictedFeatureName(value string)
+	VNCoreMLRequestRevision1() int
+	Confidence() Confidence
+	SetConfidence(value IConfidence)
 }
 
 // An image-analysis request that uses a Core ML model to process images.
@@ -154,8 +164,8 @@ func (c_ CoreMLRequest) SetModelDescription(value coreml.IModelDescription) {
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) PredictedFeatureName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ CoreMLRequest) PredictedFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
@@ -165,8 +175,8 @@ func (c_ CoreMLRequest) PredictedFeatureName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) SetPredictedFeatureName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
+func (c_ CoreMLRequest) SetPredictedFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
 }
 
 // A constant for specifying revision 1 of a Core ML request.

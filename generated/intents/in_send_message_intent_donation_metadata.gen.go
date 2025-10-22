@@ -29,6 +29,16 @@ type _INSendMessageIntentDonationMetadataClass struct {
 // An interface definition for the [INSendMessageIntentDonationMetadata] class.
 type IINSendMessageIntentDonationMetadata interface {
 	IINIntentDonationMetadata
+	ReplyToCurrentUser() bool
+	SetReplyToCurrentUser(value bool)
+	MentionsCurrentUser() bool
+	SetMentionsCurrentUser(value bool)
+	NotifyRecipientAnyway() bool
+	SetNotifyRecipientAnyway(value bool)
+	RecipientCount() uint
+	SetRecipientCount(value uint)
+	IsReplyToCurrentUser() bool
+	SetIsReplyToCurrentUser(value bool)
 }
 
 //

@@ -29,6 +29,10 @@ type _RatingCommandClass struct {
 // An interface definition for the [RatingCommand] class.
 type IRatingCommand interface {
 	IRemoteCommand
+	MaximumRating() float32
+	SetMaximumRating(value float32)
+	MinimumRating() float32
+	SetMinimumRating(value float32)
 }
 
 // An object that provides a detailed rating for the playing item.
@@ -82,8 +86,8 @@ func NewRatingCommand() RatingCommand {
 // The maximum rating for a command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/maximumRating
-func (r_ RatingCommand) MaximumRating() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("maximumRating"))
+func (r_ RatingCommand) MaximumRating() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("maximumRating"))
 	return rv
 }
 
@@ -93,15 +97,15 @@ func (r_ RatingCommand) MaximumRating() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/maximumRating
-func (r_ RatingCommand) SetMaximumRating(value unsafe.Pointer) {
+func (r_ RatingCommand) SetMaximumRating(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaximumRating:"), value)
 }
 
 // The minimum rating for a command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/minimumRating
-func (r_ RatingCommand) MinimumRating() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("minimumRating"))
+func (r_ RatingCommand) MinimumRating() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("minimumRating"))
 	return rv
 }
 
@@ -111,7 +115,7 @@ func (r_ RatingCommand) MinimumRating() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/minimumRating
-func (r_ RatingCommand) SetMinimumRating(value unsafe.Pointer) {
+func (r_ RatingCommand) SetMinimumRating(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinimumRating:"), value)
 }
 

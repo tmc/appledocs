@@ -31,6 +31,12 @@ type _MTRSoftwareDiagnosticsClusterSoftwareFaultEventClass struct {
 // An interface definition for the [MTRSoftwareDiagnosticsClusterSoftwareFaultEvent] class.
 type IMTRSoftwareDiagnosticsClusterSoftwareFaultEvent interface {
 	objectivec.IObject
+	FaultRecording() foundation.Data
+	SetFaultRecording(value foundation.IData)
+	Id() foundation.Number
+	SetId(value foundation.INumber)
+	Name() string
+	SetName(value string)
 }
 
 //
@@ -108,8 +114,8 @@ func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value foundation
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -117,8 +123,8 @@ func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

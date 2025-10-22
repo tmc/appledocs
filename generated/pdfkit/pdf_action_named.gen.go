@@ -29,6 +29,8 @@ type _PDFActionNamedClass struct {
 // An interface definition for the [PDFActionNamed] class.
 type IPDFActionNamed interface {
 	IPDFAction
+	Name() PDFActionNamedName
+	SetName(value IPDFActionNamedName)
 }
 
 // defines methods used to work with actions in PDF documents, some of which are named in the Adobe PDF Specification.

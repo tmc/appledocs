@@ -30,6 +30,8 @@ type _UNNotificationSoundClass struct {
 // An interface definition for the [UNNotificationSound] class.
 type IUNNotificationSound interface {
 	objectivec.IObject
+	Sound() UNNotificationSound
+	SetSound(value IUNNotificationSound)
 }
 
 // The sound played upon delivery of a notification.
@@ -102,7 +104,7 @@ func (uc _UNNotificationSoundClass) CriticalSoundNamed(name IUNNotificationSound
 // Creates a custom sound object for critical alerts with the volume you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/criticalSoundNamed(_:withAudioVolume:)
-func (uc _UNNotificationSoundClass) CriticalSoundNamedWithAudioVolume(name IUNNotificationSoundName, volume unsafe.Pointer) unsafe.Pointer {
+func (uc _UNNotificationSoundClass) CriticalSoundNamedWithAudioVolume(name IUNNotificationSoundName, volume float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("criticalSoundNamed:withAudioVolume:"), name, volume)
 	return rv
 }
@@ -110,7 +112,7 @@ func (uc _UNNotificationSoundClass) CriticalSoundNamedWithAudioVolume(name IUNNo
 // Creates a sound object that plays the default critical alert sound at the volume you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultCriticalSound(withAudioVolume:)
-func (uc _UNNotificationSoundClass) DefaultCriticalSoundWithAudioVolume(volume unsafe.Pointer) unsafe.Pointer {
+func (uc _UNNotificationSoundClass) DefaultCriticalSoundWithAudioVolume(volume float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultCriticalSoundWithAudioVolume:"), volume)
 	return rv
 }

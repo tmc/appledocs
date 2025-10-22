@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _ColorClass struct {
 // An interface definition for the [Color] class.
 type IColor interface {
 	objectivec.IObject
+	Alpha() float64
+	Blue() float64
+	ColorSpace() coregraphics.CGColorSpaceRef
+	Components() coregraphics.float64
+	Green() float64
+	NumberOfComponents() uintptr
+	Red() float64
+	StringRepresentation() string
 }
 
 // The Core Image class that defines a color object.
@@ -156,8 +163,8 @@ func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func NewColorWithString(representation appkit.string) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), representation)
+func NewColorWithString(representation string) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
 	return rv
 }
 
@@ -205,8 +212,8 @@ func (cc _ColorClass) ColorWithRedGreenBlue(red float64, green float64, blue flo
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func (cc _ColorClass) ColorWithString(representation appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), representation)
+func (cc _ColorClass) ColorWithString(representation string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), objc.String(representation))
 	return rv
 }
 
@@ -379,8 +386,8 @@ func (c_ Color) MagentaColor() CIColor {
 // Returns the color components of the color including alpha.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/numberOfComponents
-func (c_ Color) NumberOfComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("numberOfComponents"))
+func (c_ Color) NumberOfComponents() uintptr {
+	rv := objc.Send[uintptr](c_.ID, objc.Sel("numberOfComponents"))
 	return rv
 }
 
@@ -403,8 +410,8 @@ func (c_ Color) RedColor() CIColor {
 // Returns a formatted string with the unpremultiplied color and alpha components of the color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/stringRepresentation
-func (c_ Color) StringRepresentation() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("stringRepresentation"))
+func (c_ Color) StringRepresentation() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 

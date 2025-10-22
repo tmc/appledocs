@@ -29,6 +29,14 @@ type _HKGlassesLensSpecificationClass struct {
 // An interface definition for the [HKGlassesLensSpecification] class.
 type IHKGlassesLensSpecification interface {
 	IHKLensSpecification
+	FarPupillaryDistance() HKQuantity
+	SetFarPupillaryDistance(value IHKQuantity)
+	NearPupillaryDistance() HKQuantity
+	SetNearPupillaryDistance(value IHKQuantity)
+	Prism() HKVisionPrism
+	SetPrism(value IHKVisionPrism)
+	VertexDistance() HKQuantity
+	SetVertexDistance(value IHKQuantity)
 }
 
 // An object that contains the glasses prescription data for one eye.

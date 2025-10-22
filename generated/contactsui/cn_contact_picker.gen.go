@@ -34,6 +34,10 @@ type ICNContactPicker interface {
 	objectivec.IObject
 	Close()
 	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.IRect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayedKeys() []string
+	SetDisplayedKeys(value []string)
 }
 
 // A popover-based interface for selecting a contact.

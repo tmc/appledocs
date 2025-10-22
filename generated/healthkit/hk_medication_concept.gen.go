@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _HKMedicationConceptClass struct {
 // An interface definition for the [HKMedicationConcept] class.
 type IHKMedicationConcept interface {
 	objectivec.IObject
+	DisplayText() string
+	GeneralForm() HKMedicationGeneralForm
+	Identifier() HKHealthConceptIdentifier
+	RelatedCodings() unsafe.Pointer
 }
 
 // An object that describes a specific medication concept.
@@ -84,8 +87,8 @@ func NewHKMedicationConcept() HKMedicationConcept {
 // The display name for this medication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/displayText
-func (h_ HKMedicationConcept) DisplayText() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("displayText"))
+func (h_ HKMedicationConcept) DisplayText() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
 	return rv
 }
 

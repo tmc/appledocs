@@ -38,7 +38,7 @@ type IBluetoothObjectPushUIController interface {
 	GetTitle() foundation.String
 	IsTransferInProgress() bool
 	SetIconImage(image appkit.IImage)
-	SetTitle(windowTitle appkit.string)
+	SetTitle(windowTitle string)
 	Stop()
 }
 
@@ -145,8 +145,8 @@ func (b_ BluetoothObjectPushUIController) SetIconImage(image appkit.IImage) {
 // Sets the title of the panel when not run as a sheet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/setTitle(_:)
-func (b_ BluetoothObjectPushUIController) SetTitle(windowTitle appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), windowTitle)
+func (b_ BluetoothObjectPushUIController) SetTitle(windowTitle string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(windowTitle))
 }
 
 // Stops the transfer UI

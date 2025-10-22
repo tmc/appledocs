@@ -31,6 +31,10 @@ type _MTRDishwasherModeClusterModeTagStructClass struct {
 // An interface definition for the [MTRDishwasherModeClusterModeTagStruct] class.
 type IMTRDishwasherModeClusterModeTagStruct interface {
 	objectivec.IObject
+	MfgCode() foundation.Number
+	SetMfgCode(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

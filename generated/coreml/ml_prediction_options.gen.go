@@ -30,6 +30,10 @@ type _PredictionOptionsClass struct {
 // An interface definition for the [PredictionOptions] class.
 type IPredictionOptions interface {
 	objectivec.IObject
+	OutputBackings() string
+	SetOutputBackings(value string)
+	UsesCPUOnly() bool
+	SetUsesCPUOnly(value bool)
 }
 
 // The options available when making a prediction.
@@ -81,8 +85,8 @@ func NewPredictionOptions() PredictionOptions {
 // A dictionary of feature names and client-allocated buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-func (p_ PredictionOptions) OutputBackings() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("outputBackings"))
+func (p_ PredictionOptions) OutputBackings() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("outputBackings"))
 	return rv
 }
 
@@ -92,8 +96,8 @@ func (p_ PredictionOptions) OutputBackings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-func (p_ PredictionOptions) SetOutputBackings(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), value)
+func (p_ PredictionOptions) SetOutputBackings(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether a prediction is computed using only the CPU.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -32,6 +31,13 @@ type _PHAssetCollectionClass struct {
 // An interface definition for the [PHAssetCollection] class.
 type IPHAssetCollection interface {
 	IPHCollection
+	ApproximateLocation() corelocation.Location
+	AssetCollectionSubtype() PHAssetCollectionSubtype
+	AssetCollectionType() PHAssetCollectionType
+	EndDate() foundation.NSDate
+	EstimatedAssetCount() uint
+	LocalizedLocationNames() []string
+	StartDate() foundation.NSDate
 }
 
 // A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.
@@ -135,16 +141,16 @@ func (pc _PHAssetCollectionClass) FetchMomentsWithOptions(options PHFetchOptions
 // Creates a temporary asset collection containing the specified assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/transientAssetCollection(with:title:)
-func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetsTitle(assets []PHAsset, title appkit.string) PHAssetCollection {
-	rv := objc.Send[PHAssetCollection](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssets:title:"), assets, title)
+func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetsTitle(assets []PHAsset, title string) PHAssetCollection {
+	rv := objc.Send[PHAssetCollection](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssets:title:"), assets, objc.String(title))
 	return rv
 }
 
 // Creates a temporary asset collection containing the assets from the specified fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/transientAssetCollection(withAssetFetchResult:title:)
-func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetFetchResultTitle(fetchResult unsafe.Pointer, title appkit.string) PHAssetCollection {
-	rv := objc.Send[PHAssetCollection](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssetFetchResult:title:"), fetchResult, title)
+func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetFetchResultTitle(fetchResult unsafe.Pointer, title string) PHAssetCollection {
+	rv := objc.Send[PHAssetCollection](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssetFetchResult:title:"), fetchResult, objc.String(title))
 	return rv
 }
 

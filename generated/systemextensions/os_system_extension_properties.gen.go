@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,18 @@ type _OSSystemExtensionPropertiesClass struct {
 // An interface definition for the [OSSystemExtensionProperties] class.
 type IOSSystemExtensionProperties interface {
 	objectivec.IObject
+	BundleVersion() string
+	IsAwaitingUserApproval() bool
+	BundleIdentifier() string
+	SetBundleIdentifier(value string)
+	BundleShortVersion() string
+	SetBundleShortVersion(value string)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsUninstalling() bool
+	SetIsUninstalling(value bool)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // Properties that identify a specific version of a system extension.
@@ -83,8 +94,8 @@ func NewOSSystemExtensionProperties() OSSystemExtensionProperties {
 // The bundle version of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleVersion
-func (o_ OSSystemExtensionProperties) BundleVersion() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleVersion"))
+func (o_ OSSystemExtensionProperties) BundleVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
 	return rv
 }
 
@@ -98,8 +109,8 @@ func (o_ OSSystemExtensionProperties) IsAwaitingUserApproval() bool {
 // The bundle identifier of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleIdentifier"))
+func (o_ OSSystemExtensionProperties) BundleIdentifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -109,15 +120,15 @@ func (o_ OSSystemExtensionProperties) BundleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), value)
+func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
 // The bundle short version string of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleshortversion
-func (o_ OSSystemExtensionProperties) BundleShortVersion() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleShortVersion"))
+func (o_ OSSystemExtensionProperties) BundleShortVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
 }
 
@@ -127,8 +138,8 @@ func (o_ OSSystemExtensionProperties) BundleShortVersion() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleshortversion
-func (o_ OSSystemExtensionProperties) SetBundleShortVersion(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), value)
+func (o_ OSSystemExtensionProperties) SetBundleShortVersion(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), objc.String(value))
 }
 
 //

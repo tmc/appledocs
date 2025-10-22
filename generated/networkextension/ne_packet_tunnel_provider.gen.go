@@ -36,6 +36,8 @@ type INEPacketTunnelProvider interface {
 	CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession
 	StartTunnelWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
 	StopTunnelWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer)
+	PacketFlow() NEPacketTunnelFlow
+	VirtualInterface() unsafe.Pointer
 }
 
 // The principal class for a packet tunnel provider app extension.

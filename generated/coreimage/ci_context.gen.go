@@ -73,6 +73,10 @@ type IContext interface {
 	WriteOpenEXRRepresentationOfImageToURLOptionsError(image ICIImage, url foundation.IURL, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
 	WritePNGRepresentationOfImageToURLFormatColorSpaceOptionsError(image ICIImage, url foundation.IURL, format Format, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
 	WriteTIFFRepresentationOfImageToURLFormatColorSpaceOptionsError(image ICIImage, url foundation.IURL, format Format, colorSpace coregraphics.CGColorSpaceRef, options unsafe.Pointer, errorPtr unsafe.Pointer) bool
+	WorkingColorSpace() coregraphics.CGColorSpaceRef
+	WorkingFormat() Format
+	AlphaMode() RenderDestinationAlphaMode
+	SetAlphaMode(value RenderDestinationAlphaMode)
 }
 
 // The Core Image context class provides an evaluation context for Core Image processing with Metal, OpenGL, or OpenCL.

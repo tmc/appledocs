@@ -31,6 +31,10 @@ type _SVGFDefaultTextureAllocatorClass struct {
 type ISVGFDefaultTextureAllocator interface {
 	objectivec.IObject
 	ReturnTexture(texture objectivec.IObject)
+	AllocatedTextureCount() int
+	SetAllocatedTextureCount(value int)
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
 }
 
 //

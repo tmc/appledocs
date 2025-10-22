@@ -33,7 +33,13 @@ type INISession interface {
 	Invalidate()
 	Pause()
 	RunWithConfiguration(configuration INIConfiguration)
-	SetARSession(session unsafe.Pointer)
+	SetARSession(session ISession)
+	Configuration() NIConfiguration
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DelegateQueue() unsafe.Pointer
+	SetDelegateQueue(value unsafe.Pointer)
+	DiscoveryToken() NIDiscoveryToken
 }
 
 // An object that identifies a unique connection between two peer devices.
@@ -122,7 +128,7 @@ func (n_ NISession) RunWithConfiguration(configuration INIConfiguration) {
 // Provides the framework with an existing AR session to use for Camera Assistance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/setARSession(_:)
-func (n_ NISession) SetARSession(session unsafe.Pointer) {
+func (n_ NISession) SetARSession(session ISession) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setARSession:"), session)
 }
 

@@ -33,6 +33,40 @@ type _ICCameraItemClass struct {
 // An interface definition for the [ICCameraItem] class.
 type IICCameraItem interface {
 	objectivec.IObject
+	Raw() bool
+	ModificationDate() foundation.NSDate
+	Thumbnail() coregraphics.CGImageRef
+	UTI() string
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	Device() ICCameraDevice
+	SetDevice(value ICCameraDevice)
+	FileSystemPath() string
+	SetFileSystemPath(value string)
+	IsInTemporaryStore() bool
+	SetIsInTemporaryStore(value bool)
+	IsLocked() bool
+	SetIsLocked(value bool)
+	IsRaw() bool
+	SetIsRaw(value bool)
+	LargeThumbnailIfAvailable() appkit.Image
+	SetLargeThumbnailIfAvailable(value appkit.IImage)
+	Metadata() unsafe.Pointer
+	SetMetadata(value unsafe.Pointer)
+	MetadataIfAvailable() string
+	SetMetadataIfAvailable(value string)
+	Name() string
+	SetName(value string)
+	ParentFolder() ICCameraFolder
+	SetParentFolder(value ICCameraFolder)
+	PtpObjectHandle() unsafe.Pointer
+	SetPtpObjectHandle(value unsafe.Pointer)
+	ThumbnailIfAvailable() appkit.Image
+	SetThumbnailIfAvailable(value appkit.IImage)
+	UserData() foundation.MutableDictionary
+	SetUserData(value foundation.IMutableDictionary)
+	WasAddedAfterContentCatalogCompleted() bool
+	SetWasAddedAfterContentCatalogCompleted(value bool)
 }
 
 // An abstract class that represents a camera item.
@@ -110,8 +144,8 @@ func (i_ ICCameraItem) Thumbnail() coregraphics.CGImageRef {
 // The item’s uniform type identifier (UTI) string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/uti
-func (i_ ICCameraItem) UTI() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("UTI"))
+func (i_ ICCameraItem) UTI() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("UTI"))
 	return rv
 }
 
@@ -154,8 +188,8 @@ func (i_ ICCameraItem) SetDevice(value ICCameraDevice) {
 // The item’s file system path on a camera using the mass storage transport type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/filesystempath
-func (i_ ICCameraItem) FileSystemPath() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("fileSystemPath"))
+func (i_ ICCameraItem) FileSystemPath() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("fileSystemPath"))
 	return rv
 }
 
@@ -165,8 +199,8 @@ func (i_ ICCameraItem) FileSystemPath() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/filesystempath
-func (i_ ICCameraItem) SetFileSystemPath(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setFileSystemPath:"), value)
+func (i_ ICCameraItem) SetFileSystemPath(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFileSystemPath:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether this item is in a temporary store.
@@ -262,8 +296,8 @@ func (i_ ICCameraItem) SetMetadata(value unsafe.Pointer) {
 // The item’s metadata if it is readily available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadataifavailable
-func (i_ ICCameraItem) MetadataIfAvailable() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("metadataIfAvailable"))
+func (i_ ICCameraItem) MetadataIfAvailable() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("metadataIfAvailable"))
 	return rv
 }
 
@@ -273,15 +307,15 @@ func (i_ ICCameraItem) MetadataIfAvailable() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadataifavailable
-func (i_ ICCameraItem) SetMetadataIfAvailable(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMetadataIfAvailable:"), value)
+func (i_ ICCameraItem) SetMetadataIfAvailable(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMetadataIfAvailable:"), objc.String(value))
 }
 
 // The item’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/name
-func (i_ ICCameraItem) Name() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("name"))
+func (i_ ICCameraItem) Name() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -291,8 +325,8 @@ func (i_ ICCameraItem) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/name
-func (i_ ICCameraItem) SetName(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setName:"), value)
+func (i_ ICCameraItem) SetName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // This item’s parent folder.

@@ -31,6 +31,18 @@ type _MTRDoorLockClusterGetYearDayScheduleResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetYearDayScheduleResponseParams] class.
 type IMTRDoorLockClusterGetYearDayScheduleResponseParams interface {
 	objectivec.IObject
+	LocalEndTime() foundation.Number
+	SetLocalEndTime(value foundation.INumber)
+	LocalStartTime() foundation.Number
+	SetLocalStartTime(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
+	YearDayIndex() foundation.Number
+	SetYearDayIndex(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,8 @@ type _MTRDescriptorClusterDeviceTypeClass struct {
 // An interface definition for the [MTRDescriptorClusterDeviceType] class.
 type IMTRDescriptorClusterDeviceType interface {
 	IMTRDescriptorClusterDeviceTypeStruct
+	Revision() foundation.Number
+	SetRevision(value foundation.INumber)
 }
 
 //

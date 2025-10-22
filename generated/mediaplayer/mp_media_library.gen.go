@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,10 +31,11 @@ type _MediaLibraryClass struct {
 // An interface definition for the [MediaLibrary] class.
 type IMediaLibrary interface {
 	objectivec.IObject
-	AddItemWithProductIDCompletionHandler(productID appkit.string, completionHandler unsafe.Pointer)
+	AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer)
 	BeginGeneratingLibraryChangeNotifications()
 	EndGeneratingLibraryChangeNotifications()
 	GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid foundation.IUUID, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer)
+	LastModifiedDate() foundation.NSDate
 }
 
 // An object that represents the state of synced media items on a device.
@@ -112,8 +112,8 @@ func (mc _MediaLibraryClass) RequestAuthorization(completionHandler unsafe.Point
 // Adds the designated item to the user’s music library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/addItem(withProductID:completionHandler:)
-func (m_ MediaLibrary) AddItemWithProductIDCompletionHandler(productID appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), productID, completionHandler)
+func (m_ MediaLibrary) AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), objc.String(productID), completionHandler)
 }
 
 // Asks the media library to turn on notifications for whenever the library changes.

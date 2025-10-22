@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,14 +31,15 @@ type _ACAccountStoreClass struct {
 // An interface definition for the [ACAccountStore] class.
 type IACAccountStore interface {
 	objectivec.IObject
-	AccountWithIdentifier(identifier appkit.string) ACAccount
-	AccountTypeWithAccountTypeIdentifier(typeIdentifier appkit.string) ACAccountType
+	AccountWithIdentifier(identifier string) ACAccount
+	AccountTypeWithAccountTypeIdentifier(typeIdentifier string) ACAccountType
 	AccountsWithAccountType(accountType ACAccountType) foundation.Array
 	RemoveAccountWithCompletionHandler(account IACAccount, completionHandler unsafe.Pointer)
 	RenewCredentialsForAccountCompletion(account IACAccount, completionHandler unsafe.Pointer)
 	RequestAccessToAccountsWithTypeOptionsCompletion(accountType ACAccountType, options objectivec.IObject, completion unsafe.Pointer)
 	RequestAccessToAccountsWithTypeWithCompletionHandler(accountType ACAccountType, handler unsafe.Pointer)
 	SaveAccountWithCompletionHandler(account IACAccount, completionHandler unsafe.Pointer)
+	Accounts() objc.ID
 }
 
 // The object you use to request, manage, and store the user’s account information.
@@ -93,16 +93,16 @@ func NewACAccountStore() ACAccountStore {
 // Returns the account with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/account(withIdentifier:)
-func (a_ ACAccountStore) AccountWithIdentifier(identifier appkit.string) ACAccount {
-	rv := objc.Send[ACAccount](a_.ID, objc.Sel("accountWithIdentifier:"), identifier)
+func (a_ ACAccountStore) AccountWithIdentifier(identifier string) ACAccount {
+	rv := objc.Send[ACAccount](a_.ID, objc.Sel("accountWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
 // Returns an account type that matches the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accountType(withAccountTypeIdentifier:)
-func (a_ ACAccountStore) AccountTypeWithAccountTypeIdentifier(typeIdentifier appkit.string) ACAccountType {
-	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountTypeWithAccountTypeIdentifier:"), typeIdentifier)
+func (a_ ACAccountStore) AccountTypeWithAccountTypeIdentifier(typeIdentifier string) ACAccountType {
+	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountTypeWithAccountTypeIdentifier:"), objc.String(typeIdentifier))
 	return rv
 }
 

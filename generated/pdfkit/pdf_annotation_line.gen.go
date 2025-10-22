@@ -30,6 +30,12 @@ type _PDFAnnotationLineClass struct {
 // An interface definition for the [PDFAnnotationLine] class.
 type IPDFAnnotationLine interface {
 	IPDFAnnotation
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	Style() PDFBorderStyle
+	SetStyle(value PDFBorderStyle)
 }
 
 // A object displays a single line on a page.

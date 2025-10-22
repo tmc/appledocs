@@ -31,6 +31,14 @@ type _MTRServerEndpointClass struct {
 // An interface definition for the [MTRServerEndpoint] class.
 type IMTRServerEndpoint interface {
 	objectivec.IObject
+	AccessGrants() MTRAccessGrant
+	SetAccessGrants(value IMTRAccessGrant)
+	DeviceTypes() MTRDeviceTypeRevision
+	SetDeviceTypes(value IMTRDeviceTypeRevision)
+	EndpointID() foundation.Number
+	SetEndpointID(value foundation.INumber)
+	ServerClusters() MTRServerCluster
+	SetServerClusters(value IMTRServerCluster)
 }
 
 //

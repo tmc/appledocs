@@ -31,6 +31,29 @@ type _AudioSessionPortDescriptionClass struct {
 // An interface definition for the [AudioSessionPortDescription] class.
 type IAudioSessionPortDescription interface {
 	objectivec.IObject
+	PreferredDataSource() AVAudioSessionDataSourceDescription
+	AvailableInputs() AVAudioSessionPortDescription
+	SetAvailableInputs(value IAVAudioSessionPortDescription)
+	CurrentRoute() AVAudioSessionRouteDescription
+	SetCurrentRoute(value IAVAudioSessionRouteDescription)
+	BluetoothMicrophoneExtension() AVAudioSessionPortExtensionBluetoothMicrophone
+	SetBluetoothMicrophoneExtension(value IAVAudioSessionPortExtensionBluetoothMicrophone)
+	Channels() unsafe.Pointer
+	SetChannels(value unsafe.Pointer)
+	DataSources() AVAudioSessionDataSourceDescription
+	SetDataSources(value IAVAudioSessionDataSourceDescription)
+	HasHardwareVoiceCallProcessing() bool
+	SetHasHardwareVoiceCallProcessing(value bool)
+	IsSpatialAudioEnabled() bool
+	SetIsSpatialAudioEnabled(value bool)
+	PortName() string
+	SetPortName(value string)
+	PortType() foundation.Port
+	SetPortType(value foundation.IPort)
+	SelectedDataSource() AVAudioSessionDataSourceDescription
+	SetSelectedDataSource(value IAVAudioSessionDataSourceDescription)
+	Uid() string
+	SetUid(value string)
 }
 
 // Information about the capabilities of the port and the hardware channels it supports.
@@ -218,8 +241,8 @@ func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool) {
 // A descriptive name for the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-func (a_ AudioSessionPortDescription) PortName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("portName"))
+func (a_ AudioSessionPortDescription) PortName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("portName"))
 	return rv
 }
 
@@ -229,8 +252,8 @@ func (a_ AudioSessionPortDescription) PortName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-func (a_ AudioSessionPortDescription) SetPortName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), value)
+func (a_ AudioSessionPortDescription) SetPortName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), objc.String(value))
 }
 
 // The type of the port.
@@ -272,8 +295,8 @@ func (a_ AudioSessionPortDescription) SetSelectedDataSource(value IAVAudioSessio
 // A system-assigned unique identifier (UID) for the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-func (a_ AudioSessionPortDescription) Uid() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("uid"))
+func (a_ AudioSessionPortDescription) Uid() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("uid"))
 	return rv
 }
 
@@ -283,8 +306,8 @@ func (a_ AudioSessionPortDescription) Uid() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-func (a_ AudioSessionPortDescription) SetUid(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), value)
+func (a_ AudioSessionPortDescription) SetUid(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), objc.String(value))
 }
 
 

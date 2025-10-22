@@ -30,6 +30,12 @@ type _CircleClass struct {
 // An interface definition for the [Circle] class.
 type ICircle interface {
 	objectivec.IObject
+	Center() VNPoint
+	SetCenter(value IVNPoint)
+	Diameter() float64
+	SetDiameter(value float64)
+	Radius() float64
+	SetRadius(value float64)
 }
 
 // An immutable 2D circle represented by its center point and radius.
@@ -99,8 +105,8 @@ func (c_ Circle) SetCenter(value IVNPoint) {
 // The circle’s diameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/diameter
-func (c_ Circle) Diameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("diameter"))
+func (c_ Circle) Diameter() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("diameter"))
 	return rv
 }
 
@@ -110,15 +116,15 @@ func (c_ Circle) Diameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/diameter
-func (c_ Circle) SetDiameter(value unsafe.Pointer) {
+func (c_ Circle) SetDiameter(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiameter:"), value)
 }
 
 // The circle’s radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
-func (c_ Circle) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
+func (c_ Circle) Radius() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("radius"))
 	return rv
 }
 
@@ -128,7 +134,7 @@ func (c_ Circle) Radius() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
-func (c_ Circle) SetRadius(value unsafe.Pointer) {
+func (c_ Circle) SetRadius(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }
 

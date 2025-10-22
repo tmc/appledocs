@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MTRTimeSynchronizationClusterSetDefaultNTPParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetDefaultNTPParams] class.
 type IMTRTimeSynchronizationClusterSetDefaultNTPParams interface {
 	objectivec.IObject
+	DefaultNTP() string
+	SetDefaultNTP(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -79,8 +84,8 @@ func NewMTRTimeSynchronizationClusterSetDefaultNTPParams() MTRTimeSynchronizatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/defaultNTP
-func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("defaultNTP"))
+func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("defaultNTP"))
 	return rv
 }
 
@@ -88,8 +93,8 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() appkit.s
 // SetDefaultNTP sets the value of the defaultNTP property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/defaultNTP
-func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetDefaultNTP(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNTP:"), value)
+func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetDefaultNTP(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNTP:"), objc.String(value))
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.

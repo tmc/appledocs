@@ -29,6 +29,9 @@ type _GenerateForegroundInstanceMaskRequestClass struct {
 // An interface definition for the [GenerateForegroundInstanceMaskRequest] class.
 type IGenerateForegroundInstanceMaskRequest interface {
 	IImageBasedRequest
+	Results() VNInstanceMaskObservation
+	SetResults(value IVNInstanceMaskObservation)
+	VNGenerateForegroundInstanceMaskRequestRevision1() int
 }
 
 // A request that generates an instance mask of noticable objects to separate from the background.

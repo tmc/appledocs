@@ -29,6 +29,9 @@ type _MXCPUExceptionDiagnosticClass struct {
 // An interface definition for the [MXCPUExceptionDiagnostic] class.
 type IMXCPUExceptionDiagnostic interface {
 	IMXDiagnostic
+	CallStackTree() MXCallStackTree
+	TotalCPUTime() unsafe.Pointer
+	TotalSampledTime() unsafe.Pointer
 }
 
 // An object representing a diagnostic report for a fatal or nonfatal CPU exception.

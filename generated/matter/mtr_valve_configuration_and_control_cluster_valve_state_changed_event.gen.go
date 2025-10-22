@@ -31,6 +31,10 @@ type _MTRValveConfigurationAndControlClusterValveStateChangedEventClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterValveStateChangedEvent] class.
 type IMTRValveConfigurationAndControlClusterValveStateChangedEvent interface {
 	objectivec.IObject
+	ValveLevel() foundation.Number
+	SetValveLevel(value foundation.INumber)
+	ValveState() foundation.Number
+	SetValveState(value foundation.INumber)
 }
 
 //

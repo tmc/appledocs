@@ -60,6 +60,48 @@ type IURL interface {
 	StartAccessingSecurityScopedResource() bool
 	StopAccessingSecurityScopedResource()
 	WriteToPasteboard(pasteBoard appkit.IPasteboard)
+	AbsoluteString() string
+	AbsoluteURL() URL
+	BaseURL() URL
+	DataRepresentation() NSData
+	URLByDeletingLastPathComponent() URL
+	URLByDeletingPathExtension() URL
+	FilePathURL() URL
+	FileSystemRepresentation() unsafe.Pointer
+	Fragment() string
+	HasDirectoryPath() bool
+	Host() string
+	FileURL() bool
+	LastPathComponent() string
+	ParameterString() string
+	Password() string
+	Path() string
+	PathComponents() []string
+	PathExtension() string
+	Port() Number
+	Query() string
+	RelativePath() string
+	RelativeString() string
+	URLByResolvingSymlinksInPath() URL
+	ResourceSpecifier() string
+	Scheme() string
+	StandardizedURL() URL
+	URLByStandardizingPath() URL
+	User() string
+	CustomPlaygroundQuickLook() unsafe.Pointer
+	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
+	DeletingLastPathComponent() URL
+	SetDeletingLastPathComponent(value IURL)
+	DeletingPathExtension() URL
+	SetDeletingPathExtension(value IURL)
+	IsFileURL() bool
+	SetIsFileURL(value bool)
+	ResolvingSymlinksInPath() URL
+	SetResolvingSymlinksInPath(value IURL)
+	Standardized() URL
+	SetStandardized(value IURL)
+	StandardizingPath() URL
+	SetStandardizingPath(value IURL)
 }
 
 // An object that represents the location of a resource, such as an item on a remote server or the path to a local file.

@@ -31,6 +31,12 @@ type _INDateComponentsRangeClass struct {
 // An interface definition for the [INDateComponentsRange] class.
 type IINDateComponentsRange interface {
 	objectivec.IObject
+	EndDateComponents() foundation.DateComponents
+	SetEndDateComponents(value foundation.IDateComponents)
+	RecurrenceRule() unsafe.Pointer
+	SetRecurrenceRule(value unsafe.Pointer)
+	StartDateComponents() foundation.DateComponents
+	SetStartDateComponents(value foundation.IDateComponents)
 }
 
 // A span of time.

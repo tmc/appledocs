@@ -29,6 +29,10 @@ type _GraphTensorClass struct {
 // An interface definition for the [GraphTensor] class.
 type IGraphTensor interface {
 	IGraphObject
+	DataType() unsafe.Pointer
+	Shape() unsafe.Pointer
+	Operation() MPSGraphOperation
+	SetOperation(value IMPSGraphOperation)
 }
 
 // The symbolic representation of a compute data type.

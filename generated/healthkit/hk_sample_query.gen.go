@@ -30,6 +30,11 @@ type _HKSampleQueryClass struct {
 // An interface definition for the [HKSampleQuery] class.
 type IHKSampleQuery interface {
 	IHKQuery
+	HKObjectQueryNoLimit() int
+	Limit() int
+	SetLimit(value int)
+	SortDescriptors() foundation.SortDescriptor
+	SetSortDescriptors(value foundation.ISortDescriptor)
 }
 
 // A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.

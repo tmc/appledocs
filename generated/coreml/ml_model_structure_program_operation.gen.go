@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _ModelStructureProgramOperationClass struct {
 // An interface definition for the [ModelStructureProgramOperation] class.
 type IModelStructureProgramOperation interface {
 	objectivec.IObject
+	Blocks() []ModelStructureProgramBlock
+	Inputs() unsafe.Pointer
+	OperatorName() string
+	Outputs() []ModelStructureProgramNamedValueType
 }
 
 // A class representing an Operation in a Program.
@@ -98,8 +101,8 @@ func (m_ ModelStructureProgramOperation) Inputs() unsafe.Pointer {
 // The name of the operator, e.g., “conv”, “pool”, “softmax”, etc.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/operatorName
-func (m_ ModelStructureProgramOperation) OperatorName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("operatorName"))
+func (m_ ModelStructureProgramOperation) OperatorName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 

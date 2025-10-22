@@ -31,6 +31,18 @@ type _MTRReadParamsClass struct {
 // An interface definition for the [MTRReadParams] class.
 type IMTRReadParams interface {
 	objectivec.IObject
+	FabricFiltered() foundation.Number
+	SetFabricFiltered(value foundation.INumber)
+	MinEventNumber() foundation.Number
+	SetMinEventNumber(value foundation.INumber)
+	AssumeUnknownAttributesReportable() bool
+	SetAssumeUnknownAttributesReportable(value bool)
+	FilterByFabric() bool
+	SetFilterByFabric(value bool)
+	ShouldAssumeUnknownAttributesReportable() bool
+	SetShouldAssumeUnknownAttributesReportable(value bool)
+	ShouldFilterByFabric() bool
+	SetShouldFilterByFabric(value bool)
 }
 
 //

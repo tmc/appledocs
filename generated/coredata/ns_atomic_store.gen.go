@@ -30,6 +30,14 @@ type _AtomicStoreClass struct {
 type IAtomicStore interface {
 	IPersistentStore
 	Save(error_ unsafe.Pointer) bool
+	Identifier() string
+	SetIdentifier(value string)
+	Metadata() string
+	SetMetadata(value string)
+	Type() string
+	SetType(value string)
+	NSStoreTypeKey() string
+	NSStoreUUIDKey() string
 }
 
 // An abstract superclass that you subclass to create a Core Data atomic store.
@@ -93,8 +101,8 @@ func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool {
 // The unique identifier for the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (a_ AtomicStore) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
+func (a_ AtomicStore) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -104,15 +112,15 @@ func (a_ AtomicStore) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (a_ AtomicStore) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
+func (a_ AtomicStore) SetIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The metadata for the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/metadata
-func (a_ AtomicStore) Metadata() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("metadata"))
+func (a_ AtomicStore) Metadata() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -122,15 +130,15 @@ func (a_ AtomicStore) Metadata() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/metadata
-func (a_ AtomicStore) SetMetadata(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
+func (a_ AtomicStore) SetMetadata(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
 // The type string of the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/type
-func (a_ AtomicStore) Type() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("type"))
+func (a_ AtomicStore) Type() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -140,23 +148,23 @@ func (a_ AtomicStore) Type() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/type
-func (a_ AtomicStore) SetType(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
+func (a_ AtomicStore) SetType(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), objc.String(value))
 }
 
 // A key that identifies the store type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoretypekey
-func (a_ AtomicStore) NSStoreTypeKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("NSStoreTypeKey"))
+func (a_ AtomicStore) NSStoreTypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("NSStoreTypeKey"))
 	return rv
 }
 
 // A key that provides the store’s UUID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoreuuidkey
-func (a_ AtomicStore) NSStoreUUIDKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("NSStoreUUIDKey"))
+func (a_ AtomicStore) NSStoreUUIDKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("NSStoreUUIDKey"))
 	return rv
 }
 

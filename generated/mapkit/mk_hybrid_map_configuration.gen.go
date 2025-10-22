@@ -29,6 +29,16 @@ type _MKHybridMapConfigurationClass struct {
 // An interface definition for the [MKHybridMapConfiguration] class.
 type IMKHybridMapConfiguration interface {
 	IMKMapConfiguration
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	ShowsTraffic() bool
+	SetShowsTraffic(value bool)
+	PitchButtonVisibility() unsafe.Pointer
+	SetPitchButtonVisibility(value unsafe.Pointer)
+	PreferredConfiguration() MKMapConfiguration
+	SetPreferredConfiguration(value IMKMapConfiguration)
+	ShowsUserTrackingButton() bool
+	SetShowsUserTrackingButton(value bool)
 }
 
 // The class that represents a satellite image of the area with road and road name information layers on top.

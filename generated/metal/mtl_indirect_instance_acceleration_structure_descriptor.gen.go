@@ -29,6 +29,36 @@ type _IndirectInstanceAccelerationStructureDescriptorClass struct {
 // An interface definition for the [IndirectInstanceAccelerationStructureDescriptor] class.
 type IIndirectInstanceAccelerationStructureDescriptor interface {
 	IAccelerationStructureDescriptor
+	InstanceCountBuffer() unsafe.Pointer
+	SetInstanceCountBuffer(value unsafe.Pointer)
+	InstanceCountBufferOffset() int
+	SetInstanceCountBufferOffset(value int)
+	InstanceDescriptorBuffer() unsafe.Pointer
+	SetInstanceDescriptorBuffer(value unsafe.Pointer)
+	InstanceDescriptorBufferOffset() int
+	SetInstanceDescriptorBufferOffset(value int)
+	InstanceDescriptorStride() int
+	SetInstanceDescriptorStride(value int)
+	InstanceDescriptorType() unsafe.Pointer
+	SetInstanceDescriptorType(value unsafe.Pointer)
+	InstanceTransformationMatrixLayout() unsafe.Pointer
+	SetInstanceTransformationMatrixLayout(value unsafe.Pointer)
+	MaxInstanceCount() int
+	SetMaxInstanceCount(value int)
+	MaxMotionTransformCount() int
+	SetMaxMotionTransformCount(value int)
+	MotionTransformBuffer() unsafe.Pointer
+	SetMotionTransformBuffer(value unsafe.Pointer)
+	MotionTransformBufferOffset() int
+	SetMotionTransformBufferOffset(value int)
+	MotionTransformCountBuffer() unsafe.Pointer
+	SetMotionTransformCountBuffer(value unsafe.Pointer)
+	MotionTransformCountBufferOffset() int
+	SetMotionTransformCountBufferOffset(value int)
+	MotionTransformStride() int
+	SetMotionTransformStride(value int)
+	MotionTransformType() TransformType
+	SetMotionTransformType(value TransformType)
 }
 
 // A description of an acceleration structure that Metal derives from instances of primitive acceleration structures that the GPU can populate.

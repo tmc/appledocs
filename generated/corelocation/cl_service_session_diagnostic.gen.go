@@ -30,6 +30,14 @@ type _ServiceSessionDiagnosticClass struct {
 // An interface definition for the [ServiceSessionDiagnostic] class.
 type IServiceSessionDiagnostic interface {
 	objectivec.IObject
+	AlwaysAuthorizationDenied() bool
+	AuthorizationDenied() bool
+	AuthorizationDeniedGlobally() bool
+	AuthorizationRequestInProgress() bool
+	AuthorizationRestricted() bool
+	FullAccuracyDenied() bool
+	InsufficientlyInUse() bool
+	ServiceSessionRequired() bool
 }
 
 //

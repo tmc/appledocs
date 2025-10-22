@@ -31,6 +31,11 @@ type _WaterSubmersionMeasurementClass struct {
 // An interface definition for the [WaterSubmersionMeasurement] class.
 type IWaterSubmersionMeasurement interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	Depth() unsafe.Pointer
+	Pressure() unsafe.Pointer
+	SubmersionState() WaterSubmersionDepthState
+	SurfacePressure() unsafe.Pointer
 }
 
 // An update that contains data about the pressure and depth.

@@ -15,14 +15,14 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_notify_check func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_notify_get_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_notify_is_valid_token func(unsafe.Pointer) unsafe.Pointer
+	_notify_check func(int, unsafe.Pointer) unsafe.Pointer
+	_notify_get_state func(int, unsafe.Pointer) unsafe.Pointer
+	_notify_is_valid_token func(int) bool
 	_notify_register_dispatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_notify_register_file_descriptor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_notify_resume func(unsafe.Pointer) unsafe.Pointer
-	_notify_set_state func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_notify_suspend func(unsafe.Pointer) unsafe.Pointer
+	_notify_register_file_descriptor func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
+	_notify_resume func(int) unsafe.Pointer
+	_notify_set_state func(int, unsafe.Pointer) unsafe.Pointer
+	_notify_suspend func(int) unsafe.Pointer
 )
 
 func init() {
@@ -57,7 +57,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // notify_check is a DarwinNotify function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_check
-func notify_check(token unsafe.Pointer, check unsafe.Pointer) unsafe.Pointer {
+func notify_check(token int, check unsafe.Pointer) unsafe.Pointer {
 	return _notify_check(token, check)
 	}
 
@@ -67,7 +67,7 @@ func notify_check(token unsafe.Pointer, check unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_get_state
-func notify_get_state(token unsafe.Pointer, state64 unsafe.Pointer) unsafe.Pointer {
+func notify_get_state(token int, state64 unsafe.Pointer) unsafe.Pointer {
 	return _notify_get_state(token, state64)
 	}
 
@@ -77,7 +77,7 @@ func notify_get_state(token unsafe.Pointer, state64 unsafe.Pointer) unsafe.Point
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_is_valid_token
-func notify_is_valid_token(val unsafe.Pointer) unsafe.Pointer {
+func notify_is_valid_token(val int) bool {
 	return _notify_is_valid_token(val)
 	}
 
@@ -95,7 +95,7 @@ func notify_register_dispatch(name unsafe.Pointer, out_token unsafe.Pointer, que
 // notify_register_file_descriptor is a DarwinNotify function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_register_file_descriptor
-func notify_register_file_descriptor(name unsafe.Pointer, notify_fd unsafe.Pointer, flags unsafe.Pointer, out_token unsafe.Pointer) unsafe.Pointer {
+func notify_register_file_descriptor(name unsafe.Pointer, notify_fd unsafe.Pointer, flags int, out_token unsafe.Pointer) unsafe.Pointer {
 	return _notify_register_file_descriptor(name, notify_fd, flags, out_token)
 	}
 
@@ -105,7 +105,7 @@ func notify_register_file_descriptor(name unsafe.Pointer, notify_fd unsafe.Point
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_resume
-func notify_resume(token unsafe.Pointer) unsafe.Pointer {
+func notify_resume(token int) unsafe.Pointer {
 	return _notify_resume(token)
 	}
 
@@ -115,7 +115,7 @@ func notify_resume(token unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_set_state
-func notify_set_state(token unsafe.Pointer, state64 unsafe.Pointer) unsafe.Pointer {
+func notify_set_state(token int, state64 unsafe.Pointer) unsafe.Pointer {
 	return _notify_set_state(token, state64)
 	}
 
@@ -125,7 +125,7 @@ func notify_set_state(token unsafe.Pointer, state64 unsafe.Pointer) unsafe.Point
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DarwinNotify/notify_suspend
-func notify_suspend(token unsafe.Pointer) unsafe.Pointer {
+func notify_suspend(token int) unsafe.Pointer {
 	return _notify_suspend(token)
 	}
 

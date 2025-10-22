@@ -31,6 +31,12 @@ type _MTRAttributeReportClass struct {
 // An interface definition for the [MTRAttributeReport] class.
 type IMTRAttributeReport interface {
 	objectivec.IObject
+	Error() foundation.Error
+	SetError(value foundation.IError)
+	Path() MTRAttributePath
+	SetPath(value IMTRAttributePath)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
 }
 
 //

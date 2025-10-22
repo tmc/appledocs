@@ -30,6 +30,12 @@ type _MTRTestClusterClusterTestListInt8UReverseRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestListInt8UReverseRequestParams] class.
 type IMTRTestClusterClusterTestListInt8UReverseRequestParams interface {
 	IMTRUnitTestingClusterTestListInt8UReverseRequestParams
+	Arg1() unsafe.Pointer
+	SetArg1(value unsafe.Pointer)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

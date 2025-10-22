@@ -30,6 +30,50 @@ type _FSVolumeSupportedCapabilitiesClass struct {
 // An interface definition for the [FSVolumeSupportedCapabilities] class.
 type IFSVolumeSupportedCapabilities interface {
 	objectivec.IObject
+	SupportedVolumeCapabilities() FSVolumeSupportedCapabilities
+	SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities)
+	VolumeStatistics() FSStatFSResult
+	SetVolumeStatistics(value IFSStatFSResult)
+	CaseFormat() unsafe.Pointer
+	SetCaseFormat(value unsafe.Pointer)
+	DoesNotSupportImmutableFiles() bool
+	SetDoesNotSupportImmutableFiles(value bool)
+	DoesNotSupportRootTimes() bool
+	SetDoesNotSupportRootTimes(value bool)
+	DoesNotSupportSettingFilePermissions() bool
+	SetDoesNotSupportSettingFilePermissions(value bool)
+	DoesNotSupportVolumeSizes() bool
+	SetDoesNotSupportVolumeSizes(value bool)
+	Supports2TBFiles() bool
+	SetSupports2TBFiles(value bool)
+	Supports64BitObjectIDs() bool
+	SetSupports64BitObjectIDs(value bool)
+	SupportsActiveJournal() bool
+	SetSupportsActiveJournal(value bool)
+	SupportsDocumentID() bool
+	SetSupportsDocumentID(value bool)
+	SupportsFastStatFS() bool
+	SetSupportsFastStatFS(value bool)
+	SupportsHardLinks() bool
+	SetSupportsHardLinks(value bool)
+	SupportsHiddenFiles() bool
+	SetSupportsHiddenFiles(value bool)
+	SupportsJournal() bool
+	SetSupportsJournal(value bool)
+	SupportsOpenDenyModes() bool
+	SetSupportsOpenDenyModes(value bool)
+	SupportsPersistentObjectIDs() bool
+	SetSupportsPersistentObjectIDs(value bool)
+	SupportsSharedSpace() bool
+	SetSupportsSharedSpace(value bool)
+	SupportsSparseFiles() bool
+	SetSupportsSparseFiles(value bool)
+	SupportsSymbolicLinks() bool
+	SetSupportsSymbolicLinks(value bool)
+	SupportsVolumeGroups() bool
+	SetSupportsVolumeGroups(value bool)
+	SupportsZeroRuns() bool
+	SetSupportsZeroRuns(value bool)
 }
 
 // A type that represents capabillities supported by a volume, such as hard and symbolic links, journaling, and large file sizes.

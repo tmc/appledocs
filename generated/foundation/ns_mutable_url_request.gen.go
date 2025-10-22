@@ -31,6 +31,46 @@ type _MutableURLRequestClass struct {
 type IMutableURLRequest interface {
 	IURLRequest
 	BindToHotspotHelperCommand(command networkextension.INEHotspotHelperCommand)
+	CachePolicy() URLRequestCachePolicy
+	SetCachePolicy(value URLRequestCachePolicy)
+	HTTPMethod() string
+	SetHTTPMethod(value string)
+	URL() URL
+	SetURL(value IURL)
+	AllHTTPHeaderFields() string
+	SetAllHTTPHeaderFields(value string)
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	AllowsConstrainedNetworkAccess() bool
+	SetAllowsConstrainedNetworkAccess(value bool)
+	AllowsExpensiveNetworkAccess() bool
+	SetAllowsExpensiveNetworkAccess(value bool)
+	AllowsPersistentDNS() bool
+	SetAllowsPersistentDNS(value bool)
+	AllowsUltraConstrainedNetworkAccess() bool
+	SetAllowsUltraConstrainedNetworkAccess(value bool)
+	AssumesHTTP3Capable() bool
+	SetAssumesHTTP3Capable(value bool)
+	Attribution() unsafe.Pointer
+	SetAttribution(value unsafe.Pointer)
+	CookiePartitionIdentifier() string
+	SetCookiePartitionIdentifier(value string)
+	HttpBody() Data
+	SetHttpBody(value IData)
+	HttpBodyStream() NSInputStream
+	SetHttpBodyStream(value IInputStream)
+	HttpShouldHandleCookies() bool
+	SetHttpShouldHandleCookies(value bool)
+	HttpShouldUsePipelining() bool
+	SetHttpShouldUsePipelining(value bool)
+	MainDocumentURL() URL
+	SetMainDocumentURL(value IURL)
+	NetworkServiceType() unsafe.Pointer
+	SetNetworkServiceType(value unsafe.Pointer)
+	RequiresDNSSECValidation() bool
+	SetRequiresDNSSECValidation(value bool)
+	TimeoutInterval() TimeInterval
+	SetTimeoutInterval(value ITimeInterval)
 }
 
 // A mutable URL load request that is independent of protocol or URL scheme.

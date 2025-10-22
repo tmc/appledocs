@@ -31,6 +31,8 @@ type _MTRBasicInformationClusterLeaveEventClass struct {
 // An interface definition for the [MTRBasicInformationClusterLeaveEvent] class.
 type IMTRBasicInformationClusterLeaveEvent interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
 }
 
 //

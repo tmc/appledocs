@@ -30,6 +30,12 @@ type _PlayerPlaybackCoordinatorClass struct {
 type IPlayerPlaybackCoordinator interface {
 	IPlaybackCoordinator
 	CoordinateUsingCoordinationMediumError(coordinationMedium unsafe.Pointer, outError unsafe.Pointer) bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	PlaybackCoordinationMedium() unsafe.Pointer
+	Player() AVPlayer
+	TimeControlStatus() unsafe.Pointer
+	SetTimeControlStatus(value unsafe.Pointer)
 }
 
 // A playback coordinator subclass that coordinates the playback of player objects in a connected group.

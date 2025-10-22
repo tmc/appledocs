@@ -29,6 +29,8 @@ type _INGetAvailableRestaurantReservationBookingDefaultsIntentClass struct {
 // An interface definition for the [INGetAvailableRestaurantReservationBookingDefaultsIntent] class.
 type IINGetAvailableRestaurantReservationBookingDefaultsIntent interface {
 	IINIntent
+	Restaurant() unsafe.Pointer
+	SetRestaurant(value unsafe.Pointer)
 }
 
 // A request for the default values to use when fetching potential reservation options.

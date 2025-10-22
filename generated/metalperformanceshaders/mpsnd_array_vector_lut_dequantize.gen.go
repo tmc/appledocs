@@ -30,6 +30,8 @@ type _NDArrayVectorLUTDequantizeClass struct {
 // An interface definition for the [NDArrayVectorLUTDequantize] class.
 type INDArrayVectorLUTDequantize interface {
 	INDArrayMultiaryKernel
+	VectorAxis() uint
+	SetVectorAxis(value uint)
 }
 
 //

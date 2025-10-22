@@ -30,6 +30,12 @@ type _PHASESpatialPipelineClass struct {
 // An interface definition for the [PHASESpatialPipeline] class.
 type IPHASESpatialPipeline interface {
 	objectivec.IObject
+	Entries() unsafe.Pointer
+	Flags() PHASESpatialPipelineFlags
+	SpatialPipeline() PHASESpatialPipeline
+	SetSpatialPipeline(value IPHASESpatialPipeline)
+	SendLevel() float64
+	SetSendLevel(value float64)
 }
 
 // An object that specifies the volume of optional environmental effects.
@@ -130,8 +136,8 @@ func (p_ PHASESpatialPipeline) SetSpatialPipeline(value IPHASESpatialPipeline) {
 // The amount of audio signal to add to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
-func (p_ PHASESpatialPipeline) SendLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevel"))
+func (p_ PHASESpatialPipeline) SendLevel() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("sendLevel"))
 	return rv
 }
 
@@ -141,7 +147,7 @@ func (p_ PHASESpatialPipeline) SendLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
-func (p_ PHASESpatialPipeline) SetSendLevel(value unsafe.Pointer) {
+func (p_ PHASESpatialPipeline) SetSendLevel(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)
 }
 

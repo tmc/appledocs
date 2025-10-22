@@ -31,6 +31,12 @@ type _MTRTargetNavigatorClusterTargetUpdatedEventClass struct {
 // An interface definition for the [MTRTargetNavigatorClusterTargetUpdatedEvent] class.
 type IMTRTargetNavigatorClusterTargetUpdatedEvent interface {
 	objectivec.IObject
+	CurrentTarget() foundation.Number
+	SetCurrentTarget(value foundation.INumber)
+	Data() foundation.NSData
+	SetData(value foundation.IData)
+	TargetList() objc.ID
+	SetTargetList(value objc.ID)
 }
 
 //

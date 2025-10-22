@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _SFSafariPageClass struct {
 // An interface definition for the [SFSafariPage] class.
 type ISFSafariPage interface {
 	objectivec.IObject
-	DispatchMessageToScriptWithNameUserInfo(messageName appkit.string, userInfo unsafe.Pointer)
+	DispatchMessageToScriptWithNameUserInfo(messageName string, userInfo unsafe.Pointer)
 	GetContainingTabWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetPagePropertiesWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetScreenshotOfVisibleAreaWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -89,8 +88,8 @@ func NewSFSafariPage() SFSafariPage {
 // Dispatches a message from the app extension to the content script injected in this page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)
-func (s_ SFSafariPage) DispatchMessageToScriptWithNameUserInfo(messageName appkit.string, userInfo unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("dispatchMessageToScriptWithName:userInfo:"), messageName, userInfo)
+func (s_ SFSafariPage) DispatchMessageToScriptWithNameUserInfo(messageName string, userInfo unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("dispatchMessageToScriptWithName:userInfo:"), objc.String(messageName), userInfo)
 }
 
 //

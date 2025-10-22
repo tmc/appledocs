@@ -31,6 +31,22 @@ type ICaptureMovieFileOutput interface {
 	ICaptureFileOutput
 	RecordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection(connection IAVCaptureConnection) bool
 	SetPrimaryConstituentDeviceSwitchingBehaviorForRecordingRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
+	AvailableVideoCodecTypes() VideoCodecType
+	SetAvailableVideoCodecTypes(value VideoCodecType)
+	IsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled() bool
+	SetIsPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(value bool)
+	IsSpatialVideoCaptureEnabled() bool
+	SetIsSpatialVideoCaptureEnabled(value bool)
+	IsSpatialVideoCaptureSupported() bool
+	SetIsSpatialVideoCaptureSupported(value bool)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
+	MovieFragmentInterval() unsafe.Pointer
+	SetMovieFragmentInterval(value unsafe.Pointer)
+	PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording() unsafe.Pointer
+	SetPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording(value unsafe.Pointer)
+	PrimaryConstituentDeviceSwitchingBehaviorForRecording() unsafe.Pointer
+	SetPrimaryConstituentDeviceSwitchingBehaviorForRecording(value unsafe.Pointer)
 }
 
 // A capture output that records video and audio to a QuickTime movie file.

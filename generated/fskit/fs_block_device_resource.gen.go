@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [FSBlockDeviceResource] class.
@@ -31,16 +30,23 @@ type _FSBlockDeviceResourceClass struct {
 type IFSBlockDeviceResource interface {
 	IFSResource
 	AsynchronousMetadataFlushWithError(error_ unsafe.Pointer) bool
-	DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool
+	DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool
 	MetadataClearWithDelayedWritesError(rangesToClear []FSMetadataRange, withDelayedWrites bool, error_ unsafe.Pointer) bool
 	MetadataFlushWithError(error_ unsafe.Pointer) bool
 	MetadataPurgeError(rangesToPurge []FSMetadataRange, error_ unsafe.Pointer) bool
-	MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool
-	MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool
-	ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, completionHandler unsafe.Pointer)
-	ReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	WriteFromStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, completionHandler unsafe.Pointer)
-	WriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool
+	MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool
+	ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer)
+	ReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr
+	WriteFromStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer)
+	WriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr
+	BlockCount() uint64
+	BlockSize() uint64
+	BSDName() string
+	Writable() bool
+	PhysicalBlockSize() uint64
+	IsWritable() bool
+	SetIsWritable(value bool)
 }
 
 // A resource that represents a block storage disk partition.
@@ -104,7 +110,7 @@ func (f_ FSBlockDeviceResource) AsynchronousMetadataFlushWithError(error_ unsafe
 // Writes file system metadata from a buffer to a cache, prior to flushing it to the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWriteFrom:startingAt:length:error:
-func (f_ FSBlockDeviceResource) DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (f_ FSBlockDeviceResource) DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("delayedMetadataWriteFrom:startingAt:length:error:"), buffer, offset, length, error_)
 	return rv
 }
@@ -136,7 +142,7 @@ func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge []FSMetadataRan
 // Synchronously reads file system metadata from the resource into a buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataReadInto:startingAt:length:error:
-func (f_ FSBlockDeviceResource) MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (f_ FSBlockDeviceResource) MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("metadataReadInto:startingAt:length:error:"), buffer, offset, length, error_)
 	return rv
 }
@@ -144,7 +150,7 @@ func (f_ FSBlockDeviceResource) MetadataReadIntoStartingAtLengthError(buffer uns
 // Synchronously writes file system metadata from a buffer to the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataWriteFrom:startingAt:length:error:
-func (f_ FSBlockDeviceResource) MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (f_ FSBlockDeviceResource) MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("metadataWriteFrom:startingAt:length:error:"), buffer, offset, length, error_)
 	return rv
 }
@@ -152,30 +158,30 @@ func (f_ FSBlockDeviceResource) MetadataWriteFromStartingAtLengthError(buffer un
 // Reads data from the resource into a buffer and executes a block afterwards.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:completionHandler:
-func (f_ FSBlockDeviceResource) ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (f_ FSBlockDeviceResource) ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("readInto:startingAt:length:completionHandler:"), buffer, offset, length, completionHandler)
 }
 
 // Synchronously reads data from the resource into a buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:error:
-func (f_ FSBlockDeviceResource) ReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("readInto:startingAt:length:error:"), buffer, offset, length, error_)
+func (f_ FSBlockDeviceResource) ReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr {
+	rv := objc.Send[uintptr](f_.ID, objc.Sel("readInto:startingAt:length:error:"), buffer, offset, length, error_)
 	return rv
 }
 
 // Writes data from from a buffer to the resource and executes a block afterwards.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:completionHandler:
-func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("writeFrom:startingAt:length:completionHandler:"), buffer, offset, length, completionHandler)
 }
 
 // Synchronously writes data from from a buffer to the resource and executes a block afterwards.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:error:
-func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("writeFrom:startingAt:length:error:"), buffer, offset, length, error_)
+func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr {
+	rv := objc.Send[uintptr](f_.ID, objc.Sel("writeFrom:startingAt:length:error:"), buffer, offset, length, error_)
 	return rv
 }
 
@@ -198,8 +204,8 @@ func (f_ FSBlockDeviceResource) BlockSize() uint64 {
 // The device name of the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/bsdName
-func (f_ FSBlockDeviceResource) BSDName() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("BSDName"))
+func (f_ FSBlockDeviceResource) BSDName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("BSDName"))
 	return rv
 }
 

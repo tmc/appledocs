@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,31 @@ type _ContentItemClass struct {
 // An interface definition for the [ContentItem] class.
 type IContentItem interface {
 	objectivec.IObject
+	Artwork() MPMediaItemArtwork
+	SetArtwork(value IMPMediaItemArtwork)
+	Identifier() string
+	Container() bool
+	SetContainer(value bool)
+	ExplicitContent() bool
+	SetExplicitContent(value bool)
+	Playable() bool
+	SetPlayable(value bool)
+	StreamingContent() bool
+	SetStreamingContent(value bool)
+	PlaybackProgress() float32
+	SetPlaybackProgress(value float32)
+	Subtitle() string
+	SetSubtitle(value string)
+	Title() string
+	SetTitle(value string)
+	IsContainer() bool
+	SetIsContainer(value bool)
+	IsExplicitContent() bool
+	SetIsExplicitContent(value bool)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
+	IsStreamingContent() bool
+	SetIsStreamingContent(value bool)
 }
 
 // An object that contains the information for a displayed media item.
@@ -86,9 +110,9 @@ func NewContentItem() ContentItem {
 // Sets the identifier for a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/init(identifier:)
-func NewContentItemWithIdentifier(identifier appkit.string) ContentItem {
+func NewContentItemWithIdentifier(identifier string) ContentItem {
 	instance := getContentItemClass().Alloc()
-	rv := objc.Send[ContentItem](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv := objc.Send[ContentItem](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }
@@ -115,8 +139,8 @@ func (c_ ContentItem) SetArtwork(value IMPMediaItemArtwork) {
 // The unique identifier for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/identifier
-func (c_ ContentItem) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
+func (c_ ContentItem) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -195,8 +219,8 @@ func (c_ ContentItem) SetStreamingContent(value bool) {
 // The amount of content played for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/playbackProgress
-func (c_ ContentItem) PlaybackProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("playbackProgress"))
+func (c_ ContentItem) PlaybackProgress() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("playbackProgress"))
 	return rv
 }
 
@@ -206,15 +230,15 @@ func (c_ ContentItem) PlaybackProgress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/playbackProgress
-func (c_ ContentItem) SetPlaybackProgress(value unsafe.Pointer) {
+func (c_ ContentItem) SetPlaybackProgress(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlaybackProgress:"), value)
 }
 
 // A secondary designator for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) Subtitle() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("subtitle"))
+func (c_ ContentItem) Subtitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -224,15 +248,15 @@ func (c_ ContentItem) Subtitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) SetSubtitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), value)
+func (c_ ContentItem) SetSubtitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
 // The public name of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) Title() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("title"))
+func (c_ ContentItem) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -242,8 +266,8 @@ func (c_ ContentItem) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ ContentItem) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether a media item is container of other items.

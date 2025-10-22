@@ -39,6 +39,22 @@ type IVZVirtualMachine interface {
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
 	StartWithOptionsCompletionHandler(options VZVirtualMachineStartOptions, completionHandler unsafe.Pointer)
 	StopWithCompletionHandler(completionHandler unsafe.Pointer)
+	CanPause() bool
+	CanRequestStop() bool
+	CanResume() bool
+	CanStart() bool
+	CanStop() bool
+	ConsoleDevices() []VZConsoleDevice
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DirectorySharingDevices() []VZDirectorySharingDevice
+	GraphicsDevices() []VZGraphicsDevice
+	MemoryBalloonDevices() []VZMemoryBalloonDevice
+	NetworkDevices() []VZNetworkDevice
+	Queue() unsafe.Pointer
+	SocketDevices() []VZSocketDevice
+	State() VZVirtualMachineState
+	UsbControllers() []VZUSBController
 }
 
 // An object that manages the overall state and configuration of your VM.

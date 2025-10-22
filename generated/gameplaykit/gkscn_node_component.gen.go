@@ -29,6 +29,7 @@ type _SCNNodeComponentClass struct {
 // An interface definition for the [SCNNodeComponent] class.
 type ISCNNodeComponent interface {
 	IComponent
+	Node() unsafe.Pointer
 }
 
 //

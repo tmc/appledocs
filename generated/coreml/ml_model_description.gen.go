@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,24 @@ type _ModelDescriptionClass struct {
 // An interface definition for the [ModelDescription] class.
 type IModelDescription interface {
 	objectivec.IObject
+	InputDescriptionsByName() unsafe.Pointer
+	Metadata() unsafe.Pointer
+	OutputDescriptionsByName() unsafe.Pointer
+	PredictedFeatureName() string
+	PredictedProbabilitiesName() string
+	StateDescriptionsByName() unsafe.Pointer
+	Configuration() MLModelConfiguration
+	SetConfiguration(value IMLModelConfiguration)
+	ModelDescription() MLModelDescription
+	SetModelDescription(value IMLModelDescription)
+	ClassLabels() unsafe.Pointer
+	SetClassLabels(value unsafe.Pointer)
+	IsUpdatable() bool
+	SetIsUpdatable(value bool)
+	ParameterDescriptionsByKey() unsafe.Pointer
+	SetParameterDescriptionsByKey(value unsafe.Pointer)
+	TrainingInputDescriptionsByName() MLFeatureDescription
+	SetTrainingInputDescriptionsByName(value IMLFeatureDescription)
 }
 
 // Information about a model, primarily the input and output format for each feature the model expects, and optional metadata.
@@ -106,16 +123,16 @@ func (m_ ModelDescription) OutputDescriptionsByName() unsafe.Pointer {
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (m_ ModelDescription) PredictedFeatureName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("predictedFeatureName"))
+func (m_ ModelDescription) PredictedFeatureName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
 // The name of the feature output description for all probabilities of a prediction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedProbabilitiesName
-func (m_ ModelDescription) PredictedProbabilitiesName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("predictedProbabilitiesName"))
+func (m_ ModelDescription) PredictedProbabilitiesName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("predictedProbabilitiesName"))
 	return rv
 }
 

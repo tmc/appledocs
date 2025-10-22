@@ -31,6 +31,11 @@ type _ExceptionClass struct {
 type IException interface {
 	objectivec.IObject
 	Raise()
+	CallStackReturnAddresses() []Number
+	CallStackSymbols() []string
+	Name() ExceptionName
+	Reason() string
+	UserInfo() objc.ID
 }
 
 // An object that represents a special condition that interrupts the normal flow of program execution.

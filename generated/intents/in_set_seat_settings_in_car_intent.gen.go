@@ -30,6 +30,19 @@ type _INSetSeatSettingsInCarIntentClass struct {
 // An interface definition for the [INSetSeatSettingsInCarIntent] class.
 type IINSetSeatSettingsInCarIntent interface {
 	IINIntent
+	EnableCooling() foundation.Number
+	CarName() INSpeakableString
+	SetCarName(value INSpeakableString)
+	EnableHeating() bool
+	SetEnableHeating(value bool)
+	EnableMassage() bool
+	SetEnableMassage(value bool)
+	Level() int
+	SetLevel(value int)
+	RelativeLevelSetting() unsafe.Pointer
+	SetRelativeLevelSetting(value unsafe.Pointer)
+	Seat() unsafe.Pointer
+	SetSeat(value unsafe.Pointer)
 }
 
 // A request to change the seat-related settings in a CarPlay-enabled vehicle.

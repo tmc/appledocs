@@ -29,6 +29,8 @@ type _VZMacGraphicsDeviceConfigurationClass struct {
 // An interface definition for the [VZMacGraphicsDeviceConfiguration] class.
 type IVZMacGraphicsDeviceConfiguration interface {
 	IVZGraphicsDeviceConfiguration
+	Displays() []VZMacGraphicsDisplayConfiguration
+	SetDisplays(value []VZMacGraphicsDisplayConfiguration)
 }
 
 // Configuration for a display attached to a Mac graphics device.

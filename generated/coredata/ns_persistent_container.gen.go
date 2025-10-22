@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,6 +34,12 @@ type IPersistentContainer interface {
 	LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer)
 	NewBackgroundContext() ManagedObjectContext
 	PerformBackgroundTask(block unsafe.Pointer)
+	ManagedObjectModel() NSManagedObjectModel
+	Name() string
+	PersistentStoreCoordinator() NSPersistentStoreCoordinator
+	PersistentStoreDescriptions() []PersistentStoreDescription
+	SetPersistentStoreDescriptions(value []PersistentStoreDescription)
+	ViewContext() NSManagedObjectContext
 }
 
 // A container that encapsulates the Core Data stack in your app.
@@ -90,9 +95,9 @@ func NewPersistentContainer() PersistentContainer {
 // Creates a container with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
-func NewPersistentContainerWithName(name appkit.string) PersistentContainer {
+func NewPersistentContainerWithName(name string) PersistentContainer {
 	instance := getPersistentContainerClass().Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), name)
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -102,9 +107,9 @@ func NewPersistentContainerWithName(name appkit.string) PersistentContainer {
 // Create a container with the specified name and managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:managedObjectModel:)
-func NewPersistentContainerWithNameManagedObjectModel(name appkit.string, model IManagedObjectModel) PersistentContainer {
+func NewPersistentContainerWithNameManagedObjectModel(name string, model IManagedObjectModel) PersistentContainer {
 	instance := getPersistentContainerClass().Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:managedObjectModel:"), name, model)
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:managedObjectModel:"), objc.String(name), model)
 	rv.Autorelease()
 	return rv
 }
@@ -121,16 +126,16 @@ func (pc _PersistentContainerClass) DefaultDirectoryURL() foundation.URL {
 // Initializes a new persistent container using the provided name for the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:
-func (pc _PersistentContainerClass) PersistentContainerWithName(name appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:"), name)
+func (pc _PersistentContainerClass) PersistentContainerWithName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:"), objc.String(name))
 	return rv
 }
 
 // Initializes a new persistent container using the provided name and managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:managedObjectModel:
-func (pc _PersistentContainerClass) PersistentContainerWithNameManagedObjectModel(name appkit.string, model IManagedObjectModel) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:managedObjectModel:"), name, model)
+func (pc _PersistentContainerClass) PersistentContainerWithNameManagedObjectModel(name string, model IManagedObjectModel) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:managedObjectModel:"), objc.String(name), model)
 	return rv
 }
 
@@ -167,8 +172,8 @@ func (p_ PersistentContainer) ManagedObjectModel() NSManagedObjectModel {
 // The container’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/name
-func (p_ PersistentContainer) Name() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
+func (p_ PersistentContainer) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 

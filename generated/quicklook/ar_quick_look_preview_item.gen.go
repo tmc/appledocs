@@ -31,6 +31,10 @@ type _QuickLookPreviewItemClass struct {
 // An interface definition for the [QuickLookPreviewItem] class.
 type IQuickLookPreviewItem interface {
 	objectivec.IObject
+	AllowsContentScaling() bool
+	SetAllowsContentScaling(value bool)
+	CanonicalWebPageURL() foundation.URL
+	SetCanonicalWebPageURL(value foundation.IURL)
 }
 
 //

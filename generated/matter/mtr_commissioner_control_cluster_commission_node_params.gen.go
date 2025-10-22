@@ -31,6 +31,14 @@ type _MTRCommissionerControlClusterCommissionNodeParamsClass struct {
 // An interface definition for the [MTRCommissionerControlClusterCommissionNodeParams] class.
 type IMTRCommissionerControlClusterCommissionNodeParams interface {
 	objectivec.IObject
+	RequestID() foundation.Number
+	SetRequestID(value foundation.INumber)
+	ResponseTimeoutSeconds() foundation.Number
+	SetResponseTimeoutSeconds(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

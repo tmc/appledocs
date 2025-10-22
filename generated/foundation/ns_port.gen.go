@@ -33,6 +33,10 @@ type IPort interface {
 	Delegate() objc.ID
 	Invalidate()
 	SendBeforeDateComponentsFromReserved(limitDate IDate, components IMutableArray, receivePort IPort, headerSpaceReserved uint) bool
+	IsValid() bool
+	SetIsValid(value bool)
+	ReservedSpaceLength() int
+	SetReservedSpaceLength(value int)
 }
 
 // An abstract class that represents a communication channel.

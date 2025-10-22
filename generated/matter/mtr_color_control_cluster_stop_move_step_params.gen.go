@@ -31,6 +31,14 @@ type _MTRColorControlClusterStopMoveStepParamsClass struct {
 // An interface definition for the [MTRColorControlClusterStopMoveStepParams] class.
 type IMTRColorControlClusterStopMoveStepParams interface {
 	objectivec.IObject
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

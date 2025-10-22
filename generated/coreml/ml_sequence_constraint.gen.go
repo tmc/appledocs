@@ -31,6 +31,20 @@ type _SequenceConstraintClass struct {
 // An interface definition for the [SequenceConstraint] class.
 type ISequenceConstraint interface {
 	objectivec.IObject
+	DictionaryConstraint() MLDictionaryConstraint
+	SetDictionaryConstraint(value IMLDictionaryConstraint)
+	ImageConstraint() MLImageConstraint
+	SetImageConstraint(value IMLImageConstraint)
+	MultiArrayConstraint() MLMultiArrayConstraint
+	SetMultiArrayConstraint(value IMLMultiArrayConstraint)
+	SequenceConstraint() MLSequenceConstraint
+	SetSequenceConstraint(value IMLSequenceConstraint)
+	StateConstraint() MLStateConstraint
+	SetStateConstraint(value IMLStateConstraint)
+	CountRange() foundation.Range
+	SetCountRange(value foundation.IRange)
+	ValueDescription() MLFeatureDescription
+	SetValueDescription(value IMLFeatureDescription)
 }
 
 // The constraints for a sequence feature.

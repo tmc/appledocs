@@ -31,6 +31,12 @@ type _MTRApplicationLauncherClusterStopAppParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterStopAppParams] class.
 type IMTRApplicationLauncherClusterStopAppParams interface {
 	objectivec.IObject
+	Application() MTRApplicationLauncherClusterApplicationStruct
+	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

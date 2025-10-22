@@ -29,6 +29,8 @@ type _VZVirtioSoundDeviceOutputStreamConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceOutputStreamConfiguration] class.
 type IVZVirtioSoundDeviceOutputStreamConfiguration interface {
 	IVZVirtioSoundDeviceStreamConfiguration
+	Sink() VZAudioOutputStreamSink
+	SetSink(value IVZAudioOutputStreamSink)
 }
 
 // An object that defines a Virtio sound device output stream configuration.

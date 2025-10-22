@@ -31,6 +31,26 @@ type _PHFetchResultChangeDetailsClass struct {
 // An interface definition for the [PHFetchResultChangeDetails] class.
 type IPHFetchResultChangeDetails interface {
 	objectivec.IObject
+	ChangedIndexes() foundation.IndexSet
+	SetChangedIndexes(value foundation.IIndexSet)
+	ChangedObjects() unsafe.Pointer
+	SetChangedObjects(value unsafe.Pointer)
+	FetchResultAfterChanges() PHFetchResult
+	SetFetchResultAfterChanges(value IPHFetchResult)
+	FetchResultBeforeChanges() PHFetchResult
+	SetFetchResultBeforeChanges(value IPHFetchResult)
+	HasIncrementalChanges() bool
+	SetHasIncrementalChanges(value bool)
+	HasMoves() bool
+	SetHasMoves(value bool)
+	InsertedIndexes() foundation.IndexSet
+	SetInsertedIndexes(value foundation.IIndexSet)
+	InsertedObjects() unsafe.Pointer
+	SetInsertedObjects(value unsafe.Pointer)
+	RemovedIndexes() foundation.IndexSet
+	SetRemovedIndexes(value foundation.IIndexSet)
+	RemovedObjects() unsafe.Pointer
+	SetRemovedObjects(value unsafe.Pointer)
 }
 
 // A description of changes that occurred in the set of asset or collection objects listed in a fetch result.

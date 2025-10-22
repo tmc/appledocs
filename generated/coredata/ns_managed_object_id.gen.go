@@ -32,6 +32,11 @@ type _ManagedObjectIDClass struct {
 type IManagedObjectID interface {
 	objectivec.IObject
 	URIRepresentation() foundation.URL
+	Entity() NSEntityDescription
+	TemporaryID() bool
+	PersistentStore() NSPersistentStore
+	IsTemporaryID() bool
+	SetIsTemporaryID(value bool)
 }
 
 // A compact, universal identifier for a managed object.

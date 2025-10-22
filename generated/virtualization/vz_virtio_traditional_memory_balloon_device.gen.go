@@ -29,6 +29,10 @@ type _VZVirtioTraditionalMemoryBalloonDeviceClass struct {
 // An interface definition for the [VZVirtioTraditionalMemoryBalloonDevice] class.
 type IVZVirtioTraditionalMemoryBalloonDevice interface {
 	IVZMemoryBalloonDevice
+	TargetVirtualMachineMemorySize() uint64
+	SetTargetVirtualMachineMemorySize(value uint64)
+	MemoryBalloonDevices() VZMemoryBalloonDevice
+	SetMemoryBalloonDevices(value IVZMemoryBalloonDevice)
 }
 
 // The object you use to change the amount of memory allocated to the guest system.

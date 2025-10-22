@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterBooleanResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterBooleanResponseParams] class.
 type IMTRUnitTestingClusterBooleanResponseParams interface {
 	objectivec.IObject
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

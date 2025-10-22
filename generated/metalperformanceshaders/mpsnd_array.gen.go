@@ -31,6 +31,18 @@ type _NDArrayClass struct {
 type INDArray interface {
 	objectivec.IObject
 	ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) NDArray
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
+	DataTypeSize() int
+	SetDataTypeSize(value int)
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
+	Label() string
+	SetLabel(value string)
+	NumberOfDimensions() int
+	SetNumberOfDimensions(value int)
+	Parent() MPSNDArray
+	SetParent(value IMPSNDArray)
 }
 
 //
@@ -130,8 +142,8 @@ func (n_ NDArray) SetDevice(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) Label() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("label"))
+func (n_ NDArray) Label() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -139,8 +151,8 @@ func (n_ NDArray) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), value)
+func (n_ NDArray) SetLabel(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

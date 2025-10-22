@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,12 @@ type _MeshClass struct {
 // An interface definition for the [Mesh] class.
 type IMesh interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
+	Submeshes() []Submesh
+	VertexBuffers() []MeshBuffer
+	VertexCount() uint
+	VertexDescriptor() unsafe.Pointer
 }
 
 // A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.
@@ -103,8 +108,8 @@ func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Poin
 // The name of the mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ Mesh) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -114,8 +119,8 @@ func (m_ Mesh) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ Mesh) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // An array of submeshes containing index buffers referencing the mesh vertices.

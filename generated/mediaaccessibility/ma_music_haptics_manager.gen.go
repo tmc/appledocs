@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +31,9 @@ type _MAMusicHapticsManagerClass struct {
 type IMAMusicHapticsManager interface {
 	objectivec.IObject
 	AddStatusObserver(statusHandler unsafe.Pointer) objc.ID
-	CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode appkit.string, completionHandler unsafe.Pointer)
+	CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode string, completionHandler unsafe.Pointer)
 	RemoveStatusObserver(registrationToken objectivec.IObject)
+	IsActive() bool
 }
 
 // A class that reports information about the Music Haptics feature.
@@ -102,8 +102,8 @@ func (m_ MAMusicHapticsManager) AddStatusObserver(statusHandler unsafe.Pointer) 
 // Checks whether a haptic track is available for the song with the specified International Standard Recording Code (ISRC).
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHapticsManager/checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)
-func (m_ MAMusicHapticsManager) CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"), internationalStandardRecordingCode, completionHandler)
+func (m_ MAMusicHapticsManager) CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"), objc.String(internationalStandardRecordingCode), completionHandler)
 }
 
 // Removes the observer monitoring the status of haptic playback for the Now Playing song.

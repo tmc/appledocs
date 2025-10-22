@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [KeyedArchiver] class.
@@ -31,6 +30,14 @@ type _KeyedArchiverClass struct {
 type IKeyedArchiver interface {
 	ICoder
 	EncodeDoubleForKey(value float64, key string)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	EncodedData() Data
+	SetEncodedData(value IData)
+	OutputFormat() unsafe.Pointer
+	SetOutputFormat(value unsafe.Pointer)
+	RequiresSecureCoding() bool
+	SetRequiresSecureCoding(value bool)
 }
 
 // An encoder that stores an object’s data to an archive referenced by keys.
@@ -129,8 +136,8 @@ func (k_ KeyedArchiver) SetEncodedData(value IData) {
 // The format in which the receiver encodes its data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-func (k_ KeyedArchiver) OutputFormat() corefoundation.PropertyListFormat {
-	rv := objc.Send[corefoundation.PropertyListFormat](k_.ID, objc.Sel("outputFormat"))
+func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("outputFormat"))
 	return rv
 }
 
@@ -140,7 +147,7 @@ func (k_ KeyedArchiver) OutputFormat() corefoundation.PropertyListFormat {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/outputformat
-func (k_ KeyedArchiver) SetOutputFormat(value corefoundation.PropertyListFormat) {
+func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
 }
 

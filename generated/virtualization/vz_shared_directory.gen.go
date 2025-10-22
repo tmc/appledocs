@@ -31,6 +31,10 @@ type _VZSharedDirectoryClass struct {
 // An interface definition for the [VZSharedDirectory] class.
 type IVZSharedDirectory interface {
 	objectivec.IObject
+	ReadOnly() bool
+	URL() foundation.URL
+	IsReadOnly() bool
+	SetIsReadOnly(value bool)
 }
 
 // A directory on the host that you can expose to a guest.

@@ -33,6 +33,17 @@ type _PHAssetChangeRequestClass struct {
 type IPHAssetChangeRequest interface {
 	IPHChangeRequest
 	RevertAssetContentToOriginal()
+	ContentEditingOutput() PHContentEditingOutput
+	SetContentEditingOutput(value IPHContentEditingOutput)
+	PlaceholderForCreatedAsset() PHObjectPlaceholder
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	IsFavorite() bool
+	SetIsFavorite(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	Location() corelocation.Location
+	SetLocation(value corelocation.ILocation)
 }
 
 // A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.

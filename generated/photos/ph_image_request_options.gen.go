@@ -31,6 +31,26 @@ type _PHImageRequestOptionsClass struct {
 // An interface definition for the [PHImageRequestOptions] class.
 type IPHImageRequestOptions interface {
 	objectivec.IObject
+	AllowSecondaryDegradedImage() bool
+	SetAllowSecondaryDegradedImage(value bool)
+	DeliveryMode() PHImageRequestOptionsDeliveryMode
+	SetDeliveryMode(value PHImageRequestOptionsDeliveryMode)
+	NetworkAccessAllowed() bool
+	SetNetworkAccessAllowed(value bool)
+	Synchronous() bool
+	SetSynchronous(value bool)
+	NormalizedCropRect() coregraphics.CGRect
+	SetNormalizedCropRect(value coregraphics.CGRect)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	ResizeMode() PHImageRequestOptionsResizeMode
+	SetResizeMode(value PHImageRequestOptionsResizeMode)
+	Version() PHImageRequestOptionsVersion
+	SetVersion(value IPHImageRequestOptionsVersion)
+	IsNetworkAccessAllowed() bool
+	SetIsNetworkAccessAllowed(value bool)
+	IsSynchronous() bool
+	SetIsSynchronous(value bool)
 }
 
 // A set of options affecting the delivery of still image representations of Photos assets you request from an image manager.

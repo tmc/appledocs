@@ -30,6 +30,8 @@ type _AccelerationStructureDescriptorClass struct {
 // An interface definition for the [AccelerationStructureDescriptor] class.
 type IAccelerationStructureDescriptor interface {
 	objectivec.IObject
+	Usage() AccelerationStructureUsage
+	SetUsage(value IAccelerationStructureUsage)
 }
 
 // A base class for classes that define the configuration for a new acceleration structure.

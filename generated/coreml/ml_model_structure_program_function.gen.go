@@ -30,6 +30,8 @@ type _ModelStructureProgramFunctionClass struct {
 // An interface definition for the [ModelStructureProgramFunction] class.
 type IModelStructureProgramFunction interface {
 	objectivec.IObject
+	Block() MLModelStructureProgramBlock
+	Inputs() []ModelStructureProgramNamedValueType
 }
 
 // A class representing a function in the Program.

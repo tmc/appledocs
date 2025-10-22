@@ -30,6 +30,10 @@ type _AssetTrackSegmentClass struct {
 // An interface definition for the [AssetTrackSegment] class.
 type IAssetTrackSegment interface {
 	objectivec.IObject
+	Empty() bool
+	TimeMapping() unsafe.Pointer
+	IsEmpty() bool
+	SetIsEmpty(value bool)
 }
 
 // An object that represents a time range segment of an asset track.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _HKQueryClass struct {
 // An interface definition for the [HKQuery] class.
 type IHKQuery interface {
 	objectivec.IObject
+	HKPredicateKeyPathMetadata() string
+	HKPredicateKeyPathUUID() string
+	ObjectType() HKObjectType
+	SetObjectType(value HKObjectType)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	SampleType() HKSampleType
+	SetSampleType(value HKSampleType)
 }
 
 // An abstract class for all the query classes in HealthKit.
@@ -85,8 +92,8 @@ func NewHKQuery() HKQuery {
 // Returns a predicate for a specific FHIR resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)
-func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source IHKSource, resourceType HKFHIRResourceType, identifier appkit.string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, identifier)
+func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source IHKSource, resourceType HKFHIRResourceType, identifier string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, objc.String(identifier))
 	return rv
 }
 
@@ -109,16 +116,16 @@ func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout IHKWorkout) found
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-func (h_ HKQuery) HKPredicateKeyPathMetadata() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
+func (h_ HKQuery) HKPredicateKeyPathMetadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
 
 // The key path for accessing the object’s UUID inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-func (h_ HKQuery) HKPredicateKeyPathUUID() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
+func (h_ HKQuery) HKPredicateKeyPathUUID() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _PipelineBufferDescriptorClass struct {
 // An interface definition for the [PipelineBufferDescriptor] class.
 type IPipelineBufferDescriptor interface {
 	objectivec.IObject
+	Mutability() Mutability
+	SetMutability(value IMutability)
 }
 
 // The mutability options for a buffer that a render or compute pipeline uses.

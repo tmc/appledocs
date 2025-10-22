@@ -29,6 +29,9 @@ type _FeedbackCommandEventClass struct {
 // An interface definition for the [FeedbackCommandEvent] class.
 type IFeedbackCommandEvent interface {
 	IRemoteCommandEvent
+	Negative() bool
+	IsNegative() bool
+	SetIsNegative(value bool)
 }
 
 // An event requesting a change in the feedback setting.

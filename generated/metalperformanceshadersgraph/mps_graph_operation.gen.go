@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [GraphOperation] class.
@@ -30,6 +29,14 @@ type _GraphOperationClass struct {
 // An interface definition for the [GraphOperation] class.
 type IGraphOperation interface {
 	IGraphObject
+	Graph() MPSGraph
+	Name() string
+	ControlDependencies() MPSGraphOperation
+	SetControlDependencies(value IMPSGraphOperation)
+	InputTensors() MPSGraphTensor
+	SetInputTensors(value IMPSGraphTensor)
+	OutputTensors() MPSGraphTensor
+	SetOutputTensors(value IMPSGraphTensor)
 }
 
 // A symbolic representation of a compute operation.
@@ -93,8 +100,8 @@ func (g_ GraphOperation) Graph() MPSGraph {
 // Name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/name
-func (g_ GraphOperation) Name() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("name"))
+func (g_ GraphOperation) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

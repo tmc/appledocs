@@ -29,6 +29,9 @@ type _AXMathExpressionFractionClass struct {
 // An interface definition for the [AXMathExpressionFraction] class.
 type IAXMathExpressionFraction interface {
 	IAXMathExpression
+	DenimonatorExpression() AXMathExpression
+	NumeratorExpression() AXMathExpression
+	SetNumeratorExpression(value IAXMathExpression)
 }
 
 //

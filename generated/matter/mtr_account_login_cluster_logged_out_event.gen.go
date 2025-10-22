@@ -31,6 +31,8 @@ type _MTRAccountLoginClusterLoggedOutEventClass struct {
 // An interface definition for the [MTRAccountLoginClusterLoggedOutEvent] class.
 type IMTRAccountLoginClusterLoggedOutEvent interface {
 	objectivec.IObject
+	Node() foundation.Number
+	SetNode(value foundation.INumber)
 }
 
 //

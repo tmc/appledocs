@@ -31,6 +31,18 @@ type _MKTileOverlayClass struct {
 // An interface definition for the [MKTileOverlay] class.
 type IMKTileOverlay interface {
 	objectivec.IObject
+	CanReplaceMapContent() bool
+	SetCanReplaceMapContent(value bool)
+	IsGeometryFlipped() bool
+	SetIsGeometryFlipped(value bool)
+	MaximumZ() int
+	SetMaximumZ(value int)
+	MinimumZ() int
+	SetMinimumZ(value int)
+	TileSize() coregraphics.CGSize
+	SetTileSize(value coregraphics.CGSize)
+	UrlTemplate() string
+	SetUrlTemplate(value string)
 }
 
 // An overlay that covers an area of the map with tiles of bitmap images.
@@ -174,8 +186,8 @@ func (m_ MKTileOverlay) SetTileSize(value coregraphics.CGSize) {
 // The template for generating tile image URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/urltemplate
-func (m_ MKTileOverlay) UrlTemplate() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("urlTemplate"))
+func (m_ MKTileOverlay) UrlTemplate() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("urlTemplate"))
 	return rv
 }
 
@@ -185,8 +197,8 @@ func (m_ MKTileOverlay) UrlTemplate() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mktileoverlay/urltemplate
-func (m_ MKTileOverlay) SetUrlTemplate(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUrlTemplate:"), value)
+func (m_ MKTileOverlay) SetUrlTemplate(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrlTemplate:"), objc.String(value))
 }
 
 

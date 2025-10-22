@@ -33,6 +33,14 @@ type IURLSessionWebSocketTask interface {
 	SendMessageCompletionHandler(message IURLSessionWebSocketMessage, completionHandler unsafe.Pointer)
 	CancelWithCloseCodeReason(closeCode IURLSessionWebSocketCloseCode, reason IData)
 	SendPingWithPongReceiveHandler(pongReceiveHandler unsafe.Pointer)
+	CloseCode() URLSessionWebSocketCloseCode
+	CloseReason() NSData
+	MaximumMessageSize() int
+	SetMaximumMessageSize(value int)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	HttpCookieStorage() NSHTTPCookieStorage
+	SetHttpCookieStorage(value IHTTPCookieStorage)
 }
 
 // A URL session task that communicates over the WebSockets protocol standard.

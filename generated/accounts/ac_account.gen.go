@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,16 @@ type _ACAccountClass struct {
 // An interface definition for the [ACAccount] class.
 type IACAccount interface {
 	objectivec.IObject
+	AccountDescription() string
+	SetAccountDescription(value string)
+	AccountType() ACAccountType
+	SetAccountType(value ACAccountType)
+	Credential() ACAccountCredential
+	SetCredential(value IACAccountCredential)
+	Identifier() string
+	UserFullName() string
+	Username() string
+	SetUsername(value string)
 }
 
 // The information associated with one of the user’s accounts.
@@ -97,8 +106,8 @@ func NewACAccountWithAccountType(type_ ACAccountType) ACAccount {
 // A human-readable description of the account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) AccountDescription() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("accountDescription"))
+func (a_ ACAccount) AccountDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("accountDescription"))
 	return rv
 }
 
@@ -108,8 +117,8 @@ func (a_ ACAccount) AccountDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) SetAccountDescription(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), value)
+func (a_ ACAccount) SetAccountDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
 }
 
 // The type of service account.
@@ -151,24 +160,24 @@ func (a_ ACAccount) SetCredential(value IACAccountCredential) {
 // A unique identifier for this account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
-func (a_ ACAccount) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
+func (a_ ACAccount) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The full name associated with the user account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/userFullName
-func (a_ ACAccount) UserFullName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("userFullName"))
+func (a_ ACAccount) UserFullName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("userFullName"))
 	return rv
 }
 
 // The username for this account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) Username() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("username"))
+func (a_ ACAccount) Username() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -178,8 +187,8 @@ func (a_ ACAccount) Username() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) SetUsername(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), value)
+func (a_ ACAccount) SetUsername(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
 
 

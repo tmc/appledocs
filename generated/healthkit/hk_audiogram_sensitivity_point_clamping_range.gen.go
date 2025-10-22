@@ -31,6 +31,8 @@ type _HKAudiogramSensitivityPointClampingRangeClass struct {
 // An interface definition for the [HKAudiogramSensitivityPointClampingRange] class.
 type IHKAudiogramSensitivityPointClampingRange interface {
 	objectivec.IObject
+	LowerBound() HKQuantity
+	UpperBound() HKQuantity
 }
 
 // Defines the range within which an ear’s sensitivity point may have been clamped, if any.

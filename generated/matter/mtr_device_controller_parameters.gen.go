@@ -30,6 +30,16 @@ type _MTRDeviceControllerParametersClass struct {
 // An interface definition for the [MTRDeviceControllerParameters] class.
 type IMTRDeviceControllerParameters interface {
 	IMTRDeviceControllerAbstractParameters
+	CertificationDeclarationCertificates() foundation.Data
+	SetCertificationDeclarationCertificates(value foundation.IData)
+	ConcurrentSubscriptionEstablishmentsAllowedOnThread() int
+	SetConcurrentSubscriptionEstablishmentsAllowedOnThread(value int)
+	ProductAttestationAuthorityCertificates() foundation.Data
+	SetProductAttestationAuthorityCertificates(value foundation.IData)
+	ShouldAdvertiseOperational() bool
+	SetShouldAdvertiseOperational(value bool)
+	StorageBehaviorConfiguration() MTRDeviceStorageBehaviorConfiguration
+	SetStorageBehaviorConfiguration(value IMTRDeviceStorageBehaviorConfiguration)
 }
 
 //

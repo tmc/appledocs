@@ -32,6 +32,8 @@ type ILock interface {
 	objectivec.IObject
 	LockBeforeDate(limit IDate) bool
 	TryLock() bool
+	Name() string
+	SetName(value string)
 }
 
 // An object that coordinates the operation of multiple threads of execution within the same application.

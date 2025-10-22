@@ -30,6 +30,13 @@ type _MediaSelectionGroupClass struct {
 // An interface definition for the [MediaSelectionGroup] class.
 type IMediaSelectionGroup interface {
 	objectivec.IObject
+	AllowsEmptySelection() bool
+	CustomMediaSelectionScheme() unsafe.Pointer
+	SetCustomMediaSelectionScheme(value unsafe.Pointer)
+	DefaultOption() AVMediaSelectionOption
+	SetDefaultOption(value IAVMediaSelectionOption)
+	Options() AVMediaSelectionOption
+	SetOptions(value IAVMediaSelectionOption)
 }
 
 // An object that represents a collection of mutually exclusive options for the presentation of media within an asset.

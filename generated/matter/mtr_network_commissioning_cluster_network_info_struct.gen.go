@@ -31,6 +31,10 @@ type _MTRNetworkCommissioningClusterNetworkInfoStructClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterNetworkInfoStruct] class.
 type IMTRNetworkCommissioningClusterNetworkInfoStruct interface {
 	objectivec.IObject
+	Connected() foundation.Number
+	SetConnected(value foundation.INumber)
+	NetworkID() foundation.Data
+	SetNetworkID(value foundation.IData)
 }
 
 //

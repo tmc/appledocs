@@ -29,6 +29,7 @@ type _CloseCommandClass struct {
 // An interface definition for the [CloseCommand] class.
 type ICloseCommand interface {
 	IScriptCommand
+	SaveOptions() SaveOptions
 }
 
 // A command that closes one or more scriptable objects.

@@ -31,6 +31,30 @@ type _MTRFabricInfoClass struct {
 // An interface definition for the [MTRFabricInfo] class.
 type IMTRFabricInfo interface {
 	objectivec.IObject
+	FabricID() foundation.Number
+	SetFabricID(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	IntermediateCertificate() foundation.Data
+	SetIntermediateCertificate(value foundation.IData)
+	IntermediateCertificateTLV() foundation.Data
+	SetIntermediateCertificateTLV(value foundation.IData)
+	Label() string
+	SetLabel(value string)
+	NodeID() foundation.Number
+	SetNodeID(value foundation.INumber)
+	OperationalCertificate() foundation.Data
+	SetOperationalCertificate(value foundation.IData)
+	OperationalCertificateTLV() foundation.Data
+	SetOperationalCertificateTLV(value foundation.IData)
+	RootCertificate() foundation.Data
+	SetRootCertificate(value foundation.IData)
+	RootCertificateTLV() foundation.Data
+	SetRootCertificateTLV(value foundation.IData)
+	RootPublicKey() foundation.Data
+	SetRootPublicKey(value foundation.IData)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
 }
 
 //
@@ -138,8 +162,8 @@ func (m_ MTRFabricInfo) SetIntermediateCertificateTLV(value foundation.IData) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/label
-func (m_ MTRFabricInfo) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRFabricInfo) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -147,8 +171,8 @@ func (m_ MTRFabricInfo) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/label
-func (m_ MTRFabricInfo) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRFabricInfo) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

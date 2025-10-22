@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZVirtioBlockDeviceConfiguration] class.
@@ -30,6 +29,10 @@ type _VZVirtioBlockDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioBlockDeviceConfiguration] class.
 type IVZVirtioBlockDeviceConfiguration interface {
 	IVZStorageDeviceConfiguration
+	BlockDeviceIdentifier() string
+	SetBlockDeviceIdentifier(value string)
+	StorageDevices() VZStorageDeviceConfiguration
+	SetStorageDevices(value IVZStorageDeviceConfiguration)
 }
 
 // The configuration object that requests the creation of a virtual storage device in the guest system.
@@ -85,16 +88,16 @@ func NewVZVirtioBlockDeviceConfiguration() VZVirtioBlockDeviceConfiguration {
 // Checks the validity of a block device identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioBlockDeviceConfiguration/validateBlockDeviceIdentifier(_:)
-func (vc _VZVirtioBlockDeviceConfigurationClass) ValidateBlockDeviceIdentifierError(blockDeviceIdentifier appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateBlockDeviceIdentifier:error:"), blockDeviceIdentifier, error_)
+func (vc _VZVirtioBlockDeviceConfigurationClass) ValidateBlockDeviceIdentifierError(blockDeviceIdentifier string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateBlockDeviceIdentifier:error:"), objc.String(blockDeviceIdentifier), error_)
 	return rv
 }
 
 // The string that identifies the VIRTIO block device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration/blockdeviceidentifier
-func (v_ VZVirtioBlockDeviceConfiguration) BlockDeviceIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("blockDeviceIdentifier"))
+func (v_ VZVirtioBlockDeviceConfiguration) BlockDeviceIdentifier() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("blockDeviceIdentifier"))
 	return rv
 }
 
@@ -104,8 +107,8 @@ func (v_ VZVirtioBlockDeviceConfiguration) BlockDeviceIdentifier() appkit.string
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration/blockdeviceidentifier
-func (v_ VZVirtioBlockDeviceConfiguration) SetBlockDeviceIdentifier(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setBlockDeviceIdentifier:"), value)
+func (v_ VZVirtioBlockDeviceConfiguration) SetBlockDeviceIdentifier(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setBlockDeviceIdentifier:"), objc.String(value))
 }
 
 // The array of storage devices that you expose to the guest operating system.

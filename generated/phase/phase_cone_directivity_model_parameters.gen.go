@@ -29,6 +29,8 @@ type _PHASEConeDirectivityModelParametersClass struct {
 // An interface definition for the [PHASEConeDirectivityModelParameters] class.
 type IPHASEConeDirectivityModelParameters interface {
 	IPHASEDirectivityModelParameters
+	SubbandParameters() PHASEConeDirectivityModelSubbandParameters
+	SetSubbandParameters(value IPHASEConeDirectivityModelSubbandParameters)
 }
 
 // An object that directs sound in a cone-shaped curve that extends from a sound source.

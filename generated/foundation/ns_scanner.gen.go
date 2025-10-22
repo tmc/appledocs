@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,6 +33,21 @@ type IScanner interface {
 	ScanDouble(result unsafe.Pointer) bool
 	ScanFloat(result unsafe.Pointer) bool
 	ScanInt(result unsafe.Pointer) bool
+	NSNotFound() int
+	CaseSensitive() bool
+	SetCaseSensitive(value bool)
+	CharactersToBeSkipped() CharacterSet
+	SetCharactersToBeSkipped(value ICharacterSet)
+	CurrentIndex() unsafe.Pointer
+	SetCurrentIndex(value unsafe.Pointer)
+	IsAtEnd() bool
+	SetIsAtEnd(value bool)
+	Locale() unsafe.Pointer
+	SetLocale(value unsafe.Pointer)
+	ScanLocation() int
+	SetScanLocation(value int)
+	String() string
+	SetString(value string)
 }
 
 // A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
@@ -162,8 +176,8 @@ func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) CurrentIndex() corefoundation.Index {
-	rv := objc.Send[corefoundation.Index](s_.ID, objc.Sel("currentIndex"))
+func (s_ Scanner) CurrentIndex() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentIndex"))
 	return rv
 }
 
@@ -171,7 +185,7 @@ func (s_ Scanner) CurrentIndex() corefoundation.Index {
 // SetCurrentIndex sets the value of the currentIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) SetCurrentIndex(value corefoundation.IIndex) {
+func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
 }
 

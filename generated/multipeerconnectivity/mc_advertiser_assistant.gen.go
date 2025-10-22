@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,6 +32,11 @@ type IMCAdvertiserAssistant interface {
 	objectivec.IObject
 	Start()
 	Stop()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DiscoveryInfo() unsafe.Pointer
+	ServiceType() string
+	Session() MCSession
 }
 
 // The is a convenience class that handles advertising, presents incoming invitations to the user, and handles users’ responses. Use this class to provide a user interface for handling invitations when your app does not require programmatic control over the invitation process.
@@ -88,9 +92,9 @@ func NewMCAdvertiserAssistant() MCAdvertiserAssistant {
 // Initializes an advertiser assistant object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)
-func NewMCAdvertiserAssistantWithServiceTypeDiscoveryInfoSession(serviceType appkit.string, info unsafe.Pointer, session IMCSession) MCAdvertiserAssistant {
+func NewMCAdvertiserAssistantWithServiceTypeDiscoveryInfoSession(serviceType string, info unsafe.Pointer, session IMCSession) MCAdvertiserAssistant {
 	instance := getMCAdvertiserAssistantClass().Alloc()
-	rv := objc.Send[MCAdvertiserAssistant](instance.ID, objc.Sel("initWithServiceType:discoveryInfo:session:"), serviceType, info, session)
+	rv := objc.Send[MCAdvertiserAssistant](instance.ID, objc.Sel("initWithServiceType:discoveryInfo:session:"), objc.String(serviceType), info, session)
 	rv.Autorelease()
 	return rv
 }
@@ -139,8 +143,8 @@ func (m_ MCAdvertiserAssistant) DiscoveryInfo() unsafe.Pointer {
 // The service type that your app is advertising.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/serviceType
-func (m_ MCAdvertiserAssistant) ServiceType() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCAdvertiserAssistant) ServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

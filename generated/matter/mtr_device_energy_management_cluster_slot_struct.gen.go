@@ -31,6 +31,42 @@ type _MTRDeviceEnergyManagementClusterSlotStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterSlotStruct] class.
 type IMTRDeviceEnergyManagementClusterSlotStruct interface {
 	objectivec.IObject
+	Costs() objc.ID
+	SetCosts(value objc.ID)
+	DefaultDuration() foundation.Number
+	SetDefaultDuration(value foundation.INumber)
+	ElapsedSlotTime() foundation.Number
+	SetElapsedSlotTime(value foundation.INumber)
+	ManufacturerESAState() foundation.Number
+	SetManufacturerESAState(value foundation.INumber)
+	MaxDuration() foundation.Number
+	SetMaxDuration(value foundation.INumber)
+	MaxDurationAdjustment() foundation.Number
+	SetMaxDurationAdjustment(value foundation.INumber)
+	MaxPauseDuration() foundation.Number
+	SetMaxPauseDuration(value foundation.INumber)
+	MaxPower() foundation.Number
+	SetMaxPower(value foundation.INumber)
+	MaxPowerAdjustment() foundation.Number
+	SetMaxPowerAdjustment(value foundation.INumber)
+	MinDuration() foundation.Number
+	SetMinDuration(value foundation.INumber)
+	MinDurationAdjustment() foundation.Number
+	SetMinDurationAdjustment(value foundation.INumber)
+	MinPauseDuration() foundation.Number
+	SetMinPauseDuration(value foundation.INumber)
+	MinPower() foundation.Number
+	SetMinPower(value foundation.INumber)
+	MinPowerAdjustment() foundation.Number
+	SetMinPowerAdjustment(value foundation.INumber)
+	NominalEnergy() foundation.Number
+	SetNominalEnergy(value foundation.INumber)
+	NominalPower() foundation.Number
+	SetNominalPower(value foundation.INumber)
+	RemainingSlotTime() foundation.Number
+	SetRemainingSlotTime(value foundation.INumber)
+	SlotIsPausable() foundation.Number
+	SetSlotIsPausable(value foundation.INumber)
 }
 
 //

@@ -29,6 +29,8 @@ type _EraserToolClass struct {
 // An interface definition for the [EraserTool] class.
 type IEraserTool interface {
 	ITool
+	EraserType() EraserType
+	Width() float64
 }
 
 // A tool for erasing previously drawn content in a canvas view.

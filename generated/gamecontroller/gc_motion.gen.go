@@ -30,6 +30,31 @@ type _GCMotionClass struct {
 // An interface definition for the [GCMotion] class.
 type IGCMotion interface {
 	objectivec.IObject
+	HasAttitudeAndRotationRate() bool
+	RotationRate() unsafe.Pointer
+	SensorsRequireManualActivation() bool
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	Acceleration() unsafe.Pointer
+	SetAcceleration(value unsafe.Pointer)
+	Attitude() unsafe.Pointer
+	SetAttitude(value unsafe.Pointer)
+	Controller() GCController
+	SetController(value IGCController)
+	Gravity() unsafe.Pointer
+	SetGravity(value unsafe.Pointer)
+	HasAttitude() bool
+	SetHasAttitude(value bool)
+	HasGravityAndUserAcceleration() bool
+	SetHasGravityAndUserAcceleration(value bool)
+	HasRotationRate() bool
+	SetHasRotationRate(value bool)
+	SensorsActive() bool
+	SetSensorsActive(value bool)
+	UserAcceleration() unsafe.Pointer
+	SetUserAcceleration(value unsafe.Pointer)
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
 }
 
 // A controller profile that supports orientation and motion.

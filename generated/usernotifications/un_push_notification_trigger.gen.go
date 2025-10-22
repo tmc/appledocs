@@ -29,6 +29,8 @@ type _UNPushNotificationTriggerClass struct {
 // An interface definition for the [UNPushNotificationTrigger] class.
 type IUNPushNotificationTrigger interface {
 	IUNNotificationTrigger
+	Trigger() UNNotificationTrigger
+	SetTrigger(value IUNNotificationTrigger)
 }
 
 // A trigger condition that indicates Apple Push Notification Service (APNs) has sent the notification.

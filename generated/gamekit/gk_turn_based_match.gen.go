@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,8 +31,34 @@ type _TurnBasedMatchClass struct {
 // An interface definition for the [TurnBasedMatch] class.
 type ITurnBasedMatch interface {
 	objectivec.IObject
-	SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant, data foundation.IData, key appkit.string, arguments []string, timeout foundation.ITimeInterval, completionHandler unsafe.Pointer)
-	SetLocalizableMessageWithKeyArguments(key appkit.string, arguments []string)
+	SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant, data foundation.IData, key string, arguments []string, timeout foundation.ITimeInterval, completionHandler unsafe.Pointer)
+	SetLocalizableMessageWithKeyArguments(key string, arguments []string)
+	ActiveExchanges() GKTurnBasedExchange
+	SetActiveExchanges(value IGKTurnBasedExchange)
+	CompletedExchanges() GKTurnBasedExchange
+	SetCompletedExchanges(value IGKTurnBasedExchange)
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	CurrentParticipant() GKTurnBasedParticipant
+	SetCurrentParticipant(value IGKTurnBasedParticipant)
+	ExchangeDataMaximumSize() int
+	SetExchangeDataMaximumSize(value int)
+	ExchangeMaxInitiatedExchangesPerPlayer() int
+	SetExchangeMaxInitiatedExchangesPerPlayer(value int)
+	Exchanges() GKTurnBasedExchange
+	SetExchanges(value IGKTurnBasedExchange)
+	MatchData() foundation.Data
+	SetMatchData(value foundation.IData)
+	MatchDataMaximumSize() int
+	SetMatchDataMaximumSize(value int)
+	MatchID() string
+	SetMatchID(value string)
+	Message() string
+	SetMessage(value string)
+	Participants() GKTurnBasedParticipant
+	SetParticipants(value IGKTurnBasedParticipant)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // An object that encapsulates the match data for games where players take turns.
@@ -87,22 +112,22 @@ func NewTurnBasedMatch() TurnBasedMatch {
 // Loads a specific match with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/load(withID:withCompletionHandler:)
-func (tc _TurnBasedMatchClass) LoadMatchWithIDWithCompletionHandler(matchID appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("loadMatchWithID:withCompletionHandler:"), matchID, completionHandler)
+func (tc _TurnBasedMatchClass) LoadMatchWithIDWithCompletionHandler(matchID string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("loadMatchWithID:withCompletionHandler:"), objc.String(matchID), completionHandler)
 }
 
 // Sends an exchange request that contains your game data to one or more participants.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)
-func (t_ TurnBasedMatch) SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant, data foundation.IData, key appkit.string, arguments []string, timeout foundation.ITimeInterval, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:"), participants, data, key, arguments, timeout, completionHandler)
+func (t_ TurnBasedMatch) SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant, data foundation.IData, key string, arguments []string, timeout foundation.ITimeInterval, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:"), participants, data, objc.String(key), arguments, timeout, completionHandler)
 }
 
 // Sends a localized message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/setLocalizableMessageWithKey(_:arguments:)
-func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key appkit.string, arguments []string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLocalizableMessageWithKey:arguments:"), key, arguments)
+func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key string, arguments []string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLocalizableMessageWithKey:arguments:"), objc.String(key), arguments)
 }
 
 // The exchanges that the local player needs to accept or reject.
@@ -270,8 +295,8 @@ func (t_ TurnBasedMatch) SetMatchDataMaximumSize(value int) {
 // A unique identifier for the turn-based match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchid
-func (t_ TurnBasedMatch) MatchID() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("matchID"))
+func (t_ TurnBasedMatch) MatchID() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("matchID"))
 	return rv
 }
 
@@ -281,15 +306,15 @@ func (t_ TurnBasedMatch) MatchID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchid
-func (t_ TurnBasedMatch) SetMatchID(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchID:"), value)
+func (t_ TurnBasedMatch) SetMatchID(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchID:"), objc.String(value))
 }
 
 // A message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
-func (t_ TurnBasedMatch) Message() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("message"))
+func (t_ TurnBasedMatch) Message() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -299,8 +324,8 @@ func (t_ TurnBasedMatch) Message() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
-func (t_ TurnBasedMatch) SetMessage(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), value)
+func (t_ TurnBasedMatch) SetMessage(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 
 // The players that participate in a turn-based match.

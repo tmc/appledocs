@@ -30,6 +30,8 @@ type _AggregateAssetDownloadTaskClass struct {
 // An interface definition for the [AggregateAssetDownloadTask] class.
 type IAggregateAssetDownloadTask interface {
 	foundation.IURLSessionTask
+	UrlAsset() AVURLAsset
+	SetUrlAsset(value IAVURLAsset)
 }
 
 // A task that downloads multiple media selections for an asset.

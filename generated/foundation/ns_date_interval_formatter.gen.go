@@ -30,6 +30,18 @@ type _DateIntervalFormatterClass struct {
 type IDateIntervalFormatter interface {
 	IFormatter
 	StringFromDateToDate(fromDate IDate, toDate IDate) String
+	Calendar() Calendar
+	SetCalendar(value ICalendar)
+	DateStyle() unsafe.Pointer
+	SetDateStyle(value unsafe.Pointer)
+	DateTemplate() string
+	SetDateTemplate(value string)
+	Locale() Locale
+	SetLocale(value ILocale)
+	TimeStyle() unsafe.Pointer
+	SetTimeStyle(value unsafe.Pointer)
+	TimeZone() TimeZone
+	SetTimeZone(value ITimeZone)
 }
 
 // A formatter that creates string representations of time intervals.

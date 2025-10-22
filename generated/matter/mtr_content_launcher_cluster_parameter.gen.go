@@ -30,6 +30,12 @@ type _MTRContentLauncherClusterParameterClass struct {
 // An interface definition for the [MTRContentLauncherClusterParameter] class.
 type IMTRContentLauncherClusterParameter interface {
 	IMTRContentLauncherClusterParameterStruct
+	ExternalIDList() unsafe.Pointer
+	SetExternalIDList(value unsafe.Pointer)
+	Type() foundation.Number
+	SetType(value foundation.INumber)
+	Value() string
+	SetValue(value string)
 }
 
 //
@@ -109,8 +115,8 @@ func (m_ MTRContentLauncherClusterParameter) SetType(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
-func (m_ MTRContentLauncherClusterParameter) Value() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
+func (m_ MTRContentLauncherClusterParameter) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -118,8 +124,8 @@ func (m_ MTRContentLauncherClusterParameter) Value() appkit.string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
-func (m_ MTRContentLauncherClusterParameter) SetValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+func (m_ MTRContentLauncherClusterParameter) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

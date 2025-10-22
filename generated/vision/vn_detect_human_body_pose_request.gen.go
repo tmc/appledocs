@@ -29,6 +29,12 @@ type _DetectHumanBodyPoseRequestClass struct {
 // An interface definition for the [DetectHumanBodyPoseRequest] class.
 type IDetectHumanBodyPoseRequest interface {
 	IImageBasedRequest
+	Results() []HumanBodyPoseObservation
+	SupportedJointNames() unsafe.Pointer
+	SetSupportedJointNames(value unsafe.Pointer)
+	SupportedJointsGroupNames() unsafe.Pointer
+	SetSupportedJointsGroupNames(value unsafe.Pointer)
+	VNDetectHumanBodyPoseRequestRevision1() int
 }
 
 // A request that detects a human body pose.

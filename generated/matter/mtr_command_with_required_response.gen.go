@@ -30,6 +30,12 @@ type _MTRCommandWithRequiredResponseClass struct {
 // An interface definition for the [MTRCommandWithRequiredResponse] class.
 type IMTRCommandWithRequiredResponse interface {
 	objectivec.IObject
+	CommandFields() unsafe.Pointer
+	SetCommandFields(value unsafe.Pointer)
+	Path() MTRCommandPath
+	SetPath(value IMTRCommandPath)
+	RequiredResponse() unsafe.Pointer
+	SetRequiredResponse(value unsafe.Pointer)
 }
 
 // An object representing a single command to be invoked and the response required for the invoke to be considered successful.

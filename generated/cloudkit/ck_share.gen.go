@@ -32,6 +32,34 @@ type ICKShare interface {
 	ICKRecord
 	AddParticipant(participant ICKShareParticipant)
 	RemoveParticipant(participant ICKShareParticipant)
+	PublicPermission() CKShareParticipantPermission
+	SetPublicPermission(value ICKShareParticipantPermission)
+	URL() foundation.URL
+	RecordName() string
+	SetRecordName(value string)
+	Parent() CKReference
+	SetParent(value ICKReference)
+	RecordID() CKRecordID
+	SetRecordID(value ICKRecordID)
+	Share() CKReference
+	SetShare(value ICKReference)
+	CKRecordNameZoneWideShare() string
+	UserIdentity() CKUserIdentity
+	SetUserIdentity(value ICKUserIdentity)
+	AllowsAccessRequests() bool
+	SetAllowsAccessRequests(value bool)
+	BlockedIdentities() CKShareBlockedIdentity
+	SetBlockedIdentities(value ICKShareBlockedIdentity)
+	CurrentUserParticipant() CKShareParticipant
+	SetCurrentUserParticipant(value ICKShareParticipant)
+	Owner() CKShareParticipant
+	SetOwner(value ICKShareParticipant)
+	Participants() CKShareParticipant
+	SetParticipants(value ICKShareParticipant)
+	Requesters() CKShareAccessRequester
+	SetRequesters(value ICKShareAccessRequester)
+	HasiCloudAccount() bool
+	SetHasiCloudAccount(value bool)
 }
 
 // A specialized record type that manages a collection of shared records.

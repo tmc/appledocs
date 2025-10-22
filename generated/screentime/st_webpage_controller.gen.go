@@ -31,6 +31,17 @@ type _STWebpageControllerClass struct {
 // An interface definition for the [STWebpageController] class.
 type ISTWebpageController interface {
 	appkit.IViewController
+	URL() foundation.URL
+	SetURL(value foundation.IURL)
+	URLIsBlocked() bool
+	URLIsPlayingVideo() bool
+	SetURLIsPlayingVideo(value bool)
+	ProfileIdentifier() unsafe.Pointer
+	SetProfileIdentifier(value unsafe.Pointer)
+	SuppressUsageRecording() bool
+	SetSuppressUsageRecording(value bool)
+	UrlIsPictureInPicture() bool
+	SetUrlIsPictureInPicture(value bool)
 }
 
 // The controller you use to report web usage and block restricted webpages.

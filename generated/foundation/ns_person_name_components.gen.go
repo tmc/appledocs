@@ -30,6 +30,20 @@ type _PersonNameComponentsClass struct {
 // An interface definition for the [PersonNameComponents] class.
 type IPersonNameComponents interface {
 	objectivec.IObject
+	FamilyName() string
+	SetFamilyName(value string)
+	GivenName() string
+	SetGivenName(value string)
+	MiddleName() string
+	SetMiddleName(value string)
+	NamePrefix() string
+	SetNamePrefix(value string)
+	NameSuffix() string
+	SetNameSuffix(value string)
+	Nickname() string
+	SetNickname(value string)
+	PhoneticRepresentation() NSPersonNameComponents
+	SetPhoneticRepresentation(value IPersonNameComponents)
 }
 
 // An object that manages the separate parts of a person’s name to allow locale-aware formatting.

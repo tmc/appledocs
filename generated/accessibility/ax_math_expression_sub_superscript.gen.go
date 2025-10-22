@@ -29,6 +29,10 @@ type _AXMathExpressionSubSuperscriptClass struct {
 // An interface definition for the [AXMathExpressionSubSuperscript] class.
 type IAXMathExpressionSubSuperscript interface {
 	IAXMathExpression
+	BaseExpression() AXMathExpression
+	SuperscriptExpressions() []AXMathExpression
+	SubscriptExpressions() AXMathExpression
+	SetSubscriptExpressions(value IAXMathExpression)
 }
 
 //

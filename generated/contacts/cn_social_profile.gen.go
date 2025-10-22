@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,27 @@ type _CNSocialProfileClass struct {
 // An interface definition for the [CNSocialProfile] class.
 type ICNSocialProfile interface {
 	objectivec.IObject
+	Service() string
+	SetService(value string)
+	UrlString() string
+	SetUrlString(value string)
+	UserIdentifier() string
+	SetUserIdentifier(value string)
+	Username() string
+	SetUsername(value string)
+	CNSocialProfileServiceFacebook() string
+	CNSocialProfileServiceFlickr() string
+	CNSocialProfileServiceGameCenter() string
+	CNSocialProfileServiceKey() string
+	CNSocialProfileServiceLinkedIn() string
+	CNSocialProfileServiceMySpace() string
+	CNSocialProfileServiceSinaWeibo() string
+	CNSocialProfileServiceTencentWeibo() string
+	CNSocialProfileServiceTwitter() string
+	CNSocialProfileServiceYelp() string
+	CNSocialProfileURLStringKey() string
+	CNSocialProfileUserIdentifierKey() string
+	CNSocialProfileUsernameKey() string
 }
 
 // An immutable object that represents one of the user’s social profiles.
@@ -85,16 +105,16 @@ func NewCNSocialProfile() CNSocialProfile {
 // Returns the localized name of the property for the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSocialProfile/localizedString(forKey:)
-func (cc _CNSocialProfileClass) LocalizedStringForKey(key appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), key)
+func (cc _CNSocialProfileClass) LocalizedStringForKey(key string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
 	return rv
 }
 
 // The social profile’s service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/service
-func (c_ CNSocialProfile) Service() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("service"))
+func (c_ CNSocialProfile) Service() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("service"))
 	return rv
 }
 
@@ -104,15 +124,15 @@ func (c_ CNSocialProfile) Service() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/service
-func (c_ CNSocialProfile) SetService(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), value)
+func (c_ CNSocialProfile) SetService(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), objc.String(value))
 }
 
 // The URL associated with the social profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/urlstring
-func (c_ CNSocialProfile) UrlString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("urlString"))
+func (c_ CNSocialProfile) UrlString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("urlString"))
 	return rv
 }
 
@@ -122,15 +142,15 @@ func (c_ CNSocialProfile) UrlString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/urlstring
-func (c_ CNSocialProfile) SetUrlString(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlString:"), value)
+func (c_ CNSocialProfile) SetUrlString(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlString:"), objc.String(value))
 }
 
 // The service’s user identifier associated with the social profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/useridentifier
-func (c_ CNSocialProfile) UserIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("userIdentifier"))
+func (c_ CNSocialProfile) UserIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("userIdentifier"))
 	return rv
 }
 
@@ -140,15 +160,15 @@ func (c_ CNSocialProfile) UserIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/useridentifier
-func (c_ CNSocialProfile) SetUserIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentifier:"), value)
+func (c_ CNSocialProfile) SetUserIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentifier:"), objc.String(value))
 }
 
 // The user name for the social profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/username
-func (c_ CNSocialProfile) Username() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("username"))
+func (c_ CNSocialProfile) Username() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -158,111 +178,111 @@ func (c_ CNSocialProfile) Username() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/username
-func (c_ CNSocialProfile) SetUsername(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), value)
+func (c_ CNSocialProfile) SetUsername(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
 
 // The Facebook social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicefacebook
-func (c_ CNSocialProfile) CNSocialProfileServiceFacebook() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceFacebook"))
+func (c_ CNSocialProfile) CNSocialProfileServiceFacebook() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceFacebook"))
 	return rv
 }
 
 // The Flickr social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileserviceflickr
-func (c_ CNSocialProfile) CNSocialProfileServiceFlickr() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceFlickr"))
+func (c_ CNSocialProfile) CNSocialProfileServiceFlickr() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceFlickr"))
 	return rv
 }
 
 // The Game Center social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicegamecenter
-func (c_ CNSocialProfile) CNSocialProfileServiceGameCenter() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceGameCenter"))
+func (c_ CNSocialProfile) CNSocialProfileServiceGameCenter() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceGameCenter"))
 	return rv
 }
 
 // The social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicekey
-func (c_ CNSocialProfile) CNSocialProfileServiceKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceKey"))
+func (c_ CNSocialProfile) CNSocialProfileServiceKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceKey"))
 	return rv
 }
 
 // The LinkedIn social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicelinkedin
-func (c_ CNSocialProfile) CNSocialProfileServiceLinkedIn() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceLinkedIn"))
+func (c_ CNSocialProfile) CNSocialProfileServiceLinkedIn() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceLinkedIn"))
 	return rv
 }
 
 // The MySpace social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicemyspace
-func (c_ CNSocialProfile) CNSocialProfileServiceMySpace() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceMySpace"))
+func (c_ CNSocialProfile) CNSocialProfileServiceMySpace() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceMySpace"))
 	return rv
 }
 
 // The Sina Weibo social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicesinaweibo
-func (c_ CNSocialProfile) CNSocialProfileServiceSinaWeibo() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceSinaWeibo"))
+func (c_ CNSocialProfile) CNSocialProfileServiceSinaWeibo() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceSinaWeibo"))
 	return rv
 }
 
 // The Tencent Weibo social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicetencentweibo
-func (c_ CNSocialProfile) CNSocialProfileServiceTencentWeibo() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceTencentWeibo"))
+func (c_ CNSocialProfile) CNSocialProfileServiceTencentWeibo() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceTencentWeibo"))
 	return rv
 }
 
 // The Twitter social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicetwitter
-func (c_ CNSocialProfile) CNSocialProfileServiceTwitter() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceTwitter"))
+func (c_ CNSocialProfile) CNSocialProfileServiceTwitter() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceTwitter"))
 	return rv
 }
 
 // The Yelp social profile service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileserviceyelp
-func (c_ CNSocialProfile) CNSocialProfileServiceYelp() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileServiceYelp"))
+func (c_ CNSocialProfile) CNSocialProfileServiceYelp() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceYelp"))
 	return rv
 }
 
 // The social profile URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileurlstringkey
-func (c_ CNSocialProfile) CNSocialProfileURLStringKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileURLStringKey"))
+func (c_ CNSocialProfile) CNSocialProfileURLStringKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileURLStringKey"))
 	return rv
 }
 
 // The social profile user identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileuseridentifierkey
-func (c_ CNSocialProfile) CNSocialProfileUserIdentifierKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileUserIdentifierKey"))
+func (c_ CNSocialProfile) CNSocialProfileUserIdentifierKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileUserIdentifierKey"))
 	return rv
 }
 
 // The social profile user name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileusernamekey
-func (c_ CNSocialProfile) CNSocialProfileUsernameKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNSocialProfileUsernameKey"))
+func (c_ CNSocialProfile) CNSocialProfileUsernameKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileUsernameKey"))
 	return rv
 }
 

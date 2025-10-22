@@ -17,10 +17,10 @@ import (
 var (
 	_AACustomArchiveStreamSetWriteBlobProc func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_AAEntryACLBlobCreateWithPath func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_AAHeaderSetFieldUInt func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_AAHeaderSetFieldUInt func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_AEAContextCreateWithEncryptedStream func(unsafe.Pointer) unsafe.Pointer
-	_AEAContextGenerateFieldBlob func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_AEAContextGetFieldBlob func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_AEAContextGenerateFieldBlob func(unsafe.Pointer, unsafe.Pointer) int
+	_AEAContextGetFieldBlob func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 )
 
 func init() {
@@ -75,7 +75,7 @@ func AAEntryACLBlobCreateWithPath(dir unsafe.Pointer, path unsafe.Pointer, flags
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AAHeaderSetFieldUInt
-func AAHeaderSetFieldUInt(header unsafe.Pointer, i unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func AAHeaderSetFieldUInt(header unsafe.Pointer, i unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) int {
 	return _AAHeaderSetFieldUInt(header, i, key, value)
 	}
 
@@ -95,7 +95,7 @@ func AEAContextCreateWithEncryptedStream(encrypted_stream unsafe.Pointer) unsafe
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AEAContextGenerateFieldBlob
-func AEAContextGenerateFieldBlob(context unsafe.Pointer, field unsafe.Pointer) unsafe.Pointer {
+func AEAContextGenerateFieldBlob(context unsafe.Pointer, field unsafe.Pointer) int {
 	return _AEAContextGenerateFieldBlob(context, field)
 	}
 
@@ -105,7 +105,7 @@ func AEAContextGenerateFieldBlob(context unsafe.Pointer, field unsafe.Pointer) u
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppleArchive/AEAContextGetFieldBlob
-func AEAContextGetFieldBlob(context unsafe.Pointer, field unsafe.Pointer, representation unsafe.Pointer, buf_capacity unsafe.Pointer, buf unsafe.Pointer, buf_size unsafe.Pointer) unsafe.Pointer {
+func AEAContextGetFieldBlob(context unsafe.Pointer, field unsafe.Pointer, representation unsafe.Pointer, buf_capacity unsafe.Pointer, buf unsafe.Pointer, buf_size unsafe.Pointer) int {
 	return _AEAContextGetFieldBlob(context, field, representation, buf_capacity, buf, buf_size)
 	}
 

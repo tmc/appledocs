@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,10 +31,12 @@ type _ABRecordClass struct {
 type IABRecord interface {
 	objectivec.IObject
 	IsReadOnly() bool
-	RemoveValueForProperty(property appkit.string) bool
-	SetValueForProperty(value objectivec.IObject, property appkit.string) bool
-	SetValueForPropertyError(value objectivec.IObject, property appkit.string, error_ unsafe.Pointer) bool
-	ValueForProperty(property appkit.string) objc.ID
+	RemoveValueForProperty(property string) bool
+	SetValueForProperty(value objectivec.IObject, property string) bool
+	SetValueForPropertyError(value objectivec.IObject, property string, error_ unsafe.Pointer) bool
+	ValueForProperty(property string) objc.ID
+	DisplayName() string
+	UniqueId() string
 }
 
 // An abstract class that defines the common properties for all Address Book records.
@@ -110,48 +111,48 @@ func (a_ ABRecord) IsReadOnly() bool {
 // Removes the value for a given property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/removeValue(forProperty:)
-func (a_ ABRecord) RemoveValueForProperty(property appkit.string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueForProperty:"), property)
+func (a_ ABRecord) RemoveValueForProperty(property string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueForProperty:"), objc.String(property))
 	return rv
 }
 
 // Sets the value of a given property for a record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/setValue(_:forProperty:)
-func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property appkit.string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:"), value, property)
+func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:"), value, objc.String(property))
 	return rv
 }
 
 // Sets the value of a given property for a record, returning error information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/setValue(_:forProperty:error:)
-func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:error:"), value, property, error_)
+func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:error:"), value, objc.String(property), error_)
 	return rv
 }
 
 // Returns the value of a given property for a record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/value(forProperty:)
-func (a_ ABRecord) ValueForProperty(property appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForProperty:"), property)
+func (a_ ABRecord) ValueForProperty(property string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForProperty:"), objc.String(property))
 	return rv
 }
 
 // A user-visible string representing the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/displayName
-func (a_ ABRecord) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("displayName"))
+func (a_ ABRecord) DisplayName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // Returns the unique ID for a record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/uniqueId
-func (a_ ABRecord) UniqueId() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("uniqueId"))
+func (a_ ABRecord) UniqueId() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("uniqueId"))
 	return rv
 }
 

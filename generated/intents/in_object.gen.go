@@ -30,6 +30,18 @@ type _INObjectClass struct {
 // An interface definition for the [INObject] class.
 type IINObject interface {
 	objectivec.IObject
+	AlternativeSpeakableMatches() INSpeakableString
+	SetAlternativeSpeakableMatches(value INSpeakableString)
+	DisplayImage() INImage
+	SetDisplayImage(value INImage)
+	DisplayString() string
+	SetDisplayString(value string)
+	Identifier() string
+	SetIdentifier(value string)
+	PronunciationHint() string
+	SetPronunciationHint(value string)
+	SubtitleString() string
+	SetSubtitleString(value string)
 }
 
 // A representation of a custom intent parameter or response property.
@@ -119,8 +131,8 @@ func (i_ INObject) SetDisplayImage(value INImage) {
 // A name or description for the custom intent object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displaystring
-func (i_ INObject) DisplayString() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("displayString"))
+func (i_ INObject) DisplayString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("displayString"))
 	return rv
 }
 
@@ -130,15 +142,15 @@ func (i_ INObject) DisplayString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/displaystring
-func (i_ INObject) SetDisplayString(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayString:"), value)
+func (i_ INObject) SetDisplayString(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayString:"), objc.String(value))
 }
 
 // A string that identifies the custom intent object within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/identifier
-func (i_ INObject) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("identifier"))
+func (i_ INObject) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -148,15 +160,15 @@ func (i_ INObject) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/identifier
-func (i_ INObject) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
+func (i_ INObject) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A hint that describes how to pronounce the custom intent object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/pronunciationhint
-func (i_ INObject) PronunciationHint() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("pronunciationHint"))
+func (i_ INObject) PronunciationHint() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("pronunciationHint"))
 	return rv
 }
 
@@ -166,15 +178,15 @@ func (i_ INObject) PronunciationHint() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/pronunciationhint
-func (i_ INObject) SetPronunciationHint(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPronunciationHint:"), value)
+func (i_ INObject) SetPronunciationHint(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPronunciationHint:"), objc.String(value))
 }
 
 // Additional details about the custom intent object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/subtitlestring
-func (i_ INObject) SubtitleString() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("subtitleString"))
+func (i_ INObject) SubtitleString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("subtitleString"))
 	return rv
 }
 
@@ -184,8 +196,8 @@ func (i_ INObject) SubtitleString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inobject/subtitlestring
-func (i_ INObject) SetSubtitleString(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSubtitleString:"), value)
+func (i_ INObject) SetSubtitleString(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSubtitleString:"), objc.String(value))
 }
 
 

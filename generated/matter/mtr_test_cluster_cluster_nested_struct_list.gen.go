@@ -30,6 +30,20 @@ type _MTRTestClusterClusterNestedStructListClass struct {
 // An interface definition for the [MTRTestClusterClusterNestedStructList] class.
 type IMTRTestClusterClusterNestedStructList interface {
 	IMTRUnitTestingClusterNestedStructList
+	A() foundation.Number
+	SetA(value foundation.INumber)
+	B() foundation.Number
+	SetB(value foundation.INumber)
+	C() MTRTestClusterClusterSimpleStruct
+	SetC(value IMTRTestClusterClusterSimpleStruct)
+	D() unsafe.Pointer
+	SetD(value unsafe.Pointer)
+	E() unsafe.Pointer
+	SetE(value unsafe.Pointer)
+	F() unsafe.Pointer
+	SetF(value unsafe.Pointer)
+	G() unsafe.Pointer
+	SetG(value unsafe.Pointer)
 }
 
 //

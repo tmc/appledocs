@@ -30,6 +30,18 @@ type _DictionaryConstraintClass struct {
 // An interface definition for the [DictionaryConstraint] class.
 type IDictionaryConstraint interface {
 	objectivec.IObject
+	KeyType() FeatureType
+	SetKeyType(value FeatureType)
+	DictionaryConstraint() MLDictionaryConstraint
+	SetDictionaryConstraint(value IMLDictionaryConstraint)
+	ImageConstraint() MLImageConstraint
+	SetImageConstraint(value IMLImageConstraint)
+	MultiArrayConstraint() MLMultiArrayConstraint
+	SetMultiArrayConstraint(value IMLMultiArrayConstraint)
+	SequenceConstraint() MLSequenceConstraint
+	SetSequenceConstraint(value IMLSequenceConstraint)
+	StateConstraint() MLStateConstraint
+	SetStateConstraint(value IMLStateConstraint)
 }
 
 // The constraint on the keys for a dictionary feature.

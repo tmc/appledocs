@@ -31,6 +31,12 @@ type _AppleScriptClass struct {
 type IAppleScript interface {
 	objectivec.IObject
 	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo unsafe.Pointer) AppleEventDescriptor
+	IsCompiled() bool
+	SetIsCompiled(value bool)
+	RichTextSource() NSAttributedString
+	SetRichTextSource(value IAttributedString)
+	Source() string
+	SetSource(value string)
 }
 
 // An object that provides the ability to load, compile, and execute scripts.

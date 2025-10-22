@@ -30,6 +30,8 @@ type _MTRAttributePathClass struct {
 // An interface definition for the [MTRAttributePath] class.
 type IMTRAttributePath interface {
 	IMTRClusterPath
+	Attribute() foundation.Number
+	SetAttribute(value foundation.INumber)
 }
 
 //

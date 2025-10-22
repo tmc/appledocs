@@ -29,6 +29,10 @@ type _StatefulRequestClass struct {
 // An interface definition for the [StatefulRequest] class.
 type IStatefulRequest interface {
 	IImageBasedRequest
+	FrameAnalysisSpacing() unsafe.Pointer
+	SetFrameAnalysisSpacing(value unsafe.Pointer)
+	MinimumLatencyFrameCount() int
+	SetMinimumLatencyFrameCount(value int)
 }
 
 // An abstract request type that builds evidence of a condition over time.

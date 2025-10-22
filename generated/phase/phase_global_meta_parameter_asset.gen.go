@@ -29,6 +29,12 @@ type _PHASEGlobalMetaParameterAssetClass struct {
 // An interface definition for the [PHASEGlobalMetaParameterAsset] class.
 type IPHASEGlobalMetaParameterAsset interface {
 	IPHASEAsset
+	Identifier() string
+	SetIdentifier(value string)
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
+	MetaParameters() PHASEMetaParameter
+	SetMetaParameters(value IPHASEMetaParameter)
 }
 
 // A reference to a registered metaparameter that the app can share with multiple sound events or sources.
@@ -84,8 +90,8 @@ func NewPHASEGlobalMetaParameterAsset() PHASEGlobalMetaParameterAsset {
 // A unique name for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
-func (p_ PHASEGlobalMetaParameterAsset) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEGlobalMetaParameterAsset) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -95,8 +101,8 @@ func (p_ PHASEGlobalMetaParameterAsset) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
-func (p_ PHASEGlobalMetaParameterAsset) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+func (p_ PHASEGlobalMetaParameterAsset) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A dictionary of metaparameters that all sound event assets share.

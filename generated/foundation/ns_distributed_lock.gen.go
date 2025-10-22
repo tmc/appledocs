@@ -33,6 +33,7 @@ type IDistributedLock interface {
 	BreakLock()
 	TryLock() bool
 	Unlock()
+	LockDate() NSDate
 }
 
 // A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.

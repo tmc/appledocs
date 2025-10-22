@@ -32,6 +32,7 @@ type IEnvironment interface {
 	objectivec.IObject
 	AddObserver(observer objectivec.IObject)
 	RemoveObserver(observer objectivec.IObject)
+	State() LAEnvironmentState
 }
 
 //

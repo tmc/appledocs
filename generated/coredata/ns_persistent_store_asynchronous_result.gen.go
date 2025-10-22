@@ -31,6 +31,9 @@ type _PersistentStoreAsynchronousResultClass struct {
 type IPersistentStoreAsynchronousResult interface {
 	IPersistentStoreResult
 	Cancel()
+	ManagedObjectContext() NSManagedObjectContext
+	OperationError() foundation.Error
+	Progress() foundation.Progress
 }
 
 // A concrete class used to represent the results of an asynchronous request.

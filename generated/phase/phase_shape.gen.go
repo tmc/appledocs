@@ -30,6 +30,9 @@ type _PHASEShapeClass struct {
 // An interface definition for the [PHASEShape] class.
 type IPHASEShape interface {
 	objectivec.IObject
+	Elements() []PHASEShapeElement
+	Shapes() PHASEShape
+	SetShapes(value IPHASEShape)
 }
 
 // A collection of points that connect to form a 3D volume.

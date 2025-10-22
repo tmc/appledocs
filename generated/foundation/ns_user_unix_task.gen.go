@@ -30,6 +30,12 @@ type _UserUnixTaskClass struct {
 type IUserUnixTask interface {
 	IUserScriptTask
 	ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer)
+	StandardError() NSFileHandle
+	SetStandardError(value IFileHandle)
+	StandardInput() NSFileHandle
+	SetStandardInput(value IFileHandle)
+	StandardOutput() NSFileHandle
+	SetStandardOutput(value IFileHandle)
 }
 
 // An object that executes unix applications.

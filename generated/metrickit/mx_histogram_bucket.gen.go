@@ -31,6 +31,13 @@ type _MXHistogramBucketClass struct {
 // An interface definition for the [MXHistogramBucket] class.
 type IMXHistogramBucket interface {
 	objectivec.IObject
+	BucketCount() uint
+	BucketEnd() unsafe.Pointer
+	BucketStart() unsafe.Pointer
+	BucketEnumerator() foundation.Enumerator
+	SetBucketEnumerator(value foundation.IEnumerator)
+	TotalBucketCount() int
+	SetTotalBucketCount(value int)
 }
 
 // An object representing a bucket of data in a histogram.

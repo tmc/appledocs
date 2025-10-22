@@ -31,6 +31,10 @@ type _MTROnOffClusterOffParamsClass struct {
 // An interface definition for the [MTROnOffClusterOffParams] class.
 type IMTROnOffClusterOffParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

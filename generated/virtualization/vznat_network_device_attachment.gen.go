@@ -29,6 +29,10 @@ type _VZNATNetworkDeviceAttachmentClass struct {
 // An interface definition for the [VZNATNetworkDeviceAttachment] class.
 type IVZNATNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
+	Attachment() VZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	NetworkDevices() VZNetworkDeviceConfiguration
+	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
 }
 
 // A device that routes network requests through the host computer and performs network address translation on the resulting packets.

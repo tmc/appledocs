@@ -30,6 +30,7 @@ type _NavigationClass struct {
 // An interface definition for the [Navigation] class.
 type INavigation interface {
 	objectivec.IObject
+	EffectiveContentMode() ContentMode
 }
 
 // An object that tracks the loading progress of a webpage.

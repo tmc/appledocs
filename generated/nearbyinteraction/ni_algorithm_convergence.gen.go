@@ -30,6 +30,9 @@ type _NIAlgorithmConvergenceClass struct {
 // An interface definition for the [NIAlgorithmConvergence] class.
 type INIAlgorithmConvergence interface {
 	objectivec.IObject
+	Status() NIAlgorithmConvergenceStatus
+	IsCameraAssistanceEnabled() bool
+	SetIsCameraAssistanceEnabled(value bool)
 }
 
 // An object that provides the state and reason for user coaching recommendations.

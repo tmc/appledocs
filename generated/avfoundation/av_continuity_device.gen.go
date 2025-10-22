@@ -32,6 +32,12 @@ type _ContinuityDeviceClass struct {
 // An interface definition for the [ContinuityDevice] class.
 type IContinuityDevice interface {
 	objectivec.IObject
+	AudioSessionInputs() []avfaudio.AudioSessionPortDescription
+	ConnectionID() foundation.UUID
+	Connected() bool
+	VideoDevices() []CaptureDevice
+	IsConnected() bool
+	SetIsConnected(value bool)
 }
 
 // A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.

@@ -29,6 +29,8 @@ type _VZVirtioGraphicsDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioGraphicsDeviceConfiguration] class.
 type IVZVirtioGraphicsDeviceConfiguration interface {
 	IVZGraphicsDeviceConfiguration
+	Scanouts() []VZVirtioGraphicsScanoutConfiguration
+	SetScanouts(value []VZVirtioGraphicsScanoutConfiguration)
 }
 
 // Configuration that represents the configuration of a Virtio graphics device for a Linux VM.

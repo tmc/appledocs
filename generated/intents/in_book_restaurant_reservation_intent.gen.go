@@ -30,6 +30,20 @@ type _INBookRestaurantReservationIntentClass struct {
 // An interface definition for the [INBookRestaurantReservationIntent] class.
 type IINBookRestaurantReservationIntent interface {
 	IINIntent
+	BookingDateComponents() foundation.DateComponents
+	SetBookingDateComponents(value foundation.IDateComponents)
+	BookingIdentifier() string
+	SetBookingIdentifier(value string)
+	Guest() unsafe.Pointer
+	SetGuest(value unsafe.Pointer)
+	GuestProvidedSpecialRequestText() string
+	SetGuestProvidedSpecialRequestText(value string)
+	PartySize() int
+	SetPartySize(value int)
+	Restaurant() unsafe.Pointer
+	SetRestaurant(value unsafe.Pointer)
+	SelectedOffer() unsafe.Pointer
+	SetSelectedOffer(value unsafe.Pointer)
 }
 
 // A request to create a reservation at the specified restaurant.
@@ -103,8 +117,8 @@ func (i_ INBookRestaurantReservationIntent) SetBookingDateComponents(value found
 // The unique identifier associated with the initial reservation data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingidentifier
-func (i_ INBookRestaurantReservationIntent) BookingIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("bookingIdentifier"))
+func (i_ INBookRestaurantReservationIntent) BookingIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("bookingIdentifier"))
 	return rv
 }
 
@@ -114,8 +128,8 @@ func (i_ INBookRestaurantReservationIntent) BookingIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingidentifier
-func (i_ INBookRestaurantReservationIntent) SetBookingIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingIdentifier:"), value)
+func (i_ INBookRestaurantReservationIntent) SetBookingIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingIdentifier:"), objc.String(value))
 }
 
 // The identity of the guest associated with the reservation.
@@ -139,8 +153,8 @@ func (i_ INBookRestaurantReservationIntent) SetGuest(value unsafe.Pointer) {
 // Information about any special requests made by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
-func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
+func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
 	return rv
 }
 
@@ -150,8 +164,8 @@ func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() ap
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
-func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), value)
+func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), objc.String(value))
 }
 
 // The total number of people in the user’s party.

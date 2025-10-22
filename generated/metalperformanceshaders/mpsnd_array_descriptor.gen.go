@@ -32,6 +32,12 @@ type INDArrayDescriptor interface {
 	objectivec.IObject
 	DimensionOrder() unsafe.Pointer
 	SliceRangeForDimension(dimensionIndex uint) unsafe.Pointer
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
+	NumberOfDimensions() int
+	SetNumberOfDimensions(value int)
+	PreferPackedRows() bool
+	SetPreferPackedRows(value bool)
 }
 
 //

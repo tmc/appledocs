@@ -34,6 +34,23 @@ type IGLKView interface {
 	BindDrawable()
 	DeleteDrawable()
 	Display()
+	Context() unsafe.Pointer
+	SetContext(value unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DrawableColorFormat() GLKViewDrawableColorFormat
+	SetDrawableColorFormat(value GLKViewDrawableColorFormat)
+	DrawableDepthFormat() GLKViewDrawableDepthFormat
+	SetDrawableDepthFormat(value GLKViewDrawableDepthFormat)
+	DrawableHeight() int
+	DrawableMultisample() GLKViewDrawableMultisample
+	SetDrawableMultisample(value IGLKViewDrawableMultisample)
+	DrawableStencilFormat() GLKViewDrawableStencilFormat
+	SetDrawableStencilFormat(value GLKViewDrawableStencilFormat)
+	DrawableWidth() int
+	EnableSetNeedsDisplay() bool
+	SetEnableSetNeedsDisplay(value bool)
+	Snapshot() appkit.Image
 }
 
 // A default implementation for views that draw their content using OpenGL ES.

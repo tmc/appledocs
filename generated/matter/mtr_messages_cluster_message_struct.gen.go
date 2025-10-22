@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,20 @@ type _MTRMessagesClusterMessageStructClass struct {
 // An interface definition for the [MTRMessagesClusterMessageStruct] class.
 type IMTRMessagesClusterMessageStruct interface {
 	objectivec.IObject
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	MessageControl() foundation.Number
+	SetMessageControl(value foundation.INumber)
+	MessageID() foundation.NSData
+	SetMessageID(value foundation.IData)
+	MessageText() string
+	SetMessageText(value string)
+	Priority() foundation.Number
+	SetPriority(value foundation.INumber)
+	Responses() objc.ID
+	SetResponses(value objc.ID)
+	StartTime() foundation.Number
+	SetStartTime(value foundation.INumber)
 }
 
 //
@@ -124,8 +137,8 @@ func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value foundation.IData) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
-func (m_ MTRMessagesClusterMessageStruct) MessageText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("messageText"))
+func (m_ MTRMessagesClusterMessageStruct) MessageText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("messageText"))
 	return rv
 }
 
@@ -133,8 +146,8 @@ func (m_ MTRMessagesClusterMessageStruct) MessageText() appkit.string {
 // SetMessageText sets the value of the messageText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
-func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), value)
+func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
 }
 
 //

@@ -30,6 +30,28 @@ type _PGDeviceDescriptorClass struct {
 // An interface definition for the [PGDeviceDescriptor] class.
 type IPGDeviceDescriptor interface {
 	objectivec.IObject
+	AddTraceRange() unsafe.Pointer
+	SetAddTraceRange(value unsafe.Pointer)
+	CreateTask() unsafe.Pointer
+	SetCreateTask(value unsafe.Pointer)
+	DestroyTask() unsafe.Pointer
+	SetDestroyTask(value unsafe.Pointer)
+	Device() objc.ID
+	SetDevice(value objc.ID)
+	DisplayPortCount() uint32
+	SetDisplayPortCount(value Iuint32)
+	MapMemory() unsafe.Pointer
+	SetMapMemory(value unsafe.Pointer)
+	MmioLength() uintptr
+	SetMmioLength(value Iuintptr)
+	RaiseInterrupt() unsafe.Pointer
+	SetRaiseInterrupt(value unsafe.Pointer)
+	ReadMemory() unsafe.Pointer
+	SetReadMemory(value unsafe.Pointer)
+	RemoveTraceRange() unsafe.Pointer
+	SetRemoveTraceRange(value unsafe.Pointer)
+	UnmapMemory() unsafe.Pointer
+	SetUnmapMemory(value unsafe.Pointer)
 }
 
 // A description of the paravirtualized graphics device to create.
@@ -152,8 +174,8 @@ func (p_ PGDeviceDescriptor) SetDevice(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/displayPortCount
-func (p_ PGDeviceDescriptor) DisplayPortCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("displayPortCount"))
+func (p_ PGDeviceDescriptor) DisplayPortCount() uint32 {
+	rv := objc.Send[uint32](p_.ID, objc.Sel("displayPortCount"))
 	return rv
 }
 
@@ -161,7 +183,7 @@ func (p_ PGDeviceDescriptor) DisplayPortCount() unsafe.Pointer {
 // SetDisplayPortCount sets the value of the displayPortCount property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/displayPortCount
-func (p_ PGDeviceDescriptor) SetDisplayPortCount(value unsafe.Pointer) {
+func (p_ PGDeviceDescriptor) SetDisplayPortCount(value Iuint32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayPortCount:"), value)
 }
 
@@ -186,8 +208,8 @@ func (p_ PGDeviceDescriptor) SetMapMemory(value unsafe.Pointer) {
 // The length in bytes of the memory-mapped IO section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/mmioLength
-func (p_ PGDeviceDescriptor) MmioLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mmioLength"))
+func (p_ PGDeviceDescriptor) MmioLength() uintptr {
+	rv := objc.Send[uintptr](p_.ID, objc.Sel("mmioLength"))
 	return rv
 }
 
@@ -197,7 +219,7 @@ func (p_ PGDeviceDescriptor) MmioLength() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/mmioLength
-func (p_ PGDeviceDescriptor) SetMmioLength(value unsafe.Pointer) {
+func (p_ PGDeviceDescriptor) SetMmioLength(value Iuintptr) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMmioLength:"), value)
 }
 

@@ -31,6 +31,8 @@ type _AssetDownloadStorageManagementPolicyClass struct {
 // An interface definition for the [AssetDownloadStorageManagementPolicy] class.
 type IAssetDownloadStorageManagementPolicy interface {
 	objectivec.IObject
+	ExpirationDate() foundation.NSDate
+	Priority() unsafe.Pointer
 }
 
 // An object that defines a policy to automatically manage the storage of downloaded assets.

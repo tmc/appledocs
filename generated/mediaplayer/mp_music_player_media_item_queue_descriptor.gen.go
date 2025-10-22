@@ -32,6 +32,10 @@ type IMusicPlayerMediaItemQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
 	SetEndTimeForItem(endTime foundation.ITimeInterval, mediaItem IMPMediaItem)
 	SetStartTimeForItem(startTime foundation.ITimeInterval, mediaItem IMPMediaItem)
+	ItemCollection() MPMediaItemCollection
+	Query() MPMediaQuery
+	StartItem() MPMediaItem
+	SetStartItem(value IMPMediaItem)
 }
 
 // A set of properties and methods for modifying audio media items in the player’s media queue.

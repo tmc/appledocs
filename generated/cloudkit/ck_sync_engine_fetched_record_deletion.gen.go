@@ -30,6 +30,8 @@ type _CKSyncEngineFetchedRecordDeletionClass struct {
 // An interface definition for the [CKSyncEngineFetchedRecordDeletion] class.
 type ICKSyncEngineFetchedRecordDeletion interface {
 	objectivec.IObject
+	RecordID() CKRecordID
+	RecordType() unsafe.Pointer
 }
 
 // An object that describes the deletion of an individual record.

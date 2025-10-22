@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [ISO8601DateFormatter] class.
@@ -30,6 +29,10 @@ type _ISO8601DateFormatterClass struct {
 // An interface definition for the [ISO8601DateFormatter] class.
 type IISO8601DateFormatter interface {
 	IFormatter
+	FormatOptions() unsafe.Pointer
+	SetFormatOptions(value unsafe.Pointer)
+	TimeZone() TimeZone
+	SetTimeZone(value ITimeZone)
 }
 
 // A formatter that converts between dates and their ISO 8601 string representations.
@@ -86,7 +89,7 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 // Creates a representation of the specified date with a given time zone and format options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions corefoundation.ISO8601DateFormatOptions) String {
+func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions unsafe.Pointer) String {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
 }
@@ -94,8 +97,8 @@ func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date ID
 // Options for generating and parsing ISO 8601 date representations. See for possible values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
-func (i_ ISO8601DateFormatter) FormatOptions() corefoundation.ISO8601DateFormatOptions {
-	rv := objc.Send[corefoundation.ISO8601DateFormatOptions](i_.ID, objc.Sel("formatOptions"))
+func (i_ ISO8601DateFormatter) FormatOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("formatOptions"))
 	return rv
 }
 
@@ -105,7 +108,7 @@ func (i_ ISO8601DateFormatter) FormatOptions() corefoundation.ISO8601DateFormatO
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
-func (i_ ISO8601DateFormatter) SetFormatOptions(value corefoundation.ISO8601DateFormatOptions) {
+func (i_ ISO8601DateFormatter) SetFormatOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFormatOptions:"), value)
 }
 

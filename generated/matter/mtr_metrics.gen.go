@@ -31,6 +31,10 @@ type _MTRMetricsClass struct {
 // An interface definition for the [MTRMetrics] class.
 type IMTRMetrics interface {
 	objectivec.IObject
+	AllKeys() string
+	SetAllKeys(value string)
+	UniqueIdentifier() foundation.UUID
+	SetUniqueIdentifier(value foundation.IUUID)
 }
 
 //
@@ -78,8 +82,8 @@ func NewMTRMetrics() MTRMetrics {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
-func (m_ MTRMetrics) AllKeys() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("allKeys"))
+func (m_ MTRMetrics) AllKeys() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("allKeys"))
 	return rv
 }
 
@@ -87,8 +91,8 @@ func (m_ MTRMetrics) AllKeys() appkit.string {
 // SetAllKeys sets the value of the allKeys property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
-func (m_ MTRMetrics) SetAllKeys(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), value)
+func (m_ MTRMetrics) SetAllKeys(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), objc.String(value))
 }
 
 //

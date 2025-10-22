@@ -30,6 +30,16 @@ type _URLProtocolClass struct {
 // An interface definition for the [URLProtocol] class.
 type IURLProtocol interface {
 	objectivec.IObject
+	CachedResponse() NSCachedURLResponse
+	SetCachedResponse(value ICachedURLResponse)
+	Client() unsafe.Pointer
+	SetClient(value unsafe.Pointer)
+	Request() URLRequest
+	SetRequest(value IURLRequest)
+	Task() NSURLSessionTask
+	SetTask(value IURLSessionTask)
+	ProtocolClasses() unsafe.Pointer
+	SetProtocolClasses(value unsafe.Pointer)
 }
 
 // An abstract class that handles the loading of protocol-specific URL data.

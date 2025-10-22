@@ -30,6 +30,10 @@ type _ChallengesViewControllerClass struct {
 // An interface definition for the [ChallengesViewController] class.
 type IChallengesViewController interface {
 	appkit.IViewController
+	ChallengeDelegate() objc.ID
+	SetChallengeDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 //

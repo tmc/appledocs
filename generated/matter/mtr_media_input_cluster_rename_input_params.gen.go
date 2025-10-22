@@ -31,6 +31,14 @@ type _MTRMediaInputClusterRenameInputParamsClass struct {
 // An interface definition for the [MTRMediaInputClusterRenameInputParams] class.
 type IMTRMediaInputClusterRenameInputParams interface {
 	objectivec.IObject
+	Index() foundation.Number
+	SetIndex(value foundation.INumber)
+	Name() string
+	SetName(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -93,8 +101,8 @@ func (m_ MTRMediaInputClusterRenameInputParams) SetIndex(value foundation.INumbe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
-func (m_ MTRMediaInputClusterRenameInputParams) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRMediaInputClusterRenameInputParams) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +110,8 @@ func (m_ MTRMediaInputClusterRenameInputParams) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
-func (m_ MTRMediaInputClusterRenameInputParams) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRMediaInputClusterRenameInputParams) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

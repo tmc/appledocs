@@ -31,6 +31,14 @@ type _MTROperationalCredentialsClusterUpdateNOCParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterUpdateNOCParams] class.
 type IMTROperationalCredentialsClusterUpdateNOCParams interface {
 	objectivec.IObject
+	IcacValue() foundation.Data
+	SetIcacValue(value foundation.IData)
+	NocValue() foundation.Data
+	SetNocValue(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

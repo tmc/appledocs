@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/securityfoundation"
@@ -34,8 +33,8 @@ type _CWInterfaceClass struct {
 type ICWInterface interface {
 	objectivec.IObject
 	ActivePHYMode() CWPHYMode
-	AssociateToNetworkPasswordError(network ICWNetwork, password appkit.string, error_ unsafe.Pointer) bool
-	AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network ICWNetwork, identity unsafe.Pointer, username appkit.string, password appkit.string, error_ unsafe.Pointer) bool
+	AssociateToNetworkPasswordError(network ICWNetwork, password string, error_ unsafe.Pointer) bool
+	AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network ICWNetwork, identity unsafe.Pointer, username string, password string, error_ unsafe.Pointer) bool
 	Bssid() foundation.String
 	CachedScanResults() unsafe.Pointer
 	CommitConfigurationAuthorizationError(configuration ICWConfiguration, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
@@ -47,8 +46,8 @@ type ICWInterface interface {
 	NoiseMeasurement() int
 	PowerOn() bool
 	RssiValue() int
-	ScanForNetworksWithNameError(networkName appkit.string, error_ unsafe.Pointer) unsafe.Pointer
-	ScanForNetworksWithNameIncludeHiddenError(networkName appkit.string, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer
+	ScanForNetworksWithNameError(networkName string, error_ unsafe.Pointer) unsafe.Pointer
+	ScanForNetworksWithNameIncludeHiddenError(networkName string, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer
 	ScanForNetworksWithSSIDError(ssid foundation.IData, error_ unsafe.Pointer) unsafe.Pointer
 	ScanForNetworksWithSSIDIncludeHiddenError(ssid foundation.IData, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer
 	Security() CWSecurity
@@ -59,11 +58,12 @@ type ICWInterface interface {
 	SetWLANChannelError(channel ICWChannel, error_ unsafe.Pointer) bool
 	Ssid() foundation.String
 	SsidData() foundation.Data
-	StartIBSSModeWithSSIDSecurityChannelPasswordError(ssidData foundation.IData, security ICWIBSSModeSecurity, channel uint, password appkit.string, error_ unsafe.Pointer) bool
+	StartIBSSModeWithSSIDSecurityChannelPasswordError(ssidData foundation.IData, security ICWIBSSModeSecurity, channel uint, password string, error_ unsafe.Pointer) bool
 	SupportedWLANChannels() unsafe.Pointer
 	TransmitPower() int
-	TransmitRate() unsafe.Pointer
+	TransmitRate() float64
 	WlanChannel() CWChannel
+	InterfaceName() string
 }
 
 // Encapsulates an IEEE 802.11 interface.
@@ -119,9 +119,9 @@ func NewCWInterface() CWInterface {
 // Convenience method for getting an CWInterface object with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(interfaceName:)
-func NewCWInterfaceWithInterfaceName(name appkit.string) CWInterface {
+func NewCWInterfaceWithInterfaceName(name string) CWInterface {
 	instance := getCWInterfaceClass().Alloc()
-	rv := objc.Send[CWInterface](instance.ID, objc.Sel("initWithInterfaceName:"), name)
+	rv := objc.Send[CWInterface](instance.ID, objc.Sel("initWithInterfaceName:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -131,8 +131,8 @@ func NewCWInterfaceWithInterfaceName(name appkit.string) CWInterface {
 // An instance method for obtaining an CWInterface object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(name:)
-func NewCWInterfaceWithName(name appkit.string) CWInterface {
-	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), name)
+func NewCWInterfaceWithName(name string) CWInterface {
+	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), objc.String(name))
 	return rv
 }
 
@@ -140,8 +140,8 @@ func NewCWInterfaceWithName(name appkit.string) CWInterface {
 // An instance method for obtaining an CWInterface object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/init(name:)
-func (cc _CWInterfaceClass) InterfaceWithName(name appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("interfaceWithName:"), name)
+func (cc _CWInterfaceClass) InterfaceWithName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("interfaceWithName:"), objc.String(name))
 	return rv
 }
 
@@ -172,16 +172,16 @@ func (c_ CWInterface) ActivePHYMode() CWPHYMode {
 // Associates to a given network using the given network passphrase.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/associate(to:password:)
-func (c_ CWInterface) AssociateToNetworkPasswordError(network ICWNetwork, password appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("associateToNetwork:password:error:"), network, password, error_)
+func (c_ CWInterface) AssociateToNetworkPasswordError(network ICWNetwork, password string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("associateToNetwork:password:error:"), network, objc.String(password), error_)
 	return rv
 }
 
 // Connects to the given enterprise network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/associate(toEnterpriseNetwork:identity:username:password:)
-func (c_ CWInterface) AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network ICWNetwork, identity unsafe.Pointer, username appkit.string, password appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("associateToEnterpriseNetwork:identity:username:password:error:"), network, identity, username, password, error_)
+func (c_ CWInterface) AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network ICWNetwork, identity unsafe.Pointer, username string, password string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("associateToEnterpriseNetwork:identity:username:password:error:"), network, identity, objc.String(username), objc.String(password), error_)
 	return rv
 }
 
@@ -275,16 +275,16 @@ func (c_ CWInterface) RssiValue() int {
 // Scans for networks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)
-func (c_ CWInterface) ScanForNetworksWithNameError(networkName appkit.string, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithName:error:"), networkName, error_)
+func (c_ CWInterface) ScanForNetworksWithNameError(networkName string, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithName:error:"), objc.String(networkName), error_)
 	return rv
 }
 
 // Scans for networks with the name you specify, optionally including hidden networks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:includeHidden:)
-func (c_ CWInterface) ScanForNetworksWithNameIncludeHiddenError(networkName appkit.string, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithName:includeHidden:error:"), networkName, includeHidden, error_)
+func (c_ CWInterface) ScanForNetworksWithNameIncludeHiddenError(networkName string, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithName:includeHidden:error:"), objc.String(networkName), includeHidden, error_)
 	return rv
 }
 
@@ -371,8 +371,8 @@ func (c_ CWInterface) SsidData() foundation.Data {
 // Creates a computer-to-computer (ad-hoc) network with the given network name, security type, and password on the specified channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/startIBSSMode(withSSID:security:channel:password:)
-func (c_ CWInterface) StartIBSSModeWithSSIDSecurityChannelPasswordError(ssidData foundation.IData, security ICWIBSSModeSecurity, channel uint, password appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("startIBSSModeWithSSID:security:channel:password:error:"), ssidData, security, channel, password, error_)
+func (c_ CWInterface) StartIBSSModeWithSSIDSecurityChannelPasswordError(ssidData foundation.IData, security ICWIBSSModeSecurity, channel uint, password string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("startIBSSModeWithSSID:security:channel:password:error:"), ssidData, security, channel, objc.String(password), error_)
 	return rv
 }
 
@@ -395,8 +395,8 @@ func (c_ CWInterface) TransmitPower() int {
 // The current transmit rate (Mbps) for the interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/transmitRate()
-func (c_ CWInterface) TransmitRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("transmitRate"))
+func (c_ CWInterface) TransmitRate() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("transmitRate"))
 	return rv
 }
 
@@ -411,8 +411,8 @@ func (c_ CWInterface) WlanChannel() CWChannel {
 // The BSD name of the interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/interfaceName
-func (c_ CWInterface) InterfaceName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("interfaceName"))
+func (c_ CWInterface) InterfaceName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("interfaceName"))
 	return rv
 }
 

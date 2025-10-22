@@ -29,6 +29,12 @@ type _AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequestClass struct
 // An interface definition for the [AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest] class.
 type IAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest interface {
 	IAuthorizationRequest
+	CredentialParameters() unsafe.Pointer
+	SetCredentialParameters(value unsafe.Pointer)
+	ExcludedCredentials() ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
+	SetExcludedCredentials(value IASAuthorizationSecurityKeyPublicKeyCredentialDescriptor)
+	ResidentKeyPreference() unsafe.Pointer
+	SetResidentKeyPreference(value unsafe.Pointer)
 }
 
 // The object for registering a new security key credential.

@@ -32,6 +32,30 @@ type _MKMapSnapshotOptionsClass struct {
 // An interface definition for the [MKMapSnapshotOptions] class.
 type IMKMapSnapshotOptions interface {
 	objectivec.IObject
+	Appearance() appkit.Appearance
+	SetAppearance(value appkit.IAppearance)
+	Camera() unsafe.Pointer
+	SetCamera(value unsafe.Pointer)
+	MapRect() unsafe.Pointer
+	SetMapRect(value unsafe.Pointer)
+	MapType() MKMapType
+	SetMapType(value MKMapType)
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	PreferredConfiguration() MKMapConfiguration
+	SetPreferredConfiguration(value IMKMapConfiguration)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
+	Scale() float64
+	SetScale(value float64)
+	ShowsBuildings() bool
+	SetShowsBuildings(value bool)
+	ShowsPointsOfInterest() bool
+	SetShowsPointsOfInterest(value bool)
+	Size() foundation.Size
+	SetSize(value foundation.ISize)
+	TraitCollection() unsafe.Pointer
+	SetTraitCollection(value unsafe.Pointer)
 }
 
 // The options the snapshotter initializer uses to create a snapshotter to capture map-based imagery.

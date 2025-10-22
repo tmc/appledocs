@@ -29,6 +29,14 @@ type _GraphSingleGateRNNDescriptorClass struct {
 // An interface definition for the [GraphSingleGateRNNDescriptor] class.
 type IGraphSingleGateRNNDescriptor interface {
 	IGraphObject
+	Bidirectional() bool
+	SetBidirectional(value bool)
+	Activation() GraphRNNActivation
+	SetActivation(value IGraphRNNActivation)
+	Reverse() bool
+	SetReverse(value bool)
+	Training() bool
+	SetTraining(value bool)
 }
 
 // The class that defines the parameters for a single gate RNN operation.

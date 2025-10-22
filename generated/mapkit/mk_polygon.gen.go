@@ -29,6 +29,8 @@ type _MKPolygonClass struct {
 // An interface definition for the [MKPolygon] class.
 type IMKPolygon interface {
 	IMKMultiPoint
+	InteriorPolygons() MKPolygon
+	SetInteriorPolygons(value IMKPolygon)
 }
 
 // A closed polygon overlay.

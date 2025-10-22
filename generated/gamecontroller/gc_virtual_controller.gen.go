@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,8 @@ type _GCVirtualControllerClass struct {
 type IGCVirtualController interface {
 	objectivec.IObject
 	ConnectWithReplyHandler(reply unsafe.Pointer)
-	SetValueForButtonElement(value float64, element appkit.string)
+	SetValueForButtonElement(value float64, element string)
+	Controller() GCController
 }
 
 // A software emulation of a real controller that you configure specifically for your game.
@@ -114,8 +114,8 @@ func (g_ GCVirtualController) ConnectWithReplyHandler(reply unsafe.Pointer) {
 // Changes the value of a button element in the virtual controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)
-func (g_ GCVirtualController) SetValueForButtonElement(value float64, element appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, element)
+func (g_ GCVirtualController) SetValueForButtonElement(value float64, element string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, objc.String(element))
 }
 
 // The underlying controller object that you use to access input elements.

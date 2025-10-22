@@ -31,6 +31,10 @@ type _MTRWindowCoveringClusterDownOrCloseParamsClass struct {
 // An interface definition for the [MTRWindowCoveringClusterDownOrCloseParams] class.
 type IMTRWindowCoveringClusterDownOrCloseParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

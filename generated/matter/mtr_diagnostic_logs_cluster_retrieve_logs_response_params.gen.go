@@ -31,6 +31,20 @@ type _MTRDiagnosticLogsClusterRetrieveLogsResponseParamsClass struct {
 // An interface definition for the [MTRDiagnosticLogsClusterRetrieveLogsResponseParams] class.
 type IMTRDiagnosticLogsClusterRetrieveLogsResponseParams interface {
 	objectivec.IObject
+	Content() foundation.Data
+	SetContent(value foundation.IData)
+	LogContent() foundation.Data
+	SetLogContent(value foundation.IData)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimeSinceBoot() foundation.Number
+	SetTimeSinceBoot(value foundation.INumber)
+	TimeStamp() foundation.Number
+	SetTimeStamp(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UtcTimeStamp() foundation.Number
+	SetUtcTimeStamp(value foundation.INumber)
 }
 
 //

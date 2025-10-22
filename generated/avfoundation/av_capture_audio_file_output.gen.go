@@ -29,6 +29,10 @@ type _CaptureAudioFileOutputClass struct {
 // An interface definition for the [CaptureAudioFileOutput] class.
 type ICaptureAudioFileOutput interface {
 	ICaptureFileOutput
+	AudioSettings() string
+	SetAudioSettings(value string)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
 }
 
 // A capture output that records audio and saves the recorded audio to a file.

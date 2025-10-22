@@ -29,6 +29,8 @@ type _VZMacOSVirtualMachineStartOptionsClass struct {
 // An interface definition for the [VZMacOSVirtualMachineStartOptions] class.
 type IVZMacOSVirtualMachineStartOptions interface {
 	IVZVirtualMachineStartOptions
+	StartUpFromMacOSRecovery() bool
+	SetStartUpFromMacOSRecovery(value bool)
 }
 
 // A class that describes start options for macOS VMs.

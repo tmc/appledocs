@@ -30,6 +30,12 @@ type _ABPersonViewClass struct {
 // An interface definition for the [ABPersonView] class.
 type IABPersonView interface {
 	appkit.IView
+	Editing() bool
+	SetEditing(value bool)
+	Person() ABPerson
+	SetPerson(value IABPerson)
+	ShouldShowLinkedPeople() bool
+	SetShouldShowLinkedPeople(value bool)
 }
 
 // An object that provides a view for displaying and editing contacts.

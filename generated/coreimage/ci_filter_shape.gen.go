@@ -31,12 +31,13 @@ type _FilterShapeClass struct {
 // An interface definition for the [FilterShape] class.
 type IFilterShape interface {
 	objectivec.IObject
-	InsetByXY(dx unsafe.Pointer, dy unsafe.Pointer) FilterShape
+	InsetByXY(dx int, dy int) FilterShape
 	IntersectWithRect(r coregraphics.CGRect) FilterShape
 	IntersectWith(s2 ICIFilterShape) FilterShape
 	TransformByInterior(m coregraphics.CGAffineTransform, flag bool) FilterShape
 	UnionWith(s2 ICIFilterShape) FilterShape
 	UnionWithRect(r coregraphics.CGRect) FilterShape
+	Extent() coregraphics.CGRect
 }
 
 // A description of the bounding shape of a filter and the domain of definition for a filter operation.
@@ -111,7 +112,7 @@ func (fc _FilterShapeClass) ShapeWithRect(r coregraphics.CGRect) unsafe.Pointer 
 // Modifies a filter shape object so that it is inset by the specified x and y values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/insetBy(x:y:)
-func (f_ FilterShape) InsetByXY(dx unsafe.Pointer, dy unsafe.Pointer) FilterShape {
+func (f_ FilterShape) InsetByXY(dx int, dy int) FilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("insetByX:Y:"), dx, dy)
 	return rv
 }

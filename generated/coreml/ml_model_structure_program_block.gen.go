@@ -30,6 +30,9 @@ type _ModelStructureProgramBlockClass struct {
 // An interface definition for the [ModelStructureProgramBlock] class.
 type IModelStructureProgramBlock interface {
 	objectivec.IObject
+	Inputs() []ModelStructureProgramNamedValueType
+	Operations() []ModelStructureProgramOperation
+	OutputNames() []string
 }
 
 // A class representing a block in the Program.

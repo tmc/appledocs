@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/javascriptcore"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -35,12 +34,35 @@ type IWebFrame interface {
 	objectivec.IObject
 	LoadRequest(request foundation.IURLRequest)
 	LoadArchive(archive unsafe.Pointer)
-	LoadDataMIMETypeTextEncodingNameBaseURL(data foundation.IData, MIMEType appkit.string, encodingName appkit.string, URL foundation.IURL)
-	LoadAlternateHTMLStringBaseURLForUnreachableURL(string_ appkit.string, baseURL foundation.IURL, unreachableURL foundation.IURL)
-	LoadHTMLStringBaseURL(string_ appkit.string, URL foundation.IURL)
+	LoadDataMIMETypeTextEncodingNameBaseURL(data foundation.IData, MIMEType string, encodingName string, URL foundation.IURL)
+	LoadAlternateHTMLStringBaseURLForUnreachableURL(string_ string, baseURL foundation.IURL, unreachableURL foundation.IURL)
+	LoadHTMLStringBaseURL(string_ string, URL foundation.IURL)
 	Reload()
 	ReloadFromOrigin()
 	StopLoading()
+	DataSource() unsafe.Pointer
+	ChildFrames() unsafe.Pointer
+	SetChildFrames(value unsafe.Pointer)
+	DomDocument() unsafe.Pointer
+	SetDomDocument(value unsafe.Pointer)
+	FrameElement() unsafe.Pointer
+	SetFrameElement(value unsafe.Pointer)
+	FrameView() unsafe.Pointer
+	SetFrameView(value unsafe.Pointer)
+	GlobalContext() unsafe.Pointer
+	SetGlobalContext(value unsafe.Pointer)
+	JavaScriptContext() javascriptcore.JSContext
+	SetJavaScriptContext(value javascriptcore.IJSContext)
+	Name() string
+	SetName(value string)
+	Parent() WebFrame
+	SetParent(value IWebFrame)
+	ProvisionalDataSource() unsafe.Pointer
+	SetProvisionalDataSource(value unsafe.Pointer)
+	WebView() WebView
+	SetWebView(value IWebView)
+	WindowObject() unsafe.Pointer
+	SetWindowObject(value unsafe.Pointer)
 }
 
 // A object encapsulates the data displayed in a object. There is one object per frame displayed in a . An entire webpage is represented by a hierarchy of objects in which the root object is called the .
@@ -108,22 +130,22 @@ func (w_ WebFrame) LoadArchive(archive unsafe.Pointer) {
 // Sets the main page contents, MIME type, content encoding, and base URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebFrame/load(_:mimeType:textEncodingName:baseURL:)
-func (w_ WebFrame) LoadDataMIMETypeTextEncodingNameBaseURL(data foundation.IData, MIMEType appkit.string, encodingName appkit.string, URL foundation.IURL) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("loadData:MIMEType:textEncodingName:baseURL:"), data, MIMEType, encodingName, URL)
+func (w_ WebFrame) LoadDataMIMETypeTextEncodingNameBaseURL(data foundation.IData, MIMEType string, encodingName string, URL foundation.IURL) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("loadData:MIMEType:textEncodingName:baseURL:"), data, objc.String(MIMEType), objc.String(encodingName), URL)
 }
 
 // Loads alternate content for a frame whose URL is unreachable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebFrame/loadAlternateHTMLString(_:baseURL:forUnreachableURL:)
-func (w_ WebFrame) LoadAlternateHTMLStringBaseURLForUnreachableURL(string_ appkit.string, baseURL foundation.IURL, unreachableURL foundation.IURL) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("loadAlternateHTMLString:baseURL:forUnreachableURL:"), string_, baseURL, unreachableURL)
+func (w_ WebFrame) LoadAlternateHTMLStringBaseURLForUnreachableURL(string_ string, baseURL foundation.IURL, unreachableURL foundation.IURL) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("loadAlternateHTMLString:baseURL:forUnreachableURL:"), objc.String(string_), baseURL, unreachableURL)
 }
 
 // Sets the main page contents and base URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebFrame/loadHTMLString(_:baseURL:)
-func (w_ WebFrame) LoadHTMLStringBaseURL(string_ appkit.string, URL foundation.IURL) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("loadHTMLString:baseURL:"), string_, URL)
+func (w_ WebFrame) LoadHTMLStringBaseURL(string_ string, URL foundation.IURL) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("loadHTMLString:baseURL:"), objc.String(string_), URL)
 }
 
 // Reloads the initial request passed as an argument to .
@@ -266,8 +288,8 @@ func (w_ WebFrame) SetJavaScriptContext(value javascriptcore.IJSContext) {
 // The web frame’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/name
-func (w_ WebFrame) Name() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("name"))
+func (w_ WebFrame) Name() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -277,8 +299,8 @@ func (w_ WebFrame) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webframe/name
-func (w_ WebFrame) SetName(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setName:"), value)
+func (w_ WebFrame) SetName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The web frame’s parent web frame.

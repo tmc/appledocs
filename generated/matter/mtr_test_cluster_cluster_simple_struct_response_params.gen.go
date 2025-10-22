@@ -30,6 +30,10 @@ type _MTRTestClusterClusterSimpleStructResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterSimpleStructResponseParams] class.
 type IMTRTestClusterClusterSimpleStructResponseParams interface {
 	IMTRUnitTestingClusterSimpleStructResponseParams
+	Arg1() MTRUnitTestingClusterSimpleStruct
+	SetArg1(value IMTRUnitTestingClusterSimpleStruct)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

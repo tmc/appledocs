@@ -29,6 +29,8 @@ type _CNChangeHistoryRemoveSubgroupFromGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryRemoveSubgroupFromGroupEvent] class.
 type ICNChangeHistoryRemoveSubgroupFromGroupEvent interface {
 	ICNChangeHistoryEvent
+	Group() CNGroup
+	Subgroup() CNGroup
 }
 
 // An object that represents a user removing a subgroup from a group.

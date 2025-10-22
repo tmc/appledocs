@@ -30,6 +30,9 @@ type _FSMetadataRangeClass struct {
 // An interface definition for the [FSMetadataRange] class.
 type IFSMetadataRange interface {
 	objectivec.IObject
+	SegmentCount() uint64
+	SegmentLength() uint64
+	StartOffset() unsafe.Pointer
 }
 
 // A range that describes contiguous metadata segments on disk.

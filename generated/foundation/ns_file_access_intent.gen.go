@@ -30,6 +30,7 @@ type _FileAccessIntentClass struct {
 // An interface definition for the [FileAccessIntent] class.
 type IFileAccessIntent interface {
 	objectivec.IObject
+	URL() URL
 }
 
 // The details of a coordinated-read or coordinated-write operation.

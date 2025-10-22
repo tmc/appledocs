@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MediaQuerySectionClass struct {
 // An interface definition for the [MediaQuerySection] class.
 type IMediaQuerySection interface {
 	objectivec.IObject
+	Range() foundation.Range
+	Title() string
+	CollectionSections() MPMediaQuerySection
+	SetCollectionSections(value IMPMediaQuerySection)
+	ItemSections() MPMediaQuerySection
+	SetItemSections(value IMPMediaQuerySection)
 }
 
 // A range of media items or media item collections from within a media query.
@@ -93,8 +98,8 @@ func (m_ MediaQuerySection) Range() foundation.Range {
 // The localized title of the media query section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/title
-func (m_ MediaQuerySection) Title() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
+func (m_ MediaQuerySection) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 

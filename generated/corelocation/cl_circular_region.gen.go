@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CircularRegion] class.
@@ -31,6 +30,8 @@ type _CircularRegionClass struct {
 type ICircularRegion interface {
 	IRegion
 	ContainsCoordinate(coordinate unsafe.Pointer) bool
+	Center() unsafe.Pointer
+	Radius() unsafe.Pointer
 }
 
 // A circular geographic region that a center point and radius deine.
@@ -88,9 +89,9 @@ func NewCircularRegion() CircularRegion {
 // Creates and returns a region object defining a circular geographic area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion/init(center:radius:identifier:)
-func NewCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier appkit.string) CircularRegion {
+func NewCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) CircularRegion {
 	instance := getCircularRegionClass().Alloc()
-	rv := objc.Send[CircularRegion](instance.ID, objc.Sel("initWithCenter:radius:identifier:"), center, radius, identifier)
+	rv := objc.Send[CircularRegion](instance.ID, objc.Sel("initWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

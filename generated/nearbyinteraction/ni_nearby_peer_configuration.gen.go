@@ -29,6 +29,15 @@ type _NINearbyPeerConfigurationClass struct {
 // An interface definition for the [NINearbyPeerConfiguration] class.
 type ININearbyPeerConfiguration interface {
 	INIConfiguration
+	CameraAssistanceEnabled() bool
+	SetCameraAssistanceEnabled(value bool)
+	ExtendedDistanceMeasurementEnabled() bool
+	SetExtendedDistanceMeasurementEnabled(value bool)
+	PeerDiscoveryToken() NIDiscoveryToken
+	IsCameraAssistanceEnabled() bool
+	SetIsCameraAssistanceEnabled(value bool)
+	IsExtendedDistanceMeasurementEnabled() bool
+	SetIsExtendedDistanceMeasurementEnabled(value bool)
 }
 
 // A configuration that enables interaction between iPhone or Apple Watch devices.

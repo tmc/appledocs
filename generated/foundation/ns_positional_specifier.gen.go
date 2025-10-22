@@ -31,6 +31,16 @@ type _PositionalSpecifierClass struct {
 type IPositionalSpecifier interface {
 	objectivec.IObject
 	SetInsertionClassDescription(classDescription IScriptClassDescription)
+	ObjectSpecifier() NSScriptObjectSpecifier
+	Position() unsafe.Pointer
+	InsertionContainer() unsafe.Pointer
+	SetInsertionContainer(value unsafe.Pointer)
+	InsertionIndex() int
+	SetInsertionIndex(value int)
+	InsertionKey() string
+	SetInsertionKey(value string)
+	InsertionReplaces() bool
+	SetInsertionReplaces(value bool)
 }
 
 // A specifier for an insertion point in a container relative to another object in the container.

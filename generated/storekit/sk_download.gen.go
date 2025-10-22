@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,26 @@ type _DownloadClass struct {
 // An interface definition for the [Download] class.
 type IDownload interface {
 	objectivec.IObject
+	ContentURL() foundation.URL
+	DownloadState() unsafe.Pointer
+	Error() foundation.Error
+	Progress() float32
+	TimeRemaining() foundation.TimeInterval
+	Transaction() SKPaymentTransaction
+	ContentIdentifier() string
+	SetContentIdentifier(value string)
+	ContentLength() unsafe.Pointer
+	SetContentLength(value unsafe.Pointer)
+	ContentVersion() string
+	SetContentVersion(value string)
+	ExpectedContentLength() unsafe.Pointer
+	SetExpectedContentLength(value unsafe.Pointer)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
+	SKDownloadTimeRemainingUnknown() unsafe.Pointer
+	SetSKDownloadTimeRemainingUnknown(value unsafe.Pointer)
+	Downloads() SKDownload
+	SetDownloads(value ISKDownload)
 }
 
 // Downloadable content associated with a product.
@@ -85,16 +104,16 @@ func NewDownload() Download {
 // Returns the local location for the previously downloaded flie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKDownload/contentURL(forProductID:)
-func (dc _DownloadClass) ContentURLForProductID(productID appkit.string) foundation.URL {
-	rv := objc.Send[foundation.URL](objc.ID(dc.class), objc.Sel("contentURLForProductID:"), productID)
+func (dc _DownloadClass) ContentURLForProductID(productID string) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(dc.class), objc.Sel("contentURLForProductID:"), objc.String(productID))
 	return rv
 }
 
 // Deletes the previously downloaded file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKDownload/deleteContent(forProductID:)
-func (dc _DownloadClass) DeleteContentForProductID(productID appkit.string) {
-	objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("deleteContentForProductID:"), productID)
+func (dc _DownloadClass) DeleteContentForProductID(productID string) {
+	objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("deleteContentForProductID:"), objc.String(productID))
 }
 
 // The local location of the downloaded file.
@@ -124,8 +143,8 @@ func (d_ Download) Error() foundation.Error {
 // A value that indicates how much of the file has been downloaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKDownload/progress
-func (d_ Download) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("progress"))
+func (d_ Download) Progress() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("progress"))
 	return rv
 }
 
@@ -148,8 +167,8 @@ func (d_ Download) Transaction() SKPaymentTransaction {
 // A string that uniquely identifies the downloadable content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentidentifier
-func (d_ Download) ContentIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("contentIdentifier"))
+func (d_ Download) ContentIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("contentIdentifier"))
 	return rv
 }
 
@@ -159,8 +178,8 @@ func (d_ Download) ContentIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentidentifier
-func (d_ Download) SetContentIdentifier(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setContentIdentifier:"), value)
+func (d_ Download) SetContentIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentIdentifier:"), objc.String(value))
 }
 
 // The length of the downloadable content, in bytes.
@@ -184,8 +203,8 @@ func (d_ Download) SetContentLength(value unsafe.Pointer) {
 // A string that identifies which version of the content is available for download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentversion
-func (d_ Download) ContentVersion() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("contentVersion"))
+func (d_ Download) ContentVersion() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("contentVersion"))
 	return rv
 }
 
@@ -195,8 +214,8 @@ func (d_ Download) ContentVersion() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skdownload/contentversion
-func (d_ Download) SetContentVersion(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setContentVersion:"), value)
+func (d_ Download) SetContentVersion(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentVersion:"), objc.String(value))
 }
 
 // The length of the downloadable content, in bytes.

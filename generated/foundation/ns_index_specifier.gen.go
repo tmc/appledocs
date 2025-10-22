@@ -29,6 +29,8 @@ type _IndexSpecifierClass struct {
 // An interface definition for the [IndexSpecifier] class.
 type IIndexSpecifier interface {
 	IScriptObjectSpecifier
+	Index() int
+	SetIndex(value int)
 }
 
 // A specifier representing an object in a collection (or container) with an index number.

@@ -30,6 +30,8 @@ type _MTRBasicClusterStartUpEventClass struct {
 // An interface definition for the [MTRBasicClusterStartUpEvent] class.
 type IMTRBasicClusterStartUpEvent interface {
 	IMTRBasicInformationClusterStartUpEvent
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
 }
 
 //

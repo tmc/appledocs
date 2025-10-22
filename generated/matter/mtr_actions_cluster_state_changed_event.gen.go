@@ -31,6 +31,12 @@ type _MTRActionsClusterStateChangedEventClass struct {
 // An interface definition for the [MTRActionsClusterStateChangedEvent] class.
 type IMTRActionsClusterStateChangedEvent interface {
 	objectivec.IObject
+	ActionID() foundation.Number
+	SetActionID(value foundation.INumber)
+	InvokeID() foundation.Number
+	SetInvokeID(value foundation.INumber)
+	NewState() foundation.Number
+	SetNewState(value foundation.INumber)
 }
 
 //

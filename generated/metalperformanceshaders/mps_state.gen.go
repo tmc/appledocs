@@ -30,6 +30,16 @@ type _StateClass struct {
 // An interface definition for the [State] class.
 type IState interface {
 	objectivec.IObject
+	IsTemporary() bool
+	SetIsTemporary(value bool)
+	Label() string
+	SetLabel(value string)
+	ReadCount() int
+	SetReadCount(value int)
+	Resource() unsafe.Pointer
+	SetResource(value unsafe.Pointer)
+	ResourceCount() int
+	SetResourceCount(value int)
 }
 
 // An opaque data container for large storage in MPS CNN filters.
@@ -97,8 +107,8 @@ func (s_ State) SetIsTemporary(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
-func (s_ State) Label() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("label"))
+func (s_ State) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -106,8 +116,8 @@ func (s_ State) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
-func (s_ State) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
+func (s_ State) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

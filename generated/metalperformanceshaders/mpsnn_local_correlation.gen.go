@@ -31,6 +31,14 @@ type _LocalCorrelationClass struct {
 // An interface definition for the [LocalCorrelation] class.
 type ILocalCorrelation interface {
 	objectivec.IObject
+	StrideInY() uint
+	SetStrideInY(value uint)
+	StrideInX() int
+	SetStrideInX(value int)
+	WindowInX() int
+	SetWindowInX(value int)
+	WindowInY() int
+	SetWindowInY(value int)
 }
 
 //

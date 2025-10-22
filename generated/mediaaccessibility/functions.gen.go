@@ -27,10 +27,10 @@ var (
 	_MACaptionAppearanceGetRelativeCharacterSize func(unsafe.Pointer, unsafe.Pointer) float64
 	_MACaptionAppearanceGetTextEdgeStyle func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MACaptionAppearanceGetWindowOpacity func(unsafe.Pointer, unsafe.Pointer) float64
-	_MACaptionAppearanceIsCustomized func(unsafe.Pointer) unsafe.Pointer
+	_MACaptionAppearanceIsCustomized func(unsafe.Pointer) bool
 	_MACaptionAppearanceSetDisplayType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MADimFlashingLightsEnabled func() unsafe.Pointer
-	_MAImageCaptioningSetCaption func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MADimFlashingLightsEnabled func() bool
+	_MAImageCaptioningSetCaption func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 )
 
 func init() {
@@ -184,7 +184,7 @@ func MACaptionAppearanceGetWindowOpacity(domain unsafe.Pointer, behavior unsafe.
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MACaptionAppearanceIsCustomized(_:)
-func MACaptionAppearanceIsCustomized(domain unsafe.Pointer) unsafe.Pointer {
+func MACaptionAppearanceIsCustomized(domain unsafe.Pointer) bool {
 	return _MACaptionAppearanceIsCustomized(domain)
 	}
 
@@ -204,7 +204,7 @@ func MACaptionAppearanceSetDisplayType(domain unsafe.Pointer, displayType unsafe
 // Added in macOS 13.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MADimFlashingLightsEnabled()
-func MADimFlashingLightsEnabled() unsafe.Pointer {
+func MADimFlashingLightsEnabled() bool {
 	return _MADimFlashingLightsEnabled()
 	}
 
@@ -214,7 +214,7 @@ func MADimFlashingLightsEnabled() unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAImageCaptioningSetCaption(_:_:_:)
-func MAImageCaptioningSetCaption(url unsafe.Pointer, string_ unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func MAImageCaptioningSetCaption(url unsafe.Pointer, string_ unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _MAImageCaptioningSetCaption(url, string_, error_)
 	}
 

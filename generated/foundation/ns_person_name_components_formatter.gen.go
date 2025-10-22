@@ -30,6 +30,12 @@ type _PersonNameComponentsFormatterClass struct {
 type IPersonNameComponentsFormatter interface {
 	IFormatter
 	PersonNameComponentsFromString(string_ string) PersonNameComponents
+	IsPhonetic() bool
+	SetIsPhonetic(value bool)
+	Locale() Locale
+	SetLocale(value ILocale)
+	Style() unsafe.Pointer
+	SetStyle(value unsafe.Pointer)
 }
 
 // A formatter that provides localized representations of the components of a person’s name.

@@ -31,6 +31,10 @@ type _ConditionLockClass struct {
 type IConditionLock interface {
 	objectivec.IObject
 	LockWhenCondition(condition int)
+	Condition() int
+	SetCondition(value int)
+	Name() string
+	SetName(value string)
 }
 
 // A lock that can be associated with specific, user-defined conditions.

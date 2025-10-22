@@ -33,6 +33,12 @@ type IIndexSet interface {
 	EnumerateIndexesUsingBlock(block unsafe.Pointer)
 	EnumerateIndexesInRangeOptionsUsingBlock(range_ IRange, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	Count() int
+	SetCount(value int)
+	FirstIndex() int
+	SetFirstIndex(value int)
+	LastIndex() int
+	SetLastIndex(value int)
 }
 
 // An immutable collection of unique integer values that represent indexes in another collection.

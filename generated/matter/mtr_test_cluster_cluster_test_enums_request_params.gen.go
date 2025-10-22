@@ -30,6 +30,14 @@ type _MTRTestClusterClusterTestEnumsRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestEnumsRequestParams] class.
 type IMTRTestClusterClusterTestEnumsRequestParams interface {
 	IMTRUnitTestingClusterTestEnumsRequestParams
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	Arg2() foundation.Number
+	SetArg2(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

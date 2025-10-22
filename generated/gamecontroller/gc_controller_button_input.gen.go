@@ -29,6 +29,19 @@ type _GCControllerButtonInputClass struct {
 // An interface definition for the [GCControllerButtonInput] class.
 type IGCControllerButtonInput interface {
 	IGCControllerElement
+	Touched() bool
+	TouchedChangedHandler() unsafe.Pointer
+	SetTouchedChangedHandler(value unsafe.Pointer)
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
+	IsPressed() bool
+	SetIsPressed(value bool)
+	IsTouched() bool
+	SetIsTouched(value bool)
+	PressedChangedHandler() unsafe.Pointer
+	SetPressedChangedHandler(value unsafe.Pointer)
+	Value() float32
+	SetValue(value float32)
 }
 
 // A control element that represents a button touch or press.
@@ -182,8 +195,8 @@ func (g_ GCControllerButtonInput) SetPressedChangedHandler(value unsafe.Pointer)
 // The level of pressure the user is applying to the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
-func (g_ GCControllerButtonInput) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("value"))
+func (g_ GCControllerButtonInput) Value() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -193,7 +206,7 @@ func (g_ GCControllerButtonInput) Value() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput/value
-func (g_ GCControllerButtonInput) SetValue(value unsafe.Pointer) {
+func (g_ GCControllerButtonInput) SetValue(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:"), value)
 }
 

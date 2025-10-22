@@ -30,6 +30,16 @@ type _HKAudiogramSensitivityTestClass struct {
 // An interface definition for the [HKAudiogramSensitivityTest] class.
 type IHKAudiogramSensitivityTest interface {
 	objectivec.IObject
+	ClampingRange() HKAudiogramSensitivityPointClampingRange
+	SetClampingRange(value IHKAudiogramSensitivityPointClampingRange)
+	Masked() bool
+	SetMasked(value bool)
+	Sensitivity() HKQuantity
+	SetSensitivity(value IHKQuantity)
+	Side() HKAudiogramSensitivityTestSide
+	SetSide(value IHKAudiogramSensitivityTestSide)
+	Type() HKAudiogramConductionType
+	SetType(value HKAudiogramConductionType)
 }
 
 //

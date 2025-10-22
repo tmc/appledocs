@@ -28,8 +28,8 @@ var (
 	_CVBufferRetain func(unsafe.Pointer) unsafe.Pointer
 	_CVBufferSetAttachment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVBufferSetAttachments func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CVColorPrimariesGetIntegerCodePointForString func(unsafe.Pointer) unsafe.Pointer
-	_CVColorPrimariesGetStringForIntegerCodePoint func(unsafe.Pointer) unsafe.Pointer
+	_CVColorPrimariesGetIntegerCodePointForString func(unsafe.Pointer) int
+	_CVColorPrimariesGetStringForIntegerCodePoint func(int) unsafe.Pointer
 	_CVDisplayLinkCreateWithActiveCGDisplays func(unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkCreateWithCGDisplay func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVDisplayLinkCreateWithCGDisplays func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -146,10 +146,10 @@ var (
 	_CVPixelBufferRetain func(unsafe.Pointer) unsafe.Pointer
 	_CVPixelBufferUnlockBaseAddress func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CVPixelFormatTypeCopyFourCharCodeString func(unsafe.Pointer) unsafe.Pointer
-	_CVTransferFunctionGetIntegerCodePointForString func(unsafe.Pointer) unsafe.Pointer
-	_CVTransferFunctionGetStringForIntegerCodePoint func(unsafe.Pointer) unsafe.Pointer
-	_CVYCbCrMatrixGetIntegerCodePointForString func(unsafe.Pointer) unsafe.Pointer
-	_CVYCbCrMatrixGetStringForIntegerCodePoint func(unsafe.Pointer) unsafe.Pointer
+	_CVTransferFunctionGetIntegerCodePointForString func(unsafe.Pointer) int
+	_CVTransferFunctionGetStringForIntegerCodePoint func(int) unsafe.Pointer
+	_CVYCbCrMatrixGetIntegerCodePointForString func(unsafe.Pointer) int
+	_CVYCbCrMatrixGetStringForIntegerCodePoint func(int) unsafe.Pointer
 )
 
 func init() {
@@ -436,7 +436,7 @@ func CVBufferSetAttachments(buffer unsafe.Pointer, theAttachments unsafe.Pointer
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVColorPrimariesGetIntegerCodePointForString(_:)
-func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Pointer) unsafe.Pointer {
+func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Pointer) int {
 	return _CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString)
 	}
 
@@ -446,7 +446,7 @@ func CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString unsafe.Po
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVColorPrimariesGetStringForIntegerCodePoint(_:)
-func CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint unsafe.Pointer) unsafe.Pointer {
+func CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint int) unsafe.Pointer {
 	return _CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint)
 	}
 
@@ -1690,7 +1690,7 @@ func CVPixelFormatTypeCopyFourCharCodeString(pixelFormat unsafe.Pointer) unsafe.
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTransferFunctionGetIntegerCodePointForString(_:)
-func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsafe.Pointer) unsafe.Pointer {
+func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsafe.Pointer) int {
 	return _CVTransferFunctionGetIntegerCodePointForString(transferFunctionString)
 	}
 
@@ -1700,7 +1700,7 @@ func CVTransferFunctionGetIntegerCodePointForString(transferFunctionString unsaf
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTransferFunctionGetStringForIntegerCodePoint(_:)
-func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint unsafe.Pointer) unsafe.Pointer {
+func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint int) unsafe.Pointer {
 	return _CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint)
 	}
 
@@ -1710,7 +1710,7 @@ func CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint un
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVYCbCrMatrixGetIntegerCodePointForString(_:)
-func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer) unsafe.Pointer {
+func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer) int {
 	return _CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString)
 	}
 
@@ -1720,7 +1720,7 @@ func CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString unsafe.Pointer)
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVYCbCrMatrixGetStringForIntegerCodePoint(_:)
-func CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint unsafe.Pointer) unsafe.Pointer {
+func CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint int) unsafe.Pointer {
 	return _CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint)
 	}
 

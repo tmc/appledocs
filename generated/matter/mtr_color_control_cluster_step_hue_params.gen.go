@@ -31,6 +31,20 @@ type _MTRColorControlClusterStepHueParamsClass struct {
 // An interface definition for the [MTRColorControlClusterStepHueParams] class.
 type IMTRColorControlClusterStepHueParams interface {
 	objectivec.IObject
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StepMode() foundation.Number
+	SetStepMode(value foundation.INumber)
+	StepSize() foundation.Number
+	SetStepSize(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

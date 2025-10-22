@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/gameplaykit"
@@ -36,6 +35,25 @@ type IMKMapItem interface {
 	objectivec.IObject
 	OpenInMapsWithLaunchOptionsCompletionHandler(launchOptions unsafe.Pointer, completion unsafe.Pointer)
 	OpenInMapsWithLaunchOptionsFromSceneCompletionHandler(launchOptions unsafe.Pointer, scene gameplaykit.IScene, completion unsafe.Pointer)
+	AddressRepresentations() MKAddressRepresentations
+	AlternateIdentifiers() unsafe.Pointer
+	Identifier() MKMapItemIdentifier
+	IsCurrentLocation() bool
+	Location() corelocation.Location
+	Name() string
+	SetName(value string)
+	PhoneNumber() string
+	SetPhoneNumber(value string)
+	Placemark() MKPlacemark
+	PointOfInterestCategory() MKPointOfInterestCategory
+	SetPointOfInterestCategory(value IMKPointOfInterestCategory)
+	TimeZone() foundation.TimeZone
+	SetTimeZone(value foundation.ITimeZone)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
+	Address() MKAddress
+	SetAddress(value IMKAddress)
+	MKMapItemTypeIdentifier() string
 }
 
 // A point of interest on the map.
@@ -190,8 +208,8 @@ func (m_ MKMapItem) Location() corelocation.Location {
 // The descriptive name associated with the map item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/name
-func (m_ MKMapItem) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MKMapItem) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -201,15 +219,15 @@ func (m_ MKMapItem) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/name
-func (m_ MKMapItem) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MKMapItem) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The phone number associated with a business at the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/phoneNumber
-func (m_ MKMapItem) PhoneNumber() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("phoneNumber"))
+func (m_ MKMapItem) PhoneNumber() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 
@@ -219,8 +237,8 @@ func (m_ MKMapItem) PhoneNumber() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItem/phoneNumber
-func (m_ MKMapItem) SetPhoneNumber(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), value)
+func (m_ MKMapItem) SetPhoneNumber(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
 }
 
 // The placemark object containing the location information.
@@ -306,8 +324,8 @@ func (m_ MKMapItem) SetAddress(value IMKAddress) {
 // A constant that indicates the type of a serialized map item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier
-func (m_ MKMapItem) MKMapItemTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MKMapItemTypeIdentifier"))
+func (m_ MKMapItem) MKMapItemTypeIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MKMapItemTypeIdentifier"))
 	return rv
 }
 

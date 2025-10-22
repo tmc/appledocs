@@ -31,6 +31,10 @@ type _MTRRVCCleanModeClusterModeTagStructClass struct {
 // An interface definition for the [MTRRVCCleanModeClusterModeTagStruct] class.
 type IMTRRVCCleanModeClusterModeTagStruct interface {
 	objectivec.IObject
+	MfgCode() foundation.Number
+	SetMfgCode(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

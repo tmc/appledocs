@@ -33,6 +33,12 @@ type IContoursObservation interface {
 	IObservation
 	ContourAtIndexPathError(indexPath foundation.IIndexPath, error_ unsafe.Pointer) Contour
 	ContourAtIndexError(contourIndex int, error_ unsafe.Pointer) Contour
+	ContourCount() int
+	NormalizedPath() coregraphics.CGPathRef
+	TopLevelContourCount() int
+	TopLevelContours() []Contour
+	Results() VNContoursObservation
+	SetResults(value IVNContoursObservation)
 }
 
 // An object that represents the detected contours in an image.

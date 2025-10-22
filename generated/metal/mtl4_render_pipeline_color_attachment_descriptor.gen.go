@@ -31,6 +31,24 @@ type _MTL4RenderPipelineColorAttachmentDescriptorClass struct {
 type IMTL4RenderPipelineColorAttachmentDescriptor interface {
 	objectivec.IObject
 	Reset()
+	AlphaBlendOperation() BlendOperation
+	SetAlphaBlendOperation(value IBlendOperation)
+	BlendingState() unsafe.Pointer
+	SetBlendingState(value unsafe.Pointer)
+	DestinationAlphaBlendFactor() BlendFactor
+	SetDestinationAlphaBlendFactor(value IBlendFactor)
+	DestinationRGBBlendFactor() BlendFactor
+	SetDestinationRGBBlendFactor(value IBlendFactor)
+	PixelFormat() PixelFormat
+	SetPixelFormat(value PixelFormat)
+	RgbBlendOperation() BlendOperation
+	SetRgbBlendOperation(value IBlendOperation)
+	SourceAlphaBlendFactor() BlendFactor
+	SetSourceAlphaBlendFactor(value IBlendFactor)
+	SourceRGBBlendFactor() BlendFactor
+	SetSourceRGBBlendFactor(value IBlendFactor)
+	WriteMask() ColorWriteMask
+	SetWriteMask(value ColorWriteMask)
 }
 
 //

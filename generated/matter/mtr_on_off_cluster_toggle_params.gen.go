@@ -31,6 +31,10 @@ type _MTROnOffClusterToggleParamsClass struct {
 // An interface definition for the [MTROnOffClusterToggleParams] class.
 type IMTROnOffClusterToggleParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

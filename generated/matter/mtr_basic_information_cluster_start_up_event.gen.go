@@ -31,6 +31,8 @@ type _MTRBasicInformationClusterStartUpEventClass struct {
 // An interface definition for the [MTRBasicInformationClusterStartUpEvent] class.
 type IMTRBasicInformationClusterStartUpEvent interface {
 	objectivec.IObject
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
 }
 
 //

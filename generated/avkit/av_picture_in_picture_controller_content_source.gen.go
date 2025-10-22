@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,17 @@ type _PictureInPictureControllerContentSourceClass struct {
 // An interface definition for the [PictureInPictureControllerContentSource] class.
 type IPictureInPictureControllerContentSource interface {
 	objectivec.IObject
+	ActiveVideoCallSourceView() PlayerView
+	ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController
+	SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController)
+	PlayerLayer() avfoundation.PlayerLayer
+	SetPlayerLayer(value avfoundation.IPlayerLayer)
+	SampleBufferDisplayLayer() avfoundation.SampleBufferDisplayLayer
+	SetSampleBufferDisplayLayer(value avfoundation.ISampleBufferDisplayLayer)
+	SampleBufferPlaybackDelegate() unsafe.Pointer
+	SetSampleBufferPlaybackDelegate(value unsafe.Pointer)
+	ContentSource() AVPictureInPictureControllerContentSource
+	SetContentSource(value IAVPictureInPictureControllerContentSource)
 }
 
 // An object that represents the source of the content to present in Picture in Picture.
@@ -85,8 +95,8 @@ func NewPictureInPictureControllerContentSource() PictureInPictureControllerCont
 // The view that contains the video content of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/activeVideoCallSourceView
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() appkit.View {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
+func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() PlayerView {
+	rv := objc.Send[PlayerView](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 

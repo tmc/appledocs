@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _CNGroupClass struct {
 // An interface definition for the [CNGroup] class.
 type ICNGroup interface {
 	objectivec.IObject
+	Identifier() string
+	Name() string
+	CNGroupIdentifierKey() string
+	CNGroupNameKey() string
 }
 
 // An immutable object that represents a group of contacts.
@@ -93,48 +96,48 @@ func (cc _CNGroupClass) PredicateForGroupsWithIdentifiers(identifiers []string) 
 // Returns a predicate to find groups in the specified container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForGroupsInContainer(withIdentifier:)
-func (cc _CNGroupClass) PredicateForGroupsInContainerWithIdentifier(containerIdentifier appkit.string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForGroupsInContainerWithIdentifier:"), containerIdentifier)
+func (cc _CNGroupClass) PredicateForGroupsInContainerWithIdentifier(containerIdentifier string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForGroupsInContainerWithIdentifier:"), objc.String(containerIdentifier))
 	return rv
 }
 
 // Returns a predicate to find subgroups in the specified parent group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/predicateForSubgroupsInGroup(withIdentifier:)
-func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupIdentifier appkit.string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForSubgroupsInGroupWithIdentifier:"), parentGroupIdentifier)
+func (cc _CNGroupClass) PredicateForSubgroupsInGroupWithIdentifier(parentGroupIdentifier string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForSubgroupsInGroupWithIdentifier:"), objc.String(parentGroupIdentifier))
 	return rv
 }
 
 // The unique identifier for a group on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/identifier
-func (c_ CNGroup) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
+func (c_ CNGroup) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The name of the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNGroup/name
-func (c_ CNGroup) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ CNGroup) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The identifier of the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
-func (c_ CNGroup) CNGroupIdentifierKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
+func (c_ CNGroup) CNGroupIdentifierKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
 	return rv
 }
 
 // The name of the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
-func (c_ CNGroup) CNGroupNameKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNGroupNameKey"))
+func (c_ CNGroup) CNGroupNameKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
 	return rv
 }
 

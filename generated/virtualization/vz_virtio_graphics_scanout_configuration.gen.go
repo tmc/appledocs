@@ -29,6 +29,12 @@ type _VZVirtioGraphicsScanoutConfigurationClass struct {
 // An interface definition for the [VZVirtioGraphicsScanoutConfiguration] class.
 type IVZVirtioGraphicsScanoutConfiguration interface {
 	IVZGraphicsDisplayConfiguration
+	HeightInPixels() int
+	SetHeightInPixels(value int)
+	WidthInPixels() int
+	SetWidthInPixels(value int)
+	Scanouts() VZVirtioGraphicsScanoutConfiguration
+	SetScanouts(value IVZVirtioGraphicsScanoutConfiguration)
 }
 
 // The configuration for a Virtio graphics device that configures the dimensions of the graphics device for a Linux VM.

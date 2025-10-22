@@ -30,6 +30,12 @@ type _CKReferenceClass struct {
 // An interface definition for the [CKReference] class.
 type ICKReference interface {
 	objectivec.IObject
+	ReferenceAction() CKReferenceAction
+	RecordID() CKRecordID
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	RecordChangeTag() string
+	SetRecordChangeTag(value string)
 }
 
 // A relationship between two records in a record zone.

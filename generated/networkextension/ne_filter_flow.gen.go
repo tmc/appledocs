@@ -31,6 +31,24 @@ type _NEFilterFlowClass struct {
 // An interface definition for the [NEFilterFlow] class.
 type INEFilterFlow interface {
 	objectivec.IObject
+	Direction() NETrafficDirection
+	SetDirection(value NETrafficDirection)
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	SourceAppAuditToken() foundation.Data
+	SetSourceAppAuditToken(value foundation.IData)
+	SourceAppIdentifier() string
+	SetSourceAppIdentifier(value string)
+	SourceAppUniqueIdentifier() foundation.Data
+	SetSourceAppUniqueIdentifier(value foundation.IData)
+	SourceAppVersion() string
+	SetSourceAppVersion(value string)
+	SourceProcessAuditToken() foundation.Data
+	SetSourceProcessAuditToken(value foundation.IData)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
+	NEFilterFlowBytesMax() uint64
+	SetNEFilterFlowBytesMax(value uint64)
 }
 
 // The abstract base class for types that represent flows of network data.
@@ -136,8 +154,8 @@ func (n_ NEFilterFlow) SetSourceAppAuditToken(value foundation.IData) {
 // A string containing the identifier of the source app of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
-func (n_ NEFilterFlow) SourceAppIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sourceAppIdentifier"))
+func (n_ NEFilterFlow) SourceAppIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppIdentifier"))
 	return rv
 }
 
@@ -147,8 +165,8 @@ func (n_ NEFilterFlow) SourceAppIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
-func (n_ NEFilterFlow) SetSourceAppIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), value)
+func (n_ NEFilterFlow) SetSourceAppIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), objc.String(value))
 }
 
 // A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
@@ -172,8 +190,8 @@ func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value foundation.IData) {
 // The short version string of the app that is the source of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappversion
-func (n_ NEFilterFlow) SourceAppVersion() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sourceAppVersion"))
+func (n_ NEFilterFlow) SourceAppVersion() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppVersion"))
 	return rv
 }
 
@@ -183,8 +201,8 @@ func (n_ NEFilterFlow) SourceAppVersion() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappversion
-func (n_ NEFilterFlow) SetSourceAppVersion(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppVersion:"), value)
+func (n_ NEFilterFlow) SetSourceAppVersion(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppVersion:"), objc.String(value))
 }
 
 // The audit token of the process that created the flow.

@@ -31,6 +31,12 @@ type _MTRBarrierControlClusterBarrierControlGoToPercentParamsClass struct {
 // An interface definition for the [MTRBarrierControlClusterBarrierControlGoToPercentParams] class.
 type IMTRBarrierControlClusterBarrierControlGoToPercentParams interface {
 	objectivec.IObject
+	PercentOpen() foundation.Number
+	SetPercentOpen(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

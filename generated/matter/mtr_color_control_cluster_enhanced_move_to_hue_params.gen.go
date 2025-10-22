@@ -31,6 +31,20 @@ type _MTRColorControlClusterEnhancedMoveToHueParamsClass struct {
 // An interface definition for the [MTRColorControlClusterEnhancedMoveToHueParams] class.
 type IMTRColorControlClusterEnhancedMoveToHueParams interface {
 	objectivec.IObject
+	Direction() foundation.Number
+	SetDirection(value foundation.INumber)
+	EnhancedHue() foundation.Number
+	SetEnhancedHue(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

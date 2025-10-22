@@ -32,6 +32,17 @@ type _CaptureVideoPreviewLayerClass struct {
 type ICaptureVideoPreviewLayer interface {
 	quartzcore.ILayer
 	RectForMetadataOutputRectOfInterest(rectInMetadataOutputCoordinates coregraphics.CGRect) coregraphics.CGRect
+	Connection() AVCaptureConnection
+	Session() AVCaptureSession
+	SetSession(value IAVCaptureSession)
+	IsDeferredStartEnabled() bool
+	SetIsDeferredStartEnabled(value bool)
+	IsDeferredStartSupported() bool
+	SetIsDeferredStartSupported(value bool)
+	IsPreviewing() bool
+	SetIsPreviewing(value bool)
+	VideoGravity() LayerVideoGravity
+	SetVideoGravity(value ILayerVideoGravity)
 }
 
 // A Core Animation layer that displays video from a camera device.

@@ -31,6 +31,18 @@ type _MTRDoorLockClusterSetAliroReaderConfigParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterSetAliroReaderConfigParams] class.
 type IMTRDoorLockClusterSetAliroReaderConfigParams interface {
 	objectivec.IObject
+	GroupIdentifier() foundation.NSData
+	SetGroupIdentifier(value foundation.IData)
+	GroupResolvingKey() foundation.NSData
+	SetGroupResolvingKey(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	SigningKey() foundation.NSData
+	SetSigningKey(value foundation.IData)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	VerificationKey() foundation.NSData
+	SetVerificationKey(value foundation.IData)
 }
 
 //

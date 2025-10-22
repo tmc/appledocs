@@ -31,6 +31,12 @@ type _MTRBooleanStateConfigurationClusterEnableDisableAlarmParamsClass struct {
 // An interface definition for the [MTRBooleanStateConfigurationClusterEnableDisableAlarmParams] class.
 type IMTRBooleanStateConfigurationClusterEnableDisableAlarmParams interface {
 	objectivec.IObject
+	AlarmsToEnableDisable() foundation.Number
+	SetAlarmsToEnableDisable(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

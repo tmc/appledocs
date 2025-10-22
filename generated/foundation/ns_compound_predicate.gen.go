@@ -29,6 +29,9 @@ type _CompoundPredicateClass struct {
 // An interface definition for the [CompoundPredicate] class.
 type ICompoundPredicate interface {
 	IPredicate
+	CompoundPredicateType() CompoundPredicateType
+	Subpredicates() unsafe.Pointer
+	SetSubpredicates(value unsafe.Pointer)
 }
 
 // A specialized predicate that evaluates logical combinations of other predicates.

@@ -31,6 +31,9 @@ type _SACrashDetectionManagerClass struct {
 type ISACrashDetectionManager interface {
 	objectivec.IObject
 	RequestAuthorizationWithCompletionHandler(handler unsafe.Pointer)
+	AuthorizationStatus() SAAuthorizationStatus
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // Provides registration and management of Crash Detection events.

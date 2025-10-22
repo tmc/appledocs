@@ -29,6 +29,10 @@ type _CLossLayerClass struct {
 // An interface definition for the [CLossLayer] class.
 type ICLossLayer interface {
 	ICLayer
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
+	Weights() MLCTensor
+	SetWeights(value IMLCTensor)
 }
 
 // A layer that estimates the inaccuracies of the model to reduce the loss on the next evaluation.

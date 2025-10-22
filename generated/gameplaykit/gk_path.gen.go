@@ -33,6 +33,13 @@ type IPath interface {
 	Float2AtIndex(index uint) unsafe.Pointer
 	Float3AtIndex(index uint) unsafe.Pointer
 	PointAtIndex(index uint) unsafe.Pointer
+	Cyclical() bool
+	SetCyclical(value bool)
+	NumPoints() uint
+	Radius() float32
+	SetRadius(value float32)
+	IsCyclical() bool
+	SetIsCyclical(value bool)
 }
 
 // A polygonal path that can be followed by an agent.
@@ -88,7 +95,7 @@ func NewPath() Path {
 // Initializes a path with the specified array of 3D points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/initWithFloat3Points:count:radius:cyclical:
-func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count unsafe.Pointer, radius unsafe.Pointer, cyclical bool) Path {
+func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithFloat3Points:count:radius:cyclical:"), points, count, radius, cyclical)
 	rv.Autorelease()
@@ -100,7 +107,7 @@ func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count uns
 // Initializes a path using the positions of the specified graph nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/init(graphNodes:radius:)
-func NewPathWithGraphNodesRadius(graphNodes []GraphNode, radius unsafe.Pointer) Path {
+func NewPathWithGraphNodesRadius(graphNodes []GraphNode, radius float32) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithGraphNodes:radius:"), graphNodes, radius)
 	rv.Autorelease()
@@ -112,7 +119,7 @@ func NewPathWithGraphNodesRadius(graphNodes []GraphNode, radius unsafe.Pointer) 
 // Initializes a path with the specified array of 2D points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/initWithPoints:count:radius:cyclical:
-func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count unsafe.Pointer, radius unsafe.Pointer, cyclical bool) Path {
+func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithPoints:count:radius:cyclical:"), points, count, radius, cyclical)
 	rv.Autorelease()
@@ -123,7 +130,7 @@ func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count unsafe.Po
 // Creates a path with the specified array of 3D points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithFloat3Points:count:radius:cyclical:
-func (pc _PathClass) PathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count unsafe.Pointer, radius unsafe.Pointer, cyclical bool) unsafe.Pointer {
+func (pc _PathClass) PathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithFloat3Points:count:radius:cyclical:"), points, count, radius, cyclical)
 	return rv
 }
@@ -131,7 +138,7 @@ func (pc _PathClass) PathWithFloat3PointsCountRadiusCyclical(points unsafe.Point
 // Creates a path using the positions of the specified graph nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithGraphNodes:radius:
-func (pc _PathClass) PathWithGraphNodesRadius(graphNodes []GraphNode, radius unsafe.Pointer) unsafe.Pointer {
+func (pc _PathClass) PathWithGraphNodesRadius(graphNodes []GraphNode, radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithGraphNodes:radius:"), graphNodes, radius)
 	return rv
 }
@@ -139,7 +146,7 @@ func (pc _PathClass) PathWithGraphNodesRadius(graphNodes []GraphNode, radius uns
 // Creates a path with the specified array of 2D points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithPoints:count:radius:cyclical:
-func (pc _PathClass) PathWithPointsCountRadiusCyclical(points unsafe.Pointer, count unsafe.Pointer, radius unsafe.Pointer, cyclical bool) unsafe.Pointer {
+func (pc _PathClass) PathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithPoints:count:radius:cyclical:"), points, count, radius, cyclical)
 	return rv
 }
@@ -197,8 +204,8 @@ func (p_ Path) NumPoints() uint {
 // The radius of the path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/radius
-func (p_ Path) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("radius"))
+func (p_ Path) Radius() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("radius"))
 	return rv
 }
 
@@ -208,7 +215,7 @@ func (p_ Path) Radius() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/radius
-func (p_ Path) SetRadius(value unsafe.Pointer) {
+func (p_ Path) SetRadius(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRadius:"), value)
 }
 

@@ -32,6 +32,12 @@ type _SemanticSegmentationMatteClass struct {
 type ISemanticSegmentationMatte interface {
 	objectivec.IObject
 	DictionaryRepresentationForAuxiliaryDataType(outAuxDataType string) foundation.Dictionary
+	MatteType() unsafe.Pointer
+	PixelFormatType() unsafe.Pointer
+	MattingImage() unsafe.Pointer
+	SetMattingImage(value unsafe.Pointer)
+	KCVPixelFormatType_OneComponent8() unsafe.Pointer
+	SetKCVPixelFormatType_OneComponent8(value unsafe.Pointer)
 }
 
 // An object that wraps a matting image for a particular semantic segmentation.

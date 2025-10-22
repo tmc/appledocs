@@ -30,6 +30,10 @@ type _CXSetMutedCallActionClass struct {
 // An interface definition for the [CXSetMutedCallAction] class.
 type ICXSetMutedCallAction interface {
 	ICXCallAction
+	Muted() bool
+	SetMuted(value bool)
+	IsMuted() bool
+	SetIsMuted(value bool)
 }
 
 // An encapsulation of the act of muting or unmuting a call.

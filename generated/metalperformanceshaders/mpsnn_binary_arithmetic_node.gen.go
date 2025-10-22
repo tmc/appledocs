@@ -29,6 +29,28 @@ type _BinaryArithmeticNodeClass struct {
 // An interface definition for the [BinaryArithmeticNode] class.
 type IBinaryArithmeticNode interface {
 	IFilterNode
+	Bias() float32
+	SetBias(value float32)
+	MaximumValue() float32
+	SetMaximumValue(value float32)
+	MinimumValue() float32
+	SetMinimumValue(value float32)
+	PrimaryScale() float32
+	SetPrimaryScale(value float32)
+	PrimaryStrideInFeatureChannels() int
+	SetPrimaryStrideInFeatureChannels(value int)
+	PrimaryStrideInPixelsX() int
+	SetPrimaryStrideInPixelsX(value int)
+	PrimaryStrideInPixelsY() int
+	SetPrimaryStrideInPixelsY(value int)
+	SecondaryScale() float32
+	SetSecondaryScale(value float32)
+	SecondaryStrideInFeatureChannels() int
+	SetSecondaryStrideInFeatureChannels(value int)
+	SecondaryStrideInPixelsX() int
+	SetSecondaryStrideInPixelsX(value int)
+	SecondaryStrideInPixelsY() int
+	SetSecondaryStrideInPixelsY(value int)
 }
 
 // Virtual base class for basic arithmetic nodes.
@@ -81,8 +103,8 @@ func NewBinaryArithmeticNode() BinaryArithmeticNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/bias
-func (b_ BinaryArithmeticNode) Bias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bias"))
+func (b_ BinaryArithmeticNode) Bias() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("bias"))
 	return rv
 }
 
@@ -90,14 +112,14 @@ func (b_ BinaryArithmeticNode) Bias() unsafe.Pointer {
 // SetBias sets the value of the bias property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/bias
-func (b_ BinaryArithmeticNode) SetBias(value unsafe.Pointer) {
+func (b_ BinaryArithmeticNode) SetBias(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBias:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/maximumvalue
-func (b_ BinaryArithmeticNode) MaximumValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("maximumValue"))
+func (b_ BinaryArithmeticNode) MaximumValue() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("maximumValue"))
 	return rv
 }
 
@@ -105,14 +127,14 @@ func (b_ BinaryArithmeticNode) MaximumValue() unsafe.Pointer {
 // SetMaximumValue sets the value of the maximumValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/maximumvalue
-func (b_ BinaryArithmeticNode) SetMaximumValue(value unsafe.Pointer) {
+func (b_ BinaryArithmeticNode) SetMaximumValue(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMaximumValue:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/minimumvalue
-func (b_ BinaryArithmeticNode) MinimumValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("minimumValue"))
+func (b_ BinaryArithmeticNode) MinimumValue() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("minimumValue"))
 	return rv
 }
 
@@ -120,14 +142,14 @@ func (b_ BinaryArithmeticNode) MinimumValue() unsafe.Pointer {
 // SetMinimumValue sets the value of the minimumValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/minimumvalue
-func (b_ BinaryArithmeticNode) SetMinimumValue(value unsafe.Pointer) {
+func (b_ BinaryArithmeticNode) SetMinimumValue(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinimumValue:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primaryscale
-func (b_ BinaryArithmeticNode) PrimaryScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("primaryScale"))
+func (b_ BinaryArithmeticNode) PrimaryScale() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("primaryScale"))
 	return rv
 }
 
@@ -135,7 +157,7 @@ func (b_ BinaryArithmeticNode) PrimaryScale() unsafe.Pointer {
 // SetPrimaryScale sets the value of the primaryScale property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/primaryscale
-func (b_ BinaryArithmeticNode) SetPrimaryScale(value unsafe.Pointer) {
+func (b_ BinaryArithmeticNode) SetPrimaryScale(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPrimaryScale:"), value)
 }
 
@@ -186,8 +208,8 @@ func (b_ BinaryArithmeticNode) SetPrimaryStrideInPixelsY(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondaryscale
-func (b_ BinaryArithmeticNode) SecondaryScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("secondaryScale"))
+func (b_ BinaryArithmeticNode) SecondaryScale() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("secondaryScale"))
 	return rv
 }
 
@@ -195,7 +217,7 @@ func (b_ BinaryArithmeticNode) SecondaryScale() unsafe.Pointer {
 // SetSecondaryScale sets the value of the secondaryScale property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode/secondaryscale
-func (b_ BinaryArithmeticNode) SetSecondaryScale(value unsafe.Pointer) {
+func (b_ BinaryArithmeticNode) SetSecondaryScale(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSecondaryScale:"), value)
 }
 

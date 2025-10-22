@@ -30,6 +30,12 @@ type _UserNotificationActionClass struct {
 // An interface definition for the [UserNotificationAction] class.
 type IUserNotificationAction interface {
 	objectivec.IObject
+	Identifier() string
+	Title() string
+	AdditionalActions() NSUserNotificationAction
+	SetAdditionalActions(value IUserNotificationAction)
+	AdditionalActivationAction() NSUserNotificationAction
+	SetAdditionalActivationAction(value IUserNotificationAction)
 }
 
 // An action that the user can take in response to receiving a notification.

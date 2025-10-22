@@ -29,6 +29,10 @@ type _PHASEListenerClass struct {
 // An interface definition for the [PHASEListener] class.
 type IPHASEListener interface {
 	IPHASEObject
+	AutomaticHeadTrackingFlags() PHASEAutomaticHeadTrackingFlags
+	SetAutomaticHeadTrackingFlags(value PHASEAutomaticHeadTrackingFlags)
+	Gain() float64
+	SetGain(value float64)
 }
 
 // A central point of reference that defines the location within the scene that’s most audible to the user.
@@ -112,8 +116,8 @@ func (p_ PHASEListener) SetAutomaticHeadTrackingFlags(value PHASEAutomaticHeadTr
 // Modifies the volume of all audio playback for the listener’s mixers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/gain
-func (p_ PHASEListener) Gain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gain"))
+func (p_ PHASEListener) Gain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
@@ -123,7 +127,7 @@ func (p_ PHASEListener) Gain() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/gain
-func (p_ PHASEListener) SetGain(value unsafe.Pointer) {
+func (p_ PHASEListener) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
 

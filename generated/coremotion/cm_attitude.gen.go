@@ -31,6 +31,11 @@ type _AttitudeClass struct {
 type IAttitude interface {
 	objectivec.IObject
 	MultiplyByInverseOfAttitude(attitude ICMAttitude)
+	Pitch() float64
+	Quaternion() unsafe.Pointer
+	Roll() float64
+	RotationMatrix() unsafe.Pointer
+	Yaw() float64
 }
 
 // The device’s orientation relative to a known frame of reference at a point in time.
@@ -91,8 +96,8 @@ func (a_ Attitude) MultiplyByInverseOfAttitude(attitude ICMAttitude) {
 // The pitch of the device, in radians.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/pitch
-func (a_ Attitude) Pitch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pitch"))
+func (a_ Attitude) Pitch() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("pitch"))
 	return rv
 }
 
@@ -107,8 +112,8 @@ func (a_ Attitude) Quaternion() unsafe.Pointer {
 // The roll of the device, in radians.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/roll
-func (a_ Attitude) Roll() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("roll"))
+func (a_ Attitude) Roll() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("roll"))
 	return rv
 }
 
@@ -123,8 +128,8 @@ func (a_ Attitude) RotationMatrix() unsafe.Pointer {
 // The yaw of the device, in radians.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/yaw
-func (a_ Attitude) Yaw() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("yaw"))
+func (a_ Attitude) Yaw() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("yaw"))
 	return rv
 }
 

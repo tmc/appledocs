@@ -40,6 +40,10 @@ type ICoreDataCoreSpotlightDelegate interface {
 	SearchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex corespotlight.ICSSearchableIndex, identifiers []string, acknowledgementHandler unsafe.Pointer)
 	StartSpotlightIndexing()
 	StopSpotlightIndexing()
+	IndexingEnabled() bool
+	IsIndexingEnabled() bool
+	SetIsIndexingEnabled(value bool)
+	NSCoreDataCoreSpotlightExporter() string
 }
 
 // A set of methods that enable integration with Core Spotlight.
@@ -201,8 +205,8 @@ func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
 // The key you use to specify your Core Spotlight delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
-func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
+func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv
 }
 

@@ -31,6 +31,12 @@ type _HKQuantitySeriesSampleBuilderClass struct {
 // An interface definition for the [HKQuantitySeriesSampleBuilder] class.
 type IHKQuantitySeriesSampleBuilder interface {
 	objectivec.IObject
+	Device() HKDevice
+	SetDevice(value IHKDevice)
+	QuantityType() HKQuantityType
+	SetQuantityType(value HKQuantityType)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
 }
 
 // A builder object for incrementally building a sample that contains multiple quantities.

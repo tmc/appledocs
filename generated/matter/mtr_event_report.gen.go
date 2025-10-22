@@ -31,6 +31,24 @@ type _MTREventReportClass struct {
 // An interface definition for the [MTREventReport] class.
 type IMTREventReport interface {
 	objectivec.IObject
+	Error() foundation.Error
+	SetError(value foundation.IError)
+	EventNumber() foundation.Number
+	SetEventNumber(value foundation.INumber)
+	EventTimeType() MTREventTimeType
+	SetEventTimeType(value MTREventTimeType)
+	Path() MTREventPath
+	SetPath(value IMTREventPath)
+	Priority() foundation.Number
+	SetPriority(value foundation.INumber)
+	SystemUpTime() unsafe.Pointer
+	SetSystemUpTime(value unsafe.Pointer)
+	Timestamp() foundation.Number
+	SetTimestamp(value foundation.INumber)
+	TimestampDate() foundation.Date
+	SetTimestampDate(value foundation.IDate)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
 }
 
 //

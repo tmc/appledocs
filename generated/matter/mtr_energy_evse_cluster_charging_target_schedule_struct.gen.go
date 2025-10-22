@@ -31,6 +31,10 @@ type _MTREnergyEVSEClusterChargingTargetScheduleStructClass struct {
 // An interface definition for the [MTREnergyEVSEClusterChargingTargetScheduleStruct] class.
 type IMTREnergyEVSEClusterChargingTargetScheduleStruct interface {
 	objectivec.IObject
+	ChargingTargets() objc.ID
+	SetChargingTargets(value objc.ID)
+	DayOfWeekForSequence() foundation.Number
+	SetDayOfWeekForSequence(value foundation.INumber)
 }
 
 //

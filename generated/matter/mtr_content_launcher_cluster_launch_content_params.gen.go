@@ -31,6 +31,18 @@ type _MTRContentLauncherClusterLaunchContentParamsClass struct {
 // An interface definition for the [MTRContentLauncherClusterLaunchContentParams] class.
 type IMTRContentLauncherClusterLaunchContentParams interface {
 	objectivec.IObject
+	AutoPlay() foundation.Number
+	SetAutoPlay(value foundation.INumber)
+	Data() string
+	SetData(value string)
+	Search() MTRContentLauncherClusterContentSearchStruct
+	SetSearch(value IMTRContentLauncherClusterContentSearchStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UseCurrentContext() foundation.Number
+	SetUseCurrentContext(value foundation.INumber)
 }
 
 //
@@ -93,8 +105,8 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) SetAutoPlay(value foundat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
-func (m_ MTRContentLauncherClusterLaunchContentParams) Data() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentLauncherClusterLaunchContentParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -102,8 +114,8 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) Data() appkit.string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetData(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 
 //

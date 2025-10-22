@@ -31,6 +31,30 @@ type _MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponentsClass struct
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents] class.
 type IMTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents interface {
 	objectivec.IObject
+	ActiveTimestampPresent() foundation.Number
+	SetActiveTimestampPresent(value foundation.INumber)
+	ChannelMaskPresent() foundation.Number
+	SetChannelMaskPresent(value foundation.INumber)
+	ChannelPresent() foundation.Number
+	SetChannelPresent(value foundation.INumber)
+	DelayPresent() foundation.Number
+	SetDelayPresent(value foundation.INumber)
+	ExtendedPanIdPresent() foundation.Number
+	SetExtendedPanIdPresent(value foundation.INumber)
+	MasterKeyPresent() foundation.Number
+	SetMasterKeyPresent(value foundation.INumber)
+	MeshLocalPrefixPresent() foundation.Number
+	SetMeshLocalPrefixPresent(value foundation.INumber)
+	NetworkNamePresent() foundation.Number
+	SetNetworkNamePresent(value foundation.INumber)
+	PanIdPresent() foundation.Number
+	SetPanIdPresent(value foundation.INumber)
+	PendingTimestampPresent() foundation.Number
+	SetPendingTimestampPresent(value foundation.INumber)
+	PskcPresent() foundation.Number
+	SetPskcPresent(value foundation.INumber)
+	SecurityPolicyPresent() foundation.Number
+	SetSecurityPolicyPresent(value foundation.INumber)
 }
 
 //

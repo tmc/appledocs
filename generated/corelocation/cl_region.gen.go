@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,13 @@ type _RegionClass struct {
 type IRegion interface {
 	objectivec.IObject
 	ContainsCoordinate(coordinate unsafe.Pointer) bool
+	Center() unsafe.Pointer
+	Identifier() string
+	NotifyOnEntry() bool
+	SetNotifyOnEntry(value bool)
+	NotifyOnExit() bool
+	SetNotifyOnExit(value bool)
+	Radius() unsafe.Pointer
 }
 
 // A base class representing an area that can be monitored.
@@ -87,9 +93,9 @@ func NewRegion() Region {
 // Initializes and returns a region object defining a circular area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
-func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier appkit.string) Region {
+func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) Region {
 	instance := getRegionClass().Alloc()
-	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, identifier)
+	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }
@@ -114,8 +120,8 @@ func (r_ Region) Center() unsafe.Pointer {
 // The identifier for the region object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
-func (r_ Region) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("identifier"))
+func (r_ Region) Identifier() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 

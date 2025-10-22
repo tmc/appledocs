@@ -29,6 +29,16 @@ type _CConvolutionLayerClass struct {
 // An interface definition for the [CConvolutionLayer] class.
 type ICConvolutionLayer interface {
 	ICLayer
+	Biases() MLCTensor
+	SetBiases(value IMLCTensor)
+	BiasesParameter() MLCTensorParameter
+	SetBiasesParameter(value IMLCTensorParameter)
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
+	Weights() MLCTensor
+	SetWeights(value IMLCTensor)
+	WeightsParameter() MLCTensorParameter
+	SetWeightsParameter(value IMLCTensorParameter)
 }
 
 // A layer that applies a convolution over a signal.

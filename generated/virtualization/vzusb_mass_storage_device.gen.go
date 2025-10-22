@@ -29,6 +29,8 @@ type _VZUSBMassStorageDeviceClass struct {
 // An interface definition for the [VZUSBMassStorageDevice] class.
 type IVZUSBMassStorageDevice interface {
 	IVZStorageDevice
+	UsbDevices() unsafe.Pointer
+	SetUsbDevices(value unsafe.Pointer)
 }
 
 // A class that represents a hot-pluggable USB mass storage device.

@@ -32,6 +32,9 @@ type IFSResource interface {
 	objectivec.IObject
 	MakeProxy() unsafe.Pointer
 	Revoke()
+	Revoked() bool
+	IsRevoked() bool
+	SetIsRevoked(value bool)
 }
 
 // An abstract resource a file system uses to provide data for a volume.

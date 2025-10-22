@@ -31,6 +31,14 @@ type _MTROperationalCredentialsClusterNOCResponseParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterNOCResponseParams] class.
 type IMTROperationalCredentialsClusterNOCResponseParams interface {
 	objectivec.IObject
+	DebugText() string
+	SetDebugText(value string)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	StatusCode() foundation.Number
+	SetStatusCode(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +86,8 @@ func NewMTROperationalCredentialsClusterNOCResponseParams() MTROperationalCreden
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/debugtext
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) DebugText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +95,8 @@ func (m_ MTROperationalCredentialsClusterNOCResponseParams) DebugText() appkit.s
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/debugtext
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetDebugText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 //

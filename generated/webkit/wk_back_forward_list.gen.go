@@ -30,6 +30,17 @@ type _BackForwardListClass struct {
 // An interface definition for the [BackForwardList] class.
 type IBackForwardList interface {
 	objectivec.IObject
+	ForwardList() []BackForwardListItem
+	BackItem() WKBackForwardListItem
+	SetBackItem(value IWKBackForwardListItem)
+	BackList() WKBackForwardListItem
+	SetBackList(value IWKBackForwardListItem)
+	CurrentItem() WKBackForwardListItem
+	SetCurrentItem(value IWKBackForwardListItem)
+	ForwardItem() WKBackForwardListItem
+	SetForwardItem(value IWKBackForwardListItem)
+	BackForwardList() WKBackForwardList
+	SetBackForwardList(value IWKBackForwardList)
 }
 
 // An object that manages the list of previously loaded webpages, which the web view uses for forward and backward navigation.

@@ -30,6 +30,14 @@ type _MTRControllerFactoryParamsClass struct {
 // An interface definition for the [MTRControllerFactoryParams] class.
 type IMTRControllerFactoryParams interface {
 	IMTRDeviceControllerFactoryParams
+	CdCerts() foundation.Data
+	SetCdCerts(value foundation.IData)
+	PaaCerts() foundation.Data
+	SetPaaCerts(value foundation.IData)
+	StartServer() bool
+	SetStartServer(value bool)
+	StorageDelegate() unsafe.Pointer
+	SetStorageDelegate(value unsafe.Pointer)
 }
 
 //

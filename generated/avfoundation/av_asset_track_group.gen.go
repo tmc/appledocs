@@ -31,6 +31,8 @@ type _AssetTrackGroupClass struct {
 // An interface definition for the [AssetTrackGroup] class.
 type IAssetTrackGroup interface {
 	objectivec.IObject
+	TrackIDs() foundation.Number
+	SetTrackIDs(value foundation.INumber)
 }
 
 // A group of related tracks in an asset.

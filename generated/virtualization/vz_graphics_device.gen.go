@@ -30,6 +30,9 @@ type _VZGraphicsDeviceClass struct {
 // An interface definition for the [VZGraphicsDevice] class.
 type IVZGraphicsDevice interface {
 	objectivec.IObject
+	Displays() []VZGraphicsDisplay
+	GraphicsDevices() VZGraphicsDevice
+	SetGraphicsDevices(value IVZGraphicsDevice)
 }
 
 // A class that represents a graphics device in a VM.

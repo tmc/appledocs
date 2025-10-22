@@ -30,6 +30,14 @@ type _AMWorkflowViewClass struct {
 // An interface definition for the [AMWorkflowView] class.
 type IAMWorkflowView interface {
 	appkit.IView
+	Editable() bool
+	SetEditable(value bool)
+	WorkflowController() AMWorkflowController
+	SetWorkflowController(value IAMWorkflowController)
+	WorkflowView() AMWorkflowView
+	SetWorkflowView(value IAMWorkflowView)
+	IsEditable() bool
+	SetIsEditable(value bool)
 }
 
 // An object that lets you view and edit Automator workflows in your app.

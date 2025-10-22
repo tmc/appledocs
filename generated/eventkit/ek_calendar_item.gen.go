@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -35,6 +34,32 @@ type IEKCalendarItem interface {
 	AddRecurrenceRule(rule IEKRecurrenceRule)
 	RemoveAlarm(alarm IEKAlarm)
 	RemoveRecurrenceRule(rule IEKRecurrenceRule)
+	Alarms() []EKAlarm
+	SetAlarms(value []EKAlarm)
+	Attendees() []EKParticipant
+	Calendar() EKCalendar
+	SetCalendar(value IEKCalendar)
+	CalendarItemExternalIdentifier() string
+	CalendarItemIdentifier() string
+	CreationDate() foundation.NSDate
+	HasAlarms() bool
+	HasAttendees() bool
+	HasNotes() bool
+	HasRecurrenceRules() bool
+	LastModifiedDate() foundation.NSDate
+	Location() string
+	SetLocation(value string)
+	Notes() string
+	SetNotes(value string)
+	RecurrenceRules() []EKRecurrenceRule
+	SetRecurrenceRules(value []EKRecurrenceRule)
+	TimeZone() foundation.TimeZone
+	SetTimeZone(value foundation.ITimeZone)
+	Title() string
+	SetTitle(value string)
+	URL() foundation.URL
+	SetURL(value foundation.IURL)
+	UUID() string
 }
 
 // An abstract superclass for calendar events and reminders.
@@ -172,16 +197,16 @@ func (e_ EKCalendarItem) SetCalendar(value IEKCalendar) {
 // The calendar item’s external identifier as provided by the calendar server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemExternalIdentifier
-func (e_ EKCalendarItem) CalendarItemExternalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
+func (e_ EKCalendarItem) CalendarItemExternalIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
 	return rv
 }
 
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemIdentifier
-func (e_ EKCalendarItem) CalendarItemIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarItemIdentifier"))
+func (e_ EKCalendarItem) CalendarItemIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemIdentifier"))
 	return rv
 }
 
@@ -236,8 +261,8 @@ func (e_ EKCalendarItem) LastModifiedDate() foundation.NSDate {
 // The location associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) Location() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("location"))
+func (e_ EKCalendarItem) Location() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -247,15 +272,15 @@ func (e_ EKCalendarItem) Location() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) SetLocation(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), value)
+func (e_ EKCalendarItem) SetLocation(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), objc.String(value))
 }
 
 // The notes associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) Notes() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("notes"))
+func (e_ EKCalendarItem) Notes() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("notes"))
 	return rv
 }
 
@@ -265,8 +290,8 @@ func (e_ EKCalendarItem) Notes() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) SetNotes(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), value)
+func (e_ EKCalendarItem) SetNotes(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), objc.String(value))
 }
 
 // The recurrence rules for the calendar item.
@@ -318,8 +343,8 @@ func (e_ EKCalendarItem) SetTimeZone(value foundation.ITimeZone) {
 // The title for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) Title() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
+func (e_ EKCalendarItem) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -329,8 +354,8 @@ func (e_ EKCalendarItem) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
+func (e_ EKCalendarItem) SetTitle(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The URL for the calendar item.
@@ -354,8 +379,8 @@ func (e_ EKCalendarItem) SetURL(value foundation.IURL) {
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/uuid
-func (e_ EKCalendarItem) UUID() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("UUID"))
+func (e_ EKCalendarItem) UUID() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("UUID"))
 	return rv
 }
 

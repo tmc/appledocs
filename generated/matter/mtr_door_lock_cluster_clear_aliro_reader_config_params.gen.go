@@ -31,6 +31,10 @@ type _MTRDoorLockClusterClearAliroReaderConfigParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterClearAliroReaderConfigParams] class.
 type IMTRDoorLockClusterClearAliroReaderConfigParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

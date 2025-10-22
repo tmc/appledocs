@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CSUserQuery] class.
@@ -34,6 +33,15 @@ type ICSUserQuery interface {
 	Start()
 	UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem, userInteractionType ICSUserInteraction)
 	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion, userInteractionType ICSUserInteraction)
+	FoundSuggestionCount() int
+	FoundSuggestionsHandler() unsafe.Pointer
+	SetFoundSuggestionsHandler(value unsafe.Pointer)
+	FoundItemsHandler() unsafe.Pointer
+	SetFoundItemsHandler(value unsafe.Pointer)
+	Responses() unsafe.Pointer
+	SetResponses(value unsafe.Pointer)
+	Suggestions() unsafe.Pointer
+	SetSuggestions(value unsafe.Pointer)
 }
 
 // A type you use to initiate searches from your interface and offer suggested text completions.
@@ -91,9 +99,9 @@ func NewCSUserQuery() CSUserQuery {
 // Creates a new user query that searches for the specified term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/init(userQueryString:userQueryContext:)
-func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString appkit.string, userQueryContext ICSUserQueryContext) CSUserQuery {
+func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string, userQueryContext ICSUserQueryContext) CSUserQuery {
 	instance := getCSUserQueryClass().Alloc()
-	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), userQueryString, userQueryContext)
+	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), objc.String(userQueryString), userQueryContext)
 	rv.Autorelease()
 	return rv
 }

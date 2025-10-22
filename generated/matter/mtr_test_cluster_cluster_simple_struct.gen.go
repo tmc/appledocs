@@ -30,6 +30,22 @@ type _MTRTestClusterClusterSimpleStructClass struct {
 // An interface definition for the [MTRTestClusterClusterSimpleStruct] class.
 type IMTRTestClusterClusterSimpleStruct interface {
 	IMTRUnitTestingClusterSimpleStruct
+	A() foundation.Number
+	SetA(value foundation.INumber)
+	B() foundation.Number
+	SetB(value foundation.INumber)
+	C() foundation.Number
+	SetC(value foundation.INumber)
+	D() foundation.Data
+	SetD(value foundation.IData)
+	E() string
+	SetE(value string)
+	F() foundation.Number
+	SetF(value foundation.INumber)
+	G() foundation.Number
+	SetG(value foundation.INumber)
+	H() foundation.Number
+	SetH(value foundation.INumber)
 }
 
 //
@@ -139,8 +155,8 @@ func (m_ MTRTestClusterClusterSimpleStruct) SetD(value foundation.IData) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
-func (m_ MTRTestClusterClusterSimpleStruct) E() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("e"))
+func (m_ MTRTestClusterClusterSimpleStruct) E() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("e"))
 	return rv
 }
 
@@ -148,8 +164,8 @@ func (m_ MTRTestClusterClusterSimpleStruct) E() appkit.string {
 // SetE sets the value of the e property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
-func (m_ MTRTestClusterClusterSimpleStruct) SetE(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), value)
+func (m_ MTRTestClusterClusterSimpleStruct) SetE(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), objc.String(value))
 }
 
 //

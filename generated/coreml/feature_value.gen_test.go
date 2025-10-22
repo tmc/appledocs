@@ -17,6 +17,14 @@ func ExampleNewFeatureValueUndefinedFeatureValueWithType() {
 	)
 	// Output:
 }
+// ExampleNewFeatureValueWithDouble demonstrates how to create a FeatureValue instance using NewFeatureValueWithDouble.
+// Creates a feature value that contains a double.
+func ExampleNewFeatureValueWithDouble() {
+	_ = coreml.NewFeatureValueWithDouble(
+		0.0, // value float64
+	)
+	// Output:
+}
 // ExampleNewFeatureValueWithMultiArray demonstrates how to create a FeatureValue instance using NewFeatureValueWithMultiArray.
 // Creates a feature value that contains a multidimensional array.
 func ExampleNewFeatureValueWithMultiArray() {
@@ -30,6 +38,14 @@ func ExampleNewFeatureValueWithMultiArray() {
 func ExampleNewFeatureValueWithSequence() {
 	_ = coreml.NewFeatureValueWithSequence(
 		coreml.MLSequence{}, // sequence MLSequence
+	)
+	// Output:
+}
+// ExampleNewFeatureValueWithString demonstrates how to create a FeatureValue instance using NewFeatureValueWithString.
+// Creates a feature value that contains a string.
+func ExampleNewFeatureValueWithString() {
+	_ = coreml.NewFeatureValueWithString(
+		"value", // value string
 	)
 	// Output:
 }

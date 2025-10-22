@@ -31,6 +31,12 @@ type _MTRMediaPlaybackClusterSeekParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterSeekParams] class.
 type IMTRMediaPlaybackClusterSeekParams interface {
 	objectivec.IObject
+	Position() foundation.Number
+	SetPosition(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

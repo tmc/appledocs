@@ -31,6 +31,24 @@ type _INCallRecordClass struct {
 // An interface definition for the [INCallRecord] class.
 type IINCallRecord interface {
 	objectivec.IObject
+	CallCapability() INCallCapability
+	SetCallCapability(value INCallCapability)
+	CallDuration() float64
+	SetCallDuration(value float64)
+	CallRecordType() INCallRecordType
+	SetCallRecordType(value INCallRecordType)
+	Caller() INPerson
+	SetCaller(value INPerson)
+	DateCreated() foundation.Date
+	SetDateCreated(value foundation.IDate)
+	Identifier() string
+	SetIdentifier(value string)
+	NumberOfCalls() int
+	SetNumberOfCalls(value int)
+	Participants() INPerson
+	SetParticipants(value INPerson)
+	Unseen() bool
+	SetUnseen(value bool)
 }
 
 // The details about a call handled by your app.
@@ -102,8 +120,8 @@ func (i_ INCallRecord) SetCallCapability(value INCallCapability) {
 // The duration (measured in seconds) of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callduration-47iud
-func (i_ INCallRecord) CallDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callDuration"))
+func (i_ INCallRecord) CallDuration() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("callDuration"))
 	return rv
 }
 
@@ -113,7 +131,7 @@ func (i_ INCallRecord) CallDuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callduration-47iud
-func (i_ INCallRecord) SetCallDuration(value unsafe.Pointer) {
+func (i_ INCallRecord) SetCallDuration(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallDuration:"), value)
 }
 
@@ -174,8 +192,8 @@ func (i_ INCallRecord) SetDateCreated(value foundation.IDate) {
 // A unique string that you can use to locate the call in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
-func (i_ INCallRecord) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("identifier"))
+func (i_ INCallRecord) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -185,8 +203,8 @@ func (i_ INCallRecord) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
-func (i_ INCallRecord) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
+func (i_ INCallRecord) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The number of calls in the call record.

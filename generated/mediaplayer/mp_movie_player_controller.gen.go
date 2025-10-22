@@ -33,6 +33,57 @@ type _MoviePlayerControllerClass struct {
 // An interface definition for the [MoviePlayerController] class.
 type IMoviePlayerController interface {
 	objectivec.IObject
+	ContentURL() foundation.URL
+	SetContentURL(value foundation.IURL)
+	AirPlayVideoActive() bool
+	LoadState() MovieLoadState
+	PlaybackState() unsafe.Pointer
+	RepeatMode() unsafe.Pointer
+	SetRepeatMode(value unsafe.Pointer)
+	ShouldAutoplay() bool
+	SetShouldAutoplay(value bool)
+	TimedMetadata() objc.ID
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	AccessLog() MPMovieAccessLog
+	SetAccessLog(value IMPMovieAccessLog)
+	AllowsAirPlay() bool
+	SetAllowsAirPlay(value bool)
+	BackgroundView() appkit.View
+	SetBackgroundView(value appkit.IView)
+	ControlStyle() unsafe.Pointer
+	SetControlStyle(value unsafe.Pointer)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	EndPlaybackTime() unsafe.Pointer
+	SetEndPlaybackTime(value unsafe.Pointer)
+	ErrorLog() MPMovieErrorLog
+	SetErrorLog(value IMPMovieErrorLog)
+	InitialPlaybackTime() unsafe.Pointer
+	SetInitialPlaybackTime(value unsafe.Pointer)
+	IsAirPlayVideoActive() bool
+	SetIsAirPlayVideoActive(value bool)
+	IsFullscreen() bool
+	SetIsFullscreen(value bool)
+	MovieMediaTypes() MovieMediaTypeMask
+	SetMovieMediaTypes(value MovieMediaTypeMask)
+	MovieSourceType() unsafe.Pointer
+	SetMovieSourceType(value unsafe.Pointer)
+	NaturalSize() coregraphics.CGSize
+	SetNaturalSize(value coregraphics.CGSize)
+	PlayableDuration() unsafe.Pointer
+	SetPlayableDuration(value unsafe.Pointer)
+	ReadyForDisplay() bool
+	SetReadyForDisplay(value bool)
+	ScalingMode() unsafe.Pointer
+	SetScalingMode(value unsafe.Pointer)
+	UseApplicationAudioSession() bool
+	SetUseApplicationAudioSession(value bool)
+	View() appkit.View
+	SetView(value appkit.IView)
+	MPMoviePlayerPlaybackDidFinishReasonUserInfoKey() string
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // A type of movie player that manages the playback of a movie from a file or a network stream.
@@ -513,8 +564,8 @@ func (m_ MoviePlayerController) SetView(value appkit.IView) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerplaybackdidfinishreasonuserinfokey
-func (m_ MoviePlayerController) MPMoviePlayerPlaybackDidFinishReasonUserInfoKey() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"))
+func (m_ MoviePlayerController) MPMoviePlayerPlaybackDidFinishReasonUserInfoKey() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"))
 	return rv
 }
 

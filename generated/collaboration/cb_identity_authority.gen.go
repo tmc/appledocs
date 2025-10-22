@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _CBIdentityAuthorityClass struct {
 // An interface definition for the [CBIdentityAuthority] class.
 type ICBIdentityAuthority interface {
 	objectivec.IObject
+	CSIdentityAuthority() unsafe.Pointer
+	LocalizedName() string
 }
 
 // An identity authority is a database that stores information about identities. The class defines one or more identity authorities. You can search this database for identities in conjunction with the class factory methods.
@@ -114,8 +115,8 @@ func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 // Returns the localized name of the identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/localizedName
-func (c_ CBIdentityAuthority) LocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedName"))
+func (c_ CBIdentityAuthority) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

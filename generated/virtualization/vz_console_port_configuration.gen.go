@@ -30,6 +30,8 @@ type _VZConsolePortConfigurationClass struct {
 // An interface definition for the [VZConsolePortConfiguration] class.
 type IVZConsolePortConfiguration interface {
 	objectivec.IObject
+	Attachment() VZSerialPortAttachment
+	SetAttachment(value IVZSerialPortAttachment)
 }
 
 // The base class for a console port configuration.

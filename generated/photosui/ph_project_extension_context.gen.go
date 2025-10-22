@@ -33,6 +33,8 @@ type IPHProjectExtensionContext interface {
 	IExtensionContext
 	ShowEditorForAsset(asset photos.IPHAsset)
 	UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) foundation.Progress
+	PhotoLibrary() photos.PHPhotoLibrary
+	Project() photos.PHProject
 }
 
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.

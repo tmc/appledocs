@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DDMatchMoneyAmount] class.
@@ -30,6 +29,8 @@ type _DDMatchMoneyAmountClass struct {
 // An interface definition for the [DDMatchMoneyAmount] class.
 type IDDMatchMoneyAmount interface {
 	IDDMatch
+	Amount() float64
+	Currency() string
 }
 
 // An object that contains an amount of money that the data detection system matches.
@@ -85,16 +86,16 @@ func NewDDMatchMoneyAmount() DDMatchMoneyAmount {
 // A number that represents an amount of money.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/amount
-func (d_ DDMatchMoneyAmount) Amount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("amount"))
+func (d_ DDMatchMoneyAmount) Amount() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("amount"))
 	return rv
 }
 
 // A string that contains an ISO currency code, which the data detection system identifies from the matched string and user preferences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/currency
-func (d_ DDMatchMoneyAmount) Currency() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("currency"))
+func (d_ DDMatchMoneyAmount) Currency() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("currency"))
 	return rv
 }
 

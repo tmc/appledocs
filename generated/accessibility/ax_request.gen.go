@@ -30,6 +30,7 @@ type _AXRequestClass struct {
 // An interface definition for the [AXRequest] class.
 type IAXRequest interface {
 	objectivec.IObject
+	Technology() AXTechnology
 }
 
 //

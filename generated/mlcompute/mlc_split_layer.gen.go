@@ -29,6 +29,12 @@ type _CSplitLayerClass struct {
 // An interface definition for the [CSplitLayer] class.
 type ICSplitLayer interface {
 	ICLayer
+	Dimension() int
+	SetDimension(value int)
+	SplitCount() int
+	SetSplitCount(value int)
+	SplitSectionLengths() int
+	SetSplitSectionLengths(value int)
 }
 
 // A layer that splits a tensor value into a list of subtensors.

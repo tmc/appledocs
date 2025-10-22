@@ -31,6 +31,12 @@ type _MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass struct {
 // An interface definition for the [MTRMicrowaveOvenControlClusterAddMoreTimeParams] class.
 type IMTRMicrowaveOvenControlClusterAddMoreTimeParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimeToAdd() foundation.Number
+	SetTimeToAdd(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

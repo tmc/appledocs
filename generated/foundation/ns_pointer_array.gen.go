@@ -31,6 +31,11 @@ type _PointerArrayClass struct {
 type IPointerArray interface {
 	objectivec.IObject
 	RemovePointerAtIndex(index uint)
+	AllObjects() objc.ID
+	Count() uint
+	SetCount(value uint)
+	PointerFunctions() NSPointerFunctions
+	SetPointerFunctions(value IPointerFunctions)
 }
 
 // A collection similar to an array, but with a broader range of available memory semantics.

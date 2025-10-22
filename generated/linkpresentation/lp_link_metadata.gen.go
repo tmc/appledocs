@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,20 @@ type _LPLinkMetadataClass struct {
 // An interface definition for the [LPLinkMetadata] class.
 type ILPLinkMetadata interface {
 	objectivec.IObject
+	IconProvider() foundation.ItemProvider
+	SetIconProvider(value foundation.IItemProvider)
+	ImageProvider() foundation.ItemProvider
+	SetImageProvider(value foundation.IItemProvider)
+	OriginalURL() foundation.URL
+	SetOriginalURL(value foundation.IURL)
+	RemoteVideoURL() foundation.URL
+	SetRemoteVideoURL(value foundation.IURL)
+	Title() string
+	SetTitle(value string)
+	URL() foundation.URL
+	SetURL(value foundation.IURL)
+	VideoProvider() foundation.ItemProvider
+	SetVideoProvider(value foundation.IItemProvider)
 }
 
 // An object that contains metadata about a URL.
@@ -157,8 +170,8 @@ func (l_ LPLinkMetadata) SetRemoteVideoURL(value foundation.IURL) {
 // A representative title for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) Title() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("title"))
+func (l_ LPLinkMetadata) Title() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -168,8 +181,8 @@ func (l_ LPLinkMetadata) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), value)
+func (l_ LPLinkMetadata) SetTitle(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The URL that returned the metadata, taking server-side redirects into account.

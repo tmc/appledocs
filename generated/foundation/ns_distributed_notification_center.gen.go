@@ -32,6 +32,8 @@ type IDistributedNotificationCenter interface {
 	INotificationCenter
 	PostNotificationNameObjectUserInfo(aName INotificationName, anObject string, aUserInfo objectivec.IObject)
 	PostNotificationNameObjectUserInfoDeliverImmediately(name INotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool)
+	Suspended() bool
+	SetSuspended(value bool)
 }
 
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.

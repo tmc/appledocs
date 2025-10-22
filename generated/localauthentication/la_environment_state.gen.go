@@ -30,6 +30,10 @@ type _EnvironmentStateClass struct {
 // An interface definition for the [EnvironmentState] class.
 type IEnvironmentState interface {
 	objectivec.IObject
+	AllMechanisms() []EnvironmentMechanism
+	Biometry() LAEnvironmentMechanismBiometry
+	Companions() []EnvironmentMechanismCompanion
+	UserPassword() LAEnvironmentMechanismUserPassword
 }
 
 //

@@ -29,6 +29,7 @@ type _ICCameraFolderClass struct {
 // An interface definition for the [ICCameraFolder] class.
 type IICCameraFolder interface {
 	IICCameraItem
+	Contents() []ICCameraItem
 }
 
 // An object that represents a folder on a camera.

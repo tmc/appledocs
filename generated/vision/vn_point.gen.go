@@ -31,7 +31,10 @@ type _PointClass struct {
 // An interface definition for the [Point] class.
 type IPoint interface {
 	objectivec.IObject
-	DistanceToPoint(point IVNPoint) unsafe.Pointer
+	DistanceToPoint(point IVNPoint) float64
+	Location() coregraphics.CGPoint
+	X() float64
+	Y() float64
 }
 
 // An immutable object that represents a single 2D point in an image.
@@ -97,7 +100,7 @@ func NewPointWithLocation(location coregraphics.CGPoint) Point {
 // Creates a point object with the specified coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/init(x:y:)
-func NewPointWithXY(x unsafe.Pointer, y unsafe.Pointer) Point {
+func NewPointWithXY(x float64, y float64) Point {
 	instance := getPointClass().Alloc()
 	rv := objc.Send[Point](instance.ID, objc.Sel("initWithX:y:"), x, y)
 	rv.Autorelease()
@@ -116,8 +119,8 @@ func (pc _PointClass) PointByApplyingVectorToPoint(vector IVNVector, point IVNPo
 // Calculates the distance between two points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:_:)
-func (pc _PointClass) DistanceBetweenPointPoint(point1 IVNPoint, point2 IVNPoint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("distanceBetweenPoint:point:"), point1, point2)
+func (pc _PointClass) DistanceBetweenPointPoint(point1 IVNPoint, point2 IVNPoint) float64 {
+	rv := objc.Send[float64](objc.ID(pc.class), objc.Sel("distanceBetweenPoint:point:"), point1, point2)
 	return rv
 }
 
@@ -131,8 +134,8 @@ func (pc _PointClass) ZeroPoint() Point {
 // Returns the distance to another point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:)
-func (p_ Point) DistanceToPoint(point IVNPoint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceToPoint:"), point)
+func (p_ Point) DistanceToPoint(point IVNPoint) float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("distanceToPoint:"), point)
 	return rv
 }
 
@@ -147,16 +150,16 @@ func (p_ Point) Location() coregraphics.CGPoint {
 // The x-coordinate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/x
-func (p_ Point) X() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("x"))
+func (p_ Point) X() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("x"))
 	return rv
 }
 
 // The y-coordinate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/y
-func (p_ Point) Y() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("y"))
+func (p_ Point) Y() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("y"))
 	return rv
 }
 

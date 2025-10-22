@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,19 @@ type _MIDIUMPEndpointClass struct {
 // An interface definition for the [MIDIUMPEndpoint] class.
 type IMIDIUMPEndpoint interface {
 	objectivec.IObject
+	DeviceInfo() MIDI2DeviceInfo
+	EndpointType() MIDIUMPCIObjectBackingType
+	FunctionBlocks() []MIDIUMPFunctionBlock
+	SetFunctionBlocks(value []MIDIUMPFunctionBlock)
+	HasJRTSReceiveCapability() bool
+	HasJRTSTransmitCapability() bool
+	HasStaticFunctionBlocks() bool
+	MIDIDestination() MIDIEndpointRef
+	MIDIProtocol() MIDIProtocolID
+	MIDISource() MIDIEndpointRef
+	Name() string
+	ProductInstanceID() string
+	SupportedMIDIProtocols() MIDIUMPProtocolOptions
 }
 
 //
@@ -159,15 +171,15 @@ func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/name
-func (m_ MIDIUMPEndpoint) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPEndpoint) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/productInstanceID
-func (m_ MIDIUMPEndpoint) ProductInstanceID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("productInstanceID"))
+func (m_ MIDIUMPEndpoint) ProductInstanceID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productInstanceID"))
 	return rv
 }
 

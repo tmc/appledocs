@@ -30,6 +30,12 @@ type _FindConfigurationClass struct {
 // An interface definition for the [FindConfiguration] class.
 type IFindConfiguration interface {
 	objectivec.IObject
+	Wraps() bool
+	SetWraps(value bool)
+	Backwards() bool
+	SetBackwards(value bool)
+	CaseSensitive() bool
+	SetCaseSensitive(value bool)
 }
 
 // The configuration parameters to use when searching the contents of the web view.

@@ -31,6 +31,12 @@ type _MTRMediaPlaybackClusterFastForwardParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterFastForwardParams] class.
 type IMTRMediaPlaybackClusterFastForwardParams interface {
 	objectivec.IObject
+	AudioAdvanceUnmuted() foundation.Number
+	SetAudioAdvanceUnmuted(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

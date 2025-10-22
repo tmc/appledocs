@@ -29,6 +29,12 @@ type _DetectHumanRectanglesRequestClass struct {
 // An interface definition for the [DetectHumanRectanglesRequest] class.
 type IDetectHumanRectanglesRequest interface {
 	IImageBasedRequest
+	UpperBodyOnly() bool
+	SetUpperBodyOnly(value bool)
+	Results() VNHumanObservation
+	SetResults(value IVNHumanObservation)
+	VNDetectHumanRectanglesRequestRevision1() int
+	VNDetectHumanRectanglesRequestRevision2() int
 }
 
 // A request that finds rectangular regions that contain people in an image.

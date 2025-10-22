@@ -17,13 +17,13 @@ import (
 var (
 	_IOCallOnce func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IODelay func(unsafe.Pointer) unsafe.Pointer
-	_IOLogv func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_IOLogv func(unsafe.Pointer, unsafe.Pointer) int
 	_IOMallocZero func(unsafe.Pointer) unsafe.Pointer
-	_IOParseBootArgString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_IOParseBootArgString func(unsafe.Pointer, unsafe.Pointer, int) bool
 	_IORWLockUnlock func(unsafe.Pointer) unsafe.Pointer
-	_OSDataAppendBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_OSDataAppendBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_OSDataGetBytes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OSDictionaryApply func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_OSDictionaryApply func(unsafe.Pointer, unsafe.Pointer) bool
 	_mach_absolute_time func() unsafe.Pointer
 )
 
@@ -77,7 +77,7 @@ func IODelay(us unsafe.Pointer) {
 // IOLogv is a DriverKit function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOLogv
-func IOLogv(format unsafe.Pointer, ap unsafe.Pointer) unsafe.Pointer {
+func IOLogv(format unsafe.Pointer, ap unsafe.Pointer) int {
 	return _IOLogv(format, ap)
 	}
 
@@ -93,7 +93,7 @@ func IOMallocZero(length unsafe.Pointer) unsafe.Pointer {
 // Parses any boot arguments in the macOS kernel boot-args. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/IOParseBootArgString
-func IOParseBootArgString(arg_string unsafe.Pointer, arg_ptr unsafe.Pointer, strlen unsafe.Pointer) unsafe.Pointer {
+func IOParseBootArgString(arg_string unsafe.Pointer, arg_ptr unsafe.Pointer, strlen int) bool {
 	return _IOParseBootArgString(arg_string, arg_ptr, strlen)
 	}
 
@@ -109,7 +109,7 @@ func IORWLockUnlock(lock unsafe.Pointer) {
 // OSDataAppendBytes is a DriverKit function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDataAppendBytes
-func OSDataAppendBytes(data unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
+func OSDataAppendBytes(data unsafe.Pointer, bytes unsafe.Pointer, length unsafe.Pointer) bool {
 	return _OSDataAppendBytes(data, bytes, length)
 	}
 
@@ -125,7 +125,7 @@ func OSDataGetBytes(obj unsafe.Pointer, buffer unsafe.Pointer, offset unsafe.Poi
 // OSDictionaryApply is a DriverKit function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/DriverKit/OSDictionaryApply
-func OSDictionaryApply(obj unsafe.Pointer, applier unsafe.Pointer) unsafe.Pointer {
+func OSDictionaryApply(obj unsafe.Pointer, applier unsafe.Pointer) bool {
 	return _OSDictionaryApply(obj, applier)
 	}
 

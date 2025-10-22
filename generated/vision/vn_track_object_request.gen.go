@@ -29,6 +29,8 @@ type _TrackObjectRequestClass struct {
 // An interface definition for the [TrackObjectRequest] class.
 type ITrackObjectRequest interface {
 	ITrackingRequest
+	VNTrackObjectRequestRevision1() int
+	VNTrackObjectRequestRevision2() int
 }
 
 // An image-analysis request that tracks the movement of a previously identified object across multiple images or video frames.

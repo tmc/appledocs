@@ -29,6 +29,38 @@ type _GraphConvolution3DOpDescriptorClass struct {
 // An interface definition for the [GraphConvolution3DOpDescriptor] class.
 type IGraphConvolution3DOpDescriptor interface {
 	IGraphObject
+	DataLayout() GraphTensorNamedDataLayout
+	SetDataLayout(value IGraphTensorNamedDataLayout)
+	DilationRateInX() uint
+	SetDilationRateInX(value uint)
+	PaddingBack() uint
+	SetPaddingBack(value uint)
+	PaddingFront() uint
+	SetPaddingFront(value uint)
+	DilationRateInY() int
+	SetDilationRateInY(value int)
+	DilationRateInZ() int
+	SetDilationRateInZ(value int)
+	Groups() int
+	SetGroups(value int)
+	PaddingBottom() int
+	SetPaddingBottom(value int)
+	PaddingLeft() int
+	SetPaddingLeft(value int)
+	PaddingRight() int
+	SetPaddingRight(value int)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	PaddingTop() int
+	SetPaddingTop(value int)
+	StrideInX() int
+	SetStrideInX(value int)
+	StrideInY() int
+	SetStrideInY(value int)
+	StrideInZ() int
+	SetStrideInZ(value int)
+	WeightsLayout() GraphTensorNamedDataLayout
+	SetWeightsLayout(value IGraphTensorNamedDataLayout)
 }
 
 // A class that describes the properties of a 3D-convolution operator.

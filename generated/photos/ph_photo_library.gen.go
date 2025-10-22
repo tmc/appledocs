@@ -46,6 +46,10 @@ type IPHPhotoLibrary interface {
 	SetUploadJobExtensionEnabledError(enable bool, error_ unsafe.Pointer) bool
 	UnregisterAvailabilityObserver(observer objectivec.IObject)
 	UnregisterChangeObserver(observer objectivec.IObject)
+	CurrentChangeToken() PHPersistentChangeToken
+	UnavailabilityReason() foundation.Error
+	UploadJobExtensionEnabled() bool
+	PHLocalIdentifierNotFound() string
 }
 
 // An object that manages access and changes to the user’s photo library.
@@ -265,8 +269,8 @@ func (p_ PHPhotoLibrary) UploadJobExtensionEnabled() bool {
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
-func (p_ PHPhotoLibrary) PHLocalIdentifierNotFound() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+func (p_ PHPhotoLibrary) PHLocalIdentifierNotFound() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
 

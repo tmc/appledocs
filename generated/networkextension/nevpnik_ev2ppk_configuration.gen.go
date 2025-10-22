@@ -31,6 +31,16 @@ type _NEVPNIKEv2PPKConfigurationClass struct {
 // An interface definition for the [NEVPNIKEv2PPKConfiguration] class.
 type INEVPNIKEv2PPKConfiguration interface {
 	objectivec.IObject
+	Identifier() string
+	SetIdentifier(value string)
+	IsMandatory() bool
+	SetIsMandatory(value bool)
+	KeychainReference() foundation.Data
+	SetKeychainReference(value foundation.IData)
+	AllowPostQuantumKeyExchangeFallback() bool
+	SetAllowPostQuantumKeyExchangeFallback(value bool)
+	PpkConfiguration() NEVPNIKEv2PPKConfiguration
+	SetPpkConfiguration(value INEVPNIKEv2PPKConfiguration)
 }
 
 // A class that manages parameters of a post-quantum pre-shared key (PPK).
@@ -82,8 +92,8 @@ func NewNEVPNIKEv2PPKConfiguration() NEVPNIKEv2PPKConfiguration {
 // The identifier for the PPK.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/identifier
-func (n_ NEVPNIKEv2PPKConfiguration) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("identifier"))
+func (n_ NEVPNIKEv2PPKConfiguration) Identifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -93,8 +103,8 @@ func (n_ NEVPNIKEv2PPKConfiguration) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/identifier
-func (n_ NEVPNIKEv2PPKConfiguration) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), value)
+func (n_ NEVPNIKEv2PPKConfiguration) SetIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether it’s mandatory for the VPN server to use this PPK.

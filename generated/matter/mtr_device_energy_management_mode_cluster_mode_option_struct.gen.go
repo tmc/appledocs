@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MTRDeviceEnergyManagementModeClusterModeOptionStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementModeClusterModeOptionStruct] class.
 type IMTRDeviceEnergyManagementModeClusterModeOptionStruct interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	Mode() foundation.Number
+	SetMode(value foundation.INumber)
+	ModeTags() objc.ID
+	SetModeTags(value objc.ID)
 }
 
 //
@@ -79,8 +84,8 @@ func NewMTRDeviceEnergyManagementModeClusterModeOptionStruct() MTRDeviceEnergyMa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/label
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -88,8 +93,8 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() appkit.st
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/label
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

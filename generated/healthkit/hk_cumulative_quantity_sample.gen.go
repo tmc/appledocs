@@ -29,6 +29,8 @@ type _HKCumulativeQuantitySampleClass struct {
 // An interface definition for the [HKCumulativeQuantitySample] class.
 type IHKCumulativeQuantitySample interface {
 	IHKQuantitySample
+	SumQuantity() HKQuantity
+	SetSumQuantity(value IHKQuantity)
 }
 
 // A sample that represents a cumulative quantity.

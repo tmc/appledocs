@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,13 @@ type _PaymentDiscountClass struct {
 // An interface definition for the [PaymentDiscount] class.
 type IPaymentDiscount interface {
 	objectivec.IObject
+	Identifier() string
+	KeyIdentifier() string
+	Nonce() foundation.UUID
+	Signature() string
+	Timestamp() foundation.Number
+	PaymentDiscount() SKPaymentDiscount
+	SetPaymentDiscount(value ISKPaymentDiscount)
 }
 
 // The signed discount to apply to a payment.
@@ -87,9 +93,9 @@ func NewPaymentDiscount() PaymentDiscount {
 // Initializes the payment discount with a signature and the parameters used by the signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/init(identifier:keyIdentifier:nonce:signature:timestamp:)
-func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identifier appkit.string, keyIdentifier appkit.string, nonce foundation.IUUID, signature appkit.string, timestamp foundation.INumber) PaymentDiscount {
+func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identifier string, keyIdentifier string, nonce foundation.IUUID, signature string, timestamp foundation.INumber) PaymentDiscount {
 	instance := getPaymentDiscountClass().Alloc()
-	rv := objc.Send[PaymentDiscount](instance.ID, objc.Sel("initWithIdentifier:keyIdentifier:nonce:signature:timestamp:"), identifier, keyIdentifier, nonce, signature, timestamp)
+	rv := objc.Send[PaymentDiscount](instance.ID, objc.Sel("initWithIdentifier:keyIdentifier:nonce:signature:timestamp:"), objc.String(identifier), objc.String(keyIdentifier), nonce, objc.String(signature), timestamp)
 	rv.Autorelease()
 	return rv
 }
@@ -98,16 +104,16 @@ func NewPaymentDiscountWithIdentifierKeyIdentifierNonceSignatureTimestamp(identi
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/identifier
-func (p_ PaymentDiscount) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PaymentDiscount) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // A string that identifies the key used to generate the signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/keyIdentifier
-func (p_ PaymentDiscount) KeyIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("keyIdentifier"))
+func (p_ PaymentDiscount) KeyIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("keyIdentifier"))
 	return rv
 }
 
@@ -122,8 +128,8 @@ func (p_ PaymentDiscount) Nonce() foundation.UUID {
 // A string representing the properties of a specific promotional offer, cryptographically signed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentDiscount/signature
-func (p_ PaymentDiscount) Signature() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("signature"))
+func (p_ PaymentDiscount) Signature() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("signature"))
 	return rv
 }
 

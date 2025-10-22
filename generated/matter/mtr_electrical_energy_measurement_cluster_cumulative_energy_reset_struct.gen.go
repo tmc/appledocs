@@ -31,6 +31,14 @@ type _MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStructClass stru
 // An interface definition for the [MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct] class.
 type IMTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct interface {
 	objectivec.IObject
+	ExportedResetSystime() foundation.Number
+	SetExportedResetSystime(value foundation.INumber)
+	ExportedResetTimestamp() foundation.Number
+	SetExportedResetTimestamp(value foundation.INumber)
+	ImportedResetSystime() foundation.Number
+	SetImportedResetSystime(value foundation.INumber)
+	ImportedResetTimestamp() foundation.Number
+	SetImportedResetTimestamp(value foundation.INumber)
 }
 
 //

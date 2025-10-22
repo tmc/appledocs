@@ -30,6 +30,14 @@ type _SFSpeechRecognitionResultClass struct {
 // An interface definition for the [SFSpeechRecognitionResult] class.
 type ISFSpeechRecognitionResult interface {
 	objectivec.IObject
+	BestTranscription() SFTranscription
+	SetBestTranscription(value ISFTranscription)
+	IsFinal() bool
+	SetIsFinal(value bool)
+	SpeechRecognitionMetadata() SFSpeechRecognitionMetadata
+	SetSpeechRecognitionMetadata(value ISFSpeechRecognitionMetadata)
+	Transcriptions() SFTranscription
+	SetTranscriptions(value ISFTranscription)
 }
 
 // An object that contains the partial or final results of a speech recognition request.

@@ -30,6 +30,10 @@ type _INListRideOptionsIntentClass struct {
 // An interface definition for the [INListRideOptionsIntent] class.
 type IINListRideOptionsIntent interface {
 	IINIntent
+	DropOffLocation() corelocation.Placemark
+	SetDropOffLocation(value corelocation.IPlacemark)
+	PickupLocation() corelocation.Placemark
+	SetPickupLocation(value corelocation.IPlacemark)
 }
 
 // An intent for getting the types of rides available from a ride-booking service.

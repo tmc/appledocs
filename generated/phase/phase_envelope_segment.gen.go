@@ -30,6 +30,10 @@ type _PHASEEnvelopeSegmentClass struct {
 // An interface definition for the [PHASEEnvelopeSegment] class.
 type IPHASEEnvelopeSegment interface {
 	objectivec.IObject
+	CurveType() PHASECurveType
+	SetCurveType(value PHASECurveType)
+	EndPoint() unsafe.Pointer
+	SetEndPoint(value unsafe.Pointer)
 }
 
 // A curved portion of an envelope.

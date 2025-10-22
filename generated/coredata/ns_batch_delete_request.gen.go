@@ -29,6 +29,9 @@ type _BatchDeleteRequestClass struct {
 // An interface definition for the [BatchDeleteRequest] class.
 type IBatchDeleteRequest interface {
 	IPersistentStoreRequest
+	FetchRequest() NSFetchRequest
+	ResultType() BatchDeleteRequestResultType
+	SetResultType(value BatchDeleteRequestResultType)
 }
 
 // A request that deletes objects in the SQLite persistent store without loading them into memory.

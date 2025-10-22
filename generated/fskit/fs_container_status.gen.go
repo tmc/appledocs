@@ -31,6 +31,8 @@ type _FSContainerStatusClass struct {
 // An interface definition for the [FSContainerStatus] class.
 type IFSContainerStatus interface {
 	objectivec.IObject
+	State() FSContainerState
+	Status() foundation.Error
 }
 
 // A type that represents a container’s status.

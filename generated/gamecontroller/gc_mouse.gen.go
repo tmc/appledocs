@@ -30,6 +30,8 @@ type _GCMouseClass struct {
 // An interface definition for the [GCMouse] class.
 type IGCMouse interface {
 	objectivec.IObject
+	MouseInput() unsafe.Pointer
+	SetMouseInput(value unsafe.Pointer)
 }
 
 // An object that represents a physical mouse connected to a device.

@@ -30,6 +30,18 @@ type _DateClass struct {
 // An interface definition for the [Date] class.
 type IDate interface {
 	objectivec.IObject
+	CustomPlaygroundQuickLook() unsafe.Pointer
+	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
+	Description() string
+	SetDescription(value string)
+	SrAbsoluteTime() unsafe.Pointer
+	SetSrAbsoluteTime(value unsafe.Pointer)
+	TimeIntervalSince1970() TimeInterval
+	SetTimeIntervalSince1970(value ITimeInterval)
+	TimeIntervalSinceNow() TimeInterval
+	SetTimeIntervalSinceNow(value ITimeInterval)
+	NSTimeIntervalSince1970() float64
+	SetNSTimeIntervalSince1970(value float64)
 }
 
 // A representation of a specific point in time, independent of any calendar or time zone.

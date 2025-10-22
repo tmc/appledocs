@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/coreaudiokit"
 	"github.com/tmc/appledocs/generated/coremidi"
@@ -40,7 +39,7 @@ type IAudioUnit interface {
 	DeleteUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool
 	DisableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool
 	EnableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool
-	MessageChannelFor(channelName appkit.string) objc.ID
+	MessageChannelFor(channelName string) objc.ID
 	ParametersForOverviewWithCount(count int) []foundation.Number
 	PresetStateForError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) unsafe.Pointer
 	ProfileStateForCableChannel(cable unsafe.Pointer, channel IMIDIChannelNumber) coremidi.MIDICIProfileState
@@ -55,6 +54,129 @@ type IAudioUnit interface {
 	StopHardware()
 	SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.IAudioUnitViewConfiguration) foundation.IndexSet
 	TokenByAddingRenderObserver(observer unsafe.Pointer) int
+	AllParameterValues() bool
+	AudioUnitMIDIProtocol() unsafe.Pointer
+	AudioUnitName() string
+	AudioUnitShortName() string
+	CanPerformInput() bool
+	CanPerformOutput() bool
+	CanProcessInPlace() bool
+	ChannelCapabilities() []foundation.Number
+	ChannelMap() []foundation.Number
+	SetChannelMap(value []foundation.INumber)
+	Component() AudioComponent
+	ComponentDescription() unsafe.Pointer
+	ComponentName() string
+	ComponentVersion() uint32
+	ContextName() string
+	SetContextName(value string)
+	CurrentPreset() AUAudioUnitPreset
+	SetCurrentPreset(value IAUAudioUnitPreset)
+	DeviceID() AudioObjectID
+	DeviceInputLatency() foundation.TimeInterval
+	DeviceOutputLatency() foundation.TimeInterval
+	FactoryPresets() []AudioUnitPreset
+	FullState() unsafe.Pointer
+	SetFullState(value unsafe.Pointer)
+	FullStateForDocument() unsafe.Pointer
+	SetFullStateForDocument(value unsafe.Pointer)
+	HostMIDIProtocol() unsafe.Pointer
+	SetHostMIDIProtocol(value unsafe.Pointer)
+	InputBusses() AUAudioUnitBusArray
+	InputHandler() unsafe.Pointer
+	SetInputHandler(value unsafe.Pointer)
+	IntendedSpatialExperience() CASpatialAudioExperience
+	SetIntendedSpatialExperience(value ISpatialAudioExperience)
+	InternalRenderBlock() unsafe.Pointer
+	InputEnabled() bool
+	SetInputEnabled(value bool)
+	IsLoadedInProcess() bool
+	MusicDeviceOrEffect() bool
+	OutputEnabled() bool
+	SetOutputEnabled(value bool)
+	RenderingOffline() bool
+	SetRenderingOffline(value bool)
+	Running() bool
+	Latency() foundation.TimeInterval
+	ManufacturerName() string
+	MaximumFramesToRender() AudioFrameCount
+	SetMaximumFramesToRender(value IAudioFrameCount)
+	MIDIOutputBufferSizeHint() int
+	SetMIDIOutputBufferSizeHint(value int)
+	MIDIOutputEventBlock() unsafe.Pointer
+	SetMIDIOutputEventBlock(value unsafe.Pointer)
+	MIDIOutputEventListBlock() unsafe.Pointer
+	SetMIDIOutputEventListBlock(value unsafe.Pointer)
+	MIDIOutputNames() []string
+	MigrateFromPlugin() objc.ID
+	MusicalContextBlock() unsafe.Pointer
+	SetMusicalContextBlock(value unsafe.Pointer)
+	OsWorkgroup() unsafe.Pointer
+	OutputBusses() AUAudioUnitBusArray
+	OutputProvider() unsafe.Pointer
+	SetOutputProvider(value unsafe.Pointer)
+	ParameterTree() AUParameterTree
+	SetParameterTree(value IAUParameterTree)
+	ProfileChangedBlock() unsafe.Pointer
+	SetProfileChangedBlock(value unsafe.Pointer)
+	ProvidesUserInterface() bool
+	RenderBlock() unsafe.Pointer
+	RenderContextObserver() unsafe.Pointer
+	RenderQuality() int
+	SetRenderQuality(value int)
+	RenderResourcesAllocated() bool
+	ScheduleMIDIEventBlock() unsafe.Pointer
+	ScheduleMIDIEventListBlock() unsafe.Pointer
+	ScheduleParameterBlock() unsafe.Pointer
+	ShouldBypassEffect() bool
+	SetShouldBypassEffect(value bool)
+	SupportsMPE() bool
+	SupportsUserPresets() bool
+	TailTime() foundation.TimeInterval
+	TransportStateBlock() unsafe.Pointer
+	SetTransportStateBlock(value unsafe.Pointer)
+	UserPresets() []AudioUnitPreset
+	VirtualMIDICableCount() int
+	IsInputEnabled() bool
+	SetIsInputEnabled(value bool)
+	IsMusicDeviceOrEffect() bool
+	SetIsMusicDeviceOrEffect(value bool)
+	IsOutputEnabled() bool
+	SetIsOutputEnabled(value bool)
+	IsRenderingOffline() bool
+	SetIsRenderingOffline(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
+	KAUPresetCPULoadKey() string
+	SetKAUPresetCPULoadKey(value string)
+	KAUPresetDataKey() string
+	SetKAUPresetDataKey(value string)
+	KAUPresetElementNameKey() string
+	SetKAUPresetElementNameKey(value string)
+	KAUPresetExternalFileRefs() string
+	SetKAUPresetExternalFileRefs(value string)
+	KAUPresetMASDataKey() string
+	SetKAUPresetMASDataKey(value string)
+	KAUPresetManufacturerKey() string
+	SetKAUPresetManufacturerKey(value string)
+	KAUPresetNameKey() string
+	SetKAUPresetNameKey(value string)
+	KAUPresetNumberKey() string
+	SetKAUPresetNumberKey(value string)
+	KAUPresetPartKey() string
+	SetKAUPresetPartKey(value string)
+	KAUPresetRenderQualityKey() string
+	SetKAUPresetRenderQualityKey(value string)
+	KAUPresetSubtypeKey() string
+	SetKAUPresetSubtypeKey(value string)
+	KAUPresetTypeKey() string
+	SetKAUPresetTypeKey(value string)
+	KAUPresetVSTDataKey() string
+	SetKAUPresetVSTDataKey(value string)
+	KAUPresetVSTPresetKey() string
+	SetKAUPresetVSTPresetKey(value string)
+	KAUPresetVersionKey() string
+	SetKAUPresetVersionKey(value string)
 }
 
 // A class that defines a host’s interface to an audio unit.
@@ -140,8 +262,8 @@ func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHa
 // Registers an audio unit subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/registerSubclass(_:as:name:version:)
-func (ac _AudioUnitClass) RegisterSubclassAsComponentDescriptionNameVersion(cls objc.Class, componentDescription unsafe.Pointer, name appkit.string, version unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("registerSubclass:asComponentDescription:name:version:"), cls, componentDescription, name, version)
+func (ac _AudioUnitClass) RegisterSubclassAsComponentDescriptionNameVersion(cls objc.Class, componentDescription unsafe.Pointer, name string, version unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("registerSubclass:asComponentDescription:name:version:"), cls, componentDescription, objc.String(name), version)
 }
 
 // Allocates resources required to render audio.
@@ -183,8 +305,8 @@ func (a_ AudioUnit) EnableProfileCableOnChannelError(profile coremidi.IMIDICIPro
 // Returns an object for bidirectional communication between an audio unit and its host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/messageChannel(for:)
-func (a_ AudioUnit) MessageChannelFor(channelName appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("messageChannelFor:"), channelName)
+func (a_ AudioUnit) MessageChannelFor(channelName string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("messageChannelFor:"), objc.String(channelName))
 	return rv
 }
 
@@ -308,15 +430,15 @@ func (a_ AudioUnit) AudioUnitMIDIProtocol() unsafe.Pointer {
 // The audio unit’s name, derived from the component’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitName
-func (a_ AudioUnit) AudioUnitName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("audioUnitName"))
+func (a_ AudioUnit) AudioUnitName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("audioUnitName"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/audioUnitShortName
-func (a_ AudioUnit) AudioUnitShortName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("audioUnitShortName"))
+func (a_ AudioUnit) AudioUnitShortName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("audioUnitShortName"))
 	return rv
 }
 
@@ -396,24 +518,24 @@ func (a_ AudioUnit) ComponentDescription() unsafe.Pointer {
 // The audio unit’s component’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/componentName
-func (a_ AudioUnit) ComponentName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("componentName"))
+func (a_ AudioUnit) ComponentName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("componentName"))
 	return rv
 }
 
 // The audio unit’s component’s version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/componentVersion
-func (a_ AudioUnit) ComponentVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("componentVersion"))
+func (a_ AudioUnit) ComponentVersion() uint32 {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("componentVersion"))
 	return rv
 }
 
 // Information about the host context in which the audio unit is connected, for display in the audio unit’s view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/contextName
-func (a_ AudioUnit) ContextName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("contextName"))
+func (a_ AudioUnit) ContextName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("contextName"))
 	return rv
 }
 
@@ -423,8 +545,8 @@ func (a_ AudioUnit) ContextName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/contextName
-func (a_ AudioUnit) SetContextName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContextName:"), value)
+func (a_ AudioUnit) SetContextName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContextName:"), objc.String(value))
 }
 
 // The audio unit’s last-selected preset.
@@ -667,8 +789,8 @@ func (a_ AudioUnit) Latency() foundation.TimeInterval {
 // The manufacturer’s name, derived from the component’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/manufacturerName
-func (a_ AudioUnit) ManufacturerName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("manufacturerName"))
+func (a_ AudioUnit) ManufacturerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
 	return rv
 }
 
@@ -1071,8 +1193,8 @@ func (a_ AudioUnit) SetIsRunning(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
-func (a_ AudioUnit) KAUPresetCPULoadKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetCPULoadKey"))
+func (a_ AudioUnit) KAUPresetCPULoadKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetCPULoadKey"))
 	return rv
 }
 
@@ -1080,14 +1202,14 @@ func (a_ AudioUnit) KAUPresetCPULoadKey() appkit.string {
 // SetKAUPresetCPULoadKey sets the value of the kAUPresetCPULoadKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey
-func (a_ AudioUnit) SetKAUPresetCPULoadKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetCPULoadKey:"), value)
+func (a_ AudioUnit) SetKAUPresetCPULoadKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetCPULoadKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
-func (a_ AudioUnit) KAUPresetDataKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetDataKey"))
+func (a_ AudioUnit) KAUPresetDataKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetDataKey"))
 	return rv
 }
 
@@ -1095,14 +1217,14 @@ func (a_ AudioUnit) KAUPresetDataKey() appkit.string {
 // SetKAUPresetDataKey sets the value of the kAUPresetDataKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey
-func (a_ AudioUnit) SetKAUPresetDataKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetDataKey:"), value)
+func (a_ AudioUnit) SetKAUPresetDataKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetDataKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
-func (a_ AudioUnit) KAUPresetElementNameKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetElementNameKey"))
+func (a_ AudioUnit) KAUPresetElementNameKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetElementNameKey"))
 	return rv
 }
 
@@ -1110,14 +1232,14 @@ func (a_ AudioUnit) KAUPresetElementNameKey() appkit.string {
 // SetKAUPresetElementNameKey sets the value of the kAUPresetElementNameKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey
-func (a_ AudioUnit) SetKAUPresetElementNameKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetElementNameKey:"), value)
+func (a_ AudioUnit) SetKAUPresetElementNameKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetElementNameKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
-func (a_ AudioUnit) KAUPresetExternalFileRefs() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetExternalFileRefs"))
+func (a_ AudioUnit) KAUPresetExternalFileRefs() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetExternalFileRefs"))
 	return rv
 }
 
@@ -1125,14 +1247,14 @@ func (a_ AudioUnit) KAUPresetExternalFileRefs() appkit.string {
 // SetKAUPresetExternalFileRefs sets the value of the kAUPresetExternalFileRefs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs
-func (a_ AudioUnit) SetKAUPresetExternalFileRefs(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetExternalFileRefs:"), value)
+func (a_ AudioUnit) SetKAUPresetExternalFileRefs(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetExternalFileRefs:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
-func (a_ AudioUnit) KAUPresetMASDataKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetMASDataKey"))
+func (a_ AudioUnit) KAUPresetMASDataKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetMASDataKey"))
 	return rv
 }
 
@@ -1140,14 +1262,14 @@ func (a_ AudioUnit) KAUPresetMASDataKey() appkit.string {
 // SetKAUPresetMASDataKey sets the value of the kAUPresetMASDataKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey
-func (a_ AudioUnit) SetKAUPresetMASDataKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetMASDataKey:"), value)
+func (a_ AudioUnit) SetKAUPresetMASDataKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetMASDataKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
-func (a_ AudioUnit) KAUPresetManufacturerKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetManufacturerKey"))
+func (a_ AudioUnit) KAUPresetManufacturerKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetManufacturerKey"))
 	return rv
 }
 
@@ -1155,14 +1277,14 @@ func (a_ AudioUnit) KAUPresetManufacturerKey() appkit.string {
 // SetKAUPresetManufacturerKey sets the value of the kAUPresetManufacturerKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey
-func (a_ AudioUnit) SetKAUPresetManufacturerKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetManufacturerKey:"), value)
+func (a_ AudioUnit) SetKAUPresetManufacturerKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetManufacturerKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
-func (a_ AudioUnit) KAUPresetNameKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetNameKey"))
+func (a_ AudioUnit) KAUPresetNameKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNameKey"))
 	return rv
 }
 
@@ -1170,14 +1292,14 @@ func (a_ AudioUnit) KAUPresetNameKey() appkit.string {
 // SetKAUPresetNameKey sets the value of the kAUPresetNameKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey
-func (a_ AudioUnit) SetKAUPresetNameKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNameKey:"), value)
+func (a_ AudioUnit) SetKAUPresetNameKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNameKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
-func (a_ AudioUnit) KAUPresetNumberKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetNumberKey"))
+func (a_ AudioUnit) KAUPresetNumberKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetNumberKey"))
 	return rv
 }
 
@@ -1185,15 +1307,15 @@ func (a_ AudioUnit) KAUPresetNumberKey() appkit.string {
 // SetKAUPresetNumberKey sets the value of the kAUPresetNumberKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey
-func (a_ AudioUnit) SetKAUPresetNumberKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNumberKey:"), value)
+func (a_ AudioUnit) SetKAUPresetNumberKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetNumberKey:"), objc.String(value))
 }
 
 // If present, distinguishes a global preset that is set on the global scope from a part-based preset that is set on the part scope. The value of this key is defined by the audio unit it applies to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
-func (a_ AudioUnit) KAUPresetPartKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetPartKey"))
+func (a_ AudioUnit) KAUPresetPartKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetPartKey"))
 	return rv
 }
 
@@ -1203,14 +1325,14 @@ func (a_ AudioUnit) KAUPresetPartKey() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey
-func (a_ AudioUnit) SetKAUPresetPartKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetPartKey:"), value)
+func (a_ AudioUnit) SetKAUPresetPartKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetPartKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
-func (a_ AudioUnit) KAUPresetRenderQualityKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetRenderQualityKey"))
+func (a_ AudioUnit) KAUPresetRenderQualityKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetRenderQualityKey"))
 	return rv
 }
 
@@ -1218,14 +1340,14 @@ func (a_ AudioUnit) KAUPresetRenderQualityKey() appkit.string {
 // SetKAUPresetRenderQualityKey sets the value of the kAUPresetRenderQualityKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey
-func (a_ AudioUnit) SetKAUPresetRenderQualityKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetRenderQualityKey:"), value)
+func (a_ AudioUnit) SetKAUPresetRenderQualityKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetRenderQualityKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
-func (a_ AudioUnit) KAUPresetSubtypeKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetSubtypeKey"))
+func (a_ AudioUnit) KAUPresetSubtypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetSubtypeKey"))
 	return rv
 }
 
@@ -1233,14 +1355,14 @@ func (a_ AudioUnit) KAUPresetSubtypeKey() appkit.string {
 // SetKAUPresetSubtypeKey sets the value of the kAUPresetSubtypeKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey
-func (a_ AudioUnit) SetKAUPresetSubtypeKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetSubtypeKey:"), value)
+func (a_ AudioUnit) SetKAUPresetSubtypeKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetSubtypeKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
-func (a_ AudioUnit) KAUPresetTypeKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetTypeKey"))
+func (a_ AudioUnit) KAUPresetTypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetTypeKey"))
 	return rv
 }
 
@@ -1248,15 +1370,15 @@ func (a_ AudioUnit) KAUPresetTypeKey() appkit.string {
 // SetKAUPresetTypeKey sets the value of the kAUPresetTypeKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey
-func (a_ AudioUnit) SetKAUPresetTypeKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetTypeKey:"), value)
+func (a_ AudioUnit) SetKAUPresetTypeKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetTypeKey:"), objc.String(value))
 }
 
 // VST state from a VST “bank.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
-func (a_ AudioUnit) KAUPresetVSTDataKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetVSTDataKey"))
+func (a_ AudioUnit) KAUPresetVSTDataKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTDataKey"))
 	return rv
 }
 
@@ -1266,15 +1388,15 @@ func (a_ AudioUnit) KAUPresetVSTDataKey() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey
-func (a_ AudioUnit) SetKAUPresetVSTDataKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTDataKey:"), value)
+func (a_ AudioUnit) SetKAUPresetVSTDataKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTDataKey:"), objc.String(value))
 }
 
 // VST state from a VST “preset.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
-func (a_ AudioUnit) KAUPresetVSTPresetKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetVSTPresetKey"))
+func (a_ AudioUnit) KAUPresetVSTPresetKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVSTPresetKey"))
 	return rv
 }
 
@@ -1284,14 +1406,14 @@ func (a_ AudioUnit) KAUPresetVSTPresetKey() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey
-func (a_ AudioUnit) SetKAUPresetVSTPresetKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTPresetKey:"), value)
+func (a_ AudioUnit) SetKAUPresetVSTPresetKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVSTPresetKey:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
-func (a_ AudioUnit) KAUPresetVersionKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("kAUPresetVersionKey"))
+func (a_ AudioUnit) KAUPresetVersionKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("kAUPresetVersionKey"))
 	return rv
 }
 
@@ -1299,8 +1421,8 @@ func (a_ AudioUnit) KAUPresetVersionKey() appkit.string {
 // SetKAUPresetVersionKey sets the value of the kAUPresetVersionKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey
-func (a_ AudioUnit) SetKAUPresetVersionKey(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVersionKey:"), value)
+func (a_ AudioUnit) SetKAUPresetVersionKey(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setKAUPresetVersionKey:"), objc.String(value))
 }
 
 

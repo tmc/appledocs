@@ -32,6 +32,7 @@ type IVertexAttributeDescriptorArray interface {
 	objectivec.IObject
 	SetObjectAtIndexedSubscript(attributeDesc IMTLVertexAttributeDescriptor, index uint)
 	ObjectAtIndexedSubscript(index uint) VertexAttributeDescriptor
+	MTLBufferLayoutStrideDynamic() int
 }
 
 // An array of vertex attribute descriptor instances.

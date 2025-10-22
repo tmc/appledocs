@@ -31,6 +31,12 @@ type _MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParamsClass struc
 // An interface definition for the [MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams] class.
 type IMTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams interface {
 	objectivec.IObject
+	DebugText() string
+	SetDebugText(value string)
+	ErrorCode() foundation.Number
+	SetErrorCode(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams() MTRGen
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) DebugText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) DebugT
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetDebugText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 //

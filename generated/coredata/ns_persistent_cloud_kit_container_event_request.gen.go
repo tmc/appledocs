@@ -30,6 +30,8 @@ type _PersistentCloudKitContainerEventRequestClass struct {
 // An interface definition for the [PersistentCloudKitContainerEventRequest] class.
 type IPersistentCloudKitContainerEventRequest interface {
 	IPersistentStoreRequest
+	ResultType() PersistentCloudKitContainerEventResultType
+	SetResultType(value PersistentCloudKitContainerEventResultType)
 }
 
 // A request to fetch setup, import, or export events in a persistent CloudKit container.

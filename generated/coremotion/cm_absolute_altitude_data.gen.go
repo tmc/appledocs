@@ -29,6 +29,9 @@ type _AbsoluteAltitudeDataClass struct {
 // An interface definition for the [AbsoluteAltitudeData] class.
 type IAbsoluteAltitudeData interface {
 	ILogItem
+	Accuracy() float64
+	Altitude() float64
+	Precision() float64
 }
 
 // Data that records a change in absolute altitude.
@@ -84,24 +87,24 @@ func NewAbsoluteAltitudeData() AbsoluteAltitudeData {
 // The estimated uncertainty of the altimeter in meters, based on one standard deviation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/accuracy
-func (a_ AbsoluteAltitudeData) Accuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accuracy"))
+func (a_ AbsoluteAltitudeData) Accuracy() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("accuracy"))
 	return rv
 }
 
 // The absolute altitude of the device relative to sea level, measured in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/altitude
-func (a_ AbsoluteAltitudeData) Altitude() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("altitude"))
+func (a_ AbsoluteAltitudeData) Altitude() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("altitude"))
 	return rv
 }
 
 // The recommended resolution for the altitude, in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/precision
-func (a_ AbsoluteAltitudeData) Precision() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("precision"))
+func (a_ AbsoluteAltitudeData) Precision() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("precision"))
 	return rv
 }
 

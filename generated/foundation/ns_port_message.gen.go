@@ -31,6 +31,11 @@ type _PortMessageClass struct {
 type IPortMessage interface {
 	objectivec.IObject
 	SendBeforeDate(date IDate) bool
+	Components() objc.ID
+	Msgid() uint32
+	SetMsgid(value Iuint32)
+	ReceivePort() NSPort
+	SendPort() NSPort
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.

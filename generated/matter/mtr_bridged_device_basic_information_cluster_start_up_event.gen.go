@@ -31,6 +31,8 @@ type _MTRBridgedDeviceBasicInformationClusterStartUpEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterStartUpEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterStartUpEvent interface {
 	objectivec.IObject
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
 }
 
 //

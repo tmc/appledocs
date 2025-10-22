@@ -31,6 +31,10 @@ type _SubscriberInfoClass struct {
 // An interface definition for the [SubscriberInfo] class.
 type ISubscriberInfo interface {
 	objectivec.IObject
+	CarrierToken() foundation.Data
+	SetCarrierToken(value foundation.IData)
+	Identifier() string
+	SetIdentifier(value string)
 }
 
 // An object that provides an array of cellular network subscribers.
@@ -110,8 +114,8 @@ func (s_ SubscriberInfo) SetCarrierToken(value foundation.IData) {
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
+func (s_ SubscriberInfo) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -121,8 +125,8 @@ func (s_ SubscriberInfo) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
+func (s_ SubscriberInfo) SetIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 

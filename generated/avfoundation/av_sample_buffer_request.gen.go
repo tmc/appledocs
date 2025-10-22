@@ -30,6 +30,20 @@ type _SampleBufferRequestClass struct {
 // An interface definition for the [SampleBufferRequest] class.
 type ISampleBufferRequest interface {
 	objectivec.IObject
+	MaxSampleCount() int
+	SetMaxSampleCount(value int)
+	Direction() unsafe.Pointer
+	SetDirection(value unsafe.Pointer)
+	LimitCursor() AVSampleCursor
+	SetLimitCursor(value IAVSampleCursor)
+	Mode() unsafe.Pointer
+	SetMode(value unsafe.Pointer)
+	OverrideTime() unsafe.Pointer
+	SetOverrideTime(value unsafe.Pointer)
+	PreferredMinSampleCount() int
+	SetPreferredMinSampleCount(value int)
+	StartCursor() AVSampleCursor
+	SetStartCursor(value IAVSampleCursor)
 }
 
 // An object that describes a sample buffer creation request.

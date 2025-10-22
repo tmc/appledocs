@@ -29,6 +29,22 @@ type _GCDirectionalGamepadClass struct {
 // An interface definition for the [GCDirectionalGamepad] class.
 type IGCDirectionalGamepad interface {
 	IGCMicroGamepad
+	ExtendedGamepad() GCExtendedGamepad
+	SetExtendedGamepad(value IGCExtendedGamepad)
+	Gamepad() unsafe.Pointer
+	SetGamepad(value unsafe.Pointer)
+	MicroGamepad() GCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	PhysicalInputProfile() GCPhysicalInputProfile
+	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
+	IsAnalog() bool
+	SetIsAnalog(value bool)
+	AllowsRotation() bool
+	SetAllowsRotation(value bool)
+	ReportsAbsoluteDpadValues() bool
+	SetReportsAbsoluteDpadValues(value bool)
 }
 
 // A profile that supports only the directional pad, without motion or rotation.

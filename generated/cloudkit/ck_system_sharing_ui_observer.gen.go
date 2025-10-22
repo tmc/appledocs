@@ -30,6 +30,10 @@ type _CKSystemSharingUIObserverClass struct {
 // An interface definition for the [CKSystemSharingUIObserver] class.
 type ICKSystemSharingUIObserver interface {
 	objectivec.IObject
+	SystemSharingUIDidSaveShareBlock() unsafe.Pointer
+	SetSystemSharingUIDidSaveShareBlock(value unsafe.Pointer)
+	SystemSharingUIDidStopSharingBlock() unsafe.Pointer
+	SetSystemSharingUIDidStopSharingBlock(value unsafe.Pointer)
 }
 
 // An object the system uses to monitor changes in sharing.

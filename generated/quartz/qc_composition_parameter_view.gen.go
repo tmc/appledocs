@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +29,7 @@ type _QCCompositionParameterViewClass struct {
 
 // An interface definition for the [QCCompositionParameterView] class.
 type IQCCompositionParameterView interface {
-	appkit.IView
+	IView
 	SetDelegate(delegate objectivec.IObject)
 }
 
@@ -38,7 +37,7 @@ type IQCCompositionParameterView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionParameterView
 type QCCompositionParameterView struct {
-	appkit.View
+	View
 }
 
 // QCCompositionParameterViewFrom constructs a [QCCompositionParameterView] from an unsafe.Pointer.
@@ -46,7 +45,7 @@ type QCCompositionParameterView struct {
 // A class that allows users to edit the input parameters of a composition in real time. The composition can be rendering in any of the following objects: , , or .
 func QCCompositionParameterViewFrom(ptr unsafe.Pointer) QCCompositionParameterView {
 	return QCCompositionParameterView{
-		View: appkit.ViewFrom(ptr),
+		View: ViewFrom(ptr),
 	}
 }
 

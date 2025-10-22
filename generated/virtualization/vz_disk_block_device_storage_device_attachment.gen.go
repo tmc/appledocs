@@ -30,6 +30,12 @@ type _VZDiskBlockDeviceStorageDeviceAttachmentClass struct {
 // An interface definition for the [VZDiskBlockDeviceStorageDeviceAttachment] class.
 type IVZDiskBlockDeviceStorageDeviceAttachment interface {
 	IVZStorageDeviceAttachment
+	FileHandle() foundation.FileHandle
+	SetFileHandle(value foundation.IFileHandle)
+	IsReadOnly() bool
+	SetIsReadOnly(value bool)
+	SynchronizationMode() VZDiskSynchronizationMode
+	SetSynchronizationMode(value VZDiskSynchronizationMode)
 }
 
 // A storage device attachment that uses a disk to store data.

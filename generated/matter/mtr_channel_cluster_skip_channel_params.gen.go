@@ -31,6 +31,12 @@ type _MTRChannelClusterSkipChannelParamsClass struct {
 // An interface definition for the [MTRChannelClusterSkipChannelParams] class.
 type IMTRChannelClusterSkipChannelParams interface {
 	objectivec.IObject
+	Count() foundation.Number
+	SetCount(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

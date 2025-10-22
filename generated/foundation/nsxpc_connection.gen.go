@@ -38,6 +38,35 @@ type IXPCConnection interface {
 	SetCodeSigningRequirement(requirement string)
 	Suspend()
 	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
+	AuditSessionIdentifier() unsafe.Pointer
+	EffectiveGroupIdentifier() unsafe.Pointer
+	EffectiveUserIdentifier() unsafe.Pointer
+	Endpoint() NSXPCListenerEndpoint
+	ExportedInterface() NSXPCInterface
+	SetExportedInterface(value IXPCInterface)
+	ExportedObject() objc.ID
+	SetExportedObject(value objc.ID)
+	InterruptionHandler() unsafe.Pointer
+	SetInterruptionHandler(value unsafe.Pointer)
+	InvalidationHandler() unsafe.Pointer
+	SetInvalidationHandler(value unsafe.Pointer)
+	ProcessIdentifier() unsafe.Pointer
+	RemoteObjectInterface() NSXPCInterface
+	SetRemoteObjectInterface(value IXPCInterface)
+	RemoteObjectProxy() objc.ID
+	ServiceName() string
+	NSXPCConnectionCodeSigningRequirementFailure() int
+	SetNSXPCConnectionCodeSigningRequirementFailure(value int)
+	NSXPCConnectionErrorMaximum() int
+	SetNSXPCConnectionErrorMaximum(value int)
+	NSXPCConnectionErrorMinimum() int
+	SetNSXPCConnectionErrorMinimum(value int)
+	NSXPCConnectionInterrupted() int
+	SetNSXPCConnectionInterrupted(value int)
+	NSXPCConnectionInvalid() int
+	SetNSXPCConnectionInvalid(value int)
+	NSXPCConnectionReplyInvalid() int
+	SetNSXPCConnectionReplyInvalid(value int)
 }
 
 // A bidirectional communication channel between two processes.

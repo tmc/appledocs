@@ -29,6 +29,10 @@ type _VZLinuxRosettaDirectoryShareClass struct {
 // An interface definition for the [VZLinuxRosettaDirectoryShare] class.
 type IVZLinuxRosettaDirectoryShare interface {
 	IVZDirectoryShare
+	Options() VZLinuxRosettaCachingOptions
+	SetOptions(value VZLinuxRosettaCachingOptions)
+	CachingOptions() unsafe.Pointer
+	SetCachingOptions(value unsafe.Pointer)
 }
 
 // The Linux directory share for Rosetta.

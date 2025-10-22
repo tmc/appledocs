@@ -35,6 +35,8 @@ type ICKSyncEngine interface {
 	FetchChangesWithOptionsCompletionHandler(options CKSyncEngineFetchChangesOptions, completionHandler unsafe.Pointer)
 	SendChangesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SendChangesWithOptionsCompletionHandler(options CKSyncEngineSendChangesOptions, completionHandler unsafe.Pointer)
+	Database() CKDatabase
+	State() CKSyncEngineState
 }
 
 // An object that manages the synchronization of local and remote record data.

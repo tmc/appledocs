@@ -30,6 +30,12 @@ type _INCallRecordFilterClass struct {
 // An interface definition for the [INCallRecordFilter] class.
 type IINCallRecordFilter interface {
 	objectivec.IObject
+	CallCapability() INCallCapability
+	SetCallCapability(value INCallCapability)
+	CallTypes() unsafe.Pointer
+	SetCallTypes(value unsafe.Pointer)
+	Participants() INPerson
+	SetParticipants(value INPerson)
 }
 
 // Filters a user specifies to redial a call.

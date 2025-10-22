@@ -30,6 +30,12 @@ type _CKFetchRecordZoneChangesOptionsClass struct {
 // An interface definition for the [CKFetchRecordZoneChangesOptions] class.
 type ICKFetchRecordZoneChangesOptions interface {
 	objectivec.IObject
+	DesiredKeys() []string
+	SetDesiredKeys(value []string)
+	PreviousServerChangeToken() CKServerChangeToken
+	SetPreviousServerChangeToken(value ICKServerChangeToken)
+	ResultsLimit() int
+	SetResultsLimit(value int)
 }
 
 // A configuration object that describes the information to fetch from a record zone.

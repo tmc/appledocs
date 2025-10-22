@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -85,6 +84,22 @@ type IBluetoothDevice interface {
 	RSSI() BluetoothHCIRSSIValue
 	SendL2CAPEchoRequestLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
 	SetSupervisionTimeout(timeout unsafe.Pointer) unsafe.Pointer
+	AddressString() string
+	ClassOfDevice() BluetoothClassOfDevice
+	ConnectionHandle() BluetoothConnectionHandle
+	DeviceClassMajor() BluetoothDeviceClassMajor
+	DeviceClassMinor() BluetoothDeviceClassMinor
+	HandsFreeAudioGateway() bool
+	HandsFreeDevice() bool
+	LastNameUpdate() foundation.NSDate
+	Name() string
+	NameOrAddress() string
+	ServiceClassMajor() BluetoothServiceClassMajor
+	Services() objc.ID
+	IsHandsFreeAudioGateway() bool
+	SetIsHandsFreeAudioGateway(value bool)
+	IsHandsFreeDevice() bool
+	SetIsHandsFreeDevice(value bool)
 }
 
 // An instance of IOBluetoothDevice represents a single remote Bluetooth device.
@@ -152,8 +167,8 @@ func NewBluetoothDeviceWithAddress(address unsafe.Pointer) BluetoothDevice {
 // Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/init(addressString:)
-func NewBluetoothDeviceWithAddressString(address appkit.string) BluetoothDevice {
-	rv := objc.Send[BluetoothDevice](objc.ID(getBluetoothDeviceClass().class), objc.Sel("deviceWithAddressString:"), address)
+func NewBluetoothDeviceWithAddressString(address string) BluetoothDevice {
+	rv := objc.Send[BluetoothDevice](objc.ID(getBluetoothDeviceClass().class), objc.Sel("deviceWithAddressString:"), objc.String(address))
 	return rv
 }
 
@@ -177,8 +192,8 @@ func (bc _BluetoothDeviceClass) DeviceWithAddress(address unsafe.Pointer) unsafe
 // Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/init(addressString:)
-func (bc _BluetoothDeviceClass) DeviceWithAddressString(address appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("deviceWithAddressString:"), address)
+func (bc _BluetoothDeviceClass) DeviceWithAddressString(address string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("deviceWithAddressString:"), objc.String(address))
 	return rv
 }
 
@@ -650,8 +665,8 @@ func (b_ BluetoothDevice) SetSupervisionTimeout(timeout unsafe.Pointer) unsafe.P
 // Get a string representation of the Bluetooth device address for the target device. The format of the string is the same as returned by IOBluetoothNSStringFromDeviceAddress().
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/addressString
-func (b_ BluetoothDevice) AddressString() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("addressString"))
+func (b_ BluetoothDevice) AddressString() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("addressString"))
 	return rv
 }
 
@@ -712,16 +727,16 @@ func (b_ BluetoothDevice) LastNameUpdate() foundation.NSDate {
 // Get the human readable name of the remote device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/name
-func (b_ BluetoothDevice) Name() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("name"))
+func (b_ BluetoothDevice) Name() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("name"))
 	return rv
 }
 
 // Get the human readable name of the remote device. If the name is not present, it will return a string containing the device’s address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/nameOrAddress
-func (b_ BluetoothDevice) NameOrAddress() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("nameOrAddress"))
+func (b_ BluetoothDevice) NameOrAddress() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("nameOrAddress"))
 	return rv
 }
 

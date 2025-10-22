@@ -30,6 +30,16 @@ type _PHASEPushStreamNodeClass struct {
 // An interface definition for the [PHASEPushStreamNode] class.
 type IPHASEPushStreamNode interface {
 	IPHASEStreamNode
+	Format() avfaudio.AudioFormat
+	SetFormat(value avfaudio.AudioFormat)
+	GainMetaParameter() PHASENumberMetaParameter
+	SetGainMetaParameter(value IPHASENumberMetaParameter)
+	Mixer() PHASEMixer
+	SetMixer(value IPHASEMixer)
+	RateMetaParameter() PHASENumberMetaParameter
+	SetRateMetaParameter(value IPHASENumberMetaParameter)
+	PushStreamNodes() PHASEPushStreamNode
+	SetPushStreamNodes(value IPHASEPushStreamNode)
 }
 
 // An audio stream you manage to provide a sound buffer data.

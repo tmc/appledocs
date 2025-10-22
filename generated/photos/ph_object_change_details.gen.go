@@ -31,6 +31,16 @@ type _PHObjectChangeDetailsClass struct {
 // An interface definition for the [PHObjectChangeDetails] class.
 type IPHObjectChangeDetails interface {
 	objectivec.IObject
+	ChangedIndexes() foundation.IndexSet
+	SetChangedIndexes(value foundation.IIndexSet)
+	AssetContentChanged() bool
+	SetAssetContentChanged(value bool)
+	ObjectAfterChanges() unsafe.Pointer
+	SetObjectAfterChanges(value unsafe.Pointer)
+	ObjectBeforeChanges() unsafe.Pointer
+	SetObjectBeforeChanges(value unsafe.Pointer)
+	ObjectWasDeleted() bool
+	SetObjectWasDeleted(value bool)
 }
 
 // A description of changes that occurred in an asset or collection object.

@@ -33,6 +33,24 @@ type IBundleResourceRequest interface {
 	BeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
 	ConditionallyBeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
 	EndAccessingResources()
+	Progress() NSProgress
+	NSBundleErrorMaximum() int
+	SetNSBundleErrorMaximum(value int)
+	NSBundleErrorMinimum() int
+	SetNSBundleErrorMinimum(value int)
+	NSBundleOnDemandResourceExceededMaximumSizeError() int
+	SetNSBundleOnDemandResourceExceededMaximumSizeError(value int)
+	NSBundleOnDemandResourceInvalidTagError() int
+	SetNSBundleOnDemandResourceInvalidTagError(value int)
+	NSBundleOnDemandResourceOutOfSpaceError() int
+	SetNSBundleOnDemandResourceOutOfSpaceError(value int)
+	Bundle() NSBundle
+	SetBundle(value IBundle)
+	LoadingPriority() float64
+	SetLoadingPriority(value float64)
+	Tags() string
+	SetTags(value string)
+	NSBundleResourceRequestLoadingPriorityUrgent() float64
 }
 
 // A resource manager you use to download content hosted on the App Store at the time your app needs it.

@@ -30,6 +30,13 @@ type _PHFetchResultClass struct {
 // An interface definition for the [PHFetchResult] class.
 type IPHFetchResult interface {
 	objectivec.IObject
+	Count() uint
+	FirstObject() unsafe.Pointer
+	SetFirstObject(value unsafe.Pointer)
+	LastObject() unsafe.Pointer
+	SetLastObject(value unsafe.Pointer)
+	LocalIdentifier() string
+	SetLocalIdentifier(value string)
 }
 
 // An ordered list of assets or collections returned from a Photos fetch method.
@@ -127,8 +134,8 @@ func (p_ PHFetchResult) SetLastObject(value unsafe.Pointer) {
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchResult) LocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHFetchResult) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -138,8 +145,8 @@ func (p_ PHFetchResult) LocalIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchResult) SetLocalIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
+func (p_ PHFetchResult) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
 
 

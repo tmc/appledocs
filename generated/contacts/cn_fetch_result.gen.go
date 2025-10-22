@@ -31,6 +31,8 @@ type _CNFetchResultClass struct {
 // An interface definition for the [CNFetchResult] class.
 type ICNFetchResult interface {
 	objectivec.IObject
+	CurrentHistoryToken() foundation.NSData
+	Value() unsafe.Pointer
 }
 
 // An object that represents the result of a change-history fetch request.

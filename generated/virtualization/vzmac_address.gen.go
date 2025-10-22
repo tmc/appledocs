@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,19 @@ type _VZMACAddressClass struct {
 // An interface definition for the [VZMACAddress] class.
 type IVZMACAddress interface {
 	objectivec.IObject
+	EthernetAddress() unsafe.Pointer
+	IsBroadcastAddress() bool
+	SetIsBroadcastAddress(value bool)
+	IsLocallyAdministeredAddress() bool
+	SetIsLocallyAdministeredAddress(value bool)
+	IsMulticastAddress() bool
+	SetIsMulticastAddress(value bool)
+	IsUnicastAddress() bool
+	SetIsUnicastAddress(value bool)
+	IsUniversallyAdministeredAddress() bool
+	SetIsUniversallyAdministeredAddress(value bool)
+	String() string
+	SetString(value string)
 }
 
 // The media access control (MAC) address for a network interface in your virtual machine.
@@ -86,9 +98,9 @@ func NewVZMACAddress() VZMACAddress {
 // Creates a MAC address object from a specially formatted string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress/init(string:)
-func NewVZMACAddressWithString(string_ appkit.string) VZMACAddress {
+func NewVZMACAddressWithString(string_ string) VZMACAddress {
 	instance := getVZMACAddressClass().Alloc()
-	rv := objc.Send[VZMACAddress](instance.ID, objc.Sel("initWithString:"), string_)
+	rv := objc.Send[VZMACAddress](instance.ID, objc.Sel("initWithString:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
@@ -203,8 +215,8 @@ func (v_ VZMACAddress) SetIsUniversallyAdministeredAddress(value bool) {
 // The MAC address as a formatted string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/string
-func (v_ VZMACAddress) String() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("string"))
+func (v_ VZMACAddress) String() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -214,8 +226,8 @@ func (v_ VZMACAddress) String() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/string
-func (v_ VZMACAddress) SetString(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setString:"), value)
+func (v_ VZMACAddress) SetString(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 

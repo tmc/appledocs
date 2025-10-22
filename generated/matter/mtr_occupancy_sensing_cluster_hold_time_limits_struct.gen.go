@@ -31,6 +31,12 @@ type _MTROccupancySensingClusterHoldTimeLimitsStructClass struct {
 // An interface definition for the [MTROccupancySensingClusterHoldTimeLimitsStruct] class.
 type IMTROccupancySensingClusterHoldTimeLimitsStruct interface {
 	objectivec.IObject
+	HoldTimeDefault() foundation.Number
+	SetHoldTimeDefault(value foundation.INumber)
+	HoldTimeMax() foundation.Number
+	SetHoldTimeMax(value foundation.INumber)
+	HoldTimeMin() foundation.Number
+	SetHoldTimeMin(value foundation.INumber)
 }
 
 //

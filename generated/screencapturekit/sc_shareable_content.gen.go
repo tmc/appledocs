@@ -30,6 +30,9 @@ type _ShareableContentClass struct {
 // An interface definition for the [ShareableContent] class.
 type IShareableContent interface {
 	objectivec.IObject
+	Applications() []RunningApplication
+	Displays() []Display
+	Windows() []Window
 }
 
 // An instance that represents a set of displays, apps, and windows that your app can capture.

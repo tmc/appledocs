@@ -30,6 +30,10 @@ type _FSItemClass struct {
 // An interface definition for the [FSItem] class.
 type IFSItem interface {
 	objectivec.IObject
+	WantedAttributes() unsafe.Pointer
+	SetWantedAttributes(value unsafe.Pointer)
+	ConsumedAttributes() unsafe.Pointer
+	SetConsumedAttributes(value unsafe.Pointer)
 }
 
 // A distinct object in a file hierarchy, such as a file, directory, symlink, socket, and more.

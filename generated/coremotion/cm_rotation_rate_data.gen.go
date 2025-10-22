@@ -29,6 +29,7 @@ type _RotationRateDataClass struct {
 // An interface definition for the [RotationRateData] class.
 type IRotationRateData interface {
 	ILogItem
+	RotationRate() unsafe.Pointer
 }
 
 // A data object that contains a single rotation-rate measurement.

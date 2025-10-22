@@ -29,6 +29,10 @@ type _INUpdateMediaAffinityIntentClass struct {
 // An interface definition for the [INUpdateMediaAffinityIntent] class.
 type IINUpdateMediaAffinityIntent interface {
 	IINIntent
+	MediaItems() []INMediaItem
+	MediaSearch() INMediaSearch
+	AffinityType() unsafe.Pointer
+	SetAffinityType(value unsafe.Pointer)
 }
 
 // A request to update the user’s affinity for a media item.

@@ -31,6 +31,7 @@ type _VZEFIVariableStoreClass struct {
 // An interface definition for the [VZEFIVariableStore] class.
 type IVZEFIVariableStore interface {
 	objectivec.IObject
+	URL() foundation.URL
 }
 
 // An object that represents the Extensible Firmware Interface (EFI) variable store that contains NVRAM variables the EFI exposes.

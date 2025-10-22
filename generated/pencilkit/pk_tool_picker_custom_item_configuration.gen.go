@@ -31,6 +31,26 @@ type _ToolPickerCustomItemConfigurationClass struct {
 // An interface definition for the [ToolPickerCustomItemConfiguration] class.
 type IToolPickerCustomItemConfiguration interface {
 	objectivec.IObject
+	AllowsColorSelection() bool
+	SetAllowsColorSelection(value bool)
+	DefaultWidth() float64
+	SetDefaultWidth(value float64)
+	Identifier() string
+	SetIdentifier(value string)
+	ImageProvider() unsafe.Pointer
+	SetImageProvider(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	ToolAttributeControls() ToolPickerCustomItemControlOptions
+	SetToolAttributeControls(value ToolPickerCustomItemControlOptions)
+	ViewControllerProvider() unsafe.Pointer
+	SetViewControllerProvider(value unsafe.Pointer)
+	WidthVariants() unsafe.Pointer
+	SetWidthVariants(value unsafe.Pointer)
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	Width() float64
+	SetWidth(value float64)
 }
 
 // A configuration that specifies the appearance and behavior of a custom tool item and its contents.
@@ -84,9 +104,9 @@ func NewToolPickerCustomItemConfiguration() ToolPickerCustomItemConfiguration {
 // Create a new configuration with an identifier and a name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/initWithIdentifier:name:
-func NewToolPickerCustomItemConfigurationWithIdentifierName(identifier appkit.string, name appkit.string) ToolPickerCustomItemConfiguration {
+func NewToolPickerCustomItemConfigurationWithIdentifierName(identifier string, name string) ToolPickerCustomItemConfiguration {
 	instance := getToolPickerCustomItemConfigurationClass().Alloc()
-	rv := objc.Send[ToolPickerCustomItemConfiguration](instance.ID, objc.Sel("initWithIdentifier:name:"), identifier, name)
+	rv := objc.Send[ToolPickerCustomItemConfiguration](instance.ID, objc.Sel("initWithIdentifier:name:"), objc.String(identifier), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -131,8 +151,8 @@ func (t_ ToolPickerCustomItemConfiguration) SetDefaultWidth(value float64) {
 // A string that uniquely identifies the tool in the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/identifier
-func (t_ ToolPickerCustomItemConfiguration) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("identifier"))
+func (t_ ToolPickerCustomItemConfiguration) Identifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -142,8 +162,8 @@ func (t_ ToolPickerCustomItemConfiguration) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/identifier
-func (t_ ToolPickerCustomItemConfiguration) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
+func (t_ ToolPickerCustomItemConfiguration) SetIdentifier(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A closure that provides an image for the tool.
@@ -167,8 +187,8 @@ func (t_ ToolPickerCustomItemConfiguration) SetImageProvider(value unsafe.Pointe
 // A short string to show as the name of the tool in the UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/name
-func (t_ ToolPickerCustomItemConfiguration) Name() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
+func (t_ ToolPickerCustomItemConfiguration) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -178,8 +198,8 @@ func (t_ ToolPickerCustomItemConfiguration) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/name
-func (t_ ToolPickerCustomItemConfiguration) SetName(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
+func (t_ ToolPickerCustomItemConfiguration) SetName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // Defines which attribute controls are available to be presented in UI such as the tool attributes popover, or inline in the picker presented from a pencil squeeze. Controls for properties which the tool item does not support will not be presented. Excluding a control here does not hide all UI for adjusting that value. For example, excluding the opacity control here will not remove it from the color picker, if the color picker is otherwise available. Defaults to all controls.

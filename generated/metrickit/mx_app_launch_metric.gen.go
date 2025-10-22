@@ -29,6 +29,10 @@ type _MXAppLaunchMetricClass struct {
 // An interface definition for the [MXAppLaunchMetric] class.
 type IMXAppLaunchMetric interface {
 	IMXMetric
+	HistogrammedApplicationResumeTime() unsafe.Pointer
+	HistogrammedExtendedLaunch() unsafe.Pointer
+	HistogrammedOptimizedTimeToFirstDraw() unsafe.Pointer
+	HistogrammedTimeToFirstDraw() unsafe.Pointer
 }
 
 // An object representing metrics about app launch time.

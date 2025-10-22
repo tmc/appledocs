@@ -30,6 +30,10 @@ type _ResponderStateClass struct {
 // An interface definition for the [ResponderState] class.
 type IResponderState interface {
 	objectivec.IObject
+	ActiveToolPicker() PKToolPicker
+	SetActiveToolPicker(value IPKToolPicker)
+	ToolPickerVisibility() ToolPickerVisibility
+	SetToolPickerVisibility(value IToolPickerVisibility)
 }
 
 // The state of PencilKit behavior related to a .

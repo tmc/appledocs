@@ -30,6 +30,18 @@ type _BackgroundActivitySchedulerClass struct {
 // An interface definition for the [BackgroundActivityScheduler] class.
 type IBackgroundActivityScheduler interface {
 	objectivec.IObject
+	Identifier() string
+	SetIdentifier(value string)
+	Interval() TimeInterval
+	SetInterval(value ITimeInterval)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
+	Repeats() bool
+	SetRepeats(value bool)
+	ShouldDefer() bool
+	SetShouldDefer(value bool)
+	Tolerance() TimeInterval
+	SetTolerance(value ITimeInterval)
 }
 
 // A task scheduler suitable for low priority operations that can run in the background.

@@ -30,6 +30,12 @@ type _INPersonHandleClass struct {
 // An interface definition for the [INPersonHandle] class.
 type IINPersonHandle interface {
 	objectivec.IObject
+	Label() unsafe.Pointer
+	SetLabel(value unsafe.Pointer)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
+	Value() string
+	SetValue(value string)
 }
 
 // The identifying information for a user of your app.
@@ -119,8 +125,8 @@ func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 // The data for the handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) Value() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("value"))
+func (i_ INPersonHandle) Value() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -130,8 +136,8 @@ func (i_ INPersonHandle) Value() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) SetValue(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), value)
+func (i_ INPersonHandle) SetValue(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

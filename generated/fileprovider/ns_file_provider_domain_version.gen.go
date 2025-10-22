@@ -30,6 +30,8 @@ type _FileProviderDomainVersionClass struct {
 // An interface definition for the [FileProviderDomainVersion] class.
 type IFileProviderDomainVersion interface {
 	objectivec.IObject
+	DomainVersion() NSFileProviderDomainVersion
+	SetDomainVersion(value IFileProviderDomainVersion)
 }
 
 // An opaque object that identifies a specific version of a domain.

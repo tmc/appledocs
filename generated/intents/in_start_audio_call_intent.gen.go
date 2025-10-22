@@ -29,6 +29,10 @@ type _INStartAudioCallIntentClass struct {
 // An interface definition for the [INStartAudioCallIntent] class.
 type IINStartAudioCallIntent interface {
 	IINIntent
+	Contacts() INPerson
+	SetContacts(value INPerson)
+	DestinationType() INCallDestinationType
+	SetDestinationType(value INCallDestinationType)
 }
 
 // A request to start an audio-only call with one or more users.

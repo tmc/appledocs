@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +30,13 @@ type _RightClass struct {
 // An interface definition for the [Right] class.
 type IRight interface {
 	objectivec.IObject
-	AuthorizeWithLocalizedReasonCompletion(localizedReason appkit.string, handler unsafe.Pointer)
-	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason appkit.string, presentationContext unsafe.Pointer, handler unsafe.Pointer)
+	AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer)
+	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer)
 	CheckCanAuthorizeWithCompletion(handler unsafe.Pointer)
 	DeauthorizeWithCompletion(handler unsafe.Pointer)
+	State() RightState
+	Tag() int
+	SetTag(value int)
 }
 
 // A grouped set of requirements that gate access to a resource or operation.
@@ -101,15 +103,15 @@ func NewRightWithRequirement(requirement ILAAuthenticationRequirement) Right {
 // Performs an authorization on the right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:completion:)
-func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:completion:"), localizedReason, handler)
+func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:completion:"), objc.String(localizedReason), handler)
 }
 
 // Performs an authorization on the right with a window context you supply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:in:completion:)
-func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason appkit.string, presentationContext unsafe.Pointer, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:inPresentationContext:completion:"), localizedReason, presentationContext, handler)
+func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:inPresentationContext:completion:"), objc.String(localizedReason), presentationContext, handler)
 }
 
 // Checks whether the right has permission to perform authorization.

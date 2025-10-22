@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,7 @@ type _HKObjectTypeClass struct {
 type IHKObjectType interface {
 	objectivec.IObject
 	RequiresPerObjectAuthorization() bool
+	Identifier() string
 }
 
 // An abstract superclass with subclasses that identify a specific type of data for the HealthKit store.
@@ -171,8 +171,8 @@ func (hc _HKObjectTypeClass) ScoredAssessmentTypeForIdentifier(identifier IHKSco
 // Returns the shared series type for the provided identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObjectType/seriesType(forIdentifier:)
-func (hc _HKObjectTypeClass) SeriesTypeForIdentifier(identifier appkit.string) HKSeriesType {
-	rv := objc.Send[HKSeriesType](objc.ID(hc.class), objc.Sel("seriesTypeForIdentifier:"), identifier)
+func (hc _HKObjectTypeClass) SeriesTypeForIdentifier(identifier string) HKSeriesType {
+	rv := objc.Send[HKSeriesType](objc.ID(hc.class), objc.Sel("seriesTypeForIdentifier:"), objc.String(identifier))
 	return rv
 }
 
@@ -217,8 +217,8 @@ func (h_ HKObjectType) RequiresPerObjectAuthorization() bool {
 // A unique string identifying the HealthKit object type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObjectType/identifier
-func (h_ HKObjectType) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("identifier"))
+func (h_ HKObjectType) Identifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 

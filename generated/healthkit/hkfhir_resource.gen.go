@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,11 @@ type _HKFHIRResourceClass struct {
 // An interface definition for the [HKFHIRResource] class.
 type IHKFHIRResource interface {
 	objectivec.IObject
+	Data() foundation.NSData
+	FHIRVersion() HKFHIRVersion
+	Identifier() string
+	ResourceType() HKFHIRResourceType
+	SourceURL() foundation.URL
 }
 
 // An object containing Fast Healthcare Interoperability Resources (FHIR) data.
@@ -99,8 +103,8 @@ func (h_ HKFHIRResource) FHIRVersion() HKFHIRVersion {
 // The value from the FHIR resource’s field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/identifier
-func (h_ HKFHIRResource) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("identifier"))
+func (h_ HKFHIRResource) Identifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 

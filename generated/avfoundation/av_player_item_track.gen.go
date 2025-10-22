@@ -30,6 +30,16 @@ type _PlayerItemTrackClass struct {
 // An interface definition for the [PlayerItemTrack] class.
 type IPlayerItemTrack interface {
 	objectivec.IObject
+	CurrentVideoFrameRate() float32
+	Enabled() bool
+	SetEnabled(value bool)
+	VideoFieldMode() string
+	SetVideoFieldMode(value string)
+	AssetTrack() AVAssetTrack
+	SetAssetTrack(value IAVAssetTrack)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string
 }
 
 // An object that represents the presentation state of an asset track during playback.

@@ -30,6 +30,11 @@ type _EnvironmentMechanismBiometryClass struct {
 // An interface definition for the [EnvironmentMechanismBiometry] class.
 type IEnvironmentMechanismBiometry interface {
 	IEnvironmentMechanism
+	BiometryType() BiometryType
+	BuiltInSensorInaccessible() bool
+	IsEnrolled() bool
+	IsLockedOut() bool
+	StateHash() foundation.NSData
 }
 
 //

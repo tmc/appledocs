@@ -31,6 +31,10 @@ type _MTRElectricalPowerMeasurementClusterHarmonicMeasurementStructClass struct 
 // An interface definition for the [MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct] class.
 type IMTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct interface {
 	objectivec.IObject
+	Measurement() foundation.Number
+	SetMeasurement(value foundation.INumber)
+	Order() foundation.Number
+	SetOrder(value foundation.INumber)
 }
 
 //

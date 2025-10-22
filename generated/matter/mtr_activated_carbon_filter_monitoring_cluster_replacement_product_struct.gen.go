@@ -31,6 +31,10 @@ type _MTRActivatedCarbonFilterMonitoringClusterReplacementProductStructClass str
 // An interface definition for the [MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct] class.
 type IMTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct interface {
 	objectivec.IObject
+	ProductIdentifierType() foundation.Number
+	SetProductIdentifierType(value foundation.INumber)
+	ProductIdentifierValue() string
+	SetProductIdentifierValue(value string)
 }
 
 //
@@ -93,8 +97,8 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetP
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("productIdentifierValue"))
+func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifierValue"))
 	return rv
 }
 
@@ -102,8 +106,8 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) Prod
 // SetProductIdentifierValue sets the value of the productIdentifierValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), value)
+func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), objc.String(value))
 }
 
 

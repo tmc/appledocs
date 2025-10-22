@@ -30,6 +30,14 @@ type _MKOverlayRendererClass struct {
 // An interface definition for the [MKOverlayRenderer] class.
 type IMKOverlayRenderer interface {
 	objectivec.IObject
+	Alpha() float64
+	SetAlpha(value float64)
+	BlendMode() unsafe.Pointer
+	SetBlendMode(value unsafe.Pointer)
+	ContentScaleFactor() float64
+	SetContentScaleFactor(value float64)
+	Overlay() unsafe.Pointer
+	SetOverlay(value unsafe.Pointer)
 }
 
 // The shared infrastructure for drawing overlays on the map surface.

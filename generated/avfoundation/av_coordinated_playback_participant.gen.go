@@ -31,6 +31,14 @@ type _CoordinatedPlaybackParticipantClass struct {
 // An interface definition for the [CoordinatedPlaybackParticipant] class.
 type ICoordinatedPlaybackParticipant interface {
 	objectivec.IObject
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	IsReadyToPlay() bool
+	SetIsReadyToPlay(value bool)
+	SuspensionReasons() unsafe.Pointer
+	SetSuspensionReasons(value unsafe.Pointer)
+	OtherParticipants() AVCoordinatedPlaybackParticipant
+	SetOtherParticipants(value IAVCoordinatedPlaybackParticipant)
 }
 
 // An object that represents a participant in a coordinated playback session.

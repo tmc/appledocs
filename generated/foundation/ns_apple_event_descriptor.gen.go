@@ -34,6 +34,38 @@ type IAppleEventDescriptor interface {
 	AttributeDescriptorForKeyword(keyword unsafe.Pointer) AppleEventDescriptor
 	InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int)
 	RemoveDescriptorWithKeyword(keyword unsafe.Pointer)
+	AeDesc() unsafe.Pointer
+	DoubleValue() float64
+	BooleanValue() bool
+	SetBooleanValue(value bool)
+	Data() Data
+	SetData(value IData)
+	DateValue() Date
+	SetDateValue(value IDate)
+	DescriptorType() unsafe.Pointer
+	SetDescriptorType(value unsafe.Pointer)
+	EnumCodeValue() unsafe.Pointer
+	SetEnumCodeValue(value unsafe.Pointer)
+	EventClass() unsafe.Pointer
+	SetEventClass(value unsafe.Pointer)
+	EventID() unsafe.Pointer
+	SetEventID(value unsafe.Pointer)
+	FileURLValue() URL
+	SetFileURLValue(value IURL)
+	Int32Value() unsafe.Pointer
+	SetInt32Value(value unsafe.Pointer)
+	IsRecordDescriptor() bool
+	SetIsRecordDescriptor(value bool)
+	NumberOfItems() int
+	SetNumberOfItems(value int)
+	ReturnID() unsafe.Pointer
+	SetReturnID(value unsafe.Pointer)
+	StringValue() string
+	SetStringValue(value string)
+	TransactionID() unsafe.Pointer
+	SetTransactionID(value unsafe.Pointer)
+	TypeCodeValue() unsafe.Pointer
+	SetTypeCodeValue(value unsafe.Pointer)
 }
 
 // A wrapper for the Apple event descriptor data type.

@@ -30,6 +30,8 @@ type _MTRUnitTestingClusterDoubleNestedStructListClass struct {
 // An interface definition for the [MTRUnitTestingClusterDoubleNestedStructList] class.
 type IMTRUnitTestingClusterDoubleNestedStructList interface {
 	objectivec.IObject
+	A() unsafe.Pointer
+	SetA(value unsafe.Pointer)
 }
 
 //

@@ -30,6 +30,8 @@ type _PreviewSceneOptionsClass struct {
 // An interface definition for the [PreviewSceneOptions] class.
 type IPreviewSceneOptions interface {
 	objectivec.IObject
+	InitialPreviewIndex() int
+	SetInitialPreviewIndex(value int)
 }
 
 // A class that represents the configuration for a preview scene activation.

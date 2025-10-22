@@ -31,6 +31,10 @@ type _PreviewReplyAttachmentClass struct {
 // An interface definition for the [PreviewReplyAttachment] class.
 type IPreviewReplyAttachment interface {
 	objectivec.IObject
+	ContentType() unsafe.Pointer
+	Data() foundation.NSData
+	Attachments() QLPreviewReplyAttachment
+	SetAttachments(value IQLPreviewReplyAttachment)
 }
 
 // An attachment for a Quick Look preview reply that provides additional content for the system to display a preview.

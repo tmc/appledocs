@@ -9,3 +9,15 @@ import (
 // Suppress unused import errors
 var _ = mediaplayer.NewNowPlayingInfoLanguageOption
 
+// ExampleNewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier demonstrates how to create a NowPlayingInfoLanguageOption instance using NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier.
+// Creates a single language option.
+func ExampleNewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier() {
+	_ = mediaplayer.NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier(
+		mediaplayer.NowPlayingInfoLanguageOptionType{}, // languageOptionType NowPlayingInfoLanguageOptionType
+		"languageTag", // languageTag string
+		[]mediaplayer.string{}, // languageOptionCharacteristics []string
+		"displayName", // displayName string
+		"identifier", // identifier string
+	)
+	// Output:
+}

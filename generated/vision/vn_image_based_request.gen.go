@@ -30,6 +30,8 @@ type _ImageBasedRequestClass struct {
 // An interface definition for the [ImageBasedRequest] class.
 type IImageBasedRequest interface {
 	IRequest
+	RegionOfInterest() coregraphics.CGRect
+	SetRegionOfInterest(value coregraphics.CGRect)
 }
 
 // The abstract superclass for image-analysis requests that focus on a specific part of an image.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,19 @@ type _ODMappingsClass struct {
 // An interface definition for the [ODMappings] class.
 type IODMappings interface {
 	objectivec.IObject
-	RecordMapForStandardRecordType(stdType appkit.string) ODRecordMap
-	SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType appkit.string)
+	RecordMapForStandardRecordType(stdType string) ODRecordMap
+	SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType string)
+	Comment() string
+	SetComment(value string)
+	Function() string
+	SetFunction(value string)
+	FunctionAttributes() objc.ID
+	SetFunctionAttributes(value objc.ID)
+	Identifier() string
+	SetIdentifier(value string)
+	RecordTypes() objc.ID
+	TemplateName() string
+	SetTemplateName(value string)
 }
 
 //
@@ -87,21 +97,21 @@ func (oc _ODMappingsClass) Mappings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/recordMap(forStandardRecordType:)
-func (o_ ODMappings) RecordMapForStandardRecordType(stdType appkit.string) ODRecordMap {
-	rv := objc.Send[ODRecordMap](o_.ID, objc.Sel("recordMapForStandardRecordType:"), stdType)
+func (o_ ODMappings) RecordMapForStandardRecordType(stdType string) ODRecordMap {
+	rv := objc.Send[ODRecordMap](o_.ID, objc.Sel("recordMapForStandardRecordType:"), objc.String(stdType))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/setRecordMap(_:forStandardRecordType:)
-func (o_ ODMappings) SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setRecordMap:forStandardRecordType:"), map_, stdType)
+func (o_ ODMappings) SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setRecordMap:forStandardRecordType:"), map_, objc.String(stdType))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-swift.property
-func (o_ ODMappings) Comment() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("comment"))
+func (o_ ODMappings) Comment() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -109,14 +119,14 @@ func (o_ ODMappings) Comment() appkit.string {
 // SetComment sets the value of the comment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-swift.property
-func (o_ ODMappings) SetComment(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
+func (o_ ODMappings) SetComment(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
-func (o_ ODMappings) Function() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("function"))
+func (o_ ODMappings) Function() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("function"))
 	return rv
 }
 
@@ -124,8 +134,8 @@ func (o_ ODMappings) Function() appkit.string {
 // SetFunction sets the value of the function property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
-func (o_ ODMappings) SetFunction(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), value)
+func (o_ ODMappings) SetFunction(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), objc.String(value))
 }
 
 //
@@ -145,8 +155,8 @@ func (o_ ODMappings) SetFunctionAttributes(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
-func (o_ ODMappings) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("identifier"))
+func (o_ ODMappings) Identifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -154,8 +164,8 @@ func (o_ ODMappings) Identifier() appkit.string {
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
-func (o_ ODMappings) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), value)
+func (o_ ODMappings) SetIdentifier(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 //
@@ -167,8 +177,8 @@ func (o_ ODMappings) RecordTypes() objc.ID {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
-func (o_ ODMappings) TemplateName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("templateName"))
+func (o_ ODMappings) TemplateName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("templateName"))
 	return rv
 }
 
@@ -176,8 +186,8 @@ func (o_ ODMappings) TemplateName() appkit.string {
 // SetTemplateName sets the value of the templateName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
-func (o_ ODMappings) SetTemplateName(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
+func (o_ ODMappings) SetTemplateName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
 }
 
 

@@ -38,6 +38,41 @@ type IAssetWriter interface {
 	FinishWriting() bool
 	FinishWritingWithCompletionHandler(handler unsafe.Pointer)
 	StartWriting() bool
+	AvailableMediaTypes() []string
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DirectoryForTemporaryFiles() foundation.URL
+	SetDirectoryForTemporaryFiles(value foundation.IURL)
+	Error() Error
+	InitialSegmentStartTime() unsafe.Pointer
+	SetInitialSegmentStartTime(value unsafe.Pointer)
+	Metadata() []MetadataItem
+	SetMetadata(value []MetadataItem)
+	MovieFragmentInterval() unsafe.Pointer
+	SetMovieFragmentInterval(value unsafe.Pointer)
+	MovieTimeScale() unsafe.Pointer
+	SetMovieTimeScale(value unsafe.Pointer)
+	OutputFileType() FileType
+	OutputURL() foundation.URL
+	PreferredOutputSegmentInterval() unsafe.Pointer
+	SetPreferredOutputSegmentInterval(value unsafe.Pointer)
+	ProducesCombinableFragments() bool
+	SetProducesCombinableFragments(value bool)
+	ShouldOptimizeForNetworkUse() bool
+	SetShouldOptimizeForNetworkUse(value bool)
+	Status() AssetWriterStatus
+	InitialMovieFragmentInterval() unsafe.Pointer
+	SetInitialMovieFragmentInterval(value unsafe.Pointer)
+	InitialMovieFragmentSequenceNumber() int
+	SetInitialMovieFragmentSequenceNumber(value int)
+	InputGroups() unsafe.Pointer
+	SetInputGroups(value unsafe.Pointer)
+	Inputs() AVAssetWriterInput
+	SetInputs(value IAVAssetWriterInput)
+	OutputFileTypeProfile() FileTypeProfile
+	SetOutputFileTypeProfile(value IFileTypeProfile)
+	OverallDurationHint() unsafe.Pointer
+	SetOverallDurationHint(value unsafe.Pointer)
 }
 
 // An object that writes media data to a container file.

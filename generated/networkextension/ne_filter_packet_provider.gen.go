@@ -29,6 +29,10 @@ type _NEFilterPacketProviderClass struct {
 // An interface definition for the [NEFilterPacketProvider] class.
 type INEFilterPacketProvider interface {
 	INEFilterProvider
+	Handler() unsafe.Pointer
+	SetHandler(value unsafe.Pointer)
+	PacketHandler() unsafe.Pointer
+	SetPacketHandler(value unsafe.Pointer)
 }
 
 // A filter provider that evaluates network packets and decides whether to block, allow, or delay the packets.

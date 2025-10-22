@@ -29,6 +29,10 @@ type _MTL4MachineLearningPipelineDescriptorClass struct {
 // An interface definition for the [MTL4MachineLearningPipelineDescriptor] class.
 type IMTL4MachineLearningPipelineDescriptor interface {
 	IMTL4PipelineDescriptor
+	Label() string
+	SetLabel(value string)
+	MachineLearningFunctionDescriptor() unsafe.Pointer
+	SetMachineLearningFunctionDescriptor(value unsafe.Pointer)
 }
 
 // Description for a machine learning pipeline state.
@@ -82,8 +86,8 @@ func NewMTL4MachineLearningPipelineDescriptor() MTL4MachineLearningPipelineDescr
 // Assigns an optional string that helps identify pipeline states you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor/label
-func (m_ MTL4MachineLearningPipelineDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTL4MachineLearningPipelineDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -93,8 +97,8 @@ func (m_ MTL4MachineLearningPipelineDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor/label
-func (m_ MTL4MachineLearningPipelineDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTL4MachineLearningPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // Assigns the function that the machine learning pipeline you create from this descriptor executes.

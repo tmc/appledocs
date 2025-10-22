@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,8 @@ type _AXCategoricalDataAxisDescriptorClass struct {
 // An interface definition for the [AXCategoricalDataAxisDescriptor] class.
 type IAXCategoricalDataAxisDescriptor interface {
 	objectivec.IObject
+	CategoryOrder() []string
+	SetCategoryOrder(value []string)
 }
 
 // An object that represents an axis of categorical data.
@@ -99,9 +100,9 @@ func NewAXCategoricalDataAxisDescriptorWithAttributedTitleCategoryOrder(attribut
 // Creates a categorical data axis with the specified title and an array of categories in the specified order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXCategoricalDataAxisDescriptor/init(title:categoryOrder:)
-func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title appkit.string, categoryOrder []string) AXCategoricalDataAxisDescriptor {
+func NewAXCategoricalDataAxisDescriptorWithTitleCategoryOrder(title string, categoryOrder []string) AXCategoricalDataAxisDescriptor {
 	instance := getAXCategoricalDataAxisDescriptorClass().Alloc()
-	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), title, categoryOrder)
+	rv := objc.Send[AXCategoricalDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:categoryOrder:"), objc.String(title), categoryOrder)
 	rv.Autorelease()
 	return rv
 }

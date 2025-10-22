@@ -31,6 +31,8 @@ type _ARC4RandomSourceClass struct {
 type IARC4RandomSource interface {
 	IRandomSource
 	DropValuesWithCount(count uint)
+	Seed() foundation.NSData
+	SetSeed(value foundation.IData)
 }
 
 // A basic random number generator implementing the ARC4 algorithm, which is suitable for most gameplay mechanics.

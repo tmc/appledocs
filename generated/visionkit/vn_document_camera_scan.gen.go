@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _DocumentCameraScanClass struct {
 // An interface definition for the [DocumentCameraScan] class.
 type IDocumentCameraScan interface {
 	objectivec.IObject
+	Title() string
+	PageCount() int
+	SetPageCount(value int)
 }
 
 // A single document scanned in the document camera.
@@ -82,8 +84,8 @@ func NewDocumentCameraScan() DocumentCameraScan {
 // The title of the scanned document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan/title
-func (d_ DocumentCameraScan) Title() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("title"))
+func (d_ DocumentCameraScan) Title() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("title"))
 	return rv
 }
 

@@ -30,6 +30,10 @@ type _PHASEMetaParameterClass struct {
 // An interface definition for the [PHASEMetaParameter] class.
 type IPHASEMetaParameter interface {
 	objectivec.IObject
+	Identifier() string
+	SetIdentifier(value string)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
 }
 
 // A named parameter with a value that the app can change over time.
@@ -83,8 +87,8 @@ func NewPHASEMetaParameter() PHASEMetaParameter {
 // A unique name for the metaparameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameter/identifier
-func (p_ PHASEMetaParameter) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEMetaParameter) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -94,8 +98,8 @@ func (p_ PHASEMetaParameter) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameter/identifier
-func (p_ PHASEMetaParameter) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+func (p_ PHASEMetaParameter) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A value for the metaparameter.

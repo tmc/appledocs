@@ -29,6 +29,38 @@ type _GraphPooling2DOpDescriptorClass struct {
 // An interface definition for the [GraphPooling2DOpDescriptor] class.
 type IGraphPooling2DOpDescriptor interface {
 	IGraphObject
+	PaddingLeft() uint
+	SetPaddingLeft(value uint)
+	CeilMode() bool
+	SetCeilMode(value bool)
+	DataLayout() GraphTensorNamedDataLayout
+	SetDataLayout(value IGraphTensorNamedDataLayout)
+	DilationRateInX() int
+	SetDilationRateInX(value int)
+	DilationRateInY() int
+	SetDilationRateInY(value int)
+	IncludeZeroPadToAverage() bool
+	SetIncludeZeroPadToAverage(value bool)
+	KernelHeight() int
+	SetKernelHeight(value int)
+	KernelWidth() int
+	SetKernelWidth(value int)
+	PaddingBottom() int
+	SetPaddingBottom(value int)
+	PaddingRight() int
+	SetPaddingRight(value int)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	PaddingTop() int
+	SetPaddingTop(value int)
+	ReturnIndicesDataType() unsafe.Pointer
+	SetReturnIndicesDataType(value unsafe.Pointer)
+	ReturnIndicesMode() GraphPoolingReturnIndicesMode
+	SetReturnIndicesMode(value GraphPoolingReturnIndicesMode)
+	StrideInX() int
+	SetStrideInX(value int)
+	StrideInY() int
+	SetStrideInY(value int)
 }
 
 // The class that defines the parameters for a 2D pooling operation.

@@ -30,7 +30,14 @@ type _CommandBufferClass struct {
 // An interface definition for the [CommandBuffer] class.
 type ICommandBuffer interface {
 	objectivec.IObject
-	PrefetchHeapForWorkloadSize(size unsafe.Pointer)
+	PrefetchHeapForWorkloadSize(size Iuintptr)
+	CommandBuffer() objc.ID
+	HeapProvider() objc.ID
+	SetHeapProvider(value objc.ID)
+	Predicate() MPSPredicate
+	SetPredicate(value IMPSPredicate)
+	RootCommandBuffer() CommandBuffer
+	SetRootCommandBuffer(value ICommandBuffer)
 }
 
 //
@@ -78,7 +85,7 @@ func NewCommandBuffer() CommandBuffer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/prefetchHeap(forWorkloadSize:)
-func (c_ CommandBuffer) PrefetchHeapForWorkloadSize(size unsafe.Pointer) {
+func (c_ CommandBuffer) PrefetchHeapForWorkloadSize(size Iuintptr) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prefetchHeapForWorkloadSize:"), size)
 }
 

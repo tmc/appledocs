@@ -33,6 +33,10 @@ type IMTRDeviceControllerFactory interface {
 	CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController
 	CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController
 	StartControllerFactoryError(startupParams IMTRDeviceControllerFactoryParams, error_ unsafe.Pointer) bool
+	IsRunning() bool
+	SetIsRunning(value bool)
+	KnownFabrics() MTRFabricInfo
+	SetKnownFabrics(value IMTRFabricInfo)
 }
 
 //

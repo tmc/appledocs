@@ -31,6 +31,12 @@ type _MapTableClass struct {
 type IMapTable interface {
 	objectivec.IObject
 	SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
+	Count() int
+	SetCount(value int)
+	KeyPointerFunctions() NSPointerFunctions
+	SetKeyPointerFunctions(value IPointerFunctions)
+	ValuePointerFunctions() NSPointerFunctions
+	SetValuePointerFunctions(value IPointerFunctions)
 }
 
 // A collection similar to a dictionary, but with a broader range of available memory semantics.

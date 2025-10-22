@@ -32,6 +32,10 @@ type IMusicPlayerPlayParametersQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
 	SetEndTimeForItemWithPlayParameters(endTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters)
 	SetStartTimeForItemWithPlayParameters(startTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters)
+	PlayParametersQueue() []MusicPlayerPlayParameters
+	SetPlayParametersQueue(value []MusicPlayerPlayParameters)
+	StartItemPlayParameters() MPMusicPlayerPlayParameters
+	SetStartItemPlayParameters(value IMPMusicPlayerPlayParameters)
 }
 
 // A set of properties and methods for modifying how to play items, based on play parameters the framework returns.

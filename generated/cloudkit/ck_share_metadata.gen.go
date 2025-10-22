@@ -31,6 +31,22 @@ type _CKShareMetadataClass struct {
 // An interface definition for the [CKShareMetadata] class.
 type ICKShareMetadata interface {
 	objectivec.IObject
+	ContainerIdentifier() string
+	HierarchicalRootRecordID() CKRecordID
+	OwnerIdentity() CKUserIdentity
+	ParticipantPermission() CKShareParticipantPermission
+	ParticipantRole() CKShareParticipantRole
+	ParticipantStatus() CKShareParticipantAcceptanceStatus
+	ParticipantType() CKShareParticipantType
+	RootRecord() CKRecord
+	RootRecordID() CKRecordID
+	Share() cloudkit.CKShare
+	RootRecordDesiredKeys() unsafe.Pointer
+	SetRootRecordDesiredKeys(value unsafe.Pointer)
+	ShouldFetchRootRecord() bool
+	SetShouldFetchRootRecord(value bool)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // An object that describes a shared record’s metadata.

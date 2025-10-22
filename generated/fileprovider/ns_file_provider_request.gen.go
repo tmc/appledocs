@@ -31,6 +31,10 @@ type _FileProviderRequestClass struct {
 // An interface definition for the [FileProviderRequest] class.
 type IFileProviderRequest interface {
 	objectivec.IObject
+	DomainVersion() NSFileProviderDomainVersion
+	IsFileViewerRequest() bool
+	IsSystemRequest() bool
+	RequestingExecutable() foundation.URL
 }
 
 // An object that provides information about the application requesting data from the File Provider extension.

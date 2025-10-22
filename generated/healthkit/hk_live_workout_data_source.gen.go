@@ -33,6 +33,7 @@ type IHKLiveWorkoutDataSource interface {
 	objectivec.IObject
 	DisableCollectionForType(quantityType HKQuantityType)
 	EnableCollectionForTypePredicate(quantityType HKQuantityType, predicate foundation.IPredicate)
+	TypesToCollect() unsafe.Pointer
 }
 
 // A data source that automatically provides live data from an active workout session.

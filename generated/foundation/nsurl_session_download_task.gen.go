@@ -30,6 +30,8 @@ type _URLSessionDownloadTaskClass struct {
 type IURLSessionDownloadTask interface {
 	IURLSessionTask
 	CancelByProducingResumeData(completionHandler unsafe.Pointer)
+	Response() NSURLResponse
+	SetResponse(value IURLResponse)
 }
 
 // A URL session task that stores downloaded data to a file.

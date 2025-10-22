@@ -31,6 +31,14 @@ type _MTRNetworkCommissioningClusterScanNetworksParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterScanNetworksParams] class.
 type IMTRNetworkCommissioningClusterScanNetworksParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	Ssid() foundation.Data
+	SetSsid(value foundation.IData)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

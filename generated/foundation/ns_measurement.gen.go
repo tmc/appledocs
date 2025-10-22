@@ -31,6 +31,9 @@ type _MeasurementClass struct {
 type IMeasurement interface {
 	objectivec.IObject
 	CanBeConvertedToUnit(unit IUnit) bool
+	Unit() unsafe.Pointer
+	DoubleValue() float64
+	SetDoubleValue(value float64)
 }
 
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.

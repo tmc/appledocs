@@ -30,6 +30,16 @@ type _PHVideoRequestOptionsClass struct {
 // An interface definition for the [PHVideoRequestOptions] class.
 type IPHVideoRequestOptions interface {
 	objectivec.IObject
+	DeliveryMode() PHVideoRequestOptionsDeliveryMode
+	SetDeliveryMode(value PHVideoRequestOptionsDeliveryMode)
+	NetworkAccessAllowed() bool
+	SetNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	Version() PHVideoRequestOptionsVersion
+	SetVersion(value IPHVideoRequestOptionsVersion)
+	IsNetworkAccessAllowed() bool
+	SetIsNetworkAccessAllowed(value bool)
 }
 
 // A set of options affecting the delivery of video asset data that you request from an image manager.

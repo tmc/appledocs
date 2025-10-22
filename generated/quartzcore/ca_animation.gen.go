@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,25 @@ type _AnimationClass struct {
 // An interface definition for the [Animation] class.
 type IAnimation interface {
 	objectivec.IObject
-	ShouldArchiveValueForKey(key appkit.string) bool
+	ShouldArchiveValueForKey(key string) bool
+	AnimationEvents() []unsafe.Pointer
+	SetAnimationEvents(value []unsafe.IPointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	FadeInDuration() float64
+	SetFadeInDuration(value float64)
+	FadeOutDuration() float64
+	SetFadeOutDuration(value float64)
+	RemovedOnCompletion() bool
+	SetRemovedOnCompletion(value bool)
+	PreferredFrameRateRange() unsafe.Pointer
+	SetPreferredFrameRateRange(value unsafe.Pointer)
+	TimingFunction() CAMediaTimingFunction
+	SetTimingFunction(value IMediaTimingFunction)
+	UsesSceneTimeBase() bool
+	SetUsesSceneTimeBase(value bool)
+	IsRemovedOnCompletion() bool
+	SetIsRemovedOnCompletion(value bool)
 }
 
 // The abstract superclass for animations in Core Animation.
@@ -104,8 +121,8 @@ func (ac _AnimationClass) Animation() unsafe.Pointer {
 // Specifies the default value of the property with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/defaultValue(forKey:)
-func (ac _AnimationClass) DefaultValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("defaultValueForKey:"), key)
+func (ac _AnimationClass) DefaultValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("defaultValueForKey:"), objc.String(key))
 	return rv
 }
 
@@ -120,8 +137,8 @@ func (ac _AnimationClass) AnimationWithSCNAnimation(animation unsafe.Pointer) An
 // Specifies whether the value of the property for a given key is archived.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/shouldArchiveValue(forKey:)
-func (a_ Animation) ShouldArchiveValueForKey(key appkit.string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("shouldArchiveValueForKey:"), key)
+func (a_ Animation) ShouldArchiveValueForKey(key string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("shouldArchiveValueForKey:"), objc.String(key))
 	return rv
 }
 

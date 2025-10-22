@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,11 +35,11 @@ type ILocationManager interface {
 	DisallowDeferredLocationUpdates()
 	DismissHeadingCalibrationDisplay()
 	RequestAlwaysAuthorization()
-	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey appkit.string, sampleCount int, handler unsafe.Pointer)
+	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer)
 	RequestLocation()
 	RequestStateForRegion(region ICLRegion)
-	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey appkit.string)
-	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey appkit.string, completion unsafe.Pointer)
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string)
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer)
 	RequestWhenInUseAuthorization()
 	StartMonitoringForRegion(region ICLRegion)
 	StartMonitoringForRegionDesiredAccuracy(region ICLRegion, accuracy unsafe.Pointer)
@@ -59,6 +58,39 @@ type ILocationManager interface {
 	StopRangingBeaconsSatisfyingConstraint(constraint ICLBeaconIdentityConstraint)
 	StopUpdatingHeading()
 	StopUpdatingLocation()
+	AccuracyAuthorization() AccuracyAuthorization
+	ActivityType() ActivityType
+	SetActivityType(value ActivityType)
+	AllowsBackgroundLocationUpdates() bool
+	SetAllowsBackgroundLocationUpdates(value bool)
+	AuthorizationStatus() AuthorizationStatus
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DesiredAccuracy() unsafe.Pointer
+	SetDesiredAccuracy(value unsafe.Pointer)
+	DistanceFilter() unsafe.Pointer
+	SetDistanceFilter(value unsafe.Pointer)
+	Heading() CLHeading
+	HeadingAvailable() bool
+	HeadingFilter() unsafe.Pointer
+	SetHeadingFilter(value unsafe.Pointer)
+	HeadingOrientation() DeviceOrientation
+	SetHeadingOrientation(value DeviceOrientation)
+	AuthorizedForWidgetUpdates() bool
+	Location() CLLocation
+	MaximumRegionMonitoringDistance() unsafe.Pointer
+	MonitoredRegions() unsafe.Pointer
+	PausesLocationUpdatesAutomatically() bool
+	SetPausesLocationUpdatesAutomatically(value bool)
+	RangedBeaconConstraints() unsafe.Pointer
+	ShowsBackgroundLocationIndicator() bool
+	SetShowsBackgroundLocationIndicator(value bool)
+	CLLocationDistanceMax() unsafe.Pointer
+	IsAuthorizedForWidgetUpdates() bool
+	SetIsAuthorizedForWidgetUpdates(value bool)
+	CLTimeIntervalMax() unsafe.Pointer
+	KCLDistanceFilterNone() unsafe.Pointer
+	KCLHeadingFilterNone() unsafe.Pointer
 }
 
 // The object you use to start and stop the delivery of location-related events to your app.
@@ -211,8 +243,8 @@ func (l_ LocationManager) RequestAlwaysAuthorization() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestHistoricalLocations(purposeKey:sampleCount:completionHandler:)
-func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey appkit.string, sampleCount int, handler unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:"), purposeKey, sampleCount, handler)
+func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:"), objc.String(purposeKey), sampleCount, handler)
 }
 
 // Requests the one-time delivery of the user’s current location.
@@ -232,15 +264,15 @@ func (l_ LocationManager) RequestStateForRegion(region ICLRegion) {
 // Requests permission to temporarily use location services with full accuracy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestTemporaryFullAccuracyAuthorization(withPurposeKey:)
-func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:"), purposeKey)
+func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:"), objc.String(purposeKey))
 }
 
 // Requests permission to temporarily use location services with full accuracy and reports the results to the provided completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestTemporaryFullAccuracyAuthorization(withPurposeKey:completion:)
-func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey appkit.string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:"), purposeKey, completion)
+func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:"), objc.String(purposeKey), completion)
 }
 
 // Requests the user’s permission to use location services while the app is in use.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +32,7 @@ type IOSSystemExtensionsWorkspace interface {
 	objectivec.IObject
 	AddObserverError(observer objectivec.IObject, error_ unsafe.Pointer) bool
 	RemoveObserver(observer objectivec.IObject)
-	SystemExtensionsForApplicationWithBundleIDError(bundleID appkit.string, out_error unsafe.Pointer) unsafe.Pointer
+	SystemExtensionsForApplicationWithBundleIDError(bundleID string, out_error unsafe.Pointer) unsafe.Pointer
 }
 
 //
@@ -100,8 +99,8 @@ func (o_ OSSystemExtensionsWorkspace) RemoveObserver(observer objectivec.IObject
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/systemExtensions(forApplicationWithBundleID:)
-func (o_ OSSystemExtensionsWorkspace) SystemExtensionsForApplicationWithBundleIDError(bundleID appkit.string, out_error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("systemExtensionsForApplicationWithBundleID:error:"), bundleID, out_error)
+func (o_ OSSystemExtensionsWorkspace) SystemExtensionsForApplicationWithBundleIDError(bundleID string, out_error unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("systemExtensionsForApplicationWithBundleID:error:"), objc.String(bundleID), out_error)
 	return rv
 }
 

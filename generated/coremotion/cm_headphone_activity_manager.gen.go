@@ -35,6 +35,18 @@ type IHeadphoneActivityManager interface {
 	StartStatusUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
 	StopActivityUpdates()
 	StopStatusUpdates()
+	ActivityActive() bool
+	ActivityAvailable() bool
+	StatusActive() bool
+	StatusAvailable() bool
+	IsActivityActive() bool
+	SetIsActivityActive(value bool)
+	IsActivityAvailable() bool
+	SetIsActivityAvailable(value bool)
+	IsStatusActive() bool
+	SetIsStatusActive(value bool)
+	IsStatusAvailable() bool
+	SetIsStatusAvailable(value bool)
 }
 
 // An object that starts and manages headphone activity services.

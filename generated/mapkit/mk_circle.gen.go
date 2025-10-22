@@ -29,6 +29,9 @@ type _MKCircleClass struct {
 // An interface definition for the [MKCircle] class.
 type IMKCircle interface {
 	IMKShape
+	BoundingMapRect() unsafe.Pointer
+	Coordinate() unsafe.Pointer
+	Radius() unsafe.Pointer
 }
 
 // A circular overlay with a configurable radius that you center on a geographic coordinate.

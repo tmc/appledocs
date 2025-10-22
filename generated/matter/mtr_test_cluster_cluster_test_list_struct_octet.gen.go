@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTestListStructOctetClass struct {
 // An interface definition for the [MTRTestClusterClusterTestListStructOctet] class.
 type IMTRTestClusterClusterTestListStructOctet interface {
 	IMTRUnitTestingClusterTestListStructOctet
+	Member1() foundation.Number
+	SetMember1(value foundation.INumber)
+	Member2() foundation.Data
+	SetMember2(value foundation.IData)
 }
 
 //

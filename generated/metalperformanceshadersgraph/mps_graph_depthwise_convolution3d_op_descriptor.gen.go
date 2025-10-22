@@ -30,6 +30,16 @@ type _GraphDepthwiseConvolution3DOpDescriptorClass struct {
 // An interface definition for the [GraphDepthwiseConvolution3DOpDescriptor] class.
 type IGraphDepthwiseConvolution3DOpDescriptor interface {
 	IGraphObject
+	ChannelDimensionIndex() int
+	SetChannelDimensionIndex(value int)
+	DilationRates() foundation.Number
+	SetDilationRates(value foundation.INumber)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	PaddingValues() foundation.Number
+	SetPaddingValues(value foundation.INumber)
+	Strides() foundation.Number
+	SetStrides(value foundation.INumber)
 }
 
 // The class that defines the parameters for a 3D-depthwise convolution operation.

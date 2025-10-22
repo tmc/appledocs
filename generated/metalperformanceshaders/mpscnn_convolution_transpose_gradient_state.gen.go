@@ -30,6 +30,7 @@ type _CNNConvolutionTransposeGradientStateClass struct {
 // An interface definition for the [CNNConvolutionTransposeGradientState] class.
 type ICNNConvolutionTransposeGradientState interface {
 	objectivec.IObject
+	ConvolutionTranspose() unsafe.Pointer
 }
 
 //

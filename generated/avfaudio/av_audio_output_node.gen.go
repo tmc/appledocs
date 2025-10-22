@@ -30,6 +30,10 @@ type _AudioOutputNodeClass struct {
 // An interface definition for the [AudioOutputNode] class.
 type IAudioOutputNode interface {
 	IAudioIONode
+	ManualRenderingFormat() AVAudioFormat
+	SetManualRenderingFormat(value AVAudioFormat)
+	IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience
+	SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience)
 }
 
 // An object that connects to the system’s audio output.

@@ -30,6 +30,40 @@ type _AssetReaderTrackOutputClass struct {
 // An interface definition for the [AssetReaderTrackOutput] class.
 type IAssetReaderTrackOutput interface {
 	IAssetReaderOutput
+	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm
+	SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm)
+	OutputSettings() string
+	SetOutputSettings(value string)
+	Track() AVAssetTrack
+	SetTrack(value IAVAssetTrack)
+	AVVideoCleanApertureKey() string
+	AVVideoPixelAspectRatioKey() string
+	AVVideoScalingModeKey() string
+	AVFormatIDKey() string
+	AVSampleRateConverterAudioQualityKey() string
+	KAudioFormatLinearPCM() unsafe.Pointer
+	SetKAudioFormatLinearPCM(value unsafe.Pointer)
+	KCMFormatDescriptionExtension_Depth() foundation.String
+	KCVPixelBufferHeightKey() foundation.String
+	KCVPixelBufferWidthKey() foundation.String
+	KCVPixelFormatType_32ARGB() unsafe.Pointer
+	SetKCVPixelFormatType_32ARGB(value unsafe.Pointer)
+	KCVPixelFormatType_32BGRA() unsafe.Pointer
+	SetKCVPixelFormatType_32BGRA(value unsafe.Pointer)
+	KCVPixelFormatType_420YpCbCr8BiPlanarFullRange() unsafe.Pointer
+	SetKCVPixelFormatType_420YpCbCr8BiPlanarFullRange(value unsafe.Pointer)
+	KCVPixelFormatType_420YpCbCr8BiPlanarVideoRange() unsafe.Pointer
+	SetKCVPixelFormatType_420YpCbCr8BiPlanarVideoRange(value unsafe.Pointer)
+	KCVPixelFormatType_422YpCbCr10() unsafe.Pointer
+	SetKCVPixelFormatType_422YpCbCr10(value unsafe.Pointer)
+	KCVPixelFormatType_422YpCbCr16() unsafe.Pointer
+	SetKCVPixelFormatType_422YpCbCr16(value unsafe.Pointer)
+	KCVPixelFormatType_422YpCbCr8() unsafe.Pointer
+	SetKCVPixelFormatType_422YpCbCr8(value unsafe.Pointer)
+	KCVPixelFormatType_4444AYpCbCr16() unsafe.Pointer
+	SetKCVPixelFormatType_4444AYpCbCr16(value unsafe.Pointer)
+	KCVPixelFormatType_64ARGB() unsafe.Pointer
+	SetKCVPixelFormatType_64ARGB(value unsafe.Pointer)
 }
 
 // An object that reads media data from a single track of an asset.

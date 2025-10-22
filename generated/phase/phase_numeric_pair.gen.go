@@ -30,6 +30,14 @@ type _PHASENumericPairClass struct {
 // An interface definition for the [PHASENumericPair] class.
 type IPHASENumericPair interface {
 	objectivec.IObject
+	First() float64
+	SetFirst(value float64)
+	Second() float64
+	SetSecond(value float64)
+	Domain() PHASENumericPair
+	SetDomain(value IPHASENumericPair)
+	Range() PHASENumericPair
+	SetRange(value IPHASENumericPair)
 }
 
 // An ordered pair that defines a bounding box for an envelope.
@@ -85,7 +93,7 @@ func NewPHASENumericPair() PHASENumericPair {
 // Creates a pair of numbers with the given values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/init(firstValue:secondValue:)
-func NewPHASENumericPairWithFirstValueSecondValue(first unsafe.Pointer, second unsafe.Pointer) PHASENumericPair {
+func NewPHASENumericPairWithFirstValueSecondValue(first float64, second float64) PHASENumericPair {
 	instance := getPHASENumericPairClass().Alloc()
 	rv := objc.Send[PHASENumericPair](instance.ID, objc.Sel("initWithFirstValue:secondValue:"), first, second)
 	rv.Autorelease()
@@ -96,8 +104,8 @@ func NewPHASENumericPairWithFirstValueSecondValue(first unsafe.Pointer, second u
 // The first value in the pair.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/first
-func (p_ PHASENumericPair) First() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("first"))
+func (p_ PHASENumericPair) First() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("first"))
 	return rv
 }
 
@@ -107,15 +115,15 @@ func (p_ PHASENumericPair) First() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/first
-func (p_ PHASENumericPair) SetFirst(value unsafe.Pointer) {
+func (p_ PHASENumericPair) SetFirst(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFirst:"), value)
 }
 
 // The second value in the pair.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/second
-func (p_ PHASENumericPair) Second() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("second"))
+func (p_ PHASENumericPair) Second() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("second"))
 	return rv
 }
 
@@ -125,7 +133,7 @@ func (p_ PHASENumericPair) Second() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/second
-func (p_ PHASENumericPair) SetSecond(value unsafe.Pointer) {
+func (p_ PHASENumericPair) SetSecond(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSecond:"), value)
 }
 

@@ -32,6 +32,12 @@ type IKeyedUnarchiver interface {
 	DecodeBoolForKey(key string) bool
 	DecodeIntForKey(key string) int
 	DecodeObjectForKey(key string) objc.ID
+	DecodingFailurePolicy() unsafe.Pointer
+	SetDecodingFailurePolicy(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	RequiresSecureCoding() bool
+	SetRequiresSecureCoding(value bool)
 }
 
 // A decoder that restores data from an archive referenced by keys.

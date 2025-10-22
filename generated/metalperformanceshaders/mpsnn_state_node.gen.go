@@ -30,6 +30,22 @@ type _StateNodeClass struct {
 // An interface definition for the [StateNode] class.
 type IStateNode interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	PaddingPolicy() unsafe.Pointer
+	SetPaddingPolicy(value unsafe.Pointer)
+	ResultImage() MPSNNImageNode
+	SetResultImage(value IMPSNNImageNode)
+	ResultState() MPSNNStateNode
+	SetResultState(value IMPSNNStateNode)
+	ResultStates() MPSNNStateNode
+	SetResultStates(value IMPSNNStateNode)
+	ExportFromGraph() bool
+	SetExportFromGraph(value bool)
+	Handle() unsafe.Pointer
+	SetHandle(value unsafe.Pointer)
+	SynchronizeResource() bool
+	SetSynchronizeResource(value bool)
 }
 
 // A placeholder node denoting the position in the graph of a state object.
@@ -80,8 +96,8 @@ func NewStateNode() StateNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (s_ StateNode) Label() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("label"))
+func (s_ StateNode) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -89,8 +105,8 @@ func (s_ StateNode) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (s_ StateNode) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
+func (s_ StateNode) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

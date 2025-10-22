@@ -31,6 +31,22 @@ type _MTRUnitTestingClusterTestStructArrayArgumentRequestParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestStructArrayArgumentRequestParams] class.
 type IMTRUnitTestingClusterTestStructArrayArgumentRequestParams interface {
 	objectivec.IObject
+	Arg1() unsafe.Pointer
+	SetArg1(value unsafe.Pointer)
+	Arg2() unsafe.Pointer
+	SetArg2(value unsafe.Pointer)
+	Arg3() unsafe.Pointer
+	SetArg3(value unsafe.Pointer)
+	Arg4() unsafe.Pointer
+	SetArg4(value unsafe.Pointer)
+	Arg5() foundation.Number
+	SetArg5(value foundation.INumber)
+	Arg6() foundation.Number
+	SetArg6(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

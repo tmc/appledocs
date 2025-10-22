@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,10 +33,10 @@ type IRightStore interface {
 	objectivec.IObject
 	RemoveAllRightsWithCompletion(handler unsafe.Pointer)
 	RemoveRightCompletion(right ILAPersistedRight, handler unsafe.Pointer)
-	RemoveRightForIdentifierCompletion(identifier appkit.string, handler unsafe.Pointer)
-	RightForIdentifierCompletion(identifier appkit.string, handler unsafe.Pointer)
-	SaveRightIdentifierCompletion(right ILARight, identifier appkit.string, handler unsafe.Pointer)
-	SaveRightIdentifierSecretCompletion(right ILARight, identifier appkit.string, secret foundation.IData, handler unsafe.Pointer)
+	RemoveRightForIdentifierCompletion(identifier string, handler unsafe.Pointer)
+	RightForIdentifierCompletion(identifier string, handler unsafe.Pointer)
+	SaveRightIdentifierCompletion(right ILARight, identifier string, handler unsafe.Pointer)
+	SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.IData, handler unsafe.Pointer)
 }
 
 // A container for data protected by a right.
@@ -112,29 +111,29 @@ func (r_ RightStore) RemoveRightCompletion(right ILAPersistedRight, handler unsa
 // Removes a right from the right store given its unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/removeRight(forIdentifier:completion:)
-func (r_ RightStore) RemoveRightForIdentifierCompletion(identifier appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("removeRightForIdentifier:completion:"), identifier, handler)
+func (r_ RightStore) RemoveRightForIdentifierCompletion(identifier string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("removeRightForIdentifier:completion:"), objc.String(identifier), handler)
 }
 
 // Fetches a previously stored right from the shared right store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/right(forIdentifier:completion:)
-func (r_ RightStore) RightForIdentifierCompletion(identifier appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("rightForIdentifier:completion:"), identifier, handler)
+func (r_ RightStore) RightForIdentifierCompletion(identifier string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("rightForIdentifier:completion:"), objc.String(identifier), handler)
 }
 
 // Saves a right to a persistent right store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:completion:)
-func (r_ RightStore) SaveRightIdentifierCompletion(right ILARight, identifier appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:completion:"), right, identifier, handler)
+func (r_ RightStore) SaveRightIdentifierCompletion(right ILARight, identifier string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:completion:"), right, objc.String(identifier), handler)
 }
 
 // Saves a right to a persistent store along with secret data you supply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)
-func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identifier appkit.string, secret foundation.IData, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:secret:completion:"), right, identifier, secret, handler)
+func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.IData, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:secret:completion:"), right, objc.String(identifier), secret, handler)
 }
 
 // A shared object that stores rights.

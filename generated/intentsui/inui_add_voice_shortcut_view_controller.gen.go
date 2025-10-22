@@ -30,6 +30,8 @@ type _INUIAddVoiceShortcutViewControllerClass struct {
 // An interface definition for the [INUIAddVoiceShortcutViewController] class.
 type IINUIAddVoiceShortcutViewController interface {
 	appkit.IViewController
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A view controller that guides the user through the steps for adding a shortcut to Siri.

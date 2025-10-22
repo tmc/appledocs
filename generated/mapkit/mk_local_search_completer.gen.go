@@ -30,6 +30,25 @@ type _MKLocalSearchCompleterClass struct {
 // An interface definition for the [MKLocalSearchCompleter] class.
 type IMKLocalSearchCompleter interface {
 	objectivec.IObject
+	FilterType() unsafe.Pointer
+	SetFilterType(value unsafe.Pointer)
+	Results() []MKLocalSearchCompletion
+	AddressFilter() unsafe.Pointer
+	SetAddressFilter(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsSearching() bool
+	SetIsSearching(value bool)
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	QueryFragment() string
+	SetQueryFragment(value string)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
+	RegionPriority() unsafe.Pointer
+	SetRegionPriority(value unsafe.Pointer)
+	ResultTypes() unsafe.Pointer
+	SetResultTypes(value unsafe.Pointer)
 }
 
 // A utility object for generating a list of completion strings based on a partial search string that you provide.
@@ -181,8 +200,8 @@ func (m_ MKLocalSearchCompleter) SetPointOfInterestFilter(value IMKPointOfIntere
 // The search string that you want completions for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
-func (m_ MKLocalSearchCompleter) QueryFragment() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("queryFragment"))
+func (m_ MKLocalSearchCompleter) QueryFragment() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("queryFragment"))
 	return rv
 }
 
@@ -192,8 +211,8 @@ func (m_ MKLocalSearchCompleter) QueryFragment() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
-func (m_ MKLocalSearchCompleter) SetQueryFragment(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), value)
+func (m_ MKLocalSearchCompleter) SetQueryFragment(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), objc.String(value))
 }
 
 // The region that defines the geographic scope of the search.

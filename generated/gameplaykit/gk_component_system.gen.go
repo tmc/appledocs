@@ -38,6 +38,8 @@ type IComponentSystem interface {
 	RemoveComponentWithEntity(entity IGKEntity)
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
 	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
+	ComponentClass() objc.Class
+	Components() []Component
 }
 
 // Manages periodic update messages for all component objects of a specified class.

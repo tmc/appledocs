@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,8 @@ type _CNSaveRequestClass struct {
 // An interface definition for the [CNSaveRequest] class.
 type ICNSaveRequest interface {
 	objectivec.IObject
-	AddGroupToContainerWithIdentifier(group ICNMutableGroup, identifier appkit.string)
-	AddContactToContainerWithIdentifier(contact ICNMutableContact, identifier appkit.string)
+	AddGroupToContainerWithIdentifier(group ICNMutableGroup, identifier string)
+	AddContactToContainerWithIdentifier(contact ICNMutableContact, identifier string)
 	AddMemberToGroup(contact ICNContact, group ICNGroup)
 	AddSubgroupToGroup(subgroup ICNGroup, group ICNGroup)
 	DeleteGroup(group ICNMutableGroup)
@@ -41,6 +40,11 @@ type ICNSaveRequest interface {
 	RemoveSubgroupFromGroup(subgroup ICNGroup, group ICNGroup)
 	UpdateContact(contact ICNMutableContact)
 	UpdateGroup(group ICNMutableGroup)
+	ShouldRefetchContacts() bool
+	SetShouldRefetchContacts(value bool)
+	TransactionAuthor() string
+	SetTransactionAuthor(value string)
+	CNErrorUserInfoAffectedRecordsKey() string
 }
 
 // An object that collects the changes you want to save to the user’s contacts database.
@@ -94,15 +98,15 @@ func NewCNSaveRequest() CNSaveRequest {
 // Adds a group to the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/add(_:toContainerWithIdentifier:)-4ikaa
-func (c_ CNSaveRequest) AddGroupToContainerWithIdentifier(group ICNMutableGroup, identifier appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addGroup:toContainerWithIdentifier:"), group, identifier)
+func (c_ CNSaveRequest) AddGroupToContainerWithIdentifier(group ICNMutableGroup, identifier string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addGroup:toContainerWithIdentifier:"), group, objc.String(identifier))
 }
 
 // Adds the specified contact to the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/add(_:toContainerWithIdentifier:)-7eut4
-func (c_ CNSaveRequest) AddContactToContainerWithIdentifier(contact ICNMutableContact, identifier appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addContact:toContainerWithIdentifier:"), contact, identifier)
+func (c_ CNSaveRequest) AddContactToContainerWithIdentifier(contact ICNMutableContact, identifier string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addContact:toContainerWithIdentifier:"), contact, objc.String(identifier))
 }
 
 // Adds a contact as a member of a group.
@@ -182,8 +186,8 @@ func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool) {
 // A string that identifies the author of the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
-func (c_ CNSaveRequest) TransactionAuthor() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("transactionAuthor"))
+func (c_ CNSaveRequest) TransactionAuthor() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -193,15 +197,15 @@ func (c_ CNSaveRequest) TransactionAuthor() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
-func (c_ CNSaveRequest) SetTransactionAuthor(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), value)
+func (c_ CNSaveRequest) SetTransactionAuthor(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
 }
 
 // The contact, group, and container objects for which the error code applies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey
-func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
+func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
 	return rv
 }
 

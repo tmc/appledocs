@@ -30,6 +30,7 @@ type _MIDINetworkConnectionClass struct {
 // An interface definition for the [MIDINetworkConnection] class.
 type IMIDINetworkConnection interface {
 	objectivec.IObject
+	Host() MIDINetworkHost
 }
 
 // An object that connects a session to a host.

@@ -29,6 +29,12 @@ type _HKCDADocumentSampleClass struct {
 // An interface definition for the [HKCDADocumentSample] class.
 type IHKCDADocumentSample interface {
 	IHKDocumentSample
+	Document() unsafe.Pointer
+	HKDetailedCDAValidationErrorKey() string
+	HKPredicateKeyPathCDAAuthorName() string
+	HKPredicateKeyPathCDACustodianName() string
+	HKPredicateKeyPathCDAPatientName() string
+	HKPredicateKeyPathCDATitle() string
 }
 
 // A Clinical Document Architecture (CDA) sample that stores a single document.
@@ -92,40 +98,40 @@ func (h_ HKCDADocumentSample) Document() unsafe.Pointer {
 // A key for accessing validation error information from an error object’s user information dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey
-func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKDetailedCDAValidationErrorKey"))
+func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKDetailedCDAValidationErrorKey"))
 	return rv
 }
 
 // The key path for accessing the author’s name inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdaauthorname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCDAAuthorName"))
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAAuthorName"))
 	return rv
 }
 
 // The key path for accessing the custodian’s name inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdacustodianname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCDACustodianName"))
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDACustodianName"))
 	return rv
 }
 
 // The key path for accessing the patient’s name inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCDAPatientName"))
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAPatientName"))
 	return rv
 }
 
 // The key path for accessing the document’s title inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCDATitle"))
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDATitle"))
 	return rv
 }
 

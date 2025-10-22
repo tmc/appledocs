@@ -30,6 +30,18 @@ type _ImageNodeClass struct {
 // An interface definition for the [ImageNode] class.
 type IImageNode interface {
 	objectivec.IObject
+	ExportFromGraph() bool
+	SetExportFromGraph(value bool)
+	Format() unsafe.Pointer
+	SetFormat(value unsafe.Pointer)
+	Handle() unsafe.Pointer
+	SetHandle(value unsafe.Pointer)
+	ImageAllocator() unsafe.Pointer
+	SetImageAllocator(value unsafe.Pointer)
+	StopGradient() bool
+	SetStopGradient(value bool)
+	SynchronizeResource() bool
+	SetSynchronizeResource(value bool)
 }
 
 // A placeholder node denoting the position of a neural network image in a graph.

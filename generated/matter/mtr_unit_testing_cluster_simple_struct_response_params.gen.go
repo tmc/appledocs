@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterSimpleStructResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterSimpleStructResponseParams] class.
 type IMTRUnitTestingClusterSimpleStructResponseParams interface {
 	objectivec.IObject
+	Arg1() MTRUnitTestingClusterSimpleStruct
+	SetArg1(value IMTRUnitTestingClusterSimpleStruct)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

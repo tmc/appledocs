@@ -29,6 +29,10 @@ type _ChangeShuffleModeCommandEventClass struct {
 // An interface definition for the [ChangeShuffleModeCommandEvent] class.
 type IChangeShuffleModeCommandEvent interface {
 	IRemoteCommandEvent
+	PreservesShuffleMode() bool
+	SetPreservesShuffleMode(value bool)
+	ShuffleType() ShuffleType
+	SetShuffleType(value ShuffleType)
 }
 
 // An event requesting a change in the shuffle mode.

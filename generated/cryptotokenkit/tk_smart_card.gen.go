@@ -32,6 +32,24 @@ type ITKSmartCard interface {
 	objectivec.IObject
 	BeginSessionWithReply(reply unsafe.Pointer)
 	EndSession()
+	Context() objc.ID
+	SetContext(value objc.ID)
+	AllowedProtocols() unsafe.Pointer
+	SetAllowedProtocols(value unsafe.Pointer)
+	Cla() unsafe.Pointer
+	SetCla(value unsafe.Pointer)
+	CurrentProtocol() unsafe.Pointer
+	SetCurrentProtocol(value unsafe.Pointer)
+	IsSensitive() bool
+	SetIsSensitive(value bool)
+	IsValid() bool
+	SetIsValid(value bool)
+	Slot() TKSmartCardSlot
+	SetSlot(value ITKSmartCardSlot)
+	UseCommandChaining() bool
+	SetUseCommandChaining(value bool)
+	UseExtendedLength() bool
+	SetUseExtendedLength(value bool)
 }
 
 // A representation of a smart card.

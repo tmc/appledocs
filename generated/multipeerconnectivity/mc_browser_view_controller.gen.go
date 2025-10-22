@@ -30,6 +30,14 @@ type _MCBrowserViewControllerClass struct {
 // An interface definition for the [MCBrowserViewController] class.
 type IMCBrowserViewController interface {
 	appkit.IViewController
+	Browser() MCNearbyServiceBrowser
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MaximumNumberOfPeers() uint
+	SetMaximumNumberOfPeers(value uint)
+	MinimumNumberOfPeers() uint
+	SetMinimumNumberOfPeers(value uint)
+	Session() MCSession
 }
 
 // The class presents nearby devices to the user and enables the user to invite nearby devices to a session. To use this class in iOS or tvOS, call methods from the underlying class ( and for storyboards or and for nib-based views) to present and dismiss the view controller. In macOS, use the comparable methods and instead.
@@ -97,9 +105,9 @@ func NewMCBrowserViewControllerWithBrowserSession(browser IMCNearbyServiceBrowse
 // Initializes a browser view controller using the provided service type and session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/init(serviceType:session:)
-func NewMCBrowserViewControllerWithServiceTypeSession(serviceType appkit.string, session IMCSession) MCBrowserViewController {
+func NewMCBrowserViewControllerWithServiceTypeSession(serviceType string, session IMCSession) MCBrowserViewController {
 	instance := getMCBrowserViewControllerClass().Alloc()
-	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithServiceType:session:"), serviceType, session)
+	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithServiceType:session:"), objc.String(serviceType), session)
 	rv.Autorelease()
 	return rv
 }

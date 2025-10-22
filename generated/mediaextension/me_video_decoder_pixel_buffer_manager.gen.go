@@ -31,6 +31,8 @@ type _MEVideoDecoderPixelBufferManagerClass struct {
 type IMEVideoDecoderPixelBufferManager interface {
 	objectivec.IObject
 	RegisterCustomPixelFormat(customPixelFormat unsafe.Pointer)
+	PixelBufferAttributes() unsafe.Pointer
+	SetPixelBufferAttributes(value unsafe.Pointer)
 }
 
 // Describes pixel buffer requirements and creates new pixel buffers.

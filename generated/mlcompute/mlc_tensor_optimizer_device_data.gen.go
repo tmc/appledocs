@@ -31,6 +31,22 @@ type _CTensorOptimizerDeviceDataClass struct {
 // An interface definition for the [CTensorOptimizerDeviceData] class.
 type ICTensorOptimizerDeviceData interface {
 	objectivec.IObject
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	Descriptor() MLCTensorDescriptor
+	SetDescriptor(value IMLCTensorDescriptor)
+	Device() MLCDevice
+	SetDevice(value IMLCDevice)
+	HasValidNumerics() bool
+	SetHasValidNumerics(value bool)
+	Label() string
+	SetLabel(value string)
+	OptimizerData() MLCTensorData
+	SetOptimizerData(value IMLCTensorData)
+	OptimizerDeviceData() MLCTensorOptimizerDeviceData
+	SetOptimizerDeviceData(value IMLCTensorOptimizerDeviceData)
+	TensorID() int
+	SetTensorID(value int)
 }
 
 // An encapsulation of the device memory associated with a tensor that an optimizer uses.
@@ -154,8 +170,8 @@ func (c_ CTensorOptimizerDeviceData) SetHasValidNumerics(value bool) {
 // A string that identifes this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/label
-func (c_ CTensorOptimizerDeviceData) Label() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
+func (c_ CTensorOptimizerDeviceData) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -165,8 +181,8 @@ func (c_ CTensorOptimizerDeviceData) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/label
-func (c_ CTensorOptimizerDeviceData) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
+func (c_ CTensorOptimizerDeviceData) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // An array that contains optimizer buffers you specify when you create a tensor parameter.

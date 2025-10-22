@@ -31,6 +31,8 @@ type _EKRecurrenceEndClass struct {
 // An interface definition for the [EKRecurrenceEnd] class.
 type IEKRecurrenceEnd interface {
 	objectivec.IObject
+	EndDate() foundation.NSDate
+	OccurrenceCount() uint
 }
 
 // A class that defines the end of a recurrence rule.

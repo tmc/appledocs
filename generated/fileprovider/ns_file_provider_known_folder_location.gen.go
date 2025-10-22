@@ -31,6 +31,10 @@ type _FileProviderKnownFolderLocationClass struct {
 // An interface definition for the [FileProviderKnownFolderLocation] class.
 type IFileProviderKnownFolderLocation interface {
 	objectivec.IObject
+	DesktopLocation() NSFileProviderKnownFolderLocation
+	SetDesktopLocation(value IFileProviderKnownFolderLocation)
+	DocumentsLocation() NSFileProviderKnownFolderLocation
+	SetDocumentsLocation(value IFileProviderKnownFolderLocation)
 }
 
 //

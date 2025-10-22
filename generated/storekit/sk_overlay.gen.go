@@ -30,6 +30,9 @@ type _OverlayClass struct {
 // An interface definition for the [Overlay] class.
 type IOverlay interface {
 	objectivec.IObject
+	Configuration() SKOverlayConfiguration
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A class that displays an overlay you can use to recommend another app or an App Clip’s corresponding full app.

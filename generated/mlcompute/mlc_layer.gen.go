@@ -30,6 +30,14 @@ type _CLayerClass struct {
 // An interface definition for the [CLayer] class.
 type ICLayer interface {
 	objectivec.IObject
+	DeviceType() CDeviceType
+	SetDeviceType(value CDeviceType)
+	IsDebuggingEnabled() bool
+	SetIsDebuggingEnabled(value bool)
+	Label() string
+	SetLabel(value string)
+	LayerID() int
+	SetLayerID(value int)
 }
 
 // The base class for all framework layers.
@@ -119,8 +127,8 @@ func (c_ CLayer) SetIsDebuggingEnabled(value bool) {
 // A string that helps identify this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
-func (c_ CLayer) Label() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
+func (c_ CLayer) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -130,8 +138,8 @@ func (c_ CLayer) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
-func (c_ CLayer) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
+func (c_ CLayer) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // A unique number that identifies each layer.

@@ -31,6 +31,9 @@ type _MappingModelClass struct {
 // An interface definition for the [MappingModel] class.
 type IMappingModel interface {
 	objectivec.IObject
+	EntityMappingsByName() unsafe.Pointer
+	EntityMappings() NSEntityMapping
+	SetEntityMappings(value IEntityMapping)
 }
 
 // A model instance that specifies how to map a model from a source to a destination managed object model.

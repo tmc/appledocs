@@ -30,6 +30,13 @@ type _AudioChannelLayoutClass struct {
 // An interface definition for the [AudioChannelLayout] class.
 type IAudioChannelLayout interface {
 	objectivec.IObject
+	ChannelCount() AudioChannelCount
+	SetChannelCount(value IAudioChannelCount)
+	Layout() AudioChannelLayout
+	SetLayout(value IAudioChannelLayout)
+	LayoutTag() unsafe.Pointer
+	SetLayoutTag(value unsafe.Pointer)
+	AVChannelLayoutKey() string
 }
 
 // An object that describes the roles of a set of audio channels.
@@ -136,8 +143,8 @@ func (a_ AudioChannelLayout) SetLayoutTag(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
-func (a_ AudioChannelLayout) AVChannelLayoutKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVChannelLayoutKey"))
+func (a_ AudioChannelLayout) AVChannelLayoutKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
 	return rv
 }
 

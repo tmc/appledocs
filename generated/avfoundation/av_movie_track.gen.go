@@ -29,6 +29,14 @@ type _MovieTrackClass struct {
 // An interface definition for the [MovieTrack] class.
 type IMovieTrack interface {
 	IAssetTrack
+	AlternateGroupID() int
+	SetAlternateGroupID(value int)
+	MediaDataStorage() AVMediaDataStorage
+	SetMediaDataStorage(value IAVMediaDataStorage)
+	MediaDecodeTimeRange() unsafe.Pointer
+	SetMediaDecodeTimeRange(value unsafe.Pointer)
+	MediaPresentationTimeRange() unsafe.Pointer
+	SetMediaPresentationTimeRange(value unsafe.Pointer)
 }
 
 // A track in a movie that conforms to the QuickTime or ISO base media file format.

@@ -30,6 +30,8 @@ type _MTRBridgedDeviceBasicClusterStartUpEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicClusterStartUpEvent] class.
 type IMTRBridgedDeviceBasicClusterStartUpEvent interface {
 	IMTRBridgedDeviceBasicInformationClusterStartUpEvent
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
 }
 
 //

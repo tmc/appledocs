@@ -29,6 +29,15 @@ type _TrajectoryObservationClass struct {
 // An interface definition for the [TrajectoryObservation] class.
 type ITrajectoryObservation interface {
 	IObservation
+	MovingAverageRadius() float64
+	Results() VNTrajectoryObservation
+	SetResults(value IVNTrajectoryObservation)
+	DetectedPoints() VNPoint
+	SetDetectedPoints(value IVNPoint)
+	EquationCoefficients() unsafe.Pointer
+	SetEquationCoefficients(value unsafe.Pointer)
+	ProjectedPoints() VNPoint
+	SetProjectedPoints(value IVNPoint)
 }
 
 // An observation that describes a detected trajectory.

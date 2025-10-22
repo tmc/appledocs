@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _CoreMLModelClass struct {
 // An interface definition for the [CoreMLModel] class.
 type ICoreMLModel interface {
 	objectivec.IObject
+	FeatureProvider() objc.ID
+	SetFeatureProvider(value objc.ID)
+	InputImageFeatureName() string
+	SetInputImageFeatureName(value string)
+	Model() VNCoreMLModel
+	SetModel(value IVNCoreMLModel)
 }
 
 // A container for the model to use with Vision requests.
@@ -122,8 +127,8 @@ func (c_ CoreMLModel) SetFeatureProvider(value objc.ID) {
 // The name of the feature value that Vision sets from the request handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) InputImageFeatureName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("inputImageFeatureName"))
+func (c_ CoreMLModel) InputImageFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("inputImageFeatureName"))
 	return rv
 }
 
@@ -133,8 +138,8 @@ func (c_ CoreMLModel) InputImageFeatureName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) SetInputImageFeatureName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), value)
+func (c_ CoreMLModel) SetInputImageFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), objc.String(value))
 }
 
 // The model to base the image analysis request on.

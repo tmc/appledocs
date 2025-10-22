@@ -30,6 +30,9 @@ type _TimedMetadataGroupClass struct {
 // An interface definition for the [TimedMetadataGroup] class.
 type ITimedMetadataGroup interface {
 	objectivec.IObject
+	TimeRange() unsafe.Pointer
+	Items() AVMetadataItem
+	SetItems(value IAVMetadataItem)
 }
 
 // A collection of metadata items that are valid for use during a specific time range.

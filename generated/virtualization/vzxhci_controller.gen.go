@@ -29,6 +29,8 @@ type _VZXHCIControllerClass struct {
 // An interface definition for the [VZXHCIController] class.
 type IVZXHCIController interface {
 	IVZUSBController
+	UsbControllers() VZUSBControllerConfiguration
+	SetUsbControllers(value IVZUSBControllerConfiguration)
 }
 
 // A class that represents a USB Extensible Host Controller Interface (XHCI) controller in a VM.

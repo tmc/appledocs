@@ -29,6 +29,12 @@ type _GraphExecutableExecutionDescriptorClass struct {
 // An interface definition for the [GraphExecutableExecutionDescriptor] class.
 type IGraphExecutableExecutionDescriptor interface {
 	IGraphObject
+	CompletionHandler() unsafe.Pointer
+	SetCompletionHandler(value unsafe.Pointer)
+	ScheduledHandler() unsafe.Pointer
+	SetScheduledHandler(value unsafe.Pointer)
+	WaitUntilCompleted() bool
+	SetWaitUntilCompleted(value bool)
 }
 
 // A class that consists of all the levers to synchronize and schedule executable execution.

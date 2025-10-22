@@ -31,6 +31,12 @@ type _MTRDeviceTypeRevisionClass struct {
 // An interface definition for the [MTRDeviceTypeRevision] class.
 type IMTRDeviceTypeRevision interface {
 	objectivec.IObject
+	DeviceTypeID() foundation.Number
+	SetDeviceTypeID(value foundation.INumber)
+	DeviceTypeRevision() foundation.Number
+	SetDeviceTypeRevision(value foundation.INumber)
+	TypeInformation() MTRDeviceType
+	SetTypeInformation(value MTRDeviceType)
 }
 
 //

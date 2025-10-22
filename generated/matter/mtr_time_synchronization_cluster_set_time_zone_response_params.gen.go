@@ -31,6 +31,8 @@ type _MTRTimeSynchronizationClusterSetTimeZoneResponseParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetTimeZoneResponseParams] class.
 type IMTRTimeSynchronizationClusterSetTimeZoneResponseParams interface {
 	objectivec.IObject
+	DstOffsetRequired() foundation.Number
+	SetDstOffsetRequired(value foundation.INumber)
 }
 
 //

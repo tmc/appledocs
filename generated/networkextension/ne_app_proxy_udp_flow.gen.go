@@ -34,6 +34,8 @@ type INEAppProxyUDPFlow interface {
 	ReadDatagramsAndFlowEndpointsWithCompletionHandler(completionHandler unsafe.Pointer)
 	WriteDatagramsSentByEndpointsCompletionHandler(datagrams []foundation.IData, remoteEndpoints []NWEndpoint, completionHandler unsafe.Pointer)
 	WriteDatagramsSentByFlowEndpointsCompletionHandler(datagrams []foundation.IData, remoteEndpoints unsafe.Pointer, completionHandler unsafe.Pointer)
+	LocalEndpoint() NWEndpoint
+	LocalFlowEndpoint() unsafe.Pointer
 }
 
 // An object for reading and writing data to and from a UDP conversation being proxied by the provider.

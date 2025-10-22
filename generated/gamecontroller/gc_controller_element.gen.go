@@ -30,6 +30,24 @@ type _GCControllerElementClass struct {
 // An interface definition for the [GCControllerElement] class.
 type IGCControllerElement interface {
 	objectivec.IObject
+	Aliases() unsafe.Pointer
+	Analog() bool
+	Collection() GCControllerElement
+	SetCollection(value IGCControllerElement)
+	IsAnalog() bool
+	SetIsAnalog(value bool)
+	IsBoundToSystemGesture() bool
+	SetIsBoundToSystemGesture(value bool)
+	LocalizedName() string
+	SetLocalizedName(value string)
+	PreferredSystemGestureState() unsafe.Pointer
+	SetPreferredSystemGestureState(value unsafe.Pointer)
+	SfSymbolsName() string
+	SetSfSymbolsName(value string)
+	UnmappedLocalizedName() string
+	SetUnmappedLocalizedName(value string)
+	UnmappedSfSymbolsName() string
+	SetUnmappedSfSymbolsName(value string)
 }
 
 // An input for a physical control, such as a button or thumbstick.
@@ -153,8 +171,8 @@ func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool) {
 // The localized name for the element or the remapped element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/localizedname
-func (g_ GCControllerElement) LocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("localizedName"))
+func (g_ GCControllerElement) LocalizedName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -164,8 +182,8 @@ func (g_ GCControllerElement) LocalizedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/localizedname
-func (g_ GCControllerElement) SetLocalizedName(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLocalizedName:"), value)
+func (g_ GCControllerElement) SetLocalizedName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 
 // The preferred state for handling input when the user binds the element to a system gesture.
@@ -189,8 +207,8 @@ func (g_ GCControllerElement) SetPreferredSystemGestureState(value unsafe.Pointe
 // A system symbol for the element or the remapped element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
-func (g_ GCControllerElement) SfSymbolsName() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("sfSymbolsName"))
+func (g_ GCControllerElement) SfSymbolsName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("sfSymbolsName"))
 	return rv
 }
 
@@ -200,15 +218,15 @@ func (g_ GCControllerElement) SfSymbolsName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
-func (g_ GCControllerElement) SetSfSymbolsName(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), value)
+func (g_ GCControllerElement) SetSfSymbolsName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), objc.String(value))
 }
 
 // The element’s localized name, not the remapped name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedlocalizedname
-func (g_ GCControllerElement) UnmappedLocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("unmappedLocalizedName"))
+func (g_ GCControllerElement) UnmappedLocalizedName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("unmappedLocalizedName"))
 	return rv
 }
 
@@ -218,15 +236,15 @@ func (g_ GCControllerElement) UnmappedLocalizedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedlocalizedname
-func (g_ GCControllerElement) SetUnmappedLocalizedName(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedLocalizedName:"), value)
+func (g_ GCControllerElement) SetUnmappedLocalizedName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedLocalizedName:"), objc.String(value))
 }
 
 // The element’s system symbol, not the remapped symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
-func (g_ GCControllerElement) UnmappedSfSymbolsName() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("unmappedSfSymbolsName"))
+func (g_ GCControllerElement) UnmappedSfSymbolsName() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("unmappedSfSymbolsName"))
 	return rv
 }
 
@@ -236,8 +254,8 @@ func (g_ GCControllerElement) UnmappedSfSymbolsName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
-func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), value)
+func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), objc.String(value))
 }
 
 

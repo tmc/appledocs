@@ -33,6 +33,11 @@ type ICXAction interface {
 	objectivec.IObject
 	Fail()
 	Fulfill()
+	Complete() bool
+	TimeoutDate() foundation.NSDate
+	UUID() foundation.UUID
+	IsComplete() bool
+	SetIsComplete(value bool)
 }
 
 // An abstract class that declares a programmatic interface for objects that represent a telephony action.

@@ -30,6 +30,21 @@ type _UNNotificationSettingsClass struct {
 // An interface definition for the [UNNotificationSettings] class.
 type IUNNotificationSettings interface {
 	objectivec.IObject
+	AlertSetting() UNNotificationSetting
+	AlertStyle() UNAlertStyle
+	AnnouncementSetting() UNNotificationSetting
+	AuthorizationStatus() UNAuthorizationStatus
+	BadgeSetting() UNNotificationSetting
+	CarPlaySetting() UNNotificationSetting
+	CriticalAlertSetting() UNNotificationSetting
+	DirectMessagesSetting() UNNotificationSetting
+	LockScreenSetting() UNNotificationSetting
+	NotificationCenterSetting() UNNotificationSetting
+	ProvidesAppNotificationSettings() bool
+	ScheduledDeliverySetting() UNNotificationSetting
+	ShowPreviewsSetting() UNShowPreviewsSetting
+	SoundSetting() UNNotificationSetting
+	TimeSensitiveSetting() UNNotificationSetting
 }
 
 // The object for managing notification-related settings and the authorization status of your app.

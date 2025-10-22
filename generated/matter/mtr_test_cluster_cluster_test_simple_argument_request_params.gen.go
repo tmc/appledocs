@@ -30,6 +30,12 @@ type _MTRTestClusterClusterTestSimpleArgumentRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestSimpleArgumentRequestParams] class.
 type IMTRTestClusterClusterTestSimpleArgumentRequestParams interface {
 	IMTRUnitTestingClusterTestSimpleArgumentRequestParams
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

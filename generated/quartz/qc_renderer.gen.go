@@ -34,7 +34,7 @@ type _QCRendererClass struct {
 type IQCRenderer interface {
 	objectivec.IObject
 	Composition() QCComposition
-	CreateSnapshotImageOfType(type_ appkit.string) objc.ID
+	CreateSnapshotImageOfType(type_ string) objc.ID
 	RenderAtTimeArguments(time foundation.ITimeInterval, arguments objectivec.IObject) bool
 	RenderingTimeForTimeArguments(time foundation.ITimeInterval, arguments objectivec.IObject) foundation.TimeInterval
 	SnapshotImage() appkit.Image
@@ -129,9 +129,9 @@ func NewQCRendererWithCompositionColorSpace(composition IQCComposition, colorSpa
 // Creates a renderer object with an object and a composition file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/init(openGLContext:pixelFormat:file:)
-func NewQCRendererWithOpenGLContextPixelFormatFile(context appkit.IOpenGLContext, format appkit.OpenGLPixelFormat, path appkit.string) QCRenderer {
+func NewQCRendererWithOpenGLContextPixelFormatFile(context appkit.IOpenGLContext, format appkit.OpenGLPixelFormat, path string) QCRenderer {
 	instance := getQCRendererClass().Alloc()
-	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initWithOpenGLContext:pixelFormat:file:"), context, format, path)
+	rv := objc.Send[QCRenderer](instance.ID, objc.Sel("initWithOpenGLContext:pixelFormat:file:"), context, format, objc.String(path))
 	rv.Autorelease()
 	return rv
 }
@@ -148,8 +148,8 @@ func (q_ QCRenderer) Composition() QCComposition {
 // Returns the current image in the OpenGL context associated with the renderer, as an image object of the provided image type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCRenderer/createSnapshotImage(ofType:)
-func (q_ QCRenderer) CreateSnapshotImageOfType(type_ appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](q_.ID, objc.Sel("createSnapshotImageOfType:"), type_)
+func (q_ QCRenderer) CreateSnapshotImageOfType(type_ string) objc.ID {
+	rv := objc.Send[objc.ID](q_.ID, objc.Sel("createSnapshotImageOfType:"), objc.String(type_))
 	return rv
 }
 

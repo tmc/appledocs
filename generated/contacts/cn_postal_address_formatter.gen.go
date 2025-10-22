@@ -33,6 +33,18 @@ type ICNPostalAddressFormatter interface {
 	foundation.IFormatter
 	AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objectivec.IObject) foundation.AttributedString
 	StringFromPostalAddress(postalAddress ICNPostalAddress) foundation.String
+	Style() CNPostalAddressFormatterStyle
+	SetStyle(value CNPostalAddressFormatterStyle)
+	CNPostalAddressCityKey() string
+	CNPostalAddressCountryKey() string
+	CNPostalAddressISOCountryCodeKey() string
+	CNPostalAddressLocalizedPropertyNameAttribute() string
+	CNPostalAddressPostalCodeKey() string
+	CNPostalAddressPropertyAttribute() string
+	CNPostalAddressStateKey() string
+	CNPostalAddressStreetKey() string
+	CNPostalAddressSubAdministrativeAreaKey() string
+	CNPostalAddressSubLocalityKey() string
 }
 
 // An object that you use to format a contact’s postal addresses.
@@ -138,80 +150,80 @@ func (c_ CNPostalAddressFormatter) SetStyle(value CNPostalAddressFormatterStyle)
 // The city of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
 	return rv
 }
 
 // The country or region name of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
 	return rv
 }
 
 // The ISO country code of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressISOCountryCodeKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressISOCountryCodeKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
 	return rv
 }
 
 // An attribute that identifies the localized property of postal address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresslocalizedpropertynameattribute
-func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressLocalizedPropertyNameAttribute"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressLocalizedPropertyNameAttribute"))
 	return rv
 }
 
 // The postal code of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressPostalCodeKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressPostalCodeKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
 	return rv
 }
 
 // An attribute that identifies the purpose of a range of characters in an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute
-func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressPropertyAttribute"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPropertyAttribute"))
 	return rv
 }
 
 // The state name of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
 	return rv
 }
 
 // The street name of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey
-func (c_ CNPostalAddressFormatter) CNPostalAddressStreetKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressStreetKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
 	return rv
 }
 
 // The subadministrative area of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresssubadministrativeareakey
-func (c_ CNPostalAddressFormatter) CNPostalAddressSubAdministrativeAreaKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressSubAdministrativeAreaKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressSubAdministrativeAreaKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressSubAdministrativeAreaKey"))
 	return rv
 }
 
 // The sublocality of the address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresssublocalitykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNPostalAddressSubLocalityKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressSubLocalityKey"))
 	return rv
 }
 

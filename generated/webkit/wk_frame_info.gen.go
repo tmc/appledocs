@@ -31,6 +31,14 @@ type _FrameInfoClass struct {
 // An interface definition for the [FrameInfo] class.
 type IFrameInfo interface {
 	objectivec.IObject
+	MainFrame() bool
+	Request() foundation.URLRequest
+	IsMainFrame() bool
+	SetIsMainFrame(value bool)
+	SecurityOrigin() WKSecurityOrigin
+	SetSecurityOrigin(value IWKSecurityOrigin)
+	WebView() WKWebView
+	SetWebView(value IWKWebView)
 }
 
 // An object that contains information about a frame on a webpage.

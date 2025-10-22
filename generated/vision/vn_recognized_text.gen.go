@@ -30,6 +30,10 @@ type _RecognizedTextClass struct {
 // An interface definition for the [RecognizedText] class.
 type IRecognizedText interface {
 	objectivec.IObject
+	Confidence() Confidence
+	SetConfidence(value IConfidence)
+	String() string
+	SetString(value string)
 }
 
 // Text recognized in an image through a text recognition request.
@@ -101,8 +105,8 @@ func (r_ RecognizedText) SetConfidence(value IConfidence) {
 // The top candidate for recognized text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
-func (r_ RecognizedText) String() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("string"))
+func (r_ RecognizedText) String() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -112,8 +116,8 @@ func (r_ RecognizedText) String() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
-func (r_ RecognizedText) SetString(value appkit.string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setString:"), value)
+func (r_ RecognizedText) SetString(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 

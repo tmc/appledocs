@@ -30,6 +30,8 @@ type _CustomRoutingEventClass struct {
 // An interface definition for the [CustomRoutingEvent] class.
 type ICustomRoutingEvent interface {
 	objectivec.IObject
+	Reason() CustomRoutingEventReason
+	Route() AVCustomDeviceRoute
 }
 
 // An object that represents an event that occurs on a route.

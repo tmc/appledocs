@@ -30,6 +30,10 @@ type _MTRMediaPlaybackClusterPlaybackPositionClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterPlaybackPosition] class.
 type IMTRMediaPlaybackClusterPlaybackPosition interface {
 	IMTRMediaPlaybackClusterPlaybackPositionStruct
+	Position() foundation.Number
+	SetPosition(value foundation.INumber)
+	UpdatedAt() foundation.Number
+	SetUpdatedAt(value foundation.INumber)
 }
 
 //

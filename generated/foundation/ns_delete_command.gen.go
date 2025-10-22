@@ -30,6 +30,7 @@ type _DeleteCommandClass struct {
 type IDeleteCommand interface {
 	IScriptCommand
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
+	KeySpecifier() NSScriptObjectSpecifier
 }
 
 // A command that deletes a scriptable object.

@@ -31,6 +31,16 @@ type _CNNConvolutionTransposeGradientClass struct {
 type ICNNConvolutionTransposeGradient interface {
 	objectivec.IObject
 	ReloadWeightsAndBiasesFromDataSource()
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	GradientOption() unsafe.Pointer
+	SetGradientOption(value unsafe.Pointer)
+	Groups() int
+	SetGroups(value int)
+	SourceGradientFeatureChannels() int
+	SetSourceGradientFeatureChannels(value int)
+	SourceImageFeatureChannels() int
+	SetSourceImageFeatureChannels(value int)
 }
 
 //

@@ -29,6 +29,12 @@ type _VZBridgedNetworkDeviceAttachmentClass struct {
 // An interface definition for the [VZBridgedNetworkDeviceAttachment] class.
 type IVZBridgedNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
+	Interface() VZBridgedNetworkInterface
+	SetInterface(value IVZBridgedNetworkInterface)
+	Attachment() VZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	NetworkDevices() VZNetworkDeviceConfiguration
+	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
 }
 
 // A network device that interacts directly with a physical network interface on the host computer.

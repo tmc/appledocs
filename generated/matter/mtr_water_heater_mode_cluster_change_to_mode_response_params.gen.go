@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _MTRWaterHeaterModeClusterChangeToModeResponseParamsClass struct {
 // An interface definition for the [MTRWaterHeaterModeClusterChangeToModeResponseParams] class.
 type IMTRWaterHeaterModeClusterChangeToModeResponseParams interface {
 	objectivec.IObject
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	StatusText() string
+	SetStatusText(value string)
 }
 
 //
@@ -107,8 +110,8 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatus(value fo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeResponseParams/statusText
-func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) StatusText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("statusText"))
+func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) StatusText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
@@ -116,8 +119,8 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) StatusText() appki
 // SetStatusText sets the value of the statusText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeResponseParams/statusText
-func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatusText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
+func (m_ MTRWaterHeaterModeClusterChangeToModeResponseParams) SetStatusText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
 
 

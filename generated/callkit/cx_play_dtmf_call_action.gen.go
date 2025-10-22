@@ -30,6 +30,10 @@ type _CXPlayDTMFCallActionClass struct {
 // An interface definition for the [CXPlayDTMFCallAction] class.
 type ICXPlayDTMFCallAction interface {
 	ICXCallAction
+	Digits() string
+	SetDigits(value string)
+	Type() CXPlayDTMFCallActionType
+	SetType(value CXPlayDTMFCallActionType)
 }
 
 // An encapsulation of the act of playing a dual tone multifrequency (DTMF) sequence.

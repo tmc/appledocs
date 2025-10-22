@@ -29,6 +29,17 @@ type _ComparisonPredicateClass struct {
 // An interface definition for the [ComparisonPredicate] class.
 type IComparisonPredicate interface {
 	IPredicate
+	RightExpression() NSExpression
+	ComparisonPredicateModifier() unsafe.Pointer
+	SetComparisonPredicateModifier(value unsafe.Pointer)
+	CustomSelector() unsafe.Pointer
+	SetCustomSelector(value unsafe.Pointer)
+	LeftExpression() NSExpression
+	SetLeftExpression(value IExpression)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
+	PredicateOperatorType() unsafe.Pointer
+	SetPredicateOperatorType(value unsafe.Pointer)
 }
 
 // A specialized predicate for comparing expressions.

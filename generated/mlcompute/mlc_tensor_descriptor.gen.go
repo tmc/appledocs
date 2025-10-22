@@ -30,6 +30,22 @@ type _CTensorDescriptorClass struct {
 // An interface definition for the [CTensorDescriptor] class.
 type ICTensorDescriptor interface {
 	objectivec.IObject
+	BatchSizePerSequenceStep() int
+	SetBatchSizePerSequenceStep(value int)
+	DataType() CDataType
+	SetDataType(value CDataType)
+	DimensionCount() int
+	SetDimensionCount(value int)
+	SequenceLengths() int
+	SetSequenceLengths(value int)
+	Shape() int
+	SetShape(value int)
+	SortedSequences() bool
+	SetSortedSequences(value bool)
+	Stride() int
+	SetStride(value int)
+	TensorAllocationSizeInBytes() int
+	SetTensorAllocationSizeInBytes(value int)
 }
 
 // A configuration object you use to create a tensor.

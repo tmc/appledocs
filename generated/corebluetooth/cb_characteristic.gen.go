@@ -30,6 +30,12 @@ type _CBCharacteristicClass struct {
 // An interface definition for the [CBCharacteristic] class.
 type ICBCharacteristic interface {
 	ICBAttribute
+	Descriptors() []CBDescriptor
+	IsBroadcasted() bool
+	IsNotifying() bool
+	Properties() CBCharacteristicProperties
+	Service() CBService
+	Value() foundation.NSData
 }
 
 // A characteristic of a remote peripheral’s service.

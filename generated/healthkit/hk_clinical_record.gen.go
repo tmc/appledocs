@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,13 @@ type _HKClinicalRecordClass struct {
 // An interface definition for the [HKClinicalRecord] class.
 type IHKClinicalRecord interface {
 	IHKSample
+	ClinicalType() HKClinicalType
+	DisplayName() string
+	FHIRResource() HKFHIRResource
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
 }
 
 // A sample that stores a clinical record.
@@ -94,8 +100,8 @@ func (h_ HKClinicalRecord) ClinicalType() HKClinicalType {
 // The primary display name as shown in the Health app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/displayName
-func (h_ HKClinicalRecord) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("displayName"))
+func (h_ HKClinicalRecord) DisplayName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("displayName"))
 	return rv
 }
 

@@ -42,6 +42,16 @@ type INetService interface {
 	Stop()
 	StopMonitoring()
 	TXTRecordData() Data
+	Addresses() []Data
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Domain() string
+	HostName() string
+	IncludesPeerToPeer() bool
+	SetIncludesPeerToPeer(value bool)
+	Name() string
+	Port() int
+	Type() string
 }
 
 // A network service that broadcasts its availability using multicast DNS.

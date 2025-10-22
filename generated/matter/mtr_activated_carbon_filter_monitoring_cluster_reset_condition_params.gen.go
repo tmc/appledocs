@@ -31,6 +31,10 @@ type _MTRActivatedCarbonFilterMonitoringClusterResetConditionParamsClass struct 
 // An interface definition for the [MTRActivatedCarbonFilterMonitoringClusterResetConditionParams] class.
 type IMTRActivatedCarbonFilterMonitoringClusterResetConditionParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

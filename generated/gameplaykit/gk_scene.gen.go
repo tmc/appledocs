@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +31,13 @@ type _SceneClass struct {
 type IScene interface {
 	objectivec.IObject
 	AddEntity(entity IGKEntity)
-	AddGraphName(graph IGKGraph, name appkit.string)
+	AddGraphName(graph IGKGraph, name string)
 	RemoveEntity(entity IGKEntity)
-	RemoveGraph(name appkit.string)
+	RemoveGraph(name string)
+	Entities() []Entity
+	Graphs() unsafe.Pointer
+	RootNode() objc.ID
+	SetRootNode(value objc.ID)
 }
 
 // A container for associating GameplayKit objects with a SpriteKit scene.
@@ -90,15 +93,15 @@ func NewScene() Scene {
 // Loads the specified SpriteKit scene file, creating a object containing the SpriteKit scene and associated GameplayKit objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
-func NewSceneWithFileNamed(filename appkit.string) Scene {
-	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:"), filename)
+func NewSceneWithFileNamed(filename string) Scene {
+	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:"), objc.String(filename))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:rootNode:)
-func NewSceneWithFileNamedRootNode(filename appkit.string, rootNode objectivec.IObject) Scene {
-	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:rootNode:"), filename, rootNode)
+func NewSceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject) Scene {
+	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:rootNode:"), objc.String(filename), rootNode)
 	return rv
 }
 
@@ -106,15 +109,15 @@ func NewSceneWithFileNamedRootNode(filename appkit.string, rootNode objectivec.I
 // Loads the specified SpriteKit scene file, creating a object containing the SpriteKit scene and associated GameplayKit objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
-func (sc _SceneClass) SceneWithFileNamed(filename appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:"), filename)
+func (sc _SceneClass) SceneWithFileNamed(filename string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:"), objc.String(filename))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:rootNode:)
-func (sc _SceneClass) SceneWithFileNamedRootNode(filename appkit.string, rootNode objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:rootNode:"), filename, rootNode)
+func (sc _SceneClass) SceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:rootNode:"), objc.String(filename), rootNode)
 	return rv
 }
 
@@ -127,8 +130,8 @@ func (s_ Scene) AddEntity(entity IGKEntity) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/addGraph(_:name:)
-func (s_ Scene) AddGraphName(graph IGKGraph, name appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("addGraph:name:"), graph, name)
+func (s_ Scene) AddGraphName(graph IGKGraph, name string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("addGraph:name:"), graph, objc.String(name))
 }
 
 // Removes a GameplayKit entity from the list of entities managed by the scene.
@@ -141,8 +144,8 @@ func (s_ Scene) RemoveEntity(entity IGKEntity) {
 // Removes a pathfinding graph from the list of graphs managed by the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/removeGraph(_:)
-func (s_ Scene) RemoveGraph(name appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("removeGraph:"), name)
+func (s_ Scene) RemoveGraph(name string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("removeGraph:"), objc.String(name))
 }
 
 // The list of GameplayKit entities managed by the scene.

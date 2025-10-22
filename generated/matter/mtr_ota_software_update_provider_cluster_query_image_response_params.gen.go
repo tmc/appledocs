@@ -30,6 +30,24 @@ type _MTROtaSoftwareUpdateProviderClusterQueryImageResponseParamsClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams] class.
 type IMTROtaSoftwareUpdateProviderClusterQueryImageResponseParams interface {
 	IMTROTASoftwareUpdateProviderClusterQueryImageResponseParams
+	DelayedActionTime() foundation.Number
+	SetDelayedActionTime(value foundation.INumber)
+	ImageURI() string
+	SetImageURI(value string)
+	MetadataForRequestor() foundation.Data
+	SetMetadataForRequestor(value foundation.IData)
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
+	SoftwareVersionString() string
+	SetSoftwareVersionString(value string)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UpdateToken() foundation.Data
+	SetUpdateToken(value foundation.IData)
+	UserConsentNeeded() foundation.Number
+	SetUserConsentNeeded(value foundation.INumber)
 }
 
 //
@@ -94,8 +112,8 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SetDelayed
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-48oao/imageuri
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) ImageURI() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("imageURI"))
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) ImageURI() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("imageURI"))
 	return rv
 }
 
@@ -103,8 +121,8 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) ImageURI()
 // SetImageURI sets the value of the imageURI property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-48oao/imageuri
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SetImageURI(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImageURI:"), value)
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SetImageURI(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageURI:"), objc.String(value))
 }
 
 //
@@ -139,8 +157,8 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwar
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-48oao/softwareversionstring
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersionString() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("softwareVersionString"))
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersionString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
 	return rv
 }
 
@@ -148,8 +166,8 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVe
 // SetSoftwareVersionString sets the value of the softwareVersionString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-48oao/softwareversionstring
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersionString(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), value)
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersionString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
 }
 
 //

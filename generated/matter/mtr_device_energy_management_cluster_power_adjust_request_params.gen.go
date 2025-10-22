@@ -31,6 +31,16 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustRequestParams] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustRequestParams interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	Power() foundation.Number
+	SetPower(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

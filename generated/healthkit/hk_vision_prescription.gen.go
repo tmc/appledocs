@@ -30,6 +30,12 @@ type _HKVisionPrescriptionClass struct {
 // An interface definition for the [HKVisionPrescription] class.
 type IHKVisionPrescription interface {
 	IHKSample
+	DateIssued() foundation.Date
+	SetDateIssued(value foundation.IDate)
+	ExpirationDate() foundation.Date
+	SetExpirationDate(value foundation.IDate)
+	PrescriptionType() unsafe.Pointer
+	SetPrescriptionType(value unsafe.Pointer)
 }
 
 // A sample that stores a vision prescription.

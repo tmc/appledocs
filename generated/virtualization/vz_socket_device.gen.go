@@ -30,6 +30,8 @@ type _VZSocketDeviceClass struct {
 // An interface definition for the [VZSocketDevice] class.
 type IVZSocketDevice interface {
 	objectivec.IObject
+	SocketDevices() VZSocketDevice
+	SetSocketDevices(value IVZSocketDevice)
 }
 
 // The common behavior of socket devices.

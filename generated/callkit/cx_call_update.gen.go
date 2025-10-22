@@ -30,6 +30,20 @@ type _CXCallUpdateClass struct {
 // An interface definition for the [CXCallUpdate] class.
 type ICXCallUpdate interface {
 	objectivec.IObject
+	HasVideo() bool
+	SetHasVideo(value bool)
+	LocalizedCallerName() string
+	SetLocalizedCallerName(value string)
+	RemoteHandle() CXHandle
+	SetRemoteHandle(value ICXHandle)
+	SupportsDTMF() bool
+	SetSupportsDTMF(value bool)
+	SupportsGrouping() bool
+	SetSupportsGrouping(value bool)
+	SupportsHolding() bool
+	SetSupportsHolding(value bool)
+	SupportsUngrouping() bool
+	SetSupportsUngrouping(value bool)
 }
 
 // An encapsulation of new and changed information about a call.

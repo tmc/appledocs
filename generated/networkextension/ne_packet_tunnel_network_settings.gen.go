@@ -30,6 +30,14 @@ type _NEPacketTunnelNetworkSettingsClass struct {
 // An interface definition for the [NEPacketTunnelNetworkSettings] class.
 type INEPacketTunnelNetworkSettings interface {
 	INETunnelNetworkSettings
+	IPv4Settings() NEIPv4Settings
+	SetIPv4Settings(value INEIPv4Settings)
+	IPv6Settings() NEIPv6Settings
+	SetIPv6Settings(value INEIPv6Settings)
+	MTU() foundation.Number
+	SetMTU(value foundation.INumber)
+	TunnelOverheadBytes() foundation.Number
+	SetTunnelOverheadBytes(value foundation.INumber)
 }
 
 // The configuration for a packet tunnel provider’s virtual interface.

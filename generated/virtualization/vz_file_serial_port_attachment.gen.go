@@ -30,6 +30,8 @@ type _VZFileSerialPortAttachmentClass struct {
 // An interface definition for the [VZFileSerialPortAttachment] class.
 type IVZFileSerialPortAttachment interface {
 	IVZSerialPortAttachment
+	Append() bool
+	URL() foundation.URL
 }
 
 // An attachment point that writes data from the guest system to a file.

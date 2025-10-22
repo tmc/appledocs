@@ -32,6 +32,26 @@ type _PDFViewClass struct {
 type IPDFView interface {
 	appkit.IView
 	TakePasswordFrom(sender objectivec.IObject)
+	CurrentDestination() PDFDestination
+	CurrentPage() PDFPage
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Document() PDFDocument
+	SetDocument(value IPDFDocument)
+	FindInteraction() unsafe.Pointer
+	FindInteractionEnabled() bool
+	SetFindInteractionEnabled(value bool)
+	InMarkupMode() bool
+	SetInMarkupMode(value bool)
+	PageOverlayViewProvider() objc.ID
+	SetPageOverlayViewProvider(value objc.ID)
+	PageShadowsEnabled() bool
+	SetPageShadowsEnabled(value bool)
+	VisiblePages() []PDFPage
+	IsFindInteractionEnabled() bool
+	SetIsFindInteractionEnabled(value bool)
+	IsInMarkupMode() bool
+	SetIsInMarkupMode(value bool)
 }
 
 // An object that encapsulates the functionality of PDF Kit into a single widget that you can add to your application using Interface Builder.

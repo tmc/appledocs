@@ -29,6 +29,8 @@ type _CMatMulLayerClass struct {
 // An interface definition for the [CMatMulLayer] class.
 type ICMatMulLayer interface {
 	ICLayer
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
 }
 
 // A layer that multiplies matrices.

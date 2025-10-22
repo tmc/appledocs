@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,36 @@ type _ComputePipelineDescriptorClass struct {
 // An interface definition for the [ComputePipelineDescriptor] class.
 type IComputePipelineDescriptor interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	BinaryArchives() unsafe.Pointer
+	SetBinaryArchives(value unsafe.Pointer)
+	Buffers() MTLPipelineBufferDescriptorArray
+	SetBuffers(value IMTLPipelineBufferDescriptorArray)
+	ComputeFunction() unsafe.Pointer
+	SetComputeFunction(value unsafe.Pointer)
+	InsertLibraries() unsafe.Pointer
+	SetInsertLibraries(value unsafe.Pointer)
+	LinkedFunctions() MTLLinkedFunctions
+	SetLinkedFunctions(value IMTLLinkedFunctions)
+	MaxCallStackDepth() int
+	SetMaxCallStackDepth(value int)
+	MaxTotalThreadsPerThreadgroup() int
+	SetMaxTotalThreadsPerThreadgroup(value int)
+	PreloadedLibraries() unsafe.Pointer
+	SetPreloadedLibraries(value unsafe.Pointer)
+	RequiredThreadsPerThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerThreadgroup(value coregraphics.ISize)
+	ShaderValidation() ShaderValidation
+	SetShaderValidation(value IShaderValidation)
+	StageInputDescriptor() MTLStageInputOutputDescriptor
+	SetStageInputDescriptor(value IMTLStageInputOutputDescriptor)
+	SupportAddingBinaryFunctions() bool
+	SetSupportAddingBinaryFunctions(value bool)
+	SupportIndirectCommandBuffers() bool
+	SetSupportIndirectCommandBuffers(value bool)
+	ThreadGroupSizeIsMultipleOfThreadExecutionWidth() bool
+	SetThreadGroupSizeIsMultipleOfThreadExecutionWidth(value bool)
 }
 
 // An instance describing the desired GPU state for a kernel call in a compute pass.
@@ -85,8 +114,8 @@ func NewComputePipelineDescriptor() ComputePipelineDescriptor {
 // A string that identifies the instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
+func (c_ ComputePipelineDescriptor) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -96,8 +125,8 @@ func (c_ ComputePipelineDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
+func (c_ ComputePipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The binary archives that contain any precompiled shader functions to link.

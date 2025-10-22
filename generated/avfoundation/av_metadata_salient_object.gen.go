@@ -29,6 +29,8 @@ type _MetadataSalientObjectClass struct {
 // An interface definition for the [MetadataSalientObject] class.
 type IMetadataSalientObject interface {
 	IMetadataObject
+	ObjectID() int
+	SetObjectID(value int)
 }
 
 // An object representing a single salient area in a picture.

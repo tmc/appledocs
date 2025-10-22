@@ -29,6 +29,20 @@ type _CGroupNormalizationLayerClass struct {
 // An interface definition for the [CGroupNormalizationLayer] class.
 type ICGroupNormalizationLayer interface {
 	ICLayer
+	Beta() MLCTensor
+	SetBeta(value IMLCTensor)
+	BetaParameter() MLCTensorParameter
+	SetBetaParameter(value IMLCTensorParameter)
+	FeatureChannelCount() int
+	SetFeatureChannelCount(value int)
+	Gamma() MLCTensor
+	SetGamma(value IMLCTensor)
+	GammaParameter() MLCTensorParameter
+	SetGammaParameter(value IMLCTensorParameter)
+	GroupCount() int
+	SetGroupCount(value int)
+	VarianceEpsilon() float32
+	SetVarianceEpsilon(value float32)
 }
 
 // A layer that divides the channels into groups for normalization.
@@ -190,8 +204,8 @@ func (c_ CGroupNormalizationLayer) SetGroupCount(value int) {
 // The variance epsilon you use for numerical stability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
-func (c_ CGroupNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+func (c_ CGroupNormalizationLayer) VarianceEpsilon() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("varianceEpsilon"))
 	return rv
 }
 
@@ -201,7 +215,7 @@ func (c_ CGroupNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
-func (c_ CGroupNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+func (c_ CGroupNormalizationLayer) SetVarianceEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
 }
 

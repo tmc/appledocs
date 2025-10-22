@@ -30,6 +30,7 @@ type _CXCallActionClass struct {
 // An interface definition for the [CXCallAction] class.
 type ICXCallAction interface {
 	ICXAction
+	CallUUID() foundation.UUID
 }
 
 // A programmatic interface for objects that represent a telephony action associated with a call object.

@@ -31,6 +31,8 @@ type _BAAppExtensionInfoClass struct {
 // An interface definition for the [BAAppExtensionInfo] class.
 type IBAAppExtensionInfo interface {
 	objectivec.IObject
+	RestrictedDownloadSizeRemaining() foundation.Number
+	RestrictedEssentialDownloadSizeRemaining() foundation.Number
 }
 
 //

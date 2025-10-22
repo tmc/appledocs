@@ -31,6 +31,16 @@ type _CacheClass struct {
 type ICache interface {
 	objectivec.IObject
 	SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint)
+	EvictsObjectsWithDiscardedContent() bool
+	SetEvictsObjectsWithDiscardedContent(value bool)
+	CountLimit() int
+	SetCountLimit(value int)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	TotalCostLimit() int
+	SetTotalCostLimit(value int)
 }
 
 // A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.

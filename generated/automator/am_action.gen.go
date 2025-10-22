@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,7 +35,7 @@ type IAMAction interface {
 	Closed()
 	DidFinishRunningWithError(errorInfo unsafe.Pointer)
 	FinishRunningWithError(error_ foundation.IError)
-	LogMessageWithLevelFormat(level AMLogLevel, format appkit.string)
+	LogMessageWithLevelFormat(level AMLogLevel, format string)
 	Opened()
 	ParametersUpdated()
 	Reset()
@@ -47,6 +46,19 @@ type IAMAction interface {
 	UpdateParameters()
 	WillFinishRunning()
 	WriteToDictionary(dictionary unsafe.Pointer)
+	IgnoresInput() bool
+	Stopped() bool
+	Name() string
+	Output() objc.ID
+	SetOutput(value objc.ID)
+	ProgressValue() float64
+	SetProgressValue(value float64)
+	SelectedInputType() string
+	SetSelectedInputType(value string)
+	SelectedOutputType() string
+	SetSelectedOutputType(value string)
+	IsStopped() bool
+	SetIsStopped(value bool)
 }
 
 // An abstract class that defines the interface and general characteristics of Automator actions.
@@ -153,8 +165,8 @@ func (a_ AMAction) FinishRunningWithError(error_ foundation.IError) {
 // Displays a message in Automator’s log area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/logMessageWithLevel:format:
-func (a_ AMAction) LogMessageWithLevelFormat(level AMLogLevel, format appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("logMessageWithLevel:format:"), level, format)
+func (a_ AMAction) LogMessageWithLevelFormat(level AMLogLevel, format string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("logMessageWithLevel:format:"), level, objc.String(format))
 }
 
 // Allows the action to initialize its user interface.
@@ -248,8 +260,8 @@ func (a_ AMAction) Stopped() bool {
 // The name of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/name
-func (a_ AMAction) Name() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
+func (a_ AMAction) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -292,8 +304,8 @@ func (a_ AMAction) SetProgressValue(value float64) {
 // The type of input, in UTI format, of the input received by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
-func (a_ AMAction) SelectedInputType() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("selectedInputType"))
+func (a_ AMAction) SelectedInputType() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("selectedInputType"))
 	return rv
 }
 
@@ -303,15 +315,15 @@ func (a_ AMAction) SelectedInputType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
-func (a_ AMAction) SetSelectedInputType(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), value)
+func (a_ AMAction) SetSelectedInputType(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), objc.String(value))
 }
 
 // The type of output, in UTI format, of the output to be produced by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
-func (a_ AMAction) SelectedOutputType() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("selectedOutputType"))
+func (a_ AMAction) SelectedOutputType() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("selectedOutputType"))
 	return rv
 }
 
@@ -321,8 +333,8 @@ func (a_ AMAction) SelectedOutputType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
-func (a_ AMAction) SetSelectedOutputType(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), value)
+func (a_ AMAction) SetSelectedOutputType(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the user clicked the stop button on the parent workflow.

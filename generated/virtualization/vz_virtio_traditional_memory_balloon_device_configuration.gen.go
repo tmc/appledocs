@@ -29,6 +29,8 @@ type _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioTraditionalMemoryBalloonDeviceConfiguration] class.
 type IVZVirtioTraditionalMemoryBalloonDeviceConfiguration interface {
 	IVZMemoryBalloonDeviceConfiguration
+	MemoryBalloonDevices() VZMemoryBalloonDevice
+	SetMemoryBalloonDevices(value IVZMemoryBalloonDevice)
 }
 
 // A configuration object that provides a way to reclaim memory from the guest system.

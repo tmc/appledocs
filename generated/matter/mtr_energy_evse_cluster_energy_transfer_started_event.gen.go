@@ -31,6 +31,12 @@ type _MTREnergyEVSEClusterEnergyTransferStartedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEnergyTransferStartedEvent] class.
 type IMTREnergyEVSEClusterEnergyTransferStartedEvent interface {
 	objectivec.IObject
+	MaximumCurrent() foundation.Number
+	SetMaximumCurrent(value foundation.INumber)
+	SessionID() foundation.Number
+	SetSessionID(value foundation.INumber)
+	State() foundation.Number
+	SetState(value foundation.INumber)
 }
 
 //

@@ -16,8 +16,8 @@ import (
 
 var (
 	_ABAddPropertiesAndTypes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABAddRecord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABAddressBookAddRecord func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABAddRecord func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABAddressBookAddRecord func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ABAddressBookCopyArrayOfAllGroups func(unsafe.Pointer) unsafe.Pointer
 	_ABAddressBookCopyArrayOfAllGroupsInSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABAddressBookCopyArrayOfAllPeople func(unsafe.Pointer) unsafe.Pointer
@@ -35,12 +35,12 @@ var (
 	_ABAddressBookGetPersonCount func(unsafe.Pointer) unsafe.Pointer
 	_ABAddressBookGetPersonWithRecordID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABAddressBookGetSourceWithRecordID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABAddressBookHasUnsavedChanges func(unsafe.Pointer) unsafe.Pointer
+	_ABAddressBookHasUnsavedChanges func(unsafe.Pointer) bool
 	_ABAddressBookRegisterExternalChangeCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABAddressBookRemoveRecord func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABAddressBookRemoveRecord func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ABAddressBookRequestAccessWithCompletion func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABAddressBookRevert func(unsafe.Pointer) unsafe.Pointer
-	_ABAddressBookSave func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABAddressBookSave func(unsafe.Pointer, unsafe.Pointer) bool
 	_ABAddressBookUnregisterExternalChangeCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABBeginLoadingImageDataForClient func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABCancelLoadingImageDataForTag func(unsafe.Pointer) unsafe.Pointer
@@ -55,8 +55,8 @@ var (
 	_ABCreateFormattedAddressFromDictionary func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABGetMe func(unsafe.Pointer) unsafe.Pointer
 	_ABGetSharedAddressBook func() unsafe.Pointer
-	_ABGroupAddGroup func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABGroupAddMember func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABGroupAddGroup func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABGroupAddMember func(unsafe.Pointer, unsafe.Pointer) bool
 	_ABGroupCopyArrayOfAllMembers func(unsafe.Pointer) unsafe.Pointer
 	_ABGroupCopyArrayOfAllMembersWithSortOrdering func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABGroupCopyArrayOfAllSubgroups func(unsafe.Pointer) unsafe.Pointer
@@ -66,13 +66,13 @@ var (
 	_ABGroupCreate func() unsafe.Pointer
 	_ABGroupCreateInSource func(unsafe.Pointer) unsafe.Pointer
 	_ABGroupCreateSearchElement func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABGroupRemoveGroup func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABGroupRemoveMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABGroupSetDistributionIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABHasUnsavedChanges func(unsafe.Pointer) unsafe.Pointer
+	_ABGroupRemoveGroup func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABGroupRemoveMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABGroupSetDistributionIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABHasUnsavedChanges func(unsafe.Pointer) bool
 	_ABLocalizedPropertyOrLabel func(unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueAddValueAndLabel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABMultiValueAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueAddValueAndLabel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ABMultiValueCopyArrayOfAllValues func(unsafe.Pointer) unsafe.Pointer
 	_ABMultiValueCopyIdentifierAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABMultiValueCopyLabelAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -89,16 +89,16 @@ var (
 	_ABMultiValueGetIndexForIdentifier func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABMultiValueGetPropertyType func(unsafe.Pointer) unsafe.Pointer
 	_ABMultiValueIndexForIdentifier func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueInsert func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueInsertValueAndLabelAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABMultiValueInsert func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueInsertValueAndLabelAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ABMultiValuePropertyType func(unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueRemove func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueRemoveValueAndLabelAtIndex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueReplaceLabel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueReplaceLabelAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueReplaceValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueReplaceValueAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABMultiValueSetPrimaryIdentifier func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABMultiValueRemove func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueRemoveValueAndLabelAtIndex func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueReplaceLabel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueReplaceLabelAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueReplaceValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueReplaceValueAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABMultiValueSetPrimaryIdentifier func(unsafe.Pointer, unsafe.Pointer) bool
 	_ABPersonComparePeopleByName func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABPersonCopyArrayOfAllLinkedPeople func(unsafe.Pointer) unsafe.Pointer
 	_ABPersonCopyCompositeNameDelimiterForRecord func(unsafe.Pointer) unsafe.Pointer
@@ -118,9 +118,9 @@ var (
 	_ABPersonGetCompositeNameFormatForRecord func(unsafe.Pointer) unsafe.Pointer
 	_ABPersonGetSortOrdering func() unsafe.Pointer
 	_ABPersonGetTypeOfProperty func(unsafe.Pointer) unsafe.Pointer
-	_ABPersonHasImageData func(unsafe.Pointer) unsafe.Pointer
-	_ABPersonRemoveImageData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABPersonSetImageData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABPersonHasImageData func(unsafe.Pointer) bool
+	_ABPersonRemoveImageData func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABPersonSetImageData func(unsafe.Pointer, unsafe.Pointer) bool
 	_ABPickerAddProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABPickerChangeAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABPickerClearSearchField func(unsafe.Pointer) unsafe.Pointer
@@ -140,17 +140,17 @@ var (
 	_ABPickerGetAttributes func(unsafe.Pointer) unsafe.Pointer
 	_ABPickerGetDelegate func(unsafe.Pointer) unsafe.Pointer
 	_ABPickerGetFrame func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABPickerIsVisible func(unsafe.Pointer) unsafe.Pointer
+	_ABPickerIsVisible func(unsafe.Pointer) bool
 	_ABPickerRemoveProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABPickerSelectGroup func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABPickerSelectIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABPickerSelectGroup func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_ABPickerSelectIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_ABPickerSelectInAddressBook func(unsafe.Pointer) unsafe.Pointer
-	_ABPickerSelectRecord func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABPickerSelectRecord func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_ABPickerSetColumnTitle func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABPickerSetDelegate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABPickerSetDisplayedProperty func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABPickerSetFrame func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABPickerSetVisibility func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABPickerSetVisibility func(unsafe.Pointer, bool) unsafe.Pointer
 	_ABRecordCopyCompositeName func(unsafe.Pointer) unsafe.Pointer
 	_ABRecordCopyRecordType func(unsafe.Pointer) unsafe.Pointer
 	_ABRecordCopyUniqueId func(unsafe.Pointer) unsafe.Pointer
@@ -158,14 +158,14 @@ var (
 	_ABRecordCreateCopy func(unsafe.Pointer) unsafe.Pointer
 	_ABRecordGetRecordID func(unsafe.Pointer) unsafe.Pointer
 	_ABRecordGetRecordType func(unsafe.Pointer) unsafe.Pointer
-	_ABRecordIsReadOnly func(unsafe.Pointer) unsafe.Pointer
-	_ABRecordRemoveValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABRecordSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABRecordIsReadOnly func(unsafe.Pointer) bool
+	_ABRecordRemoveValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ABRecordSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ABRemoveProperties func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABRemoveRecord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABSave func(unsafe.Pointer) unsafe.Pointer
+	_ABRemoveRecord func(unsafe.Pointer, unsafe.Pointer) bool
+	_ABSave func(unsafe.Pointer) bool
 	_ABSearchElementCreateWithConjunction func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ABSearchElementMatchesRecord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ABSearchElementMatchesRecord func(unsafe.Pointer, unsafe.Pointer) bool
 	_ABSetMe func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ABTypeOfProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
@@ -355,7 +355,7 @@ func ABAddPropertiesAndTypes(addressBook unsafe.Pointer, recordType unsafe.Point
 // Adds a record of the specified type to the Address Book database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddRecord(_:_:)
-func ABAddRecord(addressBook unsafe.Pointer, record unsafe.Pointer) unsafe.Pointer {
+func ABAddRecord(addressBook unsafe.Pointer, record unsafe.Pointer) bool {
 	return _ABAddRecord(addressBook, record)
 	}
 
@@ -363,7 +363,7 @@ func ABAddRecord(addressBook unsafe.Pointer, record unsafe.Pointer) unsafe.Point
 // Adds a record to an address book. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBookAddRecord(_:_:_:)
-func ABAddressBookAddRecord(addressBook unsafe.Pointer, record unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ABAddressBookAddRecord(addressBook unsafe.Pointer, record unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ABAddressBookAddRecord(addressBook, record, error_)
 	}
 
@@ -507,7 +507,7 @@ func ABAddressBookGetSourceWithRecordID(addressBook unsafe.Pointer, sourceID uns
 // Indicates whether an address book has changes that have not been saved to the Address Book database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBookHasUnsavedChanges(_:)
-func ABAddressBookHasUnsavedChanges(addressBook unsafe.Pointer) unsafe.Pointer {
+func ABAddressBookHasUnsavedChanges(addressBook unsafe.Pointer) bool {
 	return _ABAddressBookHasUnsavedChanges(addressBook)
 	}
 
@@ -523,7 +523,7 @@ func ABAddressBookRegisterExternalChangeCallback(addressBook unsafe.Pointer, cal
 // Removes a record from an address book. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBookRemoveRecord(_:_:_:)
-func ABAddressBookRemoveRecord(addressBook unsafe.Pointer, record unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ABAddressBookRemoveRecord(addressBook unsafe.Pointer, record unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ABAddressBookRemoveRecord(addressBook, record, error_)
 	}
 
@@ -547,7 +547,7 @@ func ABAddressBookRevert(addressBook unsafe.Pointer) {
 // Saves any unsaved changes to the Address Book database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBookSave(_:_:)
-func ABAddressBookSave(addressBook unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ABAddressBookSave(addressBook unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ABAddressBookSave(addressBook, error_)
 	}
 
@@ -673,7 +673,7 @@ func ABGetSharedAddressBook() unsafe.Pointer {
 // Adds a subgroup to another group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroupAddGroup(_:_:)
-func ABGroupAddGroup(group unsafe.Pointer, groupToAdd unsafe.Pointer) unsafe.Pointer {
+func ABGroupAddGroup(group unsafe.Pointer, groupToAdd unsafe.Pointer) bool {
 	return _ABGroupAddGroup(group, groupToAdd)
 	}
 
@@ -681,7 +681,7 @@ func ABGroupAddGroup(group unsafe.Pointer, groupToAdd unsafe.Pointer) unsafe.Poi
 // Adds a person to a group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroupAddMember(_:_:)
-func ABGroupAddMember(group unsafe.Pointer, personToAdd unsafe.Pointer) unsafe.Pointer {
+func ABGroupAddMember(group unsafe.Pointer, personToAdd unsafe.Pointer) bool {
 	return _ABGroupAddMember(group, personToAdd)
 	}
 
@@ -761,7 +761,7 @@ func ABGroupCreateSearchElement(property unsafe.Pointer, label unsafe.Pointer, k
 // Removes a subgroup from a group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroupRemoveGroup(_:_:)
-func ABGroupRemoveGroup(group unsafe.Pointer, groupToRemove unsafe.Pointer) unsafe.Pointer {
+func ABGroupRemoveGroup(group unsafe.Pointer, groupToRemove unsafe.Pointer) bool {
 	return _ABGroupRemoveGroup(group, groupToRemove)
 	}
 
@@ -769,7 +769,7 @@ func ABGroupRemoveGroup(group unsafe.Pointer, groupToRemove unsafe.Pointer) unsa
 // Removes a person from a group. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroupRemoveMember(_:_:)
-func ABGroupRemoveMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ABGroupRemoveMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ABGroupRemoveMember(group, member, error_)
 	}
 
@@ -777,7 +777,7 @@ func ABGroupRemoveMember(group unsafe.Pointer, member unsafe.Pointer, error_ uns
 // Assigning a specific distribution identifier for a person’smulti-value list property so that the group can be used as a distributionlist (mailing list, in the case of an email property). [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroupSetDistributionIdentifier(_:_:_:_:)
-func ABGroupSetDistributionIdentifier(group unsafe.Pointer, person unsafe.Pointer, property unsafe.Pointer, identifier unsafe.Pointer) unsafe.Pointer {
+func ABGroupSetDistributionIdentifier(group unsafe.Pointer, person unsafe.Pointer, property unsafe.Pointer, identifier unsafe.Pointer) bool {
 	return _ABGroupSetDistributionIdentifier(group, person, property, identifier)
 	}
 
@@ -785,7 +785,7 @@ func ABGroupSetDistributionIdentifier(group unsafe.Pointer, person unsafe.Pointe
 // Returns whether if there are unsaved changes in the address book. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABHasUnsavedChanges(_:)
-func ABHasUnsavedChanges(addressBook unsafe.Pointer) unsafe.Pointer {
+func ABHasUnsavedChanges(addressBook unsafe.Pointer) bool {
 	return _ABHasUnsavedChanges(addressBook)
 	}
 
@@ -801,7 +801,7 @@ func ABLocalizedPropertyOrLabel(propertyOrLabel unsafe.Pointer) unsafe.Pointer {
 // Adds a value and its label to a multi-value list. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueAdd(_:_:_:_:)
-func ABMultiValueAdd(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, outIdentifier unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueAdd(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, outIdentifier unsafe.Pointer) bool {
 	return _ABMultiValueAdd(multiValue, value, label, outIdentifier)
 	}
 
@@ -809,7 +809,7 @@ func ABMultiValueAdd(multiValue unsafe.Pointer, value unsafe.Pointer, label unsa
 // Adds a value and its corresponding label to a multivalue property. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueAddValueAndLabel(_:_:_:_:)
-func ABMultiValueAddValueAndLabel(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, outIdentifier unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueAddValueAndLabel(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, outIdentifier unsafe.Pointer) bool {
 	return _ABMultiValueAddValueAndLabel(multiValue, value, label, outIdentifier)
 	}
 
@@ -945,7 +945,7 @@ func ABMultiValueIndexForIdentifier(multiValue unsafe.Pointer, identifier unsafe
 // Inserts a value and its label at the given index in amulti-value list. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueInsert(_:_:_:_:_:)
-func ABMultiValueInsert(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer, outIdentifier unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueInsert(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer, outIdentifier unsafe.Pointer) bool {
 	return _ABMultiValueInsert(multiValue, value, label, index, outIdentifier)
 	}
 
@@ -953,7 +953,7 @@ func ABMultiValueInsert(multiValue unsafe.Pointer, value unsafe.Pointer, label u
 // Inserts a value and a label into a multivalue property. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueInsertValueAndLabelAtIndex(_:_:_:_:_:)
-func ABMultiValueInsertValueAndLabelAtIndex(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer, outIdentifier unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueInsertValueAndLabelAtIndex(multiValue unsafe.Pointer, value unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer, outIdentifier unsafe.Pointer) bool {
 	return _ABMultiValueInsertValueAndLabelAtIndex(multiValue, value, label, index, outIdentifier)
 	}
 
@@ -969,7 +969,7 @@ func ABMultiValuePropertyType(multiValue unsafe.Pointer) unsafe.Pointer {
 // Removes the value and label at the given index. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueRemove(_:_:)
-func ABMultiValueRemove(multiValue unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueRemove(multiValue unsafe.Pointer, index unsafe.Pointer) bool {
 	return _ABMultiValueRemove(multiValue, index)
 	}
 
@@ -977,7 +977,7 @@ func ABMultiValueRemove(multiValue unsafe.Pointer, index unsafe.Pointer) unsafe.
 // Removes a value from a multivalue property. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueRemoveValueAndLabelAtIndex(_:_:)
-func ABMultiValueRemoveValueAndLabelAtIndex(multiValue unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueRemoveValueAndLabelAtIndex(multiValue unsafe.Pointer, index unsafe.Pointer) bool {
 	return _ABMultiValueRemoveValueAndLabelAtIndex(multiValue, index)
 	}
 
@@ -985,7 +985,7 @@ func ABMultiValueRemoveValueAndLabelAtIndex(multiValue unsafe.Pointer, index uns
 // Replaces the label at the given index. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueReplaceLabel(_:_:_:)
-func ABMultiValueReplaceLabel(multiValue unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueReplaceLabel(multiValue unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer) bool {
 	return _ABMultiValueReplaceLabel(multiValue, label, index)
 	}
 
@@ -993,7 +993,7 @@ func ABMultiValueReplaceLabel(multiValue unsafe.Pointer, label unsafe.Pointer, i
 // Replaces a label in a multivalue property with another label. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueReplaceLabelAtIndex(_:_:_:)
-func ABMultiValueReplaceLabelAtIndex(multiValue unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueReplaceLabelAtIndex(multiValue unsafe.Pointer, label unsafe.Pointer, index unsafe.Pointer) bool {
 	return _ABMultiValueReplaceLabelAtIndex(multiValue, label, index)
 	}
 
@@ -1001,7 +1001,7 @@ func ABMultiValueReplaceLabelAtIndex(multiValue unsafe.Pointer, label unsafe.Poi
 // Replaces the value at the given index. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueReplaceValue(_:_:_:)
-func ABMultiValueReplaceValue(multiValue unsafe.Pointer, value unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueReplaceValue(multiValue unsafe.Pointer, value unsafe.Pointer, index unsafe.Pointer) bool {
 	return _ABMultiValueReplaceValue(multiValue, value, index)
 	}
 
@@ -1009,7 +1009,7 @@ func ABMultiValueReplaceValue(multiValue unsafe.Pointer, value unsafe.Pointer, i
 // Replaces a value in a multivalue property with another value. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueReplaceValueAtIndex(_:_:_:)
-func ABMultiValueReplaceValueAtIndex(multiValue unsafe.Pointer, value unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueReplaceValueAtIndex(multiValue unsafe.Pointer, value unsafe.Pointer, index unsafe.Pointer) bool {
 	return _ABMultiValueReplaceValueAtIndex(multiValue, value, index)
 	}
 
@@ -1017,7 +1017,7 @@ func ABMultiValueReplaceValueAtIndex(multiValue unsafe.Pointer, value unsafe.Poi
 // Sets the primary value to be the value for the given identifier. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueSetPrimaryIdentifier(_:_:)
-func ABMultiValueSetPrimaryIdentifier(multiValue unsafe.Pointer, identifier unsafe.Pointer) unsafe.Pointer {
+func ABMultiValueSetPrimaryIdentifier(multiValue unsafe.Pointer, identifier unsafe.Pointer) bool {
 	return _ABMultiValueSetPrimaryIdentifier(multiValue, identifier)
 	}
 
@@ -1177,7 +1177,7 @@ func ABPersonGetTypeOfProperty(property unsafe.Pointer) unsafe.Pointer {
 // Indicates whether a person has a picture. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonHasImageData(_:)
-func ABPersonHasImageData(person unsafe.Pointer) unsafe.Pointer {
+func ABPersonHasImageData(person unsafe.Pointer) bool {
 	return _ABPersonHasImageData(person)
 	}
 
@@ -1185,7 +1185,7 @@ func ABPersonHasImageData(person unsafe.Pointer) unsafe.Pointer {
 // Removes a person’s picture. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonRemoveImageData(_:_:)
-func ABPersonRemoveImageData(person unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ABPersonRemoveImageData(person unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ABPersonRemoveImageData(person, error_)
 	}
 
@@ -1193,7 +1193,7 @@ func ABPersonRemoveImageData(person unsafe.Pointer, error_ unsafe.Pointer) unsaf
 // Sets the image for this person to the given data. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonSetImageData(_:_:)
-func ABPersonSetImageData(person unsafe.Pointer, imageData unsafe.Pointer) unsafe.Pointer {
+func ABPersonSetImageData(person unsafe.Pointer, imageData unsafe.Pointer) bool {
 	return _ABPersonSetImageData(person, imageData)
 	}
 
@@ -1393,7 +1393,7 @@ func ABPickerGetFrame(inPicker unsafe.Pointer, outFrame unsafe.Pointer) {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPickerIsVisible
-func ABPickerIsVisible(inPicker unsafe.Pointer) unsafe.Pointer {
+func ABPickerIsVisible(inPicker unsafe.Pointer) bool {
 	return _ABPickerIsVisible(inPicker)
 	}
 
@@ -1413,7 +1413,7 @@ func ABPickerRemoveProperty(inPicker unsafe.Pointer, inProperty unsafe.Pointer) 
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPickerSelectGroup
-func ABPickerSelectGroup(inPicker unsafe.Pointer, inGroup unsafe.Pointer, inExtendSelection unsafe.Pointer) {
+func ABPickerSelectGroup(inPicker unsafe.Pointer, inGroup unsafe.Pointer, inExtendSelection bool) {
 	_ABPickerSelectGroup(inPicker, inGroup, inExtendSelection)
 	}
 
@@ -1423,7 +1423,7 @@ func ABPickerSelectGroup(inPicker unsafe.Pointer, inGroup unsafe.Pointer, inExte
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPickerSelectIdentifier
-func ABPickerSelectIdentifier(inPicker unsafe.Pointer, inPerson unsafe.Pointer, inIdentifier unsafe.Pointer, inExtendSelection unsafe.Pointer) {
+func ABPickerSelectIdentifier(inPicker unsafe.Pointer, inPerson unsafe.Pointer, inIdentifier unsafe.Pointer, inExtendSelection bool) {
 	_ABPickerSelectIdentifier(inPicker, inPerson, inIdentifier, inExtendSelection)
 	}
 
@@ -1443,7 +1443,7 @@ func ABPickerSelectInAddressBook(inPicker unsafe.Pointer) {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPickerSelectRecord
-func ABPickerSelectRecord(inPicker unsafe.Pointer, inRecord unsafe.Pointer, inExtendSelection unsafe.Pointer) {
+func ABPickerSelectRecord(inPicker unsafe.Pointer, inRecord unsafe.Pointer, inExtendSelection bool) {
 	_ABPickerSelectRecord(inPicker, inRecord, inExtendSelection)
 	}
 
@@ -1493,7 +1493,7 @@ func ABPickerSetFrame(inPicker unsafe.Pointer, inFrame unsafe.Pointer) {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPickerSetVisibility
-func ABPickerSetVisibility(inPicker unsafe.Pointer, visible unsafe.Pointer) {
+func ABPickerSetVisibility(inPicker unsafe.Pointer, visible bool) {
 	_ABPickerSetVisibility(inPicker, visible)
 	}
 
@@ -1561,7 +1561,7 @@ func ABRecordGetRecordType(record unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecordIsReadOnly(_:)
-func ABRecordIsReadOnly(record unsafe.Pointer) unsafe.Pointer {
+func ABRecordIsReadOnly(record unsafe.Pointer) bool {
 	return _ABRecordIsReadOnly(record)
 	}
 
@@ -1569,7 +1569,7 @@ func ABRecordIsReadOnly(record unsafe.Pointer) unsafe.Pointer {
 // Removes the value of the given property. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecordRemoveValue(_:_:)
-func ABRecordRemoveValue(record unsafe.Pointer, property unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ABRecordRemoveValue(record unsafe.Pointer, property unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ABRecordRemoveValue(record, property, error_)
 	}
 
@@ -1577,7 +1577,7 @@ func ABRecordRemoveValue(record unsafe.Pointer, property unsafe.Pointer, error_ 
 // Sets the value of a given property for a record. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecordSetValue(_:_:_:)
-func ABRecordSetValue(record unsafe.Pointer, property unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func ABRecordSetValue(record unsafe.Pointer, property unsafe.Pointer, value unsafe.Pointer) bool {
 	return _ABRecordSetValue(record, property, value)
 	}
 
@@ -1593,7 +1593,7 @@ func ABRemoveProperties(addressBook unsafe.Pointer, recordType unsafe.Pointer, p
 // Removes the specified record from the Address Book database. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRemoveRecord(_:_:)
-func ABRemoveRecord(addressBook unsafe.Pointer, record unsafe.Pointer) unsafe.Pointer {
+func ABRemoveRecord(addressBook unsafe.Pointer, record unsafe.Pointer) bool {
 	return _ABRemoveRecord(addressBook, record)
 	}
 
@@ -1601,7 +1601,7 @@ func ABRemoveRecord(addressBook unsafe.Pointer, record unsafe.Pointer) unsafe.Po
 // Saves all the changes made since the last save. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSave(_:)
-func ABSave(addressBook unsafe.Pointer) unsafe.Pointer {
+func ABSave(addressBook unsafe.Pointer) bool {
 	return _ABSave(addressBook)
 	}
 
@@ -1617,7 +1617,7 @@ func ABSearchElementCreateWithConjunction(conjunction unsafe.Pointer, childrenSe
 // Tests whether or not a record matches a search element. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElementMatchesRecord(_:_:)
-func ABSearchElementMatchesRecord(searchElement unsafe.Pointer, record unsafe.Pointer) unsafe.Pointer {
+func ABSearchElementMatchesRecord(searchElement unsafe.Pointer, record unsafe.Pointer) bool {
 	return _ABSearchElementMatchesRecord(searchElement, record)
 	}
 

@@ -30,6 +30,44 @@ type _IndirectCommandBufferDescriptorClass struct {
 // An interface definition for the [IndirectCommandBufferDescriptor] class.
 type IIndirectCommandBufferDescriptor interface {
 	objectivec.IObject
+	CommandTypes() IndirectCommandType
+	SetCommandTypes(value IndirectCommandType)
+	InheritBuffers() bool
+	SetInheritBuffers(value bool)
+	InheritCullMode() bool
+	SetInheritCullMode(value bool)
+	InheritDepthBias() bool
+	SetInheritDepthBias(value bool)
+	InheritDepthClipMode() bool
+	SetInheritDepthClipMode(value bool)
+	InheritDepthStencilState() bool
+	SetInheritDepthStencilState(value bool)
+	InheritFrontFacingWinding() bool
+	SetInheritFrontFacingWinding(value bool)
+	InheritPipelineState() bool
+	SetInheritPipelineState(value bool)
+	InheritTriangleFillMode() bool
+	SetInheritTriangleFillMode(value bool)
+	MaxFragmentBufferBindCount() uint
+	SetMaxFragmentBufferBindCount(value uint)
+	MaxKernelBufferBindCount() uint
+	SetMaxKernelBufferBindCount(value uint)
+	MaxKernelThreadgroupMemoryBindCount() uint
+	SetMaxKernelThreadgroupMemoryBindCount(value uint)
+	MaxMeshBufferBindCount() uint
+	SetMaxMeshBufferBindCount(value uint)
+	MaxObjectBufferBindCount() uint
+	SetMaxObjectBufferBindCount(value uint)
+	MaxObjectThreadgroupMemoryBindCount() uint
+	SetMaxObjectThreadgroupMemoryBindCount(value uint)
+	MaxVertexBufferBindCount() uint
+	SetMaxVertexBufferBindCount(value uint)
+	SupportColorAttachmentMapping() bool
+	SetSupportColorAttachmentMapping(value bool)
+	SupportDynamicAttributeStride() bool
+	SetSupportDynamicAttributeStride(value bool)
+	SupportRayTracing() bool
+	SetSupportRayTracing(value bool)
 }
 
 // A configuration you create to customize an indirect command buffer.

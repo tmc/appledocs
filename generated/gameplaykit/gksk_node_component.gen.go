@@ -29,6 +29,8 @@ type _SKNodeComponentClass struct {
 // An interface definition for the [SKNodeComponent] class.
 type ISKNodeComponent interface {
 	IComponent
+	Node() unsafe.Pointer
+	SetNode(value unsafe.Pointer)
 }
 
 // A component that manages a SpriteKit node.

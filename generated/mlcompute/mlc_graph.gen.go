@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -48,6 +47,9 @@ type ICGraph interface {
 	SplitWithSourceSplitCountDimension(source IMLCTensor, splitCount uint, dimension uint) []CTensor
 	SplitWithSourceSplitSectionLengthsDimension(source IMLCTensor, splitSectionLengths []foundation.INumber, dimension uint) []CTensor
 	TransposeWithDimensionsSource(dimensions []foundation.INumber, source IMLCTensor) CTensor
+	Device() MLCDevice
+	Layers() []CLayer
+	SummarizedDOTDescription() string
 }
 
 // A graph of layers you use to build a training or inference graph.
@@ -251,8 +253,8 @@ func (c_ CGraph) Layers() []CLayer {
 // A DOT representation of the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGraph/summarizedDOTDescription
-func (c_ CGraph) SummarizedDOTDescription() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("summarizedDOTDescription"))
+func (c_ CGraph) SummarizedDOTDescription() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("summarizedDOTDescription"))
 	return rv
 }
 

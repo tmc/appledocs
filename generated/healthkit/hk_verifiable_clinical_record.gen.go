@@ -30,6 +30,24 @@ type _HKVerifiableClinicalRecordClass struct {
 // An interface definition for the [HKVerifiableClinicalRecord] class.
 type IHKVerifiableClinicalRecord interface {
 	IHKSample
+	DataRepresentation() foundation.NSData
+	RelevantDate() foundation.NSDate
+	ExpirationDate() foundation.Date
+	SetExpirationDate(value foundation.IDate)
+	IssuedDate() foundation.Date
+	SetIssuedDate(value foundation.IDate)
+	IssuerIdentifier() string
+	SetIssuerIdentifier(value string)
+	ItemNames() string
+	SetItemNames(value string)
+	JwsRepresentation() foundation.Data
+	SetJwsRepresentation(value foundation.IData)
+	RecordTypes() string
+	SetRecordTypes(value string)
+	SourceType() HKVerifiableClinicalRecordSourceType
+	SetSourceType(value HKVerifiableClinicalRecordSourceType)
+	Subject() HKVerifiableClinicalRecordSubject
+	SetSubject(value IHKVerifiableClinicalRecordSubject)
 }
 
 // A sample that represents the contents of a SMART Health Card or EU Digital COVID Certificate.
@@ -137,8 +155,8 @@ func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.IDate) {
 // An identifier that represents the card’s issuer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueridentifier
-func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("issuerIdentifier"))
+func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("issuerIdentifier"))
 	return rv
 }
 
@@ -148,15 +166,15 @@ func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueridentifier
-func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuerIdentifier:"), value)
+func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuerIdentifier:"), objc.String(value))
 }
 
 // A human-readable description of the card’s contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-func (h_ HKVerifiableClinicalRecord) ItemNames() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("itemNames"))
+func (h_ HKVerifiableClinicalRecord) ItemNames() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("itemNames"))
 	return rv
 }
 
@@ -166,8 +184,8 @@ func (h_ HKVerifiableClinicalRecord) ItemNames() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-func (h_ HKVerifiableClinicalRecord) SetItemNames(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), value)
+func (h_ HKVerifiableClinicalRecord) SetItemNames(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), objc.String(value))
 }
 
 // A raw representation of the SMART Health Card’s contents.
@@ -191,8 +209,8 @@ func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.IData
 // An array of strings representing the types of records contained in the card.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-func (h_ HKVerifiableClinicalRecord) RecordTypes() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("recordTypes"))
+func (h_ HKVerifiableClinicalRecord) RecordTypes() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
 	return rv
 }
 
@@ -202,8 +220,8 @@ func (h_ HKVerifiableClinicalRecord) RecordTypes() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), value)
+func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
 }
 
 // The source for the verifiable clinical record

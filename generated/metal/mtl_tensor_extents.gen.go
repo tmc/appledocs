@@ -30,6 +30,13 @@ type _TensorExtentsClass struct {
 // An interface definition for the [TensorExtents] class.
 type ITensorExtents interface {
 	objectivec.IObject
+	MTLTensorDomain() string
+	Extents() int
+	SetExtents(value int)
+	Rank() int
+	SetRank(value int)
+	MTL_TENSOR_MAX_RANK() unsafe.Pointer
+	SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer)
 }
 
 // An array of length matching the rank, holding the dimensions of a tensor.
@@ -83,8 +90,8 @@ func NewTensorExtents() TensorExtents {
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorExtents) MTLTensorDomain() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorExtents) MTLTensorDomain() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
 }
 

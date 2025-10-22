@@ -31,6 +31,14 @@ type _MTRTemperatureControlClusterSetTemperatureParamsClass struct {
 // An interface definition for the [MTRTemperatureControlClusterSetTemperatureParams] class.
 type IMTRTemperatureControlClusterSetTemperatureParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TargetTemperature() foundation.Number
+	SetTargetTemperature(value foundation.INumber)
+	TargetTemperatureLevel() foundation.Number
+	SetTargetTemperatureLevel(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

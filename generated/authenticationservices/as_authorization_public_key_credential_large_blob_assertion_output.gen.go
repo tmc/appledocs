@@ -30,6 +30,7 @@ type _AuthorizationPublicKeyCredentialLargeBlobAssertionOutputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobAssertionOutput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobAssertionOutput interface {
 	objectivec.IObject
+	DidWrite() bool
 }
 
 //

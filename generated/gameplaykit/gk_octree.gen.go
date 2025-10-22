@@ -93,7 +93,7 @@ func NewOctree() Octree {
 // Initializes an octree with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/init(boundingBox:minimumCellSize:)
-func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize unsafe.Pointer) Octree {
+func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float32) Octree {
 	instance := getOctreeClass().Alloc()
 	rv := objc.Send[Octree](instance.ID, objc.Sel("initWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	rv.Autorelease()
@@ -104,7 +104,7 @@ func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize unsafe
 // Creates an octree with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/octreeWithBoundingBox:minimumCellSize:
-func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize unsafe.Pointer) unsafe.Pointer {
+func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("octreeWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	return rv
 }

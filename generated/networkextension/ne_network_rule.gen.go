@@ -30,6 +30,14 @@ type _NENetworkRuleClass struct {
 // An interface definition for the [NENetworkRule] class.
 type INENetworkRule interface {
 	objectivec.IObject
+	MatchDirection() NETrafficDirection
+	MatchLocalNetwork() NWHostEndpoint
+	MatchLocalNetworkEndpoint() unsafe.Pointer
+	MatchLocalPrefix() uint
+	MatchProtocol() NENetworkRuleProtocol
+	MatchRemoteEndpoint() NWHostEndpoint
+	MatchRemoteHostOrNetworkEndpoint() unsafe.Pointer
+	MatchRemotePrefix() uint
 }
 
 // A rule to match attributes of network traffic.

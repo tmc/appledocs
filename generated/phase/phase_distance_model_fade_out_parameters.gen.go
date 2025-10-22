@@ -30,6 +30,9 @@ type _PHASEDistanceModelFadeOutParametersClass struct {
 // An interface definition for the [PHASEDistanceModelFadeOutParameters] class.
 type IPHASEDistanceModelFadeOutParameters interface {
 	objectivec.IObject
+	CullDistance() float64
+	FadeOutParameters() PHASEDistanceModelFadeOutParameters
+	SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters)
 }
 
 // A distance over which the framework fades out sound.
@@ -85,7 +88,7 @@ func NewPHASEDistanceModelFadeOutParameters() PHASEDistanceModelFadeOutParameter
 // Creates a distance beyond which sound sources stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)
-func NewPHASEDistanceModelFadeOutParametersWithCullDistance(cullDistance unsafe.Pointer) PHASEDistanceModelFadeOutParameters {
+func NewPHASEDistanceModelFadeOutParametersWithCullDistance(cullDistance float64) PHASEDistanceModelFadeOutParameters {
 	instance := getPHASEDistanceModelFadeOutParametersClass().Alloc()
 	rv := objc.Send[PHASEDistanceModelFadeOutParameters](instance.ID, objc.Sel("initWithCullDistance:"), cullDistance)
 	rv.Autorelease()
@@ -96,8 +99,8 @@ func NewPHASEDistanceModelFadeOutParametersWithCullDistance(cullDistance unsafe.
 // The distance beyond which the framework doesn’t process the sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance
-func (p_ PHASEDistanceModelFadeOutParameters) CullDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cullDistance"))
+func (p_ PHASEDistanceModelFadeOutParameters) CullDistance() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("cullDistance"))
 	return rv
 }
 

@@ -31,6 +31,12 @@ type _MTRAccessControlClusterAccessControlTargetStructClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessControlTargetStruct] class.
 type IMTRAccessControlClusterAccessControlTargetStruct interface {
 	objectivec.IObject
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	DeviceType() foundation.Number
+	SetDeviceType(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
 }
 
 //

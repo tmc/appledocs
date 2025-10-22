@@ -29,6 +29,8 @@ type _ReductionFeatureChannelsSumNodeClass struct {
 // An interface definition for the [ReductionFeatureChannelsSumNode] class.
 type IReductionFeatureChannelsSumNode interface {
 	IUnaryReductionNode
+	Weight() float32
+	SetWeight(value float32)
 }
 
 //
@@ -78,8 +80,8 @@ func NewReductionFeatureChannelsSumNode() ReductionFeatureChannelsSumNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsSumNode/weight
-func (r_ ReductionFeatureChannelsSumNode) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("weight"))
+func (r_ ReductionFeatureChannelsSumNode) Weight() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("weight"))
 	return rv
 }
 
@@ -87,7 +89,7 @@ func (r_ ReductionFeatureChannelsSumNode) Weight() unsafe.Pointer {
 // SetWeight sets the value of the weight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsSumNode/weight
-func (r_ ReductionFeatureChannelsSumNode) SetWeight(value unsafe.Pointer) {
+func (r_ ReductionFeatureChannelsSumNode) SetWeight(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setWeight:"), value)
 }
 

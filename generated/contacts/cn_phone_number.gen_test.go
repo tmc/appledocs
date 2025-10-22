@@ -14,3 +14,11 @@ func ExampleNewCNPhoneNumber() {
 	_ = contacts.NewCNPhoneNumber()
 	// Output:
 }
+// ExampleNewCNPhoneNumberWithStringValue demonstrates how to create a CNPhoneNumber instance using NewCNPhoneNumberWithStringValue.
+// Returns a new phone number object initialized with the specified phone number string.
+func ExampleNewCNPhoneNumberWithStringValue() {
+	_ = contacts.NewCNPhoneNumberWithStringValue(
+		"string", // string string
+	)
+	// Output:
+}

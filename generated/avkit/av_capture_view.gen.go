@@ -32,6 +32,14 @@ type _CaptureViewClass struct {
 type ICaptureView interface {
 	appkit.IView
 	SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.ICaptureSession, showVideoPreview bool, showAudioPreview bool)
+	ControlsStyle() CaptureViewControlsStyle
+	SetControlsStyle(value CaptureViewControlsStyle)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	FileOutput() avfoundation.CaptureFileOutput
+	Session() avfoundation.CaptureSession
+	VideoGravity() unsafe.Pointer
+	SetVideoGravity(value unsafe.Pointer)
 }
 
 // A view that displays standard user interface controls for capturing media data.

@@ -31,6 +31,10 @@ type _MTRSmokeCOAlarmClusterSelfTestRequestParamsClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterSelfTestRequestParams] class.
 type IMTRSmokeCOAlarmClusterSelfTestRequestParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,18 @@ type _NEFilterReportClass struct {
 // An interface definition for the [NEFilterReport] class.
 type INEFilterReport interface {
 	objectivec.IObject
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	BytesInboundCount() int
+	SetBytesInboundCount(value int)
+	BytesOutboundCount() int
+	SetBytesOutboundCount(value int)
+	Event() appkit.Event
+	SetEvent(value appkit.IEvent)
+	Flow() NEFilterFlow
+	SetFlow(value INEFilterFlow)
+	ShouldReport() bool
+	SetShouldReport(value bool)
 }
 
 // The report of the data provider’s action on a flow.

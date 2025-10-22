@@ -30,6 +30,11 @@ type _INSetDefrosterSettingsInCarIntentClass struct {
 // An interface definition for the [INSetDefrosterSettingsInCarIntent] class.
 type IINSetDefrosterSettingsInCarIntent interface {
 	IINIntent
+	Enable() foundation.Number
+	CarName() INSpeakableString
+	SetCarName(value INSpeakableString)
+	Defroster() unsafe.Pointer
+	SetDefroster(value unsafe.Pointer)
 }
 
 // A request to change the defroster settings in a CarPlay-enabled vehicle.

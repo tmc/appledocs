@@ -41,6 +41,9 @@ type ICBPeripheralManager interface {
 	StopAdvertising()
 	UnpublishL2CAPChannel(PSM ICBL2CAPPSM)
 	UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.IData, characteristic ICBMutableCharacteristic, centrals []CBCentral) bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	IsAdvertising() bool
 }
 
 // An object that manages and advertises peripheral services exposed by this app.

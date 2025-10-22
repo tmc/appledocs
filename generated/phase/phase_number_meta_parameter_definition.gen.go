@@ -29,6 +29,16 @@ type _PHASENumberMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASENumberMetaParameterDefinition] class.
 type IPHASENumberMetaParameterDefinition interface {
 	IPHASEMetaParameterDefinition
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
+	InputMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
+	Maximum() float64
+	SetMaximum(value float64)
+	Minimum() float64
+	SetMinimum(value float64)
+	MetaParameters() PHASEMetaParameter
+	SetMetaParameters(value IPHASEMetaParameter)
 }
 
 // A specification for a metaparameter defined by a number.
@@ -120,8 +130,8 @@ func (p_ PHASENumberMetaParameterDefinition) SetInputMetaParameterDefinition(val
 // The highest possible number for the value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/maximum
-func (p_ PHASENumberMetaParameterDefinition) Maximum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maximum"))
+func (p_ PHASENumberMetaParameterDefinition) Maximum() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("maximum"))
 	return rv
 }
 
@@ -131,15 +141,15 @@ func (p_ PHASENumberMetaParameterDefinition) Maximum() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/maximum
-func (p_ PHASENumberMetaParameterDefinition) SetMaximum(value unsafe.Pointer) {
+func (p_ PHASENumberMetaParameterDefinition) SetMaximum(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaximum:"), value)
 }
 
 // The lowest possible number for the value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/minimum
-func (p_ PHASENumberMetaParameterDefinition) Minimum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("minimum"))
+func (p_ PHASENumberMetaParameterDefinition) Minimum() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("minimum"))
 	return rv
 }
 
@@ -149,7 +159,7 @@ func (p_ PHASENumberMetaParameterDefinition) Minimum() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition/minimum
-func (p_ PHASENumberMetaParameterDefinition) SetMinimum(value unsafe.Pointer) {
+func (p_ PHASENumberMetaParameterDefinition) SetMinimum(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimum:"), value)
 }
 

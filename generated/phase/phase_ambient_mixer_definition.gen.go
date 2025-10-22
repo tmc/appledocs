@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
@@ -31,6 +30,10 @@ type _PHASEAmbientMixerDefinitionClass struct {
 // An interface definition for the [PHASEAmbientMixerDefinition] class.
 type IPHASEAmbientMixerDefinition interface {
 	IPHASEMixerDefinition
+	InputChannelLayout() avfaudio.AudioChannelLayout
+	Orientation() unsafe.Pointer
+	Transform() unsafe.Pointer
+	SetTransform(value unsafe.Pointer)
 }
 
 // An audio-layering object that outputs sound in a particular direction in 3D space.
@@ -100,9 +103,9 @@ func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientation(layout avfaudio.
 // Creates a named ambient mixer with the given channel layout and orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)
-func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientationIdentifier(layout avfaudio.IAudioChannelLayout, orientation unsafe.Pointer, identifier appkit.string) PHASEAmbientMixerDefinition {
+func NewPHASEAmbientMixerDefinitionWithChannelLayoutOrientationIdentifier(layout avfaudio.IAudioChannelLayout, orientation unsafe.Pointer, identifier string) PHASEAmbientMixerDefinition {
 	instance := getPHASEAmbientMixerDefinitionClass().Alloc()
-	rv := objc.Send[PHASEAmbientMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:orientation:identifier:"), layout, orientation, identifier)
+	rv := objc.Send[PHASEAmbientMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:orientation:identifier:"), layout, orientation, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

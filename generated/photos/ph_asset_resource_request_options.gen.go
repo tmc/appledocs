@@ -30,6 +30,12 @@ type _PHAssetResourceRequestOptionsClass struct {
 // An interface definition for the [PHAssetResourceRequestOptions] class.
 type IPHAssetResourceRequestOptions interface {
 	objectivec.IObject
+	NetworkAccessAllowed() bool
+	SetNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	IsNetworkAccessAllowed() bool
+	SetIsNetworkAccessAllowed(value bool)
 }
 
 // A set of options affecting the delivery of underlying asset data that you request from the asset resource manager.

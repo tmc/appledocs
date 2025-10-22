@@ -30,6 +30,9 @@ type _FSVolumeClass struct {
 // An interface definition for the [FSVolume] class.
 type IFSVolume interface {
 	objectivec.IObject
+	Name() FSFileName
+	SetName(value IFSFileName)
+	VolumeID() FSVolumeIdentifier
 }
 
 // A directory structure for files and folders.

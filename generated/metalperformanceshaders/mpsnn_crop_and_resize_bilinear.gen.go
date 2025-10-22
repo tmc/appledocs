@@ -32,6 +32,12 @@ type _CropAndResizeBilinearClass struct {
 // An interface definition for the [CropAndResizeBilinear] class.
 type ICropAndResizeBilinear interface {
 	objectivec.IObject
+	Regions() corelocation.Region
+	ResizeHeight() uint
+	NumberOfRegions() int
+	SetNumberOfRegions(value int)
+	ResizeWidth() int
+	SetResizeWidth(value int)
 }
 
 // A cropping and bilinear resizing filter.

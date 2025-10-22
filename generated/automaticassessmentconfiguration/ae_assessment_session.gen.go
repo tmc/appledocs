@@ -33,6 +33,12 @@ type IAEAssessmentSession interface {
 	Begin()
 	End()
 	UpdateToConfiguration(configuration IAEAssessmentConfiguration)
+	Configuration() AEAssessmentConfiguration
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Active() bool
+	IsActive() bool
+	SetIsActive(value bool)
 }
 
 // A session that your app uses to protect an assessment.

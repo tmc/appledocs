@@ -30,6 +30,12 @@ type _MTRTestClusterClusterTestListNestedStructListArgumentRequestParamsClass st
 // An interface definition for the [MTRTestClusterClusterTestListNestedStructListArgumentRequestParams] class.
 type IMTRTestClusterClusterTestListNestedStructListArgumentRequestParams interface {
 	IMTRUnitTestingClusterTestListNestedStructListArgumentRequestParams
+	Arg1() unsafe.Pointer
+	SetArg1(value unsafe.Pointer)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

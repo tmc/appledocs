@@ -31,6 +31,12 @@ type _MTRUnitTestingClusterNestedStructClass struct {
 // An interface definition for the [MTRUnitTestingClusterNestedStruct] class.
 type IMTRUnitTestingClusterNestedStruct interface {
 	objectivec.IObject
+	A() foundation.Number
+	SetA(value foundation.INumber)
+	B() foundation.Number
+	SetB(value foundation.INumber)
+	C() MTRUnitTestingClusterSimpleStruct
+	SetC(value IMTRUnitTestingClusterSimpleStruct)
 }
 
 //

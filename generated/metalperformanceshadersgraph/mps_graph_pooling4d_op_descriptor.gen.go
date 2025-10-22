@@ -30,6 +30,24 @@ type _GraphPooling4DOpDescriptorClass struct {
 // An interface definition for the [GraphPooling4DOpDescriptor] class.
 type IGraphPooling4DOpDescriptor interface {
 	IGraphObject
+	CeilMode() bool
+	SetCeilMode(value bool)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	DilationRates() foundation.Number
+	SetDilationRates(value foundation.INumber)
+	IncludeZeroPadToAverage() bool
+	SetIncludeZeroPadToAverage(value bool)
+	KernelSizes() foundation.Number
+	SetKernelSizes(value foundation.INumber)
+	PaddingValues() foundation.Number
+	SetPaddingValues(value foundation.INumber)
+	ReturnIndicesDataType() unsafe.Pointer
+	SetReturnIndicesDataType(value unsafe.Pointer)
+	ReturnIndicesMode() GraphPoolingReturnIndicesMode
+	SetReturnIndicesMode(value GraphPoolingReturnIndicesMode)
+	Strides() foundation.Number
+	SetStrides(value foundation.INumber)
 }
 
 // The class that defines the parameters for a 4D pooling operation.

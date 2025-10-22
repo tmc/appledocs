@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,10 +31,13 @@ type _PDFDocumentClass struct {
 // An interface definition for the [PDFDocument] class.
 type IPDFDocument interface {
 	objectivec.IObject
-	BeginFindStringWithOptions(string_ appkit.string, options unsafe.Pointer)
-	FindStringWithOptions(string_ appkit.string, options unsafe.Pointer) []PDFSelection
+	BeginFindStringWithOptions(string_ string, options unsafe.Pointer)
+	FindStringWithOptions(string_ string, options unsafe.Pointer) []PDFSelection
 	SelectionFromPageAtPointToPageAtPointWithGranularity(startPage IPDFPage, startPoint foundation.IPoint, endPage IPDFPage, endPoint foundation.IPoint, granularity IPDFSelectionGranularity) PDFSelection
-	UnlockWithPassword(password appkit.string) bool
+	UnlockWithPassword(password string) bool
+	AccessPermissions() PDFAccessPermissions
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An object that represents PDF data or a PDF file and defines methods for writing, searching, and selecting PDF data.
@@ -114,15 +116,15 @@ func NewPDFDocumentWithURL(url foundation.IURL) PDFDocument {
 // Asynchronously finds all instances of the specified string in the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocument/beginFindString(_:withOptions:)
-func (p_ PDFDocument) BeginFindStringWithOptions(string_ appkit.string, options unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("beginFindString:withOptions:"), string_, options)
+func (p_ PDFDocument) BeginFindStringWithOptions(string_ string, options unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("beginFindString:withOptions:"), objc.String(string_), options)
 }
 
 // Synchronously finds all instances of the specified string in the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocument/findString(_:withOptions:)
-func (p_ PDFDocument) FindStringWithOptions(string_ appkit.string, options unsafe.Pointer) []PDFSelection {
-	rv := objc.Send[[]PDFSelection](p_.ID, objc.Sel("findString:withOptions:"), string_, options)
+func (p_ PDFDocument) FindStringWithOptions(string_ string, options unsafe.Pointer) []PDFSelection {
+	rv := objc.Send[[]PDFSelection](p_.ID, objc.Sel("findString:withOptions:"), objc.String(string_), options)
 	return rv
 }
 
@@ -136,8 +138,8 @@ func (p_ PDFDocument) SelectionFromPageAtPointToPageAtPointWithGranularity(start
 // Attempts to unlock an encrypted document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocument/unlock(withPassword:)
-func (p_ PDFDocument) UnlockWithPassword(password appkit.string) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("unlockWithPassword:"), password)
+func (p_ PDFDocument) UnlockWithPassword(password string) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("unlockWithPassword:"), objc.String(password))
 	return rv
 }
 

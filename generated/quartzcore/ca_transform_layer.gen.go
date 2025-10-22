@@ -29,6 +29,8 @@ type _TransformLayerClass struct {
 // An interface definition for the [TransformLayer] class.
 type ITransformLayer interface {
 	ILayer
+	ZPosition() float64
+	SetZPosition(value float64)
 }
 
 // Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.

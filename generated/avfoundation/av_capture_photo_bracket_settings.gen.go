@@ -29,6 +29,13 @@ type _CapturePhotoBracketSettingsClass struct {
 // An interface definition for the [CapturePhotoBracketSettings] class.
 type ICapturePhotoBracketSettings interface {
 	ICapturePhotoSettings
+	BracketedSettings() []unsafe.Pointer
+	IsLensStabilizationEnabled() bool
+	SetIsLensStabilizationEnabled(value bool)
+	IsHighResolutionPhotoEnabled() bool
+	SetIsHighResolutionPhotoEnabled(value bool)
+	PreviewPhotoFormat() string
+	SetPreviewPhotoFormat(value string)
 }
 
 // A specification of the features and settings to use for a photo capture request that captures multiple images with varied settings.

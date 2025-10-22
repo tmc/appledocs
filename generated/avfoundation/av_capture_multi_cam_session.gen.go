@@ -29,6 +29,12 @@ type _CaptureMultiCamSessionClass struct {
 // An interface definition for the [CaptureMultiCamSession] class.
 type ICaptureMultiCamSession interface {
 	ICaptureSession
+	ActiveFormat() unsafe.Pointer
+	SetActiveFormat(value unsafe.Pointer)
+	HardwareCost() float32
+	SetHardwareCost(value float32)
+	SystemPressureCost() float32
+	SetSystemPressureCost(value float32)
 }
 
 // A capture session that supports simultaneous capture from multiple inputs of the same media type.

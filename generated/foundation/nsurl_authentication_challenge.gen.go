@@ -30,6 +30,14 @@ type _URLAuthenticationChallengeClass struct {
 // An interface definition for the [URLAuthenticationChallenge] class.
 type IURLAuthenticationChallenge interface {
 	objectivec.IObject
+	FailureResponse() NSURLResponse
+	PreviousFailureCount() int
+	ProposedCredential() NSURLCredential
+	Sender() objc.ID
+	Error() Error
+	SetError(value IError)
+	ProtectionSpace() NSURLProtectionSpace
+	SetProtectionSpace(value IURLProtectionSpace)
 }
 
 // A challenge from a server requiring authentication from the client.

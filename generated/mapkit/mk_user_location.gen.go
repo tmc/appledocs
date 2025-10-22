@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,17 @@ type _MKUserLocationClass struct {
 // An interface definition for the [MKUserLocation] class.
 type IMKUserLocation interface {
 	objectivec.IObject
+	Heading() corelocation.Heading
+	Updating() bool
+	Location() corelocation.Location
+	Subtitle() string
+	SetSubtitle(value string)
+	Title() string
+	SetTitle(value string)
+	UserLocation() MKUserLocation
+	SetUserLocation(value IMKUserLocation)
+	IsUpdating() bool
+	SetIsUpdating(value bool)
 }
 
 // An annotation that reflects the user’s location on the map.
@@ -109,8 +119,8 @@ func (m_ MKUserLocation) Location() corelocation.Location {
 // The subtitle to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
-func (m_ MKUserLocation) Subtitle() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subtitle"))
+func (m_ MKUserLocation) Subtitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -120,15 +130,15 @@ func (m_ MKUserLocation) Subtitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
-func (m_ MKUserLocation) SetSubtitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
+func (m_ MKUserLocation) SetSubtitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
 // The title to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
-func (m_ MKUserLocation) Title() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
+func (m_ MKUserLocation) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -138,8 +148,8 @@ func (m_ MKUserLocation) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
-func (m_ MKUserLocation) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+func (m_ MKUserLocation) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The annotation object that represents the user’s location.

@@ -29,6 +29,8 @@ type _NETransparentProxyProviderClass struct {
 // An interface definition for the [NETransparentProxyProvider] class.
 type INETransparentProxyProvider interface {
 	INEAppProxyProvider
+	IncludedNetworkRules() NENetworkRule
+	SetIncludedNetworkRules(value INENetworkRule)
 }
 
 // An object that implements the client side of a custom transparent network proxy solution.

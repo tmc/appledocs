@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +31,12 @@ type _LayerClass struct {
 // An interface definition for the [Layer] class.
 type ILayer interface {
 	objectivec.IObject
-	ActionForKey(event appkit.string) objc.ID
-	AddAnimationForKey(anim IAnimation, key appkit.string)
+	ActionForKey(event string) objc.ID
+	AddAnimationForKey(anim IAnimation, key string)
 	AddConstraint(c IConstraint)
 	AddSublayer(layer ILayer)
 	AffineTransform() coregraphics.CGAffineTransform
-	AnimationForKey(key appkit.string) Animation
+	AnimationForKey(key string) Animation
 	AnimationKeys() []string
 	ContainsPoint(p coregraphics.CGPoint) bool
 	ContentsAreFlipped() bool
@@ -62,7 +61,7 @@ type ILayer interface {
 	PreferredFrameSize() coregraphics.CGSize
 	PresentationLayer() unsafe.Pointer
 	RemoveAllAnimations()
-	RemoveAnimationForKey(key appkit.string)
+	RemoveAnimationForKey(key string)
 	RemoveFromSuperlayer()
 	RenderInContext(ctx coregraphics.CGContextRef)
 	ReplaceSublayerWith(oldLayer ILayer, newLayer ILayer)
@@ -74,7 +73,133 @@ type ILayer interface {
 	SetNeedsDisplay()
 	SetNeedsDisplayInRect(r coregraphics.CGRect)
 	SetNeedsLayout()
-	ShouldArchiveValueForKey(key appkit.string) bool
+	ShouldArchiveValueForKey(key string) bool
+	Actions() unsafe.Pointer
+	SetActions(value unsafe.Pointer)
+	AllowsEdgeAntialiasing() bool
+	SetAllowsEdgeAntialiasing(value bool)
+	AllowsGroupOpacity() bool
+	SetAllowsGroupOpacity(value bool)
+	AnchorPoint() coregraphics.CGPoint
+	SetAnchorPoint(value coregraphics.CGPoint)
+	AnchorPointZ() float64
+	SetAnchorPointZ(value float64)
+	AutoresizingMask() AutoresizingMask
+	SetAutoresizingMask(value AutoresizingMask)
+	BackgroundColor() coregraphics.CGColorRef
+	SetBackgroundColor(value coregraphics.CGColorRef)
+	BackgroundFilters() objc.ID
+	SetBackgroundFilters(value objc.ID)
+	BorderColor() coregraphics.CGColorRef
+	SetBorderColor(value coregraphics.CGColorRef)
+	BorderWidth() float64
+	SetBorderWidth(value float64)
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	CompositingFilter() objc.ID
+	SetCompositingFilter(value objc.ID)
+	Constraints() []Constraint
+	SetConstraints(value []Constraint)
+	Contents() objc.ID
+	SetContents(value objc.ID)
+	ContentsCenter() coregraphics.CGRect
+	SetContentsCenter(value coregraphics.CGRect)
+	ContentsFormat() LayerContentsFormat
+	SetContentsFormat(value LayerContentsFormat)
+	ContentsGravity() LayerContentsGravity
+	SetContentsGravity(value ILayerContentsGravity)
+	ContentsHeadroom() float64
+	SetContentsHeadroom(value float64)
+	ContentsRect() coregraphics.CGRect
+	SetContentsRect(value coregraphics.CGRect)
+	ContentsScale() float64
+	SetContentsScale(value float64)
+	CornerCurve() LayerCornerCurve
+	SetCornerCurve(value ILayerCornerCurve)
+	CornerRadius() float64
+	SetCornerRadius(value float64)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DrawsAsynchronously() bool
+	SetDrawsAsynchronously(value bool)
+	EdgeAntialiasingMask() EdgeAntialiasingMask
+	SetEdgeAntialiasingMask(value EdgeAntialiasingMask)
+	Filters() objc.ID
+	SetFilters(value objc.ID)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	DoubleSided() bool
+	SetDoubleSided(value bool)
+	GeometryFlipped() bool
+	SetGeometryFlipped(value bool)
+	Hidden() bool
+	SetHidden(value bool)
+	Opaque() bool
+	SetOpaque(value bool)
+	LayoutManager() objc.ID
+	SetLayoutManager(value objc.ID)
+	MagnificationFilter() LayerContentsFilter
+	SetMagnificationFilter(value ILayerContentsFilter)
+	Mask() CALayer
+	SetMask(value ILayer)
+	MaskedCorners() CornerMask
+	SetMaskedCorners(value CornerMask)
+	MasksToBounds() bool
+	SetMasksToBounds(value bool)
+	MinificationFilter() LayerContentsFilter
+	SetMinificationFilter(value ILayerContentsFilter)
+	MinificationFilterBias() float32
+	SetMinificationFilterBias(value float32)
+	Name() string
+	SetName(value string)
+	NeedsDisplayOnBoundsChange() bool
+	SetNeedsDisplayOnBoundsChange(value bool)
+	Opacity() float32
+	SetOpacity(value float32)
+	Position() coregraphics.CGPoint
+	SetPosition(value coregraphics.CGPoint)
+	PreferredDynamicRange() DynamicRange
+	SetPreferredDynamicRange(value IDynamicRange)
+	RasterizationScale() float64
+	SetRasterizationScale(value float64)
+	ShadowColor() coregraphics.CGColorRef
+	SetShadowColor(value coregraphics.CGColorRef)
+	ShadowOffset() coregraphics.CGSize
+	SetShadowOffset(value coregraphics.CGSize)
+	ShadowOpacity() float32
+	SetShadowOpacity(value float32)
+	ShadowPath() coregraphics.CGPathRef
+	SetShadowPath(value coregraphics.CGPathRef)
+	ShadowRadius() float64
+	SetShadowRadius(value float64)
+	ShouldRasterize() bool
+	SetShouldRasterize(value bool)
+	Style() objc.ID
+	SetStyle(value objc.ID)
+	SublayerTransform() unsafe.Pointer
+	SetSublayerTransform(value unsafe.Pointer)
+	Sublayers() []Layer
+	SetSublayers(value []Layer)
+	Superlayer() CALayer
+	ToneMapMode() ToneMapMode
+	SetToneMapMode(value ToneMapMode)
+	Transform() unsafe.Pointer
+	SetTransform(value unsafe.Pointer)
+	VisibleRect() coregraphics.CGRect
+	WantsDynamicContentScaling() bool
+	SetWantsDynamicContentScaling(value bool)
+	WantsExtendedDynamicRangeContent() bool
+	SetWantsExtendedDynamicRangeContent(value bool)
+	ZPosition() float64
+	SetZPosition(value float64)
+	IsDoubleSided() bool
+	SetIsDoubleSided(value bool)
+	IsGeometryFlipped() bool
+	SetIsGeometryFlipped(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsOpaque() bool
+	SetIsOpaque(value bool)
 }
 
 // An object that manages image-based content and allows you to perform animations on that content.
@@ -142,7 +267,7 @@ func NewLayerWithLayer(layer objectivec.IObject) Layer {
 // Initializes a layer with a remote client ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+func NewLayerWithRemoteClientId(client_id Iuint32) Layer {
 	rv := objc.Send[Layer](objc.ID(getLayerClass().class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
@@ -158,23 +283,23 @@ func (lc _LayerClass) CornerCurveExpansionFactor(curve ILayerCornerCurve) float6
 // Returns the default action for the current class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/defaultAction(forKey:)
-func (lc _LayerClass) DefaultActionForKey(event appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultActionForKey:"), event)
+func (lc _LayerClass) DefaultActionForKey(event string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultActionForKey:"), objc.String(event))
 	return rv
 }
 
 // Specifies the default value associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/defaultValue(forKey:)
-func (lc _LayerClass) DefaultValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultValueForKey:"), key)
+func (lc _LayerClass) DefaultValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultValueForKey:"), objc.String(key))
 	return rv
 }
 
 // Initializes a layer with a remote client ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func (lc _LayerClass) LayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+func (lc _LayerClass) LayerWithRemoteClientId(client_id Iuint32) Layer {
 	rv := objc.Send[Layer](objc.ID(lc.class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
@@ -190,24 +315,24 @@ func (lc _LayerClass) Layer() unsafe.Pointer {
 // Returns a Boolean indicating whether changes to the specified key require the layer to be redisplayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/needsDisplay(forKey:)
-func (lc _LayerClass) NeedsDisplayForKey(key appkit.string) bool {
-	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("needsDisplayForKey:"), key)
+func (lc _LayerClass) NeedsDisplayForKey(key string) bool {
+	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("needsDisplayForKey:"), objc.String(key))
 	return rv
 }
 
 // Returns the action object assigned to the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/action(forKey:)
-func (l_ Layer) ActionForKey(event appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](l_.ID, objc.Sel("actionForKey:"), event)
+func (l_ Layer) ActionForKey(event string) objc.ID {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("actionForKey:"), objc.String(event))
 	return rv
 }
 
 // Add the specified animation object to the layer’s render tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/add(_:forKey:)
-func (l_ Layer) AddAnimationForKey(anim IAnimation, key appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("addAnimation:forKey:"), anim, key)
+func (l_ Layer) AddAnimationForKey(anim IAnimation, key string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("addAnimation:forKey:"), anim, objc.String(key))
 }
 
 // Adds the specified constraint to the layer.
@@ -235,8 +360,8 @@ func (l_ Layer) AffineTransform() coregraphics.CGAffineTransform {
 // Returns the animation object with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/animation(forKey:)
-func (l_ Layer) AnimationForKey(key appkit.string) Animation {
-	rv := objc.Send[Animation](l_.ID, objc.Sel("animationForKey:"), key)
+func (l_ Layer) AnimationForKey(key string) Animation {
+	rv := objc.Send[Animation](l_.ID, objc.Sel("animationForKey:"), objc.String(key))
 	return rv
 }
 
@@ -426,8 +551,8 @@ func (l_ Layer) RemoveAllAnimations() {
 // Remove the animation object with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/removeAnimation(forKey:)
-func (l_ Layer) RemoveAnimationForKey(key appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("removeAnimationForKey:"), key)
+func (l_ Layer) RemoveAnimationForKey(key string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("removeAnimationForKey:"), objc.String(key))
 }
 
 // Detaches the layer from its parent layer.
@@ -510,8 +635,8 @@ func (l_ Layer) SetNeedsLayout() {
 // Returns a Boolean indicating whether the value of the specified key should be archived.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shouldArchiveValue(forKey:)
-func (l_ Layer) ShouldArchiveValueForKey(key appkit.string) bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("shouldArchiveValueForKey:"), key)
+func (l_ Layer) ShouldArchiveValueForKey(key string) bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("shouldArchiveValueForKey:"), objc.String(key))
 	return rv
 }
 
@@ -1185,8 +1310,8 @@ func (l_ Layer) SetMinificationFilter(value ILayerContentsFilter) {
 // The bias factor used by the minification filter to determine the levels of detail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilterBias
-func (l_ Layer) MinificationFilterBias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("minificationFilterBias"))
+func (l_ Layer) MinificationFilterBias() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("minificationFilterBias"))
 	return rv
 }
 
@@ -1196,15 +1321,15 @@ func (l_ Layer) MinificationFilterBias() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilterBias
-func (l_ Layer) SetMinificationFilterBias(value unsafe.Pointer) {
+func (l_ Layer) SetMinificationFilterBias(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinificationFilterBias:"), value)
 }
 
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
-func (l_ Layer) Name() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("name"))
+func (l_ Layer) Name() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -1214,8 +1339,8 @@ func (l_ Layer) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
-func (l_ Layer) SetName(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
+func (l_ Layer) SetName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // A Boolean indicating whether the layer contents must be updated when its bounds rectangle changes.
@@ -1239,8 +1364,8 @@ func (l_ Layer) SetNeedsDisplayOnBoundsChange(value bool) {
 // The opacity of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
-func (l_ Layer) Opacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("opacity"))
+func (l_ Layer) Opacity() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("opacity"))
 	return rv
 }
 
@@ -1250,7 +1375,7 @@ func (l_ Layer) Opacity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
-func (l_ Layer) SetOpacity(value unsafe.Pointer) {
+func (l_ Layer) SetOpacity(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOpacity:"), value)
 }
 
@@ -1344,8 +1469,8 @@ func (l_ Layer) SetShadowOffset(value coregraphics.CGSize) {
 // The opacity of the layer’s shadow. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowOpacity
-func (l_ Layer) ShadowOpacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("shadowOpacity"))
+func (l_ Layer) ShadowOpacity() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("shadowOpacity"))
 	return rv
 }
 
@@ -1355,7 +1480,7 @@ func (l_ Layer) ShadowOpacity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shadowOpacity
-func (l_ Layer) SetShadowOpacity(value unsafe.Pointer) {
+func (l_ Layer) SetShadowOpacity(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShadowOpacity:"), value)
 }
 

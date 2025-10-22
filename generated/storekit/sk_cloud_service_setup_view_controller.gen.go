@@ -30,6 +30,8 @@ type _CloudServiceSetupViewControllerClass struct {
 // An interface definition for the [CloudServiceSetupViewController] class.
 type ICloudServiceSetupViewController interface {
 	appkit.IViewController
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.

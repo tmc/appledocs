@@ -31,6 +31,25 @@ type _PDFThumbnailViewClass struct {
 // An interface definition for the [PDFThumbnailView] class.
 type IPDFThumbnailView interface {
 	appkit.IView
+	AllowsDragging() bool
+	SetAllowsDragging(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.IColor)
+	ContentInset() unsafe.Pointer
+	SetContentInset(value unsafe.Pointer)
+	LabelFont() appkit.Font
+	SetLabelFont(value appkit.IFont)
+	LayoutMode() PDFThumbnailLayoutMode
+	SetLayoutMode(value PDFThumbnailLayoutMode)
+	MaximumNumberOfColumns() uint
+	SetMaximumNumberOfColumns(value uint)
+	PDFView() PDFView
+	SetPDFView(value IPDFView)
+	SelectedPages() []PDFPage
+	ThumbnailSize() coregraphics.CGSize
+	SetThumbnailSize(value coregraphics.CGSize)
 }
 
 // An object that contains a set of thumbnails, each of which represents a page in a PDF document.

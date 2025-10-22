@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _PHProjectSectionClass struct {
 // An interface definition for the [PHProjectSection] class.
 type IPHProjectSection interface {
 	objectivec.IObject
+	SectionContents() []PHProjectSectionContent
+	SectionType() PHProjectSectionType
+	Title() string
 }
 
 // A collection of content representing curated asset and text elements.
@@ -100,8 +102,8 @@ func (p_ PHProjectSection) SectionType() PHProjectSectionType {
 // The optional section title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/title
-func (p_ PHProjectSection) Title() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
+func (p_ PHProjectSection) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 

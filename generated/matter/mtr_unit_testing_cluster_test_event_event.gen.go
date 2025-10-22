@@ -31,6 +31,18 @@ type _MTRUnitTestingClusterTestEventEventClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestEventEvent] class.
 type IMTRUnitTestingClusterTestEventEvent interface {
 	objectivec.IObject
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	Arg2() foundation.Number
+	SetArg2(value foundation.INumber)
+	Arg3() foundation.Number
+	SetArg3(value foundation.INumber)
+	Arg4() MTRUnitTestingClusterSimpleStruct
+	SetArg4(value IMTRUnitTestingClusterSimpleStruct)
+	Arg5() unsafe.Pointer
+	SetArg5(value unsafe.Pointer)
+	Arg6() unsafe.Pointer
+	SetArg6(value unsafe.Pointer)
 }
 
 //

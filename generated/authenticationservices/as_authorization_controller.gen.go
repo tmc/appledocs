@@ -31,6 +31,14 @@ type _AuthorizationControllerClass struct {
 type IAuthorizationController interface {
 	objectivec.IObject
 	Cancel()
+	CustomAuthorizationMethods() []string
+	SetCustomAuthorizationMethods(value []string)
+	PresentationContextProvider() objc.ID
+	SetPresentationContextProvider(value objc.ID)
+	AuthorizationRequests() ASAuthorizationRequest
+	SetAuthorizationRequests(value IASAuthorizationRequest)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A controller that manages authorization requests that a provider creates.

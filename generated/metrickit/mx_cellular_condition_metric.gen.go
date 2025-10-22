@@ -29,6 +29,7 @@ type _MXCellularConditionMetricClass struct {
 // An interface definition for the [MXCellularConditionMetric] class.
 type IMXCellularConditionMetric interface {
 	IMXMetric
+	HistogrammedCellularConditionTime() unsafe.Pointer
 }
 
 // An object representing metrics about the condition of the cellular network.

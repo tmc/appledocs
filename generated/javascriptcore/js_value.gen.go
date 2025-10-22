@@ -30,6 +30,29 @@ type _JSValueClass struct {
 // An interface definition for the [JSValue] class.
 type IJSValue interface {
 	objectivec.IObject
+	Context() JSContext
+	IsArray() bool
+	SetIsArray(value bool)
+	IsBigInt() bool
+	SetIsBigInt(value bool)
+	IsBoolean() bool
+	SetIsBoolean(value bool)
+	IsDate() bool
+	SetIsDate(value bool)
+	IsNull() bool
+	SetIsNull(value bool)
+	IsNumber() bool
+	SetIsNumber(value bool)
+	IsObject() bool
+	SetIsObject(value bool)
+	IsString() bool
+	SetIsString(value bool)
+	IsSymbol() bool
+	SetIsSymbol(value bool)
+	IsUndefined() bool
+	SetIsUndefined(value bool)
+	JsValueRef() JSValueRef
+	SetJsValueRef(value IJSValueRef)
 }
 
 // A JavaScript value.

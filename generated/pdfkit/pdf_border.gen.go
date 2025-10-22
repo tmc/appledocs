@@ -32,6 +32,31 @@ type _PDFBorderClass struct {
 // An interface definition for the [PDFBorder] class.
 type IPDFBorder interface {
 	objectivec.IObject
+	BorderKeyValues() objc.ID
+	DashPattern() objc.ID
+	SetDashPattern(value objc.ID)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	Style() PDFBorderStyle
+	SetStyle(value PDFBorderStyle)
+	Alignment() unsafe.Pointer
+	SetAlignment(value unsafe.Pointer)
+	Border() PDFBorder
+	SetBorder(value IPDFBorder)
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	Contents() string
+	SetContents(value string)
+	Font() appkit.Font
+	SetFont(value appkit.IFont)
+	FontColor() appkit.Color
+	SetFontColor(value appkit.IColor)
+	HasAppearanceStream() bool
+	SetHasAppearanceStream(value bool)
+	IsHighlighted() bool
+	SetIsHighlighted(value bool)
 }
 
 // An optional border for an annotation that lies completely within the annotation rectangle.
@@ -217,8 +242,8 @@ func (p_ PDFBorder) SetColor(value appkit.IColor) {
 // Returns the textual content (if any) associated with the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFBorder) Contents() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("contents"))
+func (p_ PDFBorder) Contents() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -228,8 +253,8 @@ func (p_ PDFBorder) Contents() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFBorder) SetContents(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
+func (p_ PDFBorder) SetContents(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
 }
 
 // The font the annotation uses to display text.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -32,6 +31,11 @@ type _INRestaurantReservationClass struct {
 // An interface definition for the [INRestaurantReservation] class.
 type IINRestaurantReservation interface {
 	IINReservation
+	RestaurantLocation() corelocation.Placemark
+	PartySize() int
+	SetPartySize(value int)
+	ReservationDuration() INDateComponentsRange
+	SetReservationDuration(value INDateComponentsRange)
 }
 
 // The information that describes a restaurant reservation.
@@ -87,9 +91,9 @@ func NewINRestaurantReservation() INRestaurantReservation {
 // Creates a new restaurant reservation with the provided information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:
-func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference INSpeakableString, reservationNumber appkit.string, bookingTime foundation.IDate, reservationStatus INReservationStatus, reservationHolderName appkit.string, actions []INReservationAction, reservationDuration INDateComponentsRange, partySize foundation.INumber, restaurantLocation corelocation.IPlacemark) INRestaurantReservation {
+func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference INSpeakableString, reservationNumber string, bookingTime foundation.IDate, reservationStatus INReservationStatus, reservationHolderName string, actions []INReservationAction, reservationDuration INDateComponentsRange, partySize foundation.INumber, restaurantLocation corelocation.IPlacemark) INRestaurantReservation {
 	instance := getINRestaurantReservationClass().Alloc()
-	rv := objc.Send[INRestaurantReservation](instance.ID, objc.Sel("initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:"), itemReference, reservationNumber, bookingTime, reservationStatus, reservationHolderName, actions, reservationDuration, partySize, restaurantLocation)
+	rv := objc.Send[INRestaurantReservation](instance.ID, objc.Sel("initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:"), itemReference, objc.String(reservationNumber), bookingTime, reservationStatus, objc.String(reservationHolderName), actions, reservationDuration, partySize, restaurantLocation)
 	rv.Autorelease()
 	return rv
 }

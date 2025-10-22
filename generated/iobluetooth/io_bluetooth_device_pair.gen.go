@@ -36,6 +36,8 @@ type IBluetoothDevicePair interface {
 	SetDevice(inDevice IOBluetoothDevice)
 	Start() unsafe.Pointer
 	Stop()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An instance of IOBluetoothDevicePair represents a pairing attempt to a remote Bluetooth device.

@@ -30,6 +30,40 @@ type _TextureDescriptorClass struct {
 // An interface definition for the [TextureDescriptor] class.
 type ITextureDescriptor interface {
 	objectivec.IObject
+	AllowGPUOptimizedContents() bool
+	SetAllowGPUOptimizedContents(value bool)
+	ArrayLength() uint
+	SetArrayLength(value uint)
+	CompressionType() TextureCompressionType
+	SetCompressionType(value TextureCompressionType)
+	CpuCacheMode() unsafe.Pointer
+	SetCpuCacheMode(value unsafe.Pointer)
+	Depth() uint
+	SetDepth(value uint)
+	HazardTrackingMode() HazardTrackingMode
+	SetHazardTrackingMode(value HazardTrackingMode)
+	Height() uint
+	SetHeight(value uint)
+	MipmapLevelCount() uint
+	SetMipmapLevelCount(value uint)
+	PixelFormat() PixelFormat
+	SetPixelFormat(value PixelFormat)
+	PlacementSparsePageSize() SparsePageSize
+	SetPlacementSparsePageSize(value ISparsePageSize)
+	ResourceOptions() ResourceOptions
+	SetResourceOptions(value ResourceOptions)
+	SampleCount() uint
+	SetSampleCount(value uint)
+	StorageMode() StorageMode
+	SetStorageMode(value StorageMode)
+	Swizzle() unsafe.Pointer
+	SetSwizzle(value unsafe.Pointer)
+	TextureType() TextureType
+	SetTextureType(value TextureType)
+	Usage() TextureUsage
+	SetUsage(value ITextureUsage)
+	Width() uint
+	SetWidth(value uint)
 }
 
 // An instance that you use to configure new Metal texture instances.

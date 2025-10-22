@@ -31,6 +31,14 @@ type _MTRThermostatClusterGetWeeklyScheduleParamsClass struct {
 // An interface definition for the [MTRThermostatClusterGetWeeklyScheduleParams] class.
 type IMTRThermostatClusterGetWeeklyScheduleParams interface {
 	objectivec.IObject
+	DaysToReturn() foundation.Number
+	SetDaysToReturn(value foundation.INumber)
+	ModeToReturn() foundation.Number
+	SetModeToReturn(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

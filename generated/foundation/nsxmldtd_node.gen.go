@@ -29,6 +29,16 @@ type _XMLDTDNodeClass struct {
 // An interface definition for the [XMLDTDNode] class.
 type IXMLDTDNode interface {
 	IXMLNode
+	DtdKind() unsafe.Pointer
+	SetDtdKind(value unsafe.Pointer)
+	IsExternal() bool
+	SetIsExternal(value bool)
+	NotationName() string
+	SetNotationName(value string)
+	PublicID() string
+	SetPublicID(value string)
+	SystemID() string
+	SetSystemID(value string)
 }
 
 // A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.

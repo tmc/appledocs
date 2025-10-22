@@ -31,6 +31,8 @@ type _MTRThreadNetworkDiagnosticsClusterConnectionStatusEventClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent] class.
 type IMTRThreadNetworkDiagnosticsClusterConnectionStatusEvent interface {
 	objectivec.IObject
+	ConnectionStatus() foundation.Number
+	SetConnectionStatus(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,11 @@ type _MIDICIDiscoveredNodeClass struct {
 // An interface definition for the [MIDICIDiscoveredNode] class.
 type IMIDICIDiscoveredNode interface {
 	objectivec.IObject
+	Destination() MIDIEntityRef
+	DeviceInfo() MIDICIDeviceInfo
+	MaximumSysExSize() foundation.Number
+	SupportsProfiles() bool
+	SupportsProperties() bool
 }
 
 // A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries.

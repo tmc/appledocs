@@ -29,6 +29,8 @@ type _CKDatabaseOperationClass struct {
 // An interface definition for the [CKDatabaseOperation] class.
 type ICKDatabaseOperation interface {
 	ICKOperation
+	Database() CKDatabase
+	SetDatabase(value ICKDatabase)
 }
 
 // The abstract base class for operations that act upon databases in CloudKit.

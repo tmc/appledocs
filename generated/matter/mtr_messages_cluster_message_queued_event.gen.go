@@ -31,6 +31,8 @@ type _MTRMessagesClusterMessageQueuedEventClass struct {
 // An interface definition for the [MTRMessagesClusterMessageQueuedEvent] class.
 type IMTRMessagesClusterMessageQueuedEvent interface {
 	objectivec.IObject
+	MessageID() foundation.NSData
+	SetMessageID(value foundation.IData)
 }
 
 //

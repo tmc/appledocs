@@ -30,6 +30,11 @@ type _GLKReflectionMapEffectClass struct {
 type IGLKReflectionMapEffect interface {
 	IGLKBaseEffect
 	PrepareToDraw()
+	Matrix() GLKMatrix3
+	SetMatrix(value IGLKMatrix3)
+	TextureCubeMap() GLKEffectPropertyTexture
+	TextureOrder() GLKEffectPropertyTexture
+	SetTextureOrder(value IGLKEffectPropertyTexture)
 }
 
 // A lighting and shading system that supports reflection mapping for use in shader-based OpenGL rendering.

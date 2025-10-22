@@ -29,6 +29,8 @@ type _INEndWorkoutIntentClass struct {
 // An interface definition for the [INEndWorkoutIntent] class.
 type IINEndWorkoutIntent interface {
 	IINIntent
+	WorkoutName() INSpeakableString
+	SetWorkoutName(value INSpeakableString)
 }
 
 // A request to end the current workout that also validates workout parameters and saves the results.

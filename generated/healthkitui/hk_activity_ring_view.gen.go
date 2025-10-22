@@ -32,6 +32,26 @@ type _HKActivityRingViewClass struct {
 type IHKActivityRingView interface {
 	appkit.IView
 	SetActivitySummaryAnimated(activitySummary healthkit.IHKActivitySummary, animated bool)
+	ActivitySummary() healthkit.HKActivitySummary
+	SetActivitySummary(value healthkit.IHKActivitySummary)
+	ActivityMoveMode() unsafe.Pointer
+	SetActivityMoveMode(value unsafe.Pointer)
+	ActiveEnergyBurned() healthkit.HKQuantity
+	SetActiveEnergyBurned(value healthkit.IHKQuantity)
+	ActiveEnergyBurnedGoal() healthkit.HKQuantity
+	SetActiveEnergyBurnedGoal(value healthkit.IHKQuantity)
+	AppleExerciseTime() healthkit.HKQuantity
+	SetAppleExerciseTime(value healthkit.IHKQuantity)
+	AppleExerciseTimeGoal() healthkit.HKQuantity
+	SetAppleExerciseTimeGoal(value healthkit.IHKQuantity)
+	AppleMoveTime() healthkit.HKQuantity
+	SetAppleMoveTime(value healthkit.IHKQuantity)
+	AppleMoveTimeGoal() healthkit.HKQuantity
+	SetAppleMoveTimeGoal(value healthkit.IHKQuantity)
+	AppleStandHours() healthkit.HKQuantity
+	SetAppleStandHours(value healthkit.IHKQuantity)
+	AppleStandHoursGoal() healthkit.HKQuantity
+	SetAppleStandHoursGoal(value healthkit.IHKQuantity)
 }
 
 // A view that uses the Move, Exercise, and Stand activity rings to display data from a HealthKit activity summary object.

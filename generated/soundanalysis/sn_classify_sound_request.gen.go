@@ -31,6 +31,13 @@ type _SNClassifySoundRequestClass struct {
 // An interface definition for the [SNClassifySoundRequest] class.
 type ISNClassifySoundRequest interface {
 	objectivec.IObject
+	KnownClassifications() []string
+	OverlapFactor() float64
+	SetOverlapFactor(value float64)
+	WindowDuration() unsafe.Pointer
+	SetWindowDuration(value unsafe.Pointer)
+	WindowDurationConstraint() unsafe.Pointer
+	SetWindowDurationConstraint(value unsafe.Pointer)
 }
 
 // A request that classifies sound using a Core ML model.
@@ -117,8 +124,8 @@ func (s_ SNClassifySoundRequest) KnownClassifications() []string {
 // The amount of overlap between successive analysis windows when the model operates on a fixed-size audio block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor
-func (s_ SNClassifySoundRequest) OverlapFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("overlapFactor"))
+func (s_ SNClassifySoundRequest) OverlapFactor() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("overlapFactor"))
 	return rv
 }
 
@@ -128,7 +135,7 @@ func (s_ SNClassifySoundRequest) OverlapFactor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor
-func (s_ SNClassifySoundRequest) SetOverlapFactor(value unsafe.Pointer) {
+func (s_ SNClassifySoundRequest) SetOverlapFactor(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setOverlapFactor:"), value)
 }
 

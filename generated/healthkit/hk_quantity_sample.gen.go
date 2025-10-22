@@ -30,6 +30,11 @@ type _HKQuantitySampleClass struct {
 // An interface definition for the [HKQuantitySample] class.
 type IHKQuantitySample interface {
 	IHKSample
+	Count() int
+	Quantity() HKQuantity
+	QuantityType() HKQuantityType
+	HKPredicateKeyPathCount() string
+	HKPredicateKeyPathQuantity() string
 }
 
 // A sample that represents a quantity, including the value and the units.
@@ -164,16 +169,16 @@ func (h_ HKQuantitySample) QuantityType() HKQuantityType {
 // A key path for the sample’s count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount
-func (h_ HKQuantitySample) HKPredicateKeyPathCount() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
+func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
 	return rv
 }
 
 // The key path for accessing the sample’s quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity
-func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
+func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
 	return rv
 }
 

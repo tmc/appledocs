@@ -29,6 +29,10 @@ type _CBMutableServiceClass struct {
 // An interface definition for the [CBMutableService] class.
 type ICBMutableService interface {
 	ICBService
+	Characteristics() []CBCharacteristic
+	SetCharacteristics(value []CBCharacteristic)
+	IncludedServices() []CBService
+	SetIncludedServices(value []CBService)
 }
 
 // A service with writeable property values.

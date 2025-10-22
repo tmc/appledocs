@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AXMathExpressionIdentifier] class.
@@ -30,6 +29,8 @@ type _AXMathExpressionIdentifierClass struct {
 // An interface definition for the [AXMathExpressionIdentifier] class.
 type IAXMathExpressionIdentifier interface {
 	IAXMathExpression
+	Content() string
+	SetContent(value string)
 }
 
 //
@@ -79,9 +80,9 @@ func NewAXMathExpressionIdentifier() AXMathExpressionIdentifier {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionIdentifier/init(content:)
-func NewAXMathExpressionIdentifierWithContent(content appkit.string) AXMathExpressionIdentifier {
+func NewAXMathExpressionIdentifierWithContent(content string) AXMathExpressionIdentifier {
 	instance := getAXMathExpressionIdentifierClass().Alloc()
-	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), content)
+	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
 	rv.Autorelease()
 	return rv
 }
@@ -89,8 +90,8 @@ func NewAXMathExpressionIdentifierWithContent(content appkit.string) AXMathExpre
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) Content() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionIdentifier) Content() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -98,8 +99,8 @@ func (a_ AXMathExpressionIdentifier) Content() appkit.string {
 // SetContent sets the value of the content property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) SetContent(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), value)
+func (a_ AXMathExpressionIdentifier) SetContent(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), objc.String(value))
 }
 
 

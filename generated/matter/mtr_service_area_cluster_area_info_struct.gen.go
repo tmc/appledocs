@@ -30,6 +30,10 @@ type _MTRServiceAreaClusterAreaInfoStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterAreaInfoStruct] class.
 type IMTRServiceAreaClusterAreaInfoStruct interface {
 	objectivec.IObject
+	LandmarkInfo() MTRServiceAreaClusterLandmarkInfoStruct
+	SetLandmarkInfo(value IMTRServiceAreaClusterLandmarkInfoStruct)
+	LocationInfo() MTRDataTypeLocationDescriptorStruct
+	SetLocationInfo(value IMTRDataTypeLocationDescriptorStruct)
 }
 
 //

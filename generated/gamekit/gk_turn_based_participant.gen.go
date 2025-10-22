@@ -31,6 +31,19 @@ type _TurnBasedParticipantClass struct {
 // An interface definition for the [TurnBasedParticipant] class.
 type ITurnBasedParticipant interface {
 	objectivec.IObject
+	TimeoutDate() foundation.NSDate
+	Participants() GKTurnBasedParticipant
+	SetParticipants(value IGKTurnBasedParticipant)
+	LastTurnDate() foundation.Date
+	SetLastTurnDate(value foundation.IDate)
+	MatchOutcome() unsafe.Pointer
+	SetMatchOutcome(value unsafe.Pointer)
+	Player() GKPlayer
+	SetPlayer(value IGKPlayer)
+	PlayerID() string
+	SetPlayerID(value string)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // A participant in a turn-based match.
@@ -164,8 +177,8 @@ func (t_ TurnBasedParticipant) SetPlayer(value IGKPlayer) {
 // The player identifier for this participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-func (t_ TurnBasedParticipant) PlayerID() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("playerID"))
+func (t_ TurnBasedParticipant) PlayerID() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("playerID"))
 	return rv
 }
 
@@ -175,8 +188,8 @@ func (t_ TurnBasedParticipant) PlayerID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-func (t_ TurnBasedParticipant) SetPlayerID(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), value)
+func (t_ TurnBasedParticipant) SetPlayerID(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), objc.String(value))
 }
 
 // The status of the participant.

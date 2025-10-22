@@ -30,6 +30,8 @@ type _MTRDeviceControllerExternalCertificateParametersClass struct {
 // An interface definition for the [MTRDeviceControllerExternalCertificateParameters] class.
 type IMTRDeviceControllerExternalCertificateParameters interface {
 	IMTRDeviceControllerParameters
+	RootCertificate() foundation.Data
+	SetRootCertificate(value foundation.IData)
 }
 
 //

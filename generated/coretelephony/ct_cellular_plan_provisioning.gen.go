@@ -30,6 +30,7 @@ type _CellularPlanProvisioningClass struct {
 // An interface definition for the [CellularPlanProvisioning] class.
 type ICellularPlanProvisioning interface {
 	objectivec.IObject
+	SupportsEmbeddedSIM() bool
 }
 
 // An object you use to download and install a carrier eSIM.

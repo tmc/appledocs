@@ -30,6 +30,7 @@ type _UNNotificationTriggerClass struct {
 // An interface definition for the [UNNotificationTrigger] class.
 type IUNNotificationTrigger interface {
 	objectivec.IObject
+	Repeats() bool
 }
 
 // The common behavior for subclasses that trigger the delivery of a local or remote notification.

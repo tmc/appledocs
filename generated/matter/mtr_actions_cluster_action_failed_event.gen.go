@@ -31,6 +31,14 @@ type _MTRActionsClusterActionFailedEventClass struct {
 // An interface definition for the [MTRActionsClusterActionFailedEvent] class.
 type IMTRActionsClusterActionFailedEvent interface {
 	objectivec.IObject
+	ActionID() foundation.Number
+	SetActionID(value foundation.INumber)
+	Error() foundation.Number
+	SetError(value foundation.INumber)
+	InvokeID() foundation.Number
+	SetInvokeID(value foundation.INumber)
+	NewState() foundation.Number
+	SetNewState(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,9 @@ type _TKTokenSessionClass struct {
 // An interface definition for the [TKTokenSession] class.
 type ITKTokenSession interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Token() TKToken
 }
 
 // A token session that manages the authentication state of a token.

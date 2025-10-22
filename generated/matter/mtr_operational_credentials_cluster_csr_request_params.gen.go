@@ -31,6 +31,14 @@ type _MTROperationalCredentialsClusterCSRRequestParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterCSRRequestParams] class.
 type IMTROperationalCredentialsClusterCSRRequestParams interface {
 	objectivec.IObject
+	CsrNonce() foundation.Data
+	SetCsrNonce(value foundation.IData)
+	IsForUpdateNOC() foundation.Number
+	SetIsForUpdateNOC(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

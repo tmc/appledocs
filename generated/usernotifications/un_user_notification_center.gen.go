@@ -42,6 +42,10 @@ type IUNUserNotificationCenter interface {
 	RequestAuthorizationWithOptionsCompletionHandler(options UNAuthorizationOptions, completionHandler unsafe.Pointer)
 	SetBadgeCountWithCompletionHandler(newBadgeCount int, completionHandler unsafe.Pointer)
 	SetNotificationCategories(categories unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	SupportsContentExtensions() bool
+	UNErrorDomain() string
 }
 
 // The central object for managing notification-related activities for your app or app extension.
@@ -213,8 +217,8 @@ func (u_ UNUserNotificationCenter) SupportsContentExtensions() bool {
 // The error domain for notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unerrordomain
-func (u_ UNUserNotificationCenter) UNErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("UNErrorDomain"))
+func (u_ UNUserNotificationCenter) UNErrorDomain() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("UNErrorDomain"))
 	return rv
 }
 

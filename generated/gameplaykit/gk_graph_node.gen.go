@@ -31,11 +31,12 @@ type _GraphNodeClass struct {
 type IGraphNode interface {
 	objectivec.IObject
 	AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
-	CostToNode(node IGKGraphNode) unsafe.Pointer
-	EstimatedCostToNode(node IGKGraphNode) unsafe.Pointer
+	CostToNode(node IGKGraphNode) float32
+	EstimatedCostToNode(node IGKGraphNode) float32
 	FindPathFromNode(startNode IGKGraphNode) []GraphNode
 	FindPathToNode(goalNode IGKGraphNode) []GraphNode
 	RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
+	ConnectedNodes() []GraphNode
 }
 
 // A single node in a navigation graph for use in pathfinding.
@@ -96,16 +97,16 @@ func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes []GraphNode, bidire
 // Returns the cost to travel from this node to the specified, directly connected, node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/cost(to:)
-func (g_ GraphNode) CostToNode(node IGKGraphNode) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("costToNode:"), node)
+func (g_ GraphNode) CostToNode(node IGKGraphNode) float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("costToNode:"), node)
 	return rv
 }
 
 // Returns an underestimate of the cost of travel from this node to the specified node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/estimatedCost(to:)
-func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("estimatedCostToNode:"), node)
+func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("estimatedCostToNode:"), node)
 	return rv
 }
 

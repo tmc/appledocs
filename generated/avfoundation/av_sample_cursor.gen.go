@@ -31,6 +31,32 @@ type _SampleCursorClass struct {
 // An interface definition for the [SampleCursor] class.
 type ISampleCursor interface {
 	objectivec.IObject
+	CurrentChunkInfo() unsafe.Pointer
+	SetCurrentChunkInfo(value unsafe.Pointer)
+	CurrentChunkStorageRange() unsafe.Pointer
+	SetCurrentChunkStorageRange(value unsafe.Pointer)
+	CurrentChunkStorageURL() foundation.URL
+	SetCurrentChunkStorageURL(value foundation.IURL)
+	CurrentSampleAudioDependencyInfo() unsafe.Pointer
+	SetCurrentSampleAudioDependencyInfo(value unsafe.Pointer)
+	CurrentSampleDependencyAttachments() unsafe.Pointer
+	SetCurrentSampleDependencyAttachments(value unsafe.Pointer)
+	CurrentSampleDependencyInfo() unsafe.Pointer
+	SetCurrentSampleDependencyInfo(value unsafe.Pointer)
+	CurrentSampleDuration() unsafe.Pointer
+	SetCurrentSampleDuration(value unsafe.Pointer)
+	CurrentSampleIndexInChunk() unsafe.Pointer
+	SetCurrentSampleIndexInChunk(value unsafe.Pointer)
+	CurrentSampleStorageRange() unsafe.Pointer
+	SetCurrentSampleStorageRange(value unsafe.Pointer)
+	CurrentSampleSyncInfo() unsafe.Pointer
+	SetCurrentSampleSyncInfo(value unsafe.Pointer)
+	DecodeTimeStamp() unsafe.Pointer
+	SetDecodeTimeStamp(value unsafe.Pointer)
+	PresentationTimeStamp() unsafe.Pointer
+	SetPresentationTimeStamp(value unsafe.Pointer)
+	SamplesRequiredForDecoderRefresh() int
+	SetSamplesRequiredForDecoderRefresh(value int)
 }
 
 // An object that provides information about the media sample at the cursor’s current position.

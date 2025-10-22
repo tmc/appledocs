@@ -32,6 +32,7 @@ type _MTRAttributeValueWaiterClass struct {
 type IMTRAttributeValueWaiter interface {
 	objectivec.IObject
 	Cancel()
+	UUID() foundation.UUID
 }
 
 //

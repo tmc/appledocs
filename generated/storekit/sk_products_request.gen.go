@@ -29,6 +29,8 @@ type _ProductsRequestClass struct {
 // An interface definition for the [ProductsRequest] class.
 type IProductsRequest interface {
 	IRequest
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // An object that can retrieve localized information from the App Store about a specified list of products.

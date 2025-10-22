@@ -29,6 +29,8 @@ type _MutableAudioMixClass struct {
 // An interface definition for the [MutableAudioMix] class.
 type IMutableAudioMix interface {
 	IAudioMix
+	InputParameters() []AudioMixInputParameters
+	SetInputParameters(value []AudioMixInputParameters)
 }
 
 // An object that manages the input parameters for mixing audio tracks.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASESamplerNodeDefinition] class.
@@ -30,6 +29,11 @@ type _PHASESamplerNodeDefinitionClass struct {
 // An interface definition for the [PHASESamplerNodeDefinition] class.
 type IPHASESamplerNodeDefinition interface {
 	IPHASEGeneratorNodeDefinition
+	AssetIdentifier() string
+	CullOption() PHASECullOption
+	SetCullOption(value IPHASECullOption)
+	PlaybackMode() PHASEPlaybackMode
+	SetPlaybackMode(value PHASEPlaybackMode)
 }
 
 // A node that plays complete audio data.
@@ -87,9 +91,9 @@ func NewPHASESamplerNodeDefinition() PHASESamplerNodeDefinition {
 // Creates a sampler node with the given sound asset and mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:)
-func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundAssetIdentifier appkit.string, mixerDefinition IPHASEMixerDefinition) PHASESamplerNodeDefinition {
+func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundAssetIdentifier string, mixerDefinition IPHASEMixerDefinition) PHASESamplerNodeDefinition {
 	instance := getPHASESamplerNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:"), soundAssetIdentifier, mixerDefinition)
+	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:"), objc.String(soundAssetIdentifier), mixerDefinition)
 	rv.Autorelease()
 	return rv
 }
@@ -99,9 +103,9 @@ func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundA
 // Creates a named sampler node with the given sound asset and mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:identifier:)
-func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier appkit.string, mixerDefinition IPHASEMixerDefinition, identifier appkit.string) PHASESamplerNodeDefinition {
+func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier string, mixerDefinition IPHASEMixerDefinition, identifier string) PHASESamplerNodeDefinition {
 	instance := getPHASESamplerNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:identifier:"), soundAssetIdentifier, mixerDefinition, identifier)
+	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:identifier:"), objc.String(soundAssetIdentifier), mixerDefinition, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }
@@ -110,8 +114,8 @@ func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentif
 // The name of the audio this node plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/assetIdentifier
-func (p_ PHASESamplerNodeDefinition) AssetIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetIdentifier"))
+func (p_ PHASESamplerNodeDefinition) AssetIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
 	return rv
 }
 

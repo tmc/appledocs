@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,26 +31,36 @@ type _PersistentStoreCoordinatorClass struct {
 // An interface definition for the [PersistentStoreCoordinator] class.
 type IPersistentStoreCoordinator interface {
 	objectivec.IObject
-	AddPersistentStoreWithTypeConfigurationURLOptionsError(storeType appkit.string, configuration appkit.string, storeURL foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) PersistentStore
+	AddPersistentStoreWithTypeConfigurationURLOptionsError(storeType string, configuration string, storeURL foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) PersistentStore
 	AddPersistentStoreWithDescriptionCompletionHandler(storeDescription IPersistentStoreDescription, block unsafe.Pointer)
 	CurrentPersistentHistoryTokenFromStores(stores objectivec.IObject) PersistentHistoryToken
-	DestroyPersistentStoreAtURLWithTypeOptionsError(url foundation.IURL, storeType appkit.string, options objectivec.IObject, error_ unsafe.Pointer) bool
+	DestroyPersistentStoreAtURLWithTypeOptionsError(url foundation.IURL, storeType string, options objectivec.IObject, error_ unsafe.Pointer) bool
 	ExecuteRequestWithContextError(request IPersistentStoreRequest, context IManagedObjectContext, error_ unsafe.Pointer) objc.ID
 	FinishDeferredLightweightMigration(error_ unsafe.Pointer) bool
 	FinishDeferredLightweightMigrationTask(error_ unsafe.Pointer) bool
-	ImportStoreWithIdentifierFromExternalRecordsDirectoryToURLOptionsWithTypeError(storeIdentifier appkit.string, externalRecordsURL foundation.IURL, destinationURL foundation.IURL, options objectivec.IObject, storeType appkit.string, error_ unsafe.Pointer) PersistentStore
+	ImportStoreWithIdentifierFromExternalRecordsDirectoryToURLOptionsWithTypeError(storeIdentifier string, externalRecordsURL foundation.IURL, destinationURL foundation.IURL, options objectivec.IObject, storeType string, error_ unsafe.Pointer) PersistentStore
 	ManagedObjectIDForURIRepresentation(url foundation.IURL) ManagedObjectID
 	ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len_ uint) ManagedObjectID
 	MetadataForPersistentStore(store IPersistentStore) unsafe.Pointer
-	MigratePersistentStoreToURLOptionsWithTypeError(store IPersistentStore, URL foundation.IURL, options objectivec.IObject, storeType appkit.string, error_ unsafe.Pointer) PersistentStore
+	MigratePersistentStoreToURLOptionsWithTypeError(store IPersistentStore, URL foundation.IURL, options objectivec.IObject, storeType string, error_ unsafe.Pointer) PersistentStore
 	PerformBlock(block unsafe.Pointer)
 	PersistentStoreForURL(URL foundation.IURL) PersistentStore
-	ReplacePersistentStoreAtURLDestinationOptionsWithPersistentStoreFromURLSourceOptionsStoreTypeError(destinationURL foundation.IURL, destinationOptions objectivec.IObject, sourceURL foundation.IURL, sourceOptions objectivec.IObject, storeType appkit.string, error_ unsafe.Pointer) bool
+	ReplacePersistentStoreAtURLDestinationOptionsWithPersistentStoreFromURLSourceOptionsStoreTypeError(destinationURL foundation.IURL, destinationOptions objectivec.IObject, sourceURL foundation.IURL, sourceOptions objectivec.IObject, storeType string, error_ unsafe.Pointer) bool
 	SetMetadataForPersistentStore(metadata unsafe.Pointer, store IPersistentStore)
 	SetStoresFastSyncDetailsAtURLForPersistentStore(url foundation.IURL, store IPersistentStore)
 	SetURLForPersistentStore(url foundation.IURL, store IPersistentStore) bool
 	SyncWithClientInBackgroundHandlerError(client unsafe.Pointer, flag bool, syncHandler objectivec.IObject, rError unsafe.Pointer) bool
 	URLForPersistentStore(store IPersistentStore) foundation.URL
+	ManagedObjectModel() NSManagedObjectModel
+	Name() string
+	SetName(value string)
+	NSCoreDataCoreSpotlightExporter() string
+	NSPersistentHistoryTrackingKey() string
+	PersistentStores() NSPersistentStore
+	SetPersistentStores(value IPersistentStore)
+	NSPersistentStoreDeferredLightweightMigrationOptionKey() string
+	NSStoreTypeKey() string
+	NSStoreUUIDKey() string
 }
 
 // An object that enables an app’s contexts and the underlying persistent stores to work together.
@@ -118,39 +127,39 @@ func NewPersistentStoreCoordinatorWithManagedObjectModel(model IManagedObjectMod
 // Returns a dictionary containing the metadata stored in the persistent store at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/metadataForPersistentStore(ofType:at:)
-func (pc _PersistentStoreCoordinatorClass) MetadataForPersistentStoreOfTypeURLError(storeType appkit.string, url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreOfType:URL:error:"), storeType, url, error_)
+func (pc _PersistentStoreCoordinatorClass) MetadataForPersistentStoreOfTypeURLError(storeType string, url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreOfType:URL:error:"), objc.String(storeType), url, error_)
 	return rv
 }
 
 // Returns the metadata of a specific type of persistent store at the provided location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/metadataForPersistentStore(ofType:at:options:)
-func (pc _PersistentStoreCoordinatorClass) MetadataForPersistentStoreOfTypeURLOptionsError(storeType appkit.string, url foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreOfType:URL:options:error:"), storeType, url, options, error_)
+func (pc _PersistentStoreCoordinatorClass) MetadataForPersistentStoreOfTypeURLOptionsError(storeType string, url foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreOfType:URL:options:error:"), objc.String(storeType), url, options, error_)
 	return rv
 }
 
 // Registers a persistent store subclass using the specified store type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/registerStoreClass(_:forStoreType:)
-func (pc _PersistentStoreCoordinatorClass) RegisterStoreClassForStoreType(storeClass objc.Class, storeType appkit.string) {
-	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("registerStoreClass:forStoreType:"), storeClass, storeType)
+func (pc _PersistentStoreCoordinatorClass) RegisterStoreClassForStoreType(storeClass objc.Class, storeType string) {
+	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("registerStoreClass:forStoreType:"), storeClass, objc.String(storeType))
 }
 
 // Sets the metadata for a given store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/setMetadata(_:forPersistentStoreOfType:at:)
-func (pc _PersistentStoreCoordinatorClass) SetMetadataForPersistentStoreOfTypeURLError(metadata unsafe.Pointer, storeType appkit.string, url foundation.IURL, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreOfType:URL:error:"), metadata, storeType, url, error_)
+func (pc _PersistentStoreCoordinatorClass) SetMetadataForPersistentStoreOfTypeURLError(metadata unsafe.Pointer, storeType string, url foundation.IURL, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreOfType:URL:error:"), metadata, objc.String(storeType), url, error_)
 	return rv
 }
 
 // Updates the metadata of a specific type of persistent store at the provided location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/setMetadata(_:forPersistentStoreOfType:at:options:)
-func (pc _PersistentStoreCoordinatorClass) SetMetadataForPersistentStoreOfTypeURLOptionsError(metadata unsafe.Pointer, storeType appkit.string, url foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreOfType:URL:options:error:"), metadata, storeType, url, options, error_)
+func (pc _PersistentStoreCoordinatorClass) SetMetadataForPersistentStoreOfTypeURLOptionsError(metadata unsafe.Pointer, storeType string, url foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreOfType:URL:options:error:"), metadata, objc.String(storeType), url, options, error_)
 	return rv
 }
 
@@ -164,8 +173,8 @@ func (pc _PersistentStoreCoordinatorClass) RegisteredStoreTypes() unsafe.Pointer
 // Adds a specific type of persistent store at the provided location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/addPersistentStore(ofType:configurationName:at:options:)
-func (p_ PersistentStoreCoordinator) AddPersistentStoreWithTypeConfigurationURLOptionsError(storeType appkit.string, configuration appkit.string, storeURL foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) PersistentStore {
-	rv := objc.Send[PersistentStore](p_.ID, objc.Sel("addPersistentStoreWithType:configuration:URL:options:error:"), storeType, configuration, storeURL, options, error_)
+func (p_ PersistentStoreCoordinator) AddPersistentStoreWithTypeConfigurationURLOptionsError(storeType string, configuration string, storeURL foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) PersistentStore {
+	rv := objc.Send[PersistentStore](p_.ID, objc.Sel("addPersistentStoreWithType:configuration:URL:options:error:"), objc.String(storeType), objc.String(configuration), storeURL, options, error_)
 	return rv
 }
 
@@ -187,8 +196,8 @@ func (p_ PersistentStoreCoordinator) CurrentPersistentHistoryTokenFromStores(sto
 // Deletes a specific type of persistent store at the provided location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/destroyPersistentStore(at:ofType:options:)
-func (p_ PersistentStoreCoordinator) DestroyPersistentStoreAtURLWithTypeOptionsError(url foundation.IURL, storeType appkit.string, options objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("destroyPersistentStoreAtURL:withType:options:error:"), url, storeType, options, error_)
+func (p_ PersistentStoreCoordinator) DestroyPersistentStoreAtURLWithTypeOptionsError(url foundation.IURL, storeType string, options objectivec.IObject, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("destroyPersistentStoreAtURL:withType:options:error:"), url, objc.String(storeType), options, error_)
 	return rv
 }
 
@@ -219,8 +228,8 @@ func (p_ PersistentStoreCoordinator) FinishDeferredLightweightMigrationTask(erro
 // Creates and populates a store with the external records found at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/importStore(withIdentifier:fromExternalRecordsDirectoryAt:to:options:ofType:)
-func (p_ PersistentStoreCoordinator) ImportStoreWithIdentifierFromExternalRecordsDirectoryToURLOptionsWithTypeError(storeIdentifier appkit.string, externalRecordsURL foundation.IURL, destinationURL foundation.IURL, options objectivec.IObject, storeType appkit.string, error_ unsafe.Pointer) PersistentStore {
-	rv := objc.Send[PersistentStore](p_.ID, objc.Sel("importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:"), storeIdentifier, externalRecordsURL, destinationURL, options, storeType, error_)
+func (p_ PersistentStoreCoordinator) ImportStoreWithIdentifierFromExternalRecordsDirectoryToURLOptionsWithTypeError(storeIdentifier string, externalRecordsURL foundation.IURL, destinationURL foundation.IURL, options objectivec.IObject, storeType string, error_ unsafe.Pointer) PersistentStore {
+	rv := objc.Send[PersistentStore](p_.ID, objc.Sel("importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:"), objc.String(storeIdentifier), externalRecordsURL, destinationURL, options, objc.String(storeType), error_)
 	return rv
 }
 
@@ -250,8 +259,8 @@ func (p_ PersistentStoreCoordinator) MetadataForPersistentStore(store IPersisten
 // Changes the location and, if necessary, the store type of the specified persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/migratePersistentStore(_:to:options:withType:)
-func (p_ PersistentStoreCoordinator) MigratePersistentStoreToURLOptionsWithTypeError(store IPersistentStore, URL foundation.IURL, options objectivec.IObject, storeType appkit.string, error_ unsafe.Pointer) PersistentStore {
-	rv := objc.Send[PersistentStore](p_.ID, objc.Sel("migratePersistentStore:toURL:options:withType:error:"), store, URL, options, storeType, error_)
+func (p_ PersistentStoreCoordinator) MigratePersistentStoreToURLOptionsWithTypeError(store IPersistentStore, URL foundation.IURL, options objectivec.IObject, storeType string, error_ unsafe.Pointer) PersistentStore {
+	rv := objc.Send[PersistentStore](p_.ID, objc.Sel("migratePersistentStore:toURL:options:withType:error:"), store, URL, options, objc.String(storeType), error_)
 	return rv
 }
 
@@ -273,8 +282,8 @@ func (p_ PersistentStoreCoordinator) PersistentStoreForURL(URL foundation.IURL) 
 // Replaces one persistent store with another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/replacePersistentStore(at:destinationOptions:withPersistentStoreFrom:sourceOptions:ofType:)
-func (p_ PersistentStoreCoordinator) ReplacePersistentStoreAtURLDestinationOptionsWithPersistentStoreFromURLSourceOptionsStoreTypeError(destinationURL foundation.IURL, destinationOptions objectivec.IObject, sourceURL foundation.IURL, sourceOptions objectivec.IObject, storeType appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:"), destinationURL, destinationOptions, sourceURL, sourceOptions, storeType, error_)
+func (p_ PersistentStoreCoordinator) ReplacePersistentStoreAtURLDestinationOptionsWithPersistentStoreFromURLSourceOptionsStoreTypeError(destinationURL foundation.IURL, destinationOptions objectivec.IObject, sourceURL foundation.IURL, sourceOptions objectivec.IObject, storeType string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:"), destinationURL, destinationOptions, sourceURL, sourceOptions, objc.String(storeType), error_)
 	return rv
 }
 
@@ -325,8 +334,8 @@ func (p_ PersistentStoreCoordinator) ManagedObjectModel() NSManagedObjectModel {
 // The coordinator’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
-func (p_ PersistentStoreCoordinator) Name() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
+func (p_ PersistentStoreCoordinator) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -336,8 +345,8 @@ func (p_ PersistentStoreCoordinator) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/name
-func (p_ PersistentStoreCoordinator) SetName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+func (p_ PersistentStoreCoordinator) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The coordinator’s registered store types.
@@ -351,16 +360,16 @@ func (p_ PersistentStoreCoordinator) RegisteredStoreTypes() unsafe.Pointer {
 // The key you use to specify your Core Spotlight delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
-func (p_ PersistentStoreCoordinator) NSCoreDataCoreSpotlightExporter() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
+func (p_ PersistentStoreCoordinator) NSCoreDataCoreSpotlightExporter() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv
 }
 
 // The key you use to enable persistent history tracking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytrackingkey
-func (p_ PersistentStoreCoordinator) NSPersistentHistoryTrackingKey() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("NSPersistentHistoryTrackingKey"))
+func (p_ PersistentStoreCoordinator) NSPersistentHistoryTrackingKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSPersistentHistoryTrackingKey"))
 	return rv
 }
 
@@ -385,24 +394,24 @@ func (p_ PersistentStoreCoordinator) SetPersistentStores(value IPersistentStore)
 // The key for enabling deferred lightweight migrations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredeferredlightweightmigrationoptionkey
-func (p_ PersistentStoreCoordinator) NSPersistentStoreDeferredLightweightMigrationOptionKey() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("NSPersistentStoreDeferredLightweightMigrationOptionKey"))
+func (p_ PersistentStoreCoordinator) NSPersistentStoreDeferredLightweightMigrationOptionKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSPersistentStoreDeferredLightweightMigrationOptionKey"))
 	return rv
 }
 
 // A key that identifies the store type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoretypekey
-func (p_ PersistentStoreCoordinator) NSStoreTypeKey() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("NSStoreTypeKey"))
+func (p_ PersistentStoreCoordinator) NSStoreTypeKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSStoreTypeKey"))
 	return rv
 }
 
 // A key that provides the store’s UUID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoreuuidkey
-func (p_ PersistentStoreCoordinator) NSStoreUUIDKey() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("NSStoreUUIDKey"))
+func (p_ PersistentStoreCoordinator) NSStoreUUIDKey() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("NSStoreUUIDKey"))
 	return rv
 }
 

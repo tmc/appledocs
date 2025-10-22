@@ -35,6 +35,25 @@ type IPictureInPictureController interface {
 	InvalidatePlaybackState()
 	StartPictureInPicture()
 	StopPictureInPicture()
+	CanStartPictureInPictureAutomaticallyFromInline() bool
+	SetCanStartPictureInPictureAutomaticallyFromInline(value bool)
+	CanStopPictureInPicture() bool
+	ContentSource() AVPictureInPictureControllerContentSource
+	SetContentSource(value IAVPictureInPictureControllerContentSource)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	PictureInPictureActive() bool
+	PictureInPicturePossible() bool
+	PictureInPictureSuspended() bool
+	PlayerLayer() avfoundation.PlayerLayer
+	RequiresLinearPlayback() bool
+	SetRequiresLinearPlayback(value bool)
+	IsPictureInPictureActive() bool
+	SetIsPictureInPictureActive(value bool)
+	IsPictureInPicturePossible() bool
+	SetIsPictureInPicturePossible(value bool)
+	IsPictureInPictureSuspended() bool
+	SetIsPictureInPictureSuspended(value bool)
 }
 
 // A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.

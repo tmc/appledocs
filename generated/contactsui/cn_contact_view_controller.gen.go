@@ -31,7 +31,28 @@ type _CNContactViewControllerClass struct {
 // An interface definition for the [CNContactViewController] class.
 type ICNContactViewController interface {
 	appkit.IViewController
-	HighlightPropertyWithKeyIdentifier(key appkit.string, identifier appkit.string)
+	HighlightPropertyWithKeyIdentifier(key string, identifier string)
+	AllowsActions() bool
+	SetAllowsActions(value bool)
+	AllowsEditing() bool
+	SetAllowsEditing(value bool)
+	AlternateName() string
+	SetAlternateName(value string)
+	Contact() contacts.CNContact
+	ContactStore() contacts.CNContactStore
+	SetContactStore(value contacts.ICNContactStore)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayedPropertyKeys() objc.ID
+	SetDisplayedPropertyKeys(value objc.ID)
+	Message() string
+	SetMessage(value string)
+	ParentContainer() contacts.CNContainer
+	SetParentContainer(value contacts.ICNContainer)
+	ParentGroup() contacts.CNGroup
+	SetParentGroup(value contacts.ICNGroup)
+	ShouldShowLinkedContacts() bool
+	SetShouldShowLinkedContacts(value bool)
 }
 
 // A view controller that displays a new, unknown, or existing contact.
@@ -150,8 +171,8 @@ func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact 
 // Highlights the property of the contact being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/highlightProperty(withKey:identifier:)
-func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key appkit.string, identifier appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("highlightPropertyWithKey:identifier:"), key, identifier)
+func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key string, identifier string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("highlightPropertyWithKey:identifier:"), objc.String(key), objc.String(identifier))
 }
 
 // Determines whether to display buttons for actions such as sending a text message or initiating a FaceTime call.
@@ -193,8 +214,8 @@ func (c_ CNContactViewController) SetAllowsEditing(value bool) {
 // The name to use if the contact has no display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) AlternateName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("alternateName"))
+func (c_ CNContactViewController) AlternateName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("alternateName"))
 	return rv
 }
 
@@ -204,8 +225,8 @@ func (c_ CNContactViewController) AlternateName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) SetAlternateName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), value)
+func (c_ CNContactViewController) SetAlternateName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), objc.String(value))
 }
 
 // The contact being displayed.
@@ -273,8 +294,8 @@ func (c_ CNContactViewController) SetDisplayedPropertyKeys(value objc.ID) {
 // The message displayed under the name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) Message() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("message"))
+func (c_ CNContactViewController) Message() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -284,8 +305,8 @@ func (c_ CNContactViewController) Message() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) SetMessage(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), value)
+func (c_ CNContactViewController) SetMessage(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 
 // The container in which to add a new contact.

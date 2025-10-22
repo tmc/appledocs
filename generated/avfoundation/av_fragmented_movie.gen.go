@@ -29,6 +29,8 @@ type _FragmentedMovieClass struct {
 // An interface definition for the [FragmentedMovie] class.
 type IFragmentedMovie interface {
 	IMovie
+	Tracks() unsafe.Pointer
+	SetTracks(value unsafe.Pointer)
 }
 
 // An object that represents a fragmented movie file.

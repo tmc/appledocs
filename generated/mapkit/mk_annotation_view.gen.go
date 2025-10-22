@@ -31,6 +31,53 @@ type _MKAnnotationViewClass struct {
 // An interface definition for the [MKAnnotationView] class.
 type IMKAnnotationView interface {
 	appkit.IView
+	ClusterAnnotationView() MKAnnotationView
+	ClusteringIdentifier() string
+	SetClusteringIdentifier(value string)
+	AccessoryOffset() coregraphics.CGPoint
+	SetAccessoryOffset(value coregraphics.CGPoint)
+	Annotation() unsafe.Pointer
+	SetAnnotation(value unsafe.Pointer)
+	CalloutOffset() coregraphics.CGPoint
+	SetCalloutOffset(value coregraphics.CGPoint)
+	CanShowCallout() bool
+	SetCanShowCallout(value bool)
+	CenterOffset() coregraphics.CGPoint
+	SetCenterOffset(value coregraphics.CGPoint)
+	Cluster() MKAnnotationView
+	SetCluster(value IMKAnnotationView)
+	CollisionMode() unsafe.Pointer
+	SetCollisionMode(value unsafe.Pointer)
+	DetailCalloutAccessoryView() appkit.View
+	SetDetailCalloutAccessoryView(value appkit.IView)
+	DisplayPriority() unsafe.Pointer
+	SetDisplayPriority(value unsafe.Pointer)
+	DragState() unsafe.Pointer
+	SetDragState(value unsafe.Pointer)
+	Image() appkit.Image
+	SetImage(value appkit.IImage)
+	IsDraggable() bool
+	SetIsDraggable(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsHighlighted() bool
+	SetIsHighlighted(value bool)
+	IsSelected() bool
+	SetIsSelected(value bool)
+	LeftCalloutAccessoryView() appkit.View
+	SetLeftCalloutAccessoryView(value appkit.IView)
+	LeftCalloutOffset() coregraphics.CGPoint
+	SetLeftCalloutOffset(value coregraphics.CGPoint)
+	ReuseIdentifier() string
+	SetReuseIdentifier(value string)
+	RightCalloutAccessoryView() appkit.View
+	SetRightCalloutAccessoryView(value appkit.IView)
+	RightCalloutOffset() coregraphics.CGPoint
+	SetRightCalloutOffset(value coregraphics.CGPoint)
+	SelectedZPriority() unsafe.Pointer
+	SetSelectedZPriority(value unsafe.Pointer)
+	ZPriority() unsafe.Pointer
+	SetZPriority(value unsafe.Pointer)
 }
 
 // The visual representation of one of your annotation objects.
@@ -94,8 +141,8 @@ func (m_ MKAnnotationView) ClusterAnnotationView() MKAnnotationView {
 // An identifier that determines whether the annotation view participates in clustering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) ClusteringIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("clusteringIdentifier"))
+func (m_ MKAnnotationView) ClusteringIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("clusteringIdentifier"))
 	return rv
 }
 
@@ -105,8 +152,8 @@ func (m_ MKAnnotationView) ClusteringIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) SetClusteringIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), value)
+func (m_ MKAnnotationView) SetClusteringIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), objc.String(value))
 }
 
 // An offset that changes the accessory’s default anchor point.
@@ -418,8 +465,8 @@ func (m_ MKAnnotationView) SetLeftCalloutOffset(value coregraphics.CGPoint) {
 // The string that identifies that the annotation view is reusable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
-func (m_ MKAnnotationView) ReuseIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("reuseIdentifier"))
+func (m_ MKAnnotationView) ReuseIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("reuseIdentifier"))
 	return rv
 }
 
@@ -429,8 +476,8 @@ func (m_ MKAnnotationView) ReuseIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
-func (m_ MKAnnotationView) SetReuseIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReuseIdentifier:"), value)
+func (m_ MKAnnotationView) SetReuseIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReuseIdentifier:"), objc.String(value))
 }
 
 // The view to display on the right side of the standard callout.

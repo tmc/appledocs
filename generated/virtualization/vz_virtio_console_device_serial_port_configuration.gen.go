@@ -29,6 +29,8 @@ type _VZVirtioConsoleDeviceSerialPortConfigurationClass struct {
 // An interface definition for the [VZVirtioConsoleDeviceSerialPortConfiguration] class.
 type IVZVirtioConsoleDeviceSerialPortConfiguration interface {
 	IVZSerialPortConfiguration
+	Attachment() VZSerialPortAttachment
+	SetAttachment(value IVZSerialPortAttachment)
 }
 
 // A configuration object that requests the creation of a console device to communicate with the guest system.

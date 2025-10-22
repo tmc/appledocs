@@ -29,6 +29,7 @@ type _ToolPickerLassoItemClass struct {
 // An interface definition for the [ToolPickerLassoItem] class.
 type IToolPickerLassoItem interface {
 	IToolPickerItem
+	LassoTool() PKLassoTool
 }
 
 // An item that represents a lasso tool in the tool picker.

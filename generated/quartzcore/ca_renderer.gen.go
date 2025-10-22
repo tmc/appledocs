@@ -38,6 +38,10 @@ type IRenderer interface {
 	Render()
 	SetDestination(tex objectivec.IObject)
 	UpdateBounds() coregraphics.CGRect
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	Layer() CALayer
+	SetLayer(value ILayer)
 }
 
 // A layer that allows an application to render a layer tree into a Core OpenGL context.

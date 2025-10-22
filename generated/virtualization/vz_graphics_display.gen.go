@@ -35,6 +35,9 @@ type IVZGraphicsDisplay interface {
 	ReconfigureWithConfigurationError(configuration IVZGraphicsDisplayConfiguration, error_ unsafe.Pointer) bool
 	ReconfigureWithSizeInPixelsError(sizeInPixels coregraphics.CGSize, error_ unsafe.Pointer) bool
 	RemoveObserver(observer objectivec.IObject)
+	SizeInPixels() coregraphics.CGSize
+	Displays() VZGraphicsDisplay
+	SetDisplays(value IVZGraphicsDisplay)
 }
 
 // A class that represents a graphics display in a VM.

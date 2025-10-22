@@ -31,6 +31,8 @@ type _MTRGeneralDiagnosticsClusterBootReasonEventClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterBootReasonEvent] class.
 type IMTRGeneralDiagnosticsClusterBootReasonEvent interface {
 	objectivec.IObject
+	BootReason() foundation.Number
+	SetBootReason(value foundation.INumber)
 }
 
 //

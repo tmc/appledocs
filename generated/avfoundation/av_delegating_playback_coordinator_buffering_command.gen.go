@@ -30,6 +30,10 @@ type _DelegatingPlaybackCoordinatorBufferingCommandClass struct {
 // An interface definition for the [DelegatingPlaybackCoordinatorBufferingCommand] class.
 type IDelegatingPlaybackCoordinatorBufferingCommand interface {
 	IDelegatingPlaybackCoordinatorPlaybackControlCommand
+	AnticipatedPlaybackRate() float32
+	SetAnticipatedPlaybackRate(value float32)
+	CompletionDueDate() foundation.Date
+	SetCompletionDueDate(value foundation.IDate)
 }
 
 // A command that indicates to start buffering data in preparation for playback.

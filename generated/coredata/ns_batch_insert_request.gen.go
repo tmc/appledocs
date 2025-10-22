@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [BatchInsertRequest] class.
@@ -30,6 +29,18 @@ type _BatchInsertRequestClass struct {
 // An interface definition for the [BatchInsertRequest] class.
 type IBatchInsertRequest interface {
 	IPersistentStoreRequest
+	DictionaryHandler() bool
+	SetDictionaryHandler(value bool)
+	Entity() NSEntityDescription
+	SetEntity(value IEntityDescription)
+	EntityName() string
+	SetEntityName(value string)
+	ManagedObjectHandler() bool
+	SetManagedObjectHandler(value bool)
+	ObjectsToInsert() string
+	SetObjectsToInsert(value string)
+	ResultType() BatchInsertRequestResultType
+	SetResultType(value BatchInsertRequestResultType)
 }
 
 // A request to insert a batch of data in a persistent store.
@@ -97,9 +108,9 @@ func NewBatchInsertRequestWithEntityManagedObjectHandler(entity IEntityDescripti
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:dictionaryHandler:)
-func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName appkit.string, handler unsafe.Pointer) BatchInsertRequest {
+func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
 	instance := getBatchInsertRequestClass().Alloc()
-	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:dictionaryHandler:"), entityName, handler)
+	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:dictionaryHandler:"), objc.String(entityName), handler)
 	rv.Autorelease()
 	return rv
 }
@@ -109,9 +120,9 @@ func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName appkit.stri
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that inserts data into the entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:managedObjectHandler:)
-func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName appkit.string, handler unsafe.Pointer) BatchInsertRequest {
+func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string, handler unsafe.Pointer) BatchInsertRequest {
 	instance := getBatchInsertRequestClass().Alloc()
-	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:managedObjectHandler:"), entityName, handler)
+	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:managedObjectHandler:"), objc.String(entityName), handler)
 	rv.Autorelease()
 	return rv
 }
@@ -120,8 +131,8 @@ func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName appkit.s
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/batchInsertRequestWithEntityName:dictionaryHandler:
-func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHandler(entityName appkit.string, handler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchInsertRequestWithEntityName:dictionaryHandler:"), entityName, handler)
+func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHandler(entityName string, handler unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchInsertRequestWithEntityName:dictionaryHandler:"), objc.String(entityName), handler)
 	return rv
 }
 
@@ -164,8 +175,8 @@ func (b_ BatchInsertRequest) SetEntity(value IEntityDescription) {
 // The name of the managed entity to insert data into.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entityname
-func (b_ BatchInsertRequest) EntityName() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("entityName"))
+func (b_ BatchInsertRequest) EntityName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
 	return rv
 }
 
@@ -175,8 +186,8 @@ func (b_ BatchInsertRequest) EntityName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entityname
-func (b_ BatchInsertRequest) SetEntityName(value appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setEntityName:"), value)
+func (b_ BatchInsertRequest) SetEntityName(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setEntityName:"), objc.String(value))
 }
 
 // A closure that provides a managed object for your app to insert data into.
@@ -200,8 +211,8 @@ func (b_ BatchInsertRequest) SetManagedObjectHandler(value bool) {
 // An array of dictionaries that represents the objects to insert with the keys as attribute names and their assigned values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/objectstoinsert
-func (b_ BatchInsertRequest) ObjectsToInsert() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("objectsToInsert"))
+func (b_ BatchInsertRequest) ObjectsToInsert() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("objectsToInsert"))
 	return rv
 }
 
@@ -211,8 +222,8 @@ func (b_ BatchInsertRequest) ObjectsToInsert() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/objectstoinsert
-func (b_ BatchInsertRequest) SetObjectsToInsert(value appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setObjectsToInsert:"), value)
+func (b_ BatchInsertRequest) SetObjectsToInsert(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setObjectsToInsert:"), objc.String(value))
 }
 
 // The type of result that Core Data returns from this request.

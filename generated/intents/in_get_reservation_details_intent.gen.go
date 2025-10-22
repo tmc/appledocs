@@ -29,6 +29,8 @@ type _INGetReservationDetailsIntentClass struct {
 // An interface definition for the [INGetReservationDetailsIntent] class.
 type IINGetReservationDetailsIntent interface {
 	IINIntent
+	ReservationContainerReference() INSpeakableString
+	ReservationItemReferences() []INSpeakableString
 }
 
 // A request for details about one or more reservations.

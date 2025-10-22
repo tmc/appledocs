@@ -31,6 +31,12 @@ type _LinguisticTaggerClass struct {
 type ILinguisticTagger interface {
 	objectivec.IObject
 	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ IRange, tagScheme ILinguisticTagScheme, opts LinguisticTaggerOptions, block unsafe.Pointer)
+	DominantLanguage() string
+	SetDominantLanguage(value string)
+	String() string
+	SetString(value string)
+	TagSchemes() LinguisticTagScheme
+	SetTagSchemes(value ILinguisticTagScheme)
 }
 
 // Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.

@@ -31,6 +31,8 @@ type _MKDirectionsClass struct {
 type IMKDirections interface {
 	objectivec.IObject
 	CalculateETAWithCompletionHandler(completionHandler unsafe.Pointer)
+	IsCalculating() bool
+	SetIsCalculating(value bool)
 }
 
 // A utility object that computes directions and travel-time information based on the route information you provide.

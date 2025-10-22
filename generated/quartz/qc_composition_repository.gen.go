@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _QCCompositionRepositoryClass struct {
 // An interface definition for the [QCCompositionRepository] class.
 type IQCCompositionRepository interface {
 	objectivec.IObject
-	CompositionWithIdentifier(identifier appkit.string) QCComposition
+	CompositionWithIdentifier(identifier string) QCComposition
 }
 
 // The class represents a system-wide centralized repository of built-in and installed Quartz Composer compositions ( and ). The class cannot be subclassed.
@@ -93,8 +92,8 @@ func (qc _QCCompositionRepositoryClass) SharedCompositionRepository() QCComposit
 // Returns the composition that corresponds to the identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionRepository/composition(withIdentifier:)
-func (q_ QCCompositionRepository) CompositionWithIdentifier(identifier appkit.string) QCComposition {
-	rv := objc.Send[QCComposition](q_.ID, objc.Sel("compositionWithIdentifier:"), identifier)
+func (q_ QCCompositionRepository) CompositionWithIdentifier(identifier string) QCComposition {
+	rv := objc.Send[QCComposition](q_.ID, objc.Sel("compositionWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 

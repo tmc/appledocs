@@ -30,6 +30,8 @@ type _GCDeviceBatteryClass struct {
 // An interface definition for the [GCDeviceBattery] class.
 type IGCDeviceBattery interface {
 	objectivec.IObject
+	BatteryLevel() float32
+	BatteryState() GCDeviceBatteryState
 }
 
 // The charge level and state of a device’s battery.
@@ -83,8 +85,8 @@ func NewGCDeviceBattery() GCDeviceBattery {
 // The charge level of a device’s battery.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceBattery/batteryLevel
-func (g_ GCDeviceBattery) BatteryLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("batteryLevel"))
+func (g_ GCDeviceBattery) BatteryLevel() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("batteryLevel"))
 	return rv
 }
 

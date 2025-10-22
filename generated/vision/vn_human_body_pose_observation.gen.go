@@ -31,6 +31,8 @@ type IHumanBodyPoseObservation interface {
 	IRecognizedPointsObservation
 	RecognizedPointForJointNameError(jointName IHumanBodyPoseObservationJointName, error_ unsafe.Pointer) RecognizedPoint
 	RecognizedPointsForJointsGroupNameError(jointsGroupName IHumanBodyPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer
+	AvailableJointNames() []string
+	AvailableJointsGroupNames() []string
 }
 
 // An observation that provides the body points the analysis recognized.

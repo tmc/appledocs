@@ -30,6 +30,8 @@ type _HKBloodTypeObjectClass struct {
 // An interface definition for the [HKBloodTypeObject] class.
 type IHKBloodTypeObject interface {
 	objectivec.IObject
+	BloodType() HKBloodType
+	SetBloodType(value HKBloodType)
 }
 
 // This class acts as a wrapper for the enumeration.

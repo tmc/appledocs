@@ -36,6 +36,16 @@ type IBatchedSensorManager interface {
 	StartDeviceMotionUpdatesWithHandler(handler unsafe.Pointer)
 	StopAccelerometerUpdates()
 	StopDeviceMotionUpdates()
+	AccelerometerBatch() []AccelerometerData
+	AccelerometerDataFrequency() int
+	DeviceMotionBatch() []DeviceMotion
+	DeviceMotionDataFrequency() int
+	AccelerometerActive() bool
+	DeviceMotionActive() bool
+	IsAccelerometerActive() bool
+	SetIsAccelerometerActive(value bool)
+	IsDeviceMotionActive() bool
+	SetIsDeviceMotionActive(value bool)
 }
 
 //

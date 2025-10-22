@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/addressbook"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -34,6 +33,15 @@ type IEKParticipant interface {
 	IEKObject
 	ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson
 	ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef
+	ContactPredicate() foundation.Predicate
+	CurrentUser() bool
+	Name() string
+	ParticipantRole() EKParticipantRole
+	ParticipantStatus() EKParticipantStatus
+	ParticipantType() EKParticipantType
+	URL() foundation.URL
+	IsCurrentUser() bool
+	SetIsCurrentUser(value bool)
 }
 
 // A class that represents person, group, or room invited to a calendar event.
@@ -121,8 +129,8 @@ func (e_ EKParticipant) CurrentUser() bool {
 // The participant’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
-func (e_ EKParticipant) Name() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("name"))
+func (e_ EKParticipant) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 

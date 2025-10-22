@@ -34,10 +34,13 @@ type IBehavior interface {
 	RemoveGoal(goal IGKGoal)
 	RemoveAllGoals()
 	SetObjectForKeyedSubscript(weight foundation.INumber, goal IGKGoal)
-	SetWeightForGoal(weight unsafe.Pointer, goal IGKGoal)
+	SetWeightForGoal(weight float32, goal IGKGoal)
 	ObjectForKeyedSubscript(goal IGKGoal) foundation.Number
 	ObjectAtIndexedSubscript(idx uint) Goal
-	WeightForGoal(goal IGKGoal) unsafe.Pointer
+	WeightForGoal(goal IGKGoal) float32
+	GoalCount() int
+	Behavior() GKBehavior
+	SetBehavior(value GKBehavior)
 }
 
 // A set of goals that together influence the movement of an agent.
@@ -93,7 +96,7 @@ func NewBehavior() Behavior {
 // Creates a behavior with a single goal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
-func NewBehaviorWithGoalWeight(goal IGKGoal, weight unsafe.Pointer) Behavior {
+func NewBehaviorWithGoalWeight(goal IGKGoal, weight float32) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
 	return rv
 }
@@ -132,7 +135,7 @@ func NewBehaviorWithWeightedGoals(weightedGoals unsafe.Pointer) Behavior {
 // Creates a behavior with a single goal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
-func (bc _BehaviorClass) BehaviorWithGoalWeight(goal IGKGoal, weight unsafe.Pointer) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithGoalWeight(goal IGKGoal, weight float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
 	return rv
 }
@@ -185,7 +188,7 @@ func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.INumber, goal IG
 // Sets the weight for the specified goal’s influence on agents, adding that goal to the behavior if not already present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/setWeight(_:for:)
-func (b_ Behavior) SetWeightForGoal(weight unsafe.Pointer, goal IGKGoal) {
+func (b_ Behavior) SetWeightForGoal(weight float32, goal IGKGoal) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setWeight:forGoal:"), weight, goal)
 }
 
@@ -208,8 +211,8 @@ func (b_ Behavior) ObjectAtIndexedSubscript(idx uint) Goal {
 // Returns the weight for the specified goal’s influence on agents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/weight(for:)
-func (b_ Behavior) WeightForGoal(goal IGKGoal) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("weightForGoal:"), goal)
+func (b_ Behavior) WeightForGoal(goal IGKGoal) float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("weightForGoal:"), goal)
 	return rv
 }
 

@@ -30,6 +30,7 @@ type _BlockOperationClass struct {
 type IBlockOperation interface {
 	IOperation
 	AddExecutionBlock(block unsafe.Pointer)
+	ExecutionBlocks() []func()
 }
 
 // An operation that manages the concurrent execution of one or more blocks.

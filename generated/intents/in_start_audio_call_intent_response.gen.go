@@ -29,6 +29,8 @@ type _INStartAudioCallIntentResponseClass struct {
 // An interface definition for the [INStartAudioCallIntentResponse] class.
 type IINStartAudioCallIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // An app’s response to an intent to start an audio call.

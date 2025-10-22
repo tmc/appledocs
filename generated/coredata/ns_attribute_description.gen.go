@@ -30,6 +30,24 @@ type _AttributeDescriptionClass struct {
 // An interface definition for the [AttributeDescription] class.
 type IAttributeDescription interface {
 	IPropertyDescription
+	AllowsCloudEncryption() bool
+	SetAllowsCloudEncryption(value bool)
+	AllowsExternalBinaryDataStorage() bool
+	SetAllowsExternalBinaryDataStorage(value bool)
+	AttributeType() AttributeType
+	SetAttributeType(value AttributeType)
+	AttributeValueClassName() string
+	SetAttributeValueClassName(value string)
+	DefaultValue() unsafe.Pointer
+	SetDefaultValue(value unsafe.Pointer)
+	PreservesValueInHistoryOnDeletion() bool
+	SetPreservesValueInHistoryOnDeletion(value bool)
+	Type() AttributeType
+	SetType(value AttributeType)
+	ValueTransformerName() string
+	SetValueTransformerName(value string)
+	VersionHash() foundation.Data
+	SetVersionHash(value foundation.IData)
 }
 
 // A description of a single attribute belonging to an entity.
@@ -139,8 +157,8 @@ func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
 // The class name that represents the attribute’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) AttributeValueClassName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("attributeValueClassName"))
+func (a_ AttributeDescription) AttributeValueClassName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("attributeValueClassName"))
 	return rv
 }
 
@@ -150,8 +168,8 @@ func (a_ AttributeDescription) AttributeValueClassName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) SetAttributeValueClassName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), value)
+func (a_ AttributeDescription) SetAttributeValueClassName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), objc.String(value))
 }
 
 // The default value of the attribute.
@@ -211,8 +229,8 @@ func (a_ AttributeDescription) SetType(value AttributeType) {
 // The name of the transformer to use for the attribute value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) ValueTransformerName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("valueTransformerName"))
+func (a_ AttributeDescription) ValueTransformerName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
 	return rv
 }
 
@@ -222,8 +240,8 @@ func (a_ AttributeDescription) ValueTransformerName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) SetValueTransformerName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), value)
+func (a_ AttributeDescription) SetValueTransformerName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
 }
 
 // The version hash for the attribute.

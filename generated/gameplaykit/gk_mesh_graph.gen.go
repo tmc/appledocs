@@ -35,6 +35,11 @@ type IMeshGraph interface {
 	RemoveObstacles(obstacles []PolygonObstacle)
 	TriangleAtIndex(index uint) unsafe.Pointer
 	Triangulate()
+	BufferRadius() float32
+	Obstacles() []PolygonObstacle
+	TriangleCount() uint
+	TriangulationMode() MeshGraphTriangulationMode
+	SetTriangulationMode(value MeshGraphTriangulationMode)
 }
 
 // A navigation graph for 2D game worlds that creates a space-filling network for smooth pathfinding around obstacles.
@@ -92,7 +97,7 @@ func NewMeshGraph() MeshGraph {
 // Initializes a graph to cover the specified area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/init(bufferRadius:minCoordinate:maxCoordinate:)
-func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius unsafe.Pointer, min unsafe.Pointer, max unsafe.Pointer) MeshGraph {
+func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer) MeshGraph {
 	instance := getMeshGraphClass().Alloc()
 	rv := objc.Send[MeshGraph](instance.ID, objc.Sel("initWithBufferRadius:minCoordinate:maxCoordinate:"), bufferRadius, min, max)
 	rv.Autorelease()
@@ -104,7 +109,7 @@ func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius unsafe.
 // Initializes a graph to cover the specified area, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/init(bufferRadius:minCoordinate:maxCoordinate:nodeClass:)
-func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius unsafe.Pointer, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) MeshGraph {
+func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) MeshGraph {
 	instance := getMeshGraphClass().Alloc()
 	rv := objc.Send[MeshGraph](instance.ID, objc.Sel("initWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:"), bufferRadius, min, max, nodeClass)
 	rv.Autorelease()
@@ -115,7 +120,7 @@ func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadiu
 // Creates a graph to cover the specified area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/graphWithBufferRadius:minCoordinate:maxCoordinate:
-func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius unsafe.Pointer, min unsafe.Pointer, max unsafe.Pointer) unsafe.Pointer {
+func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("graphWithBufferRadius:minCoordinate:maxCoordinate:"), bufferRadius, min, max)
 	return rv
 }
@@ -123,7 +128,7 @@ func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinate(buffer
 // Creates a graph to cover the specified area, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:
-func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius unsafe.Pointer, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
+func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:"), bufferRadius, min, max, nodeClass)
 	return rv
 }
@@ -174,8 +179,8 @@ func (m_ MeshGraph) Triangulate() {
 // The distance from obstacle edges that should also be considered impassable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/bufferRadius
-func (m_ MeshGraph) BufferRadius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bufferRadius"))
+func (m_ MeshGraph) BufferRadius() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("bufferRadius"))
 	return rv
 }
 

@@ -30,6 +30,10 @@ type _PortraitEffectsMatteClass struct {
 // An interface definition for the [PortraitEffectsMatte] class.
 type IPortraitEffectsMatte interface {
 	objectivec.IObject
+	MattingImage() unsafe.Pointer
+	SetMattingImage(value unsafe.Pointer)
+	PixelFormatType() unsafe.Pointer
+	SetPixelFormatType(value unsafe.Pointer)
 }
 
 // An auxiliary image used to separate foreground from background with high resolution.

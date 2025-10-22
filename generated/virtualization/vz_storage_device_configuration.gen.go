@@ -30,6 +30,8 @@ type _VZStorageDeviceConfigurationClass struct {
 // An interface definition for the [VZStorageDeviceConfiguration] class.
 type IVZStorageDeviceConfiguration interface {
 	objectivec.IObject
+	Attachment() VZStorageDeviceAttachment
+	SetAttachment(value IVZStorageDeviceAttachment)
 }
 
 // The common configuration traits for storage device requests.

@@ -41,6 +41,10 @@ type IModel interface {
 	PredictionFromFeaturesUsingStateOptionsCompletionHandler(inputFeatures objectivec.IObject, state MLState, options MLPredictionOptions, completionHandler unsafe.Pointer)
 	PredictionsFromBatchOptionsError(inputBatch objectivec.IObject, options MLPredictionOptions, error_ unsafe.Pointer) objc.ID
 	PredictionsFromBatchError(inputBatch objectivec.IObject, error_ unsafe.Pointer) objc.ID
+	Configuration() MLModelConfiguration
+	ModelDescription() MLModelDescription
+	Metadata() unsafe.Pointer
+	SetMetadata(value unsafe.Pointer)
 }
 
 // An encapsulation of all the details of your machine learning model.

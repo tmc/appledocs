@@ -29,6 +29,8 @@ type _TrackTranslationalImageRegistrationRequestClass struct {
 // An interface definition for the [TrackTranslationalImageRegistrationRequest] class.
 type ITrackTranslationalImageRegistrationRequest interface {
 	IStatefulRequest
+	Results() VNImageTranslationAlignmentObservation
+	SetResults(value IVNImageTranslationAlignmentObservation)
 }
 
 // An image-analysis request, as a stateful request you track over time, that determines the affine transform necessary to align the content of two images.

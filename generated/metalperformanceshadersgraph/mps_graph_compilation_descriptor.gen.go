@@ -29,6 +29,20 @@ type _GraphCompilationDescriptorClass struct {
 // An interface definition for the [GraphCompilationDescriptor] class.
 type IGraphCompilationDescriptor interface {
 	IGraphObject
+	DispatchQueue() unsafe.Pointer
+	SetDispatchQueue(value unsafe.Pointer)
+	OptimizationProfile() GraphOptimizationProfile
+	SetOptimizationProfile(value IGraphOptimizationProfile)
+	Callables() MPSGraphExecutable
+	SetCallables(value IMPSGraphExecutable)
+	CompilationCompletionHandler() unsafe.Pointer
+	SetCompilationCompletionHandler(value unsafe.Pointer)
+	OptimizationLevel() GraphOptimization
+	SetOptimizationLevel(value IGraphOptimization)
+	ReducedPrecisionFastMath() GraphReducedPrecisionFastMath
+	SetReducedPrecisionFastMath(value IGraphReducedPrecisionFastMath)
+	WaitForCompilationCompletion() bool
+	SetWaitForCompilationCompletion(value bool)
 }
 
 // A class that consists of all the levers for compiling graphs.

@@ -30,6 +30,8 @@ type _FunctionStitchingAttributeAlwaysInlineClass struct {
 // An interface definition for the [FunctionStitchingAttributeAlwaysInline] class.
 type IFunctionStitchingAttributeAlwaysInline interface {
 	objectivec.IObject
+	Attributes() unsafe.Pointer
+	SetAttributes(value unsafe.Pointer)
 }
 
 // An attribute to specify that Metal needs to inline all of the function calls when generating the stitched function.

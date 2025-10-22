@@ -35,6 +35,21 @@ type IPHLivePhotoEditingContext interface {
 	Cancel()
 	PrepareLivePhotoForPlaybackWithTargetSizeOptionsCompletionHandler(targetSize coregraphics.CGSize, options unsafe.Pointer, handler unsafe.Pointer)
 	SaveLivePhotoToOutputOptionsCompletionHandler(output IPHContentEditingOutput, options unsafe.Pointer, handler unsafe.Pointer)
+	AudioVolume() float32
+	SetAudioVolume(value float32)
+	Duration() unsafe.Pointer
+	FrameProcessor() unsafe.Pointer
+	SetFrameProcessor(value unsafe.Pointer)
+	FullSizeImage() appkit.Image
+	Orientation() unsafe.Pointer
+	PhotoTime() unsafe.Pointer
+	ContentEditingOutput() PHContentEditingOutput
+	SetContentEditingOutput(value IPHContentEditingOutput)
+	LivePhoto() PHLivePhoto
+	SetLivePhoto(value IPHLivePhoto)
+	AdjustmentData() PHAdjustmentData
+	SetAdjustmentData(value IPHAdjustmentData)
+	PHLivePhotoEditingErrorDomain() string
 }
 
 // An editing session for modifying the photo, video, and audio content of a Live Photo.
@@ -122,8 +137,8 @@ func (p_ PHLivePhotoEditingContext) SaveLivePhotoToOutputOptionsCompletionHandle
 // The audio gain to apply to the processed Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/audioVolume
-func (p_ PHLivePhotoEditingContext) AudioVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioVolume"))
+func (p_ PHLivePhotoEditingContext) AudioVolume() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("audioVolume"))
 	return rv
 }
 
@@ -133,7 +148,7 @@ func (p_ PHLivePhotoEditingContext) AudioVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/audioVolume
-func (p_ PHLivePhotoEditingContext) SetAudioVolume(value unsafe.Pointer) {
+func (p_ PHLivePhotoEditingContext) SetAudioVolume(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioVolume:"), value)
 }
 
@@ -244,8 +259,8 @@ func (p_ PHLivePhotoEditingContext) SetAdjustmentData(value IPHAdjustmentData) {
 // The domain value for error objects produced by a Live Photo editing context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain
-func (p_ PHLivePhotoEditingContext) PHLivePhotoEditingErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLivePhotoEditingErrorDomain"))
+func (p_ PHLivePhotoEditingContext) PHLivePhotoEditingErrorDomain() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("PHLivePhotoEditingErrorDomain"))
 	return rv
 }
 

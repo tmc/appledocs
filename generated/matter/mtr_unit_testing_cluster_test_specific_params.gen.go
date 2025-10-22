@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterTestSpecificParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestSpecificParams] class.
 type IMTRUnitTestingClusterTestSpecificParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

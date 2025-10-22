@@ -39,6 +39,12 @@ type IXMLDTD interface {
 	RemoveChildAtIndex(index uint)
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
 	SetChildren(children []XMLNode)
+	PublicID() string
+	SetPublicID(value string)
+	SystemID() string
+	SetSystemID(value string)
+	Dtd() NSXMLDTD
+	SetDtd(value IXMLDTD)
 }
 
 // A representation of a Document Type Definition.

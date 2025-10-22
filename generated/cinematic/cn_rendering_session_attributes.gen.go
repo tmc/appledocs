@@ -31,6 +31,7 @@ type _CNRenderingSessionAttributesClass struct {
 // An interface definition for the [CNRenderingSessionAttributes] class.
 type ICNRenderingSessionAttributes interface {
 	objectivec.IObject
+	RenderingVersion() int
 }
 
 // A structure for movie-wide attributes required for proper rendering.

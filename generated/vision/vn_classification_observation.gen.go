@@ -30,8 +30,15 @@ type _ClassificationObservationClass struct {
 // An interface definition for the [ClassificationObservation] class.
 type IClassificationObservation interface {
 	IObservation
-	HasMinimumPrecisionForRecall(minimumPrecision unsafe.Pointer, recall unsafe.Pointer) bool
-	HasMinimumRecallForPrecision(minimumRecall unsafe.Pointer, precision unsafe.Pointer) bool
+	HasMinimumPrecisionForRecall(minimumPrecision float32, recall float32) bool
+	HasMinimumRecallForPrecision(minimumRecall float32, precision float32) bool
+	HasPrecisionRecallCurve() bool
+	ModelDescription() coreml.ModelDescription
+	SetModelDescription(value coreml.IModelDescription)
+	PredictedFeatureName() string
+	SetPredictedFeatureName(value string)
+	Identifier() string
+	SetIdentifier(value string)
 }
 
 // An object that represents classification information that an image-analysis request produces.
@@ -87,7 +94,7 @@ func NewClassificationObservation() ClassificationObservation {
 // Determines whether the observation for a specific recall has a minimum precision value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasMinimumPrecision(_:forRecall:)
-func (c_ ClassificationObservation) HasMinimumPrecisionForRecall(minimumPrecision unsafe.Pointer, recall unsafe.Pointer) bool {
+func (c_ ClassificationObservation) HasMinimumPrecisionForRecall(minimumPrecision float32, recall float32) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMinimumPrecision:forRecall:"), minimumPrecision, recall)
 	return rv
 }
@@ -95,7 +102,7 @@ func (c_ ClassificationObservation) HasMinimumPrecisionForRecall(minimumPrecisio
 // Determines whether the observation for a specific precision has a minimum recall value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasMinimumRecall(_:forPrecision:)
-func (c_ ClassificationObservation) HasMinimumRecallForPrecision(minimumRecall unsafe.Pointer, precision unsafe.Pointer) bool {
+func (c_ ClassificationObservation) HasMinimumRecallForPrecision(minimumRecall float32, precision float32) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMinimumRecall:forPrecision:"), minimumRecall, precision)
 	return rv
 }
@@ -129,8 +136,8 @@ func (c_ ClassificationObservation) SetModelDescription(value coreml.IModelDescr
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) PredictedFeatureName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ ClassificationObservation) PredictedFeatureName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
@@ -140,15 +147,15 @@ func (c_ ClassificationObservation) PredictedFeatureName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) SetPredictedFeatureName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
+func (c_ ClassificationObservation) SetPredictedFeatureName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
 }
 
 // Classification label identifying the type of observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
+func (c_ ClassificationObservation) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -158,8 +165,8 @@ func (c_ ClassificationObservation) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
+func (c_ ClassificationObservation) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 

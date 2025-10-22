@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,9 @@ type ITask interface {
 	objectivec.IObject
 	Cancel()
 	Resume()
+	Error() foundation.Error
+	State() TaskState
+	TaskIdentifier() string
 }
 
 // An abstract base class for machine learning tasks.
@@ -117,8 +119,8 @@ func (t_ Task) State() TaskState {
 // A unique name of the task to distinguish it from all other tasks at runtime.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/taskIdentifier
-func (t_ Task) TaskIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("taskIdentifier"))
+func (t_ Task) TaskIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("taskIdentifier"))
 	return rv
 }
 

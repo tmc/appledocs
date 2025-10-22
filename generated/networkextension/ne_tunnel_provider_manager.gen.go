@@ -30,6 +30,27 @@ type _NETunnelProviderManagerClass struct {
 type INETunnelProviderManager interface {
 	INEVPNManager
 	CopyAppRules() []NEAppRule
+	AppRules() []NEAppRule
+	SetAppRules(value []NEAppRule)
+	AssociatedDomains() []string
+	SetAssociatedDomains(value []string)
+	CalendarDomains() []string
+	SetCalendarDomains(value []string)
+	ContactsDomains() []string
+	SetContactsDomains(value []string)
+	ExcludedDomains() []string
+	SetExcludedDomains(value []string)
+	MailDomains() []string
+	SetMailDomains(value []string)
+	RoutingMethod() NETunnelProviderRoutingMethod
+	SafariDomains() []string
+	SetSafariDomains(value []string)
+	Connection() NEVPNConnection
+	SetConnection(value INEVPNConnection)
+	OnDemandRules() NEOnDemandRule
+	SetOnDemandRules(value INEOnDemandRule)
+	ProtocolConfiguration() NEVPNProtocol
+	SetProtocolConfiguration(value INEVPNProtocol)
 }
 
 // An object to create and manage the tunnel provider’s VPN configuration.

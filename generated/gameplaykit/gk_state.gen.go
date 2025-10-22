@@ -35,6 +35,7 @@ type IState interface {
 	IsValidNextState(stateClass objc.Class) bool
 	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	WillExitWithNextState(nextState GKState)
+	StateMachine() GKStateMachine
 }
 
 // The abstract superclass for defining state-specific logic as part of a state machine.

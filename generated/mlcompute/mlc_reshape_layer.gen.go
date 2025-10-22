@@ -29,6 +29,8 @@ type _CReshapeLayerClass struct {
 // An interface definition for the [CReshapeLayer] class.
 type ICReshapeLayer interface {
 	ICLayer
+	Shape() int
+	SetShape(value int)
 }
 
 // A layer that reshapes a tensor with the shape you specify.

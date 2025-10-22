@@ -30,6 +30,9 @@ type _USBHostIOSourceClass struct {
 // An interface definition for the [USBHostIOSource] class.
 type IUSBHostIOSource interface {
 	objectivec.IObject
+	DeviceAddress() uint
+	EndpointAddress() uint
+	HostInterface() IOUSBHostInterface
 }
 
 // This class provides basic functionality for deriving pipe and stream classes.

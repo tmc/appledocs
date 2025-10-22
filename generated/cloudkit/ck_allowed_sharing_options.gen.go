@@ -30,6 +30,14 @@ type _CKAllowedSharingOptionsClass struct {
 // An interface definition for the [CKAllowedSharingOptions] class.
 type ICKAllowedSharingOptions interface {
 	objectivec.IObject
+	AllowedParticipantAccessOptions() unsafe.Pointer
+	SetAllowedParticipantAccessOptions(value unsafe.Pointer)
+	AllowedParticipantPermissionOptions() unsafe.Pointer
+	SetAllowedParticipantPermissionOptions(value unsafe.Pointer)
+	AllowsAccessRequests() bool
+	SetAllowsAccessRequests(value bool)
+	AllowsParticipantsToInviteOthers() bool
+	SetAllowsParticipantsToInviteOthers(value bool)
 }
 
 // An object that controls participant access and permission options.

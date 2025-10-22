@@ -29,6 +29,18 @@ type _CKDiscoverAllUserIdentitiesOperationClass struct {
 // An interface definition for the [CKDiscoverAllUserIdentitiesOperation] class.
 type ICKDiscoverAllUserIdentitiesOperation interface {
 	ICKOperation
+	DiscoverAllUserIdentitiesCompletionBlock() unsafe.Pointer
+	SetDiscoverAllUserIdentitiesCompletionBlock(value unsafe.Pointer)
+	UserIdentityDiscoveredBlock() unsafe.Pointer
+	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
+	DiscoverAllUserIdentitiesResultBlock() unsafe.Pointer
+	SetDiscoverAllUserIdentitiesResultBlock(value unsafe.Pointer)
+	ContactIdentifiers() string
+	SetContactIdentifiers(value string)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
 }
 
 // An operation that uses the device’s contacts to search for discoverable iCloud users.

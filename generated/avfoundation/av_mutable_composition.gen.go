@@ -31,6 +31,10 @@ type _MutableCompositionClass struct {
 type IMutableComposition interface {
 	IComposition
 	InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset IAVAsset, startTime unsafe.Pointer, outError unsafe.Pointer) bool
+	NaturalSize() coregraphics.CGSize
+	SetNaturalSize(value coregraphics.CGSize)
+	Tracks() unsafe.Pointer
+	SetTracks(value unsafe.Pointer)
 }
 
 // An object that you use to create a new composition from existing assets.

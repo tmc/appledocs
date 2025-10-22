@@ -31,6 +31,12 @@ type _MTROperationalCredentialsClusterCSRResponseParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterCSRResponseParams] class.
 type IMTROperationalCredentialsClusterCSRResponseParams interface {
 	objectivec.IObject
+	AttestationSignature() foundation.Data
+	SetAttestationSignature(value foundation.IData)
+	NocsrElements() foundation.Data
+	SetNocsrElements(value foundation.IData)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

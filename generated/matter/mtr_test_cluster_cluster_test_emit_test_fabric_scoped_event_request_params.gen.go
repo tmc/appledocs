@@ -30,6 +30,12 @@ type _MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParamsClass struc
 // An interface definition for the [MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams] class.
 type IMTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams interface {
 	IMTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,7 @@ type _SkipIntervalCommandEventClass struct {
 // An interface definition for the [SkipIntervalCommandEvent] class.
 type ISkipIntervalCommandEvent interface {
 	IRemoteCommandEvent
+	Interval() foundation.TimeInterval
 }
 
 // An event requesting a change in the current skip interval.

@@ -29,6 +29,13 @@ type _DeviceMotionClass struct {
 // An interface definition for the [DeviceMotion] class.
 type IDeviceMotion interface {
 	ILogItem
+	Attitude() CMAttitude
+	Gravity() unsafe.Pointer
+	Heading() float64
+	MagneticField() unsafe.Pointer
+	RotationRate() unsafe.Pointer
+	SensorLocation() DeviceMotionSensorLocation
+	UserAcceleration() unsafe.Pointer
 }
 
 // Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.
@@ -100,8 +107,8 @@ func (d_ DeviceMotion) Gravity() unsafe.Pointer {
 // The heading angle (measured in degrees) relative to the current reference frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/heading
-func (d_ DeviceMotion) Heading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("heading"))
+func (d_ DeviceMotion) Heading() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("heading"))
 	return rv
 }
 

@@ -31,6 +31,9 @@ type _ObservationClass struct {
 // An interface definition for the [Observation] class.
 type IObservation interface {
 	objectivec.IObject
+	Confidence() Confidence
+	TimeRange() unsafe.Pointer
+	Uuid() foundation.UUID
 }
 
 // The abstract superclass for analysis results.

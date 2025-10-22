@@ -31,6 +31,14 @@ type _MTRGroupsClusterRemoveGroupParamsClass struct {
 // An interface definition for the [MTRGroupsClusterRemoveGroupParams] class.
 type IMTRGroupsClusterRemoveGroupParams interface {
 	objectivec.IObject
+	GroupID() foundation.Number
+	SetGroupID(value foundation.INumber)
+	GroupId() foundation.Number
+	SetGroupId(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

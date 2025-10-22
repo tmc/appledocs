@@ -31,6 +31,8 @@ type _MERAWProcessorPixelBufferManagerClass struct {
 type IMERAWProcessorPixelBufferManager interface {
 	objectivec.IObject
 	CreatePixelBufferAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
+	PixelBufferAttributes() unsafe.Pointer
+	SetPixelBufferAttributes(value unsafe.Pointer)
 }
 
 // Describes pixel buffer requirements and creates new pixel buffers.

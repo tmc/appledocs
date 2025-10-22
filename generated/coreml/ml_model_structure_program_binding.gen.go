@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _ModelStructureProgramBindingClass struct {
 // An interface definition for the [ModelStructureProgramBinding] class.
 type IModelStructureProgramBinding interface {
 	objectivec.IObject
+	Name() string
+	Value() MLModelStructureProgramValue
 }
 
 // A class representing a binding in the Program
@@ -84,8 +85,8 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 // The name of the variable in the Program.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
-func (m_ ModelStructureProgramBinding) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramBinding) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

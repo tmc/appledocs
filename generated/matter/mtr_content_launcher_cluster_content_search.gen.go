@@ -29,6 +29,8 @@ type _MTRContentLauncherClusterContentSearchClass struct {
 // An interface definition for the [MTRContentLauncherClusterContentSearch] class.
 type IMTRContentLauncherClusterContentSearch interface {
 	IMTRContentLauncherClusterContentSearchStruct
+	ParameterList() unsafe.Pointer
+	SetParameterList(value unsafe.Pointer)
 }
 
 //

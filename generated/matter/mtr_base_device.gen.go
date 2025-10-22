@@ -30,6 +30,8 @@ type _MTRBaseDeviceClass struct {
 // An interface definition for the [MTRBaseDevice] class.
 type IMTRBaseDevice interface {
 	objectivec.IObject
+	SessionTransportType() MTRTransportType
+	SetSessionTransportType(value MTRTransportType)
 }
 
 //

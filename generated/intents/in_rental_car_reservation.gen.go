@@ -30,6 +30,14 @@ type _INRentalCarReservationClass struct {
 // An interface definition for the [INRentalCarReservation] class.
 type IINRentalCarReservation interface {
 	IINReservation
+	DropOffLocation() corelocation.Placemark
+	SetDropOffLocation(value corelocation.IPlacemark)
+	PickupLocation() corelocation.Placemark
+	SetPickupLocation(value corelocation.IPlacemark)
+	RentalCar() unsafe.Pointer
+	SetRentalCar(value unsafe.Pointer)
+	RentalDuration() INDateComponentsRange
+	SetRentalDuration(value INDateComponentsRange)
 }
 
 // The information that describes a rental car reservation.

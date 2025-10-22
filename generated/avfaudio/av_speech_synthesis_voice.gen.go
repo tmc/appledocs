@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,21 @@ type _SpeechSynthesisVoiceClass struct {
 // An interface definition for the [SpeechSynthesisVoice] class.
 type ISpeechSynthesisVoice interface {
 	objectivec.IObject
+	Gender() unsafe.Pointer
+	Language() string
+	AudioFileSettings() string
+	SetAudioFileSettings(value string)
+	Identifier() string
+	SetIdentifier(value string)
+	Name() string
+	SetName(value string)
+	Quality() unsafe.Pointer
+	SetQuality(value unsafe.Pointer)
+	VoiceTraits() unsafe.Pointer
+	SetVoiceTraits(value unsafe.Pointer)
+	AVSpeechSynthesisVoiceIdentifierAlex() string
+	Voice() AVSpeechSynthesisVoice
+	SetVoice(value IAVSpeechSynthesisVoice)
 }
 
 // A distinct voice for use in speech synthesis.
@@ -92,16 +106,16 @@ func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
 // A BCP 47 code that contains the voice’s language and locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/language
-func (s_ SpeechSynthesisVoice) Language() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("language"))
+func (s_ SpeechSynthesisVoice) Language() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("language"))
 	return rv
 }
 
 // A dictionary that contains audio file settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
-func (s_ SpeechSynthesisVoice) AudioFileSettings() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("audioFileSettings"))
+func (s_ SpeechSynthesisVoice) AudioFileSettings() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("audioFileSettings"))
 	return rv
 }
 
@@ -111,15 +125,15 @@ func (s_ SpeechSynthesisVoice) AudioFileSettings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
-func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioFileSettings:"), value)
+func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioFileSettings:"), objc.String(value))
 }
 
 // The unique identifier of a voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
-func (s_ SpeechSynthesisVoice) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
+func (s_ SpeechSynthesisVoice) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -129,15 +143,15 @@ func (s_ SpeechSynthesisVoice) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
-func (s_ SpeechSynthesisVoice) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
+func (s_ SpeechSynthesisVoice) SetIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The name of a voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
-func (s_ SpeechSynthesisVoice) Name() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("name"))
+func (s_ SpeechSynthesisVoice) Name() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -147,8 +161,8 @@ func (s_ SpeechSynthesisVoice) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
-func (s_ SpeechSynthesisVoice) SetName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
+func (s_ SpeechSynthesisVoice) SetName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The speech quality of a voice.
@@ -190,8 +204,8 @@ func (s_ SpeechSynthesisVoice) SetVoiceTraits(value unsafe.Pointer) {
 // The voice that the system identifies as Alex.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoiceidentifieralex
-func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSpeechSynthesisVoiceIdentifierAlex"))
+func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisVoiceIdentifierAlex"))
 	return rv
 }
 

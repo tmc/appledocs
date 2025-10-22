@@ -31,6 +31,12 @@ type _MTROperationalCredentialsClusterRemoveFabricParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterRemoveFabricParams] class.
 type IMTROperationalCredentialsClusterRemoveFabricParams interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

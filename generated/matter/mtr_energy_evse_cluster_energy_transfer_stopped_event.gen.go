@@ -31,6 +31,14 @@ type _MTREnergyEVSEClusterEnergyTransferStoppedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEnergyTransferStoppedEvent] class.
 type IMTREnergyEVSEClusterEnergyTransferStoppedEvent interface {
 	objectivec.IObject
+	EnergyTransferred() foundation.Number
+	SetEnergyTransferred(value foundation.INumber)
+	Reason() foundation.Number
+	SetReason(value foundation.INumber)
+	SessionID() foundation.Number
+	SetSessionID(value foundation.INumber)
+	State() foundation.Number
+	SetState(value foundation.INumber)
 }
 
 //

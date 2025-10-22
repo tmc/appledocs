@@ -31,6 +31,8 @@ type _EDRMetadataClass struct {
 // An interface definition for the [EDRMetadata] class.
 type IEDRMetadata interface {
 	objectivec.IObject
+	EdrMetadata() CAEDRMetadata
+	SetEdrMetadata(value IEDRMetadata)
 }
 
 // Metadata describing how extended dynamic range (EDR) values should be tone mapped.
@@ -84,7 +86,7 @@ func NewEDRMetadata() EDRMetadata {
 // Creates EDR metadata for HDR10 content based on mastering display color information and content light levels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hdr10(displayInfo:contentInfo:opticalOutputScale:)
-func (ec _EDRMetadataClass) HDR10MetadataWithDisplayInfoContentInfoOpticalOutputScale(displayData foundation.IData, contentData foundation.IData, scale unsafe.Pointer) EDRMetadata {
+func (ec _EDRMetadataClass) HDR10MetadataWithDisplayInfoContentInfoOpticalOutputScale(displayData foundation.IData, contentData foundation.IData, scale float32) EDRMetadata {
 	rv := objc.Send[EDRMetadata](objc.ID(ec.class), objc.Sel("HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:"), displayData, contentData, scale)
 	return rv
 }
@@ -92,7 +94,7 @@ func (ec _EDRMetadataClass) HDR10MetadataWithDisplayInfoContentInfoOpticalOutput
 // Creates EDR metadata for HDR10 content based on the luminance characteristics of a mastering display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEDRMetadata/hdr10(minLuminance:maxLuminance:opticalOutputScale:)
-func (ec _EDRMetadataClass) HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(minNits unsafe.Pointer, maxNits unsafe.Pointer, scale unsafe.Pointer) EDRMetadata {
+func (ec _EDRMetadataClass) HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(minNits float32, maxNits float32, scale float32) EDRMetadata {
 	rv := objc.Send[EDRMetadata](objc.ID(ec.class), objc.Sel("HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:"), minNits, maxNits, scale)
 	return rv
 }

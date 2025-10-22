@@ -31,6 +31,16 @@ type _MTRActionsClusterInstantActionWithTransitionParamsClass struct {
 // An interface definition for the [MTRActionsClusterInstantActionWithTransitionParams] class.
 type IMTRActionsClusterInstantActionWithTransitionParams interface {
 	objectivec.IObject
+	ActionID() foundation.Number
+	SetActionID(value foundation.INumber)
+	InvokeID() foundation.Number
+	SetInvokeID(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

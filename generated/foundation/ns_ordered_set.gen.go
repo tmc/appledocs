@@ -34,6 +34,19 @@ type IOrderedSet interface {
 	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
 	ObjectAtIndex(idx uint) unsafe.Pointer
+	LastObject() unsafe.Pointer
+	Array() unsafe.Pointer
+	SetArray(value unsafe.Pointer)
+	Count() int
+	SetCount(value int)
+	Description() string
+	SetDescription(value string)
+	FirstObject() unsafe.Pointer
+	SetFirstObject(value unsafe.Pointer)
+	Reversed() NSOrderedSet
+	SetReversed(value IOrderedSet)
+	Set() unsafe.Pointer
+	SetSet(value unsafe.Pointer)
 }
 
 // A static, ordered collection of unique objects.

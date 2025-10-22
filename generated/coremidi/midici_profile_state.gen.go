@@ -30,6 +30,12 @@ type _MIDICIProfileStateClass struct {
 // An interface definition for the [MIDICIProfileState] class.
 type IMIDICIProfileState interface {
 	objectivec.IObject
+	DisabledProfiles() MIDICIProfile
+	SetDisabledProfiles(value IMIDICIProfile)
+	EnabledProfiles() MIDICIProfile
+	SetEnabledProfiles(value IMIDICIProfile)
+	MidiChannel() MIDIChannelNumber
+	SetMidiChannel(value IMIDIChannelNumber)
 }
 
 // An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.

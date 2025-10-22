@@ -30,6 +30,8 @@ type _CXSetGroupCallActionClass struct {
 // An interface definition for the [CXSetGroupCallAction] class.
 type ICXSetGroupCallAction interface {
 	ICXCallAction
+	CallUUIDToGroupWith() foundation.UUID
+	SetCallUUIDToGroupWith(value foundation.IUUID)
 }
 
 // An encapsulation of the act of grouping or ungrouping calls.

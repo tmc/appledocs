@@ -31,6 +31,12 @@ type _MTROperationalStateClusterErrorStateStructClass struct {
 // An interface definition for the [MTROperationalStateClusterErrorStateStruct] class.
 type IMTROperationalStateClusterErrorStateStruct interface {
 	objectivec.IObject
+	ErrorStateDetails() string
+	SetErrorStateDetails(value string)
+	ErrorStateID() foundation.Number
+	SetErrorStateID(value foundation.INumber)
+	ErrorStateLabel() string
+	SetErrorStateLabel(value string)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTROperationalStateClusterErrorStateStruct() MTROperationalStateClusterE
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
-func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("errorStateDetails"))
+func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateDetails"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() appkit.
 // SetErrorStateDetails sets the value of the errorStateDetails property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
-func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateDetails(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), value)
+func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateDetails(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), objc.String(value))
 }
 
 //
@@ -108,8 +114,8 @@ func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateID(value found
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatelabel
-func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateLabel() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("errorStateLabel"))
+func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorStateLabel"))
 	return rv
 }
 
@@ -117,8 +123,8 @@ func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateLabel() appkit.st
 // SetErrorStateLabel sets the value of the errorStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatelabel
-func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), value)
+func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
 }
 
 

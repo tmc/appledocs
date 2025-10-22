@@ -29,6 +29,10 @@ type _HumanBodyRecognizedPoint3DClass struct {
 // An interface definition for the [HumanBodyRecognizedPoint3D] class.
 type IHumanBodyRecognizedPoint3D interface {
 	IRecognizedPoint3D
+	LocalPosition() unsafe.Pointer
+	SetLocalPosition(value unsafe.Pointer)
+	ParentJoint() unsafe.Pointer
+	SetParentJoint(value unsafe.Pointer)
 }
 
 // A recognized 3D point that includes a parent joint.

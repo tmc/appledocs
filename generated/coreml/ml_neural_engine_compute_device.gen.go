@@ -30,6 +30,7 @@ type _NeuralEngineComputeDeviceClass struct {
 // An interface definition for the [NeuralEngineComputeDevice] class.
 type INeuralEngineComputeDevice interface {
 	objectivec.IObject
+	TotalCoreCount() int
 }
 
 // An object that represents a Neural Engine compute device.

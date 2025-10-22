@@ -31,6 +31,9 @@ type _VZVirtioSocketConnectionClass struct {
 type IVZVirtioSocketConnection interface {
 	objectivec.IObject
 	Close()
+	DestinationPort() uint32
+	FileDescriptor() int
+	SourcePort() uint32
 }
 
 // A port-based connection between the guest operating system and the host computer.
@@ -91,24 +94,24 @@ func (v_ VZVirtioSocketConnection) Close() {
 // The destination port number of the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketConnection/destinationPort
-func (v_ VZVirtioSocketConnection) DestinationPort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("destinationPort"))
+func (v_ VZVirtioSocketConnection) DestinationPort() uint32 {
+	rv := objc.Send[uint32](v_.ID, objc.Sel("destinationPort"))
 	return rv
 }
 
 // The file descriptor to use when sending data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketConnection/fileDescriptor
-func (v_ VZVirtioSocketConnection) FileDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fileDescriptor"))
+func (v_ VZVirtioSocketConnection) FileDescriptor() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("fileDescriptor"))
 	return rv
 }
 
 // The port number of the system that opened the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketConnection/sourcePort
-func (v_ VZVirtioSocketConnection) SourcePort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sourcePort"))
+func (v_ VZVirtioSocketConnection) SourcePort() uint32 {
+	rv := objc.Send[uint32](v_.ID, objc.Sel("sourcePort"))
 	return rv
 }
 

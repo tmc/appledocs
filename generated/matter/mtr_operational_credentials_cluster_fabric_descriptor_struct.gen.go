@@ -31,6 +31,24 @@ type _MTROperationalCredentialsClusterFabricDescriptorStructClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterFabricDescriptorStruct] class.
 type IMTROperationalCredentialsClusterFabricDescriptorStruct interface {
 	objectivec.IObject
+	FabricID() foundation.Number
+	SetFabricID(value foundation.INumber)
+	FabricId() foundation.Number
+	SetFabricId(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	Label() string
+	SetLabel(value string)
+	NodeID() foundation.Number
+	SetNodeID(value foundation.INumber)
+	NodeId() foundation.Number
+	SetNodeId(value foundation.INumber)
+	RootPublicKey() foundation.Data
+	SetRootPublicKey(value foundation.IData)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
+	VendorId() foundation.Number
+	SetVendorId(value foundation.INumber)
 }
 
 //
@@ -123,8 +141,8 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricIndex(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -132,8 +150,8 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() appkit.
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

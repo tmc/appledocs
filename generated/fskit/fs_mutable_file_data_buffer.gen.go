@@ -30,6 +30,8 @@ type _FSMutableFileDataBufferClass struct {
 // An interface definition for the [FSMutableFileDataBuffer] class.
 type IFSMutableFileDataBuffer interface {
 	objectivec.IObject
+	Length() int
+	SetLength(value int)
 }
 
 // A wrapper object for a data buffer.

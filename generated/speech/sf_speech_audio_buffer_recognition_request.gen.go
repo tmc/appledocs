@@ -30,6 +30,8 @@ type _SFSpeechAudioBufferRecognitionRequestClass struct {
 // An interface definition for the [SFSpeechAudioBufferRecognitionRequest] class.
 type ISFSpeechAudioBufferRecognitionRequest interface {
 	ISFSpeechRecognitionRequest
+	NativeAudioFormat() avfaudio.AudioFormat
+	SetNativeAudioFormat(value avfaudio.AudioFormat)
 }
 
 // A request to recognize speech from captured audio content, such as audio from the device’s microphone.

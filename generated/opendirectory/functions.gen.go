@@ -16,7 +16,7 @@ import (
 
 var (
 	_ODContextGetTypeID func() unsafe.Pointer
-	_ODNodeAddAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ODNodeAddAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ODNodeCopyAccountPolicies func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODNodeCopyDetails func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODNodeCopyPolicies func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -34,16 +34,16 @@ var (
 	_ODNodeCustomFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODNodeGetName func(unsafe.Pointer) unsafe.Pointer
 	_ODNodeGetTypeID func() unsafe.Pointer
-	_ODNodePasswordContentCheck func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeRemoveAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeRemovePolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeSetAccountPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeSetCredentials func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeSetCredentialsExtended func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeSetCredentialsUsingKerberosCache func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeSetPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODNodeSetPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODQueryCopyResults func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ODNodePasswordContentCheck func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeRemoveAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeRemovePolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeSetAccountPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeSetCredentials func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeSetCredentialsExtended func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeSetCredentialsUsingKerberosCache func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeSetPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODNodeSetPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODQueryCopyResults func(unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
 	_ODQueryCreateWithNode func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODQueryCreateWithNodeType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODQueryGetTypeID func() unsafe.Pointer
@@ -52,12 +52,12 @@ var (
 	_ODQuerySetDispatchQueue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODQuerySynchronize func(unsafe.Pointer) unsafe.Pointer
 	_ODQueryUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordAddAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordAddMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordAddValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordAuthenticationAllowed func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordChangePassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordContainsMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ODRecordAddAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordAddMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordAddValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordAuthenticationAllowed func(unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordChangePassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordContainsMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ODRecordCopyAccountPolicies func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODRecordCopyDetails func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODRecordCopyEffectivePolicies func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -65,29 +65,29 @@ var (
 	_ODRecordCopyPolicies func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODRecordCopySupportedPolicies func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODRecordCopyValues func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordDelete func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ODRecordDelete func(unsafe.Pointer, unsafe.Pointer) bool
 	_ODRecordGetRecordName func(unsafe.Pointer) unsafe.Pointer
 	_ODRecordGetRecordType func(unsafe.Pointer) unsafe.Pointer
 	_ODRecordGetTypeID func() unsafe.Pointer
-	_ODRecordPasswordChangeAllowed func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordRemoveAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordRemoveMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordRemovePolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordRemoveValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ODRecordPasswordChangeAllowed func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordRemoveAccountPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordRemoveMember func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordRemovePolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordRemoveValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_ODRecordSecondsUntilAuthenticationsExpire func(unsafe.Pointer) unsafe.Pointer
 	_ODRecordSecondsUntilPasswordExpires func(unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetAccountPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetNodeCredentials func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetNodeCredentialsExtended func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetNodeCredentialsUsingKerberosCache func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordSynchronize func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordVerifyPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordVerifyPasswordExtended func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordWillAuthenticationsExpire func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ODRecordWillPasswordExpire func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ODRecordSetAccountPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSetNodeCredentials func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSetNodeCredentialsExtended func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSetNodeCredentialsUsingKerberosCache func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSetPolicies func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSetPolicy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordSynchronize func(unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordVerifyPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordVerifyPasswordExtended func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordWillAuthenticationsExpire func(unsafe.Pointer, unsafe.Pointer) bool
+	_ODRecordWillPasswordExpire func(unsafe.Pointer, unsafe.Pointer) bool
 	_ODSessionCopyNodeNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODSessionCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ODSessionGetTypeID func() unsafe.Pointer
@@ -203,7 +203,7 @@ func ODContextGetTypeID() unsafe.Pointer {
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeAddAccountPolicy(_:_:_:_:)
-func ODNodeAddAccountPolicy(node unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeAddAccountPolicy(node unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeAddAccountPolicy(node, policy, category, error_)
 	}
 
@@ -387,7 +387,7 @@ func ODNodeGetTypeID() unsafe.Pointer {
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodePasswordContentCheck(_:_:_:_:)
-func ODNodePasswordContentCheck(node unsafe.Pointer, password unsafe.Pointer, recordName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodePasswordContentCheck(node unsafe.Pointer, password unsafe.Pointer, recordName unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodePasswordContentCheck(node, password, recordName, error_)
 	}
 
@@ -397,7 +397,7 @@ func ODNodePasswordContentCheck(node unsafe.Pointer, password unsafe.Pointer, re
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeRemoveAccountPolicy(_:_:_:_:)
-func ODNodeRemoveAccountPolicy(node unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeRemoveAccountPolicy(node unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeRemoveAccountPolicy(node, policy, category, error_)
 	}
 
@@ -409,7 +409,7 @@ func ODNodeRemoveAccountPolicy(node unsafe.Pointer, policy unsafe.Pointer, categ
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeRemovePolicy(_:_:_:)
-func ODNodeRemovePolicy(node unsafe.Pointer, policyType unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeRemovePolicy(node unsafe.Pointer, policyType unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeRemovePolicy(node, policyType, error_)
 	}
 
@@ -419,7 +419,7 @@ func ODNodeRemovePolicy(node unsafe.Pointer, policyType unsafe.Pointer, error_ u
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeSetAccountPolicies(_:_:_:)
-func ODNodeSetAccountPolicies(node unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeSetAccountPolicies(node unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeSetAccountPolicies(node, policies, error_)
 	}
 
@@ -429,7 +429,7 @@ func ODNodeSetAccountPolicies(node unsafe.Pointer, policies unsafe.Pointer, erro
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeSetCredentials(_:_:_:_:_:)
-func ODNodeSetCredentials(node unsafe.Pointer, recordType unsafe.Pointer, recordName unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeSetCredentials(node unsafe.Pointer, recordType unsafe.Pointer, recordName unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeSetCredentials(node, recordType, recordName, password, error_)
 	}
 
@@ -439,7 +439,7 @@ func ODNodeSetCredentials(node unsafe.Pointer, recordType unsafe.Pointer, record
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeSetCredentialsExtended(_:_:_:_:_:_:_:)
-func ODNodeSetCredentialsExtended(node unsafe.Pointer, recordType unsafe.Pointer, authType unsafe.Pointer, authItems unsafe.Pointer, outAuthItems unsafe.Pointer, outContext unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeSetCredentialsExtended(node unsafe.Pointer, recordType unsafe.Pointer, authType unsafe.Pointer, authItems unsafe.Pointer, outAuthItems unsafe.Pointer, outContext unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeSetCredentialsExtended(node, recordType, authType, authItems, outAuthItems, outContext, error_)
 	}
 
@@ -451,7 +451,7 @@ func ODNodeSetCredentialsExtended(node unsafe.Pointer, recordType unsafe.Pointer
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeSetCredentialsUsingKerberosCache
-func ODNodeSetCredentialsUsingKerberosCache(node unsafe.Pointer, cacheName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeSetCredentialsUsingKerberosCache(node unsafe.Pointer, cacheName unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeSetCredentialsUsingKerberosCache(node, cacheName, error_)
 	}
 
@@ -463,7 +463,7 @@ func ODNodeSetCredentialsUsingKerberosCache(node unsafe.Pointer, cacheName unsaf
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeSetPolicies(_:_:_:)
-func ODNodeSetPolicies(node unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeSetPolicies(node unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeSetPolicies(node, policies, error_)
 	}
 
@@ -475,7 +475,7 @@ func ODNodeSetPolicies(node unsafe.Pointer, policies unsafe.Pointer, error_ unsa
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeSetPolicy(_:_:_:_:)
-func ODNodeSetPolicy(node unsafe.Pointer, policyType unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODNodeSetPolicy(node unsafe.Pointer, policyType unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODNodeSetPolicy(node, policyType, value, error_)
 	}
 
@@ -485,7 +485,7 @@ func ODNodeSetPolicy(node unsafe.Pointer, policyType unsafe.Pointer, value unsaf
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQueryCopyResults(_:_:_:)
-func ODQueryCopyResults(query unsafe.Pointer, allowPartialResults unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODQueryCopyResults(query unsafe.Pointer, allowPartialResults bool, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ODQueryCopyResults(query, allowPartialResults, error_)
 	}
 
@@ -575,7 +575,7 @@ func ODQueryUnscheduleFromRunLoop(query unsafe.Pointer, runLoop unsafe.Pointer, 
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordAddAccountPolicy(_:_:_:_:)
-func ODRecordAddAccountPolicy(record unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordAddAccountPolicy(record unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordAddAccountPolicy(record, policy, category, error_)
 	}
 
@@ -585,7 +585,7 @@ func ODRecordAddAccountPolicy(record unsafe.Pointer, policy unsafe.Pointer, cate
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordAddMember(_:_:_:)
-func ODRecordAddMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordAddMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordAddMember(group, member, error_)
 	}
 
@@ -595,7 +595,7 @@ func ODRecordAddMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsaf
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordAddValue(_:_:_:_:)
-func ODRecordAddValue(record unsafe.Pointer, attribute unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordAddValue(record unsafe.Pointer, attribute unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordAddValue(record, attribute, value, error_)
 	}
 
@@ -605,7 +605,7 @@ func ODRecordAddValue(record unsafe.Pointer, attribute unsafe.Pointer, value uns
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordAuthenticationAllowed(_:_:)
-func ODRecordAuthenticationAllowed(record unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordAuthenticationAllowed(record unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordAuthenticationAllowed(record, error_)
 	}
 
@@ -615,7 +615,7 @@ func ODRecordAuthenticationAllowed(record unsafe.Pointer, error_ unsafe.Pointer)
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordChangePassword(_:_:_:_:)
-func ODRecordChangePassword(record unsafe.Pointer, oldPassword unsafe.Pointer, newPassword unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordChangePassword(record unsafe.Pointer, oldPassword unsafe.Pointer, newPassword unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordChangePassword(record, oldPassword, newPassword, error_)
 	}
 
@@ -625,7 +625,7 @@ func ODRecordChangePassword(record unsafe.Pointer, oldPassword unsafe.Pointer, n
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordContainsMember(_:_:_:)
-func ODRecordContainsMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordContainsMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordContainsMember(group, member, error_)
 	}
 
@@ -713,7 +713,7 @@ func ODRecordCopyValues(record unsafe.Pointer, attribute unsafe.Pointer, error_ 
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordDelete(_:_:)
-func ODRecordDelete(record unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordDelete(record unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordDelete(record, error_)
 	}
 
@@ -753,7 +753,7 @@ func ODRecordGetTypeID() unsafe.Pointer {
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordPasswordChangeAllowed(_:_:_:)
-func ODRecordPasswordChangeAllowed(record unsafe.Pointer, newPassword unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordPasswordChangeAllowed(record unsafe.Pointer, newPassword unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordPasswordChangeAllowed(record, newPassword, error_)
 	}
 
@@ -763,7 +763,7 @@ func ODRecordPasswordChangeAllowed(record unsafe.Pointer, newPassword unsafe.Poi
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordRemoveAccountPolicy(_:_:_:_:)
-func ODRecordRemoveAccountPolicy(record unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordRemoveAccountPolicy(record unsafe.Pointer, policy unsafe.Pointer, category unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordRemoveAccountPolicy(record, policy, category, error_)
 	}
 
@@ -773,7 +773,7 @@ func ODRecordRemoveAccountPolicy(record unsafe.Pointer, policy unsafe.Pointer, c
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordRemoveMember(_:_:_:)
-func ODRecordRemoveMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordRemoveMember(group unsafe.Pointer, member unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordRemoveMember(group, member, error_)
 	}
 
@@ -785,7 +785,7 @@ func ODRecordRemoveMember(group unsafe.Pointer, member unsafe.Pointer, error_ un
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordRemovePolicy(_:_:_:)
-func ODRecordRemovePolicy(record unsafe.Pointer, policy unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordRemovePolicy(record unsafe.Pointer, policy unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordRemovePolicy(record, policy, error_)
 	}
 
@@ -795,7 +795,7 @@ func ODRecordRemovePolicy(record unsafe.Pointer, policy unsafe.Pointer, error_ u
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordRemoveValue(_:_:_:_:)
-func ODRecordRemoveValue(record unsafe.Pointer, attribute unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordRemoveValue(record unsafe.Pointer, attribute unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordRemoveValue(record, attribute, value, error_)
 	}
 
@@ -825,7 +825,7 @@ func ODRecordSecondsUntilPasswordExpires(record unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetAccountPolicies(_:_:_:)
-func ODRecordSetAccountPolicies(record unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetAccountPolicies(record unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetAccountPolicies(record, policies, error_)
 	}
 
@@ -835,7 +835,7 @@ func ODRecordSetAccountPolicies(record unsafe.Pointer, policies unsafe.Pointer, 
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetNodeCredentials(_:_:_:_:)
-func ODRecordSetNodeCredentials(record unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetNodeCredentials(record unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetNodeCredentials(record, username, password, error_)
 	}
 
@@ -845,7 +845,7 @@ func ODRecordSetNodeCredentials(record unsafe.Pointer, username unsafe.Pointer, 
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetNodeCredentialsExtended(_:_:_:_:_:_:_:)
-func ODRecordSetNodeCredentialsExtended(record unsafe.Pointer, recordType unsafe.Pointer, authType unsafe.Pointer, authItems unsafe.Pointer, outAuthItems unsafe.Pointer, outContext unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetNodeCredentialsExtended(record unsafe.Pointer, recordType unsafe.Pointer, authType unsafe.Pointer, authItems unsafe.Pointer, outAuthItems unsafe.Pointer, outContext unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetNodeCredentialsExtended(record, recordType, authType, authItems, outAuthItems, outContext, error_)
 	}
 
@@ -857,7 +857,7 @@ func ODRecordSetNodeCredentialsExtended(record unsafe.Pointer, recordType unsafe
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetNodeCredentialsUsingKerberosCache
-func ODRecordSetNodeCredentialsUsingKerberosCache(record unsafe.Pointer, cacheName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetNodeCredentialsUsingKerberosCache(record unsafe.Pointer, cacheName unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetNodeCredentialsUsingKerberosCache(record, cacheName, error_)
 	}
 
@@ -869,7 +869,7 @@ func ODRecordSetNodeCredentialsUsingKerberosCache(record unsafe.Pointer, cacheNa
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetPolicies(_:_:_:)
-func ODRecordSetPolicies(record unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetPolicies(record unsafe.Pointer, policies unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetPolicies(record, policies, error_)
 	}
 
@@ -881,7 +881,7 @@ func ODRecordSetPolicies(record unsafe.Pointer, policies unsafe.Pointer, error_ 
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetPolicy(_:_:_:_:)
-func ODRecordSetPolicy(record unsafe.Pointer, policy unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetPolicy(record unsafe.Pointer, policy unsafe.Pointer, value unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetPolicy(record, policy, value, error_)
 	}
 
@@ -891,7 +891,7 @@ func ODRecordSetPolicy(record unsafe.Pointer, policy unsafe.Pointer, value unsaf
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSetValue(_:_:_:_:)
-func ODRecordSetValue(record unsafe.Pointer, attribute unsafe.Pointer, valueOrValues unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSetValue(record unsafe.Pointer, attribute unsafe.Pointer, valueOrValues unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSetValue(record, attribute, valueOrValues, error_)
 	}
 
@@ -901,7 +901,7 @@ func ODRecordSetValue(record unsafe.Pointer, attribute unsafe.Pointer, valueOrVa
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordSynchronize(_:_:)
-func ODRecordSynchronize(record unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordSynchronize(record unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordSynchronize(record, error_)
 	}
 
@@ -911,7 +911,7 @@ func ODRecordSynchronize(record unsafe.Pointer, error_ unsafe.Pointer) unsafe.Po
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordVerifyPassword(_:_:_:)
-func ODRecordVerifyPassword(record unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordVerifyPassword(record unsafe.Pointer, password unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordVerifyPassword(record, password, error_)
 	}
 
@@ -921,7 +921,7 @@ func ODRecordVerifyPassword(record unsafe.Pointer, password unsafe.Pointer, erro
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordVerifyPasswordExtended(_:_:_:_:_:_:)
-func ODRecordVerifyPasswordExtended(record unsafe.Pointer, authType unsafe.Pointer, authItems unsafe.Pointer, outAuthItems unsafe.Pointer, outContext unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ODRecordVerifyPasswordExtended(record unsafe.Pointer, authType unsafe.Pointer, authItems unsafe.Pointer, outAuthItems unsafe.Pointer, outContext unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ODRecordVerifyPasswordExtended(record, authType, authItems, outAuthItems, outContext, error_)
 	}
 
@@ -931,7 +931,7 @@ func ODRecordVerifyPasswordExtended(record unsafe.Pointer, authType unsafe.Point
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordWillAuthenticationsExpire(_:_:)
-func ODRecordWillAuthenticationsExpire(record unsafe.Pointer, willExpireIn unsafe.Pointer) unsafe.Pointer {
+func ODRecordWillAuthenticationsExpire(record unsafe.Pointer, willExpireIn unsafe.Pointer) bool {
 	return _ODRecordWillAuthenticationsExpire(record, willExpireIn)
 	}
 
@@ -941,7 +941,7 @@ func ODRecordWillAuthenticationsExpire(record unsafe.Pointer, willExpireIn unsaf
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordWillPasswordExpire(_:_:)
-func ODRecordWillPasswordExpire(record unsafe.Pointer, willExpireIn unsafe.Pointer) unsafe.Pointer {
+func ODRecordWillPasswordExpire(record unsafe.Pointer, willExpireIn unsafe.Pointer) bool {
 	return _ODRecordWillPasswordExpire(record, willExpireIn)
 	}
 

@@ -29,6 +29,12 @@ type _PHASEMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASEMetaParameterDefinition] class.
 type IPHASEMetaParameterDefinition interface {
 	IPHASEDefinition
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
+	MetaParameters() PHASEMetaParameter
+	SetMetaParameters(value IPHASEMetaParameter)
 }
 
 // A specification for a named parameter with a constant value.

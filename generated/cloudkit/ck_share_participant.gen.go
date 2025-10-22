@@ -31,6 +31,24 @@ type _CKShareParticipantClass struct {
 // An interface definition for the [CKShareParticipant] class.
 type ICKShareParticipant interface {
 	objectivec.IObject
+	AcceptanceStatus() CKShareParticipantAcceptanceStatus
+	Permission() CKShareParticipantPermission
+	SetPermission(value ICKShareParticipantPermission)
+	Role() CKShareParticipantRole
+	SetRole(value ICKShareParticipantRole)
+	Type() CKShareParticipantType
+	SetType(value CKShareParticipantType)
+	UserIdentity() CKUserIdentity
+	DateAddedToShare() foundation.Date
+	SetDateAddedToShare(value foundation.IDate)
+	IsApprovedRequester() bool
+	SetIsApprovedRequester(value bool)
+	ParticipantID() unsafe.Pointer
+	SetParticipantID(value unsafe.Pointer)
+	Participants() CKShareParticipant
+	SetParticipants(value ICKShareParticipant)
+	PublicPermission() unsafe.Pointer
+	SetPublicPermission(value unsafe.Pointer)
 }
 
 // An object that describes a user’s participation in a share.

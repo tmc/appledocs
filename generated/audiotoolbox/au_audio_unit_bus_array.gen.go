@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,11 +31,21 @@ type _AudioUnitBusArrayClass struct {
 // An interface definition for the [AudioUnitBusArray] class.
 type IAudioUnitBusArray interface {
 	objectivec.IObject
-	AddObserverToAllBussesForKeyPathOptionsContext(observer foundation.IObject, keyPath appkit.string, options unsafe.Pointer, context unsafe.Pointer)
-	RemoveObserverFromAllBussesForKeyPathContext(observer foundation.IObject, keyPath appkit.string, context unsafe.Pointer)
+	AddObserverToAllBussesForKeyPathOptionsContext(observer foundation.IObject, keyPath string, options unsafe.Pointer, context unsafe.Pointer)
+	RemoveObserverFromAllBussesForKeyPathContext(observer foundation.IObject, keyPath string, context unsafe.Pointer)
 	ReplaceBusses(busArray []AudioUnitBus)
 	SetBusCountError(count uint, outError unsafe.Pointer) bool
 	ObjectAtIndexedSubscript(index uint) AudioUnitBus
+	BusType() AudioUnitBusType
+	Count() uint
+	CountChangeable() bool
+	OwnerAudioUnit() AUAudioUnit
+	InputBusses() AUAudioUnitBusArray
+	SetInputBusses(value IAUAudioUnitBusArray)
+	OutputBusses() AUAudioUnitBusArray
+	SetOutputBusses(value IAUAudioUnitBusArray)
+	IsCountChangeable() bool
+	SetIsCountChangeable(value bool)
 }
 
 // A class that defines a container for an audio unit’s input or output busses.
@@ -115,15 +124,15 @@ func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType 
 // Adds a KVO observer for a given property on all busses in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)
-func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(observer foundation.IObject, keyPath appkit.string, options unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addObserverToAllBusses:forKeyPath:options:context:"), observer, keyPath, options, context)
+func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(observer foundation.IObject, keyPath string, options unsafe.Pointer, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObserverToAllBusses:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
 // Removes a KVO observer for a given property on all busses in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)
-func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observer foundation.IObject, keyPath appkit.string, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserverFromAllBusses:forKeyPath:context:"), observer, keyPath, context)
+func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observer foundation.IObject, keyPath string, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserverFromAllBusses:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 
 // Replaces the current bus array with a copy of the supplied bus array.

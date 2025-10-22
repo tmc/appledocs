@@ -30,6 +30,17 @@ type _MediaPickerControllerClass struct {
 // An interface definition for the [MediaPickerController] class.
 type IMediaPickerController interface {
 	appkit.IViewController
+	AllowsPickingMultipleItems() bool
+	SetAllowsPickingMultipleItems(value bool)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MediaTypes() MediaType
+	Prompt() string
+	SetPrompt(value string)
+	ShowsCloudItems() bool
+	SetShowsCloudItems(value bool)
+	ShowsItemsWithProtectedAssets() bool
+	SetShowsItemsWithProtectedAssets(value bool)
 }
 
 // A specialized view controller that provides a graphical interface for selecting media items.
@@ -142,8 +153,8 @@ func (m_ MediaPickerController) MediaTypes() MediaType {
 // A prompt, for the user, that appears above the navigation bar buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/prompt
-func (m_ MediaPickerController) Prompt() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("prompt"))
+func (m_ MediaPickerController) Prompt() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("prompt"))
 	return rv
 }
 
@@ -153,8 +164,8 @@ func (m_ MediaPickerController) Prompt() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/prompt
-func (m_ MediaPickerController) SetPrompt(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), value)
+func (m_ MediaPickerController) SetPrompt(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), objc.String(value))
 }
 
 // A Boolean value specifying whether to display iCloud Media Library items for a media picker.

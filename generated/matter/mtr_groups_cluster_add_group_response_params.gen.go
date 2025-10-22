@@ -31,6 +31,14 @@ type _MTRGroupsClusterAddGroupResponseParamsClass struct {
 // An interface definition for the [MTRGroupsClusterAddGroupResponseParams] class.
 type IMTRGroupsClusterAddGroupResponseParams interface {
 	objectivec.IObject
+	GroupID() foundation.Number
+	SetGroupID(value foundation.INumber)
+	GroupId() foundation.Number
+	SetGroupId(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

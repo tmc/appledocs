@@ -31,6 +31,16 @@ type _CNContactPickerViewControllerClass struct {
 // An interface definition for the [CNContactPickerViewController] class.
 type ICNContactPickerViewController interface {
 	appkit.IViewController
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayedPropertyKeys() []string
+	SetDisplayedPropertyKeys(value []string)
+	PredicateForEnablingContact() foundation.Predicate
+	SetPredicateForEnablingContact(value foundation.IPredicate)
+	PredicateForSelectionOfContact() foundation.Predicate
+	SetPredicateForSelectionOfContact(value foundation.IPredicate)
+	PredicateForSelectionOfProperty() foundation.Predicate
+	SetPredicateForSelectionOfProperty(value foundation.IPredicate)
 }
 
 // A view controller that displays an interface for picking contacts.

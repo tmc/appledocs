@@ -29,6 +29,8 @@ type _CNChangeHistoryRemoveMemberFromGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryRemoveMemberFromGroupEvent] class.
 type ICNChangeHistoryRemoveMemberFromGroupEvent interface {
 	ICNChangeHistoryEvent
+	Group() CNGroup
+	Member() CNContact
 }
 
 // An object that represents a user removing a contact from a group.

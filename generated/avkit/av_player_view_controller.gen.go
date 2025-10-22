@@ -34,6 +34,91 @@ type IPlayerViewController interface {
 	appkit.IViewController
 	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
 	SelectSpeed(speed IAVPlaybackSpeed)
+	AllowedSubtitleOptionLanguages() []string
+	SetAllowedSubtitleOptionLanguages(value []string)
+	AllowsPictureInPicturePlayback() bool
+	SetAllowsPictureInPicturePlayback(value bool)
+	AllowsVideoFrameAnalysis() bool
+	SetAllowsVideoFrameAnalysis(value bool)
+	AppliesPreferredDisplayCriteriaAutomatically() bool
+	SetAppliesPreferredDisplayCriteriaAutomatically(value bool)
+	CanBeginTrimming() bool
+	CanStartPictureInPictureAutomaticallyFromInline() bool
+	SetCanStartPictureInPictureAutomaticallyFromInline(value bool)
+	ContentOverlayView() PlayerView
+	ContentProposalViewController() AVContentProposalViewController
+	SetContentProposalViewController(value IAVContentProposalViewController)
+	ContextualActions() []unsafe.Pointer
+	SetContextualActions(value []unsafe.IPointer)
+	ContextualActionsInfoView() PlayerView
+	ContextualActionsPreviewImage() appkit.Image
+	SetContextualActionsPreviewImage(value appkit.IImage)
+	CustomInfoViewController() ContinuityDevicePickerViewController
+	SetCustomInfoViewController(value IContinuityDevicePickerViewController)
+	CustomInfoViewControllers() []appkit.ViewController
+	SetCustomInfoViewControllers(value []appkit.IViewController)
+	CustomOverlayViewController() ContinuityDevicePickerViewController
+	SetCustomOverlayViewController(value IContinuityDevicePickerViewController)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	EntersFullScreenWhenPlaybackBegins() bool
+	SetEntersFullScreenWhenPlaybackBegins(value bool)
+	ExitsFullScreenWhenPlaybackEnds() bool
+	SetExitsFullScreenWhenPlaybackEnds(value bool)
+	GroupExperienceCoordinator() unsafe.Pointer
+	InfoViewActions() []unsafe.Pointer
+	SetInfoViewActions(value []unsafe.IPointer)
+	ReadyForDisplay() bool
+	SkipBackwardEnabled() bool
+	SetSkipBackwardEnabled(value bool)
+	SkipForwardEnabled() bool
+	SetSkipForwardEnabled(value bool)
+	PixelBufferAttributes() unsafe.Pointer
+	SetPixelBufferAttributes(value unsafe.Pointer)
+	PlaybackControlsIncludeInfoViews() bool
+	SetPlaybackControlsIncludeInfoViews(value bool)
+	PlaybackControlsIncludeTransportBar() bool
+	SetPlaybackControlsIncludeTransportBar(value bool)
+	Player() avfoundation.Player
+	SetPlayer(value avfoundation.IPlayer)
+	PreferredDisplayDynamicRange() DisplayDynamicRange
+	SetPreferredDisplayDynamicRange(value IDisplayDynamicRange)
+	RequiresFullSubtitles() bool
+	SetRequiresFullSubtitles(value bool)
+	RequiresLinearPlayback() bool
+	SetRequiresLinearPlayback(value bool)
+	RequiresMonoscopicViewingMode() bool
+	SetRequiresMonoscopicViewingMode(value bool)
+	SelectedSpeed() AVPlaybackSpeed
+	ShowsPlaybackControls() bool
+	SetShowsPlaybackControls(value bool)
+	ShowsTimecodes() bool
+	SetShowsTimecodes(value bool)
+	SkippingBehavior() PlayerViewControllerSkippingBehavior
+	SetSkippingBehavior(value PlayerViewControllerSkippingBehavior)
+	Speeds() []PlaybackSpeed
+	SetSpeeds(value []PlaybackSpeed)
+	ToggleLookupAction() unsafe.Pointer
+	TransportBarCustomMenuItems() []unsafe.Pointer
+	SetTransportBarCustomMenuItems(value []unsafe.IPointer)
+	TransportBarIncludesTitleView() bool
+	SetTransportBarIncludesTitleView(value bool)
+	UnobscuredContentGuide() appkit.LayoutGuide
+	UpdatesNowPlayingInfoCenter() bool
+	SetUpdatesNowPlayingInfoCenter(value bool)
+	VideoBounds() coregraphics.CGRect
+	VideoFrameAnalysisTypes() VideoFrameAnalysisType
+	SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType)
+	VideoGravity() unsafe.Pointer
+	SetVideoGravity(value unsafe.Pointer)
+	ExperienceController() unsafe.Pointer
+	SetExperienceController(value unsafe.Pointer)
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
+	IsSkipBackwardEnabled() bool
+	SetIsSkipBackwardEnabled(value bool)
+	IsSkipForwardEnabled() bool
+	SetIsSkipForwardEnabled(value bool)
 }
 
 // A view controller that displays content from a player and presents a native user interface to control playback.
@@ -217,8 +302,8 @@ func (p_ PlayerViewController) SetCanStartPictureInPictureAutomaticallyFromInlin
 // A view that displays between the video content and the playback controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentOverlayView
-func (p_ PlayerViewController) ContentOverlayView() appkit.View {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
+func (p_ PlayerViewController) ContentOverlayView() CaptureView {
+	rv := objc.Send[CaptureView](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 
@@ -271,8 +356,8 @@ func (p_ PlayerViewController) SetContextualActions(value []unsafe.IPointer) {
 // A view the system shows adjacent to the contextual actions that’s suitable for showing related information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsInfoView
-func (p_ PlayerViewController) ContextualActionsInfoView() appkit.View {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contextualActionsInfoView"))
+func (p_ PlayerViewController) ContextualActionsInfoView() CaptureView {
+	rv := objc.Send[CaptureView](p_.ID, objc.Sel("contextualActionsInfoView"))
 	return rv
 }
 
@@ -297,8 +382,8 @@ func (p_ PlayerViewController) SetContextualActionsPreviewImage(value appkit.IIm
 // A view controller that provides client-specific content and controls alongside system-provided information and settings panels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
-func (p_ PlayerViewController) CustomInfoViewController() appkit.ViewController {
-	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customInfoViewController"))
+func (p_ PlayerViewController) CustomInfoViewController() ContinuityDevicePickerViewController {
+	rv := objc.Send[ContinuityDevicePickerViewController](p_.ID, objc.Sel("customInfoViewController"))
 	return rv
 }
 
@@ -308,7 +393,7 @@ func (p_ PlayerViewController) CustomInfoViewController() appkit.ViewController 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
-func (p_ PlayerViewController) SetCustomInfoViewController(value appkit.IViewController) {
+func (p_ PlayerViewController) SetCustomInfoViewController(value IContinuityDevicePickerViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewController:"), value)
 }
 
@@ -343,8 +428,8 @@ func (p_ PlayerViewController) SetCustomInfoViewControllers(value []appkit.IView
 // A view controller that presents custom content over the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
-func (p_ PlayerViewController) CustomOverlayViewController() appkit.ViewController {
-	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customOverlayViewController"))
+func (p_ PlayerViewController) CustomOverlayViewController() PictureInPictureVideoCallViewController {
+	rv := objc.Send[PictureInPictureVideoCallViewController](p_.ID, objc.Sel("customOverlayViewController"))
 	return rv
 }
 
@@ -354,7 +439,7 @@ func (p_ PlayerViewController) CustomOverlayViewController() appkit.ViewControll
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
-func (p_ PlayerViewController) SetCustomOverlayViewController(value appkit.IViewController) {
+func (p_ PlayerViewController) SetCustomOverlayViewController(value IPictureInPictureVideoCallViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomOverlayViewController:"), value)
 }
 

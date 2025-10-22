@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -33,6 +32,28 @@ type _MovieAccessLogEventClass struct {
 // An interface definition for the [MovieAccessLogEvent] class.
 type IMovieAccessLogEvent interface {
 	objectivec.IObject
+	DurationWatched() foundation.TimeInterval
+	NumberOfBytesTransferred() unsafe.Pointer
+	NumberOfDroppedVideoFrames() int
+	NumberOfSegmentsDownloaded() uint
+	NumberOfServerAddressChanges() uint
+	NumberOfStalls() int
+	PlaybackStartDate() foundation.NSDate
+	PlaybackStartOffset() foundation.TimeInterval
+	SegmentsDownloadedDuration() foundation.TimeInterval
+	ServerAddress() string
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	IndicatedBitrate() float64
+	SetIndicatedBitrate(value float64)
+	ObservedBitrate() float64
+	SetObservedBitrate(value float64)
+	PlaybackSessionID() string
+	SetPlaybackSessionID(value string)
+	Uri() string
+	SetUri(value string)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // A single piece of information for a movie access log.
@@ -158,8 +179,8 @@ func (m_ MovieAccessLogEvent) SegmentsDownloadedDuration() foundation.TimeInterv
 // The IPv4 or IPv6 address of the web server that was the source of the last delivered media segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/serverAddress
-func (m_ MovieAccessLogEvent) ServerAddress() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serverAddress"))
+func (m_ MovieAccessLogEvent) ServerAddress() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serverAddress"))
 	return rv
 }
 
@@ -184,8 +205,8 @@ func (m_ MovieAccessLogEvent) SetImageCropRect(value coregraphics.CGRect) {
 // The throughput required to play the stream, as advertised by the web server, in bits per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/indicatedbitrate
-func (m_ MovieAccessLogEvent) IndicatedBitrate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("indicatedBitrate"))
+func (m_ MovieAccessLogEvent) IndicatedBitrate() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("indicatedBitrate"))
 	return rv
 }
 
@@ -195,15 +216,15 @@ func (m_ MovieAccessLogEvent) IndicatedBitrate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/indicatedbitrate
-func (m_ MovieAccessLogEvent) SetIndicatedBitrate(value unsafe.Pointer) {
+func (m_ MovieAccessLogEvent) SetIndicatedBitrate(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndicatedBitrate:"), value)
 }
 
 // The empirical throughput across all media downloaded for the movie player, in bits per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/observedbitrate
-func (m_ MovieAccessLogEvent) ObservedBitrate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("observedBitrate"))
+func (m_ MovieAccessLogEvent) ObservedBitrate() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("observedBitrate"))
 	return rv
 }
 
@@ -213,15 +234,15 @@ func (m_ MovieAccessLogEvent) ObservedBitrate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/observedbitrate
-func (m_ MovieAccessLogEvent) SetObservedBitrate(value unsafe.Pointer) {
+func (m_ MovieAccessLogEvent) SetObservedBitrate(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObservedBitrate:"), value)
 }
 
 // A GUID that identifies the playback session to use in HTTP requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbacksessionid
-func (m_ MovieAccessLogEvent) PlaybackSessionID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("playbackSessionID"))
+func (m_ MovieAccessLogEvent) PlaybackSessionID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playbackSessionID"))
 	return rv
 }
 
@@ -231,15 +252,15 @@ func (m_ MovieAccessLogEvent) PlaybackSessionID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbacksessionid
-func (m_ MovieAccessLogEvent) SetPlaybackSessionID(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), value)
+func (m_ MovieAccessLogEvent) SetPlaybackSessionID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), objc.String(value))
 }
 
 // The URI of the playback item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
-func (m_ MovieAccessLogEvent) Uri() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("uri"))
+func (m_ MovieAccessLogEvent) Uri() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("uri"))
 	return rv
 }
 
@@ -249,8 +270,8 @@ func (m_ MovieAccessLogEvent) Uri() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
-func (m_ MovieAccessLogEvent) SetUri(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), value)
+func (m_ MovieAccessLogEvent) SetUri(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the route button is visible in the volume view.

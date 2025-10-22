@@ -31,6 +31,12 @@ type _MTROperationalCredentialsClusterUpdateFabricLabelParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterUpdateFabricLabelParams] class.
 type IMTROperationalCredentialsClusterUpdateFabricLabelParams interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTROperationalCredentialsClusterUpdateFabricLabelParams() MTROperational
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatefabriclabelparams/label
-func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) Label() appkit
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatefabriclabelparams/label
-func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

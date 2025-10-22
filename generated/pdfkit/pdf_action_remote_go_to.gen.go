@@ -31,6 +31,12 @@ type _PDFActionRemoteGoToClass struct {
 // An interface definition for the [PDFActionRemoteGoTo] class.
 type IPDFActionRemoteGoTo interface {
 	IPDFAction
+	PageIndex() int
+	SetPageIndex(value int)
+	Point() coregraphics.CGPoint
+	SetPoint(value coregraphics.CGPoint)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // , a subclass of , defines methods for getting and setting the destination of a go-to action that targets another document.

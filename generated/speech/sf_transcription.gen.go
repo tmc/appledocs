@@ -30,6 +30,14 @@ type _SFTranscriptionClass struct {
 // An interface definition for the [SFTranscription] class.
 type ISFTranscription interface {
 	objectivec.IObject
+	AveragePauseDuration() unsafe.Pointer
+	SetAveragePauseDuration(value unsafe.Pointer)
+	FormattedString() string
+	SetFormattedString(value string)
+	Segments() SFTranscriptionSegment
+	SetSegments(value ISFTranscriptionSegment)
+	SpeakingRate() float64
+	SetSpeakingRate(value float64)
 }
 
 // A textual representation of the specified speech in its entirety, as recognized by the speech recognizer.
@@ -101,8 +109,8 @@ func (s_ SFTranscription) SetAveragePauseDuration(value unsafe.Pointer) {
 // The entire transcription of utterances, formatted into a single, user-displayable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscription) FormattedString() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("formattedString"))
+func (s_ SFTranscription) FormattedString() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
 	return rv
 }
 
@@ -112,8 +120,8 @@ func (s_ SFTranscription) FormattedString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscription) SetFormattedString(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), value)
+func (s_ SFTranscription) SetFormattedString(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
 }
 
 // An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
@@ -137,8 +145,8 @@ func (s_ SFTranscription) SetSegments(value ISFTranscriptionSegment) {
 // The number of words spoken per minute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
-func (s_ SFTranscription) SpeakingRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speakingRate"))
+func (s_ SFTranscription) SpeakingRate() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("speakingRate"))
 	return rv
 }
 
@@ -148,7 +156,7 @@ func (s_ SFTranscription) SpeakingRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
-func (s_ SFTranscription) SetSpeakingRate(value unsafe.Pointer) {
+func (s_ SFTranscription) SetSpeakingRate(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)
 }
 

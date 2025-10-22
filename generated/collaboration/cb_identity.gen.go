@@ -33,6 +33,19 @@ type _CBIdentityClass struct {
 type ICBIdentity interface {
 	objectivec.IObject
 	IsMemberOfGroup(group ICBGroupIdentity) bool
+	CSIdentity() unsafe.Pointer
+	Aliases() []string
+	Authority() CBIdentityAuthority
+	EmailAddress() string
+	FullName() string
+	Image() appkit.Image
+	Hidden() bool
+	PersistentReference() foundation.NSData
+	PosixName() string
+	UniqueIdentifier() foundation.UUID
+	UUIDString() string
+	IsHidden() bool
+	SetIsHidden(value bool)
 }
 
 // A object is used for accessing the attributes of an identity stored in an identity authority. You can use an identity object for finding identities, and storing them in an access control list (ACL). If you need to edit these attributes, take advantage of the class in Core Services.
@@ -88,8 +101,8 @@ func NewCBIdentity() CBIdentity {
 // Returns the identity object with the given name from the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-func NewCBIdentityWithNameAuthority(name appkit.string, authority ICBIdentityAuthority) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), name, authority)
+func NewCBIdentityWithNameAuthority(name string, authority ICBIdentityAuthority) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
 	return rv
 }
 
@@ -108,8 +121,8 @@ func NewCBIdentityWithPersistentReference(data foundation.IData) CBIdentity {
 // Returns the identity object with the given UUID from the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uuidString:authority:)
-func NewCBIdentityWithUUIDStringAuthority(uuid appkit.string, authority ICBIdentityAuthority) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUUIDString:authority:"), uuid, authority)
+func NewCBIdentityWithUUIDStringAuthority(uuid string, authority ICBIdentityAuthority) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithUUIDString:authority:"), objc.String(uuid), authority)
 	return rv
 }
 
@@ -132,8 +145,8 @@ func (cc _CBIdentityClass) IdentityWithCSIdentity(csIdentity unsafe.Pointer) CBI
 // Returns the identity object with the given name from the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-func (cc _CBIdentityClass) IdentityWithNameAuthority(name appkit.string, authority ICBIdentityAuthority) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithName:authority:"), name, authority)
+func (cc _CBIdentityClass) IdentityWithNameAuthority(name string, authority ICBIdentityAuthority) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
 	return rv
 }
 
@@ -155,8 +168,8 @@ func (cc _CBIdentityClass) IdentityWithUniqueIdentifierAuthority(uuid foundation
 // Returns the identity object with the given UUID from the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(uuidString:authority:)
-func (cc _CBIdentityClass) IdentityWithUUIDStringAuthority(uuid appkit.string, authority ICBIdentityAuthority) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithUUIDString:authority:"), uuid, authority)
+func (cc _CBIdentityClass) IdentityWithUUIDStringAuthority(uuid string, authority ICBIdentityAuthority) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithUUIDString:authority:"), objc.String(uuid), authority)
 	return rv
 }
 
@@ -195,16 +208,16 @@ func (c_ CBIdentity) Authority() CBIdentityAuthority {
 // Returns the email address of an identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/emailAddress
-func (c_ CBIdentity) EmailAddress() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("emailAddress"))
+func (c_ CBIdentity) EmailAddress() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
 // Returns the full name of the identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/fullName
-func (c_ CBIdentity) FullName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("fullName"))
+func (c_ CBIdentity) FullName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("fullName"))
 	return rv
 }
 
@@ -235,8 +248,8 @@ func (c_ CBIdentity) PersistentReference() foundation.NSData {
 // Returns the POSIX name of the identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/posixName
-func (c_ CBIdentity) PosixName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("posixName"))
+func (c_ CBIdentity) PosixName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("posixName"))
 	return rv
 }
 
@@ -250,8 +263,8 @@ func (c_ CBIdentity) UniqueIdentifier() foundation.UUID {
 // Returns the UUID of the identity as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/uuidString
-func (c_ CBIdentity) UUIDString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("UUIDString"))
+func (c_ CBIdentity) UUIDString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("UUIDString"))
 	return rv
 }
 

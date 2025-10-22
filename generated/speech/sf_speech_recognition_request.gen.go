@@ -30,6 +30,20 @@ type _SFSpeechRecognitionRequestClass struct {
 // An interface definition for the [SFSpeechRecognitionRequest] class.
 type ISFSpeechRecognitionRequest interface {
 	objectivec.IObject
+	CustomizedLanguageModel() SFSpeechLanguageModelConfiguration
+	SetCustomizedLanguageModel(value ISFSpeechLanguageModelConfiguration)
+	RequiresOnDeviceRecognition() bool
+	SetRequiresOnDeviceRecognition(value bool)
+	ShouldReportPartialResults() bool
+	SetShouldReportPartialResults(value bool)
+	AddsPunctuation() bool
+	SetAddsPunctuation(value bool)
+	ContextualStrings() string
+	SetContextualStrings(value string)
+	InteractionIdentifier() string
+	SetInteractionIdentifier(value string)
+	TaskHint() SFSpeechRecognitionTaskHint
+	SetTaskHint(value ISFSpeechRecognitionTaskHint)
 }
 
 // An abstract class that represents a request to recognize speech from an audio source.
@@ -152,8 +166,8 @@ func (s_ SFSpeechRecognitionRequest) SetAddsPunctuation(value bool) {
 // An array of phrases that should be recognized, even if they are not in the system vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) ContextualStrings() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("contextualStrings"))
+func (s_ SFSpeechRecognitionRequest) ContextualStrings() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("contextualStrings"))
 	return rv
 }
 
@@ -163,15 +177,15 @@ func (s_ SFSpeechRecognitionRequest) ContextualStrings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), value)
+func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), objc.String(value))
 }
 
 // An identifier string that you use to describe the type of interaction associated with the speech recognition request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("interactionIdentifier"))
+func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("interactionIdentifier"))
 	return rv
 }
 
@@ -181,8 +195,8 @@ func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), value)
+func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), objc.String(value))
 }
 
 // A value that indicates the type of speech recognition being performed.

@@ -32,6 +32,12 @@ type IPlaybackCoordinator interface {
 	objectivec.IObject
 	ParticipantLimitForWaitingOutSuspensionsWithReason(reason unsafe.Pointer) int
 	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer)
+	OtherParticipants() []CoordinatedPlaybackParticipant
+	SuspensionReasons() []string
+	PauseSnapsToMediaTimeOfOriginator() bool
+	SetPauseSnapsToMediaTimeOfOriginator(value bool)
+	SuspensionReasonsThatTriggerWaiting() unsafe.Pointer
+	SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer)
 }
 
 // An object that coordinates the playback of players in a connected group.

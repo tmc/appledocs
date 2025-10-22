@@ -31,6 +31,10 @@ type _MTRWindowCoveringClusterUpOrOpenParamsClass struct {
 // An interface definition for the [MTRWindowCoveringClusterUpOrOpenParams] class.
 type IMTRWindowCoveringClusterUpOrOpenParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

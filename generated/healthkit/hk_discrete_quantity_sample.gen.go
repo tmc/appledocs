@@ -30,6 +30,23 @@ type _HKDiscreteQuantitySampleClass struct {
 // An interface definition for the [HKDiscreteQuantitySample] class.
 type IHKDiscreteQuantitySample interface {
 	IHKQuantitySample
+	AverageQuantity() HKQuantity
+	SetAverageQuantity(value IHKQuantity)
+	MaximumQuantity() HKQuantity
+	SetMaximumQuantity(value IHKQuantity)
+	MinimumQuantity() HKQuantity
+	SetMinimumQuantity(value IHKQuantity)
+	MostRecentQuantity() HKQuantity
+	SetMostRecentQuantity(value IHKQuantity)
+	MostRecentQuantityDateInterval() foundation.DateInterval
+	SetMostRecentQuantityDateInterval(value foundation.IDateInterval)
+	HKPredicateKeyPathAverage() string
+	HKPredicateKeyPathMax() string
+	HKPredicateKeyPathMin() string
+	HKPredicateKeyPathMostRecent() string
+	HKPredicateKeyPathMostRecentDuration() string
+	HKPredicateKeyPathMostRecentEndDate() string
+	HKPredicateKeyPathMostRecentStartDate() string
 }
 
 // A sample that represents a discrete quantity.
@@ -175,56 +192,56 @@ func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value found
 // The key path for the sample’s average quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverage
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathAverage"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverage"))
 	return rv
 }
 
 // The key path for the sample’s maximum quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmax
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMax"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMax"))
 	return rv
 }
 
 // The key path for the sample’s minimum quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmin
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMin"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMin"))
 	return rv
 }
 
 // The key path for the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecent
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecent"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecent"))
 	return rv
 }
 
 // A key path for the duration of the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentduration
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentDuration"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentDuration"))
 	return rv
 }
 
 // The key path for the end date of the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentenddate
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentEndDate"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentEndDate"))
 	return rv
 }
 
 // The key path for the start date of the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentstartdate
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentStartDate"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentStartDate"))
 	return rv
 }
 

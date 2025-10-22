@@ -16,63 +16,63 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_BNNSBandPart func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSClipByGlobalNorm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSClipByNorm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSClipByValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSComputeNorm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSComputeNormBackward func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSBandPart func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSClipByGlobalNorm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSClipByNorm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSClipByValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSComputeNorm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSComputeNormBackward func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSCreateRandomGenerator func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSCreateRandomGeneratorWithSeed func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSDataLayoutGetRank func(unsafe.Pointer) unsafe.Pointer
 	_BNNSDestroyRandomGenerator func(unsafe.Pointer) unsafe.Pointer
-	_BNNSDirectApplyInTopK func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSDirectApplyReduction func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSDirectApplyTopK func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSFilterApplyBatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSDirectApplyInTopK func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSDirectApplyReduction func(unsafe.Pointer, unsafe.Pointer) int
+	_BNNSDirectApplyTopK func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSFilterApplyBatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSFilterCreateLayerGram func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSFilterCreateLayerLoss func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSFilterCreateLayerReduction func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSFilterDestroy func(unsafe.Pointer) unsafe.Pointer
-	_BNNSGather func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGatherND func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGather func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSGatherND func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSGetPointer func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphCompileOptionsGetGenerateDebugInfo func(unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphCompileOptionsGetGenerateDebugInfo func(unsafe.Pointer) bool
 	_BNNSGraphCompileOptionsGetOptimizationPreference func(unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetMessageLogCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetMessageLogMask func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetOptimizationPreference func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphCompileOptionsSetOutputFD func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphCompileOptionsSetOutputFD func(unsafe.Pointer, int) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetOutputPath func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphCompileOptionsSetTargetSingleThread func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphContextEnableNanAndInfChecks func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphContextExecute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphContextGetTensor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphCompileOptionsSetTargetSingleThread func(unsafe.Pointer, bool) unsafe.Pointer
+	_BNNSGraphContextEnableNanAndInfChecks func(unsafe.Pointer, bool) unsafe.Pointer
+	_BNNSGraphContextExecute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSGraphContextGetTensor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) int
 	_BNNSGraphContextGetWorkspaceSize func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphContextMakeStreaming func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphContextSetStreamingAdvanceCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphContextSetWorkspaceAllocationCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphGetArgumentInterleaveFactors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphGetArgumentNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphContextSetStreamingAdvanceCount func(unsafe.Pointer, unsafe.Pointer) int
+	_BNNSGraphContextSetWorkspaceAllocationCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSGraphGetArgumentInterleaveFactors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSGraphGetArgumentNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSGraphGetArgumentPosition func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphGetFunctionNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphGetFunctionNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSGraphGetOutputCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSGraphTensorFillStrides func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSLossFilterApplyBackwardBatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSLossFilterApplyBatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSNDArrayFullyConnectedSparsifySparseCOO func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSNDArrayFullyConnectedSparsifySparseCSR func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphTensorFillStrides func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSLossFilterApplyBackwardBatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSLossFilterApplyBatch func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSNDArrayFullyConnectedSparsifySparseCOO func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSNDArrayFullyConnectedSparsifySparseCSR func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSNDArrayGetDataSize func(unsafe.Pointer) unsafe.Pointer
-	_BNNSOptimizerStep func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSRandomGeneratorGetState func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSScatter func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSScatterND func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSShuffle func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSOptimizerStep func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSRandomGeneratorGetState func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSScatter func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSScatterND func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSShuffle func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_BNNSTensorGetAllocationSize func(unsafe.Pointer) unsafe.Pointer
-	_BNNSTile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSTileBackward func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_BNNSTranspose func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSTile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSTileBackward func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_BNNSTranspose func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
 	_catlas_sset func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sparse_inner_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sparse_inner_product_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -556,7 +556,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSBandPart(_:_:_:_:_:)
-func BNNSBandPart(num_lower unsafe.Pointer, num_upper unsafe.Pointer, input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSBandPart(num_lower unsafe.Pointer, num_upper unsafe.Pointer, input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSBandPart(num_lower, num_upper, input, output, filter_params)
 	}
 
@@ -568,7 +568,7 @@ func BNNSBandPart(num_lower unsafe.Pointer, num_upper unsafe.Pointer, input unsa
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSClipByGlobalNorm(_:_:_:_:_:)
-func BNNSClipByGlobalNorm(dest unsafe.Pointer, src unsafe.Pointer, count unsafe.Pointer, max_norm unsafe.Pointer, use_norm unsafe.Pointer) unsafe.Pointer {
+func BNNSClipByGlobalNorm(dest unsafe.Pointer, src unsafe.Pointer, count unsafe.Pointer, max_norm unsafe.Pointer, use_norm unsafe.Pointer) int {
 	return _BNNSClipByGlobalNorm(dest, src, count, max_norm, use_norm)
 	}
 
@@ -580,7 +580,7 @@ func BNNSClipByGlobalNorm(dest unsafe.Pointer, src unsafe.Pointer, count unsafe.
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSClipByNorm(_:_:_:_:)
-func BNNSClipByNorm(dest unsafe.Pointer, src unsafe.Pointer, max_norm unsafe.Pointer, axis_flags unsafe.Pointer) unsafe.Pointer {
+func BNNSClipByNorm(dest unsafe.Pointer, src unsafe.Pointer, max_norm unsafe.Pointer, axis_flags unsafe.Pointer) int {
 	return _BNNSClipByNorm(dest, src, max_norm, axis_flags)
 	}
 
@@ -592,7 +592,7 @@ func BNNSClipByNorm(dest unsafe.Pointer, src unsafe.Pointer, max_norm unsafe.Poi
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSClipByValue(_:_:_:_:)
-func BNNSClipByValue(dest unsafe.Pointer, src unsafe.Pointer, min_val unsafe.Pointer, max_val unsafe.Pointer) unsafe.Pointer {
+func BNNSClipByValue(dest unsafe.Pointer, src unsafe.Pointer, min_val unsafe.Pointer, max_val unsafe.Pointer) int {
 	return _BNNSClipByValue(dest, src, min_val, max_val)
 	}
 
@@ -604,7 +604,7 @@ func BNNSClipByValue(dest unsafe.Pointer, src unsafe.Pointer, min_val unsafe.Poi
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSComputeNorm(_:_:_:_:)
-func BNNSComputeNorm(dest unsafe.Pointer, src unsafe.Pointer, norm_type unsafe.Pointer, axis_flags unsafe.Pointer) unsafe.Pointer {
+func BNNSComputeNorm(dest unsafe.Pointer, src unsafe.Pointer, norm_type unsafe.Pointer, axis_flags unsafe.Pointer) int {
 	return _BNNSComputeNorm(dest, src, norm_type, axis_flags)
 	}
 
@@ -616,7 +616,7 @@ func BNNSComputeNorm(dest unsafe.Pointer, src unsafe.Pointer, norm_type unsafe.P
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSComputeNormBackward(_:_:_:_:_:_:)
-func BNNSComputeNormBackward(in unsafe.Pointer, in_delta unsafe.Pointer, out unsafe.Pointer, out_delta unsafe.Pointer, norm_type unsafe.Pointer, axis_flags unsafe.Pointer) unsafe.Pointer {
+func BNNSComputeNormBackward(in unsafe.Pointer, in_delta unsafe.Pointer, out unsafe.Pointer, out_delta unsafe.Pointer, norm_type unsafe.Pointer, axis_flags unsafe.Pointer) int {
 	return _BNNSComputeNormBackward(in, in_delta, out, out_delta, norm_type, axis_flags)
 	}
 
@@ -626,7 +626,7 @@ func BNNSComputeNormBackward(in unsafe.Pointer, in_delta unsafe.Pointer, out uns
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSCopy(_:_:_:)
-func BNNSCopy(dest unsafe.Pointer, src unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSCopy(dest unsafe.Pointer, src unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSCopy(dest, src, filter_params)
 	}
 
@@ -676,7 +676,7 @@ func BNNSDestroyRandomGenerator(generator unsafe.Pointer) {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSDirectApplyInTopK(_:_:_:_:_:_:_:_:_:_:)
-func BNNSDirectApplyInTopK(K unsafe.Pointer, axis unsafe.Pointer, batch_size unsafe.Pointer, input unsafe.Pointer, input_batch_stride unsafe.Pointer, test_indices unsafe.Pointer, test_indices_batch_stride unsafe.Pointer, output unsafe.Pointer, output_batch_stride unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSDirectApplyInTopK(K unsafe.Pointer, axis unsafe.Pointer, batch_size unsafe.Pointer, input unsafe.Pointer, input_batch_stride unsafe.Pointer, test_indices unsafe.Pointer, test_indices_batch_stride unsafe.Pointer, output unsafe.Pointer, output_batch_stride unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSDirectApplyInTopK(K, axis, batch_size, input, input_batch_stride, test_indices, test_indices_batch_stride, output, output_batch_stride, filter_params)
 	}
 
@@ -686,7 +686,7 @@ func BNNSDirectApplyInTopK(K unsafe.Pointer, axis unsafe.Pointer, batch_size uns
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSDirectApplyReduction(_:_:)
-func BNNSDirectApplyReduction(layer_params unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSDirectApplyReduction(layer_params unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSDirectApplyReduction(layer_params, filter_params)
 	}
 
@@ -696,7 +696,7 @@ func BNNSDirectApplyReduction(layer_params unsafe.Pointer, filter_params unsafe.
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSDirectApplyTopK(_:_:_:_:_:_:_:_:_:_:)
-func BNNSDirectApplyTopK(K unsafe.Pointer, axis unsafe.Pointer, batch_size unsafe.Pointer, input unsafe.Pointer, input_batch_stride unsafe.Pointer, best_values unsafe.Pointer, best_values_batch_stride unsafe.Pointer, best_indices unsafe.Pointer, best_indices_batch_stride unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSDirectApplyTopK(K unsafe.Pointer, axis unsafe.Pointer, batch_size unsafe.Pointer, input unsafe.Pointer, input_batch_stride unsafe.Pointer, best_values unsafe.Pointer, best_values_batch_stride unsafe.Pointer, best_indices unsafe.Pointer, best_indices_batch_stride unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSDirectApplyTopK(K, axis, batch_size, input, input_batch_stride, best_values, best_values_batch_stride, best_indices, best_indices_batch_stride, filter_params)
 	}
 
@@ -708,7 +708,7 @@ func BNNSDirectApplyTopK(K unsafe.Pointer, axis unsafe.Pointer, batch_size unsaf
 // Added in macOS 10.12.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)
-func BNNSFilterApplyBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, in unsafe.Pointer, in_stride unsafe.Pointer, out unsafe.Pointer, out_stride unsafe.Pointer) unsafe.Pointer {
+func BNNSFilterApplyBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, in unsafe.Pointer, in_stride unsafe.Pointer, out unsafe.Pointer, out_stride unsafe.Pointer) int {
 	return _BNNSFilterApplyBatch(filter, batch_size, in, in_stride, out, out_stride)
 	}
 
@@ -768,7 +768,7 @@ func BNNSFilterDestroy(filter unsafe.Pointer) {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGather(_:_:_:_:_:)
-func BNNSGather(axis unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSGather(axis unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSGather(axis, input, indices, output, filter_params)
 	}
 
@@ -780,7 +780,7 @@ func BNNSGather(axis unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointe
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGatherND(_:_:_:_:)
-func BNNSGatherND(input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSGatherND(input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSGatherND(input, indices, output, filter_params)
 	}
 
@@ -802,7 +802,7 @@ func BNNSGetPointer(filter unsafe.Pointer, target unsafe.Pointer) unsafe.Pointer
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphCompileOptionsGetGenerateDebugInfo(_:)
-func BNNSGraphCompileOptionsGetGenerateDebugInfo(options unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphCompileOptionsGetGenerateDebugInfo(options unsafe.Pointer) bool {
 	return _BNNSGraphCompileOptionsGetGenerateDebugInfo(options)
 	}
 
@@ -852,7 +852,7 @@ func BNNSGraphCompileOptionsSetOptimizationPreference(options unsafe.Pointer, pr
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphCompileOptionsSetOutputFD(_:_:)
-func BNNSGraphCompileOptionsSetOutputFD(options unsafe.Pointer, fd unsafe.Pointer) {
+func BNNSGraphCompileOptionsSetOutputFD(options unsafe.Pointer, fd int) {
 	_BNNSGraphCompileOptionsSetOutputFD(options, fd)
 	}
 
@@ -872,7 +872,7 @@ func BNNSGraphCompileOptionsSetOutputPath(options unsafe.Pointer, path unsafe.Po
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphCompileOptionsSetTargetSingleThread(_:_:)
-func BNNSGraphCompileOptionsSetTargetSingleThread(options unsafe.Pointer, value unsafe.Pointer) {
+func BNNSGraphCompileOptionsSetTargetSingleThread(options unsafe.Pointer, value bool) {
 	_BNNSGraphCompileOptionsSetTargetSingleThread(options, value)
 	}
 
@@ -882,7 +882,7 @@ func BNNSGraphCompileOptionsSetTargetSingleThread(options unsafe.Pointer, value 
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextEnableNanAndInfChecks(_:_:)
-func BNNSGraphContextEnableNanAndInfChecks(context unsafe.Pointer, enable_check_for_nans_inf unsafe.Pointer) {
+func BNNSGraphContextEnableNanAndInfChecks(context unsafe.Pointer, enable_check_for_nans_inf bool) {
 	_BNNSGraphContextEnableNanAndInfChecks(context, enable_check_for_nans_inf)
 	}
 
@@ -892,7 +892,7 @@ func BNNSGraphContextEnableNanAndInfChecks(context unsafe.Pointer, enable_check_
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextExecute(_:_:_:_:_:_:)
-func BNNSGraphContextExecute(context unsafe.Pointer, function unsafe.Pointer, argument_count unsafe.Pointer, arguments unsafe.Pointer, workspace_size unsafe.Pointer, workspace unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphContextExecute(context unsafe.Pointer, function unsafe.Pointer, argument_count unsafe.Pointer, arguments unsafe.Pointer, workspace_size unsafe.Pointer, workspace unsafe.Pointer) int {
 	return _BNNSGraphContextExecute(context, function, argument_count, arguments, workspace_size, workspace)
 	}
 
@@ -902,7 +902,7 @@ func BNNSGraphContextExecute(context unsafe.Pointer, function unsafe.Pointer, ar
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextGetTensor(_:_:_:_:_:)
-func BNNSGraphContextGetTensor(context unsafe.Pointer, function unsafe.Pointer, argument unsafe.Pointer, fill_known_dynamic_shapes unsafe.Pointer, tensor unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphContextGetTensor(context unsafe.Pointer, function unsafe.Pointer, argument unsafe.Pointer, fill_known_dynamic_shapes bool, tensor unsafe.Pointer) int {
 	return _BNNSGraphContextGetTensor(context, function, argument, fill_known_dynamic_shapes, tensor)
 	}
 
@@ -932,7 +932,7 @@ func BNNSGraphContextMakeStreaming(graph unsafe.Pointer, function unsafe.Pointer
 // Added in macOS 15.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextSetStreamingAdvanceCount(_:_:)
-func BNNSGraphContextSetStreamingAdvanceCount(context unsafe.Pointer, advance_count unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphContextSetStreamingAdvanceCount(context unsafe.Pointer, advance_count unsafe.Pointer) int {
 	return _BNNSGraphContextSetStreamingAdvanceCount(context, advance_count)
 	}
 
@@ -942,7 +942,7 @@ func BNNSGraphContextSetStreamingAdvanceCount(context unsafe.Pointer, advance_co
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextSetWorkspaceAllocationCallback(_:_:_:_:_:)
-func BNNSGraphContextSetWorkspaceAllocationCallback(context unsafe.Pointer, realloc unsafe.Pointer, free unsafe.Pointer, user_memory_context_size unsafe.Pointer, user_memory_context unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphContextSetWorkspaceAllocationCallback(context unsafe.Pointer, realloc unsafe.Pointer, free unsafe.Pointer, user_memory_context_size unsafe.Pointer, user_memory_context unsafe.Pointer) int {
 	return _BNNSGraphContextSetWorkspaceAllocationCallback(context, realloc, free, user_memory_context_size, user_memory_context)
 	}
 
@@ -952,7 +952,7 @@ func BNNSGraphContextSetWorkspaceAllocationCallback(context unsafe.Pointer, real
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphGetArgumentInterleaveFactors(_:_:_:_:_:)
-func BNNSGraphGetArgumentInterleaveFactors(graph unsafe.Pointer, function unsafe.Pointer, argument_count unsafe.Pointer, argument_interleave unsafe.Pointer, argument_interleave_counts unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphGetArgumentInterleaveFactors(graph unsafe.Pointer, function unsafe.Pointer, argument_count unsafe.Pointer, argument_interleave unsafe.Pointer, argument_interleave_counts unsafe.Pointer) int {
 	return _BNNSGraphGetArgumentInterleaveFactors(graph, function, argument_count, argument_interleave, argument_interleave_counts)
 	}
 
@@ -962,7 +962,7 @@ func BNNSGraphGetArgumentInterleaveFactors(graph unsafe.Pointer, function unsafe
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphGetArgumentNames(_:_:_:_:)
-func BNNSGraphGetArgumentNames(graph unsafe.Pointer, function unsafe.Pointer, argument_names_count unsafe.Pointer, argument_names unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphGetArgumentNames(graph unsafe.Pointer, function unsafe.Pointer, argument_names_count unsafe.Pointer, argument_names unsafe.Pointer) int {
 	return _BNNSGraphGetArgumentNames(graph, function, argument_names_count, argument_names)
 	}
 
@@ -982,7 +982,7 @@ func BNNSGraphGetArgumentPosition(graph unsafe.Pointer, function unsafe.Pointer,
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphGetFunctionNames(_:_:_:)
-func BNNSGraphGetFunctionNames(graph unsafe.Pointer, function_name_count unsafe.Pointer, function_names unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphGetFunctionNames(graph unsafe.Pointer, function_name_count unsafe.Pointer, function_names unsafe.Pointer) int {
 	return _BNNSGraphGetFunctionNames(graph, function_name_count, function_names)
 	}
 
@@ -1002,7 +1002,7 @@ func BNNSGraphGetOutputCount(graph unsafe.Pointer, function unsafe.Pointer) unsa
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphTensorFillStrides(_:_:_:_:)
-func BNNSGraphTensorFillStrides(graph unsafe.Pointer, function unsafe.Pointer, argument unsafe.Pointer, tensor unsafe.Pointer) unsafe.Pointer {
+func BNNSGraphTensorFillStrides(graph unsafe.Pointer, function unsafe.Pointer, argument unsafe.Pointer, tensor unsafe.Pointer) int {
 	return _BNNSGraphTensorFillStrides(graph, function, argument, tensor)
 	}
 
@@ -1014,7 +1014,7 @@ func BNNSGraphTensorFillStrides(graph unsafe.Pointer, function unsafe.Pointer, a
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSLossFilterApplyBackwardBatch(_:_:_:_:_:_:_:_:_:_:_:_:)
-func BNNSLossFilterApplyBackwardBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, in unsafe.Pointer, in_stride unsafe.Pointer, in_delta unsafe.Pointer, in_delta_stride unsafe.Pointer, labels unsafe.Pointer, labels_stride unsafe.Pointer, weights unsafe.Pointer, weights_size unsafe.Pointer, out_delta unsafe.Pointer, out_delta_stride unsafe.Pointer) unsafe.Pointer {
+func BNNSLossFilterApplyBackwardBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, in unsafe.Pointer, in_stride unsafe.Pointer, in_delta unsafe.Pointer, in_delta_stride unsafe.Pointer, labels unsafe.Pointer, labels_stride unsafe.Pointer, weights unsafe.Pointer, weights_size unsafe.Pointer, out_delta unsafe.Pointer, out_delta_stride unsafe.Pointer) int {
 	return _BNNSLossFilterApplyBackwardBatch(filter, batch_size, in, in_stride, in_delta, in_delta_stride, labels, labels_stride, weights, weights_size, out_delta, out_delta_stride)
 	}
 
@@ -1026,7 +1026,7 @@ func BNNSLossFilterApplyBackwardBatch(filter unsafe.Pointer, batch_size unsafe.P
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSLossFilterApplyBatch(_:_:_:_:_:_:_:_:_:_:_:)
-func BNNSLossFilterApplyBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, in unsafe.Pointer, in_stride unsafe.Pointer, labels unsafe.Pointer, labels_stride unsafe.Pointer, weights unsafe.Pointer, weights_size unsafe.Pointer, out unsafe.Pointer, in_delta unsafe.Pointer, in_delta_stride unsafe.Pointer) unsafe.Pointer {
+func BNNSLossFilterApplyBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, in unsafe.Pointer, in_stride unsafe.Pointer, labels unsafe.Pointer, labels_stride unsafe.Pointer, weights unsafe.Pointer, weights_size unsafe.Pointer, out unsafe.Pointer, in_delta unsafe.Pointer, in_delta_stride unsafe.Pointer) int {
 	return _BNNSLossFilterApplyBatch(filter, batch_size, in, in_stride, labels, labels_stride, weights, weights_size, out, in_delta, in_delta_stride)
 	}
 
@@ -1038,7 +1038,7 @@ func BNNSLossFilterApplyBatch(filter unsafe.Pointer, batch_size unsafe.Pointer, 
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSNDArrayFullyConnectedSparsifySparseCOO(_:_:_:_:_:_:_:_:_:)
-func BNNSNDArrayFullyConnectedSparsifySparseCOO(in_dense_shape unsafe.Pointer, in_indices unsafe.Pointer, in_values unsafe.Pointer, out unsafe.Pointer, sparse_params unsafe.Pointer, batch_size unsafe.Pointer, workspace unsafe.Pointer, workspace_size unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSNDArrayFullyConnectedSparsifySparseCOO(in_dense_shape unsafe.Pointer, in_indices unsafe.Pointer, in_values unsafe.Pointer, out unsafe.Pointer, sparse_params unsafe.Pointer, batch_size unsafe.Pointer, workspace unsafe.Pointer, workspace_size unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSNDArrayFullyConnectedSparsifySparseCOO(in_dense_shape, in_indices, in_values, out, sparse_params, batch_size, workspace, workspace_size, filter_params)
 	}
 
@@ -1050,7 +1050,7 @@ func BNNSNDArrayFullyConnectedSparsifySparseCOO(in_dense_shape unsafe.Pointer, i
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSNDArrayFullyConnectedSparsifySparseCSR(_:_:_:_:_:_:_:_:_:_:)
-func BNNSNDArrayFullyConnectedSparsifySparseCSR(in_dense_shape unsafe.Pointer, in_column_indices unsafe.Pointer, in_row_starts unsafe.Pointer, in_values unsafe.Pointer, out unsafe.Pointer, sparse_params unsafe.Pointer, batch_size unsafe.Pointer, workspace unsafe.Pointer, workspace_size unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSNDArrayFullyConnectedSparsifySparseCSR(in_dense_shape unsafe.Pointer, in_column_indices unsafe.Pointer, in_row_starts unsafe.Pointer, in_values unsafe.Pointer, out unsafe.Pointer, sparse_params unsafe.Pointer, batch_size unsafe.Pointer, workspace unsafe.Pointer, workspace_size unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSNDArrayFullyConnectedSparsifySparseCSR(in_dense_shape, in_column_indices, in_row_starts, in_values, out, sparse_params, batch_size, workspace, workspace_size, filter_params)
 	}
 
@@ -1072,7 +1072,7 @@ func BNNSNDArrayGetDataSize(array unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSOptimizerStep(_:_:_:_:_:_:_:)
-func BNNSOptimizerStep(function unsafe.Pointer, OptimizerAlgFields unsafe.Pointer, number_of_parameters unsafe.Pointer, parameters unsafe.Pointer, gradients unsafe.Pointer, accumulators unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSOptimizerStep(function unsafe.Pointer, OptimizerAlgFields unsafe.Pointer, number_of_parameters unsafe.Pointer, parameters unsafe.Pointer, gradients unsafe.Pointer, accumulators unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSOptimizerStep(function, OptimizerAlgFields, number_of_parameters, parameters, gradients, accumulators, filter_params)
 	}
 
@@ -1082,7 +1082,7 @@ func BNNSOptimizerStep(function unsafe.Pointer, OptimizerAlgFields unsafe.Pointe
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSRandomGeneratorGetState(_:_:_:)
-func BNNSRandomGeneratorGetState(generator unsafe.Pointer, state_size unsafe.Pointer, state unsafe.Pointer) unsafe.Pointer {
+func BNNSRandomGeneratorGetState(generator unsafe.Pointer, state_size unsafe.Pointer, state unsafe.Pointer) int {
 	return _BNNSRandomGeneratorGetState(generator, state_size, state)
 	}
 
@@ -1094,7 +1094,7 @@ func BNNSRandomGeneratorGetState(generator unsafe.Pointer, state_size unsafe.Poi
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSScatter(_:_:_:_:_:_:)
-func BNNSScatter(axis unsafe.Pointer, op unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSScatter(axis unsafe.Pointer, op unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSScatter(axis, op, input, indices, output, filter_params)
 	}
 
@@ -1106,7 +1106,7 @@ func BNNSScatter(axis unsafe.Pointer, op unsafe.Pointer, input unsafe.Pointer, i
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSScatterND(_:_:_:_:_:)
-func BNNSScatterND(op unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSScatterND(op unsafe.Pointer, input unsafe.Pointer, indices unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSScatterND(op, input, indices, output, filter_params)
 	}
 
@@ -1118,7 +1118,7 @@ func BNNSScatterND(op unsafe.Pointer, input unsafe.Pointer, indices unsafe.Point
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSShuffle(_:_:_:_:)
-func BNNSShuffle(type_ unsafe.Pointer, input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSShuffle(type_ unsafe.Pointer, input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSShuffle(type_, input, output, filter_params)
 	}
 
@@ -1140,7 +1140,7 @@ func BNNSTensorGetAllocationSize(tensor unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSTile(_:_:_:)
-func BNNSTile(input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSTile(input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSTile(input, output, filter_params)
 	}
 
@@ -1152,7 +1152,7 @@ func BNNSTile(input unsafe.Pointer, output unsafe.Pointer, filter_params unsafe.
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSTileBackward(_:_:_:)
-func BNNSTileBackward(in_delta unsafe.Pointer, out_delta unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSTileBackward(in_delta unsafe.Pointer, out_delta unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSTileBackward(in_delta, out_delta, filter_params)
 	}
 
@@ -1162,7 +1162,7 @@ func BNNSTileBackward(in_delta unsafe.Pointer, out_delta unsafe.Pointer, filter_
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSTranspose(_:_:_:_:_:)
-func BNNSTranspose(dest unsafe.Pointer, src unsafe.Pointer, axis0 unsafe.Pointer, axis1 unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
+func BNNSTranspose(dest unsafe.Pointer, src unsafe.Pointer, axis0 unsafe.Pointer, axis1 unsafe.Pointer, filter_params unsafe.Pointer) int {
 	return _BNNSTranspose(dest, src, axis0, axis1, filter_params)
 	}
 

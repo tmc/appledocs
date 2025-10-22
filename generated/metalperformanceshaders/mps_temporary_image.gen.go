@@ -29,6 +29,10 @@ type _TemporaryImageClass struct {
 // An interface definition for the [TemporaryImage] class.
 type ITemporaryImage interface {
 	IImage
+	Texture() unsafe.Pointer
+	SetTexture(value unsafe.Pointer)
+	ReadCount() int
+	SetReadCount(value int)
 }
 
 // A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.

@@ -9,3 +9,13 @@ import (
 // Suppress unused import errors
 var _ = classkit.NewSBinaryItem
 
+// ExampleNewSBinaryItemWithIdentifierTitleType demonstrates how to create a SBinaryItem instance using NewSBinaryItemWithIdentifierTitleType.
+// Initializes a new binary activity item of the given type.
+func ExampleNewSBinaryItemWithIdentifierTitleType() {
+	_ = classkit.NewSBinaryItemWithIdentifierTitleType(
+		"identifier", // identifier string
+		"title", // title string
+		classkit.SBinaryValueType{}, // valueType SBinaryValueType
+	)
+	// Output:
+}

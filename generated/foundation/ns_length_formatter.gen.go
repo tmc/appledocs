@@ -30,6 +30,12 @@ type _LengthFormatterClass struct {
 type ILengthFormatter interface {
 	IFormatter
 	UnitStringFromValueUnit(value float64, unit unsafe.Pointer) String
+	NumberFormatter() NSNumberFormatter
+	SetNumberFormatter(value INumberFormatter)
+	IsForPersonHeightUse() bool
+	SetIsForPersonHeightUse(value bool)
+	UnitStyle() unsafe.Pointer
+	SetUnitStyle(value unsafe.Pointer)
 }
 
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements.

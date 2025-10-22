@@ -31,6 +31,12 @@ type _MTRThreadNetworkDirectoryClusterRemoveNetworkParamsClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterRemoveNetworkParams] class.
 type IMTRThreadNetworkDirectoryClusterRemoveNetworkParams interface {
 	objectivec.IObject
+	ExtendedPanID() foundation.NSData
+	SetExtendedPanID(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

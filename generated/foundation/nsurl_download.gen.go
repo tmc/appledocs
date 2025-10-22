@@ -32,6 +32,10 @@ type IURLDownload interface {
 	objectivec.IObject
 	Cancel()
 	SetDestinationAllowOverwrite(path string, allowOverwrite bool)
+	DeletesFileUponFailure() bool
+	SetDeletesFileUponFailure(value bool)
+	Request() NSURLRequest
+	ResumeData() NSData
 }
 
 // An object that downloads a resource asynchronously and saves the data to a file.

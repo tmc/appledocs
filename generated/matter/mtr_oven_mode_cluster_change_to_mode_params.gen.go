@@ -31,6 +31,12 @@ type _MTROvenModeClusterChangeToModeParamsClass struct {
 // An interface definition for the [MTROvenModeClusterChangeToModeParams] class.
 type IMTROvenModeClusterChangeToModeParams interface {
 	objectivec.IObject
+	NewMode() foundation.Number
+	SetNewMode(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

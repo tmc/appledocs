@@ -12,11 +12,11 @@ const (
 	// CXCallDirectoryEnabledStatusDisabled - Indicates that the extension is disabled.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/EnabledStatus/disabled
-	CXCallDirectoryEnabledStatusDisabled CXCallDirectoryEnabledStatus = 1
+	CXCallDirectoryEnabledStatusDisabled CXCallDirectoryEnabledStatus = 0
 	// CXCallDirectoryEnabledStatusEnabled - Indicates that the extension is enabled.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/EnabledStatus/enabled
-	CXCallDirectoryEnabledStatusEnabled CXCallDirectoryEnabledStatus = 2
+	CXCallDirectoryEnabledStatusEnabled CXCallDirectoryEnabledStatus = 0
 	// CXCallDirectoryEnabledStatusUnknown - Indicates that the enabled status for the extension is unknown.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/EnabledStatus/unknown
@@ -32,23 +32,23 @@ const (
 	// CXCallEndedReasonAnsweredElsewhere - Another device answered the call.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallEndedReason/answeredElsewhere
-	CXCallEndedReasonAnsweredElsewhere CXCallEndedReason = 4
+	CXCallEndedReasonAnsweredElsewhere CXCallEndedReason = 0
 	// CXCallEndedReasonDeclinedElsewhere - Another device declined the call.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallEndedReason/declinedElsewhere
-	CXCallEndedReasonDeclinedElsewhere CXCallEndedReason = 5
+	CXCallEndedReasonDeclinedElsewhere CXCallEndedReason = 0
 	// CXCallEndedReasonFailed - An error occurred while attempting to service the call.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallEndedReason/failed
-	CXCallEndedReasonFailed CXCallEndedReason = 1
+	CXCallEndedReasonFailed CXCallEndedReason = 0
 	// CXCallEndedReasonRemoteEnded - The remote party explicitly ended the call.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallEndedReason/remoteEnded
-	CXCallEndedReasonRemoteEnded CXCallEndedReason = 2
+	CXCallEndedReasonRemoteEnded CXCallEndedReason = 0
 	// CXCallEndedReasonUnanswered - The call never started connecting and was never explicitly ended, such as when an outgoing or incoming call times out.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallEndedReason/unanswered
-	CXCallEndedReasonUnanswered CXCallEndedReason = 3
+	CXCallEndedReasonUnanswered CXCallEndedReason = 0
 )
 
 // CXErrorCode - Error codes for the CallKit errors.
@@ -209,35 +209,21 @@ const (
 	// CXHandleTypeEmailAddress - An email address.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/emailAddress
-	CXHandleTypeEmailAddress CXHandleType = 3
+	CXHandleTypeEmailAddress CXHandleType = 0
 	// CXHandleTypeGeneric - An unspecified type of handle.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/generic
-	CXHandleTypeGeneric CXHandleType = 1
+	CXHandleTypeGeneric CXHandleType = 0
 	// CXHandleTypePhoneNumber - A phone number.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/phoneNumber
-	CXHandleTypePhoneNumber CXHandleType = 2
+	CXHandleTypePhoneNumber CXHandleType = 0
 )
 
 // CXPlayDTMFCallActionType - The types of events that generate dial tones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/ActionType
 type CXPlayDTMFCallActionType uint
-
-const (
-	CXPlayDTMFCallActionTypeSingleTone CXPlayDTMFCallActionType = 1
-	CXPlayDTMFCallActionTypeSoftPause CXPlayDTMFCallActionType = 2
-	CXPlayDTMFCallActionTypeHardPause CXPlayDTMFCallActionType = 3
-	CXCallEndedReasonFailed CXPlayDTMFCallActionType = 1
-	CXCallEndedReasonRemoteEnded CXPlayDTMFCallActionType = 2
-	CXCallEndedReasonUnanswered CXPlayDTMFCallActionType = 3
-	CXCallEndedReasonAnsweredElsewhere CXPlayDTMFCallActionType = 4
-	CXCallEndedReasonDeclinedElsewhere CXPlayDTMFCallActionType = 5
-	CXCallDirectoryEnabledStatusUnknown CXPlayDTMFCallActionType = 0
-	CXCallDirectoryEnabledStatusDisabled CXPlayDTMFCallActionType = 1
-	CXCallDirectoryEnabledStatusEnabled CXPlayDTMFCallActionType = 2
-)
 
 // CXTranslationEngine - Values that describe the translation engine that provided a translation.
 //

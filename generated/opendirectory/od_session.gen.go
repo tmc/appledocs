@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/securityfoundation"
@@ -34,11 +33,13 @@ type _ODSessionClass struct {
 type IODSession interface {
 	objectivec.IObject
 	AddConfigurationAuthorizationError(configuration IODConfiguration, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
-	ConfigurationForNodename(nodename appkit.string) ODConfiguration
+	ConfigurationForNodename(nodename string) ODConfiguration
 	ConfigurationAuthorizationAllowingUserInteractionError(allowInteraction bool, error_ unsafe.Pointer) securityfoundation.SFAuthorization
 	DeleteConfigurationAuthorizationError(configuration IODConfiguration, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
-	DeleteConfigurationWithNodenameAuthorizationError(nodename appkit.string, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
+	DeleteConfigurationWithNodenameAuthorizationError(nodename string, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
 	NodeNamesAndReturnError(outError unsafe.Pointer) foundation.Array
+	ConfigurationTemplateNames() objc.ID
+	MappingTemplateNames() objc.ID
 }
 
 // An object serves as a Cocoa wrapper for an Open Directory session.
@@ -125,8 +126,8 @@ func (o_ ODSession) AddConfigurationAuthorizationError(configuration IODConfigur
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODSession/configuration(forNodename:)
-func (o_ ODSession) ConfigurationForNodename(nodename appkit.string) ODConfiguration {
-	rv := objc.Send[ODConfiguration](o_.ID, objc.Sel("configurationForNodename:"), nodename)
+func (o_ ODSession) ConfigurationForNodename(nodename string) ODConfiguration {
+	rv := objc.Send[ODConfiguration](o_.ID, objc.Sel("configurationForNodename:"), objc.String(nodename))
 	return rv
 }
 
@@ -146,8 +147,8 @@ func (o_ ODSession) DeleteConfigurationAuthorizationError(configuration IODConfi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODSession/deleteConfiguration(withNodename:authorization:)
-func (o_ ODSession) DeleteConfigurationWithNodenameAuthorizationError(nodename appkit.string, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("deleteConfigurationWithNodename:authorization:error:"), nodename, authorization, error_)
+func (o_ ODSession) DeleteConfigurationWithNodenameAuthorizationError(nodename string, authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("deleteConfigurationWithNodename:authorization:error:"), objc.String(nodename), authorization, error_)
 	return rv
 }
 

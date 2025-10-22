@@ -31,6 +31,12 @@ type _MTRGroupKeyManagementClusterKeySetRemoveParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetRemoveParams] class.
 type IMTRGroupKeyManagementClusterKeySetRemoveParams interface {
 	objectivec.IObject
+	GroupKeySetID() foundation.Number
+	SetGroupKeySetID(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

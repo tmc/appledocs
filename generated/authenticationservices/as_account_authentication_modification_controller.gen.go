@@ -30,6 +30,10 @@ type _AccountAuthenticationModificationControllerClass struct {
 // An interface definition for the [AccountAuthenticationModificationController] class.
 type IAccountAuthenticationModificationController interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	PresentationContextProvider() unsafe.Pointer
+	SetPresentationContextProvider(value unsafe.Pointer)
 }
 
 // An object that performs a request to modify an account’s authentication properties.

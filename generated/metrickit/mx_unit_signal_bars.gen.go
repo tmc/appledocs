@@ -30,6 +30,8 @@ type _MXUnitSignalBarsClass struct {
 // An interface definition for the [MXUnitSignalBars] class.
 type IMXUnitSignalBars interface {
 	foundation.IDimension
+	HistogrammedCellularConditionTime() MXUnitSignalBars
+	SetHistogrammedCellularConditionTime(value IMXUnitSignalBars)
 }
 
 // A unit of measure for the number of bars of cellular network connectivity.

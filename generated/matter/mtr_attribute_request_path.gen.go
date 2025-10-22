@@ -31,6 +31,12 @@ type _MTRAttributeRequestPathClass struct {
 // An interface definition for the [MTRAttributeRequestPath] class.
 type IMTRAttributeRequestPath interface {
 	objectivec.IObject
+	Attribute() foundation.Number
+	SetAttribute(value foundation.INumber)
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
 }
 
 //

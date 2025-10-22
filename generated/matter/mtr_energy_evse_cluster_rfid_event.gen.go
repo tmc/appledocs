@@ -31,6 +31,8 @@ type _MTREnergyEVSEClusterRFIDEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterRFIDEvent] class.
 type IMTREnergyEVSEClusterRFIDEvent interface {
 	objectivec.IObject
+	Uid() foundation.NSData
+	SetUid(value foundation.IData)
 }
 
 //

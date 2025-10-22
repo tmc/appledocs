@@ -31,6 +31,25 @@ type _XMLParserClass struct {
 type IXMLParser interface {
 	objectivec.IObject
 	Parse() bool
+	AllowedExternalEntityURLs() unsafe.Pointer
+	SetAllowedExternalEntityURLs(value unsafe.Pointer)
+	LineNumber() int
+	ParserError() NSError
+	PublicID() string
+	ShouldReportNamespacePrefixes() bool
+	SetShouldReportNamespacePrefixes(value bool)
+	ColumnNumber() int
+	SetColumnNumber(value int)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ExternalEntityResolvingPolicy() unsafe.Pointer
+	SetExternalEntityResolvingPolicy(value unsafe.Pointer)
+	ShouldProcessNamespaces() bool
+	SetShouldProcessNamespaces(value bool)
+	ShouldResolveExternalEntities() bool
+	SetShouldResolveExternalEntities(value bool)
+	SystemID() string
+	SetSystemID(value string)
 }
 
 // An event driven parser of XML documents (including DTD declarations).

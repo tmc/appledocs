@@ -92,7 +92,7 @@ func NewQuadtree() Quadtree {
 // Initializes a quadtree with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/init(boundingQuad:minimumCellSize:)
-func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize unsafe.Pointer) Quadtree {
+func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) Quadtree {
 	instance := getQuadtreeClass().Alloc()
 	rv := objc.Send[Quadtree](instance.ID, objc.Sel("initWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
 	rv.Autorelease()
@@ -103,7 +103,7 @@ func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize
 // Creates a quadtree with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/quadtreeWithBoundingQuad:minimumCellSize:
-func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize unsafe.Pointer) unsafe.Pointer {
+func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("quadtreeWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
 	return rv
 }

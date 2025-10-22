@@ -31,6 +31,14 @@ type _MTRGeneralDiagnosticsClusterTestEventTriggerParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterTestEventTriggerParams] class.
 type IMTRGeneralDiagnosticsClusterTestEventTriggerParams interface {
 	objectivec.IObject
+	EnableKey() foundation.Data
+	SetEnableKey(value foundation.IData)
+	EventTrigger() foundation.Number
+	SetEventTrigger(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

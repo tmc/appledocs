@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,18 @@ type _MTRThermostatClusterScheduleStructClass struct {
 // An interface definition for the [MTRThermostatClusterScheduleStruct] class.
 type IMTRThermostatClusterScheduleStruct interface {
 	objectivec.IObject
+	BuiltIn() foundation.Number
+	SetBuiltIn(value foundation.INumber)
+	Name() string
+	SetName(value string)
+	PresetHandle() foundation.NSData
+	SetPresetHandle(value foundation.IData)
+	ScheduleHandle() foundation.NSData
+	SetScheduleHandle(value foundation.IData)
+	SystemMode() foundation.Number
+	SetSystemMode(value foundation.INumber)
+	Transitions() objc.ID
+	SetTransitions(value objc.ID)
 }
 
 //
@@ -94,8 +105,8 @@ func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value foundation.INumber
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
-func (m_ MTRThermostatClusterScheduleStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRThermostatClusterScheduleStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -103,8 +114,8 @@ func (m_ MTRThermostatClusterScheduleStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
-func (m_ MTRThermostatClusterScheduleStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRThermostatClusterScheduleStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

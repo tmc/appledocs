@@ -30,6 +30,20 @@ type _PointerFunctionsClass struct {
 // An interface definition for the [PointerFunctions] class.
 type IPointerFunctions interface {
 	objectivec.IObject
+	PointerFunctions() NSPointerFunctions
+	SetPointerFunctions(value IPointerFunctions)
+	DescriptionFunction() string
+	SetDescriptionFunction(value string)
+	HashFunction() int
+	SetHashFunction(value int)
+	IsEqualFunction() unsafe.Pointer
+	SetIsEqualFunction(value unsafe.Pointer)
+	RelinquishFunction() unsafe.Pointer
+	SetRelinquishFunction(value unsafe.Pointer)
+	UsesStrongWriteBarrier() bool
+	SetUsesStrongWriteBarrier(value bool)
+	UsesWeakReadAndWriteBarriers() bool
+	SetUsesWeakReadAndWriteBarriers(value bool)
 }
 
 // An instance of defines callout functions appropriate for managing a pointer reference held somewhere else.

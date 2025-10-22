@@ -30,6 +30,8 @@ type _ClassifyImageRequestClass struct {
 type IClassifyImageRequest interface {
 	IImageBasedRequest
 	SupportedIdentifiersAndReturnError(error_ unsafe.Pointer) []string
+	Results() []ClassificationObservation
+	VNClassifyImageRequestRevision1() int
 }
 
 // A request to classify an image.

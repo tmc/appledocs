@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,11 @@ type _ACAccountTypeClass struct {
 // An interface definition for the [ACAccountType] class.
 type IACAccountType interface {
 	objectivec.IObject
+	AccessGranted() bool
+	AccountTypeDescription() string
+	Identifier() string
+	AccountType() ACAccountType
+	SetAccountType(value ACAccountType)
 }
 
 // An object that encapsulates information about all accounts of a particular type.
@@ -92,16 +96,16 @@ func (a_ ACAccountType) AccessGranted() bool {
 // A human-readable description of the account type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
-func (a_ ACAccountType) AccountTypeDescription() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("accountTypeDescription"))
+func (a_ ACAccountType) AccountTypeDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
 }
 
 // The unique identifier for the account type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
-func (a_ ACAccountType) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
+func (a_ ACAccountType) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 

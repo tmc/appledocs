@@ -31,6 +31,22 @@ type _AttestationInfoClass struct {
 // An interface definition for the [AttestationInfo] class.
 type IAttestationInfo interface {
 	objectivec.IObject
+	CertificationDeclaration() foundation.Data
+	SetCertificationDeclaration(value foundation.IData)
+	Challenge() foundation.Data
+	SetChallenge(value foundation.IData)
+	Dac() foundation.Data
+	SetDac(value foundation.IData)
+	Elements() foundation.Data
+	SetElements(value foundation.IData)
+	ElementsSignature() foundation.Data
+	SetElementsSignature(value foundation.IData)
+	FirmwareInfo() foundation.Data
+	SetFirmwareInfo(value foundation.IData)
+	Nonce() foundation.Data
+	SetNonce(value foundation.IData)
+	Pai() foundation.Data
+	SetPai(value foundation.IData)
 }
 
 //

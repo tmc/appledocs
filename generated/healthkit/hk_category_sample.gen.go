@@ -29,6 +29,10 @@ type _HKCategorySampleClass struct {
 // An interface definition for the [HKCategorySample] class.
 type IHKCategorySample interface {
 	IHKSample
+	CategoryType() HKCategoryType
+	Value() int
+	SetValue(value int)
+	HKPredicateKeyPathCategoryValue() string
 }
 
 // A sample with values from a short list of possible values.
@@ -110,8 +114,8 @@ func (h_ HKCategorySample) SetValue(value int) {
 // The key path for accessing the category sample’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue
-func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
+func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
 	return rv
 }
 

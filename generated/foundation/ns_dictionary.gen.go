@@ -68,6 +68,11 @@ type IDictionary interface {
 	WriteToURLError(url IURL, error_ IError) bool
 	WriteToURLAtomically(url IURL, atomically bool) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
+	AllKeys() []objc.ID
+	AllValues() []objc.ID
+	Count() uint
+	Description() string
+	DescriptionInStringsFileFormat() string
 }
 
 // A static collection of objects associated with unique keys.

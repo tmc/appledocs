@@ -30,6 +30,8 @@ type _ChangePlaybackRateCommandClass struct {
 // An interface definition for the [ChangePlaybackRateCommand] class.
 type IChangePlaybackRateCommand interface {
 	IRemoteCommand
+	SupportedPlaybackRates() []foundation.Number
+	SetSupportedPlaybackRates(value []foundation.INumber)
 }
 
 // An object that responds to requests to change the playback rate of the playing item.

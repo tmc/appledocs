@@ -30,6 +30,16 @@ type _INMediaItemClass struct {
 // An interface definition for the [INMediaItem] class.
 type IINMediaItem interface {
 	objectivec.IObject
+	Artist() string
+	SetArtist(value string)
+	Artwork() INImage
+	SetArtwork(value INImage)
+	Identifier() string
+	SetIdentifier(value string)
+	Title() string
+	SetTitle(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 }
 
 // An object that describes a piece of media content, such as a song, TV show, artist, or podcast playlist.
@@ -81,8 +91,8 @@ func NewINMediaItem() INMediaItem {
 // The artist associated with the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artist
-func (i_ INMediaItem) Artist() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("artist"))
+func (i_ INMediaItem) Artist() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("artist"))
 	return rv
 }
 
@@ -92,8 +102,8 @@ func (i_ INMediaItem) Artist() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/artist
-func (i_ INMediaItem) SetArtist(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setArtist:"), value)
+func (i_ INMediaItem) SetArtist(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setArtist:"), objc.String(value))
 }
 
 // Artwork for the media item.
@@ -117,8 +127,8 @@ func (i_ INMediaItem) SetArtwork(value INImage) {
 // The value your app uses to identify the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/identifier
-func (i_ INMediaItem) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("identifier"))
+func (i_ INMediaItem) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -128,15 +138,15 @@ func (i_ INMediaItem) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/identifier
-func (i_ INMediaItem) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
+func (i_ INMediaItem) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The media item title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/title
-func (i_ INMediaItem) Title() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("title"))
+func (i_ INMediaItem) Title() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -146,8 +156,8 @@ func (i_ INMediaItem) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediaitem/title
-func (i_ INMediaItem) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
+func (i_ INMediaItem) SetTitle(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The media item type.

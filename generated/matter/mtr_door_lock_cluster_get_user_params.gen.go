@@ -31,6 +31,12 @@ type _MTRDoorLockClusterGetUserParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetUserParams] class.
 type IMTRDoorLockClusterGetUserParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
 }
 
 //

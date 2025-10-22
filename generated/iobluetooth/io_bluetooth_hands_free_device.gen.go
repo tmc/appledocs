@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,19 +35,19 @@ type IBluetoothHandsFreeDevice interface {
 	AddHeldCall()
 	CallTransfer()
 	CurrentCallList()
-	DialNumber(aNumber appkit.string)
+	DialNumber(aNumber string)
 	EndCall()
 	HoldCall()
-	MemoryDial(memoryLocation unsafe.Pointer)
-	PlaceAllOthersOnHold(index unsafe.Pointer)
+	MemoryDial(memoryLocation int)
+	PlaceAllOthersOnHold(index int)
 	Redial()
 	ReleaseActiveCalls()
-	ReleaseCall(index unsafe.Pointer)
+	ReleaseCall(index int)
 	ReleaseHeldCalls()
-	SendATCommand(atCommand appkit.string)
-	SendATCommandTimeoutSelectorTarget(atCommand appkit.string, timeout unsafe.Pointer, selector objc.SEL, target objectivec.IObject)
-	SendDTMF(character appkit.string)
-	SendSMSMessage(aNumber appkit.string, aMessage appkit.string)
+	SendATCommand(atCommand string)
+	SendATCommandTimeoutSelectorTarget(atCommand string, timeout float32, selector objc.SEL, target objectivec.IObject)
+	SendDTMF(character string)
+	SendSMSMessage(aNumber string, aMessage string)
 	SubscriberNumber()
 	TransferAudioToComputer()
 	TransferAudioToPhone()
@@ -153,8 +152,8 @@ func (b_ BluetoothHandsFreeDevice) CurrentCallList() {
 // Calls the phone number on a hands-free phone or headset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/dialNumber(_:)
-func (b_ BluetoothHandsFreeDevice) DialNumber(aNumber appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("dialNumber:"), aNumber)
+func (b_ BluetoothHandsFreeDevice) DialNumber(aNumber string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("dialNumber:"), objc.String(aNumber))
 }
 
 // Ends the current call or refuses an incoming call.
@@ -174,14 +173,14 @@ func (b_ BluetoothHandsFreeDevice) HoldCall() {
 // Calls the phone number stored in a speed dial or memory slot of the hands-free phone or headset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/memoryDial(_:)
-func (b_ BluetoothHandsFreeDevice) MemoryDial(memoryLocation unsafe.Pointer) {
+func (b_ BluetoothHandsFreeDevice) MemoryDial(memoryLocation int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("memoryDial:"), memoryLocation)
 }
 
 // Places all calls except the call with the specified index on hold.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/placeAllOthers(onHold:)
-func (b_ BluetoothHandsFreeDevice) PlaceAllOthersOnHold(index unsafe.Pointer) {
+func (b_ BluetoothHandsFreeDevice) PlaceAllOthersOnHold(index int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("placeAllOthersOnHold:"), index)
 }
 
@@ -202,7 +201,7 @@ func (b_ BluetoothHandsFreeDevice) ReleaseActiveCalls() {
 // Ends the call with the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/releaseCall(_:)
-func (b_ BluetoothHandsFreeDevice) ReleaseCall(index unsafe.Pointer) {
+func (b_ BluetoothHandsFreeDevice) ReleaseCall(index int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("releaseCall:"), index)
 }
 
@@ -216,29 +215,29 @@ func (b_ BluetoothHandsFreeDevice) ReleaseHeldCalls() {
 // Sends an AT command to the Bluetooth audio gateway.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/send(atCommand:)
-func (b_ BluetoothHandsFreeDevice) SendATCommand(atCommand appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:"), atCommand)
+func (b_ BluetoothHandsFreeDevice) SendATCommand(atCommand string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:"), objc.String(atCommand))
 }
 
 // Send an AT command to the Bluetooth audio gateway and performs a selector on completion or timeout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/send(atCommand:timeout:selector:target:)
-func (b_ BluetoothHandsFreeDevice) SendATCommandTimeoutSelectorTarget(atCommand appkit.string, timeout unsafe.Pointer, selector objc.SEL, target objectivec.IObject) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:timeout:selector:target:"), atCommand, timeout, selector, target)
+func (b_ BluetoothHandsFreeDevice) SendATCommandTimeoutSelectorTarget(atCommand string, timeout float32, selector objc.SEL, target objectivec.IObject) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:timeout:selector:target:"), objc.String(atCommand), timeout, selector, target)
 }
 
 // Sends the tone associated with a phone key to the hands-free Bluetooth device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/sendDTMF(_:)
-func (b_ BluetoothHandsFreeDevice) SendDTMF(character appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("sendDTMF:"), character)
+func (b_ BluetoothHandsFreeDevice) SendDTMF(character string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("sendDTMF:"), objc.String(character))
 }
 
 // Sends a text message to a phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/sendSMS(_:message:)
-func (b_ BluetoothHandsFreeDevice) SendSMSMessage(aNumber appkit.string, aMessage appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("sendSMS:message:"), aNumber, aMessage)
+func (b_ BluetoothHandsFreeDevice) SendSMSMessage(aNumber string, aMessage string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("sendSMS:message:"), objc.String(aNumber), objc.String(aMessage))
 }
 
 // Requests that the Bluetooth audio gateway send the subscriber number to the delegate.

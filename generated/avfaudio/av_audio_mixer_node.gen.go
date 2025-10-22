@@ -29,6 +29,9 @@ type _AudioMixerNodeClass struct {
 // An interface definition for the [AudioMixerNode] class.
 type IAudioMixerNode interface {
 	IAudioNode
+	NextAvailableInputBus() AudioNodeBus
+	OutputVolume() float32
+	SetOutputVolume(value float32)
 }
 
 // An object that takes any number of inputs and converts them into a single output.
@@ -93,8 +96,8 @@ func (a_ AudioMixerNode) NextAvailableInputBus() AudioNodeBus {
 // The mixer’s output volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
-func (a_ AudioMixerNode) OutputVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputVolume"))
+func (a_ AudioMixerNode) OutputVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
 
@@ -104,7 +107,7 @@ func (a_ AudioMixerNode) OutputVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
-func (a_ AudioMixerNode) SetOutputVolume(value unsafe.Pointer) {
+func (a_ AudioMixerNode) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 

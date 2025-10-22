@@ -29,6 +29,14 @@ type _INSearchForBillsIntentClass struct {
 // An interface definition for the [INSearchForBillsIntent] class.
 type IINSearchForBillsIntent interface {
 	IINIntent
+	BillType() unsafe.Pointer
+	DueDateRange() INDateComponentsRange
+	BillPayee() unsafe.Pointer
+	SetBillPayee(value unsafe.Pointer)
+	PaymentDateRange() INDateComponentsRange
+	SetPaymentDateRange(value INDateComponentsRange)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // A request for the list of bills matching the specified criteria.

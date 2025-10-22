@@ -32,10 +32,10 @@ type _SFCertificateTrustPanelClass struct {
 // An interface definition for the [SFCertificateTrustPanel] class.
 type ISFCertificateTrustPanel interface {
 	ISFCertificatePanel
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, message appkit.string)
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, message string)
 	InformativeText() foundation.String
-	RunModalForTrustMessage(trust unsafe.Pointer, message appkit.string) int
-	SetInformativeText(informativeText appkit.string)
+	RunModalForTrustMessage(trust unsafe.Pointer, message string) int
+	SetInformativeText(informativeText string)
 }
 
 // A panel or sheet that lets the user edit the trust settings in any of the certificates in a certificate chain.
@@ -99,8 +99,8 @@ func (sc _SFCertificateTrustPanelClass) SharedCertificateTrustPanel() SFCertific
 // Displays a modal sheet that shows the results of a certificate trust evaluation and that allows the user to edit trust settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateTrustPanel/beginSheet(for:modalDelegate:didEnd:contextInfo:trust:message:)
-func (s_ SFCertificateTrustPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, message appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:trust:message:"), docWindow, delegate, didEndSelector, contextInfo, trust, message)
+func (s_ SFCertificateTrustPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, message string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:trust:message:"), docWindow, delegate, didEndSelector, contextInfo, trust, objc.String(message))
 }
 
 // Returns the (optional) informative text currently displayed in the panel.
@@ -114,16 +114,16 @@ func (s_ SFCertificateTrustPanel) InformativeText() foundation.String {
 // Displays a modal panel that shows the results of a certificate trust evaluation and that allows the user to edit trust settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateTrustPanel/runModal(for:message:)
-func (s_ SFCertificateTrustPanel) RunModalForTrustMessage(trust unsafe.Pointer, message appkit.string) int {
-	rv := objc.Send[int](s_.ID, objc.Sel("runModalForTrust:message:"), trust, message)
+func (s_ SFCertificateTrustPanel) RunModalForTrustMessage(trust unsafe.Pointer, message string) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("runModalForTrust:message:"), trust, objc.String(message))
 	return rv
 }
 
 // Sets the (optional) informative text displayed in the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateTrustPanel/setInformativeText(_:)
-func (s_ SFCertificateTrustPanel) SetInformativeText(informativeText appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInformativeText:"), informativeText)
+func (s_ SFCertificateTrustPanel) SetInformativeText(informativeText string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInformativeText:"), objc.String(informativeText))
 }
 
 

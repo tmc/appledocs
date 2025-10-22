@@ -31,6 +31,7 @@ type _NSPredicateRuleClass struct {
 type INSPredicateRule interface {
 	IRule
 	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
+	Predicate() foundation.Predicate
 }
 
 // A rule for use in a rule system that uses a Foundation object to evaluate itself.

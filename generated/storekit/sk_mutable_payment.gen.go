@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,18 @@ type _MutablePaymentClass struct {
 // An interface definition for the [MutablePayment] class.
 type IMutablePayment interface {
 	IPayment
+	ApplicationUsername() string
+	SetApplicationUsername(value string)
+	PaymentDiscount() SKPaymentDiscount
+	SetPaymentDiscount(value ISKPaymentDiscount)
+	ProductIdentifier() string
+	SetProductIdentifier(value string)
+	Quantity() int
+	SetQuantity(value int)
+	RequestData() foundation.NSData
+	SetRequestData(value foundation.IData)
+	SimulatesAskToBuyInSandbox() bool
+	SetSimulatesAskToBuyInSandbox(value bool)
 }
 
 // A mutable request to the App Store to process payment for additional functionality that your app offers.
@@ -86,8 +97,8 @@ func NewMutablePayment() MutablePayment {
 // A string that associates the transaction with a user account on your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) ApplicationUsername() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationUsername"))
+func (m_ MutablePayment) ApplicationUsername() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
 
@@ -97,8 +108,8 @@ func (m_ MutablePayment) ApplicationUsername() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) SetApplicationUsername(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), value)
+func (m_ MutablePayment) SetApplicationUsername(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), objc.String(value))
 }
 
 // The details of the discount offer to apply to the payment.
@@ -122,8 +133,8 @@ func (m_ MutablePayment) SetPaymentDiscount(value ISKPaymentDiscount) {
 // A string that identifies a product that can be purchased from within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) ProductIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("productIdentifier"))
+func (m_ MutablePayment) ProductIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
@@ -133,8 +144,8 @@ func (m_ MutablePayment) ProductIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) SetProductIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), value)
+func (m_ MutablePayment) SetProductIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
 }
 
 // The number of items the user wants to purchase.

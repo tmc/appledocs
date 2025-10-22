@@ -30,6 +30,44 @@ type _CKNotificationInfoClass struct {
 // An interface definition for the [CKNotificationInfo] class.
 type ICKNotificationInfo interface {
 	objectivec.IObject
+	AlertLocalizationArgs() []string
+	SetAlertLocalizationArgs(value []string)
+	DesiredKeys() []string
+	SetDesiredKeys(value []string)
+	SubtitleLocalizationArgs() []string
+	SetSubtitleLocalizationArgs(value []string)
+	TitleLocalizationArgs() []string
+	SetTitleLocalizationArgs(value []string)
+	AlertActionLocalizationKey() string
+	SetAlertActionLocalizationKey(value string)
+	AlertBody() string
+	SetAlertBody(value string)
+	AlertLaunchImage() string
+	SetAlertLaunchImage(value string)
+	AlertLocalizationKey() string
+	SetAlertLocalizationKey(value string)
+	Category() string
+	SetCategory(value string)
+	CollapseIDKey() string
+	SetCollapseIDKey(value string)
+	ShouldBadge() bool
+	SetShouldBadge(value bool)
+	ShouldSendContentAvailable() bool
+	SetShouldSendContentAvailable(value bool)
+	ShouldSendMutableContent() bool
+	SetShouldSendMutableContent(value bool)
+	SoundName() string
+	SetSoundName(value string)
+	Subtitle() string
+	SetSubtitle(value string)
+	SubtitleLocalizationKey() string
+	SetSubtitleLocalizationKey(value string)
+	Title() string
+	SetTitle(value string)
+	TitleLocalizationKey() string
+	SetTitleLocalizationKey(value string)
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // An object that describes the configuration of a subscription’s push notifications.

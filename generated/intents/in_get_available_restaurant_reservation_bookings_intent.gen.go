@@ -30,6 +30,18 @@ type _INGetAvailableRestaurantReservationBookingsIntentClass struct {
 // An interface definition for the [INGetAvailableRestaurantReservationBookingsIntent] class.
 type IINGetAvailableRestaurantReservationBookingsIntent interface {
 	IINIntent
+	EarliestBookingDateForResults() foundation.Date
+	SetEarliestBookingDateForResults(value foundation.IDate)
+	LatestBookingDateForResults() foundation.Date
+	SetLatestBookingDateForResults(value foundation.IDate)
+	MaximumNumberOfResults() foundation.Number
+	SetMaximumNumberOfResults(value foundation.INumber)
+	PartySize() int
+	SetPartySize(value int)
+	PreferredBookingDateComponents() foundation.DateComponents
+	SetPreferredBookingDateComponents(value foundation.IDateComponents)
+	Restaurant() unsafe.Pointer
+	SetRestaurant(value unsafe.Pointer)
 }
 
 // A request for the time slots available for making a reservation.

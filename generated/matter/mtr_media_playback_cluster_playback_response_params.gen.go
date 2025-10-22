@@ -31,6 +31,12 @@ type _MTRMediaPlaybackClusterPlaybackResponseParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterPlaybackResponseParams] class.
 type IMTRMediaPlaybackClusterPlaybackResponseParams interface {
 	objectivec.IObject
+	Data() string
+	SetData(value string)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRMediaPlaybackClusterPlaybackResponseParams() MTRMediaPlaybackClusterP
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() appkit.string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
 }
 
 //

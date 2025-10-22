@@ -31,6 +31,16 @@ type _MTRGeneralCommissioningClusterSetRegulatoryConfigParamsClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterSetRegulatoryConfigParams] class.
 type IMTRGeneralCommissioningClusterSetRegulatoryConfigParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	CountryCode() string
+	SetCountryCode(value string)
+	NewRegulatoryConfig() foundation.Number
+	SetNewRegulatoryConfig(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -93,8 +103,8 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("countryCode"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -102,8 +112,8 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() 
 // SetCountryCode sets the value of the countryCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
 }
 
 //

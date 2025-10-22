@@ -30,6 +30,8 @@ type _FloatRangeClass struct {
 // An interface definition for the [FloatRange] class.
 type IFloatRange interface {
 	objectivec.IObject
+	LowerBound() float64
+	UpperBound() float64
 }
 
 // A utility class that represents range components of a stroke.

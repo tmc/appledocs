@@ -34,6 +34,8 @@ type IMutableAttributedString interface {
 	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
 	ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString)
 	SetAttributedString(attrString IAttributedString)
+	MutableString() NSMutableString
+	SetMutableString(value IMutableString)
 }
 
 // A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.

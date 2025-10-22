@@ -34,6 +34,65 @@ type IComposition interface {
 	ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale foundation.ILocale, commonKeys []string) []TimedMetadataGroup
 	LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer)
 	MetadataForFormat(format MetadataFormat) []MetadataItem
+	CommonMetadata() AVMetadataItem
+	SetCommonMetadata(value IAVMetadataItem)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
+	OverallDurationHint() unsafe.Pointer
+	SetOverallDurationHint(value unsafe.Pointer)
+	PreferredDisplayCriteria() AVDisplayCriteria
+	SetPreferredDisplayCriteria(value IAVDisplayCriteria)
+	TrackGroups() AVAssetTrackGroup
+	SetTrackGroups(value IAVAssetTrackGroup)
+	Tracks() []CompositionTrack
+	AllMediaSelections() AVMediaSelection
+	SetAllMediaSelections(value IAVMediaSelection)
+	AvailableChapterLocales() foundation.Locale
+	SetAvailableChapterLocales(value foundation.ILocale)
+	AvailableMediaCharacteristicsWithMediaSelectionOptions() unsafe.Pointer
+	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value unsafe.Pointer)
+	AvailableMetadataFormats() MetadataFormat
+	SetAvailableMetadataFormats(value MetadataFormat)
+	CanContainFragments() bool
+	SetCanContainFragments(value bool)
+	ContainsFragments() bool
+	SetContainsFragments(value bool)
+	CreationDate() AVMetadataItem
+	SetCreationDate(value IAVMetadataItem)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	HasProtectedContent() bool
+	SetHasProtectedContent(value bool)
+	IsCompatibleWithAirPlayVideo() bool
+	SetIsCompatibleWithAirPlayVideo(value bool)
+	IsCompatibleWithSavedPhotosAlbum() bool
+	SetIsCompatibleWithSavedPhotosAlbum(value bool)
+	IsComposable() bool
+	SetIsComposable(value bool)
+	IsExportable() bool
+	SetIsExportable(value bool)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
+	IsReadable() bool
+	SetIsReadable(value bool)
+	Lyrics() string
+	SetLyrics(value string)
+	MinimumTimeOffsetFromLive() unsafe.Pointer
+	SetMinimumTimeOffsetFromLive(value unsafe.Pointer)
+	NaturalSize() coregraphics.CGSize
+	SetNaturalSize(value coregraphics.CGSize)
+	PreferredMediaSelection() AVMediaSelection
+	SetPreferredMediaSelection(value IAVMediaSelection)
+	PreferredRate() float32
+	SetPreferredRate(value float32)
+	PreferredTransform() coregraphics.CGAffineTransform
+	SetPreferredTransform(value coregraphics.CGAffineTransform)
+	PreferredVolume() float32
+	SetPreferredVolume(value float32)
+	ProvidesPreciseDurationAndTiming() bool
+	SetProvidesPreciseDurationAndTiming(value bool)
+	UrlAssetInitializationOptions() string
+	SetUrlAssetInitializationOptions(value string)
 }
 
 // An object that combines and arranges media from multiple assets into a single composite asset that you can play or process.

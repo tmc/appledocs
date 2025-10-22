@@ -30,6 +30,16 @@ type _TensorReferenceTypeClass struct {
 // An interface definition for the [TensorReferenceType] class.
 type ITensorReferenceType interface {
 	objectivec.IObject
+	TensorDataType() TensorDataType
+	MTLTensorDomain() string
+	Access() unsafe.Pointer
+	SetAccess(value unsafe.Pointer)
+	Dimensions() MTLTensorExtents
+	SetDimensions(value IMTLTensorExtents)
+	IndexType() unsafe.Pointer
+	SetIndexType(value unsafe.Pointer)
+	MTL_TENSOR_MAX_RANK() unsafe.Pointer
+	SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer)
 }
 
 // An object that represents a tensor in the shading language in a struct or array.
@@ -89,8 +99,8 @@ func (t_ TensorReferenceType) TensorDataType() TensorDataType {
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorReferenceType) MTLTensorDomain() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorReferenceType) MTLTensorDomain() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
 }
 

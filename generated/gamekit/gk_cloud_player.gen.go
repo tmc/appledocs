@@ -29,6 +29,8 @@ type _CloudPlayerClass struct {
 // An interface definition for the [CloudPlayer] class.
 type ICloudPlayer interface {
 	IBasePlayer
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // The object representing the currently signed-in iCloud user.

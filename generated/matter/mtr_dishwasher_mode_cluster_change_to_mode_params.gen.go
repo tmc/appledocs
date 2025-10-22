@@ -31,6 +31,12 @@ type _MTRDishwasherModeClusterChangeToModeParamsClass struct {
 // An interface definition for the [MTRDishwasherModeClusterChangeToModeParams] class.
 type IMTRDishwasherModeClusterChangeToModeParams interface {
 	objectivec.IObject
+	NewMode() foundation.Number
+	SetNewMode(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

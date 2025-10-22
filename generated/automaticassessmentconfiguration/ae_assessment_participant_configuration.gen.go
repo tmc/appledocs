@@ -30,6 +30,18 @@ type _AEAssessmentParticipantConfigurationClass struct {
 // An interface definition for the [AEAssessmentParticipantConfiguration] class.
 type IAEAssessmentParticipantConfiguration interface {
 	objectivec.IObject
+	AllowsNetworkAccess() bool
+	SetAllowsNetworkAccess(value bool)
+	ConfigurationInfo() unsafe.Pointer
+	SetConfigurationInfo(value unsafe.Pointer)
+	Required() bool
+	SetRequired(value bool)
+	ConfigurationsByApplication() AEAssessmentParticipantConfiguration
+	SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration)
+	MainParticipantConfiguration() AEAssessmentParticipantConfiguration
+	SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration)
+	IsRequired() bool
+	SetIsRequired(value bool)
 }
 
 // Configuration information for an app that’s available during an assessment.

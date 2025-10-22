@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,21 +33,23 @@ type IOBEXFileTransferServices interface {
 	objectivec.IObject
 	Abort() OBEXError
 	ChangeCurrentFolderBackward() OBEXError
-	ChangeCurrentFolderForwardToPath(inDirName appkit.string) OBEXError
+	ChangeCurrentFolderForwardToPath(inDirName string) OBEXError
 	ChangeCurrentFolderToRoot() OBEXError
 	ConnectToFTPService() OBEXError
 	ConnectToObjectPushService() OBEXError
-	CopyRemoteFileToLocalPath(inRemoteFileName appkit.string, inLocalPathAndName appkit.string) OBEXError
-	CreateFolder(inDirName appkit.string) OBEXError
+	CopyRemoteFileToLocalPath(inRemoteFileName string, inLocalPathAndName string) OBEXError
+	CreateFolder(inDirName string) OBEXError
 	CurrentPath() foundation.String
 	Disconnect() OBEXError
-	GetDefaultVCard(inLocalPathAndName appkit.string) OBEXError
+	GetDefaultVCard(inLocalPathAndName string) OBEXError
 	IsBusy() bool
 	IsConnected() bool
-	RemoveItem(inItemName appkit.string) OBEXError
+	RemoveItem(inItemName string) OBEXError
 	RetrieveFolderListing() OBEXError
-	SendDataTypeName(inData foundation.IData, inType appkit.string, inName appkit.string) OBEXError
-	SendFile(inLocalPathAndName appkit.string) OBEXError
+	SendDataTypeName(inData foundation.IData, inType string, inName string) OBEXError
+	SendFile(inLocalPathAndName string) OBEXError
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // Implements advanced OBEX operations in addition to simple PUT and GET.
@@ -139,8 +140,8 @@ func (o_ OBEXFileTransferServices) ChangeCurrentFolderBackward() OBEXError {
 // Change the remote path
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/changeCurrentFolderForward(toPath:)
-func (o_ OBEXFileTransferServices) ChangeCurrentFolderForwardToPath(inDirName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderForwardToPath:"), inDirName)
+func (o_ OBEXFileTransferServices) ChangeCurrentFolderForwardToPath(inDirName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderForwardToPath:"), objc.String(inDirName))
 	return rv
 }
 
@@ -171,16 +172,16 @@ func (o_ OBEXFileTransferServices) ConnectToObjectPushService() OBEXError {
 // Copy a remote file to a local path
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/copyRemoteFile(_:toLocalPath:)
-func (o_ OBEXFileTransferServices) CopyRemoteFileToLocalPath(inRemoteFileName appkit.string, inLocalPathAndName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("copyRemoteFile:toLocalPath:"), inRemoteFileName, inLocalPathAndName)
+func (o_ OBEXFileTransferServices) CopyRemoteFileToLocalPath(inRemoteFileName string, inLocalPathAndName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("copyRemoteFile:toLocalPath:"), objc.String(inRemoteFileName), objc.String(inLocalPathAndName))
 	return rv
 }
 
 // Create a folder on the remote target
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/createFolder(_:)
-func (o_ OBEXFileTransferServices) CreateFolder(inDirName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("createFolder:"), inDirName)
+func (o_ OBEXFileTransferServices) CreateFolder(inDirName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("createFolder:"), objc.String(inDirName))
 	return rv
 }
 
@@ -203,8 +204,8 @@ func (o_ OBEXFileTransferServices) Disconnect() OBEXError {
 // Get the remote default VCard, if it is supported
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/getDefaultVCard(_:)
-func (o_ OBEXFileTransferServices) GetDefaultVCard(inLocalPathAndName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("getDefaultVCard:"), inLocalPathAndName)
+func (o_ OBEXFileTransferServices) GetDefaultVCard(inLocalPathAndName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("getDefaultVCard:"), objc.String(inLocalPathAndName))
 	return rv
 }
 
@@ -227,8 +228,8 @@ func (o_ OBEXFileTransferServices) IsConnected() bool {
 // Remove a remote item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/removeItem(_:)
-func (o_ OBEXFileTransferServices) RemoveItem(inItemName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("removeItem:"), inItemName)
+func (o_ OBEXFileTransferServices) RemoveItem(inItemName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("removeItem:"), objc.String(inItemName))
 	return rv
 }
 
@@ -243,16 +244,16 @@ func (o_ OBEXFileTransferServices) RetrieveFolderListing() OBEXError {
 // Send data to a remote target
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/send(_:type:name:)
-func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.IData, inType appkit.string, inName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendData:type:name:"), inData, inType, inName)
+func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.IData, inType string, inName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendData:type:name:"), inData, objc.String(inType), objc.String(inName))
 	return rv
 }
 
 // Put a local file to the remote target
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/sendFile(_:)
-func (o_ OBEXFileTransferServices) SendFile(inLocalPathAndName appkit.string) OBEXError {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendFile:"), inLocalPathAndName)
+func (o_ OBEXFileTransferServices) SendFile(inLocalPathAndName string) OBEXError {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendFile:"), objc.String(inLocalPathAndName))
 	return rv
 }
 

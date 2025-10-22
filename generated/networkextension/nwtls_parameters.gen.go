@@ -31,6 +31,14 @@ type _NWTLSParametersClass struct {
 // An interface definition for the [NWTLSParameters] class.
 type INWTLSParameters interface {
 	objectivec.IObject
+	MaximumSSLProtocolVersion() int
+	SetMaximumSSLProtocolVersion(value int)
+	MinimumSSLProtocolVersion() int
+	SetMinimumSSLProtocolVersion(value int)
+	SslCipherSuites() foundation.Number
+	SetSslCipherSuites(value foundation.INumber)
+	TlsSessionID() foundation.Data
+	SetTlsSessionID(value foundation.IData)
 }
 
 // TLS properties for creating a connection.

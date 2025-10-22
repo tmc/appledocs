@@ -31,6 +31,16 @@ type _MTRGroupsClusterAddGroupParamsClass struct {
 // An interface definition for the [MTRGroupsClusterAddGroupParams] class.
 type IMTRGroupsClusterAddGroupParams interface {
 	objectivec.IObject
+	GroupID() foundation.Number
+	SetGroupID(value foundation.INumber)
+	GroupId() foundation.Number
+	SetGroupId(value foundation.INumber)
+	GroupName() string
+	SetGroupName(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -108,8 +118,8 @@ func (m_ MTRGroupsClusterAddGroupParams) SetGroupId(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupname
-func (m_ MTRGroupsClusterAddGroupParams) GroupName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("groupName"))
+func (m_ MTRGroupsClusterAddGroupParams) GroupName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -117,8 +127,8 @@ func (m_ MTRGroupsClusterAddGroupParams) GroupName() appkit.string {
 // SetGroupName sets the value of the groupName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupparams/groupname
-func (m_ MTRGroupsClusterAddGroupParams) SetGroupName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), value)
+func (m_ MTRGroupsClusterAddGroupParams) SetGroupName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
 }
 
 //

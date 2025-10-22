@@ -33,6 +33,30 @@ type _ScreenshotConfigurationClass struct {
 // An interface definition for the [ScreenshotConfiguration] class.
 type IScreenshotConfiguration interface {
 	objectivec.IObject
+	DestinationRect() coregraphics.CGRect
+	SetDestinationRect(value coregraphics.CGRect)
+	SourceRect() coregraphics.CGRect
+	SetSourceRect(value coregraphics.CGRect)
+	ContentType() unsafe.Pointer
+	SetContentType(value unsafe.Pointer)
+	DisplayIntent() unsafe.Pointer
+	SetDisplayIntent(value unsafe.Pointer)
+	DynamicRange() unsafe.Pointer
+	SetDynamicRange(value unsafe.Pointer)
+	FileURL() foundation.URL
+	SetFileURL(value foundation.IURL)
+	Height() int
+	SetHeight(value int)
+	IgnoreClipping() bool
+	SetIgnoreClipping(value bool)
+	IgnoreShadows() bool
+	SetIgnoreShadows(value bool)
+	IncludeChildWindows() bool
+	SetIncludeChildWindows(value bool)
+	ShowsCursor() bool
+	SetShowsCursor(value bool)
+	Width() int
+	SetWidth(value int)
 }
 
 //

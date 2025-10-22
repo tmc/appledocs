@@ -33,6 +33,8 @@ type IPHCachingImageManager interface {
 	StartCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions)
 	StopCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions)
 	StopCachingImagesForAllAssets()
+	AllowsCachingHighQualityImages() bool
+	SetAllowsCachingHighQualityImages(value bool)
 }
 
 // An object that facilitates retrieving or generating preview thumbnails, optimized for batch preloading large numbers of assets.

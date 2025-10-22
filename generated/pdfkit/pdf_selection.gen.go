@@ -44,6 +44,11 @@ type IPDFSelection interface {
 	NumberOfTextRangesOnPage(page IPDFPage) uint
 	RangeAtIndexOnPage(index uint, page IPDFPage) foundation.Range
 	SelectionsByLine() []PDFSelection
+	AttributedString() foundation.AttributedString
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	Pages() []PDFPage
+	String() string
 }
 
 // A object identifies a contiguous or noncontiguous selection of text in a PDF document.
@@ -220,8 +225,8 @@ func (p_ PDFSelection) Pages() []PDFPage {
 // Returns an object representing the text contained in the selection (may contain linefeed characters).
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/string
-func (p_ PDFSelection) String() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("string"))
+func (p_ PDFSelection) String() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("string"))
 	return rv
 }
 

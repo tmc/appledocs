@@ -30,6 +30,16 @@ type _IOCommandQueueDescriptorClass struct {
 // An interface definition for the [IOCommandQueueDescriptor] class.
 type IIOCommandQueueDescriptor interface {
 	objectivec.IObject
+	MaxCommandBufferCount() uint
+	SetMaxCommandBufferCount(value uint)
+	MaxCommandsInFlight() uint
+	SetMaxCommandsInFlight(value uint)
+	Priority() IOPriority
+	SetPriority(value IOPriority)
+	ScratchBufferAllocator() objc.ID
+	SetScratchBufferAllocator(value objc.ID)
+	Type() IOCommandQueueType
+	SetType(value IOCommandQueueType)
 }
 
 // A configuration template you use to create a new input/output command queue.

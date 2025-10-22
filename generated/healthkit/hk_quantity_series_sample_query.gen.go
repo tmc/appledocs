@@ -29,6 +29,10 @@ type _HKQuantitySeriesSampleQueryClass struct {
 // An interface definition for the [HKQuantitySeriesSampleQuery] class.
 type IHKQuantitySeriesSampleQuery interface {
 	IHKQuery
+	IncludeSample() bool
+	SetIncludeSample(value bool)
+	OrderByQuantitySampleStartDate() bool
+	SetOrderByQuantitySampleStartDate(value bool)
 }
 
 // A query that accesses the series data associated with a quantity sample.

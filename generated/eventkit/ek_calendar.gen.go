@@ -31,6 +31,25 @@ type _EKCalendarClass struct {
 // An interface definition for the [EKCalendar] class.
 type IEKCalendar interface {
 	IEKObject
+	AllowedEntityTypes() EKEntityMask
+	AllowsContentModifications() bool
+	CalendarIdentifier() string
+	CGColor() coregraphics.CGColorRef
+	SetCGColor(value coregraphics.CGColorRef)
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	Immutable() bool
+	Subscribed() bool
+	Source() EKSource
+	SetSource(value IEKSource)
+	SupportedEventAvailabilities() EKCalendarEventAvailabilityMask
+	Title() string
+	SetTitle(value string)
+	Type() EKCalendarType
+	IsImmutable() bool
+	SetIsImmutable(value bool)
+	IsSubscribed() bool
+	SetIsSubscribed(value bool)
 }
 
 // A class that represents a calendar in EventKit.
@@ -139,8 +158,8 @@ func (e_ EKCalendar) AllowsContentModifications() bool {
 // A unique identifier for the calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/calendarIdentifier
-func (e_ EKCalendar) CalendarIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKCalendar) CalendarIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
@@ -225,8 +244,8 @@ func (e_ EKCalendar) SupportedEventAvailabilities() EKCalendarEventAvailabilityM
 // The calendar’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-func (e_ EKCalendar) Title() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
+func (e_ EKCalendar) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -236,8 +255,8 @@ func (e_ EKCalendar) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-func (e_ EKCalendar) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
+func (e_ EKCalendar) SetTitle(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The calendar’s type.

@@ -30,6 +30,16 @@ type _FilterNodeClass struct {
 // An interface definition for the [FilterNode] class.
 type IFilterNode interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	PaddingPolicy() unsafe.Pointer
+	SetPaddingPolicy(value unsafe.Pointer)
+	ResultImage() MPSNNImageNode
+	SetResultImage(value IMPSNNImageNode)
+	ResultState() MPSNNStateNode
+	SetResultState(value IMPSNNStateNode)
+	ResultStates() MPSNNStateNode
+	SetResultStates(value IMPSNNStateNode)
 }
 
 // A placeholder node denoting a neural network filter stage.
@@ -80,8 +90,8 @@ func NewFilterNode() FilterNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (f_ FilterNode) Label() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("label"))
+func (f_ FilterNode) Label() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -89,8 +99,8 @@ func (f_ FilterNode) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (f_ FilterNode) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLabel:"), value)
+func (f_ FilterNode) SetLabel(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

@@ -30,6 +30,7 @@ type _INShareFocusStatusIntentResponseClass struct {
 // An interface definition for the [INShareFocusStatusIntentResponse] class.
 type IINShareFocusStatusIntentResponse interface {
 	IINIntentResponse
+	Code() INShareFocusStatusIntentResponseCode
 }
 
 // Your app’s response to an intent that shares the user’s focus status.

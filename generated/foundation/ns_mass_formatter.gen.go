@@ -29,6 +29,12 @@ type _MassFormatterClass struct {
 // An interface definition for the [MassFormatter] class.
 type IMassFormatter interface {
 	IFormatter
+	IsForPersonMassUse() bool
+	SetIsForPersonMassUse(value bool)
+	NumberFormatter() NSNumberFormatter
+	SetNumberFormatter(value INumberFormatter)
+	UnitStyle() unsafe.Pointer
+	SetUnitStyle(value unsafe.Pointer)
 }
 
 // A formatter that provides localized descriptions of mass and weight values.

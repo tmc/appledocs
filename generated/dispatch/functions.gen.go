@@ -29,10 +29,10 @@ var (
 	_dispatch_suspend func(unsafe.Pointer) unsafe.Pointer
 	_dispatch_main func() unsafe.Pointer
 	_dispatch_after_f func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_dispatch_allow_send_signals func(unsafe.Pointer) unsafe.Pointer
+	_dispatch_allow_send_signals func(int) int
 	_dispatch_async_f func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_dispatch_barrier_async_and_wait func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_dispatch_block_create_with_qos_class func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_dispatch_block_create_with_qos_class func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
 	_dispatch_block_perform func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_dispatch_data_create func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_dispatch_data_create_map func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -47,7 +47,7 @@ var (
 	_dispatch_queue_attr_make_with_autorelease_frequency func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_dispatch_set_context func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_dispatch_set_finalizer_f func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_dispatch_set_qos_class_floor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_dispatch_set_qos_class_floor func(unsafe.Pointer, unsafe.Pointer, int) unsafe.Pointer
 	_dispatch_source_create func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_dispatch_source_get_handle func(unsafe.Pointer) unsafe.Pointer
 	_dispatch_time func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -261,7 +261,7 @@ func dispatch_after_f(when unsafe.Pointer, queue unsafe.Pointer, context unsafe.
 // Added in macOS 14.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_allow_send_signals(_:)
-func dispatch_allow_send_signals(preserve_signum unsafe.Pointer) unsafe.Pointer {
+func dispatch_allow_send_signals(preserve_signum int) int {
 	return _dispatch_allow_send_signals(preserve_signum)
 	}
 
@@ -291,7 +291,7 @@ func dispatch_barrier_async_and_wait(queue unsafe.Pointer, block unsafe.Pointer)
 // Added in macOS 10.10.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_block_create_with_qos_class
-func dispatch_block_create_with_qos_class(flags unsafe.Pointer, qos_class unsafe.Pointer, relative_priority unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer {
+func dispatch_block_create_with_qos_class(flags unsafe.Pointer, qos_class unsafe.Pointer, relative_priority int, block unsafe.Pointer) unsafe.Pointer {
 	return _dispatch_block_create_with_qos_class(flags, qos_class, relative_priority, block)
 	}
 
@@ -437,7 +437,7 @@ func dispatch_set_finalizer_f(object unsafe.Pointer, finalizer unsafe.Pointer) {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_set_qos_class_floor
-func dispatch_set_qos_class_floor(object unsafe.Pointer, qos_class unsafe.Pointer, relative_priority unsafe.Pointer) {
+func dispatch_set_qos_class_floor(object unsafe.Pointer, qos_class unsafe.Pointer, relative_priority int) {
 	_dispatch_set_qos_class_floor(object, qos_class, relative_priority)
 	}
 

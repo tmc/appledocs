@@ -28,21 +28,21 @@ var (
 	_JSContextGroupCreate func() unsafe.Pointer
 	_JSContextGroupRelease func(unsafe.Pointer) unsafe.Pointer
 	_JSContextGroupRetain func(unsafe.Pointer) unsafe.Pointer
-	_JSEvaluateScript func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSEvaluateScript func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
 	_JSGarbageCollect func(unsafe.Pointer) unsafe.Pointer
 	_JSGlobalContextCopyName func(unsafe.Pointer) unsafe.Pointer
 	_JSGlobalContextCreate func(unsafe.Pointer) unsafe.Pointer
 	_JSGlobalContextCreateInGroup func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSGlobalContextIsInspectable func(unsafe.Pointer) unsafe.Pointer
+	_JSGlobalContextIsInspectable func(unsafe.Pointer) bool
 	_JSGlobalContextRelease func(unsafe.Pointer) unsafe.Pointer
 	_JSGlobalContextRetain func(unsafe.Pointer) unsafe.Pointer
-	_JSGlobalContextSetInspectable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSGlobalContextSetInspectable func(unsafe.Pointer, bool) unsafe.Pointer
 	_JSGlobalContextSetName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectCallAsConstructor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectCallAsFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectCopyPropertyNames func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectDeleteProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectDeletePropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSObjectDeleteProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSObjectDeletePropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_JSObjectGetArrayBufferByteLength func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectGetArrayBufferBytesPtr func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectGetPrivate func(unsafe.Pointer) unsafe.Pointer
@@ -55,10 +55,10 @@ var (
 	_JSObjectGetTypedArrayByteOffset func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectGetTypedArrayBytesPtr func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectGetTypedArrayLength func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectHasProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectHasPropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectIsConstructor func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectIsFunction func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSObjectHasProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSObjectHasPropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSObjectIsConstructor func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSObjectIsFunction func(unsafe.Pointer, unsafe.Pointer) bool
 	_JSObjectMake func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeArray func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeArrayBufferWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -66,14 +66,14 @@ var (
 	_JSObjectMakeDate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeDeferredPromise func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeError func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectMakeFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSObjectMakeFunction func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeFunctionWithCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeRegExp func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeTypedArray func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeTypedArrayWithArrayBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeTypedArrayWithArrayBufferAndOffset func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectMakeTypedArrayWithBytesNoCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSObjectSetPrivate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSObjectSetPrivate func(unsafe.Pointer, unsafe.Pointer) bool
 	_JSObjectSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectSetPropertyAtIndex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSObjectSetPropertyForKey func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -91,8 +91,8 @@ var (
 	_JSStringGetLength func(unsafe.Pointer) unsafe.Pointer
 	_JSStringGetMaximumUTF8CStringSize func(unsafe.Pointer) unsafe.Pointer
 	_JSStringGetUTF8CString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSStringIsEqual func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSStringIsEqualToUTF8CString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSStringIsEqual func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSStringIsEqualToUTF8CString func(unsafe.Pointer, unsafe.Pointer) bool
 	_JSStringRelease func(unsafe.Pointer) unsafe.Pointer
 	_JSStringRetain func(unsafe.Pointer) unsafe.Pointer
 	_JSValueCompare func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -102,18 +102,18 @@ var (
 	_JSValueCreateJSONString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueGetType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueGetTypedArrayType func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsBigInt func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsBoolean func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsInstanceOfConstructor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsNull func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsNumber func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsObject func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsObjectOfClass func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsStrictEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueMakeBoolean func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSValueIsBigInt func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsBoolean func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsDate func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsInstanceOfConstructor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsNull func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsNumber func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsObject func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsObjectOfClass func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsStrictEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueIsString func(unsafe.Pointer, unsafe.Pointer) bool
+	_JSValueMakeBoolean func(unsafe.Pointer, bool) unsafe.Pointer
 	_JSValueMakeFromJSONString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueMakeNull func(unsafe.Pointer) unsafe.Pointer
 	_JSValueMakeNumber func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -401,7 +401,7 @@ func JSContextGroupRetain(group unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSEvaluateScript(_:_:_:_:_:_:)
-func JSEvaluateScript(ctx unsafe.Pointer, script unsafe.Pointer, thisObject unsafe.Pointer, sourceURL unsafe.Pointer, startingLineNumber unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSEvaluateScript(ctx unsafe.Pointer, script unsafe.Pointer, thisObject unsafe.Pointer, sourceURL unsafe.Pointer, startingLineNumber int, exception unsafe.Pointer) unsafe.Pointer {
 	return _JSEvaluateScript(ctx, script, thisObject, sourceURL, startingLineNumber, exception)
 	}
 
@@ -451,7 +451,7 @@ func JSGlobalContextCreateInGroup(group unsafe.Pointer, globalObjectClass unsafe
 // Added in macOS 13.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSGlobalContextIsInspectable(_:)
-func JSGlobalContextIsInspectable(ctx unsafe.Pointer) unsafe.Pointer {
+func JSGlobalContextIsInspectable(ctx unsafe.Pointer) bool {
 	return _JSGlobalContextIsInspectable(ctx)
 	}
 
@@ -481,7 +481,7 @@ func JSGlobalContextRetain(ctx unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 13.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSGlobalContextSetInspectable(_:_:)
-func JSGlobalContextSetInspectable(ctx unsafe.Pointer, inspectable unsafe.Pointer) {
+func JSGlobalContextSetInspectable(ctx unsafe.Pointer, inspectable bool) {
 	_JSGlobalContextSetInspectable(ctx, inspectable)
 	}
 
@@ -531,7 +531,7 @@ func JSObjectCopyPropertyNames(ctx unsafe.Pointer, object unsafe.Pointer) unsafe
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectDeleteProperty(_:_:_:_:)
-func JSObjectDeleteProperty(ctx unsafe.Pointer, object unsafe.Pointer, propertyName unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSObjectDeleteProperty(ctx unsafe.Pointer, object unsafe.Pointer, propertyName unsafe.Pointer, exception unsafe.Pointer) bool {
 	return _JSObjectDeleteProperty(ctx, object, propertyName, exception)
 	}
 
@@ -541,7 +541,7 @@ func JSObjectDeleteProperty(ctx unsafe.Pointer, object unsafe.Pointer, propertyN
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectDeletePropertyForKey(_:_:_:_:)
-func JSObjectDeletePropertyForKey(ctx unsafe.Pointer, object unsafe.Pointer, propertyKey unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSObjectDeletePropertyForKey(ctx unsafe.Pointer, object unsafe.Pointer, propertyKey unsafe.Pointer, exception unsafe.Pointer) bool {
 	return _JSObjectDeletePropertyForKey(ctx, object, propertyKey, exception)
 	}
 
@@ -671,7 +671,7 @@ func JSObjectGetTypedArrayLength(ctx unsafe.Pointer, object unsafe.Pointer, exce
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectHasProperty(_:_:_:)
-func JSObjectHasProperty(ctx unsafe.Pointer, object unsafe.Pointer, propertyName unsafe.Pointer) unsafe.Pointer {
+func JSObjectHasProperty(ctx unsafe.Pointer, object unsafe.Pointer, propertyName unsafe.Pointer) bool {
 	return _JSObjectHasProperty(ctx, object, propertyName)
 	}
 
@@ -681,7 +681,7 @@ func JSObjectHasProperty(ctx unsafe.Pointer, object unsafe.Pointer, propertyName
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectHasPropertyForKey(_:_:_:_:)
-func JSObjectHasPropertyForKey(ctx unsafe.Pointer, object unsafe.Pointer, propertyKey unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSObjectHasPropertyForKey(ctx unsafe.Pointer, object unsafe.Pointer, propertyKey unsafe.Pointer, exception unsafe.Pointer) bool {
 	return _JSObjectHasPropertyForKey(ctx, object, propertyKey, exception)
 	}
 
@@ -691,7 +691,7 @@ func JSObjectHasPropertyForKey(ctx unsafe.Pointer, object unsafe.Pointer, proper
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectIsConstructor(_:_:)
-func JSObjectIsConstructor(ctx unsafe.Pointer, object unsafe.Pointer) unsafe.Pointer {
+func JSObjectIsConstructor(ctx unsafe.Pointer, object unsafe.Pointer) bool {
 	return _JSObjectIsConstructor(ctx, object)
 	}
 
@@ -701,7 +701,7 @@ func JSObjectIsConstructor(ctx unsafe.Pointer, object unsafe.Pointer) unsafe.Poi
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectIsFunction(_:_:)
-func JSObjectIsFunction(ctx unsafe.Pointer, object unsafe.Pointer) unsafe.Pointer {
+func JSObjectIsFunction(ctx unsafe.Pointer, object unsafe.Pointer) bool {
 	return _JSObjectIsFunction(ctx, object)
 	}
 
@@ -781,7 +781,7 @@ func JSObjectMakeError(ctx unsafe.Pointer, argumentCount unsafe.Pointer, argumen
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectMakeFunction(_:_:_:_:_:_:_:_:)
-func JSObjectMakeFunction(ctx unsafe.Pointer, name unsafe.Pointer, parameterCount unsafe.Pointer, parameterNames unsafe.Pointer, body unsafe.Pointer, sourceURL unsafe.Pointer, startingLineNumber unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSObjectMakeFunction(ctx unsafe.Pointer, name unsafe.Pointer, parameterCount unsafe.Pointer, parameterNames unsafe.Pointer, body unsafe.Pointer, sourceURL unsafe.Pointer, startingLineNumber int, exception unsafe.Pointer) unsafe.Pointer {
 	return _JSObjectMakeFunction(ctx, name, parameterCount, parameterNames, body, sourceURL, startingLineNumber, exception)
 	}
 
@@ -851,7 +851,7 @@ func JSObjectMakeTypedArrayWithBytesNoCopy(ctx unsafe.Pointer, arrayType unsafe.
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSObjectSetPrivate(_:_:)
-func JSObjectSetPrivate(object unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
+func JSObjectSetPrivate(object unsafe.Pointer, data unsafe.Pointer) bool {
 	return _JSObjectSetPrivate(object, data)
 	}
 
@@ -1031,7 +1031,7 @@ func JSStringGetUTF8CString(string_ unsafe.Pointer, buffer unsafe.Pointer, buffe
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSStringIsEqual(_:_:)
-func JSStringIsEqual(a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
+func JSStringIsEqual(a unsafe.Pointer, b unsafe.Pointer) bool {
 	return _JSStringIsEqual(a, b)
 	}
 
@@ -1041,7 +1041,7 @@ func JSStringIsEqual(a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSStringIsEqualToUTF8CString(_:_:)
-func JSStringIsEqualToUTF8CString(a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
+func JSStringIsEqualToUTF8CString(a unsafe.Pointer, b unsafe.Pointer) bool {
 	return _JSStringIsEqualToUTF8CString(a, b)
 	}
 
@@ -1141,7 +1141,7 @@ func JSValueGetTypedArrayType(ctx unsafe.Pointer, value unsafe.Pointer, exceptio
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsBigInt(_:_:)
-func JSValueIsBigInt(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsBigInt(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsBigInt(ctx, value)
 	}
 
@@ -1151,7 +1151,7 @@ func JSValueIsBigInt(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsBoolean(_:_:)
-func JSValueIsBoolean(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsBoolean(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsBoolean(ctx, value)
 	}
 
@@ -1161,7 +1161,7 @@ func JSValueIsBoolean(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.11.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsDate(_:_:)
-func JSValueIsDate(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsDate(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsDate(ctx, value)
 	}
 
@@ -1171,7 +1171,7 @@ func JSValueIsDate(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsEqual(_:_:_:_:)
-func JSValueIsEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueIsEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer, exception unsafe.Pointer) bool {
 	return _JSValueIsEqual(ctx, a, b, exception)
 	}
 
@@ -1181,7 +1181,7 @@ func JSValueIsEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer, exce
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsInstanceOfConstructor(_:_:_:_:)
-func JSValueIsInstanceOfConstructor(ctx unsafe.Pointer, value unsafe.Pointer, constructor unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueIsInstanceOfConstructor(ctx unsafe.Pointer, value unsafe.Pointer, constructor unsafe.Pointer, exception unsafe.Pointer) bool {
 	return _JSValueIsInstanceOfConstructor(ctx, value, constructor, exception)
 	}
 
@@ -1191,7 +1191,7 @@ func JSValueIsInstanceOfConstructor(ctx unsafe.Pointer, value unsafe.Pointer, co
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsNull(_:_:)
-func JSValueIsNull(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsNull(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsNull(ctx, value)
 	}
 
@@ -1201,7 +1201,7 @@ func JSValueIsNull(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsNumber(_:_:)
-func JSValueIsNumber(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsNumber(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsNumber(ctx, value)
 	}
 
@@ -1211,7 +1211,7 @@ func JSValueIsNumber(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsObject(_:_:)
-func JSValueIsObject(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsObject(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsObject(ctx, value)
 	}
 
@@ -1221,7 +1221,7 @@ func JSValueIsObject(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsObjectOfClass(_:_:_:)
-func JSValueIsObjectOfClass(ctx unsafe.Pointer, value unsafe.Pointer, jsClass unsafe.Pointer) unsafe.Pointer {
+func JSValueIsObjectOfClass(ctx unsafe.Pointer, value unsafe.Pointer, jsClass unsafe.Pointer) bool {
 	return _JSValueIsObjectOfClass(ctx, value, jsClass)
 	}
 
@@ -1231,7 +1231,7 @@ func JSValueIsObjectOfClass(ctx unsafe.Pointer, value unsafe.Pointer, jsClass un
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsStrictEqual(_:_:_:)
-func JSValueIsStrictEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
+func JSValueIsStrictEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer) bool {
 	return _JSValueIsStrictEqual(ctx, a, b)
 	}
 
@@ -1241,7 +1241,7 @@ func JSValueIsStrictEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsString(_:_:)
-func JSValueIsString(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func JSValueIsString(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 	return _JSValueIsString(ctx, value)
 	}
 
@@ -1251,7 +1251,7 @@ func JSValueIsString(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueMakeBoolean(_:_:)
-func JSValueMakeBoolean(ctx unsafe.Pointer, boolean unsafe.Pointer) unsafe.Pointer {
+func JSValueMakeBoolean(ctx unsafe.Pointer, boolean bool) unsafe.Pointer {
 	return _JSValueMakeBoolean(ctx, boolean)
 	}
 

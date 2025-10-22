@@ -29,6 +29,10 @@ type _INSetAudioSourceInCarIntentClass struct {
 // An interface definition for the [INSetAudioSourceInCarIntent] class.
 type IINSetAudioSourceInCarIntent interface {
 	IINIntent
+	AudioSource() unsafe.Pointer
+	SetAudioSource(value unsafe.Pointer)
+	RelativeAudioSourceReference() unsafe.Pointer
+	SetRelativeAudioSourceReference(value unsafe.Pointer)
 }
 
 // A request to change the source of audio playback in a CarPlay-enabled vehicle.

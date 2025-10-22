@@ -30,6 +30,8 @@ type _MediaSelectionClass struct {
 // An interface definition for the [MediaSelection] class.
 type IMediaSelection interface {
 	objectivec.IObject
+	Asset() AVAsset
+	SetAsset(value IAVAsset)
 }
 
 // An object that represents a complete rendition of media selection options on an asset.

@@ -30,6 +30,16 @@ type _HKStatisticsCollectionQueryClass struct {
 // An interface definition for the [HKStatisticsCollectionQuery] class.
 type IHKStatisticsCollectionQuery interface {
 	IHKQuery
+	AnchorDate() foundation.Date
+	SetAnchorDate(value foundation.IDate)
+	InitialResultsHandler() unsafe.Pointer
+	SetInitialResultsHandler(value unsafe.Pointer)
+	IntervalComponents() foundation.DateComponents
+	SetIntervalComponents(value foundation.IDateComponents)
+	Options() HKStatisticsOptions
+	SetOptions(value HKStatisticsOptions)
+	StatisticsUpdateHandler() unsafe.Pointer
+	SetStatisticsUpdateHandler(value unsafe.Pointer)
 }
 
 // A query that performs multiple statistics queries over a series of fixed-length time intervals.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZVirtioFileSystemDevice] class.
@@ -30,6 +29,11 @@ type _VZVirtioFileSystemDeviceClass struct {
 // An interface definition for the [VZVirtioFileSystemDevice] class.
 type IVZVirtioFileSystemDevice interface {
 	IVZDirectorySharingDevice
+	Share() VZDirectoryShare
+	SetShare(value IVZDirectoryShare)
+	Tag() string
+	DirectorySharingDevices() VZDirectorySharingDevice
+	SetDirectorySharingDevices(value IVZDirectorySharingDevice)
 }
 
 // An object the defines a VIRTIO file system device.
@@ -103,8 +107,8 @@ func (v_ VZVirtioFileSystemDevice) SetShare(value IVZDirectoryShare) {
 // A string that identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/tag
-func (v_ VZVirtioFileSystemDevice) Tag() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("tag"))
+func (v_ VZVirtioFileSystemDevice) Tag() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
 	return rv
 }
 

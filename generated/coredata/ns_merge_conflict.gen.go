@@ -30,6 +30,12 @@ type _MergeConflictClass struct {
 // An interface definition for the [MergeConflict] class.
 type IMergeConflict interface {
 	objectivec.IObject
+	CachedSnapshot() unsafe.Pointer
+	NewVersionNumber() uint
+	ObjectSnapshot() unsafe.Pointer
+	OldVersionNumber() uint
+	PersistedSnapshot() unsafe.Pointer
+	SourceObject() NSManagedObject
 }
 
 // An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.

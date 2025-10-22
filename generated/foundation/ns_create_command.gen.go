@@ -29,6 +29,8 @@ type _CreateCommandClass struct {
 // An interface definition for the [CreateCommand] class.
 type ICreateCommand interface {
 	IScriptCommand
+	CreateClassDescription() NSScriptClassDescription
+	ResolvedKeyDictionary() unsafe.Pointer
 }
 
 // A command that creates a scriptable object.

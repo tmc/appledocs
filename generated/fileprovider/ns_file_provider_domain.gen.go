@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,35 @@ type _FileProviderDomainClass struct {
 // An interface definition for the [FileProviderDomain] class.
 type IFileProviderDomain interface {
 	objectivec.IObject
+	BackingStoreIdentity() foundation.NSData
+	DisplayName() string
+	Identifier() FileProviderDomainIdentifier
+	Disconnected() bool
+	Hidden() bool
+	SetHidden(value bool)
+	Replicated() bool
+	PathRelativeToDocumentStorage() string
+	ReplicatedKnownFolders() FileProviderKnownFolders
+	SupportedKnownFolders() FileProviderKnownFolders
+	SetSupportedKnownFolders(value IFileProviderKnownFolders)
+	SupportsStringSearchRequest() bool
+	SetSupportsStringSearchRequest(value bool)
+	SupportsSyncingTrash() bool
+	SetSupportsSyncingTrash(value bool)
+	TestingModes() FileProviderDomainTestingModes
+	SetTestingModes(value IFileProviderDomainTestingModes)
+	UserEnabled() bool
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
+	VolumeUUID() foundation.UUID
+	IsDisconnected() bool
+	SetIsDisconnected(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsReplicated() bool
+	SetIsReplicated(value bool)
+	Domain() NSFileProviderDomain
+	SetDomain(value IFileProviderDomain)
 }
 
 // A File Provider extension’s domain.
@@ -87,9 +115,9 @@ func NewFileProviderDomain() FileProviderDomain {
 // Creates a new file provider domain with the specified URL and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
-func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName appkit.string, userInfo objectivec.IObject, volumeURL foundation.IURL) FileProviderDomain {
+func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objectivec.IObject, volumeURL foundation.IURL) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), displayName, userInfo, volumeURL)
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
 	rv.Autorelease()
 	return rv
 }
@@ -99,9 +127,9 @@ func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName appkit.st
 // Creates a new file provider domain with the specified identifier and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
-func NewFileProviderDomainWithIdentifierDisplayName(identifier IFileProviderDomainIdentifier, displayName appkit.string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayName(identifier IFileProviderDomainIdentifier, displayName string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, displayName)
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, objc.String(displayName))
 	rv.Autorelease()
 	return rv
 }
@@ -111,9 +139,9 @@ func NewFileProviderDomainWithIdentifierDisplayName(identifier IFileProviderDoma
 // Returns a newly instantiated domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:pathRelativeToDocumentStorage:)
-func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier IFileProviderDomainIdentifier, displayName appkit.string, pathRelativeToDocumentStorage appkit.string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier IFileProviderDomainIdentifier, displayName string, pathRelativeToDocumentStorage string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, displayName, pathRelativeToDocumentStorage)
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, objc.String(displayName), objc.String(pathRelativeToDocumentStorage))
 	rv.Autorelease()
 	return rv
 }
@@ -130,8 +158,8 @@ func (f_ FileProviderDomain) BackingStoreIdentity() foundation.NSData {
 // The name of the domain displayed in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/displayName
-func (f_ FileProviderDomain) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("displayName"))
+func (f_ FileProviderDomain) DisplayName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -179,8 +207,8 @@ func (f_ FileProviderDomain) Replicated() bool {
 // The path of the domain’s subdirectory relative to the file provider’s shared container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/pathRelativeToDocumentStorage
-func (f_ FileProviderDomain) PathRelativeToDocumentStorage() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
+func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
 	return rv
 }
 

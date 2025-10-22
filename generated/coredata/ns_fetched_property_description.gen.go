@@ -30,6 +30,18 @@ type _FetchedPropertyDescriptionClass struct {
 // An interface definition for the [FetchedPropertyDescription] class.
 type IFetchedPropertyDescription interface {
 	IPropertyDescription
+	FetchRequest() NSFetchRequest
+	SetFetchRequest(value IFetchRequest)
+	AffectedStores() NSPersistentStore
+	SetAffectedStores(value IPersistentStore)
+	FetchBatchSize() int
+	SetFetchBatchSize(value int)
+	FetchLimit() int
+	SetFetchLimit(value int)
+	FetchOffset() int
+	SetFetchOffset(value int)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
 }
 
 // A description object used to define which properties are fetched from Core Data.

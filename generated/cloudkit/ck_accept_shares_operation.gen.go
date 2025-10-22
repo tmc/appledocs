@@ -30,6 +30,23 @@ type _CKAcceptSharesOperationClass struct {
 // An interface definition for the [CKAcceptSharesOperation] class.
 type ICKAcceptSharesOperation interface {
 	ICKOperation
+	AcceptSharesCompletionBlock() unsafe.Pointer
+	SetAcceptSharesCompletionBlock(value unsafe.Pointer)
+	PerShareCompletionBlock() unsafe.Pointer
+	SetPerShareCompletionBlock(value unsafe.Pointer)
+	AcceptSharesResultBlock() unsafe.Pointer
+	SetAcceptSharesResultBlock(value unsafe.Pointer)
+	PerShareResultBlock() unsafe.Pointer
+	SetPerShareResultBlock(value unsafe.Pointer)
+	ShareMetadatas() CKShareMetadata
+	SetShareMetadatas(value ICKShareMetadata)
+	CKPartialErrorsByItemIDKey() string
+	ContainerIdentifier() string
+	SetContainerIdentifier(value string)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
+	UserInfo() string
+	SetUserInfo(value string)
 }
 
 // An operation that confirms a user’s participation in a share.

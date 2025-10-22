@@ -21,7 +21,7 @@ var (
 	_compression_encode_scratch_buffer_size func(unsafe.Pointer) unsafe.Pointer
 	_compression_stream_destroy func(unsafe.Pointer) unsafe.Pointer
 	_compression_stream_init func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_compression_stream_process func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_compression_stream_process func(unsafe.Pointer, int) unsafe.Pointer
 )
 
 func init() {
@@ -117,7 +117,7 @@ func compression_stream_init(stream unsafe.Pointer, operation unsafe.Pointer, al
 // Added in macOS 10.11.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_stream_process(_:_:)
-func compression_stream_process(stream unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func compression_stream_process(stream unsafe.Pointer, flags int) unsafe.Pointer {
 	return _compression_stream_process(stream, flags)
 	}
 

@@ -37,6 +37,27 @@ type ICaptureVideoDataOutput interface {
 	RecommendedVideoSettingsForVideoCodecTypeAssetWriterOutputFileTypeOutputFileURL(videoCodecType VideoCodecType, outputFileType FileType, outputFileURL foundation.IURL) unsafe.Pointer
 	RecommendedVideoSettingsForAssetWriterWithOutputFileType(outputFileType FileType) unsafe.Pointer
 	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
+	AlwaysDiscardsLateVideoFrames() bool
+	SetAlwaysDiscardsLateVideoFrames(value bool)
+	AutomaticallyConfiguresOutputBufferDimensions() bool
+	SetAutomaticallyConfiguresOutputBufferDimensions(value bool)
+	AvailableVideoCVPixelFormatTypes() []foundation.Number
+	AvailableVideoCodecTypes() []string
+	DeliversPreviewSizedOutputBuffers() bool
+	SetDeliversPreviewSizedOutputBuffers(value bool)
+	MinFrameDuration() unsafe.Pointer
+	SetMinFrameDuration(value unsafe.Pointer)
+	PreparesCellularRadioForNetworkConnection() bool
+	SetPreparesCellularRadioForNetworkConnection(value bool)
+	PreservesDynamicHDRMetadata() bool
+	SetPreservesDynamicHDRMetadata(value bool)
+	RecommendedMediaTimeScaleForAssetWriter() unsafe.Pointer
+	SampleBufferCallbackQueue() unsafe.Pointer
+	SampleBufferDelegate() objc.ID
+	VideoSettings() unsafe.Pointer
+	SetVideoSettings(value unsafe.Pointer)
+	AvailableVideoPixelFormatTypes() unsafe.Pointer
+	SetAvailableVideoPixelFormatTypes(value unsafe.Pointer)
 }
 
 // A capture output that records video and provides access to video frames for processing.

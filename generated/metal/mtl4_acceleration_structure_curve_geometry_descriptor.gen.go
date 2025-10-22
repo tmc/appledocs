@@ -29,6 +29,34 @@ type _MTL4AccelerationStructureCurveGeometryDescriptorClass struct {
 // An interface definition for the [MTL4AccelerationStructureCurveGeometryDescriptor] class.
 type IMTL4AccelerationStructureCurveGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
+	ControlPointBuffer() unsafe.Pointer
+	SetControlPointBuffer(value unsafe.Pointer)
+	ControlPointCount() int
+	SetControlPointCount(value int)
+	ControlPointFormat() unsafe.Pointer
+	SetControlPointFormat(value unsafe.Pointer)
+	ControlPointStride() int
+	SetControlPointStride(value int)
+	CurveBasis() CurveBasis
+	SetCurveBasis(value ICurveBasis)
+	CurveEndCaps() CurveEndCaps
+	SetCurveEndCaps(value ICurveEndCaps)
+	CurveType() CurveType
+	SetCurveType(value CurveType)
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	RadiusBuffer() unsafe.Pointer
+	SetRadiusBuffer(value unsafe.Pointer)
+	RadiusFormat() unsafe.Pointer
+	SetRadiusFormat(value unsafe.Pointer)
+	RadiusStride() int
+	SetRadiusStride(value int)
+	SegmentControlPointCount() int
+	SetSegmentControlPointCount(value int)
+	SegmentCount() int
+	SetSegmentCount(value int)
 }
 
 // Describes curve geometry suitable for ray tracing.

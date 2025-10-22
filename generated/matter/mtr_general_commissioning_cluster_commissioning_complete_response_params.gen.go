@@ -31,6 +31,12 @@ type _MTRGeneralCommissioningClusterCommissioningCompleteResponseParamsClass str
 // An interface definition for the [MTRGeneralCommissioningClusterCommissioningCompleteResponseParams] class.
 type IMTRGeneralCommissioningClusterCommissioningCompleteResponseParams interface {
 	objectivec.IObject
+	DebugText() string
+	SetDebugText(value string)
+	ErrorCode() foundation.Number
+	SetErrorCode(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRGeneralCommissioningClusterCommissioningCompleteResponseParams() MTRG
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) Debu
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 //

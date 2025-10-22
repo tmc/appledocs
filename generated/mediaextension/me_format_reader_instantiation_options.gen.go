@@ -30,6 +30,7 @@ type _MEFormatReaderInstantiationOptionsClass struct {
 // An interface definition for the [MEFormatReaderInstantiationOptions] class.
 type IMEFormatReaderInstantiationOptions interface {
 	objectivec.IObject
+	AllowIncrementalFragmentParsing() bool
 }
 
 // An object that contains options to pass to a format reader extension.

@@ -31,6 +31,7 @@ type _UserScriptTaskClass struct {
 type IUserScriptTask interface {
 	objectivec.IObject
 	ExecuteWithCompletionHandler(handler unsafe.Pointer)
+	ScriptURL() URL
 }
 
 // An object that executes scripts.

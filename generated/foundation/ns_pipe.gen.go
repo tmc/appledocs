@@ -30,6 +30,8 @@ type _PipeClass struct {
 // An interface definition for the [Pipe] class.
 type IPipe interface {
 	objectivec.IObject
+	FileHandleForReading() NSFileHandle
+	FileHandleForWriting() NSFileHandle
 }
 
 // A one-way communications channel between related processes.

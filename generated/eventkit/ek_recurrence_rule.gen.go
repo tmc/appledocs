@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,18 @@ type _EKRecurrenceRuleClass struct {
 // An interface definition for the [EKRecurrenceRule] class.
 type IEKRecurrenceRule interface {
 	IEKObject
+	CalendarIdentifier() string
+	DaysOfTheMonth() []foundation.Number
+	DaysOfTheWeek() []EKRecurrenceDayOfWeek
+	DaysOfTheYear() []foundation.Number
+	FirstDayOfTheWeek() int
+	Frequency() EKRecurrenceFrequency
+	Interval() int
+	MonthsOfTheYear() []foundation.Number
+	RecurrenceEnd() EKRecurrenceEnd
+	SetRecurrenceEnd(value IEKRecurrenceEnd)
+	SetPositions() []foundation.Number
+	WeeksOfTheYear() []foundation.Number
 }
 
 // A class that describes the pattern for a recurring event.
@@ -111,8 +122,8 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ IEKRecurrenceFr
 // The identifier for the recurrence rule’s calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/calendarIdentifier
-func (e_ EKRecurrenceRule) CalendarIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKRecurrenceRule) CalendarIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 

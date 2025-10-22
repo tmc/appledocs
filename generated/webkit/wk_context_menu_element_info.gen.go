@@ -31,6 +31,7 @@ type _ContextMenuElementInfoClass struct {
 // An interface definition for the [ContextMenuElementInfo] class.
 type IContextMenuElementInfo interface {
 	objectivec.IObject
+	LinkURL() foundation.URL
 }
 
 // An object that contains information about a link the user clicked in a webpage, and which you use to configure a context menu for that link.

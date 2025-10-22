@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTestEmitTestEventResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestEmitTestEventResponseParams] class.
 type IMTRTestClusterClusterTestEmitTestEventResponseParams interface {
 	IMTRUnitTestingClusterTestEmitTestEventResponseParams
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

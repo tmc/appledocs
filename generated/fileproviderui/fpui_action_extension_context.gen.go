@@ -32,6 +32,7 @@ type IFPUIActionExtensionContext interface {
 	IExtensionContext
 	CancelRequestWithError(error_ foundation.IError)
 	CompleteRequest()
+	DomainIdentifier() unsafe.Pointer
 }
 
 // An extension context provided to File Provider UI extensions.

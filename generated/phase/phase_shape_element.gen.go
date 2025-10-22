@@ -30,6 +30,10 @@ type _PHASEShapeElementClass struct {
 // An interface definition for the [PHASEShapeElement] class.
 type IPHASEShapeElement interface {
 	objectivec.IObject
+	Material() PHASEMaterial
+	SetMaterial(value IPHASEMaterial)
+	Elements() PHASEShapeElement
+	SetElements(value IPHASEShapeElement)
 }
 
 // An object that describes the characteristics of a physical surface.

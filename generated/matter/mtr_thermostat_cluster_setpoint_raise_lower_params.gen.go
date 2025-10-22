@@ -31,6 +31,14 @@ type _MTRThermostatClusterSetpointRaiseLowerParamsClass struct {
 // An interface definition for the [MTRThermostatClusterSetpointRaiseLowerParams] class.
 type IMTRThermostatClusterSetpointRaiseLowerParams interface {
 	objectivec.IObject
+	Amount() foundation.Number
+	SetAmount(value foundation.INumber)
+	Mode() foundation.Number
+	SetMode(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

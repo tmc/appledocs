@@ -43,6 +43,9 @@ type ICKDatabase interface {
 	SaveRecordZoneCompletionHandler(zone ICKRecordZone, completionHandler unsafe.Pointer)
 	SaveRecordCompletionHandler(record ICKRecord, completionHandler unsafe.Pointer)
 	SaveSubscriptionCompletionHandler(subscription ICKSubscription, completionHandler unsafe.Pointer)
+	DatabaseScope() CKDatabaseScope
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
 }
 
 // An object that represents a collection of record zones and subscriptions.

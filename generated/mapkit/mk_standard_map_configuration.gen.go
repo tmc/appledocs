@@ -29,6 +29,18 @@ type _MKStandardMapConfigurationClass struct {
 // An interface definition for the [MKStandardMapConfiguration] class.
 type IMKStandardMapConfiguration interface {
 	IMKMapConfiguration
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	PitchButtonVisibility() unsafe.Pointer
+	SetPitchButtonVisibility(value unsafe.Pointer)
+	PreferredConfiguration() MKMapConfiguration
+	SetPreferredConfiguration(value IMKMapConfiguration)
+	ShowsUserTrackingButton() bool
+	SetShowsUserTrackingButton(value bool)
+	EmphasisStyle() unsafe.Pointer
+	SetEmphasisStyle(value unsafe.Pointer)
+	ShowsTraffic() bool
+	SetShowsTraffic(value bool)
 }
 
 // The class that represents the default map presentation, which is a street map that shows the position of all roads and some road names.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,10 +36,19 @@ type ICTensor interface {
 	CopyDataFromDeviceMemoryToBytesLengthSynchronizeWithDevice(bytes unsafe.Pointer, length uint, synchronizeWithDevice bool) bool
 	TensorByDequantizingToTypeScaleBiasAxis(type_ CDataType, scale IMLCTensor, bias IMLCTensor, axis int) CTensor
 	TensorByDequantizingToTypeScaleBias(type_ CDataType, scale IMLCTensor, bias IMLCTensor) CTensor
-	TensorByQuantizingToTypeScaleBias(type_ CDataType, scale unsafe.Pointer, bias int) CTensor
+	TensorByQuantizingToTypeScaleBias(type_ CDataType, scale float32, bias int) CTensor
 	TensorByQuantizingToTypeScaleBiasAxis(type_ CDataType, scale IMLCTensor, bias IMLCTensor, axis int) CTensor
 	SynchronizeData() bool
 	SynchronizeOptimizerData() bool
+	Data() foundation.NSData
+	Descriptor() MLCTensorDescriptor
+	Device() MLCDevice
+	HasValidNumerics() bool
+	Label() string
+	SetLabel(value string)
+	OptimizerData() []CTensorData
+	OptimizerDeviceData() []CTensorOptimizerDeviceData
+	TensorID() uint
 }
 
 // The data object you use throughout the framework.
@@ -196,7 +204,7 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uin
 // Creates a tensor with the sizes and number of feature channels, and filled with the data and type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:fillWithData:dataType:)
-func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData unsafe.Pointer, dataType CDataType) CTensor {
+func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData float32, dataType CDataType) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:"), width, height, featureChannelCount, batchSize, fillData, dataType)
 	return rv
 }
@@ -295,7 +303,7 @@ func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeDataDat
 // Creates a tensor with the sizes and number of feature channels, and filled with the data and type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:fillWithData:dataType:)
-func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData unsafe.Pointer, dataType CDataType) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData float32, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:"), width, height, featureChannelCount, batchSize, fillData, dataType)
 	return rv
 }
@@ -415,7 +423,7 @@ func (c_ CTensor) TensorByDequantizingToTypeScaleBias(type_ CDataType, scale IML
 // Converts a 32-bit floating-point tensor with the scale and bias you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/quantized(to:scale:bias:)
-func (c_ CTensor) TensorByQuantizingToTypeScaleBias(type_ CDataType, scale unsafe.Pointer, bias int) CTensor {
+func (c_ CTensor) TensorByQuantizingToTypeScaleBias(type_ CDataType, scale float32, bias int) CTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("tensorByQuantizingToType:scale:bias:"), type_, scale, bias)
 	return rv
 }
@@ -479,8 +487,8 @@ func (c_ CTensor) HasValidNumerics() bool {
 // A string that identifes this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/label
-func (c_ CTensor) Label() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
+func (c_ CTensor) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -490,8 +498,8 @@ func (c_ CTensor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/label
-func (c_ CTensor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
+func (c_ CTensor) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // An array that contains optimizer buffers you specify when you create a tensor parameter.

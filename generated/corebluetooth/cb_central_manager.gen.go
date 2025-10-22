@@ -38,6 +38,9 @@ type ICBCentralManager interface {
 	RetrievePeripheralsWithIdentifiers(identifiers []foundation.IUUID) []CBPeripheral
 	ScanForPeripheralsWithServicesOptions(serviceUUIDs []CBUUID, options unsafe.Pointer)
 	StopScan()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	IsScanning() bool
 }
 
 // An object that scans for, discovers, connects to, and manages peripherals.

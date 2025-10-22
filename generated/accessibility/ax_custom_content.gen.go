@@ -31,6 +31,16 @@ type _AXCustomContentClass struct {
 // An interface definition for the [AXCustomContent] class.
 type IAXCustomContent interface {
 	objectivec.IObject
+	AttributedLabel() foundation.AttributedString
+	SetAttributedLabel(value foundation.IAttributedString)
+	AttributedValue() foundation.AttributedString
+	SetAttributedValue(value foundation.IAttributedString)
+	Importance() unsafe.Pointer
+	SetImportance(value unsafe.Pointer)
+	Label() string
+	SetLabel(value string)
+	Value() string
+	SetValue(value string)
 }
 
 // Objects that define custom content and the timing of its output.
@@ -138,8 +148,8 @@ func (a_ AXCustomContent) SetImportance(value unsafe.Pointer) {
 // A localized string that identifies the label for this content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-func (a_ AXCustomContent) Label() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("label"))
+func (a_ AXCustomContent) Label() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -149,15 +159,15 @@ func (a_ AXCustomContent) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-func (a_ AXCustomContent) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
+func (a_ AXCustomContent) SetLabel(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // A localized string that provides a value for the label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-func (a_ AXCustomContent) Value() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("value"))
+func (a_ AXCustomContent) Value() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -167,8 +177,8 @@ func (a_ AXCustomContent) Value() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-func (a_ AXCustomContent) SetValue(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), value)
+func (a_ AXCustomContent) SetValue(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

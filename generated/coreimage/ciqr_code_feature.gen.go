@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -31,6 +30,14 @@ type _QRCodeFeatureClass struct {
 // An interface definition for the [QRCodeFeature] class.
 type IQRCodeFeature interface {
 	IFeature
+	BottomLeft() coregraphics.CGPoint
+	BottomRight() coregraphics.CGPoint
+	Bounds() coregraphics.CGRect
+	MessageString() string
+	SymbolDescriptor() CIQRCodeDescriptor
+	TopLeft() coregraphics.CGPoint
+	TopRight() coregraphics.CGPoint
+	CIDetectorTypeQRCode() string
 }
 
 // Information about a Quick Response code detected in a still or video image.
@@ -110,8 +117,8 @@ func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
 // The string decoded from the detected barcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/messageString
-func (q_ QRCodeFeature) MessageString() appkit.string {
-	rv := objc.Send[appkit.string](q_.ID, objc.Sel("messageString"))
+func (q_ QRCodeFeature) MessageString() string {
+	rv := objc.Send[string](q_.ID, objc.Sel("messageString"))
 	return rv
 }
 
@@ -142,8 +149,8 @@ func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
 // A detector that searches for Quick Response codes (a type of 2D barcode) in a still image or video, returning
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
-func (q_ QRCodeFeature) CIDetectorTypeQRCode() appkit.string {
-	rv := objc.Send[appkit.string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
+func (q_ QRCodeFeature) CIDetectorTypeQRCode() string {
+	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
 	return rv
 }
 

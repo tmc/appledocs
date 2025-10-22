@@ -30,6 +30,14 @@ type _AssetDownloadTaskClass struct {
 // An interface definition for the [AssetDownloadTask] class.
 type IAssetDownloadTask interface {
 	foundation.IURLSessionTask
+	DestinationURL() foundation.URL
+	SetDestinationURL(value foundation.IURL)
+	LoadedTimeRanges() foundation.Value
+	SetLoadedTimeRanges(value foundation.IValue)
+	Options() string
+	SetOptions(value string)
+	UrlAsset() AVURLAsset
+	SetUrlAsset(value IAVURLAsset)
 }
 
 // A session used to download HTTP Live Streaming assets.

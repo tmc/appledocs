@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,25 @@ type _NEAppPushManagerClass struct {
 // An interface definition for the [NEAppPushManager] class.
 type INEAppPushManager interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MatchSSIDs() []string
+	SetMatchSSIDs(value []string)
+	ProviderBundleIdentifier() string
+	SetProviderBundleIdentifier(value string)
+	ProviderConfiguration() unsafe.Pointer
+	SetProviderConfiguration(value unsafe.Pointer)
+	NEAppPushErrorDomain() string
+	IsActive() bool
+	SetIsActive(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	LocalizedDescription() string
+	SetLocalizedDescription(value string)
+	MatchEthernet() bool
+	SetMatchEthernet(value bool)
+	MatchPrivateLTENetworks() NEPrivateLTENetwork
+	SetMatchPrivateLTENetworks(value INEPrivateLTENetwork)
 }
 
 // An object that configures a push provider and manages its life cycle.
@@ -130,8 +148,8 @@ func (n_ NEAppPushManager) SetMatchSSIDs(value []string) {
 // A string that contains the bundle identifier of the push provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) ProviderBundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEAppPushManager) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
@@ -141,8 +159,8 @@ func (n_ NEAppPushManager) ProviderBundleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) SetProviderBundleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
+func (n_ NEAppPushManager) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
 }
 
 // A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
@@ -166,8 +184,8 @@ func (n_ NEAppPushManager) SetProviderConfiguration(value unsafe.Pointer) {
 // The error domain string for local push errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppusherrordomain
-func (n_ NEAppPushManager) NEAppPushErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEAppPushErrorDomain"))
+func (n_ NEAppPushManager) NEAppPushErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEAppPushErrorDomain"))
 	return rv
 }
 
@@ -210,8 +228,8 @@ func (n_ NEAppPushManager) SetIsEnabled(value bool) {
 // A string that contains the localized description of the app push manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/localizeddescription
-func (n_ NEAppPushManager) LocalizedDescription() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEAppPushManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -221,8 +239,8 @@ func (n_ NEAppPushManager) LocalizedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/localizeddescription
-func (n_ NEAppPushManager) SetLocalizedDescription(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NEAppPushManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
 // A property that indicates Ethernet support for Local Push Connectivity.

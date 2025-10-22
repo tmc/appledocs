@@ -29,6 +29,10 @@ type _GramMatrixCalculationNodeClass struct {
 // An interface definition for the [GramMatrixCalculationNode] class.
 type IGramMatrixCalculationNode interface {
 	IFilterNode
+	PropertyCallBack() objc.ID
+	SetPropertyCallBack(value objc.ID)
+	Alpha() float32
+	SetAlpha(value float32)
 }
 
 //
@@ -88,7 +92,7 @@ func NewGramMatrixCalculationNodeWithSource(sourceNode IMPSNNImageNode) GramMatr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/nodeWithSource:alpha:
-func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode IMPSNNImageNode, alpha unsafe.Pointer) unsafe.Pointer {
+func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode IMPSNNImageNode, alpha float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithSource:alpha:"), sourceNode, alpha)
 	return rv
 }
@@ -110,8 +114,8 @@ func (g_ GramMatrixCalculationNode) SetPropertyCallBack(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
-func (g_ GramMatrixCalculationNode) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alpha"))
+func (g_ GramMatrixCalculationNode) Alpha() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
 	return rv
 }
 
@@ -119,7 +123,7 @@ func (g_ GramMatrixCalculationNode) Alpha() unsafe.Pointer {
 // SetAlpha sets the value of the alpha property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
-func (g_ GramMatrixCalculationNode) SetAlpha(value unsafe.Pointer) {
+func (g_ GramMatrixCalculationNode) SetAlpha(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
 }
 

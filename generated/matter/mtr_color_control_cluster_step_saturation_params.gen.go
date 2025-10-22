@@ -31,6 +31,20 @@ type _MTRColorControlClusterStepSaturationParamsClass struct {
 // An interface definition for the [MTRColorControlClusterStepSaturationParams] class.
 type IMTRColorControlClusterStepSaturationParams interface {
 	objectivec.IObject
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StepMode() foundation.Number
+	SetStepMode(value foundation.INumber)
+	StepSize() foundation.Number
+	SetStepSize(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

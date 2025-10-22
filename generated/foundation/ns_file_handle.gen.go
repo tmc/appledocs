@@ -47,6 +47,18 @@ type IFileHandle interface {
 	ReadDataToEndOfFileAndReturnError(error_ IError) Data
 	ReadDataUpToLengthError(length uint, error_ IError) Data
 	SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool
+	OffsetInFile() uint64
+	ReadabilityHandler() unsafe.Pointer
+	SetReadabilityHandler(value unsafe.Pointer)
+	WriteabilityHandler() unsafe.Pointer
+	SetWriteabilityHandler(value unsafe.Pointer)
+	AvailableData() Data
+	SetAvailableData(value IData)
+	Bytes() unsafe.Pointer
+	SetBytes(value unsafe.Pointer)
+	FileDescriptor() unsafe.Pointer
+	SetFileDescriptor(value unsafe.Pointer)
+	NSFileHandleNotificationMonitorModes() string
 }
 
 // An object-oriented wrapper for a file descriptor.

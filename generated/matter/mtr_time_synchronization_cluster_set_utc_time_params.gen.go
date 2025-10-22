@@ -30,6 +30,16 @@ type _MTRTimeSynchronizationClusterSetUtcTimeParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetUtcTimeParams] class.
 type IMTRTimeSynchronizationClusterSetUtcTimeParams interface {
 	IMTRTimeSynchronizationClusterSetUTCTimeParams
+	Granularity() foundation.Number
+	SetGranularity(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimeSource() foundation.Number
+	SetTimeSource(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UtcTime() foundation.Number
+	SetUtcTime(value foundation.INumber)
 }
 
 //

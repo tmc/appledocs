@@ -30,6 +30,14 @@ type _MKLookAroundSceneRequestClass struct {
 // An interface definition for the [MKLookAroundSceneRequest] class.
 type IMKLookAroundSceneRequest interface {
 	objectivec.IObject
+	Coordinate() unsafe.Pointer
+	SetCoordinate(value unsafe.Pointer)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
+	MapItem() MKMapItem
+	SetMapItem(value IMKMapItem)
 }
 
 // A class you use to request a LookAround scene at the location you specify.

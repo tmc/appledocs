@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,11 @@ type _GLKMeshClass struct {
 // An interface definition for the [GLKMesh] class.
 type IGLKMesh interface {
 	objectivec.IObject
+	Name() string
+	Submeshes() []GLKSubmesh
+	VertexBuffers() []GLKMeshBuffer
+	VertexCount() uint
+	VertexDescriptor() unsafe.Pointer
 }
 
 //
@@ -95,8 +99,8 @@ func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/name
-func (g_ GLKMesh) Name() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("name"))
+func (g_ GLKMesh) Name() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

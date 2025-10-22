@@ -31,6 +31,20 @@ type _MTRColorControlClusterEnhancedMoveToHueAndSaturationParamsClass struct {
 // An interface definition for the [MTRColorControlClusterEnhancedMoveToHueAndSaturationParams] class.
 type IMTRColorControlClusterEnhancedMoveToHueAndSaturationParams interface {
 	objectivec.IObject
+	EnhancedHue() foundation.Number
+	SetEnhancedHue(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	Saturation() foundation.Number
+	SetSaturation(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,12 @@ type _ResourceStatePassSampleBufferAttachmentDescriptorClass struct {
 // An interface definition for the [ResourceStatePassSampleBufferAttachmentDescriptor] class.
 type IResourceStatePassSampleBufferAttachmentDescriptor interface {
 	objectivec.IObject
+	EndOfEncoderSampleIndex() int
+	SetEndOfEncoderSampleIndex(value int)
+	SampleBuffer() unsafe.Pointer
+	SetSampleBuffer(value unsafe.Pointer)
+	StartOfEncoderSampleIndex() int
+	SetStartOfEncoderSampleIndex(value int)
 }
 
 // A description of where to store GPU counter information at the start and end of a resource state pass.

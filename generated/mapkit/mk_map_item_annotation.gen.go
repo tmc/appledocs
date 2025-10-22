@@ -30,6 +30,7 @@ type _MKMapItemAnnotationClass struct {
 // An interface definition for the [MKMapItemAnnotation] class.
 type IMKMapItemAnnotation interface {
 	objectivec.IObject
+	MapItem() MKMapItem
 }
 
 // An annotation that represents a map item

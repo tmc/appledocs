@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +30,40 @@ type _LocaleClass struct {
 // An interface definition for the [Locale] class.
 type ILocale interface {
 	objectivec.IObject
-	DisplayNameForKeyValue(key corefoundation.ILocaleKey, value objectivec.IObject) String
+	DisplayNameForKeyValue(key unsafe.Pointer, value objectivec.IObject) String
 	LocalizedStringForCollatorIdentifier(collatorIdentifier string) String
 	LocalizedStringForCountryCode(countryCode string) String
 	LocalizedStringForLanguageCode(languageCode string) String
 	LocalizedStringForLocaleIdentifier(localeIdentifier string) String
-	ObjectForKey(key corefoundation.ILocaleKey) objc.ID
+	ObjectForKey(key unsafe.Pointer) objc.ID
+	AlternateQuotationEndDelimiter() string
+	CalendarIdentifier() string
+	CollationIdentifier() string
+	CollatorIdentifier() string
+	CurrencyCode() string
+	DecimalSeparator() string
+	GroupingSeparator() string
+	LanguageCode() string
+	LanguageIdentifier() string
+	QuotationBeginDelimiter() string
+	QuotationEndDelimiter() string
+	RegionCode() string
+	ScriptCode() string
+	UsesMetricSystem() bool
+	Locale() Locale
+	SetLocale(value ILocale)
+	AlternateQuotationBeginDelimiter() string
+	SetAlternateQuotationBeginDelimiter(value string)
+	CountryCode() string
+	SetCountryCode(value string)
+	CurrencySymbol() string
+	SetCurrencySymbol(value string)
+	ExemplarCharacterSet() CharacterSet
+	SetExemplarCharacterSet(value ICharacterSet)
+	LocaleIdentifier() string
+	SetLocaleIdentifier(value string)
+	VariantCode() string
+	SetVariantCode(value string)
 }
 
 // Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.
@@ -123,8 +150,8 @@ func (lc _LocaleClass) CanonicalLocaleIdentifierFromString(string_ string) Strin
 // Returns the direction of the sequence of characters in a line for the specified ISO language code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/characterDirection(forLanguage:)
-func (lc _LocaleClass) CharacterDirectionForLanguage(isoLangCode string) corefoundation.LocaleLanguageDirection {
-	rv := objc.Send[corefoundation.LocaleLanguageDirection](objc.ID(lc.class), objc.Sel("characterDirectionForLanguage:"), objc.String(isoLangCode))
+func (lc _LocaleClass) CharacterDirectionForLanguage(isoLangCode string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("characterDirectionForLanguage:"), objc.String(isoLangCode))
 	return rv
 }
 
@@ -182,7 +209,7 @@ func (lc _LocaleClass) SystemLocale() Locale {
 // Returns the display name for the given locale component value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/displayName(forKey:value:)
-func (l_ Locale) DisplayNameForKeyValue(key corefoundation.ILocaleKey, value objectivec.IObject) String {
+func (l_ Locale) DisplayNameForKeyValue(key unsafe.Pointer, value objectivec.IObject) String {
 	rv := objc.Send[String](l_.ID, objc.Sel("displayNameForKey:value:"), key, value)
 	return rv
 }
@@ -222,7 +249,7 @@ func (l_ Locale) LocalizedStringForLocaleIdentifier(localeIdentifier string) Str
 // Returns the value of the component corresponding to the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/object(forKey:)
-func (l_ Locale) ObjectForKey(key corefoundation.ILocaleKey) objc.ID {
+func (l_ Locale) ObjectForKey(key unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("objectForKey:"), key)
 	return rv
 }

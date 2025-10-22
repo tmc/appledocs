@@ -31,6 +31,16 @@ type _SampleBufferVideoRendererClass struct {
 type ISampleBufferVideoRenderer interface {
 	objectivec.IObject
 	CopyDisplayedPixelBuffer() unsafe.Pointer
+	Error() Error
+	SetError(value IError)
+	PresentationTimeExpectation() unsafe.Pointer
+	SetPresentationTimeExpectation(value unsafe.Pointer)
+	RecommendedPixelBufferAttributes() unsafe.Pointer
+	SetRecommendedPixelBufferAttributes(value unsafe.Pointer)
+	RequiresFlushToResumeDecoding() bool
+	SetRequiresFlushToResumeDecoding(value bool)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
 }
 
 // An object that enqueues video sample buffers for rendering.

@@ -30,6 +30,12 @@ type _TrackingRequestClass struct {
 type ITrackingRequest interface {
 	IImageBasedRequest
 	SupportedNumberOfTrackersAndReturnError(error_ unsafe.Pointer) uint
+	InputObservation() VNDetectedObjectObservation
+	SetInputObservation(value IVNDetectedObjectObservation)
+	IsLastFrame() bool
+	SetIsLastFrame(value bool)
+	TrackingLevel() unsafe.Pointer
+	SetTrackingLevel(value unsafe.Pointer)
 }
 
 // The abstract superclass for image-analysis requests that track unique features across multiple images or video frames.

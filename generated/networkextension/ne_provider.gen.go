@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,9 +32,10 @@ type INEProvider interface {
 	objectivec.IObject
 	CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection
 	CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession
-	DisplayMessageCompletionHandler(message appkit.string, completionHandler unsafe.Pointer)
+	DisplayMessageCompletionHandler(message string, completionHandler unsafe.Pointer)
 	SleepWithCompletionHandler(completionHandler unsafe.Pointer)
 	Wake()
+	DefaultPath() NWPath
 }
 
 // An abstract base class for all NetworkExtension providers.
@@ -112,8 +112,8 @@ func (n_ NEProvider) CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint INWEn
 // Call this method from your subclass if you want to display a message to the person using the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)
-func (n_ NEProvider) DisplayMessageCompletionHandler(message appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("displayMessage:completionHandler:"), message, completionHandler)
+func (n_ NEProvider) DisplayMessageCompletionHandler(message string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("displayMessage:completionHandler:"), objc.String(message), completionHandler)
 }
 
 // Handle a sleep event.

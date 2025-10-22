@@ -35,6 +35,10 @@ type IPHProjectChangeRequest interface {
 	RemoveAssets(assets objectivec.IObject)
 	SetKeyAsset(keyAsset IPHAsset)
 	SetProjectPreviewImage(previewImage appkit.IImage)
+	ProjectExtensionData() foundation.NSData
+	SetProjectExtensionData(value foundation.IData)
+	Title() string
+	SetTitle(value string)
 }
 
 // A request to change asset data in a Photos project extension.
@@ -142,8 +146,8 @@ func (p_ PHProjectChangeRequest) SetProjectExtensionData(value foundation.IData)
 // The title of the change request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
-func (p_ PHProjectChangeRequest) Title() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
+func (p_ PHProjectChangeRequest) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -153,8 +157,8 @@ func (p_ PHProjectChangeRequest) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
-func (p_ PHProjectChangeRequest) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+func (p_ PHProjectChangeRequest) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

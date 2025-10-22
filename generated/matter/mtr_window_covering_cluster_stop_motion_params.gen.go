@@ -31,6 +31,10 @@ type _MTRWindowCoveringClusterStopMotionParamsClass struct {
 // An interface definition for the [MTRWindowCoveringClusterStopMotionParams] class.
 type IMTRWindowCoveringClusterStopMotionParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

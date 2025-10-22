@@ -36,6 +36,8 @@ type IURLSessionStreamTask interface {
 	StartSecureConnection()
 	StopSecureConnection()
 	WriteDataTimeoutCompletionHandler(data IData, timeout ITimeInterval, completionHandler unsafe.Pointer)
+	HttpShouldUsePipelining() bool
+	SetHttpShouldUsePipelining(value bool)
 }
 
 // A URL session task that is stream-based.

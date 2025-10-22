@@ -31,6 +31,26 @@ type _AudioFormatClass struct {
 // An interface definition for the [AudioFormat] class.
 type IAudioFormat interface {
 	objectivec.IObject
+	FormatDescription() unsafe.Pointer
+	ChannelCount() AudioChannelCount
+	SetChannelCount(value IAudioChannelCount)
+	ChannelLayout() AVAudioChannelLayout
+	SetChannelLayout(value IAVAudioChannelLayout)
+	CommonFormat() AudioCommonFormat
+	SetCommonFormat(value AudioCommonFormat)
+	IsInterleaved() bool
+	SetIsInterleaved(value bool)
+	IsStandard() bool
+	SetIsStandard(value bool)
+	MagicCookie() foundation.Data
+	SetMagicCookie(value foundation.IData)
+	SampleRate() float64
+	SetSampleRate(value float64)
+	Settings() string
+	SetSettings(value string)
+	StreamDescription() unsafe.Pointer
+	SetStreamDescription(value unsafe.Pointer)
+	AVChannelLayoutKey() string
 }
 
 // An object that describes the representation of an audio format.
@@ -200,8 +220,8 @@ func (a_ AudioFormat) SetMagicCookie(value foundation.IData) {
 // The audio format sampling rate, in hertz.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/samplerate
-func (a_ AudioFormat) SampleRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sampleRate"))
+func (a_ AudioFormat) SampleRate() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("sampleRate"))
 	return rv
 }
 
@@ -211,15 +231,15 @@ func (a_ AudioFormat) SampleRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/samplerate
-func (a_ AudioFormat) SetSampleRate(value unsafe.Pointer) {
+func (a_ AudioFormat) SetSampleRate(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRate:"), value)
 }
 
 // A dictionary that represents the format as a dictionary using audio setting keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/settings
-func (a_ AudioFormat) Settings() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("settings"))
+func (a_ AudioFormat) Settings() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("settings"))
 	return rv
 }
 
@@ -229,8 +249,8 @@ func (a_ AudioFormat) Settings() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/settings
-func (a_ AudioFormat) SetSettings(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSettings:"), value)
+func (a_ AudioFormat) SetSettings(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSettings:"), objc.String(value))
 }
 
 // The audio format properties of a stream of audio data.
@@ -253,8 +273,8 @@ func (a_ AudioFormat) SetStreamDescription(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
-func (a_ AudioFormat) AVChannelLayoutKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVChannelLayoutKey"))
+func (a_ AudioFormat) AVChannelLayoutKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
 	return rv
 }
 

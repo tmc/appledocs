@@ -33,6 +33,19 @@ type ITimeZone interface {
 	IsDaylightSavingTimeForDate(aDate IDate) bool
 	IsEqualToTimeZone(aTimeZone ITimeZone) bool
 	NextDaylightSavingTimeTransitionAfterDate(aDate IDate) Date
+	Data() NSData
+	Description() string
+	Name() string
+	Abbreviation() string
+	SetAbbreviation(value string)
+	DaylightSavingTimeOffset() TimeInterval
+	SetDaylightSavingTimeOffset(value ITimeInterval)
+	IsDaylightSavingTime() bool
+	SetIsDaylightSavingTime(value bool)
+	NextDaylightSavingTimeTransition() Date
+	SetNextDaylightSavingTimeTransition(value IDate)
+	SecondsFromGMT() int
+	SetSecondsFromGMT(value int)
 }
 
 // Information about standard time conventions associated with a specific geopolitical region.

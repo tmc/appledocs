@@ -30,6 +30,9 @@ type _BeaconIdentityConditionClass struct {
 // An interface definition for the [BeaconIdentityCondition] class.
 type IBeaconIdentityCondition interface {
 	ICondition
+	UUID() foundation.UUID
+	Major() foundation.Number
+	Minor() foundation.Number
 }
 
 // A condition that describes the identity characteristics of a beacon.

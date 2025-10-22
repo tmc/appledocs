@@ -29,6 +29,20 @@ type _CKModifySubscriptionsOperationClass struct {
 // An interface definition for the [CKModifySubscriptionsOperation] class.
 type ICKModifySubscriptionsOperation interface {
 	ICKDatabaseOperation
+	PerSubscriptionSaveBlock() unsafe.Pointer
+	SetPerSubscriptionSaveBlock(value unsafe.Pointer)
+	ModifySubscriptionsCompletionBlock() unsafe.Pointer
+	SetModifySubscriptionsCompletionBlock(value unsafe.Pointer)
+	ModifySubscriptionsResultBlock() unsafe.Pointer
+	SetModifySubscriptionsResultBlock(value unsafe.Pointer)
+	PerSubscriptionDeleteBlock() unsafe.Pointer
+	SetPerSubscriptionDeleteBlock(value unsafe.Pointer)
+	SubscriptionIDsToDelete() unsafe.Pointer
+	SetSubscriptionIDsToDelete(value unsafe.Pointer)
+	SubscriptionsToSave() CKSubscription
+	SetSubscriptionsToSave(value ICKSubscription)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
 }
 
 // An operation for modifying one or more subscriptions.

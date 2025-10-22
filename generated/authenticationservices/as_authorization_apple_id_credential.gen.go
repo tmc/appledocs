@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,19 @@ type _AuthorizationAppleIDCredentialClass struct {
 // An interface definition for the [AuthorizationAppleIDCredential] class.
 type IAuthorizationAppleIDCredential interface {
 	objectivec.IObject
+	Email() string
+	FullName() foundation.PersonNameComponents
+	RealUserStatus() UserDetectionStatus
+	State() string
+	User() string
+	AuthorizationCode() foundation.Data
+	SetAuthorizationCode(value foundation.IData)
+	AuthorizedScopes() unsafe.Pointer
+	SetAuthorizedScopes(value unsafe.Pointer)
+	IdentityToken() foundation.Data
+	SetIdentityToken(value foundation.IData)
+	UserAgeRange() UserAgeRange
+	SetUserAgeRange(value IUserAgeRange)
 }
 
 // A credential that results from a successful Apple ID authentication.
@@ -83,8 +95,8 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 // The user’s email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/email
-func (a_ AuthorizationAppleIDCredential) Email() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("email"))
+func (a_ AuthorizationAppleIDCredential) Email() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("email"))
 	return rv
 }
 
@@ -107,16 +119,16 @@ func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus {
 // An arbitrary string that your app provides to the request that generates the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/state
-func (a_ AuthorizationAppleIDCredential) State() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationAppleIDCredential) State() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
 // An identifier for the authenticated user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user
-func (a_ AuthorizationAppleIDCredential) User() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDCredential) User() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
 }
 

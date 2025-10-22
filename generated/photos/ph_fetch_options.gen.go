@@ -31,6 +31,50 @@ type _PHFetchOptionsClass struct {
 // An interface definition for the [PHFetchOptions] class.
 type IPHFetchOptions interface {
 	objectivec.IObject
+	FetchLimit() uint
+	SetFetchLimit(value uint)
+	IncludeAllBurstAssets() bool
+	SetIncludeAllBurstAssets(value bool)
+	IncludeAssetSourceTypes() PHAssetSourceType
+	SetIncludeAssetSourceTypes(value PHAssetSourceType)
+	IncludeHiddenAssets() bool
+	SetIncludeHiddenAssets(value bool)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	SortDescriptors() []foundation.SortDescriptor
+	SetSortDescriptors(value []foundation.ISortDescriptor)
+	WantsIncrementalChangeDetails() bool
+	SetWantsIncrementalChangeDetails(value bool)
+	BurstIdentifier() string
+	SetBurstIdentifier(value string)
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	IsFavorite() bool
+	SetIsFavorite(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	MediaSubtypes() PHAssetMediaSubtype
+	SetMediaSubtypes(value IPHAssetMediaSubtype)
+	MediaType() PHAssetMediaType
+	SetMediaType(value PHAssetMediaType)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.IDate)
+	PixelHeight() int
+	SetPixelHeight(value int)
+	PixelWidth() int
+	SetPixelWidth(value int)
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	EstimatedAssetCount() int
+	SetEstimatedAssetCount(value int)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	LocalizedTitle() string
+	SetLocalizedTitle(value string)
+	LocalIdentifier() string
+	SetLocalIdentifier(value string)
 }
 
 // A set of options that affect the filtering, sorting, and management of results that Photos returns when you fetch asset or collection objects.
@@ -220,8 +264,8 @@ func (p_ PHFetchOptions) SetWantsIncrementalChangeDetails(value bool) {
 // The unique identifier shared by photo assets from the same burst sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
-func (p_ PHFetchOptions) BurstIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("burstIdentifier"))
+func (p_ PHFetchOptions) BurstIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
 	return rv
 }
 
@@ -231,8 +275,8 @@ func (p_ PHFetchOptions) BurstIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
-func (p_ PHFetchOptions) SetBurstIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBurstIdentifier:"), value)
+func (p_ PHFetchOptions) SetBurstIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBurstIdentifier:"), objc.String(value))
 }
 
 // The date and time of the asset’s creation.
@@ -454,8 +498,8 @@ func (p_ PHFetchOptions) SetStartDate(value foundation.IDate) {
 // The localized name of the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
-func (p_ PHFetchOptions) LocalizedTitle() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedTitle"))
+func (p_ PHFetchOptions) LocalizedTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 
@@ -465,15 +509,15 @@ func (p_ PHFetchOptions) LocalizedTitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
-func (p_ PHFetchOptions) SetLocalizedTitle(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), value)
+func (p_ PHFetchOptions) SetLocalizedTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
 }
 
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchOptions) LocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHFetchOptions) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -483,8 +527,8 @@ func (p_ PHFetchOptions) LocalIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchOptions) SetLocalIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
+func (p_ PHFetchOptions) SetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
 }
 
 

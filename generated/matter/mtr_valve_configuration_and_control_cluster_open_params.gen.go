@@ -31,6 +31,14 @@ type _MTRValveConfigurationAndControlClusterOpenParamsClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterOpenParams] class.
 type IMTRValveConfigurationAndControlClusterOpenParams interface {
 	objectivec.IObject
+	OpenDuration() foundation.Number
+	SetOpenDuration(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TargetLevel() foundation.Number
+	SetTargetLevel(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

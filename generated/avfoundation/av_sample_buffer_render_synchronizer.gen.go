@@ -34,6 +34,16 @@ type ISampleBufferRenderSynchronizer interface {
 	objectivec.IObject
 	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.IValue, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
 	SetRateTime(rate float32, time unsafe.Pointer)
+	DelaysRateChangeUntilHasSufficientMediaData() bool
+	SetDelaysRateChangeUntilHasSufficientMediaData(value bool)
+	IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience
+	SetIntendedSpatialAudioExperience(value audiotoolbox.ISpatialAudioExperience)
+	Rate() float32
+	SetRate(value float32)
+	Renderers() unsafe.Pointer
+	SetRenderers(value unsafe.Pointer)
+	Timebase() unsafe.Pointer
+	SetTimebase(value unsafe.Pointer)
 }
 
 // An object used to synchronize multiple queued sample buffers to a single timeline.

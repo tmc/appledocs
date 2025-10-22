@@ -29,6 +29,10 @@ type _PHASEGeometricSpreadingDistanceModelParametersClass struct {
 // An interface definition for the [PHASEGeometricSpreadingDistanceModelParameters] class.
 type IPHASEGeometricSpreadingDistanceModelParameters interface {
 	IPHASEDistanceModelParameters
+	RolloffFactor() float64
+	SetRolloffFactor(value float64)
+	DistanceModelParameters() PHASEDistanceModelParameters
+	SetDistanceModelParameters(value IPHASEDistanceModelParameters)
 }
 
 // An object that dissipates sound frequencies over distance.
@@ -84,8 +88,8 @@ func NewPHASEGeometricSpreadingDistanceModelParameters() PHASEGeometricSpreading
 // A value that fades specific frequencies over a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor
-func (p_ PHASEGeometricSpreadingDistanceModelParameters) RolloffFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rolloffFactor"))
+func (p_ PHASEGeometricSpreadingDistanceModelParameters) RolloffFactor() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("rolloffFactor"))
 	return rv
 }
 
@@ -95,7 +99,7 @@ func (p_ PHASEGeometricSpreadingDistanceModelParameters) RolloffFactor() unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor
-func (p_ PHASEGeometricSpreadingDistanceModelParameters) SetRolloffFactor(value unsafe.Pointer) {
+func (p_ PHASEGeometricSpreadingDistanceModelParameters) SetRolloffFactor(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloffFactor:"), value)
 }
 

@@ -32,6 +32,8 @@ type ICondition interface {
 	objectivec.IObject
 	Broadcast()
 	Wait()
+	Name() string
+	SetName(value string)
 }
 
 // A condition variable whose semantics follow those used for POSIX-style conditions.

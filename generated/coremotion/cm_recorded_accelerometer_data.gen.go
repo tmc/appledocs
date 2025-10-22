@@ -30,6 +30,8 @@ type _RecordedAccelerometerDataClass struct {
 // An interface definition for the [RecordedAccelerometerData] class.
 type IRecordedAccelerometerData interface {
 	IAccelerometerData
+	Identifier() uint64
+	StartDate() foundation.NSDate
 }
 
 // A single piece of accelerometer data that was recorded by the device.

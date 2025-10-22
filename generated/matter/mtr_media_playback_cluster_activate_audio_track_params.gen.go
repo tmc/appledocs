@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _MTRMediaPlaybackClusterActivateAudioTrackParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterActivateAudioTrackParams] class.
 type IMTRMediaPlaybackClusterActivateAudioTrackParams interface {
 	objectivec.IObject
+	AudioOutputIndex() foundation.Number
+	SetAudioOutputIndex(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TrackID() string
+	SetTrackID(value string)
 }
 
 //
@@ -130,8 +137,8 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTimedInvokeTimeoutM
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("trackID"))
+func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("trackID"))
 	return rv
 }
 
@@ -139,8 +146,8 @@ func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) TrackID() appkit.strin
 // SetTrackID sets the value of the trackID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateAudioTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTrackID(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
+func (m_ MTRMediaPlaybackClusterActivateAudioTrackParams) SetTrackID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), objc.String(value))
 }
 
 

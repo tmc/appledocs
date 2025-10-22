@@ -29,6 +29,12 @@ type _GeneratePersonSegmentationRequestClass struct {
 // An interface definition for the [GeneratePersonSegmentationRequest] class.
 type IGeneratePersonSegmentationRequest interface {
 	IStatefulRequest
+	OutputPixelFormat() unsafe.Pointer
+	SetOutputPixelFormat(value unsafe.Pointer)
+	Results() []PixelBufferObservation
+	QualityLevel() unsafe.Pointer
+	SetQualityLevel(value unsafe.Pointer)
+	VNGeneratePersonSegmentationRequestRevision1() int
 }
 
 // An object that produces a matte image for a person it finds in the input image.

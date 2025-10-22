@@ -29,6 +29,12 @@ type _MKImageryMapConfigurationClass struct {
 // An interface definition for the [MKImageryMapConfiguration] class.
 type IMKImageryMapConfiguration interface {
 	IMKMapConfiguration
+	PitchButtonVisibility() unsafe.Pointer
+	SetPitchButtonVisibility(value unsafe.Pointer)
+	PreferredConfiguration() MKMapConfiguration
+	SetPreferredConfiguration(value IMKMapConfiguration)
+	ShowsUserTrackingButton() bool
+	SetShowsUserTrackingButton(value bool)
 }
 
 // The class that represents an imagery-based map presentation, such as one using satellite imagery.

@@ -33,6 +33,8 @@ type ICXCallController interface {
 	RequestTransactionCompletion(transaction ICXTransaction, completion unsafe.Pointer)
 	RequestTransactionWithActionsCompletion(actions []CXAction, completion unsafe.Pointer)
 	RequestTransactionWithActionCompletion(action ICXAction, completion unsafe.Pointer)
+	CallObserver() CXCallObserver
+	CXErrorDomainRequestTransaction() string
 }
 
 // A programmatic interface for interacting with and observing calls.

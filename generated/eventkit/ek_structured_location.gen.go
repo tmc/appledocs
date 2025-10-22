@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/mapkit"
 )
@@ -32,6 +31,14 @@ type _EKStructuredLocationClass struct {
 // An interface definition for the [EKStructuredLocation] class.
 type IEKStructuredLocation interface {
 	IEKObject
+	GeoLocation() corelocation.Location
+	SetGeoLocation(value corelocation.ILocation)
+	Radius() float64
+	SetRadius(value float64)
+	Title() string
+	SetTitle(value string)
+	StructuredLocation() EKStructuredLocation
+	SetStructuredLocation(value IEKStructuredLocation)
 }
 
 // class that specifies a geofence to activate the alarm of a calendar item.
@@ -99,8 +106,8 @@ func NewEKStructuredLocationWithMapItem(mapItem mapkit.IMKMapItem) EKStructuredL
 // Creates a new structured location with the specified title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
-func NewEKStructuredLocationWithTitle(title appkit.string) EKStructuredLocation {
-	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithTitle:"), title)
+func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
+	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithTitle:"), objc.String(title))
 	return rv
 }
 
@@ -116,8 +123,8 @@ func (ec _EKStructuredLocationClass) LocationWithMapItem(mapItem mapkit.IMKMapIt
 // Creates a new structured location with the specified title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
-func (ec _EKStructuredLocationClass) LocationWithTitle(title appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("locationWithTitle:"), title)
+func (ec _EKStructuredLocationClass) LocationWithTitle(title string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("locationWithTitle:"), objc.String(title))
 	return rv
 }
 
@@ -142,8 +149,8 @@ func (e_ EKStructuredLocation) SetGeoLocation(value corelocation.ILocation) {
 // A minimum distance from the core location that would trigger the alarm or reminder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/radius
-func (e_ EKStructuredLocation) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("radius"))
+func (e_ EKStructuredLocation) Radius() float64 {
+	rv := objc.Send[float64](e_.ID, objc.Sel("radius"))
 	return rv
 }
 
@@ -153,15 +160,15 @@ func (e_ EKStructuredLocation) Radius() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/radius
-func (e_ EKStructuredLocation) SetRadius(value unsafe.Pointer) {
+func (e_ EKStructuredLocation) SetRadius(value float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRadius:"), value)
 }
 
 // The title of the location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
-func (e_ EKStructuredLocation) Title() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
+func (e_ EKStructuredLocation) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -171,8 +178,8 @@ func (e_ EKStructuredLocation) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
-func (e_ EKStructuredLocation) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
+func (e_ EKStructuredLocation) SetTitle(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The location to trigger an alarm.

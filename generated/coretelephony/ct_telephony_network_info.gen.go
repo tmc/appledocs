@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,20 @@ type _TelephonyNetworkInfoClass struct {
 // An interface definition for the [TelephonyNetworkInfo] class.
 type ITelephonyNetworkInfo interface {
 	objectivec.IObject
+	DataServiceIdentifier() string
+	ServiceCurrentRadioAccessTechnology() unsafe.Pointer
+	CurrentRadioAccessTechnology() string
+	SetCurrentRadioAccessTechnology(value string)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ServiceSubscriberCellularProviders() CTCarrier
+	SetServiceSubscriberCellularProviders(value ICTCarrier)
+	ServiceSubscriberCellularProvidersDidUpdateNotifier() unsafe.Pointer
+	SetServiceSubscriberCellularProvidersDidUpdateNotifier(value unsafe.Pointer)
+	SubscriberCellularProvider() CTCarrier
+	SetSubscriberCellularProvider(value ICTCarrier)
+	SubscriberCellularProviderDidUpdateNotifier() unsafe.Pointer
+	SetSubscriberCellularProviderDidUpdateNotifier(value unsafe.Pointer)
 }
 
 // An object that provides notifications of changes to the user’s cellular service provider.
@@ -84,8 +97,8 @@ func NewTelephonyNetworkInfo() TelephonyNetworkInfo {
 // The identifier of the service that’s currently providing data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTTelephonyNetworkInfo/dataServiceIdentifier
-func (t_ TelephonyNetworkInfo) DataServiceIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("dataServiceIdentifier"))
+func (t_ TelephonyNetworkInfo) DataServiceIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("dataServiceIdentifier"))
 	return rv
 }
 
@@ -100,8 +113,8 @@ func (t_ TelephonyNetworkInfo) ServiceCurrentRadioAccessTechnology() unsafe.Poin
 // The current radio access technology registered with the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/currentradioaccesstechnology
-func (t_ TelephonyNetworkInfo) CurrentRadioAccessTechnology() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("currentRadioAccessTechnology"))
+func (t_ TelephonyNetworkInfo) CurrentRadioAccessTechnology() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("currentRadioAccessTechnology"))
 	return rv
 }
 
@@ -111,8 +124,8 @@ func (t_ TelephonyNetworkInfo) CurrentRadioAccessTechnology() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/currentradioaccesstechnology
-func (t_ TelephonyNetworkInfo) SetCurrentRadioAccessTechnology(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentRadioAccessTechnology:"), value)
+func (t_ TelephonyNetworkInfo) SetCurrentRadioAccessTechnology(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentRadioAccessTechnology:"), objc.String(value))
 }
 
 // An object that the system notifies when the data service identifier changes.

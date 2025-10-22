@@ -31,6 +31,45 @@ type _PlayerInterstitialEventClass struct {
 // An interface definition for the [PlayerInterstitialEvent] class.
 type IPlayerInterstitialEvent interface {
 	objectivec.IObject
+	UserDefinedAttributes() objc.ID
+	AlignsResumptionWithPrimarySegmentBoundary() bool
+	SetAlignsResumptionWithPrimarySegmentBoundary(value bool)
+	AlignsStartWithPrimarySegmentBoundary() bool
+	SetAlignsStartWithPrimarySegmentBoundary(value bool)
+	AssetListResponse() unsafe.Pointer
+	SetAssetListResponse(value unsafe.Pointer)
+	ContentMayVary() bool
+	SetContentMayVary(value bool)
+	Cue() unsafe.Pointer
+	SetCue(value unsafe.Pointer)
+	Date() foundation.Date
+	SetDate(value foundation.IDate)
+	Identifier() string
+	SetIdentifier(value string)
+	PlannedDuration() unsafe.Pointer
+	SetPlannedDuration(value unsafe.Pointer)
+	PlayoutLimit() unsafe.Pointer
+	SetPlayoutLimit(value unsafe.Pointer)
+	PrimaryItem() AVPlayerItem
+	SetPrimaryItem(value IAVPlayerItem)
+	Restrictions() unsafe.Pointer
+	SetRestrictions(value unsafe.Pointer)
+	ResumptionOffset() unsafe.Pointer
+	SetResumptionOffset(value unsafe.Pointer)
+	SkipControlLocalizedLabelBundleKey() string
+	SetSkipControlLocalizedLabelBundleKey(value string)
+	SkipControlTimeRange() unsafe.Pointer
+	SetSkipControlTimeRange(value unsafe.Pointer)
+	SupplementsPrimaryContent() bool
+	SetSupplementsPrimaryContent(value bool)
+	TemplateItems() AVPlayerItem
+	SetTemplateItems(value IAVPlayerItem)
+	Time() unsafe.Pointer
+	SetTime(value unsafe.Pointer)
+	TimelineOccupancy() unsafe.Pointer
+	SetTimelineOccupancy(value unsafe.Pointer)
+	WillPlayOnce() bool
+	SetWillPlayOnce(value bool)
 }
 
 // An object that provides instructions for how a player presents interstitial content.

@@ -30,6 +30,33 @@ type _HTTPCookieClass struct {
 // An interface definition for the [HTTPCookie] class.
 type IHTTPCookie interface {
 	objectivec.IObject
+	Properties() unsafe.Pointer
+	Comment() string
+	SetComment(value string)
+	CommentURL() URL
+	SetCommentURL(value IURL)
+	Domain() string
+	SetDomain(value string)
+	ExpiresDate() Date
+	SetExpiresDate(value IDate)
+	IsHTTPOnly() bool
+	SetIsHTTPOnly(value bool)
+	IsSecure() bool
+	SetIsSecure(value bool)
+	IsSessionOnly() bool
+	SetIsSessionOnly(value bool)
+	Name() string
+	SetName(value string)
+	Path() string
+	SetPath(value string)
+	PortList() Number
+	SetPortList(value INumber)
+	SameSitePolicy() unsafe.Pointer
+	SetSameSitePolicy(value unsafe.Pointer)
+	Value() string
+	SetValue(value string)
+	Version() int
+	SetVersion(value int)
 }
 
 // A representation of an HTTP cookie.

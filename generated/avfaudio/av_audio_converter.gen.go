@@ -32,6 +32,48 @@ type _AudioConverterClass struct {
 type IAudioConverter interface {
 	objectivec.IObject
 	ConvertToBufferErrorWithInputFromBlock(outputBuffer IAVAudioBuffer, outError unsafe.Pointer, inputBlock unsafe.Pointer) unsafe.Pointer
+	ApplicableEncodeBitRates() foundation.Number
+	SetApplicableEncodeBitRates(value foundation.INumber)
+	ApplicableEncodeSampleRates() foundation.Number
+	SetApplicableEncodeSampleRates(value foundation.INumber)
+	AudioSyncPacketFrequency() int
+	SetAudioSyncPacketFrequency(value int)
+	AvailableEncodeBitRates() foundation.Number
+	SetAvailableEncodeBitRates(value foundation.INumber)
+	AvailableEncodeChannelLayoutTags() foundation.Number
+	SetAvailableEncodeChannelLayoutTags(value foundation.INumber)
+	AvailableEncodeSampleRates() foundation.Number
+	SetAvailableEncodeSampleRates(value foundation.INumber)
+	BitRate() int
+	SetBitRate(value int)
+	BitRateStrategy() string
+	SetBitRateStrategy(value string)
+	ChannelMap() foundation.Number
+	SetChannelMap(value foundation.INumber)
+	ContentSource() AudioContentSource
+	SetContentSource(value IAudioContentSource)
+	Dither() bool
+	SetDither(value bool)
+	Downmix() bool
+	SetDownmix(value bool)
+	DynamicRangeControlConfiguration() AudioDynamicRangeControlConfiguration
+	SetDynamicRangeControlConfiguration(value IAudioDynamicRangeControlConfiguration)
+	InputFormat() AVAudioFormat
+	SetInputFormat(value AVAudioFormat)
+	MagicCookie() foundation.Data
+	SetMagicCookie(value foundation.IData)
+	MaximumOutputPacketSize() int
+	SetMaximumOutputPacketSize(value int)
+	OutputFormat() AVAudioFormat
+	SetOutputFormat(value AVAudioFormat)
+	PrimeInfo() unsafe.Pointer
+	SetPrimeInfo(value unsafe.Pointer)
+	PrimeMethod() unsafe.Pointer
+	SetPrimeMethod(value unsafe.Pointer)
+	SampleRateConverterAlgorithm() string
+	SetSampleRateConverterAlgorithm(value string)
+	SampleRateConverterQuality() int
+	SetSampleRateConverterQuality(value int)
 }
 
 // An object that converts streams of audio between formats.
@@ -216,8 +258,8 @@ func (a_ AudioConverter) SetBitRate(value int) {
 // A key value constant the framework uses during encoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitratestrategy
-func (a_ AudioConverter) BitRateStrategy() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("bitRateStrategy"))
+func (a_ AudioConverter) BitRateStrategy() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("bitRateStrategy"))
 	return rv
 }
 
@@ -227,8 +269,8 @@ func (a_ AudioConverter) BitRateStrategy() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitratestrategy
-func (a_ AudioConverter) SetBitRateStrategy(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRateStrategy:"), value)
+func (a_ AudioConverter) SetBitRateStrategy(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRateStrategy:"), objc.String(value))
 }
 
 // An array of integers that indicates which input to derive each output from.
@@ -426,8 +468,8 @@ func (a_ AudioConverter) SetPrimeMethod(value unsafe.Pointer) {
 // The priming method the sample rate converter or decoder uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm
-func (a_ AudioConverter) SampleRateConverterAlgorithm() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("sampleRateConverterAlgorithm"))
+func (a_ AudioConverter) SampleRateConverterAlgorithm() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("sampleRateConverterAlgorithm"))
 	return rv
 }
 
@@ -437,8 +479,8 @@ func (a_ AudioConverter) SampleRateConverterAlgorithm() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm
-func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterAlgorithm:"), value)
+func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterAlgorithm:"), objc.String(value))
 }
 
 // A sample rate converter algorithm key value.

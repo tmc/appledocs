@@ -30,6 +30,7 @@ type _INDailyRoutineRelevanceProviderClass struct {
 // An interface definition for the [INDailyRoutineRelevanceProvider] class.
 type IINDailyRoutineRelevanceProvider interface {
 	objectivec.IObject
+	Situation() unsafe.Pointer
 }
 
 // The provider class that specifies a relevant daily routine.

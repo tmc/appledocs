@@ -30,6 +30,7 @@ type _MoveCommandClass struct {
 type IMoveCommand interface {
 	IScriptCommand
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
+	KeySpecifier() NSScriptObjectSpecifier
 }
 
 // A command that moves one or more scriptable objects.

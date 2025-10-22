@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,11 @@ type _PHAdjustmentDataClass struct {
 // An interface definition for the [PHAdjustmentData] class.
 type IPHAdjustmentData interface {
 	objectivec.IObject
+	Data() foundation.NSData
+	FormatIdentifier() string
+	FormatVersion() string
+	AdjustmentData() PHAdjustmentData
+	SetAdjustmentData(value IPHAdjustmentData)
 }
 
 // A description of the edits made to an asset’s photo, video, or Live Photo content, which allows your app to reconstruct or revert the effects of prior editing sessions.
@@ -87,9 +91,9 @@ func NewPHAdjustmentData() PHAdjustmentData {
 // Initializes an adjustment object with the specified format and data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)
-func NewPHAdjustmentDataWithFormatIdentifierFormatVersionData(formatIdentifier appkit.string, formatVersion appkit.string, data foundation.IData) PHAdjustmentData {
+func NewPHAdjustmentDataWithFormatIdentifierFormatVersionData(formatIdentifier string, formatVersion string, data foundation.IData) PHAdjustmentData {
 	instance := getPHAdjustmentDataClass().Alloc()
-	rv := objc.Send[PHAdjustmentData](instance.ID, objc.Sel("initWithFormatIdentifier:formatVersion:data:"), formatIdentifier, formatVersion, data)
+	rv := objc.Send[PHAdjustmentData](instance.ID, objc.Sel("initWithFormatIdentifier:formatVersion:data:"), objc.String(formatIdentifier), objc.String(formatVersion), data)
 	rv.Autorelease()
 	return rv
 }
@@ -106,16 +110,16 @@ func (p_ PHAdjustmentData) Data() foundation.NSData {
 // A string uniquely identifying the format of the adjustment data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/formatIdentifier
-func (p_ PHAdjustmentData) FormatIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("formatIdentifier"))
+func (p_ PHAdjustmentData) FormatIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("formatIdentifier"))
 	return rv
 }
 
 // A version number for the adjustment data format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/formatVersion
-func (p_ PHAdjustmentData) FormatVersion() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("formatVersion"))
+func (p_ PHAdjustmentData) FormatVersion() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("formatVersion"))
 	return rv
 }
 

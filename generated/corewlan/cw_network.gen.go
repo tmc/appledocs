@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,6 +34,16 @@ type ICWNetwork interface {
 	IsEqualToNetwork(network ICWNetwork) bool
 	SupportsPHYMode(phyMode CWPHYMode) bool
 	SupportsSecurity(security ICWSecurity) bool
+	BeaconInterval() int
+	Bssid() string
+	CountryCode() string
+	Ibss() bool
+	InformationElementData() foundation.NSData
+	NoiseMeasurement() int
+	RssiValue() int
+	Ssid() string
+	SsidData() foundation.NSData
+	WlanChannel() CWChannel
 }
 
 // Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.
@@ -118,16 +127,16 @@ func (c_ CWNetwork) BeaconInterval() int {
 // The basic service set identifier (BSSID) for the network, returned as UTF-8 string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/bssid
-func (c_ CWNetwork) Bssid() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("bssid"))
+func (c_ CWNetwork) Bssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("bssid"))
 	return rv
 }
 
 // The country code (ISO/IEC 3166-1:1997) for the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/countryCode
-func (c_ CWNetwork) CountryCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("countryCode"))
+func (c_ CWNetwork) CountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -166,8 +175,8 @@ func (c_ CWNetwork) RssiValue() int {
 // The service set identifier (SSID) for the network, encoded as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssid
-func (c_ CWNetwork) Ssid() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("ssid"))
+func (c_ CWNetwork) Ssid() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 

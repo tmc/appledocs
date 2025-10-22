@@ -30,6 +30,10 @@ type _CompareClass struct {
 // An interface definition for the [Compare] class.
 type ICompare interface {
 	objectivec.IObject
+	ComparisonType() ComparisonType
+	SetComparisonType(value ComparisonType)
+	Threshold() float32
+	SetThreshold(value float32)
 }
 
 //
@@ -92,8 +96,8 @@ func (c_ Compare) SetComparisonType(value ComparisonType) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/threshold
-func (c_ Compare) Threshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("threshold"))
+func (c_ Compare) Threshold() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("threshold"))
 	return rv
 }
 
@@ -101,7 +105,7 @@ func (c_ Compare) Threshold() unsafe.Pointer {
 // SetThreshold sets the value of the threshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/threshold
-func (c_ Compare) SetThreshold(value unsafe.Pointer) {
+func (c_ Compare) SetThreshold(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setThreshold:"), value)
 }
 

@@ -31,6 +31,16 @@ type _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterPayloadTestRequestParams] class.
 type IMTRGeneralDiagnosticsClusterPayloadTestRequestParams interface {
 	objectivec.IObject
+	Count() foundation.Number
+	SetCount(value foundation.INumber)
+	EnableKey() foundation.NSData
+	SetEnableKey(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

@@ -30,17 +30,17 @@ var (
 	_gss_inquire_mechs_for_name func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_krb5_export_lucid_sec_context func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_krb5_free_lucid_sec_context func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_oid_equal func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_gss_oid_equal func(unsafe.Pointer, unsafe.Pointer) int
 	_gss_oid_to_str func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_release_buffer_set func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_release_name func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_seal func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_gss_seal func(unsafe.Pointer, unsafe.Pointer, int, int, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_test_oid_set_member func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_unseal func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_verify func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_gss_verify_mic func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_wrap func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gsskrb5_extract_authz_data_from_sec_context func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_gss_wrap func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_gsskrb5_extract_authz_data_from_sec_context func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
 	_gsskrb5_register_acceptor_identity func(unsafe.Pointer) unsafe.Pointer
 )
 
@@ -245,7 +245,7 @@ func gss_krb5_free_lucid_sec_context(minor_status unsafe.Pointer, c unsafe.Point
 // Added in macOS 10.7.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_oid_equal(_:_:)
-func gss_oid_equal(a unsafe.Pointer, b unsafe.Pointer) unsafe.Pointer {
+func gss_oid_equal(a unsafe.Pointer, b unsafe.Pointer) int {
 	return _gss_oid_equal(a, b)
 	}
 
@@ -283,7 +283,7 @@ func gss_release_name(minor_status unsafe.Pointer, input_name unsafe.Pointer) un
 // Returns a secure message created by calculating and attaching a MIC to the input message, and then optionally encrypting it. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_seal(_:_:_:_:_:_:_:)
-func gss_seal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag unsafe.Pointer, qop_req unsafe.Pointer, input_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, output_message_buffer unsafe.Pointer) unsafe.Pointer {
+func gss_seal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag int, qop_req int, input_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, output_message_buffer unsafe.Pointer) unsafe.Pointer {
 	return _gss_seal(minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer)
 	}
 
@@ -329,7 +329,7 @@ func gss_verify_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, 
 // Added in macOS 10.7.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_wrap(_:_:_:_:_:_:_:)
-func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag unsafe.Pointer, qop_req unsafe.Pointer, input_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, output_message_buffer unsafe.Pointer) unsafe.Pointer {
+func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag int, qop_req unsafe.Pointer, input_message_buffer unsafe.Pointer, conf_state unsafe.Pointer, output_message_buffer unsafe.Pointer) unsafe.Pointer {
 	return _gss_wrap(minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer)
 	}
 
@@ -339,7 +339,7 @@ func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_r
 // Added in macOS 10.7.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gsskrb5_extract_authz_data_from_sec_context(_:_:_:_:)
-func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, ad_type unsafe.Pointer, ad_data unsafe.Pointer) unsafe.Pointer {
+func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, ad_type int, ad_data unsafe.Pointer) unsafe.Pointer {
 	return _gsskrb5_extract_authz_data_from_sec_context(minor_status, context_handle, ad_type, ad_data)
 	}
 

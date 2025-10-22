@@ -31,6 +31,8 @@ type _MTROccupancySensingClusterOccupancyChangedEventClass struct {
 // An interface definition for the [MTROccupancySensingClusterOccupancyChangedEvent] class.
 type IMTROccupancySensingClusterOccupancyChangedEvent interface {
 	objectivec.IObject
+	Occupancy() foundation.Number
+	SetOccupancy(value foundation.INumber)
 }
 
 //

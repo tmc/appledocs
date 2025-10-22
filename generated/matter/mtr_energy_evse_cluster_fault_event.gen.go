@@ -31,6 +31,14 @@ type _MTREnergyEVSEClusterFaultEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterFaultEvent] class.
 type IMTREnergyEVSEClusterFaultEvent interface {
 	objectivec.IObject
+	FaultStateCurrentState() foundation.Number
+	SetFaultStateCurrentState(value foundation.INumber)
+	FaultStatePreviousState() foundation.Number
+	SetFaultStatePreviousState(value foundation.INumber)
+	SessionID() foundation.Number
+	SetSessionID(value foundation.INumber)
+	State() foundation.Number
+	SetState(value foundation.INumber)
 }
 
 //

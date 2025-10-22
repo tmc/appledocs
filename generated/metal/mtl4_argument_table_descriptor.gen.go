@@ -30,6 +30,19 @@ type _MTL4ArgumentTableDescriptorClass struct {
 // An interface definition for the [MTL4ArgumentTableDescriptor] class.
 type IMTL4ArgumentTableDescriptor interface {
 	objectivec.IObject
+	InitializeBindings() bool
+	SetInitializeBindings(value bool)
+	Label() string
+	SetLabel(value string)
+	MaxBufferBindCount() int
+	SetMaxBufferBindCount(value int)
+	MaxSamplerStateBindCount() int
+	SetMaxSamplerStateBindCount(value int)
+	MaxTextureBindCount() int
+	SetMaxTextureBindCount(value int)
+	SupportAttributeStrides() bool
+	SetSupportAttributeStrides(value bool)
+	MTL4CommandQueueErrorDomain() string
 }
 
 // Groups parameters for the creation of a Metal argument table.
@@ -101,8 +114,8 @@ func (m_ MTL4ArgumentTableDescriptor) SetInitializeBindings(value bool) {
 // Assigns an optional label with the argument table for debug purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/label
-func (m_ MTL4ArgumentTableDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTL4ArgumentTableDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -112,8 +125,8 @@ func (m_ MTL4ArgumentTableDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor/label
-func (m_ MTL4ArgumentTableDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTL4ArgumentTableDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // Determines the number of buffer-binding slots for the argument table.
@@ -190,8 +203,8 @@ func (m_ MTL4ArgumentTableDescriptor) SetSupportAttributeStrides(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueueerrordomain
-func (m_ MTL4ArgumentTableDescriptor) MTL4CommandQueueErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
+func (m_ MTL4ArgumentTableDescriptor) MTL4CommandQueueErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
 	return rv
 }
 

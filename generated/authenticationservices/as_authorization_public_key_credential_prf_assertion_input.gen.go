@@ -30,6 +30,7 @@ type _AuthorizationPublicKeyCredentialPRFAssertionInputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFAssertionInput] class.
 type IAuthorizationPublicKeyCredentialPRFAssertionInput interface {
 	objectivec.IObject
+	PerCredentialInputValues() unsafe.Pointer
 }
 
 //

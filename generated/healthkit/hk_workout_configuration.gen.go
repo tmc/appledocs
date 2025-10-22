@@ -30,6 +30,14 @@ type _HKWorkoutConfigurationClass struct {
 // An interface definition for the [HKWorkoutConfiguration] class.
 type IHKWorkoutConfiguration interface {
 	objectivec.IObject
+	ActivityType() HKWorkoutActivityType
+	SetActivityType(value HKWorkoutActivityType)
+	LapLength() HKQuantity
+	SetLapLength(value IHKQuantity)
+	LocationType() HKWorkoutSessionLocationType
+	SetLocationType(value HKWorkoutSessionLocationType)
+	SwimmingLocationType() HKWorkoutSwimmingLocationType
+	SetSwimmingLocationType(value HKWorkoutSwimmingLocationType)
 }
 
 // An object that contains configuration information about a workout session.

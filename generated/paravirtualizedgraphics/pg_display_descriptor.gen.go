@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,22 @@ type _PGDisplayDescriptorClass struct {
 // An interface definition for the [PGDisplayDescriptor] class.
 type IPGDisplayDescriptor interface {
 	objectivec.IObject
+	CursorGlyphHandler() unsafe.Pointer
+	SetCursorGlyphHandler(value unsafe.Pointer)
+	CursorMoveHandler() unsafe.Pointer
+	SetCursorMoveHandler(value unsafe.Pointer)
+	CursorShowHandler() unsafe.Pointer
+	SetCursorShowHandler(value unsafe.Pointer)
+	ModeChangeHandler() unsafe.Pointer
+	SetModeChangeHandler(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	NewFrameEventHandler() unsafe.Pointer
+	SetNewFrameEventHandler(value unsafe.Pointer)
+	Queue() unsafe.Pointer
+	SetQueue(value unsafe.Pointer)
+	SizeInMillimeters() foundation.Size
+	SetSizeInMillimeters(value foundation.ISize)
 }
 
 // A descriptor for a virtual display.
@@ -152,8 +167,8 @@ func (p_ PGDisplayDescriptor) SetModeChangeHandler(value unsafe.Pointer) {
 // The display’s name as seen in the guest operating environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
-func (p_ PGDisplayDescriptor) Name() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
+func (p_ PGDisplayDescriptor) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -163,8 +178,8 @@ func (p_ PGDisplayDescriptor) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
-func (p_ PGDisplayDescriptor) SetName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+func (p_ PGDisplayDescriptor) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // A handler that the framework calls when the guest environment has a new frame to display.

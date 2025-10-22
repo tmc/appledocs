@@ -30,6 +30,7 @@ type _SFSpeechURLRecognitionRequestClass struct {
 // An interface definition for the [SFSpeechURLRecognitionRequest] class.
 type ISFSpeechURLRecognitionRequest interface {
 	ISFSpeechRecognitionRequest
+	URL() foundation.URL
 }
 
 // A request to recognize speech in a recorded audio file.

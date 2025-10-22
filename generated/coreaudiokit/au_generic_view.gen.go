@@ -31,6 +31,9 @@ type _GenericViewClass struct {
 // An interface definition for the [GenericView] class.
 type IGenericView interface {
 	appkit.IView
+	AudioUnit() audiotoolbox.AudioUnit
+	ShowsExpertParameters() bool
+	SetShowsExpertParameters(value bool)
 }
 
 // A view that provides a generic user interface for a Cocoa audio unit.

@@ -30,6 +30,14 @@ type _ExtensionItemClass struct {
 // An interface definition for the [ExtensionItem] class.
 type IExtensionItem interface {
 	objectivec.IObject
+	Attachments() []ItemProvider
+	SetAttachments(value []ItemProvider)
+	AttributedContentText() NSAttributedString
+	SetAttributedContentText(value IAttributedString)
+	AttributedTitle() NSAttributedString
+	SetAttributedTitle(value IAttributedString)
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
 }
 
 // An immutable collection of values representing different aspects of an item for an extension to act upon.

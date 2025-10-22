@@ -30,6 +30,9 @@ type _HKAnchoredObjectQueryClass struct {
 // An interface definition for the [HKAnchoredObjectQuery] class.
 type IHKAnchoredObjectQuery interface {
 	IHKQuery
+	UpdateHandler() unsafe.Pointer
+	SetUpdateHandler(value unsafe.Pointer)
+	HKObjectQueryNoLimit() int
 }
 
 // A query that returns changes to the HealthKit store, including a snapshot of new changes and continuous monitoring as a long-running query.

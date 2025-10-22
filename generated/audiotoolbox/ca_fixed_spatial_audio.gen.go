@@ -29,6 +29,7 @@ type _FixedSpatialAudioClass struct {
 // An interface definition for the [FixedSpatialAudio] class.
 type IFixedSpatialAudio interface {
 	ISpatialAudioExperience
+	SoundStageSize() SoundStageSize
 }
 
 // A spatial experience that does not take user motion into account.

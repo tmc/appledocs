@@ -33,6 +33,14 @@ type IWebAuthenticationSession interface {
 	objectivec.IObject
 	Cancel()
 	Start() bool
+	AdditionalHeaderFields() unsafe.Pointer
+	SetAdditionalHeaderFields(value unsafe.Pointer)
+	CanStart() bool
+	PrefersEphemeralWebBrowserSession() bool
+	SetPrefersEphemeralWebBrowserSession(value bool)
+	PresentationContextProvider() objc.ID
+	SetPresentationContextProvider(value objc.ID)
+	ASWebAuthenticationSessionErrorDomain() string
 }
 
 // A session that an app uses to authenticate a user through a web service.
@@ -170,8 +178,8 @@ func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID)
 // The error domain for a web authentication session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
-func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
+func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
 	return rv
 }
 

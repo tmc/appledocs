@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,30 @@ type _GLKBaseEffectClass struct {
 type IGLKBaseEffect interface {
 	objectivec.IObject
 	PrepareToDraw()
+	ColorMaterialEnabled() unsafe.Pointer
+	SetColorMaterialEnabled(value unsafe.Pointer)
+	ConstantColor() GLKVector4
+	SetConstantColor(value IGLKVector4)
+	Fog() GLKEffectPropertyFog
+	Label() string
+	SetLabel(value string)
+	Light0() GLKEffectPropertyLight
+	Light1() GLKEffectPropertyLight
+	Light2() GLKEffectPropertyLight
+	LightModelAmbientColor() GLKVector4
+	SetLightModelAmbientColor(value IGLKVector4)
+	LightModelTwoSided() unsafe.Pointer
+	SetLightModelTwoSided(value unsafe.Pointer)
+	LightingType() GLKLightingType
+	SetLightingType(value GLKLightingType)
+	Material() GLKEffectPropertyMaterial
+	Texture2d0() GLKEffectPropertyTexture
+	Texture2d1() GLKEffectPropertyTexture
+	TextureOrder() []GLKEffectPropertyTexture
+	SetTextureOrder(value []GLKEffectPropertyTexture)
+	Transform() GLKEffectPropertyTransform
+	UseConstantColor() unsafe.Pointer
+	SetUseConstantColor(value unsafe.Pointer)
 }
 
 // A simple lighting and shading system for use in shader-based OpenGL rendering.
@@ -136,8 +159,8 @@ func (g_ GLKBaseEffect) Fog() GLKEffectPropertyFog {
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) Label() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("label"))
+func (g_ GLKBaseEffect) Label() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -147,8 +170,8 @@ func (g_ GLKBaseEffect) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
+func (g_ GLKBaseEffect) SetLabel(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The lighting properties for the first light in the scene.

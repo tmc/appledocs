@@ -31,6 +31,12 @@ type _MTRModeSelectClusterChangeToModeParamsClass struct {
 // An interface definition for the [MTRModeSelectClusterChangeToModeParams] class.
 type IMTRModeSelectClusterChangeToModeParams interface {
 	objectivec.IObject
+	NewMode() foundation.Number
+	SetNewMode(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,12 @@ type _MTRDoorLockClusterClearUserParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterClearUserParams] class.
 type IMTRDoorLockClusterClearUserParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
 }
 
 //

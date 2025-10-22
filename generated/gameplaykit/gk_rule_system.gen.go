@@ -34,15 +34,22 @@ type IRuleSystem interface {
 	AddRule(rule IGKRule)
 	AddRulesFromArray(rules []Rule)
 	AssertFact(fact objectivec.IObject)
-	AssertFactGrade(fact objectivec.IObject, grade unsafe.Pointer)
+	AssertFactGrade(fact objectivec.IObject, grade float32)
 	Evaluate()
-	GradeForFact(fact objectivec.IObject) unsafe.Pointer
-	MaximumGradeForFacts(facts objectivec.IObject) unsafe.Pointer
-	MinimumGradeForFacts(facts objectivec.IObject) unsafe.Pointer
+	GradeForFact(fact objectivec.IObject) float32
+	MaximumGradeForFacts(facts objectivec.IObject) float32
+	MinimumGradeForFacts(facts objectivec.IObject) float32
 	RemoveAllRules()
 	Reset()
 	RetractFact(fact objectivec.IObject)
-	RetractFactGrade(fact objectivec.IObject, grade unsafe.Pointer)
+	RetractFactGrade(fact objectivec.IObject, grade float32)
+	Agenda() []Rule
+	Executed() []Rule
+	Facts() objc.ID
+	Rules() []Rule
+	State() foundation.MutableDictionary
+	Salience() int
+	SetSalience(value int)
 }
 
 // A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
@@ -118,7 +125,7 @@ func (r_ RuleSystem) AssertFact(fact objectivec.IObject) {
 // Increases the membership grade of the specified fact by the specified amount, adding it to the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)
-func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade unsafe.Pointer) {
+func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:grade:"), fact, grade)
 }
 
@@ -132,24 +139,24 @@ func (r_ RuleSystem) Evaluate() {
 // Returns the membership grade of the specified fact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/grade(forFact:)
-func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("gradeForFact:"), fact)
+func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("gradeForFact:"), fact)
 	return rv
 }
 
 // Returns the highest membership grade among the specified facts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)
-func (r_ RuleSystem) MaximumGradeForFacts(facts objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("maximumGradeForFacts:"), facts)
+func (r_ RuleSystem) MaximumGradeForFacts(facts objectivec.IObject) float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("maximumGradeForFacts:"), facts)
 	return rv
 }
 
 // Returns the lowest membership grade among the specified facts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)
-func (r_ RuleSystem) MinimumGradeForFacts(facts objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("minimumGradeForFacts:"), facts)
+func (r_ RuleSystem) MinimumGradeForFacts(facts objectivec.IObject) float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("minimumGradeForFacts:"), facts)
 	return rv
 }
 
@@ -177,7 +184,7 @@ func (r_ RuleSystem) RetractFact(fact objectivec.IObject) {
 // Reduces the membership grade of the specified fact by the specified amount, removing it from the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)
-func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade unsafe.Pointer) {
+func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:grade:"), fact, grade)
 }
 

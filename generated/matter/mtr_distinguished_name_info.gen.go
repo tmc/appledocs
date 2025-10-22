@@ -31,6 +31,16 @@ type _MTRDistinguishedNameInfoClass struct {
 // An interface definition for the [MTRDistinguishedNameInfo] class.
 type IMTRDistinguishedNameInfo interface {
 	objectivec.IObject
+	CaseAuthenticatedTags() foundation.Number
+	SetCaseAuthenticatedTags(value foundation.INumber)
+	FabricID() foundation.Number
+	SetFabricID(value foundation.INumber)
+	IntermediateCACertificateID() foundation.Number
+	SetIntermediateCACertificateID(value foundation.INumber)
+	NodeID() foundation.Number
+	SetNodeID(value foundation.INumber)
+	RootCACertificateID() foundation.Number
+	SetRootCACertificateID(value foundation.INumber)
 }
 
 //

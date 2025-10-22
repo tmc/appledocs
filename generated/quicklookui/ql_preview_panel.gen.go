@@ -30,6 +30,20 @@ type _PreviewPanelClass struct {
 // An interface definition for the [PreviewPanel] class.
 type IPreviewPanel interface {
 	appkit.IPanel
+	CurrentController() objc.ID
+	InFullScreenMode() bool
+	CurrentPreviewItem() unsafe.Pointer
+	SetCurrentPreviewItem(value unsafe.Pointer)
+	CurrentPreviewItemIndex() int
+	SetCurrentPreviewItemIndex(value int)
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DisplayState() unsafe.Pointer
+	SetDisplayState(value unsafe.Pointer)
+	IsInFullScreenMode() bool
+	SetIsInFullScreenMode(value bool)
 }
 
 // A class that implements the Quick Look preview panel to display a preview of a list of items.

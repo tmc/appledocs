@@ -30,6 +30,8 @@ type _CKSyncEngineDidFetchRecordZoneChangesEventClass struct {
 // An interface definition for the [CKSyncEngineDidFetchRecordZoneChangesEvent] class.
 type ICKSyncEngineDidFetchRecordZoneChangesEvent interface {
 	ICKSyncEngineEvent
+	Error() foundation.Error
+	ZoneID() CKRecordZoneID
 }
 
 // An object that provides information about a finished record zone fetch.

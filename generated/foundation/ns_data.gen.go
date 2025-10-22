@@ -46,6 +46,17 @@ type IData interface {
 	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	WriteToFileOptionsError(path string, writeOptionsMask DataWritingOptions, errorPtr IError) bool
+	Bytes() unsafe.Pointer
+	Description() string
+	Length() uint
+	NSCompressionErrorMaximum() int
+	SetNSCompressionErrorMaximum(value int)
+	NSCompressionErrorMinimum() int
+	SetNSCompressionErrorMinimum(value int)
+	NSCompressionFailedError() int
+	SetNSCompressionFailedError(value int)
+	NSDecompressionFailedError() int
+	SetNSDecompressionFailedError(value int)
 }
 
 // A static byte buffer in memory.

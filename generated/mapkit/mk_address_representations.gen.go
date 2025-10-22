@@ -31,6 +31,14 @@ type _MKAddressRepresentationsClass struct {
 // An interface definition for the [MKAddressRepresentations] class.
 type IMKAddressRepresentations interface {
 	objectivec.IObject
+	CityName() string
+	SetCityName(value string)
+	CityWithContext() string
+	SetCityWithContext(value string)
+	Region() corelocation.Region
+	SetRegion(value corelocation.IRegion)
+	RegionName() string
+	SetRegionName(value string)
 }
 
 // A class that provides formatted address strings.
@@ -82,8 +90,8 @@ func NewMKAddressRepresentations() MKAddressRepresentations {
 // The name of the city.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/cityname
-func (m_ MKAddressRepresentations) CityName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("cityName"))
+func (m_ MKAddressRepresentations) CityName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("cityName"))
 	return rv
 }
 
@@ -93,15 +101,15 @@ func (m_ MKAddressRepresentations) CityName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/cityname
-func (m_ MKAddressRepresentations) SetCityName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCityName:"), value)
+func (m_ MKAddressRepresentations) SetCityName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCityName:"), objc.String(value))
 }
 
 // The city name along with the country name, to provide additional disambiguating context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext
-func (m_ MKAddressRepresentations) CityWithContext() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("cityWithContext"))
+func (m_ MKAddressRepresentations) CityWithContext() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("cityWithContext"))
 	return rv
 }
 
@@ -111,8 +119,8 @@ func (m_ MKAddressRepresentations) CityWithContext() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext
-func (m_ MKAddressRepresentations) SetCityWithContext(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCityWithContext:"), value)
+func (m_ MKAddressRepresentations) SetCityWithContext(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCityWithContext:"), objc.String(value))
 }
 
 //
@@ -133,8 +141,8 @@ func (m_ MKAddressRepresentations) SetRegion(value corelocation.IRegion) {
 // The region name, such as “United States”.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/regionname
-func (m_ MKAddressRepresentations) RegionName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("regionName"))
+func (m_ MKAddressRepresentations) RegionName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("regionName"))
 	return rv
 }
 
@@ -144,8 +152,8 @@ func (m_ MKAddressRepresentations) RegionName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/regionname
-func (m_ MKAddressRepresentations) SetRegionName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRegionName:"), value)
+func (m_ MKAddressRepresentations) SetRegionName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRegionName:"), objc.String(value))
 }
 
 

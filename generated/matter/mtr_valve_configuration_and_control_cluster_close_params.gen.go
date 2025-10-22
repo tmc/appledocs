@@ -31,6 +31,10 @@ type _MTRValveConfigurationAndControlClusterCloseParamsClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterCloseParams] class.
 type IMTRValveConfigurationAndControlClusterCloseParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

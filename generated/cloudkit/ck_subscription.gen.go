@@ -30,6 +30,12 @@ type _CKSubscriptionClass struct {
 // An interface definition for the [CKSubscription] class.
 type ICKSubscription interface {
 	objectivec.IObject
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
+	SubscriptionID() unsafe.Pointer
+	SubscriptionType() unsafe.Pointer
+	DesiredKeys() unsafe.Pointer
+	SetDesiredKeys(value unsafe.Pointer)
 }
 
 // An abstract base class for subscriptions.

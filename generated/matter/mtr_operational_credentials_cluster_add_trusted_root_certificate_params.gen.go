@@ -31,6 +31,14 @@ type _MTROperationalCredentialsClusterAddTrustedRootCertificateParamsClass struc
 // An interface definition for the [MTROperationalCredentialsClusterAddTrustedRootCertificateParams] class.
 type IMTROperationalCredentialsClusterAddTrustedRootCertificateParams interface {
 	objectivec.IObject
+	RootCACertificate() foundation.Data
+	SetRootCACertificate(value foundation.IData)
+	RootCertificate() foundation.Data
+	SetRootCertificate(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -29,6 +29,7 @@ type _MXDiskIOMetricClass struct {
 // An interface definition for the [MXDiskIOMetric] class.
 type IMXDiskIOMetric interface {
 	IMXMetric
+	CumulativeLogicalWrites() unsafe.Pointer
 }
 
 // An object representing metrics about disk usage.

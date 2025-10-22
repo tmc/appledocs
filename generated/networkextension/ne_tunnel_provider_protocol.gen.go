@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [NETunnelProviderProtocol] class.
@@ -30,6 +29,10 @@ type _NETunnelProviderProtocolClass struct {
 // An interface definition for the [NETunnelProviderProtocol] class.
 type INETunnelProviderProtocol interface {
 	INEVPNProtocol
+	ProviderBundleIdentifier() string
+	SetProviderBundleIdentifier(value string)
+	ProviderConfiguration() unsafe.Pointer
+	SetProviderConfiguration(value unsafe.Pointer)
 }
 
 // Configuration parameters for a VPN tunnel.
@@ -85,8 +88,8 @@ func NewNETunnelProviderProtocol() NETunnelProviderProtocol {
 // A string identifying the specific Tunnel Provider extension that should be used with this configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol/providerBundleIdentifier
-func (n_ NETunnelProviderProtocol) ProviderBundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NETunnelProviderProtocol) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
@@ -96,8 +99,8 @@ func (n_ NETunnelProviderProtocol) ProviderBundleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol/providerBundleIdentifier
-func (n_ NETunnelProviderProtocol) SetProviderBundleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
+func (n_ NETunnelProviderProtocol) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
 }
 
 // A dictionary containing keys and values defined by the Tunnel Provider developer.

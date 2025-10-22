@@ -31,6 +31,8 @@ type _MTRBooleanStateConfigurationClusterSensorFaultEventClass struct {
 // An interface definition for the [MTRBooleanStateConfigurationClusterSensorFaultEvent] class.
 type IMTRBooleanStateConfigurationClusterSensorFaultEvent interface {
 	objectivec.IObject
+	SensorFault() foundation.Number
+	SetSensorFault(value foundation.INumber)
 }
 
 //

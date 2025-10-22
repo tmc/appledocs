@@ -29,6 +29,8 @@ type _VZEFIBootLoaderClass struct {
 // An interface definition for the [VZEFIBootLoader] class.
 type IVZEFIBootLoader interface {
 	IVZBootLoader
+	VariableStore() VZEFIVariableStore
+	SetVariableStore(value IVZEFIVariableStore)
 }
 
 // The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.

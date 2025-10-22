@@ -33,6 +33,8 @@ type IStream interface {
 	AddStreamOutputTypeSampleHandlerQueueError(output objectivec.IObject, type_ StreamOutputType, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool
 	StartCaptureWithCompletionHandler(completionHandler unsafe.Pointer)
 	UpdateContentFilterCompletionHandler(contentFilter ISCContentFilter, completionHandler unsafe.Pointer)
+	SynchronizationClock() unsafe.Pointer
+	SetSynchronizationClock(value unsafe.Pointer)
 }
 
 // An instance that represents a stream of shareable content.

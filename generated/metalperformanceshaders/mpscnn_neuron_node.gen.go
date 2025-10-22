@@ -29,6 +29,12 @@ type _CNNNeuronNodeClass struct {
 // An interface definition for the [CNNNeuronNode] class.
 type ICNNNeuronNode interface {
 	IFilterNode
+	A() float32
+	SetA(value float32)
+	B() float32
+	SetB(value float32)
+	C() float32
+	SetC(value float32)
 }
 
 // The virtual base class for MPS CNN neuron nodes.
@@ -81,8 +87,8 @@ func NewCNNNeuronNode() CNNNeuronNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
-func (c_ CNNNeuronNode) A() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("a"))
+func (c_ CNNNeuronNode) A() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("a"))
 	return rv
 }
 
@@ -90,14 +96,14 @@ func (c_ CNNNeuronNode) A() unsafe.Pointer {
 // SetA sets the value of the a property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
-func (c_ CNNNeuronNode) SetA(value unsafe.Pointer) {
+func (c_ CNNNeuronNode) SetA(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setA:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/b
-func (c_ CNNNeuronNode) B() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("b"))
+func (c_ CNNNeuronNode) B() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("b"))
 	return rv
 }
 
@@ -105,14 +111,14 @@ func (c_ CNNNeuronNode) B() unsafe.Pointer {
 // SetB sets the value of the b property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/b
-func (c_ CNNNeuronNode) SetB(value unsafe.Pointer) {
+func (c_ CNNNeuronNode) SetB(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setB:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/c
-func (c_ CNNNeuronNode) C() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("c"))
+func (c_ CNNNeuronNode) C() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("c"))
 	return rv
 }
 
@@ -120,7 +126,7 @@ func (c_ CNNNeuronNode) C() unsafe.Pointer {
 // SetC sets the value of the c property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/c
-func (c_ CNNNeuronNode) SetC(value unsafe.Pointer) {
+func (c_ CNNNeuronNode) SetC(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setC:"), value)
 }
 

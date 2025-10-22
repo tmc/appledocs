@@ -30,6 +30,14 @@ type _HKMedicationDoseEventClass struct {
 // An interface definition for the [HKMedicationDoseEvent] class.
 type IHKMedicationDoseEvent interface {
 	IHKSample
+	DoseQuantity() foundation.Number
+	LogStatus() HKMedicationDoseEventLogStatus
+	MedicationConceptIdentifier() HKHealthConceptIdentifier
+	MedicationDoseEventType() HKMedicationDoseEventType
+	ScheduleType() HKMedicationDoseEventScheduleType
+	ScheduledDate() foundation.NSDate
+	ScheduledDoseQuantity() foundation.Number
+	Unit() HKUnit
 }
 
 //

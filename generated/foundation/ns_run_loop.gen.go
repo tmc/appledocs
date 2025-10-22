@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,11 +32,12 @@ type IRunLoop interface {
 	objectivec.IObject
 	AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate)
 	AddTimerForMode(timer ITimer, mode RunLoopMode)
-	GetCFRunLoop() corefoundation.RunLoopRef
+	GetCFRunLoop() unsafe.Pointer
 	LimitDateForMode(mode RunLoopMode) Date
 	Run()
 	RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool
 	RunUntilDate(limitDate IDate)
+	CurrentMode() RunLoopMode
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -119,8 +119,8 @@ func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
 // Returns the receiver’s underlying run loop object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
-func (r_ RunLoop) GetCFRunLoop() corefoundation.RunLoopRef {
-	rv := objc.Send[corefoundation.RunLoopRef](r_.ID, objc.Sel("getCFRunLoop"))
+func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("getCFRunLoop"))
 	return rv
 }
 

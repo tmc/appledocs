@@ -31,6 +31,8 @@ type _MTRMessagesClusterMessagePresentedEventClass struct {
 // An interface definition for the [MTRMessagesClusterMessagePresentedEvent] class.
 type IMTRMessagesClusterMessagePresentedEvent interface {
 	objectivec.IObject
+	MessageID() foundation.NSData
+	SetMessageID(value foundation.IData)
 }
 
 //

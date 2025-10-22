@@ -30,6 +30,26 @@ type _RenderPipelineColorAttachmentDescriptorClass struct {
 // An interface definition for the [RenderPipelineColorAttachmentDescriptor] class.
 type IRenderPipelineColorAttachmentDescriptor interface {
 	objectivec.IObject
+	AlphaBlendOperation() BlendOperation
+	SetAlphaBlendOperation(value IBlendOperation)
+	DestinationAlphaBlendFactor() BlendFactor
+	SetDestinationAlphaBlendFactor(value IBlendFactor)
+	DestinationRGBBlendFactor() BlendFactor
+	SetDestinationRGBBlendFactor(value IBlendFactor)
+	BlendingEnabled() bool
+	SetBlendingEnabled(value bool)
+	PixelFormat() PixelFormat
+	SetPixelFormat(value PixelFormat)
+	RgbBlendOperation() BlendOperation
+	SetRgbBlendOperation(value IBlendOperation)
+	SourceAlphaBlendFactor() BlendFactor
+	SetSourceAlphaBlendFactor(value IBlendFactor)
+	SourceRGBBlendFactor() BlendFactor
+	SetSourceRGBBlendFactor(value IBlendFactor)
+	WriteMask() ColorWriteMask
+	SetWriteMask(value ColorWriteMask)
+	IsBlendingEnabled() bool
+	SetIsBlendingEnabled(value bool)
 }
 
 // A color render target that specifies the color configuration and color operations for a render pipeline.

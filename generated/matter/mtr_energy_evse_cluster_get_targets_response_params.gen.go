@@ -30,6 +30,8 @@ type _MTREnergyEVSEClusterGetTargetsResponseParamsClass struct {
 // An interface definition for the [MTREnergyEVSEClusterGetTargetsResponseParams] class.
 type IMTREnergyEVSEClusterGetTargetsResponseParams interface {
 	objectivec.IObject
+	ChargingTargetSchedules() objc.ID
+	SetChargingTargetSchedules(value objc.ID)
 }
 
 //

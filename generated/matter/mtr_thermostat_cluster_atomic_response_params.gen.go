@@ -31,6 +31,12 @@ type _MTRThermostatClusterAtomicResponseParamsClass struct {
 // An interface definition for the [MTRThermostatClusterAtomicResponseParams] class.
 type IMTRThermostatClusterAtomicResponseParams interface {
 	objectivec.IObject
+	AttributeStatus() objc.ID
+	SetAttributeStatus(value objc.ID)
+	StatusCode() foundation.Number
+	SetStatusCode(value foundation.INumber)
+	Timeout() foundation.Number
+	SetTimeout(value foundation.INumber)
 }
 
 //

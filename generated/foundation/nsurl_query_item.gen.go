@@ -30,6 +30,11 @@ type _URLQueryItemClass struct {
 // An interface definition for the [URLQueryItem] class.
 type IURLQueryItem interface {
 	objectivec.IObject
+	Value() string
+	QueryItems() URLQueryItem
+	SetQueryItems(value IURLQueryItem)
+	Name() string
+	SetName(value string)
 }
 
 // An object representing a single name/value pair for an item in the query portion of a URL.

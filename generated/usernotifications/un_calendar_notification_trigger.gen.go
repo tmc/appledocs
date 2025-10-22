@@ -31,6 +31,7 @@ type _UNCalendarNotificationTriggerClass struct {
 type IUNCalendarNotificationTrigger interface {
 	IUNNotificationTrigger
 	NextTriggerDate() foundation.Date
+	DateComponents() foundation.DateComponents
 }
 
 // A trigger condition that causes a notification the system delivers at a specific date and time.

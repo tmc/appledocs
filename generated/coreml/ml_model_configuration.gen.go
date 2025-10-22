@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,20 @@ type _ModelConfigurationClass struct {
 // An interface definition for the [ModelConfiguration] class.
 type IModelConfiguration interface {
 	objectivec.IObject
+	AllowLowPrecisionAccumulationOnGPU() bool
+	SetAllowLowPrecisionAccumulationOnGPU(value bool)
+	ComputeUnits() ComputeUnits
+	SetComputeUnits(value IComputeUnits)
+	FunctionName() string
+	SetFunctionName(value string)
+	ModelDisplayName() string
+	SetModelDisplayName(value string)
+	OptimizationHints() MLOptimizationHints
+	SetOptimizationHints(value IMLOptimizationHints)
+	Parameters() unsafe.Pointer
+	SetParameters(value unsafe.Pointer)
+	PreferredMetalDevice() objc.ID
+	SetPreferredMetalDevice(value objc.ID)
 }
 
 // The settings for creating or updating a machine learning model.
@@ -120,8 +133,8 @@ func (m_ ModelConfiguration) SetComputeUnits(value IComputeUnits) {
 // Function name that will use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-func (m_ ModelConfiguration) FunctionName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("functionName"))
+func (m_ ModelConfiguration) FunctionName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
 	return rv
 }
 
@@ -131,15 +144,15 @@ func (m_ ModelConfiguration) FunctionName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-func (m_ ModelConfiguration) SetFunctionName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), value)
+func (m_ ModelConfiguration) SetFunctionName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
 }
 
 // A human readable name of a model for display purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
-func (m_ ModelConfiguration) ModelDisplayName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("modelDisplayName"))
+func (m_ ModelConfiguration) ModelDisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
 	return rv
 }
 
@@ -149,8 +162,8 @@ func (m_ ModelConfiguration) ModelDisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
-func (m_ ModelConfiguration) SetModelDisplayName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), value)
+func (m_ ModelConfiguration) SetModelDisplayName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
 }
 
 // A group of hints for CoreML to optimize

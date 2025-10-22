@@ -32,6 +32,26 @@ type IFXFrameInterpolatorDescriptor interface {
 	objectivec.IObject
 	NewFrameInterpolatorWithDevice(device objectivec.IObject) objc.ID
 	NewFrameInterpolatorWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
+	ColorTextureFormat() unsafe.Pointer
+	SetColorTextureFormat(value unsafe.Pointer)
+	DepthTextureFormat() unsafe.Pointer
+	SetDepthTextureFormat(value unsafe.Pointer)
+	InputHeight() uint
+	SetInputHeight(value uint)
+	InputWidth() uint
+	SetInputWidth(value uint)
+	MotionTextureFormat() unsafe.Pointer
+	SetMotionTextureFormat(value unsafe.Pointer)
+	OutputHeight() uint
+	SetOutputHeight(value uint)
+	OutputTextureFormat() unsafe.Pointer
+	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputWidth() uint
+	SetOutputWidth(value uint)
+	Scaler() objc.ID
+	SetScaler(value objc.ID)
+	UiTextureFormat() unsafe.Pointer
+	SetUiTextureFormat(value unsafe.Pointer)
 }
 
 // A set of properties that configure a frame interpolator, and a factory method that creates the effect.

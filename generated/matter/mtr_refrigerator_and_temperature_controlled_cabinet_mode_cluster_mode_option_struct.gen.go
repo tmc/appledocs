@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStructC
 // An interface definition for the [MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct] class.
 type IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	Mode() foundation.Number
+	SetMode(value foundation.INumber)
+	ModeTags() objc.ID
+	SetModeTags(value objc.ID)
 }
 
 //
@@ -79,8 +84,8 @@ func NewMTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct/label
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -88,8 +93,8 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStru
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct/label
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

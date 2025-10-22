@@ -31,9 +31,10 @@ type _AXBrailleMapClass struct {
 // An interface definition for the [AXBrailleMap] class.
 type IAXBrailleMap interface {
 	objectivec.IObject
-	HeightAtPoint(point coregraphics.CGPoint) unsafe.Pointer
+	HeightAtPoint(point coregraphics.CGPoint) float32
 	PresentImage(image coregraphics.CGImageRef)
-	SetHeightAtPoint(status unsafe.Pointer, point coregraphics.CGPoint)
+	SetHeightAtPoint(status float32, point coregraphics.CGPoint)
+	Dimensions() coregraphics.CGSize
 }
 
 // A representation of a two-dimensional braille display.
@@ -87,8 +88,8 @@ func NewAXBrailleMap() AXBrailleMap {
 // Retrieves the height of an individual pin on the braille display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/height(at:)
-func (a_ AXBrailleMap) HeightAtPoint(point coregraphics.CGPoint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("heightAtPoint:"), point)
+func (a_ AXBrailleMap) HeightAtPoint(point coregraphics.CGPoint) float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("heightAtPoint:"), point)
 	return rv
 }
 
@@ -102,7 +103,7 @@ func (a_ AXBrailleMap) PresentImage(image coregraphics.CGImageRef) {
 // Sets the height of an individual pin on the braille display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/setHeight(_:at:)
-func (a_ AXBrailleMap) SetHeightAtPoint(status unsafe.Pointer, point coregraphics.CGPoint) {
+func (a_ AXBrailleMap) SetHeightAtPoint(status float32, point coregraphics.CGPoint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHeight:atPoint:"), status, point)
 }
 

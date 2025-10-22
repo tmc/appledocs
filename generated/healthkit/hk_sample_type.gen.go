@@ -29,6 +29,15 @@ type _HKSampleTypeClass struct {
 // An interface definition for the [HKSampleType] class.
 type IHKSampleType interface {
 	IHKObjectType
+	AllowsRecalibrationForEstimates() bool
+	IsMaximumDurationRestricted() bool
+	SetIsMaximumDurationRestricted(value bool)
+	IsMinimumDurationRestricted() bool
+	SetIsMinimumDurationRestricted(value bool)
+	MaximumAllowedDuration() unsafe.Pointer
+	SetMaximumAllowedDuration(value unsafe.Pointer)
+	MinimumAllowedDuration() unsafe.Pointer
+	SetMinimumAllowedDuration(value unsafe.Pointer)
 }
 
 // An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.

@@ -32,6 +32,7 @@ type IILClassificationUIExtensionViewController interface {
 	appkit.IViewController
 	ClassificationResponseForRequest(request unsafe.Pointer) unsafe.Pointer
 	PrepareForClassificationRequest(request unsafe.Pointer)
+	ExtensionContext() ILClassificationUIExtensionContext
 }
 
 // The superclass for an Unwanted Communication Reporting extension’s principal view controller.

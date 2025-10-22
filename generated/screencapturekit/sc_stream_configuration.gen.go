@@ -33,6 +33,68 @@ type _StreamConfigurationClass struct {
 // An interface definition for the [StreamConfiguration] class.
 type IStreamConfiguration interface {
 	objectivec.IObject
+	CaptureDynamicRange() unsafe.Pointer
+	SetCaptureDynamicRange(value unsafe.Pointer)
+	IgnoreGlobalClipSingleWindow() bool
+	SetIgnoreGlobalClipSingleWindow(value bool)
+	QueueDepth() int
+	SetQueueDepth(value int)
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.IColor)
+	CaptureMicrophone() bool
+	SetCaptureMicrophone(value bool)
+	CaptureResolution() unsafe.Pointer
+	SetCaptureResolution(value unsafe.Pointer)
+	CapturesAudio() bool
+	SetCapturesAudio(value bool)
+	CapturesShadowsOnly() bool
+	SetCapturesShadowsOnly(value bool)
+	ChannelCount() int
+	SetChannelCount(value int)
+	ColorMatrix() foundation.String
+	SetColorMatrix(value foundation.IString)
+	ColorSpaceName() foundation.String
+	SetColorSpaceName(value foundation.IString)
+	DestinationRect() coregraphics.CGRect
+	SetDestinationRect(value coregraphics.CGRect)
+	ExcludesCurrentProcessAudio() bool
+	SetExcludesCurrentProcessAudio(value bool)
+	Height() int
+	SetHeight(value int)
+	IgnoreGlobalClipDisplay() bool
+	SetIgnoreGlobalClipDisplay(value bool)
+	IgnoreShadowsDisplay() bool
+	SetIgnoreShadowsDisplay(value bool)
+	IgnoreShadowsSingleWindow() bool
+	SetIgnoreShadowsSingleWindow(value bool)
+	IncludeChildWindows() bool
+	SetIncludeChildWindows(value bool)
+	MicrophoneCaptureDeviceID() string
+	SetMicrophoneCaptureDeviceID(value string)
+	MinimumFrameInterval() unsafe.Pointer
+	SetMinimumFrameInterval(value unsafe.Pointer)
+	PixelFormat() unsafe.Pointer
+	SetPixelFormat(value unsafe.Pointer)
+	PresenterOverlayPrivacyAlertSetting() unsafe.Pointer
+	SetPresenterOverlayPrivacyAlertSetting(value unsafe.Pointer)
+	PreservesAspectRatio() bool
+	SetPreservesAspectRatio(value bool)
+	SampleRate() int
+	SetSampleRate(value int)
+	ScalesToFit() bool
+	SetScalesToFit(value bool)
+	ShouldBeOpaque() bool
+	SetShouldBeOpaque(value bool)
+	ShowMouseClicks() bool
+	SetShowMouseClicks(value bool)
+	ShowsCursor() bool
+	SetShowsCursor(value bool)
+	SourceRect() coregraphics.CGRect
+	SetSourceRect(value coregraphics.CGRect)
+	StreamName() string
+	SetStreamName(value string)
+	Width() int
+	SetWidth(value int)
 }
 
 // An instance that provides the output configuration for a stream.
@@ -400,8 +462,8 @@ func (s_ StreamConfiguration) SetIncludeChildWindows(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/microphonecapturedeviceid
-func (s_ StreamConfiguration) MicrophoneCaptureDeviceID() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("microphoneCaptureDeviceID"))
+func (s_ StreamConfiguration) MicrophoneCaptureDeviceID() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("microphoneCaptureDeviceID"))
 	return rv
 }
 
@@ -409,8 +471,8 @@ func (s_ StreamConfiguration) MicrophoneCaptureDeviceID() appkit.string {
 // SetMicrophoneCaptureDeviceID sets the value of the microphoneCaptureDeviceID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/microphonecapturedeviceid
-func (s_ StreamConfiguration) SetMicrophoneCaptureDeviceID(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMicrophoneCaptureDeviceID:"), value)
+func (s_ StreamConfiguration) SetMicrophoneCaptureDeviceID(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMicrophoneCaptureDeviceID:"), objc.String(value))
 }
 
 // The desired minimum time between frame updates, in seconds.
@@ -593,8 +655,8 @@ func (s_ StreamConfiguration) SetSourceRect(value coregraphics.CGRect) {
 // A name that you provide for identifying the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/streamname
-func (s_ StreamConfiguration) StreamName() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("streamName"))
+func (s_ StreamConfiguration) StreamName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("streamName"))
 	return rv
 }
 
@@ -604,8 +666,8 @@ func (s_ StreamConfiguration) StreamName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/streamname
-func (s_ StreamConfiguration) SetStreamName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamName:"), value)
+func (s_ StreamConfiguration) SetStreamName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamName:"), objc.String(value))
 }
 
 // The width of the output.

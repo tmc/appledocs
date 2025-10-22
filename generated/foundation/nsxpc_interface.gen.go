@@ -35,6 +35,8 @@ type IXPCInterface interface {
 	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
 	SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint, ofReply bool)
 	SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
+	Protocol() objectivec.Protocol
+	SetProtocol(value objectivec.Protocol)
 }
 
 // An interface that may be sent to an exported object or remote object proxy.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -38,8 +37,18 @@ type IGameSession interface {
 	PlayersWithConnectionState(state unsafe.Pointer) []CloudPlayer
 	SaveDataCompletionHandler(data foundation.IData, completionHandler unsafe.Pointer)
 	SendDataWithTransportTypeCompletionHandler(data foundation.IData, transport TransportType, completionHandler unsafe.Pointer)
-	SendMessageWithLocalizedFormatKeyArgumentsDataToPlayersBadgePlayersCompletionHandler(key appkit.string, arguments []string, data foundation.IData, players []CloudPlayer, badgePlayers bool, completionHandler unsafe.Pointer)
+	SendMessageWithLocalizedFormatKeyArgumentsDataToPlayersBadgePlayersCompletionHandler(key string, arguments []string, data foundation.IData, players []CloudPlayer, badgePlayers bool, completionHandler unsafe.Pointer)
 	SetConnectionStateCompletionHandler(state unsafe.Pointer, completionHandler unsafe.Pointer)
+	BadgedPlayers() []CloudPlayer
+	Identifier() string
+	LastModifiedDate() foundation.NSDate
+	LastModifiedPlayer() GKCloudPlayer
+	MaxNumberOfConnectedPlayers() int
+	Owner() GKCloudPlayer
+	Players() []CloudPlayer
+	Title() string
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A game session you can use to save game data, invite other players, and create turn-based and real-time game apps.
@@ -100,22 +109,22 @@ func (gc _GameSessionClass) AddEventListener(listener unsafe.Pointer) {
 // Creates a new game session inside of an iCloud container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)
-func (gc _GameSessionClass) CreateSessionInContainerWithTitleMaxConnectedPlayersCompletionHandler(containerName appkit.string, title appkit.string, maxPlayers int, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:"), containerName, title, maxPlayers, completionHandler)
+func (gc _GameSessionClass) CreateSessionInContainerWithTitleMaxConnectedPlayersCompletionHandler(containerName string, title string, maxPlayers int, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:"), objc.String(containerName), objc.String(title), maxPlayers, completionHandler)
 }
 
 // Loads a specific game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/load(withIdentifier:completionHandler:)
-func (gc _GameSessionClass) LoadSessionWithIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("loadSessionWithIdentifier:completionHandler:"), identifier, completionHandler)
+func (gc _GameSessionClass) LoadSessionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("loadSessionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
 
 // Retrieves all of the game sessions associated with a container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/loadSessions(inContainer:completionHandler:)
-func (gc _GameSessionClass) LoadSessionsInContainerCompletionHandler(containerName appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("loadSessionsInContainer:completionHandler:"), containerName, completionHandler)
+func (gc _GameSessionClass) LoadSessionsInContainerCompletionHandler(containerName string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("loadSessionsInContainer:completionHandler:"), objc.String(containerName), completionHandler)
 }
 
 // Stops listening to the event listener object.
@@ -128,8 +137,8 @@ func (gc _GameSessionClass) RemoveEventListener(listener unsafe.Pointer) {
 // Removes the specified game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/remove(withIdentifier:completionHandler:)
-func (gc _GameSessionClass) RemoveSessionWithIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("removeSessionWithIdentifier:completionHandler:"), identifier, completionHandler)
+func (gc _GameSessionClass) RemoveSessionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("removeSessionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
 
 // Clears the badge from the designated players.
@@ -178,8 +187,8 @@ func (g_ GameSession) SendDataWithTransportTypeCompletionHandler(data foundation
 // Sends a message to players in a game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)
-func (g_ GameSession) SendMessageWithLocalizedFormatKeyArgumentsDataToPlayersBadgePlayersCompletionHandler(key appkit.string, arguments []string, data foundation.IData, players []CloudPlayer, badgePlayers bool, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:"), key, arguments, data, players, badgePlayers, completionHandler)
+func (g_ GameSession) SendMessageWithLocalizedFormatKeyArgumentsDataToPlayersBadgePlayersCompletionHandler(key string, arguments []string, data foundation.IData, players []CloudPlayer, badgePlayers bool, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:"), objc.String(key), arguments, data, players, badgePlayers, completionHandler)
 }
 
 // Sets the connection state for the player.
@@ -200,8 +209,8 @@ func (g_ GameSession) BadgedPlayers() []CloudPlayer {
 // A unique identifier for a game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/identifier
-func (g_ GameSession) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("identifier"))
+func (g_ GameSession) Identifier() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -248,8 +257,8 @@ func (g_ GameSession) Players() []CloudPlayer {
 // The title of the game session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSession/title
-func (g_ GameSession) Title() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("title"))
+func (g_ GameSession) Title() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("title"))
 	return rv
 }
 

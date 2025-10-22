@@ -40,6 +40,8 @@ type IObstacleGraph interface {
 	RemoveAllObstacles()
 	RemoveObstacles(obstacles []PolygonObstacle)
 	UnlockConnectionFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer)
+	BufferRadius() float32
+	Obstacles() []PolygonObstacle
 }
 
 // A navigation graph for 2D game worlds that creates a minimal network for precise pathfinding around obstacles.
@@ -97,7 +99,7 @@ func NewObstacleGraph() ObstacleGraph {
 // Initializes a graph with the specified list of obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/init(obstacles:bufferRadius:)
-func NewObstacleGraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer) ObstacleGraph {
+func NewObstacleGraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, bufferRadius float32) ObstacleGraph {
 	instance := getObstacleGraphClass().Alloc()
 	rv := objc.Send[ObstacleGraph](instance.ID, objc.Sel("initWithObstacles:bufferRadius:"), obstacles, bufferRadius)
 	rv.Autorelease()
@@ -109,7 +111,7 @@ func NewObstacleGraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, buff
 // Initializes a graph with the specified list of obstacles, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/init(obstacles:bufferRadius:nodeClass:)
-func NewObstacleGraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer, nodeClass objc.Class) ObstacleGraph {
+func NewObstacleGraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObstacle, bufferRadius float32, nodeClass objc.Class) ObstacleGraph {
 	instance := getObstacleGraphClass().Alloc()
 	rv := objc.Send[ObstacleGraph](instance.ID, objc.Sel("initWithObstacles:bufferRadius:nodeClass:"), obstacles, bufferRadius, nodeClass)
 	rv.Autorelease()
@@ -120,7 +122,7 @@ func NewObstacleGraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObsta
 // Creates a graph with the specified list of obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/graphWithObstacles:bufferRadius:
-func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer) unsafe.Pointer {
+func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, bufferRadius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("graphWithObstacles:bufferRadius:"), obstacles, bufferRadius)
 	return rv
 }
@@ -128,7 +130,7 @@ func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadius(obstacles []Polygon
 // Creates a graph with the specified list of obstacles, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/graphWithObstacles:bufferRadius:nodeClass:
-func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
+func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObstacle, bufferRadius float32, nodeClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("graphWithObstacles:bufferRadius:nodeClass:"), obstacles, bufferRadius, nodeClass)
 	return rv
 }
@@ -215,8 +217,8 @@ func (o_ ObstacleGraph) UnlockConnectionFromNodeToNode(startNode unsafe.Pointer,
 // The distance from obstacle edges that should also be considered impassable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/bufferRadius
-func (o_ ObstacleGraph) BufferRadius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("bufferRadius"))
+func (o_ ObstacleGraph) BufferRadius() float32 {
+	rv := objc.Send[float32](o_.ID, objc.Sel("bufferRadius"))
 	return rv
 }
 

@@ -29,6 +29,18 @@ type _RNNMatrixTrainingLayerClass struct {
 // An interface definition for the [RNNMatrixTrainingLayer] class.
 type IRNNMatrixTrainingLayer interface {
 	IKernel
+	AccumulateWeightGradients() bool
+	SetAccumulateWeightGradients(value bool)
+	InputFeatureChannels() int
+	SetInputFeatureChannels(value int)
+	OutputFeatureChannels() int
+	SetOutputFeatureChannels(value int)
+	RecurrentOutputIsTemporary() bool
+	SetRecurrentOutputIsTemporary(value bool)
+	StoreAllIntermediateStates() bool
+	SetStoreAllIntermediateStates(value bool)
+	TrainingStateIsTemporary() bool
+	SetTrainingStateIsTemporary(value bool)
 }
 
 // A layer for training recurrent neural networks on Metal Performance Shaders matrices.

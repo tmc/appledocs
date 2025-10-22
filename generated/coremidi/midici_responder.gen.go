@@ -30,6 +30,12 @@ type _MIDICIResponderClass struct {
 // An interface definition for the [MIDICIResponder] class.
 type IMIDICIResponder interface {
 	objectivec.IObject
+	DeviceInfo() MIDICIDeviceInfo
+	SetDeviceInfo(value IMIDICIDeviceInfo)
+	Initiators() unsafe.Pointer
+	SetInitiators(value unsafe.Pointer)
+	ProfileDelegate() unsafe.Pointer
+	SetProfileDelegate(value unsafe.Pointer)
 }
 
 // An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.

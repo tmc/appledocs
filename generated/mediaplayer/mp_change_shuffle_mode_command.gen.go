@@ -29,6 +29,8 @@ type _ChangeShuffleModeCommandClass struct {
 // An interface definition for the [ChangeShuffleModeCommand] class.
 type IChangeShuffleModeCommand interface {
 	IRemoteCommand
+	CurrentShuffleType() ShuffleType
+	SetCurrentShuffleType(value ShuffleType)
 }
 
 // An object that responds to requests to change the current shuffle mode used during playback.

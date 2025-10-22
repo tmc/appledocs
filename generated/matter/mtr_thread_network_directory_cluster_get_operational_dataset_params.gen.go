@@ -31,6 +31,12 @@ type _MTRThreadNetworkDirectoryClusterGetOperationalDatasetParamsClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams] class.
 type IMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams interface {
 	objectivec.IObject
+	ExtendedPanID() foundation.NSData
+	SetExtendedPanID(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

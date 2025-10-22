@@ -31,6 +31,18 @@ type _MTRMicrowaveOvenControlClusterSetCookingParametersParamsClass struct {
 // An interface definition for the [MTRMicrowaveOvenControlClusterSetCookingParametersParams] class.
 type IMTRMicrowaveOvenControlClusterSetCookingParametersParams interface {
 	objectivec.IObject
+	CookMode() foundation.Number
+	SetCookMode(value foundation.INumber)
+	CookTime() foundation.Number
+	SetCookTime(value foundation.INumber)
+	PowerSetting() foundation.Number
+	SetPowerSetting(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StartAfterSetting() foundation.Number
+	SetStartAfterSetting(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

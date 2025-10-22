@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DDMatchEmailAddress] class.
@@ -30,6 +29,8 @@ type _DDMatchEmailAddressClass struct {
 // An interface definition for the [DDMatchEmailAddress] class.
 type IDDMatchEmailAddress interface {
 	IDDMatch
+	EmailAddress() string
+	Label() string
 }
 
 // An object that contains an email address that the data detection system matches.
@@ -85,16 +86,16 @@ func NewDDMatchEmailAddress() DDMatchEmailAddress {
 // A string that represents an email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/emailAddress
-func (d_ DDMatchEmailAddress) EmailAddress() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("emailAddress"))
+func (d_ DDMatchEmailAddress) EmailAddress() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
 // A string that categorizes an email address, such as Home or Work.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/label
-func (d_ DDMatchEmailAddress) Label() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("label"))
+func (d_ DDMatchEmailAddress) Label() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
 

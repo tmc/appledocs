@@ -29,6 +29,14 @@ type _AudioPlayerNodeClass struct {
 // An interface definition for the [AudioPlayerNode] class.
 type IAudioPlayerNode interface {
 	IAudioNode
+	LastRenderTime() AVAudioTime
+	SetLastRenderTime(value IAVAudioTime)
+	Latency() unsafe.Pointer
+	SetLatency(value unsafe.Pointer)
+	OutputPresentationLatency() unsafe.Pointer
+	SetOutputPresentationLatency(value unsafe.Pointer)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
 }
 
 // An object for scheduling the playback of buffers or segments of audio files.

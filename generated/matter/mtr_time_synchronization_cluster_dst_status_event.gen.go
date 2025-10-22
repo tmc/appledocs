@@ -31,6 +31,8 @@ type _MTRTimeSynchronizationClusterDSTStatusEventClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterDSTStatusEvent] class.
 type IMTRTimeSynchronizationClusterDSTStatusEvent interface {
 	objectivec.IObject
+	DstOffsetActive() foundation.Number
+	SetDstOffsetActive(value foundation.INumber)
 }
 
 //

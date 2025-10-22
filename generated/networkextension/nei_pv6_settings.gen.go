@@ -31,6 +31,22 @@ type _NEIPv6SettingsClass struct {
 // An interface definition for the [NEIPv6Settings] class.
 type INEIPv6Settings interface {
 	objectivec.IObject
+	ExcludedRoutes() []NEIPv6Route
+	SetExcludedRoutes(value []NEIPv6Route)
+	IncludedRoutes() []NEIPv6Route
+	SetIncludedRoutes(value []NEIPv6Route)
+	Addresses() string
+	SetAddresses(value string)
+	NetworkPrefixLengths() foundation.Number
+	SetNetworkPrefixLengths(value foundation.INumber)
+	Ipv4Settings() NEIPv4Settings
+	SetIpv4Settings(value INEIPv4Settings)
+	Ipv6Settings() NEIPv6Settings
+	SetIpv6Settings(value INEIPv6Settings)
+	Mtu() foundation.Number
+	SetMtu(value foundation.INumber)
+	TunnelOverheadBytes() foundation.Number
+	SetTunnelOverheadBytes(value foundation.INumber)
 }
 
 // The IPv6 settings of an IP layer network tunnel.
@@ -140,8 +156,8 @@ func (n_ NEIPv6Settings) SetIncludedRoutes(value []NEIPv6Route) {
 // The IPv6 addresses to assign to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/addresses
-func (n_ NEIPv6Settings) Addresses() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("addresses"))
+func (n_ NEIPv6Settings) Addresses() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("addresses"))
 	return rv
 }
 
@@ -151,8 +167,8 @@ func (n_ NEIPv6Settings) Addresses() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/addresses
-func (n_ NEIPv6Settings) SetAddresses(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setAddresses:"), value)
+func (n_ NEIPv6Settings) SetAddresses(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAddresses:"), objc.String(value))
 }
 
 // The IPv6 network prefix lengths to assign to the TUN interface.

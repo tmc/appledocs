@@ -34,6 +34,20 @@ type IMTRDeviceController interface {
 	CommissionNodeWithIDCommissioningParamsError(nodeID foundation.INumber, commissioningParams IMTRCommissioningParameters, error_ unsafe.Pointer) bool
 	SetDeviceControllerDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 	SetupCommissioningSessionWithPayloadNewNodeIDError(payload IMTRSetupPayload, newNodeID foundation.INumber, error_ unsafe.Pointer) bool
+	ControllerNodeID() foundation.Number
+	SetControllerNodeID(value foundation.INumber)
+	ControllerNodeId() foundation.Number
+	SetControllerNodeId(value foundation.INumber)
+	Devices() MTRDevice
+	SetDevices(value IMTRDevice)
+	IsRunning() bool
+	SetIsRunning(value bool)
+	IsSuspended() bool
+	SetIsSuspended(value bool)
+	NodesWithStoredData() foundation.Number
+	SetNodesWithStoredData(value foundation.INumber)
+	UniqueIdentifier() foundation.UUID
+	SetUniqueIdentifier(value foundation.IUUID)
 }
 
 //

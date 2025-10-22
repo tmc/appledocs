@@ -30,6 +30,8 @@ type _PushPayloadClass struct {
 // An interface definition for the [PushPayload] class.
 type IPushPayload interface {
 	objectivec.IObject
+	DictionaryPayload() objc.ID
+	Type() PushType
 }
 
 // An object that contains information about a received PushKit notification.

@@ -31,6 +31,30 @@ type _ShapeLayerClass struct {
 // An interface definition for the [ShapeLayer] class.
 type IShapeLayer interface {
 	ILayer
+	FillColor() coregraphics.CGColorRef
+	SetFillColor(value coregraphics.CGColorRef)
+	FillRule() ShapeLayerFillRule
+	SetFillRule(value IShapeLayerFillRule)
+	LineCap() ShapeLayerLineCap
+	SetLineCap(value IShapeLayerLineCap)
+	LineDashPattern() []foundation.Number
+	SetLineDashPattern(value []foundation.INumber)
+	LineDashPhase() float64
+	SetLineDashPhase(value float64)
+	LineJoin() ShapeLayerLineJoin
+	SetLineJoin(value IShapeLayerLineJoin)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	MiterLimit() float64
+	SetMiterLimit(value float64)
+	Path() coregraphics.CGPathRef
+	SetPath(value coregraphics.CGPathRef)
+	StrokeColor() coregraphics.CGColorRef
+	SetStrokeColor(value coregraphics.CGColorRef)
+	StrokeEnd() float64
+	SetStrokeEnd(value float64)
+	StrokeStart() float64
+	SetStrokeStart(value float64)
 }
 
 // A layer that draws a cubic Bezier spline in its coordinate space.

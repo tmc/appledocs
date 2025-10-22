@@ -48,6 +48,14 @@ type ICKContainer interface {
 	FetchUserRecordIDWithCompletionHandler(completionHandler unsafe.Pointer)
 	RequestApplicationPermissionCompletionHandler(applicationPermission ICKApplicationPermissions, completionHandler unsafe.Pointer)
 	StatusForApplicationPermissionCompletionHandler(applicationPermission ICKApplicationPermissions, completionHandler unsafe.Pointer)
+	ContainerIdentifier() string
+	PrivateCloudDatabase() CKDatabase
+	PublicCloudDatabase() CKDatabase
+	SharedCloudDatabase() CKDatabase
+	CKCurrentUserDefaultName() string
+	CKOwnerDefaultName() string
+	UserRecordID() CKRecordID
+	SetUserRecordID(value ICKRecordID)
 }
 
 // A conduit to your app’s databases.

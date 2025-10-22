@@ -31,6 +31,10 @@ type _MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStructClass stru
 // An interface definition for the [MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct] class.
 type IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct interface {
 	objectivec.IObject
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	NodeID() foundation.Number
+	SetNodeID(value foundation.INumber)
 }
 
 //

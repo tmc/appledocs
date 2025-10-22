@@ -30,6 +30,24 @@ type _INSearchForPhotosIntentClass struct {
 // An interface definition for the [INSearchForPhotosIntent] class.
 type IINSearchForPhotosIntent interface {
 	IINIntent
+	AlbumName() string
+	SetAlbumName(value string)
+	DateCreated() INDateComponentsRange
+	SetDateCreated(value INDateComponentsRange)
+	ExcludedAttributes() unsafe.Pointer
+	SetExcludedAttributes(value unsafe.Pointer)
+	IncludedAttributes() unsafe.Pointer
+	SetIncludedAttributes(value unsafe.Pointer)
+	LocationCreated() corelocation.Placemark
+	SetLocationCreated(value corelocation.IPlacemark)
+	PeopleInPhoto() INPerson
+	SetPeopleInPhoto(value INPerson)
+	PeopleInPhotoOperator() INConditionalOperator
+	SetPeopleInPhotoOperator(value INConditionalOperator)
+	SearchTerms() string
+	SetSearchTerms(value string)
+	SearchTermsOperator() INConditionalOperator
+	SetSearchTermsOperator(value INConditionalOperator)
 }
 
 // A request for the list of photos that match the specified criteria.
@@ -85,8 +103,8 @@ func NewINSearchForPhotosIntent() INSearchForPhotosIntent {
 // The name of the album that contains the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
-func (i_ INSearchForPhotosIntent) AlbumName() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("albumName"))
+func (i_ INSearchForPhotosIntent) AlbumName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
 	return rv
 }
 
@@ -96,8 +114,8 @@ func (i_ INSearchForPhotosIntent) AlbumName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
-func (i_ INSearchForPhotosIntent) SetAlbumName(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), value)
+func (i_ INSearchForPhotosIntent) SetAlbumName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
 }
 
 // The range of dates during which someone took the pictures.
@@ -211,8 +229,8 @@ func (i_ INSearchForPhotosIntent) SetPeopleInPhotoOperator(value INConditionalOp
 // An array of terms to look for in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
-func (i_ INSearchForPhotosIntent) SearchTerms() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("searchTerms"))
+func (i_ INSearchForPhotosIntent) SearchTerms() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
 	return rv
 }
 
@@ -222,8 +240,8 @@ func (i_ INSearchForPhotosIntent) SearchTerms() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
-func (i_ INSearchForPhotosIntent) SetSearchTerms(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), value)
+func (i_ INSearchForPhotosIntent) SetSearchTerms(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
 }
 
 // The operator that defines how to incorporate the search terms when performing the search.

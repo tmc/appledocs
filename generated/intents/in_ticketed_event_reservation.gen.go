@@ -29,6 +29,9 @@ type _INTicketedEventReservationClass struct {
 // An interface definition for the [INTicketedEventReservation] class.
 type IINTicketedEventReservation interface {
 	IINReservation
+	Event() unsafe.Pointer
+	ReservedSeat() INSeat
+	SetReservedSeat(value INSeat)
 }
 
 // The information that describes a ticketed event reservation.

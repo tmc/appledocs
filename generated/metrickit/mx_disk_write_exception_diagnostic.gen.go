@@ -29,6 +29,8 @@ type _MXDiskWriteExceptionDiagnosticClass struct {
 // An interface definition for the [MXDiskWriteExceptionDiagnostic] class.
 type IMXDiskWriteExceptionDiagnostic interface {
 	IMXDiagnostic
+	CallStackTree() MXCallStackTree
+	TotalWritesCaused() unsafe.Pointer
 }
 
 // An object representing a diagnostic report for a disk write exception.

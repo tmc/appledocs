@@ -31,6 +31,8 @@ type _TemporalAAClass struct {
 type ITemporalAA interface {
 	IKernel
 	EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, previousTexture objectivec.IObject, destinationTexture objectivec.IObject, motionVectorTexture objectivec.IObject, depthTexture objectivec.IObject)
+	BlendFactor() float32
+	SetBlendFactor(value float32)
 }
 
 //
@@ -86,8 +88,8 @@ func (t_ TemporalAA) EncodeToCommandBufferSourceTexturePreviousTextureDestinatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa/blendfactor
-func (t_ TemporalAA) BlendFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("blendFactor"))
+func (t_ TemporalAA) BlendFactor() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("blendFactor"))
 	return rv
 }
 
@@ -95,7 +97,7 @@ func (t_ TemporalAA) BlendFactor() unsafe.Pointer {
 // SetBlendFactor sets the value of the blendFactor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa/blendfactor
-func (t_ TemporalAA) SetBlendFactor(value unsafe.Pointer) {
+func (t_ TemporalAA) SetBlendFactor(value float32) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBlendFactor:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,17 @@ type _THCredentialsClass struct {
 // An interface definition for the [THCredentials] class.
 type ITHCredentials interface {
 	objectivec.IObject
+	ActiveOperationalDataSet() foundation.NSData
+	BorderAgentID() foundation.NSData
+	Channel() unsafe.Pointer
+	SetChannel(value unsafe.Pointer)
+	CreationDate() foundation.NSDate
+	ExtendedPANID() foundation.NSData
+	LastModificationDate() foundation.NSDate
+	NetworkKey() foundation.NSData
+	NetworkName() string
+	PanID() foundation.NSData
+	PSKC() foundation.NSData
 }
 
 // A class that contains credentials for a Thread network.
@@ -151,8 +161,8 @@ func (t_ THCredentials) NetworkKey() foundation.NSData {
 // The Thread network name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/networkName
-func (t_ THCredentials) NetworkName() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("networkName"))
+func (t_ THCredentials) NetworkName() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("networkName"))
 	return rv
 }
 

@@ -31,6 +31,10 @@ type _MTROTASoftwareUpdateRequestorClusterVersionAppliedEventClass struct {
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent] class.
 type IMTROTASoftwareUpdateRequestorClusterVersionAppliedEvent interface {
 	objectivec.IObject
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
 }
 
 //

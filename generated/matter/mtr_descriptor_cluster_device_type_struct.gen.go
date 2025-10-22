@@ -31,6 +31,12 @@ type _MTRDescriptorClusterDeviceTypeStructClass struct {
 // An interface definition for the [MTRDescriptorClusterDeviceTypeStruct] class.
 type IMTRDescriptorClusterDeviceTypeStruct interface {
 	objectivec.IObject
+	DeviceType() foundation.Number
+	SetDeviceType(value foundation.INumber)
+	Revision() foundation.Number
+	SetRevision(value foundation.INumber)
+	Type() foundation.Number
+	SetType(value foundation.INumber)
 }
 
 //

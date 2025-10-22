@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,9 @@ type _FSFileNameClass struct {
 // An interface definition for the [FSFileName] class.
 type IFSFileName interface {
 	objectivec.IObject
+	Data() foundation.NSData
+	DebugDescription() string
+	String() string
 }
 
 // The name of a file, expressed as a data buffer.
@@ -123,9 +125,9 @@ func NewFSFileNameWithData(name foundation.IData) FSFileName {
 // Creates a filename by copying a character sequence from a string instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(string:)
-func NewFSFileNameWithString(name appkit.string) FSFileName {
+func NewFSFileNameWithString(name string) FSFileName {
 	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithString:"), name)
+	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithString:"), objc.String(name))
 	rv.Autorelease()
 	return rv
 }
@@ -158,8 +160,8 @@ func (fc _FSFileNameClass) NameWithData(name foundation.IData) unsafe.Pointer {
 // Creates a filename by copying a character sequence from a string instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithString:
-func (fc _FSFileNameClass) NameWithString(name appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithString:"), name)
+func (fc _FSFileNameClass) NameWithString(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithString:"), objc.String(name))
 	return rv
 }
 
@@ -174,16 +176,16 @@ func (f_ FSFileName) Data() foundation.NSData {
 // The filename, represented as a potentially lossy conversion to a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/debugDescription
-func (f_ FSFileName) DebugDescription() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("debugDescription"))
+func (f_ FSFileName) DebugDescription() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("debugDescription"))
 	return rv
 }
 
 // The filename, represented as a Unicode string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/string
-func (f_ FSFileName) String() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("string"))
+func (f_ FSFileName) String() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("string"))
 	return rv
 }
 

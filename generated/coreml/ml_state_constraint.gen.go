@@ -31,6 +31,8 @@ type _StateConstraintClass struct {
 // An interface definition for the [StateConstraint] class.
 type IStateConstraint interface {
 	objectivec.IObject
+	BufferShape() []foundation.Number
+	DataType() MultiArrayDataType
 }
 
 // Constraint of a state feature value.

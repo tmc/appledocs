@@ -31,6 +31,15 @@ type _AuthorizationSingleSignOnCredentialClass struct {
 // An interface definition for the [AuthorizationSingleSignOnCredential] class.
 type IAuthorizationSingleSignOnCredential interface {
 	objectivec.IObject
+	AuthorizedScopes() []string
+	AccessToken() foundation.Data
+	SetAccessToken(value foundation.IData)
+	AuthenticatedResponse() foundation.HTTPURLResponse
+	SetAuthenticatedResponse(value foundation.IHTTPURLResponse)
+	IdentityToken() foundation.Data
+	SetIdentityToken(value foundation.IData)
+	State() string
+	SetState(value string)
 }
 
 // A credential that results from a successful single sign-on (SSO) authentication.
@@ -144,8 +153,8 @@ func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value foundation.
 // An arbitrary string that your app provided to the request that generated this credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-func (a_ AuthorizationSingleSignOnCredential) State() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationSingleSignOnCredential) State() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -155,8 +164,8 @@ func (a_ AuthorizationSingleSignOnCredential) State() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-func (a_ AuthorizationSingleSignOnCredential) SetState(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), value)
+func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
 }
 
 

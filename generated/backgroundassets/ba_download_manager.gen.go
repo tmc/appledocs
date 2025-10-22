@@ -38,6 +38,8 @@ type IBADownloadManager interface {
 	StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool
 	PerformWithExclusiveControl(performHandler unsafe.Pointer)
 	PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.IDate, performHandler unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An object that manages the queue of scheduled asset downloads.

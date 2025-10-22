@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [UNTextInputNotificationResponse] class.
@@ -30,6 +29,7 @@ type _UNTextInputNotificationResponseClass struct {
 // An interface definition for the [UNTextInputNotificationResponse] class.
 type IUNTextInputNotificationResponse interface {
 	IUNNotificationResponse
+	UserText() string
 }
 
 // The user’s response to an actionable notification, including any custom text that the user typed or dictated.
@@ -85,8 +85,8 @@ func NewUNTextInputNotificationResponse() UNTextInputNotificationResponse {
 // The text response provided by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationResponse/userText
-func (u_ UNTextInputNotificationResponse) UserText() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("userText"))
+func (u_ UNTextInputNotificationResponse) UserText() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("userText"))
 	return rv
 }
 

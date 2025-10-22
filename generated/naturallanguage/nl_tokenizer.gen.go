@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,6 +36,9 @@ type ITokenizer interface {
 	TokenRangeAtIndex(characterIndex uint) foundation.Range
 	TokenRangeForRange(range_ foundation.IRange) foundation.Range
 	TokensForRange(range_ foundation.IRange) []foundation.Value
+	String() string
+	SetString(value string)
+	Unit() TokenUnit
 }
 
 // A tokenizer that segments natural language text into semantic units.
@@ -141,8 +143,8 @@ func (t_ Tokenizer) TokensForRange(range_ foundation.IRange) []foundation.Value 
 // The text to be tokenized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/string
-func (t_ Tokenizer) String() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("string"))
+func (t_ Tokenizer) String() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -152,8 +154,8 @@ func (t_ Tokenizer) String() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/string
-func (t_ Tokenizer) SetString(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
+func (t_ Tokenizer) SetString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 // The linguistic unit that this tokenizer uses.

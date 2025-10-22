@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,18 @@ type _MKLocalSearchRequestClass struct {
 // An interface definition for the [MKLocalSearchRequest] class.
 type IMKLocalSearchRequest interface {
 	objectivec.IObject
+	AddressFilter() unsafe.Pointer
+	SetAddressFilter(value unsafe.Pointer)
+	NaturalLanguageQuery() string
+	SetNaturalLanguageQuery(value string)
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
+	RegionPriority() unsafe.Pointer
+	SetRegionPriority(value unsafe.Pointer)
+	ResultTypes() MKLocalSearchResultType
+	SetResultTypes(value MKLocalSearchResultType)
 }
 
 // The parameters to use when searching for points of interest on the map.
@@ -98,9 +109,9 @@ func NewMKLocalSearchRequestWithCompletion(completion unsafe.Pointer) MKLocalSea
 // Initializes and returns a local search request based on the provided string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/init(naturalLanguageQuery:)
-func NewMKLocalSearchRequestWithNaturalLanguageQuery(naturalLanguageQuery appkit.string) MKLocalSearchRequest {
+func NewMKLocalSearchRequestWithNaturalLanguageQuery(naturalLanguageQuery string) MKLocalSearchRequest {
 	instance := getMKLocalSearchRequestClass().Alloc()
-	rv := objc.Send[MKLocalSearchRequest](instance.ID, objc.Sel("initWithNaturalLanguageQuery:"), naturalLanguageQuery)
+	rv := objc.Send[MKLocalSearchRequest](instance.ID, objc.Sel("initWithNaturalLanguageQuery:"), objc.String(naturalLanguageQuery))
 	rv.Autorelease()
 	return rv
 }
@@ -110,9 +121,9 @@ func NewMKLocalSearchRequestWithNaturalLanguageQuery(naturalLanguageQuery appkit
 // Initializes and returns a local search request based on the provided string and region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/init(naturalLanguageQuery:region:)
-func NewMKLocalSearchRequestWithNaturalLanguageQueryRegion(naturalLanguageQuery appkit.string, region unsafe.Pointer) MKLocalSearchRequest {
+func NewMKLocalSearchRequestWithNaturalLanguageQueryRegion(naturalLanguageQuery string, region unsafe.Pointer) MKLocalSearchRequest {
 	instance := getMKLocalSearchRequestClass().Alloc()
-	rv := objc.Send[MKLocalSearchRequest](instance.ID, objc.Sel("initWithNaturalLanguageQuery:region:"), naturalLanguageQuery, region)
+	rv := objc.Send[MKLocalSearchRequest](instance.ID, objc.Sel("initWithNaturalLanguageQuery:region:"), objc.String(naturalLanguageQuery), region)
 	rv.Autorelease()
 	return rv
 }
@@ -139,8 +150,8 @@ func (m_ MKLocalSearchRequest) SetAddressFilter(value unsafe.Pointer) {
 // A string containing the desired search item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/naturalLanguageQuery
-func (m_ MKLocalSearchRequest) NaturalLanguageQuery() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("naturalLanguageQuery"))
+func (m_ MKLocalSearchRequest) NaturalLanguageQuery() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("naturalLanguageQuery"))
 	return rv
 }
 
@@ -150,8 +161,8 @@ func (m_ MKLocalSearchRequest) NaturalLanguageQuery() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLocalSearch/Request/naturalLanguageQuery
-func (m_ MKLocalSearchRequest) SetNaturalLanguageQuery(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalLanguageQuery:"), value)
+func (m_ MKLocalSearchRequest) SetNaturalLanguageQuery(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalLanguageQuery:"), objc.String(value))
 }
 
 // A filter that lists point-of-interest categories to include or exclude in search results.

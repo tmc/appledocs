@@ -30,6 +30,14 @@ type _TiledLayerClass struct {
 // An interface definition for the [TiledLayer] class.
 type ITiledLayer interface {
 	ILayer
+	LevelsOfDetail() uintptr
+	SetLevelsOfDetail(value Iuintptr)
+	LevelsOfDetailBias() uintptr
+	SetLevelsOfDetailBias(value Iuintptr)
+	TileSize() coregraphics.CGSize
+	SetTileSize(value coregraphics.CGSize)
+	Contents() unsafe.Pointer
+	SetContents(value unsafe.Pointer)
 }
 
 // A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.
@@ -93,8 +101,8 @@ func (tc _TiledLayerClass) FadeDuration() TimeInterval {
 // The number of levels of detail maintained by this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail
-func (t_ TiledLayer) LevelsOfDetail() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("levelsOfDetail"))
+func (t_ TiledLayer) LevelsOfDetail() uintptr {
+	rv := objc.Send[uintptr](t_.ID, objc.Sel("levelsOfDetail"))
 	return rv
 }
 
@@ -104,15 +112,15 @@ func (t_ TiledLayer) LevelsOfDetail() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail
-func (t_ TiledLayer) SetLevelsOfDetail(value unsafe.Pointer) {
+func (t_ TiledLayer) SetLevelsOfDetail(value Iuintptr) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetail:"), value)
 }
 
 // The number of magnified levels of detail for this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
-func (t_ TiledLayer) LevelsOfDetailBias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("levelsOfDetailBias"))
+func (t_ TiledLayer) LevelsOfDetailBias() uintptr {
+	rv := objc.Send[uintptr](t_.ID, objc.Sel("levelsOfDetailBias"))
 	return rv
 }
 
@@ -122,7 +130,7 @@ func (t_ TiledLayer) LevelsOfDetailBias() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
-func (t_ TiledLayer) SetLevelsOfDetailBias(value unsafe.Pointer) {
+func (t_ TiledLayer) SetLevelsOfDetailBias(value Iuintptr) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetailBias:"), value)
 }
 

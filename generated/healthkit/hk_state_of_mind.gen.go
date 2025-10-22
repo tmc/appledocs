@@ -30,6 +30,11 @@ type _HKStateOfMindClass struct {
 // An interface definition for the [HKStateOfMind] class.
 type IHKStateOfMind interface {
 	IHKSample
+	Associations() []foundation.Number
+	Kind() HKStateOfMindKind
+	Labels() []foundation.Number
+	Valence() float64
+	ValenceClassification() HKStateOfMindValenceClassification
 }
 
 //
@@ -79,14 +84,14 @@ func NewHKStateOfMind() HKStateOfMind {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/stateOfMindWithDate:kind:valence:labels:associations:
-func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociations(date foundation.IDate, kind HKStateOfMindKind, valence unsafe.Pointer, labels []foundation.INumber, associations []foundation.INumber) unsafe.Pointer {
+func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociations(date foundation.IDate, kind HKStateOfMindKind, valence float64, labels []foundation.INumber, associations []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("stateOfMindWithDate:kind:valence:labels:associations:"), date, kind, valence, labels, associations)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/stateOfMindWithDate:kind:valence:labels:associations:metadata:
-func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociationsMetadata(date foundation.IDate, kind HKStateOfMindKind, valence unsafe.Pointer, labels []foundation.INumber, associations []foundation.INumber, metadata unsafe.Pointer) unsafe.Pointer {
+func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociationsMetadata(date foundation.IDate, kind HKStateOfMindKind, valence float64, labels []foundation.INumber, associations []foundation.INumber, metadata unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("stateOfMindWithDate:kind:valence:labels:associations:metadata:"), date, kind, valence, labels, associations, metadata)
 	return rv
 }
@@ -114,8 +119,8 @@ func (h_ HKStateOfMind) Labels() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/valence
-func (h_ HKStateOfMind) Valence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("valence"))
+func (h_ HKStateOfMind) Valence() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("valence"))
 	return rv
 }
 

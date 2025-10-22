@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +30,10 @@ type _TKSmartCardSlotManagerClass struct {
 // An interface definition for the [TKSmartCardSlotManager] class.
 type ITKSmartCardSlotManager interface {
 	objectivec.IObject
-	CreateNFCSlotWithMessageCompletion(message appkit.string, completion unsafe.Pointer)
+	CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer)
 	IsNFCSupported() bool
-	SlotNamed(name appkit.string) TKSmartCardSlot
+	SlotNamed(name string) TKSmartCardSlot
+	SlotNames() []string
 }
 
 // An interface to all available smart card reader slots.
@@ -94,8 +94,8 @@ func (tc _TKSmartCardSlotManagerClass) DefaultManager() TKSmartCardSlotManager {
 // Creates an NFC smart card slot using the device’s hardware and presents a system UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/createNFCSlot(message:completion:)
-func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message appkit.string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), message, completion)
+func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), objc.String(message), completion)
 }
 
 // Determines whether NFC (Near Field Communication) is supported on this device.
@@ -109,8 +109,8 @@ func (t_ TKSmartCardSlotManager) IsNFCSupported() bool {
 // Returns the Smart Card slot with a given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNamed(_:)
-func (t_ TKSmartCardSlotManager) SlotNamed(name appkit.string) TKSmartCardSlot {
-	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), name)
+func (t_ TKSmartCardSlotManager) SlotNamed(name string) TKSmartCardSlot {
+	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), objc.String(name))
 	return rv
 }
 

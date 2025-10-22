@@ -29,6 +29,16 @@ type _VoronoiNoiseSourceClass struct {
 // An interface definition for the [VoronoiNoiseSource] class.
 type IVoronoiNoiseSource interface {
 	INoiseSource
+	Displacement() float64
+	SetDisplacement(value float64)
+	Frequency() float64
+	SetFrequency(value float64)
+	DistanceEnabled() bool
+	SetDistanceEnabled(value bool)
+	Seed() unsafe.Pointer
+	SetSeed(value unsafe.Pointer)
+	IsDistanceEnabled() bool
+	SetIsDistanceEnabled(value bool)
 }
 
 // A procedural noise generator whose output (also called Worley noise or cellular noise) divides space into discrete cells surrounding random seed points.
@@ -86,7 +96,7 @@ func NewVoronoiNoiseSource() VoronoiNoiseSource {
 // Initializes a Voronoi noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/init(frequency:displacement:distanceEnabled:seed:)
-func NewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed(frequency unsafe.Pointer, displacement unsafe.Pointer, distanceEnabled bool, seed unsafe.Pointer) VoronoiNoiseSource {
+func NewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed(frequency float64, displacement float64, distanceEnabled bool, seed unsafe.Pointer) VoronoiNoiseSource {
 	instance := getVoronoiNoiseSourceClass().Alloc()
 	rv := objc.Send[VoronoiNoiseSource](instance.ID, objc.Sel("initWithFrequency:displacement:distanceEnabled:seed:"), frequency, displacement, distanceEnabled, seed)
 	rv.Autorelease()
@@ -97,7 +107,7 @@ func NewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed(frequency
 // Creates a Voronoi noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/voronoiNoise(withFrequency:displacement:distanceEnabled:seed:)
-func (vc _VoronoiNoiseSourceClass) VoronoiNoiseWithFrequencyDisplacementDistanceEnabledSeed(frequency unsafe.Pointer, displacement unsafe.Pointer, distanceEnabled bool, seed unsafe.Pointer) unsafe.Pointer {
+func (vc _VoronoiNoiseSourceClass) VoronoiNoiseWithFrequencyDisplacementDistanceEnabledSeed(frequency float64, displacement float64, distanceEnabled bool, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:"), frequency, displacement, distanceEnabled, seed)
 	return rv
 }
@@ -105,8 +115,8 @@ func (vc _VoronoiNoiseSourceClass) VoronoiNoiseWithFrequencyDisplacementDistance
 // The range of random values to assign to each cell in generated noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/displacement
-func (v_ VoronoiNoiseSource) Displacement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("displacement"))
+func (v_ VoronoiNoiseSource) Displacement() float64 {
+	rv := objc.Send[float64](v_.ID, objc.Sel("displacement"))
 	return rv
 }
 
@@ -116,15 +126,15 @@ func (v_ VoronoiNoiseSource) Displacement() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/displacement
-func (v_ VoronoiNoiseSource) SetDisplacement(value unsafe.Pointer) {
+func (v_ VoronoiNoiseSource) SetDisplacement(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplacement:"), value)
 }
 
 // A value that determines the number and size of cells in generated noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/frequency
-func (v_ VoronoiNoiseSource) Frequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("frequency"))
+func (v_ VoronoiNoiseSource) Frequency() float64 {
+	rv := objc.Send[float64](v_.ID, objc.Sel("frequency"))
 	return rv
 }
 
@@ -134,7 +144,7 @@ func (v_ VoronoiNoiseSource) Frequency() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKVoronoiNoiseSource/frequency
-func (v_ VoronoiNoiseSource) SetFrequency(value unsafe.Pointer) {
+func (v_ VoronoiNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrequency:"), value)
 }
 

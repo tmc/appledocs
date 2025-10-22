@@ -31,6 +31,10 @@ type _MTRSwitchClusterMultiPressOngoingEventClass struct {
 // An interface definition for the [MTRSwitchClusterMultiPressOngoingEvent] class.
 type IMTRSwitchClusterMultiPressOngoingEvent interface {
 	objectivec.IObject
+	CurrentNumberOfPressesCounted() foundation.Number
+	SetCurrentNumberOfPressesCounted(value foundation.INumber)
+	NewPosition() foundation.Number
+	SetNewPosition(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,21 @@ type _WindowClass struct {
 // An interface definition for the [Window] class.
 type IWindow interface {
 	objectivec.IObject
+	Active() bool
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsOnScreen() bool
+	SetIsOnScreen(value bool)
+	OwningApplication() SCRunningApplication
+	SetOwningApplication(value ISCRunningApplication)
+	Title() string
+	SetTitle(value string)
+	WindowID() unsafe.Pointer
+	SetWindowID(value unsafe.Pointer)
+	WindowLayer() int
+	SetWindowLayer(value int)
 }
 
 // An instance that represents an onscreen window.
@@ -164,8 +179,8 @@ func (w_ Window) SetOwningApplication(value ISCRunningApplication) {
 // The string that displays in a window’s title bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) Title() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("title"))
+func (w_ Window) Title() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -175,8 +190,8 @@ func (w_ Window) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
+func (w_ Window) SetTitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The Core Graphics window identifier.

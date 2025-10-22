@@ -29,9 +29,11 @@ type _VZVirtioSocketDeviceClass struct {
 // An interface definition for the [VZVirtioSocketDevice] class.
 type IVZVirtioSocketDevice interface {
 	IVZSocketDevice
-	ConnectToPortCompletionHandler(port unsafe.Pointer, completionHandler unsafe.Pointer)
-	RemoveSocketListenerForPort(port unsafe.Pointer)
-	SetSocketListenerForPort(listener IVZVirtioSocketListener, port unsafe.Pointer)
+	ConnectToPortCompletionHandler(port Iuint32, completionHandler unsafe.Pointer)
+	RemoveSocketListenerForPort(port Iuint32)
+	SetSocketListenerForPort(listener IVZVirtioSocketListener, port Iuint32)
+	SocketDevices() VZSocketDevice
+	SetSocketDevices(value IVZSocketDevice)
 }
 
 // A device that manages port-based connections between the guest system and the host computer.
@@ -87,21 +89,21 @@ func NewVZVirtioSocketDevice() VZVirtioSocketDevice {
 // Initiates a connection to the specified port of the guest operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/connect(toPort:)
-func (v_ VZVirtioSocketDevice) ConnectToPortCompletionHandler(port unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (v_ VZVirtioSocketDevice) ConnectToPortCompletionHandler(port Iuint32, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("connectToPort:completionHandler:"), port, completionHandler)
 }
 
 // Removes the listener object from the specfied port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/removeSocketListener(forPort:)
-func (v_ VZVirtioSocketDevice) RemoveSocketListenerForPort(port unsafe.Pointer) {
+func (v_ VZVirtioSocketDevice) RemoveSocketListenerForPort(port Iuint32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeSocketListenerForPort:"), port)
 }
 
 // Configures an object to monitor the specified port for new connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/setSocketListener(_:forPort:)
-func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port unsafe.Pointer) {
+func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port Iuint32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketListener:forPort:"), listener, port)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MXSignpostMetric] class.
@@ -30,6 +29,10 @@ type _MXSignpostMetricClass struct {
 // An interface definition for the [MXSignpostMetric] class.
 type IMXSignpostMetric interface {
 	IMXMetric
+	SignpostCategory() string
+	SignpostIntervalData() MXSignpostIntervalData
+	SignpostName() string
+	TotalCount() uint
 }
 
 // An object representing a custom metric.
@@ -85,8 +88,8 @@ func NewMXSignpostMetric() MXSignpostMetric {
 // The developer-specified category of the custom metric represented by the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostMetric/signpostCategory
-func (m_ MXSignpostMetric) SignpostCategory() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("signpostCategory"))
+func (m_ MXSignpostMetric) SignpostCategory() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("signpostCategory"))
 	return rv
 }
 
@@ -101,8 +104,8 @@ func (m_ MXSignpostMetric) SignpostIntervalData() MXSignpostIntervalData {
 // The developer-specified name of the custom metric represented by the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostMetric/signpostName
-func (m_ MXSignpostMetric) SignpostName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("signpostName"))
+func (m_ MXSignpostMetric) SignpostName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("signpostName"))
 	return rv
 }
 

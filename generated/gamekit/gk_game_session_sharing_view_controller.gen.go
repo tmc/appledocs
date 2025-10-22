@@ -30,6 +30,9 @@ type _GameSessionSharingViewControllerClass struct {
 // An interface definition for the [GameSessionSharingViewController] class.
 type IGameSessionSharingViewController interface {
 	appkit.IViewController
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Session() GKGameSession
 }
 
 // A user interface you can use to invite other users into a tvOS game session.

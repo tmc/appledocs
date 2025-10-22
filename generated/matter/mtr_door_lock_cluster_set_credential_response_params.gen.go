@@ -31,6 +31,14 @@ type _MTRDoorLockClusterSetCredentialResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterSetCredentialResponseParams] class.
 type IMTRDoorLockClusterSetCredentialResponseParams interface {
 	objectivec.IObject
+	NextCredentialIndex() foundation.Number
+	SetNextCredentialIndex(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
 }
 
 //

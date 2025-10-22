@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,7 @@ type _MCPeerIDClass struct {
 // An interface definition for the [MCPeerID] class.
 type IMCPeerID interface {
 	objectivec.IObject
+	DisplayName() string
 }
 
 // An object represents a peer in a multipeer session.
@@ -86,9 +86,9 @@ func NewMCPeerID() MCPeerID {
 // Initializes a peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCPeerID/init(displayName:)
-func NewMCPeerIDWithDisplayName(myDisplayName appkit.string) MCPeerID {
+func NewMCPeerIDWithDisplayName(myDisplayName string) MCPeerID {
 	instance := getMCPeerIDClass().Alloc()
-	rv := objc.Send[MCPeerID](instance.ID, objc.Sel("initWithDisplayName:"), myDisplayName)
+	rv := objc.Send[MCPeerID](instance.ID, objc.Sel("initWithDisplayName:"), objc.String(myDisplayName))
 	rv.Autorelease()
 	return rv
 }
@@ -97,8 +97,8 @@ func NewMCPeerIDWithDisplayName(myDisplayName appkit.string) MCPeerID {
 // The display name for this peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCPeerID/displayName
-func (m_ MCPeerID) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("displayName"))
+func (m_ MCPeerID) DisplayName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("displayName"))
 	return rv
 }
 

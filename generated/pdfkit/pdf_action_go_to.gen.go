@@ -29,6 +29,8 @@ type _PDFActionGoToClass struct {
 // An interface definition for the [PDFActionGoTo] class.
 type IPDFActionGoTo interface {
 	IPDFAction
+	Destination() PDFDestination
+	SetDestination(value IPDFDestination)
 }
 
 // , a subclass of , defines methods for getting and setting the destination of a go-to action.

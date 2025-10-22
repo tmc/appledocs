@@ -30,6 +30,14 @@ type _DelegatingPlaybackCoordinatorSeekCommandClass struct {
 // An interface definition for the [DelegatingPlaybackCoordinatorSeekCommand] class.
 type IDelegatingPlaybackCoordinatorSeekCommand interface {
 	IDelegatingPlaybackCoordinatorPlaybackControlCommand
+	AnticipatedPlaybackRate() float32
+	SetAnticipatedPlaybackRate(value float32)
+	CompletionDueDate() foundation.Date
+	SetCompletionDueDate(value foundation.IDate)
+	ItemTime() unsafe.Pointer
+	SetItemTime(value unsafe.Pointer)
+	ShouldBufferInAnticipationOfPlayback() bool
+	SetShouldBufferInAnticipationOfPlayback(value bool)
 }
 
 // A command that indicates to seek to a new time in the item timeline.

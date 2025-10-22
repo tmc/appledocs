@@ -30,6 +30,8 @@ type _ChallengeEventHandlerClass struct {
 // An interface definition for the [ChallengeEventHandler] class.
 type IChallengeEventHandler interface {
 	objectivec.IObject
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // The class is used to respond to events related to challenges sent or received by the local player.

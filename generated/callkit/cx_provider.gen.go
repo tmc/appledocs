@@ -39,6 +39,11 @@ type ICXProvider interface {
 	ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.IUUID, dateConnected foundation.IDate)
 	ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.IUUID, dateStartedConnecting foundation.IDate)
 	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
+	Configuration() CXProviderConfiguration
+	SetConfiguration(value ICXProviderConfiguration)
+	PendingTransactions() []CXTransaction
+	CXErrorDomain() string
+	CXErrorDomainIncomingCall() string
 }
 
 // An object that represents a telephony provider.

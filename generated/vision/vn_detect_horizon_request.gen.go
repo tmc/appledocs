@@ -29,6 +29,9 @@ type _DetectHorizonRequestClass struct {
 // An interface definition for the [DetectHorizonRequest] class.
 type IDetectHorizonRequest interface {
 	IImageBasedRequest
+	Results() VNHorizonObservation
+	SetResults(value IVNHorizonObservation)
+	VNDetectHorizonRequestRevision1() int
 }
 
 // An image-analysis request that determines the horizon angle in an image.

@@ -31,6 +31,12 @@ type _MTRMediaInputClusterSelectInputParamsClass struct {
 // An interface definition for the [MTRMediaInputClusterSelectInputParams] class.
 type IMTRMediaInputClusterSelectInputParams interface {
 	objectivec.IObject
+	Index() foundation.Number
+	SetIndex(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

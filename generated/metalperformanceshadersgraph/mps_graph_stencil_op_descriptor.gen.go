@@ -30,6 +30,22 @@ type _GraphStencilOpDescriptorClass struct {
 // An interface definition for the [GraphStencilOpDescriptor] class.
 type IGraphStencilOpDescriptor interface {
 	IGraphObject
+	BoundaryMode() GraphPaddingMode
+	SetBoundaryMode(value GraphPaddingMode)
+	PaddingConstant() float32
+	SetPaddingConstant(value float32)
+	Strides() unsafe.Pointer
+	SetStrides(value unsafe.Pointer)
+	DilationRates() foundation.Number
+	SetDilationRates(value foundation.INumber)
+	ExplicitPadding() foundation.Number
+	SetExplicitPadding(value foundation.INumber)
+	Offsets() foundation.Number
+	SetOffsets(value foundation.INumber)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	ReductionMode() GraphReductionMode
+	SetReductionMode(value GraphReductionMode)
 }
 
 // The class that defines the parameters for a stencil operation.
@@ -103,8 +119,8 @@ func (g_ GraphStencilOpDescriptor) SetBoundaryMode(value GraphPaddingMode) {
 // The padding value for .
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingConstant
-func (g_ GraphStencilOpDescriptor) PaddingConstant() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingConstant"))
+func (g_ GraphStencilOpDescriptor) PaddingConstant() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("paddingConstant"))
 	return rv
 }
 
@@ -114,7 +130,7 @@ func (g_ GraphStencilOpDescriptor) PaddingConstant() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/paddingConstant
-func (g_ GraphStencilOpDescriptor) SetPaddingConstant(value unsafe.Pointer) {
+func (g_ GraphStencilOpDescriptor) SetPaddingConstant(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingConstant:"), value)
 }
 

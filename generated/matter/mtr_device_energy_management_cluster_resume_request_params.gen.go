@@ -31,6 +31,10 @@ type _MTRDeviceEnergyManagementClusterResumeRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterResumeRequestParams] class.
 type IMTRDeviceEnergyManagementClusterResumeRequestParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

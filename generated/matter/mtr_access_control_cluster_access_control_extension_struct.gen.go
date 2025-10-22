@@ -31,6 +31,10 @@ type _MTRAccessControlClusterAccessControlExtensionStructClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessControlExtensionStruct] class.
 type IMTRAccessControlClusterAccessControlExtensionStruct interface {
 	objectivec.IObject
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
 }
 
 //

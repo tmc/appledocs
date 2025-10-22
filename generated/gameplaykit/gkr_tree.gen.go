@@ -34,6 +34,8 @@ type IRTree interface {
 	AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy RTreeSplitStrategy)
 	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []foundation.Object
 	RemoveElementBoundingRectMinBoundingRectMax(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer)
+	QueryReserve() uint
+	SetQueryReserve(value uint)
 }
 
 // A data structure that adaptively organizes objects based on their locations in a two-dimensional space.

@@ -29,6 +29,8 @@ type _SeekCommandEventClass struct {
 // An interface definition for the [SeekCommandEvent] class.
 type ISeekCommandEvent interface {
 	IRemoteCommandEvent
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 }
 
 // An event requesting that the player seek to a new position.

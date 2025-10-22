@@ -30,6 +30,8 @@ type _IntersectionFunctionTableDescriptorClass struct {
 // An interface definition for the [IntersectionFunctionTableDescriptor] class.
 type IIntersectionFunctionTableDescriptor interface {
 	objectivec.IObject
+	FunctionCount() int
+	SetFunctionCount(value int)
 }
 
 // A specification of how to create an intersection function table.

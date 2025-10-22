@@ -32,6 +32,9 @@ type ICKSyncEngineSendChangesScope interface {
 	objectivec.IObject
 	ContainsPendingRecordZoneChange(pendingRecordZoneChange ICKSyncEnginePendingRecordZoneChange) bool
 	ContainsRecordID(recordID ICKRecordID) bool
+	ExcludedZoneIDs() unsafe.Pointer
+	RecordIDs() unsafe.Pointer
+	ZoneIDs() unsafe.Pointer
 }
 
 //

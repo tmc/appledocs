@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
@@ -32,8 +31,16 @@ type _MEByteSourceClass struct {
 // An interface definition for the [MEByteSource] class.
 type IMEByteSource interface {
 	objectivec.IObject
-	ByteSourceForRelatedFileNameError(fileName appkit.string, errorOut unsafe.Pointer) MEByteSource
-	ReadDataOfLengthFromOffsetToDestinationCompletionHandler(length unsafe.Pointer, offset unsafe.Pointer, dest unsafe.Pointer, completionHandler unsafe.Pointer)
+	ByteSourceForRelatedFileNameError(fileName string, errorOut unsafe.Pointer) MEByteSource
+	ReadDataOfLengthFromOffsetToDestinationCompletionHandler(length Iuintptr, offset unsafe.Pointer, dest unsafe.Pointer, completionHandler unsafe.Pointer)
+	ContentType() uniformtypeidentifiers.UTType
+	SetContentType(value uniformtypeidentifiers.UTType)
+	FileLength() unsafe.Pointer
+	SetFileLength(value unsafe.Pointer)
+	FileName() string
+	SetFileName(value string)
+	RelatedFileNamesInSameDirectory() string
+	SetRelatedFileNamesInSameDirectory(value string)
 }
 
 // Provides read access to the data in a media asset file.
@@ -87,15 +94,15 @@ func NewMEByteSource() MEByteSource {
 // Creates a new byte source for a related file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEByteSource/byteSourceForRelatedFileName(_:)
-func (m_ MEByteSource) ByteSourceForRelatedFileNameError(fileName appkit.string, errorOut unsafe.Pointer) MEByteSource {
-	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSourceForRelatedFileName:error:"), fileName, errorOut)
+func (m_ MEByteSource) ByteSourceForRelatedFileNameError(fileName string, errorOut unsafe.Pointer) MEByteSource {
+	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSourceForRelatedFileName:error:"), objc.String(fileName), errorOut)
 	return rv
 }
 
 // Reads bytes from a byte source into a buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEByteSource/readDataOfLength:fromOffset:toDestination:completionHandler:
-func (m_ MEByteSource) ReadDataOfLengthFromOffsetToDestinationCompletionHandler(length unsafe.Pointer, offset unsafe.Pointer, dest unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (m_ MEByteSource) ReadDataOfLengthFromOffsetToDestinationCompletionHandler(length Iuintptr, offset unsafe.Pointer, dest unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readDataOfLength:fromOffset:toDestination:completionHandler:"), length, offset, dest, completionHandler)
 }
 
@@ -138,8 +145,8 @@ func (m_ MEByteSource) SetFileLength(value unsafe.Pointer) {
 // The name of the file for the byte source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filename
-func (m_ MEByteSource) FileName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("fileName"))
+func (m_ MEByteSource) FileName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("fileName"))
 	return rv
 }
 
@@ -149,15 +156,15 @@ func (m_ MEByteSource) FileName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/filename
-func (m_ MEByteSource) SetFileName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFileName:"), value)
+func (m_ MEByteSource) SetFileName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFileName:"), objc.String(value))
 }
 
 // An array of related file names in the parent directory of the byte source file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/relatedfilenamesinsamedirectory
-func (m_ MEByteSource) RelatedFileNamesInSameDirectory() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("relatedFileNamesInSameDirectory"))
+func (m_ MEByteSource) RelatedFileNamesInSameDirectory() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("relatedFileNamesInSameDirectory"))
 	return rv
 }
 
@@ -167,8 +174,8 @@ func (m_ MEByteSource) RelatedFileNamesInSameDirectory() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mebytesource/relatedfilenamesinsamedirectory
-func (m_ MEByteSource) SetRelatedFileNamesInSameDirectory(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRelatedFileNamesInSameDirectory:"), value)
+func (m_ MEByteSource) SetRelatedFileNamesInSameDirectory(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRelatedFileNamesInSameDirectory:"), objc.String(value))
 }
 
 

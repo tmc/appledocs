@@ -31,6 +31,12 @@ type _MetadataMachineReadableCodeObjectClass struct {
 // An interface definition for the [MetadataMachineReadableCodeObject] class.
 type IMetadataMachineReadableCodeObject interface {
 	IMetadataObject
+	Corners() coregraphics.CGPoint
+	SetCorners(value coregraphics.CGPoint)
+	Descriptor() coreimage.BarcodeDescriptor
+	SetDescriptor(value coreimage.IBarcodeDescriptor)
+	StringValue() string
+	SetStringValue(value string)
 }
 
 // Barcode information detected by a metadata capture output.

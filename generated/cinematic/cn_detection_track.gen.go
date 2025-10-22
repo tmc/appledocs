@@ -33,6 +33,9 @@ type ICNDetectionTrack interface {
 	DetectionAtOrBeforeTime(time unsafe.Pointer) CNDetection
 	DetectionNearestTime(time unsafe.Pointer) CNDetection
 	DetectionsInTimeRange(timeRange unsafe.Pointer) []CNDetection
+	DetectionGroupID() CNDetectionGroupID
+	DetectionType() CNDetectionType
+	UserCreated() bool
 }
 
 // An object representing a series of detections of the same subject over time.

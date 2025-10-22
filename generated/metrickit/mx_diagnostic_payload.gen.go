@@ -33,6 +33,13 @@ type IMXDiagnosticPayload interface {
 	objectivec.IObject
 	DictionaryRepresentation() foundation.Dictionary
 	JSONRepresentation() foundation.Data
+	AppLaunchDiagnostics() []MXAppLaunchDiagnostic
+	CpuExceptionDiagnostics() []MXCPUExceptionDiagnostic
+	CrashDiagnostics() []MXCrashDiagnostic
+	DiskWriteExceptionDiagnostics() []MXDiskWriteExceptionDiagnostic
+	HangDiagnostics() []MXHangDiagnostic
+	TimeStampBegin() foundation.NSDate
+	TimeStampEnd() foundation.NSDate
 }
 
 // An object that encapsulates a diagnostic report.

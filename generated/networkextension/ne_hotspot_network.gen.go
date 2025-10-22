@@ -30,6 +30,22 @@ type _NEHotspotNetworkClass struct {
 // An interface definition for the [NEHotspotNetwork] class.
 type INEHotspotNetwork interface {
 	objectivec.IObject
+	Bssid() string
+	SetBssid(value string)
+	DidAutoJoin() bool
+	SetDidAutoJoin(value bool)
+	DidJustJoin() bool
+	SetDidJustJoin(value bool)
+	IsChosenHelper() bool
+	SetIsChosenHelper(value bool)
+	IsSecure() bool
+	SetIsSecure(value bool)
+	SecurityType() unsafe.Pointer
+	SetSecurityType(value unsafe.Pointer)
+	SignalStrength() float64
+	SetSignalStrength(value float64)
+	Ssid() string
+	SetSsid(value string)
 }
 
 // Information about a Wi-Fi network associated with a command or a response.
@@ -90,8 +106,8 @@ func (nc _NEHotspotNetworkClass) FetchCurrentWithCompletionHandler(completionHan
 // The BSSID for the Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) Bssid() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("bssid"))
+func (n_ NEHotspotNetwork) Bssid() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("bssid"))
 	return rv
 }
 
@@ -101,8 +117,8 @@ func (n_ NEHotspotNetwork) Bssid() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) SetBssid(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), value)
+func (n_ NEHotspotNetwork) SetBssid(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), objc.String(value))
 }
 
 // Indicates whether the network was joined automatically or was joined explicitly by the user.
@@ -198,8 +214,8 @@ func (n_ NEHotspotNetwork) SetSecurityType(value unsafe.Pointer) {
 // The recent signal strength for the Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
-func (n_ NEHotspotNetwork) SignalStrength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("signalStrength"))
+func (n_ NEHotspotNetwork) SignalStrength() float64 {
+	rv := objc.Send[float64](n_.ID, objc.Sel("signalStrength"))
 	return rv
 }
 
@@ -209,15 +225,15 @@ func (n_ NEHotspotNetwork) SignalStrength() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
-func (n_ NEHotspotNetwork) SetSignalStrength(value unsafe.Pointer) {
+func (n_ NEHotspotNetwork) SetSignalStrength(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
 }
 
 // The SSID for the Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) Ssid() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("ssid"))
+func (n_ NEHotspotNetwork) Ssid() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("ssid"))
 	return rv
 }
 
@@ -227,8 +243,8 @@ func (n_ NEHotspotNetwork) Ssid() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) SetSsid(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), value)
+func (n_ NEHotspotNetwork) SetSsid(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), objc.String(value))
 }
 
 

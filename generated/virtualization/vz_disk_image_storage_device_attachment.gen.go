@@ -30,6 +30,14 @@ type _VZDiskImageStorageDeviceAttachmentClass struct {
 // An interface definition for the [VZDiskImageStorageDeviceAttachment] class.
 type IVZDiskImageStorageDeviceAttachment interface {
 	IVZStorageDeviceAttachment
+	CachingMode() VZDiskImageCachingMode
+	SetCachingMode(value VZDiskImageCachingMode)
+	IsReadOnly() bool
+	SetIsReadOnly(value bool)
+	SynchronizationMode() VZDiskImageSynchronizationMode
+	SetSynchronizationMode(value VZDiskImageSynchronizationMode)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A device that stores content in a disk image.

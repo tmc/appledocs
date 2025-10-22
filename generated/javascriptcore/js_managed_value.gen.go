@@ -30,6 +30,7 @@ type _JSManagedValueClass struct {
 // An interface definition for the [JSManagedValue] class.
 type IJSManagedValue interface {
 	objectivec.IObject
+	Value() JSValue
 }
 
 // A JavaScript value with conditional retain behavior to provide automatic memory management.

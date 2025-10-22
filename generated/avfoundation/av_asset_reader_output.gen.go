@@ -30,6 +30,12 @@ type _AssetReaderOutputClass struct {
 // An interface definition for the [AssetReaderOutput] class.
 type IAssetReaderOutput interface {
 	objectivec.IObject
+	AlwaysCopiesSampleData() bool
+	SetAlwaysCopiesSampleData(value bool)
+	MediaType() MediaType
+	SetMediaType(value MediaType)
+	SupportsRandomAccess() bool
+	SetSupportsRandomAccess(value bool)
 }
 
 // An abstract class that defines the interface to read media samples from an asset reader.

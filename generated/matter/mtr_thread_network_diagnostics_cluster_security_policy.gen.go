@@ -31,6 +31,10 @@ type _MTRThreadNetworkDiagnosticsClusterSecurityPolicyClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterSecurityPolicy] class.
 type IMTRThreadNetworkDiagnosticsClusterSecurityPolicy interface {
 	objectivec.IObject
+	Flags() foundation.Number
+	SetFlags(value foundation.INumber)
+	RotationTime() foundation.Number
+	SetRotationTime(value foundation.INumber)
 }
 
 //

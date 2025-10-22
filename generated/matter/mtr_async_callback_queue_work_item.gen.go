@@ -30,6 +30,10 @@ type _MTRAsyncCallbackQueueWorkItemClass struct {
 // An interface definition for the [MTRAsyncCallbackQueueWorkItem] class.
 type IMTRAsyncCallbackQueueWorkItem interface {
 	objectivec.IObject
+	CancelHandler() unsafe.Pointer
+	SetCancelHandler(value unsafe.Pointer)
+	ReadyHandler() unsafe.Pointer
+	SetReadyHandler(value unsafe.Pointer)
 }
 
 //

@@ -29,6 +29,12 @@ type _MXLocationActivityMetricClass struct {
 // An interface definition for the [MXLocationActivityMetric] class.
 type IMXLocationActivityMetric interface {
 	IMXMetric
+	CumulativeBestAccuracyForNavigationTime() unsafe.Pointer
+	CumulativeBestAccuracyTime() unsafe.Pointer
+	CumulativeHundredMetersAccuracyTime() unsafe.Pointer
+	CumulativeKilometerAccuracyTime() unsafe.Pointer
+	CumulativeNearestTenMetersAccuracyTime() unsafe.Pointer
+	CumulativeThreeKilometersAccuracyTime() unsafe.Pointer
 }
 
 // An object representing metrics about the use of location-tracking features of a device.

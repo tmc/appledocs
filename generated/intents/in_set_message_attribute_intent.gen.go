@@ -29,6 +29,8 @@ type _INSetMessageAttributeIntentClass struct {
 // An interface definition for the [INSetMessageAttributeIntent] class.
 type IINSetMessageAttributeIntent interface {
 	IINIntent
+	Attribute() unsafe.Pointer
+	Identifiers() []string
 }
 
 // A request to modify the attributes of a message.

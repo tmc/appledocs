@@ -31,6 +31,12 @@ type _MTREventRequestPathClass struct {
 // An interface definition for the [MTREventRequestPath] class.
 type IMTREventRequestPath interface {
 	objectivec.IObject
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	Event() foundation.Number
+	SetEvent(value foundation.INumber)
 }
 
 //

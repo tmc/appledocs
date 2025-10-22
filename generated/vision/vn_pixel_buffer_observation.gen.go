@@ -30,6 +30,14 @@ type _PixelBufferObservationClass struct {
 // An interface definition for the [PixelBufferObservation] class.
 type IPixelBufferObservation interface {
 	IObservation
+	ModelDescription() coreml.ModelDescription
+	SetModelDescription(value coreml.IModelDescription)
+	OutputDescriptionsByName() coreml.FeatureDescription
+	SetOutputDescriptionsByName(value coreml.IFeatureDescription)
+	FeatureName() string
+	SetFeatureName(value string)
+	PixelBuffer() unsafe.Pointer
+	SetPixelBuffer(value unsafe.Pointer)
 }
 
 // An object that represents an image that an image-analysis request produces.
@@ -121,8 +129,8 @@ func (p_ PixelBufferObservation) SetOutputDescriptionsByName(value coreml.IFeatu
 // A feature name that the CoreML model defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
-func (p_ PixelBufferObservation) FeatureName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("featureName"))
+func (p_ PixelBufferObservation) FeatureName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("featureName"))
 	return rv
 }
 
@@ -132,8 +140,8 @@ func (p_ PixelBufferObservation) FeatureName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
-func (p_ PixelBufferObservation) SetFeatureName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFeatureName:"), value)
+func (p_ PixelBufferObservation) SetFeatureName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFeatureName:"), objc.String(value))
 }
 
 // The image that results from a request with image output.

@@ -36,6 +36,12 @@ type ICXCallDirectoryExtensionContext interface {
 	RemoveAllIdentificationEntries()
 	RemoveBlockingEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
 	RemoveIdentificationEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Incremental() bool
+	IsIncremental() bool
+	SetIsIncremental(value bool)
+	CXCallDirectoryPhoneNumberMax() CXCallDirectoryPhoneNumber
 }
 
 // A programmatic interface for adding identification and blocking entries to a Call Directory app extension.

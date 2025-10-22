@@ -31,6 +31,32 @@ type _AchievementDescriptionClass struct {
 // An interface definition for the [AchievementDescription] class.
 type IAchievementDescription interface {
 	objectivec.IObject
+	AchievedDescription() string
+	SetAchievedDescription(value string)
+	ActivityIdentifier() string
+	SetActivityIdentifier(value string)
+	ActivityProperties() string
+	SetActivityProperties(value string)
+	GroupIdentifier() string
+	SetGroupIdentifier(value string)
+	Identifier() string
+	SetIdentifier(value string)
+	Image() appkit.Image
+	SetImage(value appkit.IImage)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsReplayable() bool
+	SetIsReplayable(value bool)
+	MaximumPoints() int
+	SetMaximumPoints(value int)
+	RarityPercent() float64
+	SetRarityPercent(value float64)
+	ReleaseState() unsafe.Pointer
+	SetReleaseState(value unsafe.Pointer)
+	Title() string
+	SetTitle(value string)
+	UnachievedDescription() string
+	SetUnachievedDescription(value string)
 }
 
 // An object containing the text and artwork used to present an achievement to a player.
@@ -100,8 +126,8 @@ func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() ap
 // A localized description of the achievement that you display when the player completes the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
-func (a_ AchievementDescription) AchievedDescription() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("achievedDescription"))
+func (a_ AchievementDescription) AchievedDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("achievedDescription"))
 	return rv
 }
 
@@ -111,15 +137,15 @@ func (a_ AchievementDescription) AchievedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
-func (a_ AchievementDescription) SetAchievedDescription(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAchievedDescription:"), value)
+func (a_ AchievementDescription) SetAchievedDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAchievedDescription:"), objc.String(value))
 }
 
 // The identifier of the game activity associated with this achievement, as configured by the developer in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
-func (a_ AchievementDescription) ActivityIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("activityIdentifier"))
+func (a_ AchievementDescription) ActivityIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("activityIdentifier"))
 	return rv
 }
 
@@ -129,15 +155,15 @@ func (a_ AchievementDescription) ActivityIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
-func (a_ AchievementDescription) SetActivityIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityIdentifier:"), value)
+func (a_ AchievementDescription) SetActivityIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
 }
 
 // The properties when associating this achievement with a game activity, as configured by the developer in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
-func (a_ AchievementDescription) ActivityProperties() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("activityProperties"))
+func (a_ AchievementDescription) ActivityProperties() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("activityProperties"))
 	return rv
 }
 
@@ -147,15 +173,15 @@ func (a_ AchievementDescription) ActivityProperties() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
-func (a_ AchievementDescription) SetActivityProperties(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityProperties:"), value)
+func (a_ AchievementDescription) SetActivityProperties(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
 }
 
 // The identifier for the group that the achievement description is part of.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
-func (a_ AchievementDescription) GroupIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("groupIdentifier"))
+func (a_ AchievementDescription) GroupIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -165,15 +191,15 @@ func (a_ AchievementDescription) GroupIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
-func (a_ AchievementDescription) SetGroupIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setGroupIdentifier:"), value)
+func (a_ AchievementDescription) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
 // The string you enter in App Store Connect that uniquely identifies the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
-func (a_ AchievementDescription) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
+func (a_ AchievementDescription) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -183,8 +209,8 @@ func (a_ AchievementDescription) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
-func (a_ AchievementDescription) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
+func (a_ AchievementDescription) SetIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The achievement’s artwork that you display when the player completes the achievement.
@@ -262,8 +288,8 @@ func (a_ AchievementDescription) SetMaximumPoints(value int) {
 // The percentage of players of this game that earned the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
-func (a_ AchievementDescription) RarityPercent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rarityPercent"))
+func (a_ AchievementDescription) RarityPercent() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("rarityPercent"))
 	return rv
 }
 
@@ -273,7 +299,7 @@ func (a_ AchievementDescription) RarityPercent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
-func (a_ AchievementDescription) SetRarityPercent(value unsafe.Pointer) {
+func (a_ AchievementDescription) SetRarityPercent(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRarityPercent:"), value)
 }
 
@@ -298,8 +324,8 @@ func (a_ AchievementDescription) SetReleaseState(value unsafe.Pointer) {
 // A localized title for the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
-func (a_ AchievementDescription) Title() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("title"))
+func (a_ AchievementDescription) Title() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -309,15 +335,15 @@ func (a_ AchievementDescription) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
-func (a_ AchievementDescription) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), value)
+func (a_ AchievementDescription) SetTitle(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // A localized description of the achievement that you display when the player hasn’t completed the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
-func (a_ AchievementDescription) UnachievedDescription() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("unachievedDescription"))
+func (a_ AchievementDescription) UnachievedDescription() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("unachievedDescription"))
 	return rv
 }
 
@@ -327,8 +353,8 @@ func (a_ AchievementDescription) UnachievedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
-func (a_ AchievementDescription) SetUnachievedDescription(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUnachievedDescription:"), value)
+func (a_ AchievementDescription) SetUnachievedDescription(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUnachievedDescription:"), objc.String(value))
 }
 
 

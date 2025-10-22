@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _PHObjectClass struct {
 // An interface definition for the [PHObject] class.
 type IPHObject interface {
 	objectivec.IObject
+	LocalIdentifier() string
+	Hash() int
+	SetHash(value int)
 }
 
 // The abstract superclass for Photos model objects (assets and collections).
@@ -84,8 +86,8 @@ func NewPHObject() PHObject {
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject/localIdentifier
-func (p_ PHObject) LocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHObject) LocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 

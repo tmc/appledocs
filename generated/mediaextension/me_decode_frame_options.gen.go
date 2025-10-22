@@ -30,6 +30,10 @@ type _MEDecodeFrameOptionsClass struct {
 // An interface definition for the [MEDecodeFrameOptions] class.
 type IMEDecodeFrameOptions interface {
 	objectivec.IObject
+	DoNotOutputFrame() bool
+	SetDoNotOutputFrame(value bool)
+	RealTimePlayback() bool
+	SetRealTimePlayback(value bool)
 }
 
 // An object that guides the video decoder operation on a per-frame basis.

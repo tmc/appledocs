@@ -29,6 +29,9 @@ type _DimensionClass struct {
 // An interface definition for the [Dimension] class.
 type IDimension interface {
 	IUnit
+	Converter() NSUnitConverter
+	Coefficient() float64
+	SetCoefficient(value float64)
 }
 
 // An abstract class representing a dimensional unit of measure.

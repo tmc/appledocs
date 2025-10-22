@@ -34,6 +34,10 @@ type ILPMetadataProvider interface {
 	Cancel()
 	StartFetchingMetadataForURLCompletionHandler(URL foundation.IURL, completionHandler unsafe.Pointer)
 	StartFetchingMetadataForRequestCompletionHandler(request foundation.IURLRequest, completionHandler unsafe.Pointer)
+	ShouldFetchSubresources() bool
+	SetShouldFetchSubresources(value bool)
+	Timeout() foundation.TimeInterval
+	SetTimeout(value foundation.ITimeInterval)
 }
 
 // An object that retrieves metadata for a URL.

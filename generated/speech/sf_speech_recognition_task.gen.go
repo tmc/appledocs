@@ -31,6 +31,14 @@ type _SFSpeechRecognitionTaskClass struct {
 // An interface definition for the [SFSpeechRecognitionTask] class.
 type ISFSpeechRecognitionTask interface {
 	objectivec.IObject
+	Error() foundation.Error
+	SetError(value foundation.IError)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsFinishing() bool
+	SetIsFinishing(value bool)
+	State() SFSpeechRecognitionTaskState
+	SetState(value SFSpeechRecognitionTaskState)
 }
 
 // A task object for monitoring the speech recognition progress.

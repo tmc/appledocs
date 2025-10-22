@@ -30,6 +30,17 @@ type _CaptureSmartFramingMonitorClass struct {
 // An interface definition for the [CaptureSmartFramingMonitor] class.
 type ICaptureSmartFramingMonitor interface {
 	objectivec.IObject
+	RecommendedFraming() AVCaptureFraming
+	SmartFramingMonitor() AVCaptureSmartFramingMonitor
+	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
+	VideoZoomFactor() float64
+	SetVideoZoomFactor(value float64)
+	EnabledFramings() AVCaptureFraming
+	SetEnabledFramings(value IAVCaptureFraming)
+	IsMonitoring() bool
+	SetIsMonitoring(value bool)
+	SupportedFramings() AVCaptureFraming
+	SetSupportedFramings(value IAVCaptureFraming)
 }
 
 // An object associated with a capture device that monitors the scene and suggests an optimal framing.

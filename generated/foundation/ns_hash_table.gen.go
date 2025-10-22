@@ -31,6 +31,15 @@ type _HashTableClass struct {
 type IHashTable interface {
 	objectivec.IObject
 	AddObject(object unsafe.Pointer)
+	Count() uint
+	AllObjects() unsafe.Pointer
+	SetAllObjects(value unsafe.Pointer)
+	AnyObject() unsafe.Pointer
+	SetAnyObject(value unsafe.Pointer)
+	PointerFunctions() NSPointerFunctions
+	SetPointerFunctions(value IPointerFunctions)
+	SetRepresentation() unsafe.Pointer
+	SetSetRepresentation(value unsafe.Pointer)
 }
 
 // A collection similar to a set, but with broader range of available memory semantics.

@@ -29,6 +29,30 @@ type _RayIntersectorClass struct {
 // An interface definition for the [RayIntersector] class.
 type IRayIntersector interface {
 	IKernel
+	BoundingBoxIntersectionTestType() unsafe.Pointer
+	SetBoundingBoxIntersectionTestType(value unsafe.Pointer)
+	CullMode() unsafe.Pointer
+	SetCullMode(value unsafe.Pointer)
+	FrontFacingWinding() unsafe.Pointer
+	SetFrontFacingWinding(value unsafe.Pointer)
+	IntersectionDataType() unsafe.Pointer
+	SetIntersectionDataType(value unsafe.Pointer)
+	IntersectionStride() int
+	SetIntersectionStride(value int)
+	RayDataType() unsafe.Pointer
+	SetRayDataType(value unsafe.Pointer)
+	RayIndexDataType() unsafe.Pointer
+	SetRayIndexDataType(value unsafe.Pointer)
+	RayMask() unsafe.Pointer
+	SetRayMask(value unsafe.Pointer)
+	RayMaskOperator() unsafe.Pointer
+	SetRayMaskOperator(value unsafe.Pointer)
+	RayMaskOptions() unsafe.Pointer
+	SetRayMaskOptions(value unsafe.Pointer)
+	RayStride() int
+	SetRayStride(value int)
+	TriangleIntersectionTestType() unsafe.Pointer
+	SetTriangleIntersectionTestType(value unsafe.Pointer)
 }
 
 // A kernel that performs intersection tests between rays and geometry.

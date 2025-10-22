@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,6 +32,17 @@ type IPHASEDucker interface {
 	objectivec.IObject
 	Activate()
 	Deactivate()
+	AttackCurve() PHASECurveType
+	AttackTime() float64
+	Gain() float64
+	Identifier() string
+	Active() bool
+	ReleaseCurve() PHASECurveType
+	ReleaseTime() float64
+	SourceGroups() unsafe.Pointer
+	TargetGroups() unsafe.Pointer
+	IsActive() bool
+	SetIsActive(value bool)
 }
 
 // An object that manages competing sounds.
@@ -88,7 +98,7 @@ func NewPHASEDucker() PHASEDucker {
 // Creates an object that manages competing sounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/init(engine:sourceGroups:targetGroups:gain:attackTime:releaseTime:attackCurve:releaseCurve:)
-func NewPHASEDuckerWithEngineSourceGroupsTargetGroupsGainAttackTimeReleaseTimeAttackCurveReleaseCurve(engine IPHASEEngine, sourceGroups unsafe.Pointer, targetGroups unsafe.Pointer, gain unsafe.Pointer, attackTime unsafe.Pointer, releaseTime unsafe.Pointer, attackCurve PHASECurveType, releaseCurve PHASECurveType) PHASEDucker {
+func NewPHASEDuckerWithEngineSourceGroupsTargetGroupsGainAttackTimeReleaseTimeAttackCurveReleaseCurve(engine IPHASEEngine, sourceGroups unsafe.Pointer, targetGroups unsafe.Pointer, gain float64, attackTime float64, releaseTime float64, attackCurve PHASECurveType, releaseCurve PHASECurveType) PHASEDucker {
 	instance := getPHASEDuckerClass().Alloc()
 	rv := objc.Send[PHASEDucker](instance.ID, objc.Sel("initWithEngine:sourceGroups:targetGroups:gain:attackTime:releaseTime:attackCurve:releaseCurve:"), engine, sourceGroups, targetGroups, gain, attackTime, releaseTime, attackCurve, releaseCurve)
 	rv.Autorelease()
@@ -121,24 +131,24 @@ func (p_ PHASEDucker) AttackCurve() PHASECurveType {
 // The amount of time for sound reduction to reach maximum strength.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/attackTime
-func (p_ PHASEDucker) AttackTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attackTime"))
+func (p_ PHASEDucker) AttackTime() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("attackTime"))
 	return rv
 }
 
 // The amount of volume reduction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/gain
-func (p_ PHASEDucker) Gain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gain"))
+func (p_ PHASEDucker) Gain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
 // A unique value for the ducker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/identifier
-func (p_ PHASEDucker) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDucker) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -161,8 +171,8 @@ func (p_ PHASEDucker) ReleaseCurve() PHASECurveType {
 // The amount of time to transition from maximum sound reduction to no reduction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/releaseTime
-func (p_ PHASEDucker) ReleaseTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("releaseTime"))
+func (p_ PHASEDucker) ReleaseTime() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("releaseTime"))
 	return rv
 }
 

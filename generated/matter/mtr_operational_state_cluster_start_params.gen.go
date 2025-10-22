@@ -31,6 +31,10 @@ type _MTROperationalStateClusterStartParamsClass struct {
 // An interface definition for the [MTROperationalStateClusterStartParams] class.
 type IMTROperationalStateClusterStartParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

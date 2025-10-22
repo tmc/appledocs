@@ -31,6 +31,10 @@ type _MTRAdministratorCommissioningClusterRevokeCommissioningParamsClass struct 
 // An interface definition for the [MTRAdministratorCommissioningClusterRevokeCommissioningParams] class.
 type IMTRAdministratorCommissioningClusterRevokeCommissioningParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

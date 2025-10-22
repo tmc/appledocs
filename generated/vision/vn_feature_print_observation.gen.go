@@ -30,6 +30,12 @@ type _FeaturePrintObservationClass struct {
 // An interface definition for the [FeaturePrintObservation] class.
 type IFeaturePrintObservation interface {
 	IObservation
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	ElementCount() int
+	SetElementCount(value int)
+	ElementType() unsafe.Pointer
+	SetElementType(value unsafe.Pointer)
 }
 
 // An observation that provides the recognized feature print.

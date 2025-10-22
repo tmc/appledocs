@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _AXDataSeriesDescriptorClass struct {
 // An interface definition for the [AXDataSeriesDescriptor] class.
 type IAXDataSeriesDescriptor interface {
 	objectivec.IObject
+	AttributedName() foundation.AttributedString
+	SetAttributedName(value foundation.IAttributedString)
+	DataPoints() []AXDataPoint
+	SetDataPoints(value []AXDataPoint)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
+	Name() string
+	SetName(value string)
 }
 
 // An object that represents a series of data points.
@@ -97,9 +104,9 @@ func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attribute
 // Creates a data series with the specified name, a Boolean value that indicates whether the series is continuous, and data points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/init(name:isContinuous:dataPoints:)
-func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name appkit.string, isContinuous bool, dataPoints []AXDataPoint) AXDataSeriesDescriptor {
+func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name string, isContinuous bool, dataPoints []AXDataPoint) AXDataSeriesDescriptor {
 	instance := getAXDataSeriesDescriptorClass().Alloc()
-	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithName:isContinuous:dataPoints:"), name, isContinuous, dataPoints)
+	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithName:isContinuous:dataPoints:"), objc.String(name), isContinuous, dataPoints)
 	rv.Autorelease()
 	return rv
 }
@@ -172,8 +179,8 @@ func (a_ AXDataSeriesDescriptor) SetIsContinuous(value bool) {
 // The name of the data series.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
-func (a_ AXDataSeriesDescriptor) Name() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
+func (a_ AXDataSeriesDescriptor) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -183,8 +190,8 @@ func (a_ AXDataSeriesDescriptor) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
-func (a_ AXDataSeriesDescriptor) SetName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
+func (a_ AXDataSeriesDescriptor) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

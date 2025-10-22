@@ -30,6 +30,7 @@ type _MIDIUMPEndpointManagerClass struct {
 // An interface definition for the [MIDIUMPEndpointManager] class.
 type IMIDIUMPEndpointManager interface {
 	objectivec.IObject
+	UMPEndpoints() []MIDIUMPEndpoint
 }
 
 //

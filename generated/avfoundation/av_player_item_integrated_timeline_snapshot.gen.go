@@ -31,6 +31,15 @@ type _PlayerItemIntegratedTimelineSnapshotClass struct {
 // An interface definition for the [PlayerItemIntegratedTimelineSnapshot] class.
 type IPlayerItemIntegratedTimelineSnapshot interface {
 	objectivec.IObject
+	CurrentSegment() unsafe.Pointer
+	CurrentTime() unsafe.Pointer
+	Segments() []unsafe.Pointer
+	CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot
+	SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot)
+	CurrentDate() foundation.Date
+	SetCurrentDate(value foundation.IDate)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
 }
 
 // An immutable representation of inspectable details of an integrated timeline object.

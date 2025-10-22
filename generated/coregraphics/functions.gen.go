@@ -23,9 +23,9 @@ var (
 	_CGAcquireDisplayFadeReservation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGAffineTransformConcat func(CGAffineTransform, CGAffineTransform) CGAffineTransform
 	_CGAffineTransformDecompose func(CGAffineTransform) unsafe.Pointer
-	_CGAffineTransformEqualToTransform func(CGAffineTransform, CGAffineTransform) unsafe.Pointer
+	_CGAffineTransformEqualToTransform func(CGAffineTransform, CGAffineTransform) bool
 	_CGAffineTransformInvert func(CGAffineTransform) CGAffineTransform
-	_CGAffineTransformIsIdentity func(CGAffineTransform) unsafe.Pointer
+	_CGAffineTransformIsIdentity func(CGAffineTransform) bool
 	_CGAffineTransformMake func(float64, float64, float64, float64, float64, float64) CGAffineTransform
 	_CGAffineTransformMakeRotation func(float64) CGAffineTransform
 	_CGAffineTransformMakeScale func(float64, float64) CGAffineTransform
@@ -36,7 +36,7 @@ var (
 	_CGAffineTransformTranslate func(CGAffineTransform, float64, float64) CGAffineTransform
 	_CGAssociateMouseAndMouseCursorPosition func(unsafe.Pointer) unsafe.Pointer
 	_CGBeginDisplayConfiguration func(unsafe.Pointer) unsafe.Pointer
-	_CGBitmapContextCreateAdaptive func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGContextRef
+	_CGBitmapContextCreateAdaptive func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) CGContextRef
 	_CGCancelDisplayConfiguration func(CGDisplayConfigRef) unsafe.Pointer
 	_CGCaptureAllDisplays func() unsafe.Pointer
 	_CGCaptureAllDisplaysWithOptions func(unsafe.Pointer) unsafe.Pointer
@@ -57,14 +57,14 @@ var (
 	_CGColorGetNumberOfComponents func(CGColorRef) unsafe.Pointer
 	_CGColorGetPattern func(CGColorRef) CGPatternRef
 	_CGColorGetTypeID func() unsafe.Pointer
-	_CGColorConversionInfoConvertData func(CGColorConversionInfoRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGColorConversionInfoConvertData func(CGColorConversionInfoRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CGColorConversionInfoCreateWithOptions func(CGColorSpaceRef, CGColorSpaceRef, unsafe.Pointer) CGColorConversionInfoRef
 	_CGColorConversionInfoCreate func(CGColorSpaceRef, CGColorSpaceRef) CGColorConversionInfoRef
 	_CGColorConversionInfoCreateForToneMapping func(CGColorSpaceRef, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorConversionInfoRef
 	_CGColorConversionInfoGetTypeID func() unsafe.Pointer
 	_CGColorConversionInfoCreateFromList func(unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer) CGColorConversionInfoRef
 	_CGColorConversionInfoCreateFromListWithArguments func(unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorConversionInfoRef
-	_CGColorEqualToColor func(CGColorRef, CGColorRef) unsafe.Pointer
+	_CGColorEqualToColor func(CGColorRef, CGColorRef) bool
 	_CGColorGetComponents func(CGColorRef) unsafe.Pointer
 	_CGColorGetConstantColor func(unsafe.Pointer) CGColorRef
 	_CGColorRelease func(CGColorRef) unsafe.Pointer
@@ -84,12 +84,12 @@ var (
 	_CGColorSpaceCreatePattern func(CGColorSpaceRef) CGColorSpaceRef
 	_CGColorSpaceCreateWithPlatformColorSpace func(unsafe.Pointer) CGColorSpaceRef
 	_CGColorSpaceCreateWithPropertyList func(unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceIsHDR func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceIsWideGamutRGB func(CGColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceIsHDR func(CGColorSpaceRef) bool
+	_CGColorSpaceIsWideGamutRGB func(CGColorSpaceRef) bool
 	_CGColorSpaceGetModel func(CGColorSpaceRef) unsafe.Pointer
 	_CGColorSpaceCopyName func(CGColorSpaceRef) unsafe.Pointer
 	_CGColorSpaceGetNumberOfComponents func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceSupportsOutput func(CGColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceSupportsOutput func(CGColorSpaceRef) bool
 	_CGColorSpaceGetTypeID func() unsafe.Pointer
 	_CGColorSpaceCopyBaseColorSpace func(CGColorSpaceRef) CGColorSpaceRef
 	_CGColorSpaceCreateCopyWithStandardRange func(CGColorSpaceRef) CGColorSpaceRef
@@ -103,11 +103,11 @@ var (
 	_CGColorSpaceGetColorTable func(CGColorSpaceRef, unsafe.Pointer) unsafe.Pointer
 	_CGColorSpaceGetColorTableCount func(CGColorSpaceRef) unsafe.Pointer
 	_CGColorSpaceGetName func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceIsHLGBased func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceIsPQBased func(CGColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceIsHLGBased func(CGColorSpaceRef) bool
+	_CGColorSpaceIsPQBased func(CGColorSpaceRef) bool
 	_CGColorSpaceRetain func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceUsesExtendedRange func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceUsesITUR_2100TF func(CGColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceUsesExtendedRange func(CGColorSpaceRef) bool
+	_CGColorSpaceUsesITUR_2100TF func(CGColorSpaceRef) bool
 	_CGCompleteDisplayConfiguration func(CGDisplayConfigRef, unsafe.Pointer) unsafe.Pointer
 	_CGConfigureDisplayFadeEffect func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGConfigureDisplayMirrorOfDisplay func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -165,10 +165,10 @@ var (
 	_CGBitmapContextCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer) CGContextRef
 	_CGBitmapContextCreateWithData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGContextRef
 	_CGContextGetInterpolationQuality func(CGContextRef) unsafe.Pointer
-	_CGContextIsPathEmpty func(CGContextRef) unsafe.Pointer
+	_CGContextIsPathEmpty func(CGContextRef) bool
 	_CGBitmapContextCreateImage func(CGContextRef) CGImageRef
 	_CGContextCopyPath func(CGContextRef) CGPathRef
-	_CGContextPathContainsPoint func(CGContextRef, CGPoint, unsafe.Pointer) unsafe.Pointer
+	_CGContextPathContainsPoint func(CGContextRef, CGPoint, unsafe.Pointer) bool
 	_CGContextReplacePathWithStrokedPath func(CGContextRef) unsafe.Pointer
 	_CGContextResetClip func(CGContextRef) unsafe.Pointer
 	_CGContextRestoreGState func(CGContextRef) unsafe.Pointer
@@ -176,15 +176,15 @@ var (
 	_CGContextSaveGState func(CGContextRef) unsafe.Pointer
 	_CGContextScaleCTM func(CGContextRef, float64, float64) unsafe.Pointer
 	_CGContextSelectFont func(CGContextRef, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetAllowsAntialiasing func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetAllowsFontSmoothing func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetAllowsFontSubpixelPositioning func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetAllowsFontSubpixelQuantization func(CGContextRef, unsafe.Pointer) unsafe.Pointer
+	_CGContextSetAllowsAntialiasing func(CGContextRef, bool) unsafe.Pointer
+	_CGContextSetAllowsFontSmoothing func(CGContextRef, bool) unsafe.Pointer
+	_CGContextSetAllowsFontSubpixelPositioning func(CGContextRef, bool) unsafe.Pointer
+	_CGContextSetAllowsFontSubpixelQuantization func(CGContextRef, bool) unsafe.Pointer
 	_CGContextSetAlpha func(CGContextRef, float64) unsafe.Pointer
 	_CGContextSetBlendMode func(CGContextRef, unsafe.Pointer) unsafe.Pointer
 	_CGContextSetCharacterSpacing func(CGContextRef, float64) unsafe.Pointer
 	_CGPDFContextSetDestinationForRect func(CGContextRef, unsafe.Pointer, CGRect) unsafe.Pointer
-	_CGContextSetEDRTargetHeadroom func(CGContextRef, unsafe.Pointer) unsafe.Pointer
+	_CGContextSetEDRTargetHeadroom func(CGContextRef, unsafe.Pointer) bool
 	_CGContextSetFillColor func(CGContextRef, unsafe.Pointer) unsafe.Pointer
 	_CGContextSetFillColorWithColor func(CGContextRef, CGColorRef) unsafe.Pointer
 	_CGContextSetCMYKFillColor func(CGContextRef, float64, float64, float64, float64, float64) unsafe.Pointer
@@ -203,10 +203,10 @@ var (
 	_CGContextSetRenderingIntent func(CGContextRef, unsafe.Pointer) unsafe.Pointer
 	_CGContextSetShadow func(CGContextRef, CGSize, float64) unsafe.Pointer
 	_CGContextSetShadowWithColor func(CGContextRef, CGSize, float64, CGColorRef) unsafe.Pointer
-	_CGContextSetShouldAntialias func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetShouldSmoothFonts func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetShouldSubpixelPositionFonts func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetShouldSubpixelQuantizeFonts func(CGContextRef, unsafe.Pointer) unsafe.Pointer
+	_CGContextSetShouldAntialias func(CGContextRef, bool) unsafe.Pointer
+	_CGContextSetShouldSmoothFonts func(CGContextRef, bool) unsafe.Pointer
+	_CGContextSetShouldSubpixelPositionFonts func(CGContextRef, bool) unsafe.Pointer
+	_CGContextSetShouldSubpixelQuantizeFonts func(CGContextRef, bool) unsafe.Pointer
 	_CGContextSetStrokeColorWithColor func(CGContextRef, CGColorRef) unsafe.Pointer
 	_CGContextSetStrokeColor func(CGContextRef, unsafe.Pointer) unsafe.Pointer
 	_CGContextSetCMYKStrokeColor func(CGContextRef, float64, float64, float64, float64, float64) unsafe.Pointer
@@ -232,7 +232,7 @@ var (
 	_CGContextGetTypeID func() unsafe.Pointer
 	_CGContextGetUserSpaceToDeviceSpaceTransform func(CGContextRef) CGAffineTransform
 	_CGBitmapContextGetWidth func(CGContextRef) unsafe.Pointer
-	_CGContextAddArc func(CGContextRef, float64, float64, float64, float64, float64, unsafe.Pointer) unsafe.Pointer
+	_CGContextAddArc func(CGContextRef, float64, float64, float64, float64, float64, int) unsafe.Pointer
 	_CGContextAddArcToPoint func(CGContextRef, float64, float64, float64, float64, float64) unsafe.Pointer
 	_CGContextAddCurveToPoint func(CGContextRef, float64, float64, float64, float64, float64, float64) unsafe.Pointer
 	_CGContextAddLineToPoint func(CGContextRef, float64, float64) unsafe.Pointer
@@ -243,10 +243,10 @@ var (
 	_CGContextClipToRects func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGContextDrawConicGradient func(CGContextRef, CGGradientRef, CGPoint, float64) unsafe.Pointer
 	_CGContextDrawImage func(CGContextRef, CGRect, CGImageRef) unsafe.Pointer
-	_CGContextDrawImageApplyingToneMapping func(CGContextRef, CGRect, CGImageRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGContextDrawImageApplyingToneMapping func(CGContextRef, CGRect, CGImageRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGContextDrawLayerAtPoint func(CGContextRef, CGPoint, CGLayerRef) unsafe.Pointer
 	_CGContextDrawLayerInRect func(CGContextRef, CGRect, CGLayerRef) unsafe.Pointer
-	_CGContextDrawPDFDocument func(CGContextRef, CGRect, CGPDFDocumentRef, unsafe.Pointer) unsafe.Pointer
+	_CGContextDrawPDFDocument func(CGContextRef, CGRect, CGPDFDocumentRef, int) unsafe.Pointer
 	_CGContextDrawTiledImage func(CGContextRef, CGRect, CGImageRef) unsafe.Pointer
 	_CGContextEOClip func(CGContextRef) unsafe.Pointer
 	_CGContextFillRects func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -262,7 +262,7 @@ var (
 	_CGContextSetTextPosition func(CGContextRef, float64, float64) unsafe.Pointer
 	_CGContextShowGlyphsAtPositions func(CGContextRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGContextStrokeLineSegments func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConvertColorDataWithFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGConvertColorDataWithFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CGCursorIsDrawnInFramebuffer func() unsafe.Pointer
 	_CGCursorIsVisible func() unsafe.Pointer
 	_CGDataConsumerCreateWithCFData func(unsafe.Pointer) CGDataConsumerRef
@@ -316,7 +316,7 @@ var (
 	_CGDisplayModeGetHeight func(CGDisplayModeRef) unsafe.Pointer
 	_CGDisplayModeGetIODisplayModeID func(CGDisplayModeRef) unsafe.Pointer
 	_CGDisplayModeGetIOFlags func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeIsUsableForDesktopGUI func(CGDisplayModeRef) unsafe.Pointer
+	_CGDisplayModeIsUsableForDesktopGUI func(CGDisplayModeRef) bool
 	_CGDisplayModeCopyPixelEncoding func(CGDisplayModeRef) unsafe.Pointer
 	_CGDisplayModeGetPixelHeight func(CGDisplayModeRef) unsafe.Pointer
 	_CGDisplayModeGetPixelWidth func(CGDisplayModeRef) unsafe.Pointer
@@ -362,7 +362,7 @@ var (
 	_CGEventGetFlags func(CGEventRef) unsafe.Pointer
 	_CGEventGetDoubleValueField func(CGEventRef, unsafe.Pointer) unsafe.Pointer
 	_CGEventGetIntegerValueField func(CGEventRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventCreateKeyboardEvent func(CGEventSourceRef, unsafe.Pointer, unsafe.Pointer) CGEventRef
+	_CGEventCreateKeyboardEvent func(CGEventSourceRef, unsafe.Pointer, bool) CGEventRef
 	_CGEventCreateMouseEvent func(CGEventSourceRef, unsafe.Pointer, CGPoint, unsafe.Pointer) CGEventRef
 	_CGEventCreateScrollWheelEvent2 func(CGEventSourceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGEventRef
 	_CGEventCreate func(CGEventSourceRef) CGEventRef
@@ -379,8 +379,8 @@ var (
 	_CGEventTapCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGEventTapCreateForPSN func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGEventTapCreateForPid func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventTapEnable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventTapIsEnabled func(unsafe.Pointer) unsafe.Pointer
+	_CGEventTapEnable func(unsafe.Pointer, bool) unsafe.Pointer
+	_CGEventTapIsEnabled func(unsafe.Pointer) bool
 	_CGEventTapPostEvent func(unsafe.Pointer, CGEventRef) unsafe.Pointer
 	_CGEventGetTimestamp func(CGEventRef) unsafe.Pointer
 	_CGEventGetType func(CGEventRef) unsafe.Pointer
@@ -392,13 +392,13 @@ var (
 	_CGEventSetLocation func(CGEventRef, CGPoint) unsafe.Pointer
 	_CGEventSetTimestamp func(CGEventRef, unsafe.Pointer) unsafe.Pointer
 	_CGEventSetType func(CGEventRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceButtonState func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGEventSourceButtonState func(unsafe.Pointer, unsafe.Pointer) bool
 	_CGEventSourceCounterForEventType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGEventSourceFlagsState func(unsafe.Pointer) unsafe.Pointer
 	_CGEventSourceGetLocalEventsFilterDuringSuppressionState func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
 	_CGEventCreateSourceFromEvent func(CGEventRef) CGEventSourceRef
 	_CGEventSourceCreate func(unsafe.Pointer) CGEventSourceRef
-	_CGEventSourceKeyState func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGEventSourceKeyState func(unsafe.Pointer, unsafe.Pointer) bool
 	_CGEventSourceGetKeyboardType func(CGEventSourceRef) unsafe.Pointer
 	_CGEventSourceGetLocalEventsSuppressionInterval func(CGEventSourceRef) unsafe.Pointer
 	_CGEventSourceGetPixelsPerLine func(CGEventSourceRef) unsafe.Pointer
@@ -411,22 +411,22 @@ var (
 	_CGEventSourceSetLocalEventsSuppressionInterval func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
 	_CGEventSourceSetPixelsPerLine func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
 	_CGEventSourceSetUserData func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetAscent func(CGFontRef) unsafe.Pointer
-	_CGFontCanCreatePostScriptSubset func(CGFontRef, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetCapHeight func(CGFontRef) unsafe.Pointer
+	_CGFontGetAscent func(CGFontRef) int
+	_CGFontCanCreatePostScriptSubset func(CGFontRef, unsafe.Pointer) bool
+	_CGFontGetCapHeight func(CGFontRef) int
 	_CGFontCreateCopyWithVariations func(CGFontRef, unsafe.Pointer) CGFontRef
 	_CGFontCreatePostScriptEncoding func(CGFontRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGFontCreatePostScriptSubset func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetDescent func(CGFontRef) unsafe.Pointer
+	_CGFontGetDescent func(CGFontRef) int
 	_CGFontGetFontBBox func(CGFontRef) CGRect
 	_CGFontCopyFullName func(CGFontRef) unsafe.Pointer
-	_CGFontGetGlyphAdvances func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetGlyphBBoxes func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGFontGetGlyphAdvances func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGFontGetGlyphBBoxes func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CGFontGetGlyphWithGlyphName func(CGFontRef, unsafe.Pointer) unsafe.Pointer
 	_CGFontCreateWithFontName func(unsafe.Pointer) CGFontRef
 	_CGFontCreateWithDataProvider func(CGDataProviderRef) CGFontRef
 	_CGFontGetItalicAngle func(CGFontRef) float64
-	_CGFontGetLeading func(CGFontRef) unsafe.Pointer
+	_CGFontGetLeading func(CGFontRef) int
 	_CGFontCopyGlyphNameForGlyph func(CGFontRef, unsafe.Pointer) unsafe.Pointer
 	_CGFontGetNumberOfGlyphs func(CGFontRef) unsafe.Pointer
 	_CGFontCopyPostScriptName func(CGFontRef) unsafe.Pointer
@@ -434,10 +434,10 @@ var (
 	_CGFontCopyTableForTag func(CGFontRef, unsafe.Pointer) unsafe.Pointer
 	_CGFontCopyTableTags func(CGFontRef) unsafe.Pointer
 	_CGFontGetTypeID func() unsafe.Pointer
-	_CGFontGetUnitsPerEm func(CGFontRef) unsafe.Pointer
+	_CGFontGetUnitsPerEm func(CGFontRef) int
 	_CGFontCopyVariationAxes func(CGFontRef) unsafe.Pointer
 	_CGFontCopyVariations func(CGFontRef) unsafe.Pointer
-	_CGFontGetXHeight func(CGFontRef) unsafe.Pointer
+	_CGFontGetXHeight func(CGFontRef) int
 	_CGFontCreateWithPlatformFont func(unsafe.Pointer) CGFontRef
 	_CGFontRelease func(CGFontRef) unsafe.Pointer
 	_CGFontRetain func(CGFontRef) CGFontRef
@@ -470,7 +470,7 @@ var (
 	_CGImageCalculateContentAverageLightLevel func(CGImageRef) unsafe.Pointer
 	_CGImageCalculateContentHeadroom func(CGImageRef) unsafe.Pointer
 	_CGImageGetColorSpace func(CGImageRef) CGColorSpaceRef
-	_CGImageContainsImageSpecificToneMappingMetadata func(CGImageRef) unsafe.Pointer
+	_CGImageContainsImageSpecificToneMappingMetadata func(CGImageRef) bool
 	_CGImageGetContentAverageLightLevel func(CGImageRef) unsafe.Pointer
 	_CGImageGetContentHeadroom func(CGImageRef) unsafe.Pointer
 	_CGImageCreateCopy func(CGImageRef) CGImageRef
@@ -481,18 +481,18 @@ var (
 	_CGImageGetDataProvider func(CGImageRef) CGDataProviderRef
 	_CGImageGetDecode func(CGImageRef) unsafe.Pointer
 	_CGImageGetHeight func(CGImageRef) unsafe.Pointer
-	_CGImageCreateWithContentHeadroom func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageRef
-	_CGImageCreateWithJPEGDataProvider func(CGDataProviderRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageRef
-	_CGImageMaskCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, unsafe.Pointer) CGImageRef
-	_CGImageCreateWithPNGDataProvider func(CGDataProviderRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageRef
-	_CGImageCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageRef
+	_CGImageCreateWithContentHeadroom func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
+	_CGImageCreateWithJPEGDataProvider func(CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
+	_CGImageMaskCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, bool) CGImageRef
+	_CGImageCreateWithPNGDataProvider func(CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
+	_CGImageCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
 	_CGWindowListCreateImageFromArray func(CGRect, unsafe.Pointer, unsafe.Pointer) CGImageRef
-	_CGImageIsMask func(CGImageRef) unsafe.Pointer
+	_CGImageIsMask func(CGImageRef) bool
 	_CGImageCreateWithMask func(CGImageRef, CGImageRef) CGImageRef
 	_CGImageGetPixelFormatInfo func(CGImageRef) unsafe.Pointer
 	_CGImageGetRenderingIntent func(CGImageRef) unsafe.Pointer
-	_CGImageGetShouldInterpolate func(CGImageRef) unsafe.Pointer
-	_CGImageShouldToneMap func(CGImageRef) unsafe.Pointer
+	_CGImageGetShouldInterpolate func(CGImageRef) bool
+	_CGImageShouldToneMap func(CGImageRef) bool
 	_CGImageGetTypeID func() unsafe.Pointer
 	_CGImageGetUTType func(CGImageRef) unsafe.Pointer
 	_CGImageGetWidth func(CGImageRef) unsafe.Pointer
@@ -511,17 +511,17 @@ var (
 	_CGPathCreateMutable func() CGMutablePathRef
 	_CGOpenGLDisplayMaskToDisplayID func(unsafe.Pointer) unsafe.Pointer
 	_CGPDFArrayApplyBlock func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetArray func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetBoolean func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGPDFArrayGetArray func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetBoolean func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFArrayGetCount func(CGPDFArrayRef) unsafe.Pointer
-	_CGPDFArrayGetDictionary func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetInteger func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetName func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetNull func(CGPDFArrayRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetNumber func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetObject func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetStream func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetString func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGPDFArrayGetDictionary func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetInteger func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetName func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetNull func(CGPDFArrayRef, unsafe.Pointer) bool
+	_CGPDFArrayGetNumber func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetObject func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetStream func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFArrayGetString func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFContentStreamCreateWithPage func(CGPDFPageRef) CGPDFContentStreamRef
 	_CGPDFContentStreamCreateWithStream func(CGPDFStreamRef, CGPDFDictionaryRef, CGPDFContentStreamRef) CGPDFContentStreamRef
 	_CGPDFContentStreamGetResource func(CGPDFContentStreamRef, unsafe.Pointer, unsafe.Pointer) CGPDFObjectRef
@@ -536,42 +536,42 @@ var (
 	_CGPDFContextSetParentTree func(CGContextRef, CGPDFDictionaryRef) unsafe.Pointer
 	_CGPDFDictionaryApplyBlock func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGPDFDictionaryApplyFunction func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetArray func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetBoolean func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGPDFDictionaryGetArray func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetBoolean func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFDictionaryGetCount func(CGPDFDictionaryRef) unsafe.Pointer
-	_CGPDFDictionaryGetDictionary func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetInteger func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetName func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetNumber func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetObject func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetStream func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetString func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGPDFDictionaryGetDictionary func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetInteger func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetName func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetNumber func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetObject func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetStream func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetString func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFDocumentGetAccessPermissions func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentAllowsCopying func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentAllowsPrinting func(CGPDFDocumentRef) unsafe.Pointer
+	_CGPDFDocumentAllowsCopying func(CGPDFDocumentRef) bool
+	_CGPDFDocumentAllowsPrinting func(CGPDFDocumentRef) bool
 	_CGPDFDocumentGetCatalog func(CGPDFDocumentRef) CGPDFDictionaryRef
 	_CGPDFDocumentGetID func(CGPDFDocumentRef) CGPDFArrayRef
 	_CGPDFDocumentGetVersion func(CGPDFDocumentRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGPDFDocumentGetInfo func(CGPDFDocumentRef) CGPDFDictionaryRef
 	_CGPDFDocumentCreateWithURL func(unsafe.Pointer) CGPDFDocumentRef
 	_CGPDFDocumentCreateWithProvider func(CGDataProviderRef) CGPDFDocumentRef
-	_CGPDFDocumentIsEncrypted func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentIsUnlocked func(CGPDFDocumentRef) unsafe.Pointer
+	_CGPDFDocumentIsEncrypted func(CGPDFDocumentRef) bool
+	_CGPDFDocumentIsUnlocked func(CGPDFDocumentRef) bool
 	_CGPDFDocumentGetNumberOfPages func(CGPDFDocumentRef) unsafe.Pointer
 	_CGPDFDocumentGetOutline func(CGPDFDocumentRef) unsafe.Pointer
 	_CGPDFDocumentGetPage func(CGPDFDocumentRef, unsafe.Pointer) CGPDFPageRef
 	_CGPDFDocumentGetTypeID func() unsafe.Pointer
-	_CGPDFDocumentUnlockWithPassword func(CGPDFDocumentRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDocumentGetArtBox func(CGPDFDocumentRef, unsafe.Pointer) CGRect
-	_CGPDFDocumentGetBleedBox func(CGPDFDocumentRef, unsafe.Pointer) CGRect
-	_CGPDFDocumentGetCropBox func(CGPDFDocumentRef, unsafe.Pointer) CGRect
-	_CGPDFDocumentGetMediaBox func(CGPDFDocumentRef, unsafe.Pointer) CGRect
-	_CGPDFDocumentGetRotationAngle func(CGPDFDocumentRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDocumentGetTrimBox func(CGPDFDocumentRef, unsafe.Pointer) CGRect
+	_CGPDFDocumentUnlockWithPassword func(CGPDFDocumentRef, unsafe.Pointer) bool
+	_CGPDFDocumentGetArtBox func(CGPDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetBleedBox func(CGPDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetCropBox func(CGPDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetMediaBox func(CGPDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetRotationAngle func(CGPDFDocumentRef, int) int
+	_CGPDFDocumentGetTrimBox func(CGPDFDocumentRef, int) CGRect
 	_CGPDFDocumentRelease func(CGPDFDocumentRef) unsafe.Pointer
 	_CGPDFDocumentRetain func(CGPDFDocumentRef) CGPDFDocumentRef
 	_CGPDFObjectGetType func(CGPDFObjectRef) unsafe.Pointer
-	_CGPDFObjectGetValue func(CGPDFObjectRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGPDFObjectGetValue func(CGPDFObjectRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGPDFOperatorTableCreate func() CGPDFOperatorTableRef
 	_CGPDFOperatorTableRelease func(CGPDFOperatorTableRef) unsafe.Pointer
 	_CGPDFOperatorTableRetain func(CGPDFOperatorTableRef) CGPDFOperatorTableRef
@@ -579,26 +579,26 @@ var (
 	_CGPDFPageGetDictionary func(CGPDFPageRef) CGPDFDictionaryRef
 	_CGPDFPageGetDocument func(CGPDFPageRef) CGPDFDocumentRef
 	_CGPDFPageGetBoxRect func(CGPDFPageRef, unsafe.Pointer) CGRect
-	_CGPDFPageGetDrawingTransform func(CGPDFPageRef, unsafe.Pointer, CGRect, unsafe.Pointer, unsafe.Pointer) CGAffineTransform
+	_CGPDFPageGetDrawingTransform func(CGPDFPageRef, unsafe.Pointer, CGRect, int, bool) CGAffineTransform
 	_CGPDFPageGetPageNumber func(CGPDFPageRef) unsafe.Pointer
-	_CGPDFPageGetRotationAngle func(CGPDFPageRef) unsafe.Pointer
+	_CGPDFPageGetRotationAngle func(CGPDFPageRef) int
 	_CGPDFPageGetTypeID func() unsafe.Pointer
 	_CGPDFPageRelease func(CGPDFPageRef) unsafe.Pointer
 	_CGPDFPageRetain func(CGPDFPageRef) CGPDFPageRef
 	_CGPDFScannerCreate func(CGPDFContentStreamRef, CGPDFOperatorTableRef, unsafe.Pointer) CGPDFScannerRef
 	_CGPDFScannerGetContentStream func(CGPDFScannerRef) CGPDFContentStreamRef
-	_CGPDFScannerPopArray func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopBoolean func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopDictionary func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopInteger func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopName func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopNumber func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopObject func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopStream func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFScannerPopString func(CGPDFScannerRef, unsafe.Pointer) unsafe.Pointer
+	_CGPDFScannerPopArray func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopBoolean func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopDictionary func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopInteger func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopName func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopNumber func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopObject func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopStream func(CGPDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopString func(CGPDFScannerRef, unsafe.Pointer) bool
 	_CGPDFScannerRelease func(CGPDFScannerRef) unsafe.Pointer
 	_CGPDFScannerRetain func(CGPDFScannerRef) CGPDFScannerRef
-	_CGPDFScannerScan func(CGPDFScannerRef) unsafe.Pointer
+	_CGPDFScannerScan func(CGPDFScannerRef) bool
 	_CGPDFScannerStop func(CGPDFScannerRef) unsafe.Pointer
 	_CGPDFStreamCopyData func(CGPDFStreamRef, unsafe.Pointer) unsafe.Pointer
 	_CGPDFStreamGetDictionary func(CGPDFStreamRef) CGPDFDictionaryRef
@@ -607,10 +607,10 @@ var (
 	_CGPDFStringGetBytePtr func(CGPDFStringRef) unsafe.Pointer
 	_CGPDFStringGetLength func(CGPDFStringRef) unsafe.Pointer
 	_CGPDFTagTypeGetName func(unsafe.Pointer) unsafe.Pointer
-	_CGPSConverterAbort func(CGPSConverterRef) unsafe.Pointer
-	_CGPSConverterConvert func(CGPSConverterRef, CGDataProviderRef, CGDataConsumerRef, unsafe.Pointer) unsafe.Pointer
+	_CGPSConverterAbort func(CGPSConverterRef) bool
+	_CGPSConverterConvert func(CGPSConverterRef, CGDataProviderRef, CGDataConsumerRef, unsafe.Pointer) bool
 	_CGPSConverterCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGPSConverterRef
-	_CGPSConverterIsConverting func(CGPSConverterRef) unsafe.Pointer
+	_CGPSConverterIsConverting func(CGPSConverterRef) bool
 	_CGPSConverterGetTypeID func() unsafe.Pointer
 	_CGPathApply func(CGPathRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGPathApplyWithBlock func(CGPathRef, unsafe.Pointer) unsafe.Pointer
@@ -622,12 +622,12 @@ var (
 	_CGPathCreateWithEllipseInRect func(CGRect, unsafe.Pointer) CGPathRef
 	_CGPathCreateWithRect func(CGRect, unsafe.Pointer) CGPathRef
 	_CGPathCreateWithRoundedRect func(CGRect, float64, float64, unsafe.Pointer) CGPathRef
-	_CGPathIsEmpty func(CGPathRef) unsafe.Pointer
-	_CGPathIsRect func(CGPathRef, unsafe.Pointer) unsafe.Pointer
+	_CGPathIsEmpty func(CGPathRef) bool
+	_CGPathIsRect func(CGPathRef, unsafe.Pointer) bool
 	_CGPathCreateMutableCopy func(CGPathRef) CGMutablePathRef
 	_CGPathCreateMutableCopyByTransformingPath func(CGPathRef, unsafe.Pointer) CGMutablePathRef
 	_CGPathGetTypeID func() unsafe.Pointer
-	_CGPathAddArc func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64, unsafe.Pointer) unsafe.Pointer
+	_CGPathAddArc func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64, bool) unsafe.Pointer
 	_CGPathAddArcToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64) unsafe.Pointer
 	_CGPathAddCurveToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64, float64) unsafe.Pointer
 	_CGPathAddEllipseInRect func(CGMutablePathRef, unsafe.Pointer, CGRect) unsafe.Pointer
@@ -639,43 +639,43 @@ var (
 	_CGPathAddRects func(CGMutablePathRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGPathAddRelativeArc func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64) unsafe.Pointer
 	_CGPathAddRoundedRect func(CGMutablePathRef, unsafe.Pointer, CGRect, float64, float64) unsafe.Pointer
-	_CGPathContainsPoint func(CGPathRef, unsafe.Pointer, CGPoint, unsafe.Pointer) unsafe.Pointer
+	_CGPathContainsPoint func(CGPathRef, unsafe.Pointer, CGPoint, bool) bool
 	_CGPathCreateCopyByDashingPath func(CGPathRef, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) CGPathRef
 	_CGPathCreateCopyByFlattening func(CGPathRef, float64) CGPathRef
-	_CGPathCreateCopyByIntersectingPath func(CGPathRef, CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathCreateCopyByNormalizing func(CGPathRef, unsafe.Pointer) CGPathRef
+	_CGPathCreateCopyByIntersectingPath func(CGPathRef, CGPathRef, bool) CGPathRef
+	_CGPathCreateCopyByNormalizing func(CGPathRef, bool) CGPathRef
 	_CGPathCreateCopyByStrokingPath func(CGPathRef, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer, float64) CGPathRef
-	_CGPathCreateCopyBySubtractingPath func(CGPathRef, CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathCreateCopyBySymmetricDifferenceOfPath func(CGPathRef, CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathCreateCopyByUnioningPath func(CGPathRef, CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathCreateCopyOfLineByIntersectingPath func(CGPathRef, CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathCreateCopyOfLineBySubtractingPath func(CGPathRef, CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathCreateSeparateComponents func(CGPathRef, unsafe.Pointer) unsafe.Pointer
-	_CGPathEqualToPath func(CGPathRef, CGPathRef) unsafe.Pointer
-	_CGPathIntersectsPath func(CGPathRef, CGPathRef, unsafe.Pointer) unsafe.Pointer
+	_CGPathCreateCopyBySubtractingPath func(CGPathRef, CGPathRef, bool) CGPathRef
+	_CGPathCreateCopyBySymmetricDifferenceOfPath func(CGPathRef, CGPathRef, bool) CGPathRef
+	_CGPathCreateCopyByUnioningPath func(CGPathRef, CGPathRef, bool) CGPathRef
+	_CGPathCreateCopyOfLineByIntersectingPath func(CGPathRef, CGPathRef, bool) CGPathRef
+	_CGPathCreateCopyOfLineBySubtractingPath func(CGPathRef, CGPathRef, bool) CGPathRef
+	_CGPathCreateSeparateComponents func(CGPathRef, bool) unsafe.Pointer
+	_CGPathEqualToPath func(CGPathRef, CGPathRef) bool
+	_CGPathIntersectsPath func(CGPathRef, CGPathRef, bool) bool
 	_CGPathMoveToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64) unsafe.Pointer
 	_CGPathRelease func(CGPathRef) unsafe.Pointer
 	_CGPathRetain func(CGPathRef) CGPathRef
-	_CGPatternCreate func(unsafe.Pointer, CGRect, CGAffineTransform, float64, float64, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGPatternRef
+	_CGPatternCreate func(unsafe.Pointer, CGRect, CGAffineTransform, float64, float64, unsafe.Pointer, bool, unsafe.Pointer) CGPatternRef
 	_CGPatternGetTypeID func() unsafe.Pointer
 	_CGPatternRelease func(CGPatternRef) unsafe.Pointer
 	_CGPatternRetain func(CGPatternRef) CGPatternRef
 	_CGPointApplyAffineTransform func(CGPoint, CGAffineTransform) CGPoint
 	_CGPointCreateDictionaryRepresentation func(CGPoint) unsafe.Pointer
-	_CGPointEqualToPoint func(CGPoint, CGPoint) unsafe.Pointer
-	_CGPointMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGPointEqualToPoint func(CGPoint, CGPoint) bool
+	_CGPointMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) bool
 	_CGPostKeyboardEvent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGPostMouseEvent func(CGPoint, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGPostScrollWheelEvent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPreflightListenEventAccess func() unsafe.Pointer
-	_CGPreflightPostEventAccess func() unsafe.Pointer
-	_CGPreflightScreenCaptureAccess func() unsafe.Pointer
+	_CGPreflightListenEventAccess func() bool
+	_CGPreflightPostEventAccess func() bool
+	_CGPreflightScreenCaptureAccess func() bool
 	_CGRectApplyAffineTransform func(CGRect, CGAffineTransform) CGRect
-	_CGRectContainsPoint func(CGRect, CGPoint) unsafe.Pointer
-	_CGRectContainsRect func(CGRect, CGRect) unsafe.Pointer
+	_CGRectContainsPoint func(CGRect, CGPoint) bool
+	_CGRectContainsRect func(CGRect, CGRect) bool
 	_CGRectCreateDictionaryRepresentation func(CGRect) unsafe.Pointer
 	_CGRectDivide func(CGRect, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CGRectEqualToRect func(CGRect, CGRect) unsafe.Pointer
+	_CGRectEqualToRect func(CGRect, CGRect) bool
 	_CGRectGetHeight func(CGRect) float64
 	_CGRectGetMaxX func(CGRect) float64
 	_CGRectGetMaxY func(CGRect) float64
@@ -687,11 +687,11 @@ var (
 	_CGRectInset func(CGRect, float64, float64) CGRect
 	_CGRectIntegral func(CGRect) CGRect
 	_CGRectIntersection func(CGRect, CGRect) CGRect
-	_CGRectIntersectsRect func(CGRect, CGRect) unsafe.Pointer
-	_CGRectIsEmpty func(CGRect) unsafe.Pointer
-	_CGRectIsInfinite func(CGRect) unsafe.Pointer
-	_CGRectIsNull func(CGRect) unsafe.Pointer
-	_CGRectMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGRectIntersectsRect func(CGRect, CGRect) bool
+	_CGRectIsEmpty func(CGRect) bool
+	_CGRectIsInfinite func(CGRect) bool
+	_CGRectIsNull func(CGRect) bool
+	_CGRectMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) bool
 	_CGRectOffset func(CGRect, float64, float64) CGRect
 	_CGRectStandardize func(CGRect) CGRect
 	_CGRectUnion func(CGRect, CGRect) CGRect
@@ -705,9 +705,9 @@ var (
 	_CGRenderingBufferProviderGetSize func(CGRenderingBufferProviderRef) unsafe.Pointer
 	_CGRenderingBufferProviderGetTypeID func() unsafe.Pointer
 	_CGRenderingBufferUnlockBytePtr func(CGRenderingBufferProviderRef) unsafe.Pointer
-	_CGRequestListenEventAccess func() unsafe.Pointer
-	_CGRequestPostEventAccess func() unsafe.Pointer
-	_CGRequestScreenCaptureAccess func() unsafe.Pointer
+	_CGRequestListenEventAccess func() bool
+	_CGRequestPostEventAccess func() bool
+	_CGRequestScreenCaptureAccess func() bool
 	_CGRestorePermanentDisplayConfiguration func() unsafe.Pointer
 	_CGScreenRegisterMoveCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGScreenUnregisterMoveCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -718,10 +718,10 @@ var (
 	_CGSetLocalEventsFilterDuringSuppressionState func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGSetLocalEventsSuppressionInterval func(unsafe.Pointer) unsafe.Pointer
 	_CGShadingGetContentHeadroom func(CGShadingRef) unsafe.Pointer
-	_CGShadingCreateAxialWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, CGPoint, CGPoint, CGFunctionRef, unsafe.Pointer, unsafe.Pointer) CGShadingRef
-	_CGShadingCreateAxial func(CGColorSpaceRef, CGPoint, CGPoint, CGFunctionRef, unsafe.Pointer, unsafe.Pointer) CGShadingRef
-	_CGShadingCreateRadialWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, CGPoint, float64, CGPoint, float64, CGFunctionRef, unsafe.Pointer, unsafe.Pointer) CGShadingRef
-	_CGShadingCreateRadial func(CGColorSpaceRef, CGPoint, float64, CGPoint, float64, CGFunctionRef, unsafe.Pointer, unsafe.Pointer) CGShadingRef
+	_CGShadingCreateAxialWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, CGPoint, CGPoint, CGFunctionRef, bool, bool) CGShadingRef
+	_CGShadingCreateAxial func(CGColorSpaceRef, CGPoint, CGPoint, CGFunctionRef, bool, bool) CGShadingRef
+	_CGShadingCreateRadialWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, CGPoint, float64, CGPoint, float64, CGFunctionRef, bool, bool) CGShadingRef
+	_CGShadingCreateRadial func(CGColorSpaceRef, CGPoint, float64, CGPoint, float64, CGFunctionRef, bool, bool) CGShadingRef
 	_CGShadingGetTypeID func() unsafe.Pointer
 	_CGShadingRelease func(CGShadingRef) unsafe.Pointer
 	_CGShadingRetain func(CGShadingRef) CGShadingRef
@@ -729,8 +729,8 @@ var (
 	_CGShieldingWindowLevel func() unsafe.Pointer
 	_CGSizeApplyAffineTransform func(CGSize, CGAffineTransform) CGSize
 	_CGSizeCreateDictionaryRepresentation func(CGSize) unsafe.Pointer
-	_CGSizeEqualToSize func(CGSize, CGSize) unsafe.Pointer
-	_CGSizeMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGSizeEqualToSize func(CGSize, CGSize) bool
+	_CGSizeMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) bool
 	_CGUnregisterScreenRefreshCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGWaitForScreenRefreshRects func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGWaitForScreenUpdateRects func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -1577,7 +1577,7 @@ func CGAffineTransformDecompose(transform CGAffineTransform) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformEqualToTransform(_:_:)
-func CGAffineTransformEqualToTransform(t1 CGAffineTransform, t2 CGAffineTransform) unsafe.Pointer {
+func CGAffineTransformEqualToTransform(t1 CGAffineTransform, t2 CGAffineTransform) bool {
 	return _CGAffineTransformEqualToTransform(t1, t2)
 	}
 
@@ -1597,7 +1597,7 @@ func CGAffineTransformInvert(t CGAffineTransform) CGAffineTransform {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformIsIdentity(_:)
-func CGAffineTransformIsIdentity(t CGAffineTransform) unsafe.Pointer {
+func CGAffineTransformIsIdentity(t CGAffineTransform) bool {
 	return _CGAffineTransformIsIdentity(t)
 	}
 
@@ -1707,7 +1707,7 @@ func CGBeginDisplayConfiguration(config unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapContextCreateAdaptive
-func CGBitmapContextCreateAdaptive(width unsafe.Pointer, height unsafe.Pointer, auxiliaryInfo unsafe.Pointer, onResolve unsafe.Pointer) CGContextRef {
+func CGBitmapContextCreateAdaptive(width unsafe.Pointer, height unsafe.Pointer, auxiliaryInfo unsafe.Pointer, onResolve bool) CGContextRef {
 	return _CGBitmapContextCreateAdaptive(width, height, auxiliaryInfo, onResolve)
 	}
 
@@ -1917,7 +1917,7 @@ func CGColorGetTypeID() unsafe.Pointer {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/convert(width:height:to:format:from:format:options:)
-func CGColorConversionInfoConvertData(info CGColorConversionInfoRef, width unsafe.Pointer, height unsafe.Pointer, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CGColorConversionInfoConvertData(info CGColorConversionInfoRef, width unsafe.Pointer, height unsafe.Pointer, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) bool {
 	return _CGColorConversionInfoConvertData(info, width, height, dst_data, dst_format, src_data, src_format, options)
 	}
 
@@ -1985,7 +1985,7 @@ func CGColorConversionInfoCreateFromListWithArguments(options unsafe.Pointer, p1
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorEqualToColor
-func CGColorEqualToColor(color1 CGColorRef, color2 CGColorRef) unsafe.Pointer {
+func CGColorEqualToColor(color1 CGColorRef, color2 CGColorRef) bool {
 	return _CGColorEqualToColor(color1, color2)
 	}
 
@@ -2191,7 +2191,7 @@ func CGColorSpaceCreateWithPropertyList(plist unsafe.Pointer) CGColorSpaceRef {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isHDR()
-func CGColorSpaceIsHDR(p0 CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceIsHDR(p0 CGColorSpaceRef) bool {
 	return _CGColorSpaceIsHDR(p0)
 	}
 
@@ -2201,7 +2201,7 @@ func CGColorSpaceIsHDR(p0 CGColorSpaceRef) unsafe.Pointer {
 // Added in macOS 10.12.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isWideGamutRGB
-func CGColorSpaceIsWideGamutRGB(p0 CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceIsWideGamutRGB(p0 CGColorSpaceRef) bool {
 	return _CGColorSpaceIsWideGamutRGB(p0)
 	}
 
@@ -2241,7 +2241,7 @@ func CGColorSpaceGetNumberOfComponents(space CGColorSpaceRef) unsafe.Pointer {
 // Added in macOS 10.12.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/supportsOutput
-func CGColorSpaceSupportsOutput(space CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceSupportsOutput(space CGColorSpaceRef) bool {
 	return _CGColorSpaceSupportsOutput(space)
 	}
 
@@ -2381,7 +2381,7 @@ func CGColorSpaceGetName(space CGColorSpaceRef) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceIsHLGBased(_:)
-func CGColorSpaceIsHLGBased(s CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceIsHLGBased(s CGColorSpaceRef) bool {
 	return _CGColorSpaceIsHLGBased(s)
 	}
 
@@ -2391,7 +2391,7 @@ func CGColorSpaceIsHLGBased(s CGColorSpaceRef) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceIsPQBased(_:)
-func CGColorSpaceIsPQBased(s CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceIsPQBased(s CGColorSpaceRef) bool {
 	return _CGColorSpaceIsPQBased(s)
 	}
 
@@ -2411,7 +2411,7 @@ func CGColorSpaceRetain(space CGColorSpaceRef) CGColorSpaceRef {
 // Added in macOS 10.12.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceUsesExtendedRange(_:)
-func CGColorSpaceUsesExtendedRange(space CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceUsesExtendedRange(space CGColorSpaceRef) bool {
 	return _CGColorSpaceUsesExtendedRange(space)
 	}
 
@@ -2421,7 +2421,7 @@ func CGColorSpaceUsesExtendedRange(space CGColorSpaceRef) unsafe.Pointer {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceUsesITUR_2100TF(_:)
-func CGColorSpaceUsesITUR_2100TF(p0 CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceUsesITUR_2100TF(p0 CGColorSpaceRef) bool {
 	return _CGColorSpaceUsesITUR_2100TF(p0)
 	}
 
@@ -2999,7 +2999,7 @@ func CGContextGetInterpolationQuality(c CGContextRef) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/isPathEmpty
-func CGContextIsPathEmpty(c CGContextRef) unsafe.Pointer {
+func CGContextIsPathEmpty(c CGContextRef) bool {
 	return _CGContextIsPathEmpty(c)
 	}
 
@@ -3029,7 +3029,7 @@ func CGContextCopyPath(c CGContextRef) CGPathRef {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/pathContains(_:mode:)
-func CGContextPathContainsPoint(c CGContextRef, point CGPoint, mode unsafe.Pointer) unsafe.Pointer {
+func CGContextPathContainsPoint(c CGContextRef, point CGPoint, mode unsafe.Pointer) bool {
 	return _CGContextPathContainsPoint(c, point, mode)
 	}
 
@@ -3105,7 +3105,7 @@ func CGContextSelectFont(c CGContextRef, name unsafe.Pointer, size float64, text
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsAntialiasing(_:)
-func CGContextSetAllowsAntialiasing(c CGContextRef, allowsAntialiasing unsafe.Pointer) {
+func CGContextSetAllowsAntialiasing(c CGContextRef, allowsAntialiasing bool) {
 	_CGContextSetAllowsAntialiasing(c, allowsAntialiasing)
 	}
 
@@ -3115,7 +3115,7 @@ func CGContextSetAllowsAntialiasing(c CGContextRef, allowsAntialiasing unsafe.Po
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSmoothing(_:)
-func CGContextSetAllowsFontSmoothing(c CGContextRef, allowsFontSmoothing unsafe.Pointer) {
+func CGContextSetAllowsFontSmoothing(c CGContextRef, allowsFontSmoothing bool) {
 	_CGContextSetAllowsFontSmoothing(c, allowsFontSmoothing)
 	}
 
@@ -3125,7 +3125,7 @@ func CGContextSetAllowsFontSmoothing(c CGContextRef, allowsFontSmoothing unsafe.
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelPositioning(_:)
-func CGContextSetAllowsFontSubpixelPositioning(c CGContextRef, allowsFontSubpixelPositioning unsafe.Pointer) {
+func CGContextSetAllowsFontSubpixelPositioning(c CGContextRef, allowsFontSubpixelPositioning bool) {
 	_CGContextSetAllowsFontSubpixelPositioning(c, allowsFontSubpixelPositioning)
 	}
 
@@ -3135,7 +3135,7 @@ func CGContextSetAllowsFontSubpixelPositioning(c CGContextRef, allowsFontSubpixe
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelQuantization(_:)
-func CGContextSetAllowsFontSubpixelQuantization(c CGContextRef, allowsFontSubpixelQuantization unsafe.Pointer) {
+func CGContextSetAllowsFontSubpixelQuantization(c CGContextRef, allowsFontSubpixelQuantization bool) {
 	_CGContextSetAllowsFontSubpixelQuantization(c, allowsFontSubpixelQuantization)
 	}
 
@@ -3185,7 +3185,7 @@ func CGPDFContextSetDestinationForRect(context CGContextRef, name unsafe.Pointer
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setEDRTargetHeadroom(_:)
-func CGContextSetEDRTargetHeadroom(c CGContextRef, headroom unsafe.Pointer) unsafe.Pointer {
+func CGContextSetEDRTargetHeadroom(c CGContextRef, headroom unsafe.Pointer) bool {
 	return _CGContextSetEDRTargetHeadroom(c, headroom)
 	}
 
@@ -3375,7 +3375,7 @@ func CGContextSetShadowWithColor(c CGContextRef, offset CGSize, blur float64, co
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldAntialias(_:)
-func CGContextSetShouldAntialias(c CGContextRef, shouldAntialias unsafe.Pointer) {
+func CGContextSetShouldAntialias(c CGContextRef, shouldAntialias bool) {
 	_CGContextSetShouldAntialias(c, shouldAntialias)
 	}
 
@@ -3385,7 +3385,7 @@ func CGContextSetShouldAntialias(c CGContextRef, shouldAntialias unsafe.Pointer)
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSmoothFonts(_:)
-func CGContextSetShouldSmoothFonts(c CGContextRef, shouldSmoothFonts unsafe.Pointer) {
+func CGContextSetShouldSmoothFonts(c CGContextRef, shouldSmoothFonts bool) {
 	_CGContextSetShouldSmoothFonts(c, shouldSmoothFonts)
 	}
 
@@ -3395,7 +3395,7 @@ func CGContextSetShouldSmoothFonts(c CGContextRef, shouldSmoothFonts unsafe.Poin
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelPositionFonts(_:)
-func CGContextSetShouldSubpixelPositionFonts(c CGContextRef, shouldSubpixelPositionFonts unsafe.Pointer) {
+func CGContextSetShouldSubpixelPositionFonts(c CGContextRef, shouldSubpixelPositionFonts bool) {
 	_CGContextSetShouldSubpixelPositionFonts(c, shouldSubpixelPositionFonts)
 	}
 
@@ -3405,7 +3405,7 @@ func CGContextSetShouldSubpixelPositionFonts(c CGContextRef, shouldSubpixelPosit
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelQuantizeFonts(_:)
-func CGContextSetShouldSubpixelQuantizeFonts(c CGContextRef, shouldSubpixelQuantizeFonts unsafe.Pointer) {
+func CGContextSetShouldSubpixelQuantizeFonts(c CGContextRef, shouldSubpixelQuantizeFonts bool) {
 	_CGContextSetShouldSubpixelQuantizeFonts(c, shouldSubpixelQuantizeFonts)
 	}
 
@@ -3655,7 +3655,7 @@ func CGBitmapContextGetWidth(context CGContextRef) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddArc
-func CGContextAddArc(c CGContextRef, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise unsafe.Pointer) {
+func CGContextAddArc(c CGContextRef, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise int) {
 	_CGContextAddArc(c, x, y, radius, startAngle, endAngle, clockwise)
 	}
 
@@ -3765,7 +3765,7 @@ func CGContextDrawImage(c CGContextRef, rect CGRect, image CGImageRef) {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawImageApplyingToneMapping
-func CGContextDrawImageApplyingToneMapping(c CGContextRef, r CGRect, image CGImageRef, method unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CGContextDrawImageApplyingToneMapping(c CGContextRef, r CGRect, image CGImageRef, method unsafe.Pointer, options unsafe.Pointer) bool {
 	return _CGContextDrawImageApplyingToneMapping(c, r, image, method, options)
 	}
 
@@ -3797,7 +3797,7 @@ func CGContextDrawLayerInRect(context CGContextRef, rect CGRect, layer CGLayerRe
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawPDFDocument
-func CGContextDrawPDFDocument(c CGContextRef, rect CGRect, document CGPDFDocumentRef, page unsafe.Pointer) {
+func CGContextDrawPDFDocument(c CGContextRef, rect CGRect, document CGPDFDocumentRef, page int) {
 	_CGContextDrawPDFDocument(c, rect, document, page)
 	}
 
@@ -3955,7 +3955,7 @@ func CGContextStrokeLineSegments(c CGContextRef, points unsafe.Pointer, count un
 // CGConvertColorDataWithFormat is a CoreGraphics function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConvertColorDataWithFormat(_:_:_:_:_:_:_:)
-func CGConvertColorDataWithFormat(width unsafe.Pointer, height unsafe.Pointer, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CGConvertColorDataWithFormat(width unsafe.Pointer, height unsafe.Pointer, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) bool {
 	return _CGConvertColorDataWithFormat(width, height, dst_data, dst_format, src_data, src_format, options)
 	}
 
@@ -4473,7 +4473,7 @@ func CGDisplayModeGetIOFlags(mode CGDisplayModeRef) unsafe.Pointer {
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/isUsableForDesktopGUI()
-func CGDisplayModeIsUsableForDesktopGUI(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeIsUsableForDesktopGUI(mode CGDisplayModeRef) bool {
 	return _CGDisplayModeIsUsableForDesktopGUI(mode)
 	}
 
@@ -4907,7 +4907,7 @@ func CGEventGetIntegerValueField(event CGEventRef, field unsafe.Pointer) unsafe.
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(keyboardEventSource:virtualKey:keyDown:)
-func CGEventCreateKeyboardEvent(source CGEventSourceRef, virtualKey unsafe.Pointer, keyDown unsafe.Pointer) CGEventRef {
+func CGEventCreateKeyboardEvent(source CGEventSourceRef, virtualKey unsafe.Pointer, keyDown bool) CGEventRef {
 	return _CGEventCreateKeyboardEvent(source, virtualKey, keyDown)
 	}
 
@@ -5077,7 +5077,7 @@ func CGEventTapCreateForPid(pid unsafe.Pointer, place unsafe.Pointer, options un
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapEnable(tap:enable:)
-func CGEventTapEnable(tap unsafe.Pointer, enable unsafe.Pointer) {
+func CGEventTapEnable(tap unsafe.Pointer, enable bool) {
 	_CGEventTapEnable(tap, enable)
 	}
 
@@ -5087,7 +5087,7 @@ func CGEventTapEnable(tap unsafe.Pointer, enable unsafe.Pointer) {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapIsEnabled(tap:)
-func CGEventTapIsEnabled(tap unsafe.Pointer) unsafe.Pointer {
+func CGEventTapIsEnabled(tap unsafe.Pointer) bool {
 	return _CGEventTapIsEnabled(tap)
 	}
 
@@ -5207,7 +5207,7 @@ func CGEventSetType(event CGEventRef, type_ unsafe.Pointer) {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/buttonState(_:button:)
-func CGEventSourceButtonState(stateID unsafe.Pointer, button unsafe.Pointer) unsafe.Pointer {
+func CGEventSourceButtonState(stateID unsafe.Pointer, button unsafe.Pointer) bool {
 	return _CGEventSourceButtonState(stateID, button)
 	}
 
@@ -5267,7 +5267,7 @@ func CGEventSourceCreate(stateID unsafe.Pointer) CGEventSourceRef {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyState(_:key:)
-func CGEventSourceKeyState(stateID unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func CGEventSourceKeyState(stateID unsafe.Pointer, key unsafe.Pointer) bool {
 	return _CGEventSourceKeyState(stateID, key)
 	}
 
@@ -5397,7 +5397,7 @@ func CGEventSourceSetUserData(source CGEventSourceRef, userData unsafe.Pointer) 
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/ascent
-func CGFontGetAscent(font CGFontRef) unsafe.Pointer {
+func CGFontGetAscent(font CGFontRef) int {
 	return _CGFontGetAscent(font)
 	}
 
@@ -5407,7 +5407,7 @@ func CGFontGetAscent(font CGFontRef) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/canCreatePostScriptSubset(_:)
-func CGFontCanCreatePostScriptSubset(font CGFontRef, format unsafe.Pointer) unsafe.Pointer {
+func CGFontCanCreatePostScriptSubset(font CGFontRef, format unsafe.Pointer) bool {
 	return _CGFontCanCreatePostScriptSubset(font, format)
 	}
 
@@ -5417,7 +5417,7 @@ func CGFontCanCreatePostScriptSubset(font CGFontRef, format unsafe.Pointer) unsa
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/capHeight
-func CGFontGetCapHeight(font CGFontRef) unsafe.Pointer {
+func CGFontGetCapHeight(font CGFontRef) int {
 	return _CGFontGetCapHeight(font)
 	}
 
@@ -5457,7 +5457,7 @@ func CGFontCreatePostScriptSubset(font CGFontRef, subsetName unsafe.Pointer, for
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/descent
-func CGFontGetDescent(font CGFontRef) unsafe.Pointer {
+func CGFontGetDescent(font CGFontRef) int {
 	return _CGFontGetDescent(font)
 	}
 
@@ -5487,7 +5487,7 @@ func CGFontCopyFullName(font CGFontRef) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphAdvances(glyphs:count:advances:)
-func CGFontGetGlyphAdvances(font CGFontRef, glyphs unsafe.Pointer, count unsafe.Pointer, advances unsafe.Pointer) unsafe.Pointer {
+func CGFontGetGlyphAdvances(font CGFontRef, glyphs unsafe.Pointer, count unsafe.Pointer, advances unsafe.Pointer) bool {
 	return _CGFontGetGlyphAdvances(font, glyphs, count, advances)
 	}
 
@@ -5497,7 +5497,7 @@ func CGFontGetGlyphAdvances(font CGFontRef, glyphs unsafe.Pointer, count unsafe.
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphBBoxes(glyphs:count:bboxes:)
-func CGFontGetGlyphBBoxes(font CGFontRef, glyphs unsafe.Pointer, count unsafe.Pointer, bboxes unsafe.Pointer) unsafe.Pointer {
+func CGFontGetGlyphBBoxes(font CGFontRef, glyphs unsafe.Pointer, count unsafe.Pointer, bboxes unsafe.Pointer) bool {
 	return _CGFontGetGlyphBBoxes(font, glyphs, count, bboxes)
 	}
 
@@ -5547,7 +5547,7 @@ func CGFontGetItalicAngle(font CGFontRef) float64 {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/leading
-func CGFontGetLeading(font CGFontRef) unsafe.Pointer {
+func CGFontGetLeading(font CGFontRef) int {
 	return _CGFontGetLeading(font)
 	}
 
@@ -5627,7 +5627,7 @@ func CGFontGetTypeID() unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/unitsPerEm
-func CGFontGetUnitsPerEm(font CGFontRef) unsafe.Pointer {
+func CGFontGetUnitsPerEm(font CGFontRef) int {
 	return _CGFontGetUnitsPerEm(font)
 	}
 
@@ -5657,7 +5657,7 @@ func CGFontCopyVariations(font CGFontRef) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/xHeight
-func CGFontGetXHeight(font CGFontRef) unsafe.Pointer {
+func CGFontGetXHeight(font CGFontRef) int {
 	return _CGFontGetXHeight(font)
 	}
 
@@ -5989,7 +5989,7 @@ func CGImageGetColorSpace(image CGImageRef) CGColorSpaceRef {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/containsImageSpecificToneMappingMetadata
-func CGImageContainsImageSpecificToneMappingMetadata(image CGImageRef) unsafe.Pointer {
+func CGImageContainsImageSpecificToneMappingMetadata(image CGImageRef) bool {
 	return _CGImageContainsImageSpecificToneMappingMetadata(image)
 	}
 
@@ -6099,7 +6099,7 @@ func CGImageGetHeight(image CGImageRef) unsafe.Pointer {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(headroom:width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
-func CGImageCreateWithContentHeadroom(headroom unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate unsafe.Pointer, intent unsafe.Pointer) CGImageRef {
+func CGImageCreateWithContentHeadroom(headroom unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
 	return _CGImageCreateWithContentHeadroom(headroom, width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
 	}
 
@@ -6109,7 +6109,7 @@ func CGImageCreateWithContentHeadroom(headroom unsafe.Pointer, width unsafe.Poin
 // Added in macOS 10.1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(jpegDataProviderSource:decode:shouldInterpolate:intent:)
-func CGImageCreateWithJPEGDataProvider(source CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate unsafe.Pointer, intent unsafe.Pointer) CGImageRef {
+func CGImageCreateWithJPEGDataProvider(source CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
 	return _CGImageCreateWithJPEGDataProvider(source, decode, shouldInterpolate, intent)
 	}
 
@@ -6119,7 +6119,7 @@ func CGImageCreateWithJPEGDataProvider(source CGDataProviderRef, decode unsafe.P
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(maskWidth:height:bitsPerComponent:bitsPerPixel:bytesPerRow:provider:decode:shouldInterpolate:)
-func CGImageMaskCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate unsafe.Pointer) CGImageRef {
+func CGImageMaskCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool) CGImageRef {
 	return _CGImageMaskCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, provider, decode, shouldInterpolate)
 	}
 
@@ -6129,7 +6129,7 @@ func CGImageMaskCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerCompo
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(pngDataProviderSource:decode:shouldInterpolate:intent:)
-func CGImageCreateWithPNGDataProvider(source CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate unsafe.Pointer, intent unsafe.Pointer) CGImageRef {
+func CGImageCreateWithPNGDataProvider(source CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
 	return _CGImageCreateWithPNGDataProvider(source, decode, shouldInterpolate, intent)
 	}
 
@@ -6139,7 +6139,7 @@ func CGImageCreateWithPNGDataProvider(source CGDataProviderRef, decode unsafe.Po
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
-func CGImageCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate unsafe.Pointer, intent unsafe.Pointer) CGImageRef {
+func CGImageCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
 	return _CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
 	}
 
@@ -6157,7 +6157,7 @@ func CGWindowListCreateImageFromArray(screenBounds CGRect, windowArray unsafe.Po
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/isMask
-func CGImageIsMask(image CGImageRef) unsafe.Pointer {
+func CGImageIsMask(image CGImageRef) bool {
 	return _CGImageIsMask(image)
 	}
 
@@ -6197,7 +6197,7 @@ func CGImageGetRenderingIntent(image CGImageRef) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldInterpolate
-func CGImageGetShouldInterpolate(image CGImageRef) unsafe.Pointer {
+func CGImageGetShouldInterpolate(image CGImageRef) bool {
 	return _CGImageGetShouldInterpolate(image)
 	}
 
@@ -6207,7 +6207,7 @@ func CGImageGetShouldInterpolate(image CGImageRef) unsafe.Pointer {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldToneMap
-func CGImageShouldToneMap(image CGImageRef) unsafe.Pointer {
+func CGImageShouldToneMap(image CGImageRef) bool {
 	return _CGImageShouldToneMap(image)
 	}
 
@@ -6395,7 +6395,7 @@ func CGPDFArrayApplyBlock(array CGPDFArrayRef, block unsafe.Pointer, info unsafe
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetArray(_:_:_:)
-func CGPDFArrayGetArray(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetArray(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetArray(array, index, value)
 	}
 
@@ -6405,7 +6405,7 @@ func CGPDFArrayGetArray(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetBoolean(_:_:_:)
-func CGPDFArrayGetBoolean(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetBoolean(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetBoolean(array, index, value)
 	}
 
@@ -6425,7 +6425,7 @@ func CGPDFArrayGetCount(array CGPDFArrayRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetDictionary(_:_:_:)
-func CGPDFArrayGetDictionary(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetDictionary(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetDictionary(array, index, value)
 	}
 
@@ -6435,7 +6435,7 @@ func CGPDFArrayGetDictionary(array CGPDFArrayRef, index unsafe.Pointer, value un
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetInteger(_:_:_:)
-func CGPDFArrayGetInteger(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetInteger(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetInteger(array, index, value)
 	}
 
@@ -6445,7 +6445,7 @@ func CGPDFArrayGetInteger(array CGPDFArrayRef, index unsafe.Pointer, value unsaf
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetName(_:_:_:)
-func CGPDFArrayGetName(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetName(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetName(array, index, value)
 	}
 
@@ -6455,7 +6455,7 @@ func CGPDFArrayGetName(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.P
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetNull(_:_:)
-func CGPDFArrayGetNull(array CGPDFArrayRef, index unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetNull(array CGPDFArrayRef, index unsafe.Pointer) bool {
 	return _CGPDFArrayGetNull(array, index)
 	}
 
@@ -6465,7 +6465,7 @@ func CGPDFArrayGetNull(array CGPDFArrayRef, index unsafe.Pointer) unsafe.Pointer
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetNumber(_:_:_:)
-func CGPDFArrayGetNumber(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetNumber(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetNumber(array, index, value)
 	}
 
@@ -6475,7 +6475,7 @@ func CGPDFArrayGetNumber(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetObject(_:_:_:)
-func CGPDFArrayGetObject(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetObject(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetObject(array, index, value)
 	}
 
@@ -6485,7 +6485,7 @@ func CGPDFArrayGetObject(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetStream(_:_:_:)
-func CGPDFArrayGetStream(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetStream(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetStream(array, index, value)
 	}
 
@@ -6495,7 +6495,7 @@ func CGPDFArrayGetStream(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetString(_:_:_:)
-func CGPDFArrayGetString(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFArrayGetString(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetString(array, index, value)
 	}
 
@@ -6639,7 +6639,7 @@ func CGPDFDictionaryApplyFunction(dict CGPDFDictionaryRef, function unsafe.Point
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetArray(_:_:_:)
-func CGPDFDictionaryGetArray(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetArray(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetArray(dict, key, value)
 	}
 
@@ -6649,7 +6649,7 @@ func CGPDFDictionaryGetArray(dict CGPDFDictionaryRef, key unsafe.Pointer, value 
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetBoolean(_:_:_:)
-func CGPDFDictionaryGetBoolean(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetBoolean(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetBoolean(dict, key, value)
 	}
 
@@ -6669,7 +6669,7 @@ func CGPDFDictionaryGetCount(dict CGPDFDictionaryRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetDictionary(_:_:_:)
-func CGPDFDictionaryGetDictionary(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetDictionary(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetDictionary(dict, key, value)
 	}
 
@@ -6679,7 +6679,7 @@ func CGPDFDictionaryGetDictionary(dict CGPDFDictionaryRef, key unsafe.Pointer, v
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetInteger(_:_:_:)
-func CGPDFDictionaryGetInteger(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetInteger(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetInteger(dict, key, value)
 	}
 
@@ -6689,7 +6689,7 @@ func CGPDFDictionaryGetInteger(dict CGPDFDictionaryRef, key unsafe.Pointer, valu
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetName(_:_:_:)
-func CGPDFDictionaryGetName(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetName(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetName(dict, key, value)
 	}
 
@@ -6699,7 +6699,7 @@ func CGPDFDictionaryGetName(dict CGPDFDictionaryRef, key unsafe.Pointer, value u
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetNumber(_:_:_:)
-func CGPDFDictionaryGetNumber(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetNumber(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetNumber(dict, key, value)
 	}
 
@@ -6709,7 +6709,7 @@ func CGPDFDictionaryGetNumber(dict CGPDFDictionaryRef, key unsafe.Pointer, value
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetObject(_:_:_:)
-func CGPDFDictionaryGetObject(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetObject(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetObject(dict, key, value)
 	}
 
@@ -6719,7 +6719,7 @@ func CGPDFDictionaryGetObject(dict CGPDFDictionaryRef, key unsafe.Pointer, value
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetStream(_:_:_:)
-func CGPDFDictionaryGetStream(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetStream(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetStream(dict, key, value)
 	}
 
@@ -6729,7 +6729,7 @@ func CGPDFDictionaryGetStream(dict CGPDFDictionaryRef, key unsafe.Pointer, value
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetString(_:_:_:)
-func CGPDFDictionaryGetString(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFDictionaryGetString(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetString(dict, key, value)
 	}
 
@@ -6749,7 +6749,7 @@ func CGPDFDocumentGetAccessPermissions(document CGPDFDocumentRef) unsafe.Pointer
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsCopying
-func CGPDFDocumentAllowsCopying(document CGPDFDocumentRef) unsafe.Pointer {
+func CGPDFDocumentAllowsCopying(document CGPDFDocumentRef) bool {
 	return _CGPDFDocumentAllowsCopying(document)
 	}
 
@@ -6759,7 +6759,7 @@ func CGPDFDocumentAllowsCopying(document CGPDFDocumentRef) unsafe.Pointer {
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsPrinting
-func CGPDFDocumentAllowsPrinting(document CGPDFDocumentRef) unsafe.Pointer {
+func CGPDFDocumentAllowsPrinting(document CGPDFDocumentRef) bool {
 	return _CGPDFDocumentAllowsPrinting(document)
 	}
 
@@ -6829,7 +6829,7 @@ func CGPDFDocumentCreateWithProvider(provider CGDataProviderRef) CGPDFDocumentRe
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isEncrypted
-func CGPDFDocumentIsEncrypted(document CGPDFDocumentRef) unsafe.Pointer {
+func CGPDFDocumentIsEncrypted(document CGPDFDocumentRef) bool {
 	return _CGPDFDocumentIsEncrypted(document)
 	}
 
@@ -6839,7 +6839,7 @@ func CGPDFDocumentIsEncrypted(document CGPDFDocumentRef) unsafe.Pointer {
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isUnlocked
-func CGPDFDocumentIsUnlocked(document CGPDFDocumentRef) unsafe.Pointer {
+func CGPDFDocumentIsUnlocked(document CGPDFDocumentRef) bool {
 	return _CGPDFDocumentIsUnlocked(document)
 	}
 
@@ -6889,7 +6889,7 @@ func CGPDFDocumentGetTypeID() unsafe.Pointer {
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/unlockWithPassword(_:)
-func CGPDFDocumentUnlockWithPassword(document CGPDFDocumentRef, password unsafe.Pointer) unsafe.Pointer {
+func CGPDFDocumentUnlockWithPassword(document CGPDFDocumentRef, password unsafe.Pointer) bool {
 	return _CGPDFDocumentUnlockWithPassword(document, password)
 	}
 
@@ -6901,7 +6901,7 @@ func CGPDFDocumentUnlockWithPassword(document CGPDFDocumentRef, password unsafe.
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetArtBox
-func CGPDFDocumentGetArtBox(document CGPDFDocumentRef, page unsafe.Pointer) CGRect {
+func CGPDFDocumentGetArtBox(document CGPDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetArtBox(document, page)
 	}
 
@@ -6913,7 +6913,7 @@ func CGPDFDocumentGetArtBox(document CGPDFDocumentRef, page unsafe.Pointer) CGRe
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetBleedBox
-func CGPDFDocumentGetBleedBox(document CGPDFDocumentRef, page unsafe.Pointer) CGRect {
+func CGPDFDocumentGetBleedBox(document CGPDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetBleedBox(document, page)
 	}
 
@@ -6925,7 +6925,7 @@ func CGPDFDocumentGetBleedBox(document CGPDFDocumentRef, page unsafe.Pointer) CG
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetCropBox
-func CGPDFDocumentGetCropBox(document CGPDFDocumentRef, page unsafe.Pointer) CGRect {
+func CGPDFDocumentGetCropBox(document CGPDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetCropBox(document, page)
 	}
 
@@ -6937,7 +6937,7 @@ func CGPDFDocumentGetCropBox(document CGPDFDocumentRef, page unsafe.Pointer) CGR
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetMediaBox
-func CGPDFDocumentGetMediaBox(document CGPDFDocumentRef, page unsafe.Pointer) CGRect {
+func CGPDFDocumentGetMediaBox(document CGPDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetMediaBox(document, page)
 	}
 
@@ -6949,7 +6949,7 @@ func CGPDFDocumentGetMediaBox(document CGPDFDocumentRef, page unsafe.Pointer) CG
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetRotationAngle
-func CGPDFDocumentGetRotationAngle(document CGPDFDocumentRef, page unsafe.Pointer) unsafe.Pointer {
+func CGPDFDocumentGetRotationAngle(document CGPDFDocumentRef, page int) int {
 	return _CGPDFDocumentGetRotationAngle(document, page)
 	}
 
@@ -6961,7 +6961,7 @@ func CGPDFDocumentGetRotationAngle(document CGPDFDocumentRef, page unsafe.Pointe
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetTrimBox
-func CGPDFDocumentGetTrimBox(document CGPDFDocumentRef, page unsafe.Pointer) CGRect {
+func CGPDFDocumentGetTrimBox(document CGPDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetTrimBox(document, page)
 	}
 
@@ -7001,7 +7001,7 @@ func CGPDFObjectGetType(object CGPDFObjectRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFObjectGetValue(_:_:_:)
-func CGPDFObjectGetValue(object CGPDFObjectRef, type_ unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFObjectGetValue(object CGPDFObjectRef, type_ unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFObjectGetValue(object, type_, value)
 	}
 
@@ -7081,7 +7081,7 @@ func CGPDFPageGetBoxRect(page CGPDFPageRef, box unsafe.Pointer) CGRect {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getDrawingTransform(_:rect:rotate:preserveAspectRatio:)
-func CGPDFPageGetDrawingTransform(page CGPDFPageRef, box unsafe.Pointer, rect CGRect, rotate unsafe.Pointer, preserveAspectRatio unsafe.Pointer) CGAffineTransform {
+func CGPDFPageGetDrawingTransform(page CGPDFPageRef, box unsafe.Pointer, rect CGRect, rotate int, preserveAspectRatio bool) CGAffineTransform {
 	return _CGPDFPageGetDrawingTransform(page, box, rect, rotate, preserveAspectRatio)
 	}
 
@@ -7101,7 +7101,7 @@ func CGPDFPageGetPageNumber(page CGPDFPageRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/rotationAngle
-func CGPDFPageGetRotationAngle(page CGPDFPageRef) unsafe.Pointer {
+func CGPDFPageGetRotationAngle(page CGPDFPageRef) int {
 	return _CGPDFPageGetRotationAngle(page)
 	}
 
@@ -7161,7 +7161,7 @@ func CGPDFScannerGetContentStream(scanner CGPDFScannerRef) CGPDFContentStreamRef
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopArray(_:_:)
-func CGPDFScannerPopArray(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopArray(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopArray(scanner, value)
 	}
 
@@ -7171,7 +7171,7 @@ func CGPDFScannerPopArray(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopBoolean(_:_:)
-func CGPDFScannerPopBoolean(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopBoolean(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopBoolean(scanner, value)
 	}
 
@@ -7181,7 +7181,7 @@ func CGPDFScannerPopBoolean(scanner CGPDFScannerRef, value unsafe.Pointer) unsaf
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopDictionary(_:_:)
-func CGPDFScannerPopDictionary(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopDictionary(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopDictionary(scanner, value)
 	}
 
@@ -7191,7 +7191,7 @@ func CGPDFScannerPopDictionary(scanner CGPDFScannerRef, value unsafe.Pointer) un
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopInteger(_:_:)
-func CGPDFScannerPopInteger(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopInteger(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopInteger(scanner, value)
 	}
 
@@ -7201,7 +7201,7 @@ func CGPDFScannerPopInteger(scanner CGPDFScannerRef, value unsafe.Pointer) unsaf
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopName(_:_:)
-func CGPDFScannerPopName(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopName(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopName(scanner, value)
 	}
 
@@ -7211,7 +7211,7 @@ func CGPDFScannerPopName(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.P
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopNumber(_:_:)
-func CGPDFScannerPopNumber(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopNumber(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopNumber(scanner, value)
 	}
 
@@ -7221,7 +7221,7 @@ func CGPDFScannerPopNumber(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopObject(_:_:)
-func CGPDFScannerPopObject(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopObject(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopObject(scanner, value)
 	}
 
@@ -7231,7 +7231,7 @@ func CGPDFScannerPopObject(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopStream(_:_:)
-func CGPDFScannerPopStream(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopStream(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopStream(scanner, value)
 	}
 
@@ -7241,7 +7241,7 @@ func CGPDFScannerPopStream(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopString(_:_:)
-func CGPDFScannerPopString(scanner CGPDFScannerRef, value unsafe.Pointer) unsafe.Pointer {
+func CGPDFScannerPopString(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopString(scanner, value)
 	}
 
@@ -7271,7 +7271,7 @@ func CGPDFScannerRetain(scanner CGPDFScannerRef) CGPDFScannerRef {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerScan(_:)
-func CGPDFScannerScan(scanner CGPDFScannerRef) unsafe.Pointer {
+func CGPDFScannerScan(scanner CGPDFScannerRef) bool {
 	return _CGPDFScannerScan(scanner)
 	}
 
@@ -7359,7 +7359,7 @@ func CGPDFTagTypeGetName(tagType unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/abort()
-func CGPSConverterAbort(converter CGPSConverterRef) unsafe.Pointer {
+func CGPSConverterAbort(converter CGPSConverterRef) bool {
 	return _CGPSConverterAbort(converter)
 	}
 
@@ -7369,7 +7369,7 @@ func CGPSConverterAbort(converter CGPSConverterRef) unsafe.Pointer {
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/convert(_:consumer:options:)
-func CGPSConverterConvert(converter CGPSConverterRef, provider CGDataProviderRef, consumer CGDataConsumerRef, options unsafe.Pointer) unsafe.Pointer {
+func CGPSConverterConvert(converter CGPSConverterRef, provider CGDataProviderRef, consumer CGDataConsumerRef, options unsafe.Pointer) bool {
 	return _CGPSConverterConvert(converter, provider, consumer, options)
 	}
 
@@ -7389,7 +7389,7 @@ func CGPSConverterCreate(info unsafe.Pointer, callbacks unsafe.Pointer, options 
 // Added in macOS 10.3.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/isConverting
-func CGPSConverterIsConverting(converter CGPSConverterRef) unsafe.Pointer {
+func CGPSConverterIsConverting(converter CGPSConverterRef) bool {
 	return _CGPSConverterIsConverting(converter)
 	}
 
@@ -7509,7 +7509,7 @@ func CGPathCreateWithRoundedRect(rect CGRect, cornerWidth float64, cornerHeight 
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isEmpty
-func CGPathIsEmpty(path CGPathRef) unsafe.Pointer {
+func CGPathIsEmpty(path CGPathRef) bool {
 	return _CGPathIsEmpty(path)
 	}
 
@@ -7519,7 +7519,7 @@ func CGPathIsEmpty(path CGPathRef) unsafe.Pointer {
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isRect(_:)
-func CGPathIsRect(path CGPathRef, rect unsafe.Pointer) unsafe.Pointer {
+func CGPathIsRect(path CGPathRef, rect unsafe.Pointer) bool {
 	return _CGPathIsRect(path, rect)
 	}
 
@@ -7559,7 +7559,7 @@ func CGPathGetTypeID() unsafe.Pointer {
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddArc
-func CGPathAddArc(path CGMutablePathRef, m unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise unsafe.Pointer) {
+func CGPathAddArc(path CGMutablePathRef, m unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise bool) {
 	_CGPathAddArc(path, m, x, y, radius, startAngle, endAngle, clockwise)
 	}
 
@@ -7679,7 +7679,7 @@ func CGPathAddRoundedRect(path CGMutablePathRef, transform unsafe.Pointer, rect 
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathContainsPoint
-func CGPathContainsPoint(path CGPathRef, m unsafe.Pointer, point CGPoint, eoFill unsafe.Pointer) unsafe.Pointer {
+func CGPathContainsPoint(path CGPathRef, m unsafe.Pointer, point CGPoint, eoFill bool) bool {
 	return _CGPathContainsPoint(path, m, point, eoFill)
 	}
 
@@ -7709,7 +7709,7 @@ func CGPathCreateCopyByFlattening(path CGPathRef, flatteningThreshold float64) C
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByIntersectingPath
-func CGPathCreateCopyByIntersectingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyByIntersectingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyByIntersectingPath(path, maskPath, evenOddFillRule)
 	}
 
@@ -7719,7 +7719,7 @@ func CGPathCreateCopyByIntersectingPath(path CGPathRef, maskPath CGPathRef, even
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByNormalizing
-func CGPathCreateCopyByNormalizing(path CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyByNormalizing(path CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyByNormalizing(path, evenOddFillRule)
 	}
 
@@ -7739,7 +7739,7 @@ func CGPathCreateCopyByStrokingPath(path CGPathRef, transform unsafe.Pointer, li
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySubtractingPath
-func CGPathCreateCopyBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyBySubtractingPath(path, maskPath, evenOddFillRule)
 	}
 
@@ -7749,7 +7749,7 @@ func CGPathCreateCopyBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenO
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySymmetricDifferenceOfPath
-func CGPathCreateCopyBySymmetricDifferenceOfPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyBySymmetricDifferenceOfPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyBySymmetricDifferenceOfPath(path, maskPath, evenOddFillRule)
 	}
 
@@ -7759,7 +7759,7 @@ func CGPathCreateCopyBySymmetricDifferenceOfPath(path CGPathRef, maskPath CGPath
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByUnioningPath
-func CGPathCreateCopyByUnioningPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyByUnioningPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyByUnioningPath(path, maskPath, evenOddFillRule)
 	}
 
@@ -7769,7 +7769,7 @@ func CGPathCreateCopyByUnioningPath(path CGPathRef, maskPath CGPathRef, evenOddF
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineByIntersectingPath
-func CGPathCreateCopyOfLineByIntersectingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyOfLineByIntersectingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyOfLineByIntersectingPath(path, maskPath, evenOddFillRule)
 	}
 
@@ -7779,7 +7779,7 @@ func CGPathCreateCopyOfLineByIntersectingPath(path CGPathRef, maskPath CGPathRef
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineBySubtractingPath
-func CGPathCreateCopyOfLineBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule unsafe.Pointer) CGPathRef {
+func CGPathCreateCopyOfLineBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
 	return _CGPathCreateCopyOfLineBySubtractingPath(path, maskPath, evenOddFillRule)
 	}
 
@@ -7789,7 +7789,7 @@ func CGPathCreateCopyOfLineBySubtractingPath(path CGPathRef, maskPath CGPathRef,
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateSeparateComponents
-func CGPathCreateSeparateComponents(path CGPathRef, evenOddFillRule unsafe.Pointer) unsafe.Pointer {
+func CGPathCreateSeparateComponents(path CGPathRef, evenOddFillRule bool) unsafe.Pointer {
 	return _CGPathCreateSeparateComponents(path, evenOddFillRule)
 	}
 
@@ -7799,7 +7799,7 @@ func CGPathCreateSeparateComponents(path CGPathRef, evenOddFillRule unsafe.Point
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathEqualToPath
-func CGPathEqualToPath(path1 CGPathRef, path2 CGPathRef) unsafe.Pointer {
+func CGPathEqualToPath(path1 CGPathRef, path2 CGPathRef) bool {
 	return _CGPathEqualToPath(path1, path2)
 	}
 
@@ -7809,7 +7809,7 @@ func CGPathEqualToPath(path1 CGPathRef, path2 CGPathRef) unsafe.Pointer {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathIntersectsPath
-func CGPathIntersectsPath(path1 CGPathRef, path2 CGPathRef, evenOddFillRule unsafe.Pointer) unsafe.Pointer {
+func CGPathIntersectsPath(path1 CGPathRef, path2 CGPathRef, evenOddFillRule bool) bool {
 	return _CGPathIntersectsPath(path1, path2, evenOddFillRule)
 	}
 
@@ -7849,7 +7849,7 @@ func CGPathRetain(path CGPathRef) CGPathRef {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/init(info:bounds:matrix:xStep:yStep:tiling:isColored:callbacks:)
-func CGPatternCreate(info unsafe.Pointer, bounds CGRect, matrix CGAffineTransform, xStep float64, yStep float64, tiling unsafe.Pointer, isColored unsafe.Pointer, callbacks unsafe.Pointer) CGPatternRef {
+func CGPatternCreate(info unsafe.Pointer, bounds CGRect, matrix CGAffineTransform, xStep float64, yStep float64, tiling unsafe.Pointer, isColored bool, callbacks unsafe.Pointer) CGPatternRef {
 	return _CGPatternCreate(info, bounds, matrix, xStep, yStep, tiling, isColored, callbacks)
 	}
 
@@ -7909,7 +7909,7 @@ func CGPointCreateDictionaryRepresentation(point CGPoint) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPointEqualToPoint(_:_:)
-func CGPointEqualToPoint(point1 CGPoint, point2 CGPoint) unsafe.Pointer {
+func CGPointEqualToPoint(point1 CGPoint, point2 CGPoint) bool {
 	return _CGPointEqualToPoint(point1, point2)
 	}
 
@@ -7919,7 +7919,7 @@ func CGPointEqualToPoint(point1 CGPoint, point2 CGPoint) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPointMakeWithDictionaryRepresentation(_:_:)
-func CGPointMakeWithDictionaryRepresentation(dict unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer {
+func CGPointMakeWithDictionaryRepresentation(dict unsafe.Pointer, point unsafe.Pointer) bool {
 	return _CGPointMakeWithDictionaryRepresentation(dict, point)
 	}
 
@@ -7961,7 +7961,7 @@ func CGPostScrollWheelEvent(wheelCount unsafe.Pointer, wheel1 unsafe.Pointer) un
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPreflightListenEventAccess()
-func CGPreflightListenEventAccess() unsafe.Pointer {
+func CGPreflightListenEventAccess() bool {
 	return _CGPreflightListenEventAccess()
 	}
 
@@ -7971,7 +7971,7 @@ func CGPreflightListenEventAccess() unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPreflightPostEventAccess()
-func CGPreflightPostEventAccess() unsafe.Pointer {
+func CGPreflightPostEventAccess() bool {
 	return _CGPreflightPostEventAccess()
 	}
 
@@ -7981,7 +7981,7 @@ func CGPreflightPostEventAccess() unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPreflightScreenCaptureAccess()
-func CGPreflightScreenCaptureAccess() unsafe.Pointer {
+func CGPreflightScreenCaptureAccess() bool {
 	return _CGPreflightScreenCaptureAccess()
 	}
 
@@ -8001,7 +8001,7 @@ func CGRectApplyAffineTransform(rect CGRect, t CGAffineTransform) CGRect {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectContainsPoint(_:_:)
-func CGRectContainsPoint(rect CGRect, point CGPoint) unsafe.Pointer {
+func CGRectContainsPoint(rect CGRect, point CGPoint) bool {
 	return _CGRectContainsPoint(rect, point)
 	}
 
@@ -8011,7 +8011,7 @@ func CGRectContainsPoint(rect CGRect, point CGPoint) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectContainsRect(_:_:)
-func CGRectContainsRect(rect1 CGRect, rect2 CGRect) unsafe.Pointer {
+func CGRectContainsRect(rect1 CGRect, rect2 CGRect) bool {
 	return _CGRectContainsRect(rect1, rect2)
 	}
 
@@ -8041,7 +8041,7 @@ func CGRectDivide(rect CGRect, slice unsafe.Pointer, remainder unsafe.Pointer, a
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectEqualToRect(_:_:)
-func CGRectEqualToRect(rect1 CGRect, rect2 CGRect) unsafe.Pointer {
+func CGRectEqualToRect(rect1 CGRect, rect2 CGRect) bool {
 	return _CGRectEqualToRect(rect1, rect2)
 	}
 
@@ -8161,7 +8161,7 @@ func CGRectIntersection(r1 CGRect, r2 CGRect) CGRect {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIntersectsRect(_:_:)
-func CGRectIntersectsRect(rect1 CGRect, rect2 CGRect) unsafe.Pointer {
+func CGRectIntersectsRect(rect1 CGRect, rect2 CGRect) bool {
 	return _CGRectIntersectsRect(rect1, rect2)
 	}
 
@@ -8171,7 +8171,7 @@ func CGRectIntersectsRect(rect1 CGRect, rect2 CGRect) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIsEmpty(_:)
-func CGRectIsEmpty(rect CGRect) unsafe.Pointer {
+func CGRectIsEmpty(rect CGRect) bool {
 	return _CGRectIsEmpty(rect)
 	}
 
@@ -8181,7 +8181,7 @@ func CGRectIsEmpty(rect CGRect) unsafe.Pointer {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIsInfinite(_:)
-func CGRectIsInfinite(rect CGRect) unsafe.Pointer {
+func CGRectIsInfinite(rect CGRect) bool {
 	return _CGRectIsInfinite(rect)
 	}
 
@@ -8191,7 +8191,7 @@ func CGRectIsInfinite(rect CGRect) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIsNull(_:)
-func CGRectIsNull(rect CGRect) unsafe.Pointer {
+func CGRectIsNull(rect CGRect) bool {
 	return _CGRectIsNull(rect)
 	}
 
@@ -8201,7 +8201,7 @@ func CGRectIsNull(rect CGRect) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectMakeWithDictionaryRepresentation(_:_:)
-func CGRectMakeWithDictionaryRepresentation(dict unsafe.Pointer, rect unsafe.Pointer) unsafe.Pointer {
+func CGRectMakeWithDictionaryRepresentation(dict unsafe.Pointer, rect unsafe.Pointer) bool {
 	return _CGRectMakeWithDictionaryRepresentation(dict, rect)
 	}
 
@@ -8337,7 +8337,7 @@ func CGRenderingBufferUnlockBytePtr(provider CGRenderingBufferProviderRef) {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRequestListenEventAccess()
-func CGRequestListenEventAccess() unsafe.Pointer {
+func CGRequestListenEventAccess() bool {
 	return _CGRequestListenEventAccess()
 	}
 
@@ -8347,7 +8347,7 @@ func CGRequestListenEventAccess() unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRequestPostEventAccess()
-func CGRequestPostEventAccess() unsafe.Pointer {
+func CGRequestPostEventAccess() bool {
 	return _CGRequestPostEventAccess()
 	}
 
@@ -8357,7 +8357,7 @@ func CGRequestPostEventAccess() unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRequestScreenCaptureAccess()
-func CGRequestScreenCaptureAccess() unsafe.Pointer {
+func CGRequestScreenCaptureAccess() bool {
 	return _CGRequestScreenCaptureAccess()
 	}
 
@@ -8459,7 +8459,7 @@ func CGShadingGetContentHeadroom(shading CGShadingRef) unsafe.Pointer {
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialHeadroom:space:start:end:function:extendStart:extendEnd:)
-func CGShadingCreateAxialWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, start CGPoint, end CGPoint, function CGFunctionRef, extendStart unsafe.Pointer, extendEnd unsafe.Pointer) CGShadingRef {
+func CGShadingCreateAxialWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, start CGPoint, end CGPoint, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
 	return _CGShadingCreateAxialWithContentHeadroom(headroom, space, start, end, function, extendStart, extendEnd)
 	}
 
@@ -8469,7 +8469,7 @@ func CGShadingCreateAxialWithContentHeadroom(headroom unsafe.Pointer, space CGCo
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialSpace:start:end:function:extendStart:extendEnd:)
-func CGShadingCreateAxial(space CGColorSpaceRef, start CGPoint, end CGPoint, function CGFunctionRef, extendStart unsafe.Pointer, extendEnd unsafe.Pointer) CGShadingRef {
+func CGShadingCreateAxial(space CGColorSpaceRef, start CGPoint, end CGPoint, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
 	return _CGShadingCreateAxial(space, start, end, function, extendStart, extendEnd)
 	}
 
@@ -8479,7 +8479,7 @@ func CGShadingCreateAxial(space CGColorSpaceRef, start CGPoint, end CGPoint, fun
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialHeadroom:space:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
-func CGShadingCreateRadialWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function CGFunctionRef, extendStart unsafe.Pointer, extendEnd unsafe.Pointer) CGShadingRef {
+func CGShadingCreateRadialWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
 	return _CGShadingCreateRadialWithContentHeadroom(headroom, space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
 	}
 
@@ -8489,7 +8489,7 @@ func CGShadingCreateRadialWithContentHeadroom(headroom unsafe.Pointer, space CGC
 // Added in macOS 10.2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialSpace:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
-func CGShadingCreateRadial(space CGColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function CGFunctionRef, extendStart unsafe.Pointer, extendEnd unsafe.Pointer) CGShadingRef {
+func CGShadingCreateRadial(space CGColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
 	return _CGShadingCreateRadial(space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
 	}
 
@@ -8569,7 +8569,7 @@ func CGSizeCreateDictionaryRepresentation(size CGSize) unsafe.Pointer {
 // Added in macOS 10.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSizeEqualToSize(_:_:)
-func CGSizeEqualToSize(size1 CGSize, size2 CGSize) unsafe.Pointer {
+func CGSizeEqualToSize(size1 CGSize, size2 CGSize) bool {
 	return _CGSizeEqualToSize(size1, size2)
 	}
 
@@ -8579,7 +8579,7 @@ func CGSizeEqualToSize(size1 CGSize, size2 CGSize) unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSizeMakeWithDictionaryRepresentation(_:_:)
-func CGSizeMakeWithDictionaryRepresentation(dict unsafe.Pointer, size unsafe.Pointer) unsafe.Pointer {
+func CGSizeMakeWithDictionaryRepresentation(dict unsafe.Pointer, size unsafe.Pointer) bool {
 	return _CGSizeMakeWithDictionaryRepresentation(dict, size)
 	}
 

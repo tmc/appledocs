@@ -30,6 +30,8 @@ type _Point3DClass struct {
 // An interface definition for the [Point3D] class.
 type IPoint3D interface {
 	objectivec.IObject
+	Position() unsafe.Pointer
+	SetPosition(value unsafe.Pointer)
 }
 
 // An object that represents a 3D point in an image.

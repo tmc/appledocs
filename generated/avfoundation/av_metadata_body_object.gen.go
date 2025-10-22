@@ -29,6 +29,8 @@ type _MetadataBodyObjectClass struct {
 // An interface definition for the [MetadataBodyObject] class.
 type IMetadataBodyObject interface {
 	IMetadataObject
+	BodyID() int
+	SetBodyID(value int)
 }
 
 // An abstract class that defines the interface for a metadata body object.

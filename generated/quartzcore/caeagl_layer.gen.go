@@ -29,6 +29,10 @@ type _EAGLLayerClass struct {
 // An interface definition for the [EAGLLayer] class.
 type IEAGLLayer interface {
 	ILayer
+	PresentsWithTransaction() bool
+	SetPresentsWithTransaction(value bool)
+	DrawableProperties() string
+	SetDrawableProperties(value string)
 }
 
 // A layer that supports drawing OpenGL content in iOS and tvOS applications.
@@ -102,8 +106,8 @@ func (e_ EAGLLayer) SetPresentsWithTransaction(value bool) {
 // A dictionary of values that specify the desired characteristics of the drawable surface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenGLES/EAGLDrawable/drawableProperties
-func (e_ EAGLLayer) DrawableProperties() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("drawableProperties"))
+func (e_ EAGLLayer) DrawableProperties() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("drawableProperties"))
 	return rv
 }
 
@@ -113,8 +117,8 @@ func (e_ EAGLLayer) DrawableProperties() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenGLES/EAGLDrawable/drawableProperties
-func (e_ EAGLLayer) SetDrawableProperties(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setDrawableProperties:"), value)
+func (e_ EAGLLayer) SetDrawableProperties(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDrawableProperties:"), objc.String(value))
 }
 
 

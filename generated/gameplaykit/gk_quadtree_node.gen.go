@@ -30,6 +30,7 @@ type _QuadtreeNodeClass struct {
 // An interface definition for the [QuadtreeNode] class.
 type IQuadtreeNode interface {
 	objectivec.IObject
+	Quad() unsafe.Pointer
 }
 
 // A helper class for managing the objects you organize in a quadtree.

@@ -31,6 +31,13 @@ type IGCControllerLiveInput interface {
 	IGCControllerInputState
 	Capture() GCControllerInputState
 	NextInputState() unsafe.Pointer
+	UnmappedInput() GCControllerLiveInput
+	Input() GCControllerLiveInput
+	SetInput(value IGCControllerLiveInput)
+	Unmapped() GCControllerLiveInput
+	SetUnmapped(value IGCControllerLiveInput)
+	InputStateQueueDepth() int
+	SetInputStateQueueDepth(value int)
 }
 
 // The input profile for a controller.

@@ -32,6 +32,24 @@ type _MovieErrorLogEventClass struct {
 // An interface definition for the [MovieErrorLogEvent] class.
 type IMovieErrorLogEvent interface {
 	objectivec.IObject
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	Date() foundation.Date
+	SetDate(value foundation.IDate)
+	ErrorComment() string
+	SetErrorComment(value string)
+	ErrorDomain() string
+	SetErrorDomain(value string)
+	ErrorStatusCode() int
+	SetErrorStatusCode(value int)
+	PlaybackSessionID() string
+	SetPlaybackSessionID(value string)
+	ServerAddress() string
+	SetServerAddress(value string)
+	Uri() string
+	SetUri(value string)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // A single piece of information for a movie error log.
@@ -121,8 +139,8 @@ func (m_ MovieErrorLogEvent) SetDate(value foundation.IDate) {
 // A description of the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorcomment
-func (m_ MovieErrorLogEvent) ErrorComment() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("errorComment"))
+func (m_ MovieErrorLogEvent) ErrorComment() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorComment"))
 	return rv
 }
 
@@ -132,15 +150,15 @@ func (m_ MovieErrorLogEvent) ErrorComment() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errorcomment
-func (m_ MovieErrorLogEvent) SetErrorComment(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorComment:"), value)
+func (m_ MovieErrorLogEvent) SetErrorComment(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorComment:"), objc.String(value))
 }
 
 // The network domain of the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errordomain
-func (m_ MovieErrorLogEvent) ErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("errorDomain"))
+func (m_ MovieErrorLogEvent) ErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("errorDomain"))
 	return rv
 }
 
@@ -150,8 +168,8 @@ func (m_ MovieErrorLogEvent) ErrorDomain() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/errordomain
-func (m_ MovieErrorLogEvent) SetErrorDomain(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorDomain:"), value)
+func (m_ MovieErrorLogEvent) SetErrorDomain(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorDomain:"), objc.String(value))
 }
 
 // A unique error code identifier.
@@ -175,8 +193,8 @@ func (m_ MovieErrorLogEvent) SetErrorStatusCode(value int) {
 // A globally unique identifier (GUID) for the playback session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/playbacksessionid
-func (m_ MovieErrorLogEvent) PlaybackSessionID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("playbackSessionID"))
+func (m_ MovieErrorLogEvent) PlaybackSessionID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playbackSessionID"))
 	return rv
 }
 
@@ -186,15 +204,15 @@ func (m_ MovieErrorLogEvent) PlaybackSessionID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/playbacksessionid
-func (m_ MovieErrorLogEvent) SetPlaybackSessionID(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), value)
+func (m_ MovieErrorLogEvent) SetPlaybackSessionID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), objc.String(value))
 }
 
 // The IP address of the web server that was the source of the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/serveraddress
-func (m_ MovieErrorLogEvent) ServerAddress() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serverAddress"))
+func (m_ MovieErrorLogEvent) ServerAddress() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serverAddress"))
 	return rv
 }
 
@@ -204,15 +222,15 @@ func (m_ MovieErrorLogEvent) ServerAddress() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/serveraddress
-func (m_ MovieErrorLogEvent) SetServerAddress(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerAddress:"), value)
+func (m_ MovieErrorLogEvent) SetServerAddress(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerAddress:"), objc.String(value))
 }
 
 // The URI of the item playing when the error occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/uri
-func (m_ MovieErrorLogEvent) Uri() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("uri"))
+func (m_ MovieErrorLogEvent) Uri() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("uri"))
 	return rv
 }
 
@@ -222,8 +240,8 @@ func (m_ MovieErrorLogEvent) Uri() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlogevent/uri
-func (m_ MovieErrorLogEvent) SetUri(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), value)
+func (m_ MovieErrorLogEvent) SetUri(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the route button is visible in the volume view.

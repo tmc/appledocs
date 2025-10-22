@@ -29,6 +29,24 @@ type _InstanceAccelerationStructureClass struct {
 // An interface definition for the [InstanceAccelerationStructure] class.
 type IInstanceAccelerationStructure interface {
 	IAccelerationStructure
+	TransformBuffer() objc.ID
+	SetTransformBuffer(value objc.ID)
+	AccelerationStructures() MPSPolygonAccelerationStructure
+	SetAccelerationStructures(value IMPSPolygonAccelerationStructure)
+	InstanceBuffer() unsafe.Pointer
+	SetInstanceBuffer(value unsafe.Pointer)
+	InstanceBufferOffset() int
+	SetInstanceBufferOffset(value int)
+	InstanceCount() int
+	SetInstanceCount(value int)
+	MaskBuffer() unsafe.Pointer
+	SetMaskBuffer(value unsafe.Pointer)
+	MaskBufferOffset() int
+	SetMaskBufferOffset(value int)
+	TransformBufferOffset() int
+	SetTransformBufferOffset(value int)
+	TransformType() unsafe.Pointer
+	SetTransformType(value unsafe.Pointer)
 }
 
 // An acceleration structure built over instances of other acceleration structures.

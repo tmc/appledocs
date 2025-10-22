@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [OSLogEntrySignpost] class.
@@ -30,6 +29,9 @@ type _OSLogEntrySignpostClass struct {
 // An interface definition for the [OSLogEntrySignpost] class.
 type IOSLogEntrySignpost interface {
 	IOSLogEntry
+	SignpostIdentifier() unsafe.Pointer
+	SignpostName() string
+	SignpostType() OSLogEntrySignpostType
 }
 
 // An entry containing a signpost.
@@ -93,8 +95,8 @@ func (o_ OSLogEntrySignpost) SignpostIdentifier() unsafe.Pointer {
 // The signpost’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostName
-func (o_ OSLogEntrySignpost) SignpostName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("signpostName"))
+func (o_ OSLogEntrySignpost) SignpostName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("signpostName"))
 	return rv
 }
 

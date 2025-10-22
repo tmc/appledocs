@@ -31,6 +31,9 @@ type IHumanHandPoseObservation interface {
 	IRecognizedPointsObservation
 	RecognizedPointForJointNameError(jointName IHumanHandPoseObservationJointName, error_ unsafe.Pointer) RecognizedPoint
 	RecognizedPointsForJointsGroupNameError(jointsGroupName IHumanHandPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer
+	AvailableJointNames() []string
+	AvailableJointsGroupNames() []string
+	Chirality() Chirality
 }
 
 // An observation that provides the hand points the analysis recognized.

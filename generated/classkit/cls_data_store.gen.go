@@ -37,6 +37,11 @@ type ISDataStore interface {
 	FetchActivityForURLCompletion(url foundation.IURL, completion unsafe.Pointer)
 	RemoveContext(context ICLSContext)
 	SaveWithCompletion(completion unsafe.Pointer)
+	ActiveContext() CLSContext
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MainAppContext() CLSContext
+	RunningActivity() CLSActivity
 }
 
 // A container for all the ClassKit data in your app.

@@ -29,6 +29,12 @@ type _CSliceLayerClass struct {
 // An interface definition for the [CSliceLayer] class.
 type ICSliceLayer interface {
 	ICLayer
+	End() int
+	SetEnd(value int)
+	Start() int
+	SetStart(value int)
+	Stride() int
+	SetStride(value int)
 }
 
 // A layer that extracts a slice from a tensor.

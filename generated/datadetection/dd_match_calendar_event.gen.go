@@ -30,6 +30,13 @@ type _DDMatchCalendarEventClass struct {
 // An interface definition for the [DDMatchCalendarEvent] class.
 type IDDMatchCalendarEvent interface {
 	IDDMatch
+	EndDate() foundation.NSDate
+	EndTimeZone() foundation.TimeZone
+	AllDay() bool
+	StartDate() foundation.NSDate
+	StartTimeZone() foundation.TimeZone
+	IsAllDay() bool
+	SetIsAllDay(value bool)
 }
 
 // An object that represents a calendar date or date range that the data detection system matches.

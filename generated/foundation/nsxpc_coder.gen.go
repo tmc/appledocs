@@ -30,6 +30,9 @@ type _XPCCoderClass struct {
 type IXPCCoder interface {
 	ICoder
 	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string)
+	Connection() NSXPCConnection
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
 }
 
 // A coder that encodes and decodes objects that your app sends over an XPC connection.

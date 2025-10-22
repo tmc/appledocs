@@ -30,6 +30,12 @@ type _MTRThermostatClusterThermostatScheduleTransitionClass struct {
 // An interface definition for the [MTRThermostatClusterThermostatScheduleTransition] class.
 type IMTRThermostatClusterThermostatScheduleTransition interface {
 	IMTRThermostatClusterWeeklyScheduleTransitionStruct
+	CoolSetpoint() foundation.Number
+	SetCoolSetpoint(value foundation.INumber)
+	HeatSetpoint() foundation.Number
+	SetHeatSetpoint(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

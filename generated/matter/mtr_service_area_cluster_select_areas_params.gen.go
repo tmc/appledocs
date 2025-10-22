@@ -31,6 +31,12 @@ type _MTRServiceAreaClusterSelectAreasParamsClass struct {
 // An interface definition for the [MTRServiceAreaClusterSelectAreasParams] class.
 type IMTRServiceAreaClusterSelectAreasParams interface {
 	objectivec.IObject
+	NewAreas() objc.ID
+	SetNewAreas(value objc.ID)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

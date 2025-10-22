@@ -29,6 +29,8 @@ type _HeadTrackedSpatialAudioClass struct {
 // An interface definition for the [HeadTrackedSpatialAudio] class.
 type IHeadTrackedSpatialAudio interface {
 	ISpatialAudioExperience
+	AnchoringStrategy() CAAnchoringStrategy
+	SoundStageSize() SoundStageSize
 }
 
 // A spatial experience that takes user motion into account.

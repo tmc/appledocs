@@ -34,6 +34,7 @@ type IMachPort interface {
 	RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
 	ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
 	SetDelegate(anObject objectivec.IObject)
+	MachPort() uint32
 }
 
 // A port that can be used as an endpoint for distributed object connections (or raw messaging).

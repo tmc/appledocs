@@ -30,6 +30,14 @@ type _NINearbyObjectClass struct {
 // An interface definition for the [NINearbyObject] class.
 type ININearbyObject interface {
 	objectivec.IObject
+	DiscoveryToken() NIDiscoveryToken
+	VerticalDirectionEstimate() NINearbyObjectVerticalDirectionEstimate
+	Direction() unsafe.Pointer
+	SetDirection(value unsafe.Pointer)
+	Distance() float32
+	SetDistance(value float32)
+	HorizontalAngle() float32
+	SetHorizontalAngle(value float32)
 }
 
 // Location information for a peer device in an interaction session.
@@ -117,8 +125,8 @@ func (n_ NINearbyObject) SetDirection(value unsafe.Pointer) {
 // The distance from the user’s device to the peer device in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
-func (n_ NINearbyObject) Distance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("distance"))
+func (n_ NINearbyObject) Distance() float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("distance"))
 	return rv
 }
 
@@ -128,15 +136,15 @@ func (n_ NINearbyObject) Distance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
-func (n_ NINearbyObject) SetDistance(value unsafe.Pointer) {
+func (n_ NINearbyObject) SetDistance(value float32) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
 }
 
 // An angle in radians that indicates the azimuthal direction to the nearby object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
-func (n_ NINearbyObject) HorizontalAngle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("horizontalAngle"))
+func (n_ NINearbyObject) HorizontalAngle() float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("horizontalAngle"))
 	return rv
 }
 
@@ -146,7 +154,7 @@ func (n_ NINearbyObject) HorizontalAngle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
-func (n_ NINearbyObject) SetHorizontalAngle(value unsafe.Pointer) {
+func (n_ NINearbyObject) SetHorizontalAngle(value float32) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHorizontalAngle:"), value)
 }
 

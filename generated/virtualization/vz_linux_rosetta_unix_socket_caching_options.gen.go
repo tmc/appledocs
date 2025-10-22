@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZLinuxRosettaUnixSocketCachingOptions] class.
@@ -30,6 +29,7 @@ type _VZLinuxRosettaUnixSocketCachingOptionsClass struct {
 // An interface definition for the [VZLinuxRosettaUnixSocketCachingOptions] class.
 type IVZLinuxRosettaUnixSocketCachingOptions interface {
 	IVZLinuxRosettaCachingOptions
+	Path() string
 }
 
 // An object that represents caching options for a UNIX domain socket.
@@ -87,9 +87,9 @@ func NewVZLinuxRosettaUnixSocketCachingOptions() VZLinuxRosettaUnixSocketCaching
 // Creates a new Rosetta caching options object for a UNIX domain socket with the path you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/initWithPath:error:
-func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path appkit.string, error_ unsafe.Pointer) VZLinuxRosettaUnixSocketCachingOptions {
+func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path string, error_ unsafe.Pointer) VZLinuxRosettaUnixSocketCachingOptions {
 	instance := getVZLinuxRosettaUnixSocketCachingOptionsClass().Alloc()
-	rv := objc.Send[VZLinuxRosettaUnixSocketCachingOptions](instance.ID, objc.Sel("initWithPath:error:"), path, error_)
+	rv := objc.Send[VZLinuxRosettaUnixSocketCachingOptions](instance.ID, objc.Sel("initWithPath:error:"), objc.String(path), error_)
 	rv.Autorelease()
 	return rv
 }
@@ -113,8 +113,8 @@ func (v_ VZLinuxRosettaUnixSocketCachingOptions) MaximumPathLength() uint {
 // The path to the UNIX domain socket that Rosetta uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/path
-func (v_ VZLinuxRosettaUnixSocketCachingOptions) Path() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("path"))
+func (v_ VZLinuxRosettaUnixSocketCachingOptions) Path() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("path"))
 	return rv
 }
 

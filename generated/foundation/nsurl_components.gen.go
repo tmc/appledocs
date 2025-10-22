@@ -31,6 +31,58 @@ type _URLComponentsClass struct {
 type IURLComponents interface {
 	objectivec.IObject
 	URLRelativeToURL(baseURL IURL) URL
+	PercentEncodedHost() string
+	SetPercentEncodedHost(value string)
+	String() string
+	URL() URL
+	EncodedHost() string
+	SetEncodedHost(value string)
+	Fragment() string
+	SetFragment(value string)
+	Host() string
+	SetHost(value string)
+	Password() string
+	SetPassword(value string)
+	Path() string
+	SetPath(value string)
+	PercentEncodedFragment() string
+	SetPercentEncodedFragment(value string)
+	PercentEncodedPassword() string
+	SetPercentEncodedPassword(value string)
+	PercentEncodedPath() string
+	SetPercentEncodedPath(value string)
+	PercentEncodedQuery() string
+	SetPercentEncodedQuery(value string)
+	PercentEncodedQueryItems() URLQueryItem
+	SetPercentEncodedQueryItems(value IURLQueryItem)
+	PercentEncodedUser() string
+	SetPercentEncodedUser(value string)
+	Port() Number
+	SetPort(value INumber)
+	Query() string
+	SetQuery(value string)
+	QueryItems() URLQueryItem
+	SetQueryItems(value IURLQueryItem)
+	RangeOfFragment() Range
+	SetRangeOfFragment(value IRange)
+	RangeOfHost() Range
+	SetRangeOfHost(value IRange)
+	RangeOfPassword() Range
+	SetRangeOfPassword(value IRange)
+	RangeOfPath() Range
+	SetRangeOfPath(value IRange)
+	RangeOfPort() Range
+	SetRangeOfPort(value IRange)
+	RangeOfQuery() Range
+	SetRangeOfQuery(value IRange)
+	RangeOfScheme() Range
+	SetRangeOfScheme(value IRange)
+	RangeOfUser() Range
+	SetRangeOfUser(value IRange)
+	Scheme() string
+	SetScheme(value string)
+	User() string
+	SetUser(value string)
 }
 
 // An object that parses URLs into and constructs URLs from their constituent parts.

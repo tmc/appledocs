@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,14 @@ type IMXSignpostRecord interface {
 	objectivec.IObject
 	DictionaryRepresentation() foundation.Dictionary
 	JSONRepresentation() foundation.Data
+	BeginTimeStamp() foundation.NSDate
+	Category() string
+	Duration() unsafe.Pointer
+	EndTimeStamp() foundation.NSDate
+	IsInterval() bool
+	Name() string
+	Subsystem() string
+	MXErrorDomain() string
 }
 
 // An object representing the record for a signpost interval or event.
@@ -105,8 +112,8 @@ func (m_ MXSignpostRecord) BeginTimeStamp() foundation.NSDate {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/category
-func (m_ MXSignpostRecord) Category() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("category"))
+func (m_ MXSignpostRecord) Category() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -133,23 +140,23 @@ func (m_ MXSignpostRecord) IsInterval() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/name
-func (m_ MXSignpostRecord) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MXSignpostRecord) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/subsystem
-func (m_ MXSignpostRecord) Subsystem() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subsystem"))
+func (m_ MXSignpostRecord) Subsystem() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subsystem"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXSignpostRecord) MXErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXSignpostRecord) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

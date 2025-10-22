@@ -30,6 +30,12 @@ type _HTTPCookieStorageClass struct {
 // An interface definition for the [HTTPCookieStorage] class.
 type IHTTPCookieStorage interface {
 	objectivec.IObject
+	IsSessionOnly() bool
+	SetIsSessionOnly(value bool)
+	CookieAcceptPolicy() unsafe.Pointer
+	SetCookieAcceptPolicy(value unsafe.Pointer)
+	Cookies() NSHTTPCookie
+	SetCookies(value IHTTPCookie)
 }
 
 // A container that manages the storage of cookies.

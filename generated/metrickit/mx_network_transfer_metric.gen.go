@@ -29,6 +29,10 @@ type _MXNetworkTransferMetricClass struct {
 // An interface definition for the [MXNetworkTransferMetric] class.
 type IMXNetworkTransferMetric interface {
 	IMXMetric
+	CumulativeCellularDownload() unsafe.Pointer
+	CumulativeCellularUpload() unsafe.Pointer
+	CumulativeWifiDownload() unsafe.Pointer
+	CumulativeWifiUpload() unsafe.Pointer
 }
 
 // An object representing metrics about network transfers.

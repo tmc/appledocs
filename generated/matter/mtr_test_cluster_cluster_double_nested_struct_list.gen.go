@@ -29,6 +29,8 @@ type _MTRTestClusterClusterDoubleNestedStructListClass struct {
 // An interface definition for the [MTRTestClusterClusterDoubleNestedStructList] class.
 type IMTRTestClusterClusterDoubleNestedStructList interface {
 	IMTRUnitTestingClusterDoubleNestedStructList
+	A() unsafe.Pointer
+	SetA(value unsafe.Pointer)
 }
 
 //

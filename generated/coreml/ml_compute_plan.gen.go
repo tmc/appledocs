@@ -34,6 +34,7 @@ type IComputePlan interface {
 	ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanDeviceUsage
 	ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) ComputePlanDeviceUsage
 	EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanCost
+	ModelStructure() MLModelStructure
 }
 
 // A class describing the plan for executing a model.

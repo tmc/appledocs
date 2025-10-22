@@ -29,6 +29,8 @@ type _INSendRideFeedbackIntentResponseClass struct {
 // An interface definition for the [INSendRideFeedbackIntentResponse] class.
 type IINSendRideFeedbackIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // Your app’s response to a send ride feedback intent.

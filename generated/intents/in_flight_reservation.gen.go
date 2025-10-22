@@ -29,6 +29,10 @@ type _INFlightReservationClass struct {
 // An interface definition for the [INFlightReservation] class.
 type IINFlightReservation interface {
 	IINReservation
+	Flight() unsafe.Pointer
+	SetFlight(value unsafe.Pointer)
+	ReservedSeat() INSeat
+	SetReservedSeat(value INSeat)
 }
 
 // The information that describes a flight reservation.

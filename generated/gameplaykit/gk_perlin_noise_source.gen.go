@@ -29,6 +29,8 @@ type _PerlinNoiseSourceClass struct {
 // An interface definition for the [PerlinNoiseSource] class.
 type IPerlinNoiseSource interface {
 	ICoherentNoiseSource
+	Persistence() float64
+	SetPersistence(value float64)
 }
 
 // A procedural noise generator whose output is a type of fractal coherent noise resembling natural phenomena such as clouds and terrain.
@@ -86,7 +88,7 @@ func NewPerlinNoiseSource() PerlinNoiseSource {
 // Initializes a Perlin noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/init(frequency:octaveCount:persistence:lacunarity:seed:)
-func NewPerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency unsafe.Pointer, octaveCount int, persistence unsafe.Pointer, lacunarity unsafe.Pointer, seed unsafe.Pointer) PerlinNoiseSource {
+func NewPerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) PerlinNoiseSource {
 	instance := getPerlinNoiseSourceClass().Alloc()
 	rv := objc.Send[PerlinNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
 	rv.Autorelease()
@@ -97,7 +99,7 @@ func NewPerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequ
 // Creates a Perlin noise source with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:
-func (pc _PerlinNoiseSourceClass) PerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency unsafe.Pointer, octaveCount int, persistence unsafe.Pointer, lacunarity unsafe.Pointer, seed unsafe.Pointer) unsafe.Pointer {
+func (pc _PerlinNoiseSourceClass) PerlinNoiseSourceWithFrequencyOctaveCountPersistenceLacunaritySeed(frequency float64, octaveCount int, persistence float64, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:"), frequency, octaveCount, persistence, lacunarity, seed)
 	return rv
 }
@@ -105,8 +107,8 @@ func (pc _PerlinNoiseSourceClass) PerlinNoiseSourceWithFrequencyOctaveCountPersi
 // The rate at which successive octaves of the noise function decrease in amplitude.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/persistence
-func (p_ PerlinNoiseSource) Persistence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("persistence"))
+func (p_ PerlinNoiseSource) Persistence() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("persistence"))
 	return rv
 }
 
@@ -116,7 +118,7 @@ func (p_ PerlinNoiseSource) Persistence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPerlinNoiseSource/persistence
-func (p_ PerlinNoiseSource) SetPersistence(value unsafe.Pointer) {
+func (p_ PerlinNoiseSource) SetPersistence(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistence:"), value)
 }
 

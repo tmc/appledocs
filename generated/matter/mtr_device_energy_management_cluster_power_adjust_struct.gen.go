@@ -31,6 +31,14 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustStruct] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustStruct interface {
 	objectivec.IObject
+	MaxDuration() foundation.Number
+	SetMaxDuration(value foundation.INumber)
+	MaxPower() foundation.Number
+	SetMaxPower(value foundation.INumber)
+	MinDuration() foundation.Number
+	SetMinDuration(value foundation.INumber)
+	MinPower() foundation.Number
+	SetMinPower(value foundation.INumber)
 }
 
 //

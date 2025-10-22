@@ -31,6 +31,20 @@ type _MIDICIDeviceInfoClass struct {
 // An interface definition for the [MIDICIDeviceInfo] class.
 type IMIDICIDeviceInfo interface {
 	objectivec.IObject
+	Family() foundation.Data
+	SetFamily(value foundation.IData)
+	ManufacturerID() foundation.Data
+	SetManufacturerID(value foundation.IData)
+	MidiDestination() MIDIEndpointRef
+	SetMidiDestination(value IMIDIEndpointRef)
+	ModelNumber() foundation.Data
+	SetModelNumber(value foundation.IData)
+	RevisionLevel() foundation.Data
+	SetRevisionLevel(value foundation.IData)
+	DeviceInfo() MIDICIDeviceInfo
+	SetDeviceInfo(value IMIDICIDeviceInfo)
+	Initiators() unsafe.Pointer
+	SetInitiators(value unsafe.Pointer)
 }
 
 // An object that provides basic information about a MIDI-CI device.

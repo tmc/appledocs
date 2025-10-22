@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,9 @@ type _MTRDeviceTypeClass struct {
 // An interface definition for the [MTRDeviceType] class.
 type IMTRDeviceType interface {
 	objectivec.IObject
+	Id() foundation.Number
+	IsUtility() bool
+	Name() string
 }
 
 // Meta-data about a device type defined in the Matter specification.
@@ -118,8 +120,8 @@ func (m_ MTRDeviceType) IsUtility() bool {
 // Returns the name of the device type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/name
-func (m_ MTRDeviceType) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRDeviceType) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

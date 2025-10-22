@@ -31,6 +31,10 @@ type _MTRBasicInformationClusterProductAppearanceStructClass struct {
 // An interface definition for the [MTRBasicInformationClusterProductAppearanceStruct] class.
 type IMTRBasicInformationClusterProductAppearanceStruct interface {
 	objectivec.IObject
+	Finish() foundation.Number
+	SetFinish(value foundation.INumber)
+	PrimaryColor() foundation.Number
+	SetPrimaryColor(value foundation.INumber)
 }
 
 //

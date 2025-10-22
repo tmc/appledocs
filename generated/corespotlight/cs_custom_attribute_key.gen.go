@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,19 @@ type _CSCustomAttributeKeyClass struct {
 // An interface definition for the [CSCustomAttributeKey] class.
 type ICSCustomAttributeKey interface {
 	objectivec.IObject
+	MultiValued() bool
+	Searchable() bool
+	SearchableByDefault() bool
+	Unique() bool
+	KeyName() string
+	IsMultiValued() bool
+	SetIsMultiValued(value bool)
+	IsSearchable() bool
+	SetIsSearchable(value bool)
+	IsSearchableByDefault() bool
+	SetIsSearchableByDefault(value bool)
+	IsUnique() bool
+	SetIsUnique(value bool)
 }
 
 // A key associated with a custom attribute for a searchable item.
@@ -86,9 +98,9 @@ func NewCSCustomAttributeKey() CSCustomAttributeKey {
 // Returns a new custom attribute key with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/init(keyName:)
-func NewCSCustomAttributeKeyWithKeyName(keyName appkit.string) CSCustomAttributeKey {
+func NewCSCustomAttributeKeyWithKeyName(keyName string) CSCustomAttributeKey {
 	instance := getCSCustomAttributeKeyClass().Alloc()
-	rv := objc.Send[CSCustomAttributeKey](instance.ID, objc.Sel("initWithKeyName:"), keyName)
+	rv := objc.Send[CSCustomAttributeKey](instance.ID, objc.Sel("initWithKeyName:"), objc.String(keyName))
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +110,9 @@ func NewCSCustomAttributeKeyWithKeyName(keyName appkit.string) CSCustomAttribute
 // Returns a new custom attribute key with the specified name and properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/init(keyName:searchable:searchableByDefault:unique:multiValued:)
-func NewCSCustomAttributeKeyWithKeyNameSearchableSearchableByDefaultUniqueMultiValued(keyName appkit.string, searchable bool, searchableByDefault bool, unique bool, multiValued bool) CSCustomAttributeKey {
+func NewCSCustomAttributeKeyWithKeyNameSearchableSearchableByDefaultUniqueMultiValued(keyName string, searchable bool, searchableByDefault bool, unique bool, multiValued bool) CSCustomAttributeKey {
 	instance := getCSCustomAttributeKeyClass().Alloc()
-	rv := objc.Send[CSCustomAttributeKey](instance.ID, objc.Sel("initWithKeyName:searchable:searchableByDefault:unique:multiValued:"), keyName, searchable, searchableByDefault, unique, multiValued)
+	rv := objc.Send[CSCustomAttributeKey](instance.ID, objc.Sel("initWithKeyName:searchable:searchableByDefault:unique:multiValued:"), objc.String(keyName), searchable, searchableByDefault, unique, multiValued)
 	rv.Autorelease()
 	return rv
 }
@@ -141,8 +153,8 @@ func (c_ CSCustomAttributeKey) Unique() bool {
 // The name of the custom attribute key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSCustomAttributeKey/keyName
-func (c_ CSCustomAttributeKey) KeyName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("keyName"))
+func (c_ CSCustomAttributeKey) KeyName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keyName"))
 	return rv
 }
 

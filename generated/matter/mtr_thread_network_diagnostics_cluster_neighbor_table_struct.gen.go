@@ -31,6 +31,34 @@ type _MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterNeighborTableStruct] class.
 type IMTRThreadNetworkDiagnosticsClusterNeighborTableStruct interface {
 	objectivec.IObject
+	Age() foundation.Number
+	SetAge(value foundation.INumber)
+	AverageRssi() foundation.Number
+	SetAverageRssi(value foundation.INumber)
+	ExtAddress() foundation.Number
+	SetExtAddress(value foundation.INumber)
+	FrameErrorRate() foundation.Number
+	SetFrameErrorRate(value foundation.INumber)
+	FullNetworkData() foundation.Number
+	SetFullNetworkData(value foundation.INumber)
+	FullThreadDevice() foundation.Number
+	SetFullThreadDevice(value foundation.INumber)
+	IsChild() foundation.Number
+	SetIsChild(value foundation.INumber)
+	LastRssi() foundation.Number
+	SetLastRssi(value foundation.INumber)
+	LinkFrameCounter() foundation.Number
+	SetLinkFrameCounter(value foundation.INumber)
+	Lqi() foundation.Number
+	SetLqi(value foundation.INumber)
+	MessageErrorRate() foundation.Number
+	SetMessageErrorRate(value foundation.INumber)
+	MleFrameCounter() foundation.Number
+	SetMleFrameCounter(value foundation.INumber)
+	Rloc16() foundation.Number
+	SetRloc16(value foundation.INumber)
+	RxOnWhenIdle() foundation.Number
+	SetRxOnWhenIdle(value foundation.INumber)
 }
 
 //

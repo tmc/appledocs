@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,6 +35,9 @@ type IHKUnit interface {
 	UnitDividedByUnit(unit IHKUnit) HKUnit
 	UnitMultipliedByUnit(unit IHKUnit) HKUnit
 	UnitRaisedToPower(power int) HKUnit
+	UnitString() string
+	HKUnitMolarMassBloodGlucose() float64
+	SetHKUnitMolarMassBloodGlucose(value float64)
 }
 
 // A class for managing the units of measure within HealthKit.
@@ -121,8 +123,8 @@ func NewHKUnitFromMassFormatterUnit(massFormatterUnit unsafe.Pointer) HKUnit {
 // Returns the unit instance described by the provided string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-9qont
-func NewHKUnitFromString(string_ appkit.string) HKUnit {
-	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromString:"), string_)
+func NewHKUnitFromString(string_ string) HKUnit {
+	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromString:"), objc.String(string_))
 	return rv
 }
 
@@ -353,8 +355,8 @@ func (hc _HKUnitClass) UnitFromMassFormatterUnit(massFormatterUnit unsafe.Pointe
 // Returns the unit instance described by the provided string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-9qont
-func (hc _HKUnitClass) UnitFromString(string_ appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("unitFromString:"), string_)
+func (hc _HKUnitClass) UnitFromString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("unitFromString:"), objc.String(string_))
 	return rv
 }
 
@@ -497,7 +499,7 @@ func (hc _HKUnitClass) MinuteUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring mass in moles, with the given prefix and molar mass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/moleUnit(with:molarMass:)
-func (hc _HKUnitClass) MoleUnitWithMetricPrefixMolarMass(prefix IHKMetricPrefix, gramsPerMole unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) MoleUnitWithMetricPrefixMolarMass(prefix IHKMetricPrefix, gramsPerMole float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("moleUnitWithMetricPrefix:molarMass:"), prefix, gramsPerMole)
 	return rv
 }
@@ -505,7 +507,7 @@ func (hc _HKUnitClass) MoleUnitWithMetricPrefixMolarMass(prefix IHKMetricPrefix,
 // Returns a HealthKit unit for measuring mass in moles for a given molar mass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/moleUnit(withMolarMass:)
-func (hc _HKUnitClass) MoleUnitWithMolarMass(gramsPerMole unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) MoleUnitWithMolarMass(gramsPerMole float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("moleUnitWithMolarMass:"), gramsPerMole)
 	return rv
 }
@@ -721,16 +723,16 @@ func (h_ HKUnit) UnitRaisedToPower(power int) HKUnit {
 // A string representation of the unit object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitString
-func (h_ HKUnit) UnitString() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("unitString"))
+func (h_ HKUnit) UnitString() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("unitString"))
 	return rv
 }
 
 // The molecular mass of blood glucose, typically used to create mole units for blood glucose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose
-func (h_ HKUnit) HKUnitMolarMassBloodGlucose() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("HKUnitMolarMassBloodGlucose"))
+func (h_ HKUnit) HKUnitMolarMassBloodGlucose() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("HKUnitMolarMassBloodGlucose"))
 	return rv
 }
 
@@ -740,7 +742,7 @@ func (h_ HKUnit) HKUnitMolarMassBloodGlucose() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose
-func (h_ HKUnit) SetHKUnitMolarMassBloodGlucose(value unsafe.Pointer) {
+func (h_ HKUnit) SetHKUnitMolarMassBloodGlucose(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHKUnitMolarMassBloodGlucose:"), value)
 }
 

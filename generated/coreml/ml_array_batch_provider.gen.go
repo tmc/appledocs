@@ -30,6 +30,7 @@ type _ArrayBatchProviderClass struct {
 // An interface definition for the [ArrayBatchProvider] class.
 type IArrayBatchProvider interface {
 	objectivec.IObject
+	Array() []objc.ID
 }
 
 // A convenience wrapper for batches of feature providers.

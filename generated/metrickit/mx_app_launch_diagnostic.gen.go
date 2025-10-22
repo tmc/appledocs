@@ -29,6 +29,8 @@ type _MXAppLaunchDiagnosticClass struct {
 // An interface definition for the [MXAppLaunchDiagnostic] class.
 type IMXAppLaunchDiagnostic interface {
 	IMXDiagnostic
+	CallStackTree() MXCallStackTree
+	LaunchDuration() unsafe.Pointer
 }
 
 // A diagnostic subclass that encapsulates app launch diagnostic reports.

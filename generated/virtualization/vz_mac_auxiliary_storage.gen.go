@@ -31,6 +31,13 @@ type _VZMacAuxiliaryStorageClass struct {
 // An interface definition for the [VZMacAuxiliaryStorage] class.
 type IVZMacAuxiliaryStorage interface {
 	objectivec.IObject
+	URL() foundation.URL
+	MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements
+	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
+	AuxiliaryStorage() VZMacAuxiliaryStorage
+	SetAuxiliaryStorage(value IVZMacAuxiliaryStorage)
+	HardwareModel() VZMacHardwareModel
+	SetHardwareModel(value IVZMacHardwareModel)
 }
 
 // An object that contains information the boot loader needs for booting macOS as a guest operating system.

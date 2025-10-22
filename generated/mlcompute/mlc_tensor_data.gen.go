@@ -30,6 +30,10 @@ type _CTensorDataClass struct {
 // An interface definition for the [CTensorData] class.
 type ICTensorData interface {
 	objectivec.IObject
+	Bytes() unsafe.Pointer
+	SetBytes(value unsafe.Pointer)
+	Length() int
+	SetLength(value int)
 }
 
 // An encapsulation of the memory that tensor data uses.

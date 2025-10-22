@@ -29,6 +29,18 @@ type _GLKEffectPropertyFogClass struct {
 // An interface definition for the [GLKEffectPropertyFog] class.
 type IGLKEffectPropertyFog interface {
 	IGLKEffectProperty
+	Color() GLKVector4
+	SetColor(value IGLKVector4)
+	Density() unsafe.Pointer
+	SetDensity(value unsafe.Pointer)
+	Enabled() unsafe.Pointer
+	SetEnabled(value unsafe.Pointer)
+	End() unsafe.Pointer
+	SetEnd(value unsafe.Pointer)
+	Mode() unsafe.Pointer
+	SetMode(value unsafe.Pointer)
+	Start() unsafe.Pointer
+	SetStart(value unsafe.Pointer)
 }
 
 // Fog drawing information for use in GLKit rendering effects.

@@ -31,6 +31,14 @@ type _CSRInfoClass struct {
 // An interface definition for the [CSRInfo] class.
 type ICSRInfo interface {
 	objectivec.IObject
+	Csr() foundation.Data
+	SetCsr(value foundation.IData)
+	Elements() foundation.Data
+	SetElements(value foundation.IData)
+	ElementsSignature() foundation.Data
+	SetElementsSignature(value foundation.IData)
+	Nonce() foundation.Data
+	SetNonce(value foundation.IData)
 }
 
 //

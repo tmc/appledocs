@@ -29,6 +29,8 @@ type _MXAnimationMetricClass struct {
 // An interface definition for the [MXAnimationMetric] class.
 type IMXAnimationMetric interface {
 	IMXMetric
+	HitchTimeRatio() unsafe.Pointer
+	ScrollHitchTimeRatio() unsafe.Pointer
 }
 
 // An object representing metrics about the responsiveness of animation in the app.

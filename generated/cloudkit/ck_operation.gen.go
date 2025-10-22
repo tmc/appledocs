@@ -30,6 +30,27 @@ type _CKOperationClass struct {
 // An interface definition for the [CKOperation] class.
 type ICKOperation interface {
 	IOperation
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	Configuration() CKOperationConfiguration
+	SetConfiguration(value ICKOperationConfiguration)
+	Container() CKContainer
+	SetContainer(value ICKContainer)
+	Group() CKOperationGroup
+	SetGroup(value ICKOperationGroup)
+	LongLived() bool
+	SetLongLived(value bool)
+	LongLivedOperationWasPersistedBlock() unsafe.Pointer
+	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
+	OperationID() unsafe.Pointer
+	TimeoutIntervalForRequest() foundation.TimeInterval
+	SetTimeoutIntervalForRequest(value foundation.ITimeInterval)
+	TimeoutIntervalForResource() foundation.TimeInterval
+	SetTimeoutIntervalForResource(value foundation.ITimeInterval)
+	IsLongLived() bool
+	SetIsLongLived(value bool)
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
 }
 
 // The abstract base class for all operations that execute in a database.

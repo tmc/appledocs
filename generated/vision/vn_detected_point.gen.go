@@ -29,6 +29,7 @@ type _DetectedPointClass struct {
 // An interface definition for the [DetectedPoint] class.
 type IDetectedPoint interface {
 	IPoint
+	Confidence() Confidence
 }
 
 // An object that represents a normalized point in an image, along with a confidence value.

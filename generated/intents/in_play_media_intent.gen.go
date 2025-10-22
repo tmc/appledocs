@@ -30,6 +30,18 @@ type _INPlayMediaIntentClass struct {
 // An interface definition for the [INPlayMediaIntent] class.
 type IINPlayMediaIntent interface {
 	IINIntent
+	MediaItems() []INMediaItem
+	MediaSearch() INMediaSearch
+	PlaybackSpeed() foundation.Number
+	ResumePlayback() foundation.Number
+	MediaContainer() INMediaItem
+	SetMediaContainer(value INMediaItem)
+	PlayShuffled() bool
+	SetPlayShuffled(value bool)
+	PlaybackQueueLocation() unsafe.Pointer
+	SetPlaybackQueueLocation(value unsafe.Pointer)
+	PlaybackRepeatMode() INPlaybackRepeatMode
+	SetPlaybackRepeatMode(value INPlaybackRepeatMode)
 }
 
 // An intent that contains information about media playable from your app.

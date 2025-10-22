@@ -32,6 +32,11 @@ type IOrthography interface {
 	objectivec.IObject
 	DominantLanguageForScript(script string) String
 	LanguagesForScript(script string) []string
+	AllLanguages() []string
+	AllScripts() []string
+	DominantLanguage() string
+	DominantScript() string
+	LanguageMap() unsafe.Pointer
 }
 
 // A description of the linguistic content of natural language text, typically used for spelling and grammar checking.

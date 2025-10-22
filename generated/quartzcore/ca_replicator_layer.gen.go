@@ -30,6 +30,24 @@ type _ReplicatorLayerClass struct {
 // An interface definition for the [ReplicatorLayer] class.
 type IReplicatorLayer interface {
 	ILayer
+	InstanceAlphaOffset() float32
+	SetInstanceAlphaOffset(value float32)
+	InstanceBlueOffset() float32
+	SetInstanceBlueOffset(value float32)
+	InstanceColor() coregraphics.CGColorRef
+	SetInstanceColor(value coregraphics.CGColorRef)
+	InstanceCount() int
+	SetInstanceCount(value int)
+	InstanceDelay() TimeInterval
+	SetInstanceDelay(value ITimeInterval)
+	InstanceGreenOffset() float32
+	SetInstanceGreenOffset(value float32)
+	InstanceRedOffset() float32
+	SetInstanceRedOffset(value float32)
+	InstanceTransform() unsafe.Pointer
+	SetInstanceTransform(value unsafe.Pointer)
+	PreservesDepth() bool
+	SetPreservesDepth(value bool)
 }
 
 // A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations.
@@ -85,8 +103,8 @@ func NewReplicatorLayer() ReplicatorLayer {
 // Defines the offset added to the alpha component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceAlphaOffset
-func (r_ ReplicatorLayer) InstanceAlphaOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceAlphaOffset"))
+func (r_ ReplicatorLayer) InstanceAlphaOffset() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("instanceAlphaOffset"))
 	return rv
 }
 
@@ -96,15 +114,15 @@ func (r_ ReplicatorLayer) InstanceAlphaOffset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceAlphaOffset
-func (r_ ReplicatorLayer) SetInstanceAlphaOffset(value unsafe.Pointer) {
+func (r_ ReplicatorLayer) SetInstanceAlphaOffset(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceAlphaOffset:"), value)
 }
 
 // Defines the offset added to the blue component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceBlueOffset
-func (r_ ReplicatorLayer) InstanceBlueOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceBlueOffset"))
+func (r_ ReplicatorLayer) InstanceBlueOffset() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("instanceBlueOffset"))
 	return rv
 }
 
@@ -114,7 +132,7 @@ func (r_ ReplicatorLayer) InstanceBlueOffset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceBlueOffset
-func (r_ ReplicatorLayer) SetInstanceBlueOffset(value unsafe.Pointer) {
+func (r_ ReplicatorLayer) SetInstanceBlueOffset(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceBlueOffset:"), value)
 }
 
@@ -175,8 +193,8 @@ func (r_ ReplicatorLayer) SetInstanceDelay(value ITimeInterval) {
 // Defines the offset added to the green component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceGreenOffset
-func (r_ ReplicatorLayer) InstanceGreenOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceGreenOffset"))
+func (r_ ReplicatorLayer) InstanceGreenOffset() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("instanceGreenOffset"))
 	return rv
 }
 
@@ -186,15 +204,15 @@ func (r_ ReplicatorLayer) InstanceGreenOffset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceGreenOffset
-func (r_ ReplicatorLayer) SetInstanceGreenOffset(value unsafe.Pointer) {
+func (r_ ReplicatorLayer) SetInstanceGreenOffset(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceGreenOffset:"), value)
 }
 
 // Defines the offset added to the red component of the color for each replicated instance. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceRedOffset
-func (r_ ReplicatorLayer) InstanceRedOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceRedOffset"))
+func (r_ ReplicatorLayer) InstanceRedOffset() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("instanceRedOffset"))
 	return rv
 }
 
@@ -204,7 +222,7 @@ func (r_ ReplicatorLayer) InstanceRedOffset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceRedOffset
-func (r_ ReplicatorLayer) SetInstanceRedOffset(value unsafe.Pointer) {
+func (r_ ReplicatorLayer) SetInstanceRedOffset(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceRedOffset:"), value)
 }
 

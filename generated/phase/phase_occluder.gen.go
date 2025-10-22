@@ -29,6 +29,7 @@ type _PHASEOccluderClass struct {
 // An interface definition for the [PHASEOccluder] class.
 type IPHASEOccluder interface {
 	IPHASEObject
+	Shapes() []PHASEShape
 }
 
 // An object with a shape and position that blocks audio from reaching the listener.

@@ -31,6 +31,8 @@ type _PedometerEventClass struct {
 // An interface definition for the [PedometerEvent] class.
 type IPedometerEvent interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	Type() PedometerEventType
 }
 
 // A change in the user’s pedestrian activity.

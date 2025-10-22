@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZVirtioConsolePortConfiguration] class.
@@ -30,6 +29,12 @@ type _VZVirtioConsolePortConfigurationClass struct {
 // An interface definition for the [VZVirtioConsolePortConfiguration] class.
 type IVZVirtioConsolePortConfiguration interface {
 	IVZConsolePortConfiguration
+	IsConsole() bool
+	SetIsConsole(value bool)
+	Name() string
+	SetName(value string)
+	ConsoleDevices() VZConsoleDeviceConfiguration
+	SetConsoleDevices(value IVZConsoleDeviceConfiguration)
 }
 
 // A class that represents the configuration options you can set on a Virtio console port.
@@ -104,8 +109,8 @@ func (v_ VZVirtioConsolePortConfiguration) SetIsConsole(value bool) {
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) Name() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePortConfiguration) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -115,8 +120,8 @@ func (v_ VZVirtioConsolePortConfiguration) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) SetName(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
+func (v_ VZVirtioConsolePortConfiguration) SetName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The array of console devices that you expose to the guest operating system.

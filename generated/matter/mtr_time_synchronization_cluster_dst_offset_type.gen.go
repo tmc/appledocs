@@ -30,6 +30,12 @@ type _MTRTimeSynchronizationClusterDstOffsetTypeClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterDstOffsetType] class.
 type IMTRTimeSynchronizationClusterDstOffsetType interface {
 	IMTRTimeSynchronizationClusterDSTOffsetStruct
+	Offset() foundation.Number
+	SetOffset(value foundation.INumber)
+	ValidStarting() foundation.Number
+	SetValidStarting(value foundation.INumber)
+	ValidUntil() foundation.Number
+	SetValidUntil(value foundation.INumber)
 }
 
 //

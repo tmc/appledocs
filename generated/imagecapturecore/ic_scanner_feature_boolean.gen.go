@@ -30,6 +30,8 @@ type _ICScannerFeatureBooleanClass struct {
 // An interface definition for the [ICScannerFeatureBoolean] class.
 type IICScannerFeatureBoolean interface {
 	objectivec.IObject
+	Value() bool
+	SetValue(value bool)
 }
 
 // A feature with a value of or .

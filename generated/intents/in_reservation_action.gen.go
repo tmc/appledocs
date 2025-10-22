@@ -31,6 +31,12 @@ type _INReservationActionClass struct {
 // An interface definition for the [INReservationAction] class.
 type IINReservationAction interface {
 	objectivec.IObject
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
+	UserActivity() foundation.UserActivity
+	SetUserActivity(value foundation.IUserActivity)
+	ValidDuration() INDateComponentsRange
+	SetValidDuration(value INDateComponentsRange)
 }
 
 // An action a user can perform that’s relevant to a reservation.

@@ -31,6 +31,10 @@ type _MTRWaterHeaterManagementClusterCancelBoostParamsClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterCancelBoostParams] class.
 type IMTRWaterHeaterManagementClusterCancelBoostParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -91,9 +90,9 @@ func NewSTWebHistory() STWebHistory {
 // Creates a web history instance to delete web-usage data associated to the bundle identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:)
-func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier appkit.string, error_ unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error_ unsafe.Pointer) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:error:"), bundleIdentifier, error_)
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:error:"), objc.String(bundleIdentifier), error_)
 	rv.Autorelease()
 	return rv
 }
@@ -103,9 +102,9 @@ func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier appkit.string, er
 // Creates a web history instance to delete web-usage data associated to the bundle identifier and profile identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:profileIdentifier:)
-func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier appkit.string, profileIdentifier ISTWebHistoryProfileIdentifier, error_ unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier string, profileIdentifier ISTWebHistoryProfileIdentifier, error_ unsafe.Pointer) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:profileIdentifier:error:"), bundleIdentifier, profileIdentifier, error_)
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:profileIdentifier:error:"), objc.String(bundleIdentifier), profileIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }

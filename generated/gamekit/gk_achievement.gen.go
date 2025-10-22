@@ -32,7 +32,19 @@ type _AchievementClass struct {
 // An interface definition for the [Achievement] class.
 type IAchievement interface {
 	objectivec.IObject
-	ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message appkit.string, completionHandler unsafe.Pointer) appkit.ViewController
+	ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message string, completionHandler unsafe.Pointer) appkit.ViewController
+	Identifier() string
+	SetIdentifier(value string)
+	IsCompleted() bool
+	SetIsCompleted(value bool)
+	LastReportedDate() foundation.Date
+	SetLastReportedDate(value foundation.IDate)
+	PercentComplete() float64
+	SetPercentComplete(value float64)
+	Player() GKPlayer
+	SetPlayer(value IGKPlayer)
+	ShowsCompletionBanner() bool
+	SetShowsCompletionBanner(value bool)
 }
 
 // An achievement you can award a player as they make progress toward and reach a goal in your game.
@@ -86,16 +98,16 @@ func NewAchievement() Achievement {
 // Provides a challenge compose view controller with preselected player identifiers and a message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement/challengeComposeController(withPlayers:message:completionHandler:)
-func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message appkit.string, completionHandler unsafe.Pointer) appkit.ViewController {
-	rv := objc.Send[appkit.ViewController](a_.ID, objc.Sel("challengeComposeControllerWithPlayers:message:completionHandler:"), playerIDs, message, completionHandler)
+func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message string, completionHandler unsafe.Pointer) appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](a_.ID, objc.Sel("challengeComposeControllerWithPlayers:message:completionHandler:"), playerIDs, objc.String(message), completionHandler)
 	return rv
 }
 
 // The identifier for the achievement that you enter in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-func (a_ Achievement) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
+func (a_ Achievement) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -105,8 +117,8 @@ func (a_ Achievement) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-func (a_ Achievement) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
+func (a_ Achievement) SetIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that states whether the player has completed the achievement.
@@ -148,8 +160,8 @@ func (a_ Achievement) SetLastReportedDate(value foundation.IDate) {
 // A percentage value that states how far the player has progressed on the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete
-func (a_ Achievement) PercentComplete() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("percentComplete"))
+func (a_ Achievement) PercentComplete() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("percentComplete"))
 	return rv
 }
 
@@ -159,7 +171,7 @@ func (a_ Achievement) PercentComplete() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete
-func (a_ Achievement) SetPercentComplete(value unsafe.Pointer) {
+func (a_ Achievement) SetPercentComplete(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPercentComplete:"), value)
 }
 

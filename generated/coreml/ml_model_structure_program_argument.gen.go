@@ -30,6 +30,7 @@ type _ModelStructureProgramArgumentClass struct {
 // An interface definition for the [ModelStructureProgramArgument] class.
 type IModelStructureProgramArgument interface {
 	objectivec.IObject
+	Bindings() []ModelStructureProgramBinding
 }
 
 // A class representing an argument in the Program.

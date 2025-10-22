@@ -31,6 +31,22 @@ type _MediaSelectionOptionClass struct {
 // An interface definition for the [MediaSelectionOption] class.
 type IMediaSelectionOption interface {
 	objectivec.IObject
+	AvailableMetadataFormats() string
+	SetAvailableMetadataFormats(value string)
+	CommonMetadata() AVMetadataItem
+	SetCommonMetadata(value IAVMetadataItem)
+	DisplayName() string
+	SetDisplayName(value string)
+	ExtendedLanguageTag() string
+	SetExtendedLanguageTag(value string)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
+	Locale() foundation.Locale
+	SetLocale(value foundation.ILocale)
+	MediaSubTypes() foundation.Number
+	SetMediaSubTypes(value foundation.INumber)
+	MediaType() MediaType
+	SetMediaType(value MediaType)
 }
 
 // An object that represents a specific option for the presentation of media within a group of options.

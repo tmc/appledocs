@@ -29,6 +29,10 @@ type _CScatterLayerClass struct {
 // An interface definition for the [CScatterLayer] class.
 type ICScatterLayer interface {
 	ICLayer
+	Dimension() int
+	SetDimension(value int)
+	ReductionType() CReductionType
+	SetReductionType(value CReductionType)
 }
 
 // A layer that updates the output at an index you specify.

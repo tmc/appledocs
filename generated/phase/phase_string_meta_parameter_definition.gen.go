@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASEStringMetaParameterDefinition] class.
@@ -30,6 +29,10 @@ type _PHASEStringMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASEStringMetaParameterDefinition] class.
 type IPHASEStringMetaParameterDefinition interface {
 	IPHASEMetaParameterDefinition
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
+	MetaParameters() PHASEMetaParameter
+	SetMetaParameters(value IPHASEMetaParameter)
 }
 
 // A specification for a metaparameter defined by text.
@@ -87,9 +90,9 @@ func NewPHASEStringMetaParameterDefinition() PHASEStringMetaParameterDefinition 
 // Creates a specification for a textual metaparameter with the given value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition/init(value:)
-func NewPHASEStringMetaParameterDefinitionWithValue(value appkit.string) PHASEStringMetaParameterDefinition {
+func NewPHASEStringMetaParameterDefinitionWithValue(value string) PHASEStringMetaParameterDefinition {
 	instance := getPHASEStringMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:"), value)
+	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:"), objc.String(value))
 	rv.Autorelease()
 	return rv
 }
@@ -99,9 +102,9 @@ func NewPHASEStringMetaParameterDefinitionWithValue(value appkit.string) PHASESt
 // Creates a specification for a named textual metaparameter with the given value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition/init(value:identifier:)
-func NewPHASEStringMetaParameterDefinitionWithValueIdentifier(value appkit.string, identifier appkit.string) PHASEStringMetaParameterDefinition {
+func NewPHASEStringMetaParameterDefinitionWithValueIdentifier(value string, identifier string) PHASEStringMetaParameterDefinition {
 	instance := getPHASEStringMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:identifier:"), value, identifier)
+	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:identifier:"), objc.String(value), objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

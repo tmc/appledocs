@@ -33,7 +33,7 @@ type IBluetoothPairingController interface {
 	appkit.IWindowController
 	GetPrompt() foundation.String
 	GetTitle() foundation.String
-	SetPrompt(prompt appkit.string)
+	SetPrompt(prompt string)
 }
 
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
@@ -105,8 +105,8 @@ func (b_ BluetoothPairingController) GetTitle() foundation.String {
 // Sets the title of the default/select button in the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/setPrompt(_:)
-func (b_ BluetoothPairingController) SetPrompt(prompt appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPrompt:"), prompt)
+func (b_ BluetoothPairingController) SetPrompt(prompt string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPrompt:"), objc.String(prompt))
 }
 
 

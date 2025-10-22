@@ -31,6 +31,24 @@ type _MKMapItemIdentifierClass struct {
 // An interface definition for the [MKMapItemIdentifier] class.
 type IMKMapItemIdentifier interface {
 	objectivec.IObject
+	AlternateIdentifiers() MKMapItemIdentifier
+	SetAlternateIdentifiers(value IMKMapItemIdentifier)
+	Identifier() MKMapItemIdentifier
+	SetIdentifier(value IMKMapItemIdentifier)
+	IsCurrentLocation() bool
+	SetIsCurrentLocation(value bool)
+	Name() string
+	SetName(value string)
+	PhoneNumber() string
+	SetPhoneNumber(value string)
+	Placemark() MKPlacemark
+	SetPlacemark(value IMKPlacemark)
+	PointOfInterestCategory() MKPointOfInterestCategory
+	SetPointOfInterestCategory(value IMKPointOfInterestCategory)
+	TimeZone() foundation.TimeZone
+	SetTimeZone(value foundation.ITimeZone)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A unique identifier for a place.
@@ -136,8 +154,8 @@ func (m_ MKMapItemIdentifier) SetIsCurrentLocation(value bool) {
 // The descriptive name associated with the map item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
-func (m_ MKMapItemIdentifier) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MKMapItemIdentifier) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -147,15 +165,15 @@ func (m_ MKMapItemIdentifier) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
-func (m_ MKMapItemIdentifier) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MKMapItemIdentifier) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The phone number associated with a business at the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
-func (m_ MKMapItemIdentifier) PhoneNumber() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("phoneNumber"))
+func (m_ MKMapItemIdentifier) PhoneNumber() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 
@@ -165,8 +183,8 @@ func (m_ MKMapItemIdentifier) PhoneNumber() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
-func (m_ MKMapItemIdentifier) SetPhoneNumber(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), value)
+func (m_ MKMapItemIdentifier) SetPhoneNumber(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
 }
 
 // The placemark object containing the location information.

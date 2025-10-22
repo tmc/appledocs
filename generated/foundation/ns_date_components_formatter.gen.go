@@ -31,6 +31,28 @@ type _DateComponentsFormatterClass struct {
 type IDateComponentsFormatter interface {
 	IFormatter
 	StringForObjectValue(obj objectivec.IObject) String
+	ZeroFormattingBehavior() unsafe.Pointer
+	SetZeroFormattingBehavior(value unsafe.Pointer)
+	AllowedUnits() Unit
+	SetAllowedUnits(value IUnit)
+	AllowsFractionalUnits() bool
+	SetAllowsFractionalUnits(value bool)
+	Calendar() Calendar
+	SetCalendar(value ICalendar)
+	CollapsesLargestUnit() bool
+	SetCollapsesLargestUnit(value bool)
+	FormattingContext() int
+	SetFormattingContext(value int)
+	IncludesApproximationPhrase() bool
+	SetIncludesApproximationPhrase(value bool)
+	IncludesTimeRemainingPhrase() bool
+	SetIncludesTimeRemainingPhrase(value bool)
+	MaximumUnitCount() int
+	SetMaximumUnitCount(value int)
+	ReferenceDate() Date
+	SetReferenceDate(value IDate)
+	UnitsStyle() unsafe.Pointer
+	SetUnitsStyle(value unsafe.Pointer)
 }
 
 // A formatter that creates string representations of quantities of time.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _ResourceViewPoolDescriptorClass struct {
 // An interface definition for the [ResourceViewPoolDescriptor] class.
 type IResourceViewPoolDescriptor interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	ResourceViewCount() int
+	SetResourceViewCount(value int)
 }
 
 // Provides parameters for creating a resource view pool.
@@ -82,8 +85,8 @@ func NewResourceViewPoolDescriptor() ResourceViewPoolDescriptor {
 // Assigns an optional label you to the resource view pool for debugging purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
-func (r_ ResourceViewPoolDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("label"))
+func (r_ ResourceViewPoolDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -93,8 +96,8 @@ func (r_ ResourceViewPoolDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceViewPoolDescriptor/label
-func (r_ ResourceViewPoolDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ ResourceViewPoolDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // Configures the number of resource views with which Metal creates the resource view pool.

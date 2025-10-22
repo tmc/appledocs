@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,24 @@ type _MTRMessagesClusterPresentMessagesRequestParamsClass struct {
 // An interface definition for the [MTRMessagesClusterPresentMessagesRequestParams] class.
 type IMTRMessagesClusterPresentMessagesRequestParams interface {
 	objectivec.IObject
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	MessageControl() foundation.Number
+	SetMessageControl(value foundation.INumber)
+	MessageID() foundation.NSData
+	SetMessageID(value foundation.IData)
+	MessageText() string
+	SetMessageText(value string)
+	Priority() foundation.Number
+	SetPriority(value foundation.INumber)
+	Responses() objc.ID
+	SetResponses(value objc.ID)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StartTime() foundation.Number
+	SetStartTime(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -124,8 +141,8 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageID(value foun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageText
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("messageText"))
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("messageText"))
 	return rv
 }
 
@@ -133,8 +150,8 @@ func (m_ MTRMessagesClusterPresentMessagesRequestParams) MessageText() appkit.st
 // SetMessageText sets the value of the messageText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterPresentMessagesRequestParams/messageText
-func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), value)
+func (m_ MTRMessagesClusterPresentMessagesRequestParams) SetMessageText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
 }
 
 //

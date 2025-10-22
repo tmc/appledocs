@@ -32,6 +32,7 @@ type _AccountAuthenticationModificationExtensionContextClass struct {
 type IAccountAuthenticationModificationExtensionContext interface {
 	foundation.IExtensionContext
 	CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential IASPasswordCredential, userInfo objectivec.IObject)
+	ASExtensionLocalizedFailureReasonErrorKey() string
 }
 
 // An object that you interact with to change an account’s password or to upgrade to Sign in with Apple.
@@ -92,8 +93,8 @@ func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswo
 // A key that specifies a string value to show to the user when a request fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey
-func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
+func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
 	return rv
 }
 

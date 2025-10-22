@@ -29,6 +29,26 @@ type _AccelerationStructureMotionTriangleGeometryDescriptorClass struct {
 // An interface definition for the [AccelerationStructureMotionTriangleGeometryDescriptor] class.
 type IAccelerationStructureMotionTriangleGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexBufferOffset() int
+	SetIndexBufferOffset(value int)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	TransformationMatrixBuffer() unsafe.Pointer
+	SetTransformationMatrixBuffer(value unsafe.Pointer)
+	TransformationMatrixBufferOffset() int
+	SetTransformationMatrixBufferOffset(value int)
+	TransformationMatrixLayout() unsafe.Pointer
+	SetTransformationMatrixLayout(value unsafe.Pointer)
+	TriangleCount() int
+	SetTriangleCount(value int)
+	VertexBuffers() MTLMotionKeyframeData
+	SetVertexBuffers(value IMTLMotionKeyframeData)
+	VertexFormat() unsafe.Pointer
+	SetVertexFormat(value unsafe.Pointer)
+	VertexStride() int
+	SetVertexStride(value int)
 }
 
 // A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.

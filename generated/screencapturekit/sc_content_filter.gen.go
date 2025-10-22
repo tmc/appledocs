@@ -31,6 +31,22 @@ type _ContentFilterClass struct {
 // An interface definition for the [ContentFilter] class.
 type IContentFilter interface {
 	objectivec.IObject
+	IncludeMenuBar() bool
+	SetIncludeMenuBar(value bool)
+	ContentRect() coregraphics.CGRect
+	SetContentRect(value coregraphics.CGRect)
+	IncludedApplications() SCRunningApplication
+	SetIncludedApplications(value ISCRunningApplication)
+	IncludedDisplays() SCDisplay
+	SetIncludedDisplays(value ISCDisplay)
+	IncludedWindows() SCWindow
+	SetIncludedWindows(value ISCWindow)
+	PointPixelScale() float32
+	SetPointPixelScale(value float32)
+	StreamType() unsafe.Pointer
+	SetStreamType(value unsafe.Pointer)
+	Style() ShareableContentStyle
+	SetStyle(value ShareableContentStyle)
 }
 
 // An instance that filters the content a stream captures.
@@ -187,8 +203,8 @@ func (c_ ContentFilter) SetIncludedWindows(value ISCWindow) {
 // The scaling factor used to translate screen points into pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/pointpixelscale
-func (c_ ContentFilter) PointPixelScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pointPixelScale"))
+func (c_ ContentFilter) PointPixelScale() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("pointPixelScale"))
 	return rv
 }
 
@@ -198,7 +214,7 @@ func (c_ ContentFilter) PointPixelScale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/pointpixelscale
-func (c_ ContentFilter) SetPointPixelScale(value unsafe.Pointer) {
+func (c_ ContentFilter) SetPointPixelScale(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPointPixelScale:"), value)
 }
 

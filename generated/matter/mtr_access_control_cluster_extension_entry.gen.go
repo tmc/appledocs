@@ -30,6 +30,10 @@ type _MTRAccessControlClusterExtensionEntryClass struct {
 // An interface definition for the [MTRAccessControlClusterExtensionEntry] class.
 type IMTRAccessControlClusterExtensionEntry interface {
 	IMTRAccessControlClusterAccessControlExtensionStruct
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
 }
 
 //

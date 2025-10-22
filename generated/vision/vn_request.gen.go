@@ -35,6 +35,16 @@ type IRequest interface {
 	ComputeDeviceForComputeStage(computeStage IComputeStage) objc.ID
 	SetComputeDeviceForComputeStage(computeDevice objectivec.IObject, computeStage IComputeStage)
 	SupportedComputeStageDevicesAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
+	CompletionHandler() unsafe.Pointer
+	PreferBackgroundProcessing() bool
+	SetPreferBackgroundProcessing(value bool)
+	Results() []Observation
+	Revision() uint
+	SetRevision(value uint)
+	UsesCPUOnly() bool
+	SetUsesCPUOnly(value bool)
+	SupportedComputeStageDevices() unsafe.Pointer
+	SetSupportedComputeStageDevices(value unsafe.Pointer)
 }
 
 // The abstract superclass for analysis requests.

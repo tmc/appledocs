@@ -30,7 +30,11 @@ type _PHASEEnvelopeClass struct {
 // An interface definition for the [PHASEEnvelope] class.
 type IPHASEEnvelope interface {
 	objectivec.IObject
-	EvaluateForValue(x unsafe.Pointer) unsafe.Pointer
+	EvaluateForValue(x float64) float64
+	Domain() PHASENumericPair
+	Range() PHASENumericPair
+	Segments() []PHASEEnvelopeSegment
+	StartPoint() unsafe.Pointer
 }
 
 // A collection of segments that connect to graph a complex curve over a linear input.
@@ -97,8 +101,8 @@ func NewPHASEEnvelopeWithStartPointSegments(startPoint unsafe.Pointer, segments 
 // Provides the height of the envelope for an input value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/evaluate(x:)
-func (p_ PHASEEnvelope) EvaluateForValue(x unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("evaluateForValue:"), x)
+func (p_ PHASEEnvelope) EvaluateForValue(x float64) float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("evaluateForValue:"), x)
 	return rv
 }
 

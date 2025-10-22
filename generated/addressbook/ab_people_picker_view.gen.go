@@ -32,23 +32,43 @@ type _ABPeoplePickerViewClass struct {
 // An interface definition for the [ABPeoplePickerView] class.
 type IABPeoplePickerView interface {
 	appkit.IView
-	AddProperty(property appkit.string)
+	AddProperty(property string)
 	ClearSearchField(sender objectivec.IObject)
-	ColumnTitleForProperty(property appkit.string) foundation.String
+	ColumnTitleForProperty(property string) foundation.String
 	DeselectRecord(record IABRecord)
 	DeselectGroup(group IABGroup)
 	DeselectAll(sender objectivec.IObject)
-	DeselectIdentifierForPerson(identifier appkit.string, person IABPerson)
+	DeselectIdentifierForPerson(identifier string, person IABPerson)
 	EditInAddressBook(sender objectivec.IObject)
 	Properties() foundation.Array
-	RemoveProperty(property appkit.string)
+	RemoveProperty(property string)
 	SelectGroupByExtendingSelection(group IABGroup, extend bool)
 	SelectRecordByExtendingSelection(record IABRecord, extend bool)
-	SelectIdentifierForPersonByExtendingSelection(identifier appkit.string, person IABPerson, extend bool)
+	SelectIdentifierForPersonByExtendingSelection(identifier string, person IABPerson, extend bool)
 	SelectInAddressBook(sender objectivec.IObject)
 	SelectedIdentifiersForPerson(person IABPerson) foundation.Array
 	SelectedValues() foundation.Array
-	SetColumnTitleForProperty(title appkit.string, property appkit.string)
+	SetColumnTitleForProperty(title string, property string)
+	AccessoryView() ABPeoplePickerView
+	SetAccessoryView(value IABPeoplePickerView)
+	AllowsGroupSelection() bool
+	SetAllowsGroupSelection(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	AutosaveName() string
+	SetAutosaveName(value string)
+	DisplayedProperty() string
+	SetDisplayedProperty(value string)
+	GroupDoubleAction() objc.SEL
+	SetGroupDoubleAction(value objc.SEL)
+	NameDoubleAction() objc.SEL
+	SetNameDoubleAction(value objc.SEL)
+	SelectedGroups() objc.ID
+	SelectedRecords() objc.ID
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	ValueSelectionBehavior() unsafe.Pointer
+	SetValueSelectionBehavior(value unsafe.Pointer)
 }
 
 // An object you use to customize the behavior of people-picker views in an app’s user interface.
@@ -102,8 +122,8 @@ func NewABPeoplePickerView() ABPeoplePickerView {
 // Adds a property to the group of properties whose values are shown in the record list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/addProperty(_:)
-func (a_ ABPeoplePickerView) AddProperty(property appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addProperty:"), property)
+func (a_ ABPeoplePickerView) AddProperty(property string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addProperty:"), objc.String(property))
 }
 
 // Clears the search field and resets the list of displayed records.
@@ -116,8 +136,8 @@ func (a_ ABPeoplePickerView) ClearSearchField(sender objectivec.IObject) {
 // Returns the title of a custom property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/columnTitle(forProperty:)
-func (a_ ABPeoplePickerView) ColumnTitleForProperty(property appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("columnTitleForProperty:"), property)
+func (a_ ABPeoplePickerView) ColumnTitleForProperty(property string) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("columnTitleForProperty:"), objc.String(property))
 	return rv
 }
 
@@ -145,8 +165,8 @@ func (a_ ABPeoplePickerView) DeselectAll(sender objectivec.IObject) {
 // Deselects a value selected in a multivalue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/deselectIdentifier(_:for:)
-func (a_ ABPeoplePickerView) DeselectIdentifierForPerson(identifier appkit.string, person IABPerson) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("deselectIdentifier:forPerson:"), identifier, person)
+func (a_ ABPeoplePickerView) DeselectIdentifierForPerson(identifier string, person IABPerson) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("deselectIdentifier:forPerson:"), objc.String(identifier), person)
 }
 
 // Launches Address Book to edit the item selected in the people picker.
@@ -167,8 +187,8 @@ func (a_ ABPeoplePickerView) Properties() foundation.Array {
 // Removes a property from the group of properties whose values are shown in the record list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/removeProperty(_:)
-func (a_ ABPeoplePickerView) RemoveProperty(property appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeProperty:"), property)
+func (a_ ABPeoplePickerView) RemoveProperty(property string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeProperty:"), objc.String(property))
 }
 
 // Selects a group or a set of groups in the group list.
@@ -188,8 +208,8 @@ func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, 
 // Selects a value or a set of values in a multivalue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectIdentifier(_:for:byExtendingSelection:)
-func (a_ ABPeoplePickerView) SelectIdentifierForPersonByExtendingSelection(identifier appkit.string, person IABPerson, extend bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("selectIdentifier:forPerson:byExtendingSelection:"), identifier, person, extend)
+func (a_ ABPeoplePickerView) SelectIdentifierForPersonByExtendingSelection(identifier string, person IABPerson, extend bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("selectIdentifier:forPerson:byExtendingSelection:"), objc.String(identifier), person, extend)
 }
 
 // Launches Address Book and selects the item selected in the people picker.
@@ -218,15 +238,15 @@ func (a_ ABPeoplePickerView) SelectedValues() foundation.Array {
 // Sets the title displayed in the people picker for a property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/setColumnTitle(_:forProperty:)
-func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title appkit.string, property appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setColumnTitle:forProperty:"), title, property)
+func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string, property string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setColumnTitle:forProperty:"), objc.String(title), objc.String(property))
 }
 
 // The view that is placed to the left of the search field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) AccessoryView() appkit.View {
-	rv := objc.Send[appkit.View](a_.ID, objc.Sel("accessoryView"))
+func (a_ ABPeoplePickerView) AccessoryView() ABPeoplePickerView {
+	rv := objc.Send[ABPeoplePickerView](a_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -236,7 +256,7 @@ func (a_ ABPeoplePickerView) AccessoryView() appkit.View {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) SetAccessoryView(value appkit.IView) {
+func (a_ ABPeoplePickerView) SetAccessoryView(value IABPeoplePickerView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
@@ -279,8 +299,8 @@ func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool) {
 // The name under which the column positions and the filter selection are saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) AutosaveName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("autosaveName"))
+func (a_ ABPeoplePickerView) AutosaveName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("autosaveName"))
 	return rv
 }
 
@@ -290,15 +310,15 @@ func (a_ ABPeoplePickerView) AutosaveName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) SetAutosaveName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), value)
+func (a_ ABPeoplePickerView) SetAutosaveName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), objc.String(value))
 }
 
 // The property currently displayed in the record list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) DisplayedProperty() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("displayedProperty"))
+func (a_ ABPeoplePickerView) DisplayedProperty() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("displayedProperty"))
 	return rv
 }
 
@@ -308,8 +328,8 @@ func (a_ ABPeoplePickerView) DisplayedProperty() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) SetDisplayedProperty(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), value)
+func (a_ ABPeoplePickerView) SetDisplayedProperty(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), objc.String(value))
 }
 
 // The action to be invoked when a group is double-clicked.

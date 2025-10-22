@@ -29,6 +29,24 @@ type _ByteCountFormatterClass struct {
 // An interface definition for the [ByteCountFormatter] class.
 type IByteCountFormatter interface {
 	IFormatter
+	AllowedUnits() unsafe.Pointer
+	SetAllowedUnits(value unsafe.Pointer)
+	AllowsNonnumericFormatting() bool
+	SetAllowsNonnumericFormatting(value bool)
+	CountStyle() unsafe.Pointer
+	SetCountStyle(value unsafe.Pointer)
+	FormattingContext() int
+	SetFormattingContext(value int)
+	IncludesActualByteCount() bool
+	SetIncludesActualByteCount(value bool)
+	IncludesCount() bool
+	SetIncludesCount(value bool)
+	IncludesUnit() bool
+	SetIncludesUnit(value bool)
+	IsAdaptive() bool
+	SetIsAdaptive(value bool)
+	ZeroPadsFractionDigits() bool
+	SetZeroPadsFractionDigits(value bool)
 }
 
 // A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on).

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,11 @@ type _CarrierClass struct {
 // An interface definition for the [Carrier] class.
 type ICarrier interface {
 	objectivec.IObject
+	AllowsVOIP() bool
+	CarrierName() string
+	IsoCountryCode() string
+	MobileCountryCode() string
+	MobileNetworkCode() string
 }
 
 // Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
@@ -90,32 +94,32 @@ func (c_ Carrier) AllowsVOIP() bool {
 // The name of the user’s home cellular service provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/carrierName
-func (c_ Carrier) CarrierName() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("carrierName"))
+func (c_ Carrier) CarrierName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("carrierName"))
 	return rv
 }
 
 // The ISO country code for the user’s cellular service provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/isoCountryCode
-func (c_ Carrier) IsoCountryCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("isoCountryCode"))
+func (c_ Carrier) IsoCountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
 	return rv
 }
 
 // The mobile country code (MCC) for the user’s cellular service provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileCountryCode
-func (c_ Carrier) MobileCountryCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("mobileCountryCode"))
+func (c_ Carrier) MobileCountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("mobileCountryCode"))
 	return rv
 }
 
 // The mobile network code for the user’s cellular service provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileNetworkCode
-func (c_ Carrier) MobileNetworkCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("mobileNetworkCode"))
+func (c_ Carrier) MobileNetworkCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("mobileNetworkCode"))
 	return rv
 }
 

@@ -29,6 +29,17 @@ type _CKRecordZoneNotificationClass struct {
 // An interface definition for the [CKRecordZoneNotification] class.
 type ICKRecordZoneNotification interface {
 	ICKNotification
+	RecordZoneID() CKRecordZoneID
+	IsPruned() bool
+	SetIsPruned(value bool)
+	NotificationType() unsafe.Pointer
+	SetNotificationType(value unsafe.Pointer)
+	DatabaseScope() unsafe.Pointer
+	SetDatabaseScope(value unsafe.Pointer)
+	ShouldSendContentAvailable() bool
+	SetShouldSendContentAvailable(value bool)
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // A notification that triggers when the contents of a record zone change.

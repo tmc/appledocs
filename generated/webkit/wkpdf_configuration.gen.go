@@ -31,6 +31,10 @@ type _PDFConfigurationClass struct {
 // An interface definition for the [PDFConfiguration] class.
 type IPDFConfiguration interface {
 	objectivec.IObject
+	AllowTransparentBackground() bool
+	SetAllowTransparentBackground(value bool)
+	Rect() coregraphics.CGRect
+	SetRect(value coregraphics.CGRect)
 }
 
 // The configuration data to use when generating a PDF representation of a web view’s contents.

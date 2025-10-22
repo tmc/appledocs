@@ -30,6 +30,41 @@ type _URLRequestClass struct {
 // An interface definition for the [URLRequest] class.
 type IURLRequest interface {
 	objectivec.IObject
+	AllowsConstrainedNetworkAccess() bool
+	AllowsPersistentDNS() bool
+	CookiePartitionIdentifier() string
+	HTTPShouldHandleCookies() bool
+	NetworkServiceType() URLRequestNetworkServiceType
+	AllHTTPHeaderFields() string
+	SetAllHTTPHeaderFields(value string)
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	AllowsExpensiveNetworkAccess() bool
+	SetAllowsExpensiveNetworkAccess(value bool)
+	AllowsUltraConstrainedNetworkAccess() bool
+	SetAllowsUltraConstrainedNetworkAccess(value bool)
+	AssumesHTTP3Capable() bool
+	SetAssumesHTTP3Capable(value bool)
+	Attribution() unsafe.Pointer
+	SetAttribution(value unsafe.Pointer)
+	CachePolicy() unsafe.Pointer
+	SetCachePolicy(value unsafe.Pointer)
+	HttpBody() Data
+	SetHttpBody(value IData)
+	HttpBodyStream() NSInputStream
+	SetHttpBodyStream(value IInputStream)
+	HttpMethod() string
+	SetHttpMethod(value string)
+	HttpShouldUsePipelining() bool
+	SetHttpShouldUsePipelining(value bool)
+	MainDocumentURL() URL
+	SetMainDocumentURL(value IURL)
+	RequiresDNSSECValidation() bool
+	SetRequiresDNSSECValidation(value bool)
+	TimeoutInterval() TimeInterval
+	SetTimeoutInterval(value ITimeInterval)
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // A URL load request that is independent of protocol or URL scheme.

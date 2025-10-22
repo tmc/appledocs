@@ -30,6 +30,12 @@ type _ScriptExecutionContextClass struct {
 // An interface definition for the [ScriptExecutionContext] class.
 type IScriptExecutionContext interface {
 	objectivec.IObject
+	ObjectBeingTested() unsafe.Pointer
+	SetObjectBeingTested(value unsafe.Pointer)
+	RangeContainerObject() unsafe.Pointer
+	SetRangeContainerObject(value unsafe.Pointer)
+	TopLevelObject() unsafe.Pointer
+	SetTopLevelObject(value unsafe.Pointer)
 }
 
 // The context in which the current script command is executed.

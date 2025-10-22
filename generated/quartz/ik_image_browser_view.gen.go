@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,10 +29,14 @@ type _IKImageBrowserViewClass struct {
 
 // An interface definition for the [IKImageBrowserView] class.
 type IIKImageBrowserView interface {
-	appkit.IView
+	IView
 	ContentResizingMask() uint
 	ItemFrameAtIndex(index int) foundation.Rect
 	SetDropIndexDropOperation(index int, operation unsafe.Pointer)
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A view for displaying and browsing a large collection of images and movies.
@@ -42,7 +45,7 @@ type IIKImageBrowserView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageBrowserView
 type IKImageBrowserView struct {
-	appkit.View
+	View
 }
 
 // IKImageBrowserViewFrom constructs a [IKImageBrowserView] from an unsafe.Pointer.
@@ -50,7 +53,7 @@ type IKImageBrowserView struct {
 // A view for displaying and browsing a large collection of images and movies.
 func IKImageBrowserViewFrom(ptr unsafe.Pointer) IKImageBrowserView {
 	return IKImageBrowserView{
-		View: appkit.ViewFrom(ptr),
+		View: ViewFrom(ptr),
 	}
 }
 

@@ -30,6 +30,8 @@ type _EnvironmentMechanismCompanionClass struct {
 // An interface definition for the [EnvironmentMechanismCompanion] class.
 type IEnvironmentMechanismCompanion interface {
 	IEnvironmentMechanism
+	StateHash() foundation.NSData
+	Type() CompanionType
 }
 
 //

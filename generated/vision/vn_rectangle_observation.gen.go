@@ -30,6 +30,15 @@ type _RectangleObservationClass struct {
 // An interface definition for the [RectangleObservation] class.
 type IRectangleObservation interface {
 	IDetectedObjectObservation
+	TopRight() coregraphics.CGPoint
+	Results() VNRectangleObservation
+	SetResults(value IVNRectangleObservation)
+	BottomLeft() coregraphics.CGPoint
+	SetBottomLeft(value coregraphics.CGPoint)
+	BottomRight() coregraphics.CGPoint
+	SetBottomRight(value coregraphics.CGPoint)
+	TopLeft() coregraphics.CGPoint
+	SetTopLeft(value coregraphics.CGPoint)
 }
 
 // An object that represents the four vertices of a detected rectangle.

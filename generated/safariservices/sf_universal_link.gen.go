@@ -31,6 +31,12 @@ type _SFUniversalLinkClass struct {
 // An interface definition for the [SFUniversalLink] class.
 type ISFUniversalLink interface {
 	objectivec.IObject
+	ApplicationURL() foundation.URL
+	Enabled() bool
+	SetEnabled(value bool)
+	WebpageURL() foundation.URL
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // An object that provides browsers with the ability to discover associations between an app and a website.

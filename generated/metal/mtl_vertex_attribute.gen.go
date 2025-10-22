@@ -30,6 +30,20 @@ type _VertexAttributeClass struct {
 // An interface definition for the [VertexAttribute] class.
 type IVertexAttribute interface {
 	objectivec.IObject
+	VertexAttributes() MTLVertexAttribute
+	SetVertexAttributes(value MTLVertexAttribute)
+	AttributeIndex() int
+	SetAttributeIndex(value int)
+	AttributeType() unsafe.Pointer
+	SetAttributeType(value unsafe.Pointer)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsPatchControlPointData() bool
+	SetIsPatchControlPointData(value bool)
+	IsPatchData() bool
+	SetIsPatchData(value bool)
+	Name() string
+	SetName(value string)
 }
 
 // An instance that represents an attribute of a vertex function.
@@ -191,8 +205,8 @@ func (v_ VertexAttribute) SetIsPatchData(value bool) {
 // The name of the attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) Name() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("name"))
+func (v_ VertexAttribute) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -202,8 +216,8 @@ func (v_ VertexAttribute) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) SetName(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
+func (v_ VertexAttribute) SetName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

@@ -31,8 +31,34 @@ type _IKImageViewClass struct {
 
 // An interface definition for the [IKImageView] class.
 type IIKImageView interface {
-	appkit.IView
+	IView
 	ConvertImageRectToViewRect(imageRect foundation.IRect) foundation.Rect
+	AutohidesScrollers() bool
+	SetAutohidesScrollers(value bool)
+	Autoresizes() bool
+	SetAutoresizes(value bool)
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.IColor)
+	CurrentToolMode() string
+	SetCurrentToolMode(value string)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DoubleClickOpensImageEditPanel() bool
+	SetDoubleClickOpensImageEditPanel(value bool)
+	Editable() bool
+	SetEditable(value bool)
+	HasHorizontalScroller() bool
+	SetHasHorizontalScroller(value bool)
+	HasVerticalScroller() bool
+	SetHasVerticalScroller(value bool)
+	ImageCorrection() coreimage.Filter
+	SetImageCorrection(value coreimage.IFilter)
+	RotationAngle() float64
+	SetRotationAngle(value float64)
+	SupportsDragAndDrop() bool
+	SetSupportsDragAndDrop(value bool)
+	ZoomFactor() float64
+	SetZoomFactor(value float64)
 }
 
 // A view that allows displaying and minor editing of an image.
@@ -41,7 +67,7 @@ type IIKImageView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageView
 type IKImageView struct {
-	appkit.View
+	View
 }
 
 // IKImageViewFrom constructs a [IKImageView] from an unsafe.Pointer.
@@ -49,7 +75,7 @@ type IKImageView struct {
 // A view that allows displaying and minor editing of an image.
 func IKImageViewFrom(ptr unsafe.Pointer) IKImageView {
 	return IKImageView{
-		View: appkit.ViewFrom(ptr),
+		View: ViewFrom(ptr),
 	}
 }
 
@@ -150,8 +176,8 @@ func (i_ IKImageView) SetBackgroundColor(value appkit.IColor) {
 // Specifies the current tool mode for the image view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/currenttoolmode
-func (i_ IKImageView) CurrentToolMode() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("currentToolMode"))
+func (i_ IKImageView) CurrentToolMode() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("currentToolMode"))
 	return rv
 }
 
@@ -161,8 +187,8 @@ func (i_ IKImageView) CurrentToolMode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/currenttoolmode
-func (i_ IKImageView) SetCurrentToolMode(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentToolMode:"), value)
+func (i_ IKImageView) SetCurrentToolMode(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentToolMode:"), objc.String(value))
 }
 
 // Specifies the delegate object of the receiver.

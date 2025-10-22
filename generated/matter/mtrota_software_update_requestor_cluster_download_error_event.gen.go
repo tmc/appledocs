@@ -31,6 +31,14 @@ type _MTROTASoftwareUpdateRequestorClusterDownloadErrorEventClass struct {
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent] class.
 type IMTROTASoftwareUpdateRequestorClusterDownloadErrorEvent interface {
 	objectivec.IObject
+	BytesDownloaded() foundation.Number
+	SetBytesDownloaded(value foundation.INumber)
+	PlatformCode() foundation.Number
+	SetPlatformCode(value foundation.INumber)
+	ProgressPercent() foundation.Number
+	SetProgressPercent(value foundation.INumber)
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
 }
 
 //

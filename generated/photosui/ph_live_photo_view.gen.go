@@ -35,6 +35,22 @@ type IPHLivePhotoView interface {
 	StartPlaybackWithStyle(playbackStyle PHLivePhotoViewPlaybackStyle)
 	StopPlayback()
 	StopPlaybackAnimated(animated bool)
+	AudioVolume() float32
+	SetAudioVolume(value float32)
+	ContentMode() PHLivePhotoViewContentMode
+	SetContentMode(value PHLivePhotoViewContentMode)
+	ContentsRect() coregraphics.CGRect
+	SetContentsRect(value coregraphics.CGRect)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Muted() bool
+	SetMuted(value bool)
+	LivePhoto() photos.PHLivePhoto
+	SetLivePhoto(value photos.IPHLivePhoto)
+	LivePhotoBadgeView() appkit.View
+	PlaybackGestureRecognizer() appkit.GestureRecognizer
+	IsMuted() bool
+	SetIsMuted(value bool)
 }
 
 // A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.
@@ -119,8 +135,8 @@ func (p_ PHLivePhotoView) StopPlaybackAnimated(animated bool) {
 // The audio gain to apply to the Live Photo’s movie content during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/audioVolume
-func (p_ PHLivePhotoView) AudioVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioVolume"))
+func (p_ PHLivePhotoView) AudioVolume() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("audioVolume"))
 	return rv
 }
 
@@ -130,7 +146,7 @@ func (p_ PHLivePhotoView) AudioVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/audioVolume
-func (p_ PHLivePhotoView) SetAudioVolume(value unsafe.Pointer) {
+func (p_ PHLivePhotoView) SetAudioVolume(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioVolume:"), value)
 }
 

@@ -29,6 +29,24 @@ type _MTL4InstanceAccelerationStructureDescriptorClass struct {
 // An interface definition for the [MTL4InstanceAccelerationStructureDescriptor] class.
 type IMTL4InstanceAccelerationStructureDescriptor interface {
 	IMTL4AccelerationStructureDescriptor
+	InstanceCount() int
+	SetInstanceCount(value int)
+	InstanceDescriptorBuffer() unsafe.Pointer
+	SetInstanceDescriptorBuffer(value unsafe.Pointer)
+	InstanceDescriptorStride() int
+	SetInstanceDescriptorStride(value int)
+	InstanceDescriptorType() unsafe.Pointer
+	SetInstanceDescriptorType(value unsafe.Pointer)
+	InstanceTransformationMatrixLayout() unsafe.Pointer
+	SetInstanceTransformationMatrixLayout(value unsafe.Pointer)
+	MotionTransformBuffer() unsafe.Pointer
+	SetMotionTransformBuffer(value unsafe.Pointer)
+	MotionTransformCount() int
+	SetMotionTransformCount(value int)
+	MotionTransformStride() int
+	SetMotionTransformStride(value int)
+	MotionTransformType() TransformType
+	SetMotionTransformType(value TransformType)
 }
 
 // Descriptor for an instance acceleration structure.

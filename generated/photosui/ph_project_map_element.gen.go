@@ -29,6 +29,12 @@ type _PHProjectMapElementClass struct {
 // An interface definition for the [PHProjectMapElement] class.
 type IPHProjectMapElement interface {
 	IPHProjectElement
+	Altitude() unsafe.Pointer
+	Annotations() []objc.ID
+	CenterCoordinate() unsafe.Pointer
+	Heading() unsafe.Pointer
+	MapType() unsafe.Pointer
+	Pitch() float64
 }
 
 // An element that represents a map within project section content.

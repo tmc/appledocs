@@ -31,6 +31,12 @@ type _MTROperationalCredentialsClusterNOCStructClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterNOCStruct] class.
 type IMTROperationalCredentialsClusterNOCStruct interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	Icac() foundation.Data
+	SetIcac(value foundation.IData)
+	Noc() foundation.Data
+	SetNoc(value foundation.IData)
 }
 
 //

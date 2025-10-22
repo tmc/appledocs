@@ -30,6 +30,13 @@ type _NEDNSProxyManagerClass struct {
 // An interface definition for the [NEDNSProxyManager] class.
 type INEDNSProxyManager interface {
 	objectivec.IObject
+	NEDNSProxyErrorDomain() string
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	LocalizedDescription() string
+	SetLocalizedDescription(value string)
+	ProviderProtocol() NEDNSProxyProviderProtocol
+	SetProviderProtocol(value INEDNSProxyProviderProtocol)
 }
 
 // An object to create and manage an DNS proxy provider’s configuration.
@@ -83,8 +90,8 @@ func NewNEDNSProxyManager() NEDNSProxyManager {
 // The DNS proxy error domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain
-func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
+func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
 	return rv
 }
 
@@ -109,8 +116,8 @@ func (n_ NEDNSProxyManager) SetIsEnabled(value bool) {
 // A description of the DNS proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
-func (n_ NEDNSProxyManager) LocalizedDescription() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEDNSProxyManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -120,8 +127,8 @@ func (n_ NEDNSProxyManager) LocalizedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
-func (n_ NEDNSProxyManager) SetLocalizedDescription(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NEDNSProxyManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
 // The provider-specific portion of the DNS proxy configuration.

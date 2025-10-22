@@ -30,6 +30,25 @@ type _TensorDescriptorClass struct {
 // An interface definition for the [TensorDescriptor] class.
 type ITensorDescriptor interface {
 	objectivec.IObject
+	Dimensions() MTLTensorExtents
+	SetDimensions(value IMTLTensorExtents)
+	CpuCacheMode() unsafe.Pointer
+	SetCpuCacheMode(value unsafe.Pointer)
+	DataType() TensorDataType
+	SetDataType(value TensorDataType)
+	HazardTrackingMode() HazardTrackingMode
+	SetHazardTrackingMode(value HazardTrackingMode)
+	ResourceOptions() ResourceOptions
+	SetResourceOptions(value ResourceOptions)
+	StorageMode() StorageMode
+	SetStorageMode(value StorageMode)
+	Strides() MTLTensorExtents
+	SetStrides(value IMTLTensorExtents)
+	Usage() TensorUsage
+	SetUsage(value ITensorUsage)
+	MTLTensorDomain() string
+	MTL_TENSOR_MAX_RANK() unsafe.Pointer
+	SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer)
 }
 
 // A configuration type for creating new tensor instances.
@@ -225,8 +244,8 @@ func (t_ TensorDescriptor) SetUsage(value ITensorUsage) {
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorDescriptor) MTLTensorDomain() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorDescriptor) MTLTensorDomain() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
 }
 

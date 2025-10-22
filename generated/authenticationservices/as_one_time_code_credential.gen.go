@@ -30,6 +30,8 @@ type _OneTimeCodeCredentialClass struct {
 // An interface definition for the [OneTimeCodeCredential] class.
 type IOneTimeCodeCredential interface {
 	objectivec.IObject
+	Code() string
+	SetCode(value string)
 }
 
 // A one-time passcode (OTP) credential.
@@ -81,8 +83,8 @@ func NewOneTimeCodeCredential() OneTimeCodeCredential {
 // The one-time passcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asonetimecodecredential/code
-func (o_ OneTimeCodeCredential) Code() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("code"))
+func (o_ OneTimeCodeCredential) Code() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("code"))
 	return rv
 }
 
@@ -92,8 +94,8 @@ func (o_ OneTimeCodeCredential) Code() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asonetimecodecredential/code
-func (o_ OneTimeCodeCredential) SetCode(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCode:"), value)
+func (o_ OneTimeCodeCredential) SetCode(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCode:"), objc.String(value))
 }
 
 

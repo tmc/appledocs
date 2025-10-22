@@ -33,6 +33,7 @@ type ICXCallDirectoryManager interface {
 	GetEnabledStatusForExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer)
 	OpenSettingsWithCompletionHandler(completion unsafe.Pointer)
 	ReloadExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer)
+	CXErrorDomainCallDirectoryManager() string
 }
 
 // The programmatic interface to an object that manages a Call Directory app extension.

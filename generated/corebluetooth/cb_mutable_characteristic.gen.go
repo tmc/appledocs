@@ -30,6 +30,15 @@ type _CBMutableCharacteristicClass struct {
 // An interface definition for the [CBMutableCharacteristic] class.
 type ICBMutableCharacteristic interface {
 	ICBCharacteristic
+	Descriptors() []CBDescriptor
+	SetDescriptors(value []CBDescriptor)
+	Permissions() CBAttributePermissions
+	SetPermissions(value ICBAttributePermissions)
+	Properties() CBCharacteristicProperties
+	SetProperties(value ICBCharacteristicProperties)
+	SubscribedCentrals() []CBCentral
+	Value() foundation.NSData
+	SetValue(value foundation.IData)
 }
 
 // A characteristic of a local peripheral’s service.

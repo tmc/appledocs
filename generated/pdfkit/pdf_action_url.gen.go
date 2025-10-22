@@ -30,6 +30,8 @@ type _PDFActionURLClass struct {
 // An interface definition for the [PDFActionURL] class.
 type IPDFActionURL interface {
 	IPDFAction
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // , a subclass of , defines methods for getting and setting the URL associated with a URL action.

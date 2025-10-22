@@ -29,6 +29,16 @@ type _MetadataFaceObjectClass struct {
 // An interface definition for the [MetadataFaceObject] class.
 type IMetadataFaceObject interface {
 	IMetadataObject
+	FaceID() int
+	SetFaceID(value int)
+	HasRollAngle() bool
+	SetHasRollAngle(value bool)
+	HasYawAngle() bool
+	SetHasYawAngle(value bool)
+	RollAngle() float64
+	SetRollAngle(value float64)
+	YawAngle() float64
+	SetYawAngle(value float64)
 }
 
 // Face information detected by a metadata capture output.

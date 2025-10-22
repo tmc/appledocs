@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestParams] class.
 type IMTRTestClusterClusterTestParams interface {
 	IMTRUnitTestingClusterTestParams
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

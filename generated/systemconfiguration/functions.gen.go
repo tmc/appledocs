@@ -71,8 +71,8 @@ var (
 	_SCDynamicStoreSetMultiple func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SCDynamicStoreSetNotificationKeys func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SCDynamicStoreSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCError func() unsafe.Pointer
-	_SCErrorString func(unsafe.Pointer) unsafe.Pointer
+	_SCError func() int
+	_SCErrorString func(int) unsafe.Pointer
 	_SCNetworkCheckReachabilityByAddress func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SCNetworkCheckReachabilityByName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SCNetworkConnectionCopyExtendedStatus func(unsafe.Pointer) unsafe.Pointer
@@ -108,7 +108,7 @@ var (
 	_SCNetworkInterfaceRefreshConfiguration func(unsafe.Pointer) unsafe.Pointer
 	_SCNetworkInterfaceSetConfiguration func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SCNetworkInterfaceSetExtendedConfiguration func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceSetMTU func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkInterfaceSetMTU func(unsafe.Pointer, int) unsafe.Pointer
 	_SCNetworkInterfaceSetMediaOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SCNetworkProtocolGetConfiguration func(unsafe.Pointer) unsafe.Pointer
 	_SCNetworkProtocolGetEnabled func(unsafe.Pointer) unsafe.Pointer
@@ -957,7 +957,7 @@ func SCDynamicStoreSetValue(store unsafe.Pointer, key unsafe.Pointer, value unsa
 // Added in macOS 10.1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCError()
-func SCError() unsafe.Pointer {
+func SCError() int {
 	return _SCError()
 	}
 
@@ -967,7 +967,7 @@ func SCError() unsafe.Pointer {
 // Added in macOS 10.1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCErrorString(_:)
-func SCErrorString(status unsafe.Pointer) unsafe.Pointer {
+func SCErrorString(status int) unsafe.Pointer {
 	return _SCErrorString(status)
 	}
 
@@ -1333,7 +1333,7 @@ func SCNetworkInterfaceSetExtendedConfiguration(interface_ unsafe.Pointer, exten
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceSetMTU(_:_:)
-func SCNetworkInterfaceSetMTU(interface_ unsafe.Pointer, mtu unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceSetMTU(interface_ unsafe.Pointer, mtu int) unsafe.Pointer {
 	return _SCNetworkInterfaceSetMTU(interface_, mtu)
 	}
 

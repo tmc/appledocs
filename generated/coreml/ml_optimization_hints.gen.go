@@ -30,6 +30,10 @@ type _OptimizationHintsClass struct {
 // An interface definition for the [OptimizationHints] class.
 type IOptimizationHints interface {
 	objectivec.IObject
+	ReshapeFrequency() ReshapeFrequencyHint
+	SetReshapeFrequency(value IReshapeFrequencyHint)
+	SpecializationStrategy() SpecializationStrategy
+	SetSpecializationStrategy(value SpecializationStrategy)
 }
 
 // MLOptimizationHints

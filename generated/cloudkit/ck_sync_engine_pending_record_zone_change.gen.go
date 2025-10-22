@@ -30,6 +30,8 @@ type _CKSyncEnginePendingRecordZoneChangeClass struct {
 // An interface definition for the [CKSyncEnginePendingRecordZoneChange] class.
 type ICKSyncEnginePendingRecordZoneChange interface {
 	objectivec.IObject
+	RecordID() CKRecordID
+	Type() CKSyncEnginePendingRecordZoneChangeType
 }
 
 // Describes an unsent record modification.

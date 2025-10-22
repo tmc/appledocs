@@ -30,6 +30,7 @@ type _AudioMixClass struct {
 // An interface definition for the [AudioMix] class.
 type IAudioMix interface {
 	objectivec.IObject
+	InputParameters() []AudioMixInputParameters
 }
 
 // An object that manages the input parameters for mixing audio tracks.

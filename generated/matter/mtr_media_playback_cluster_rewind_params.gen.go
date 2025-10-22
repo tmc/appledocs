@@ -31,6 +31,12 @@ type _MTRMediaPlaybackClusterRewindParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterRewindParams] class.
 type IMTRMediaPlaybackClusterRewindParams interface {
 	objectivec.IObject
+	AudioAdvanceUnmuted() foundation.Number
+	SetAudioAdvanceUnmuted(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,10 @@ type _FSPathURLResourceClass struct {
 // An interface definition for the [FSPathURLResource] class.
 type IFSPathURLResource interface {
 	IFSResource
+	Writable() bool
+	Url() foundation.URL
+	IsWritable() bool
+	SetIsWritable(value bool)
 }
 
 // A resource representing a path

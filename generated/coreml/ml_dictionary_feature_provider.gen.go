@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,8 @@ type _DictionaryFeatureProviderClass struct {
 // An interface definition for the [DictionaryFeatureProvider] class.
 type IDictionaryFeatureProvider interface {
 	objectivec.IObject
-	ObjectForKeyedSubscript(featureName appkit.string) FeatureValue
+	ObjectForKeyedSubscript(featureName string) FeatureValue
+	Dictionary() unsafe.Pointer
 }
 
 // A convenience wrapper for the given dictionary of data.
@@ -98,8 +98,8 @@ func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, 
 // Subscript interface for the feature provider to pass through to the dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/subscript(_:)
-func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName appkit.string) FeatureValue {
-	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), featureName)
+func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) FeatureValue {
+	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), objc.String(featureName))
 	return rv
 }
 

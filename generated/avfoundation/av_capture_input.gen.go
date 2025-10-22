@@ -30,6 +30,7 @@ type _CaptureInputClass struct {
 // An interface definition for the [CaptureInput] class.
 type ICaptureInput interface {
 	objectivec.IObject
+	Ports() []CaptureInputPort
 }
 
 // An abstract superclass for objects that provide input data to a capture session.

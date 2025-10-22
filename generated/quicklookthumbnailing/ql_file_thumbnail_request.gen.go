@@ -32,6 +32,13 @@ type _FileThumbnailRequestClass struct {
 // An interface definition for the [FileThumbnailRequest] class.
 type IFileThumbnailRequest interface {
 	objectivec.IObject
+	MaximumSize() coregraphics.CGSize
+	FileURL() foundation.URL
+	SetFileURL(value foundation.IURL)
+	MinimumSize() coregraphics.CGSize
+	SetMinimumSize(value coregraphics.CGSize)
+	Scale() float64
+	SetScale(value float64)
 }
 
 // A request to generate a thumbnail for a custom file type.

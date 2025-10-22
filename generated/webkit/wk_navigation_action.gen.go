@@ -31,6 +31,21 @@ type _NavigationActionClass struct {
 // An interface definition for the [NavigationAction] class.
 type INavigationAction interface {
 	objectivec.IObject
+	TargetFrame() WKFrameInfo
+	ButtonNumber() unsafe.Pointer
+	SetButtonNumber(value unsafe.Pointer)
+	IsContentRuleListRedirect() bool
+	SetIsContentRuleListRedirect(value bool)
+	ModifierFlags() unsafe.Pointer
+	SetModifierFlags(value unsafe.Pointer)
+	NavigationType() unsafe.Pointer
+	SetNavigationType(value unsafe.Pointer)
+	Request() foundation.URLRequest
+	SetRequest(value foundation.IURLRequest)
+	ShouldPerformDownload() bool
+	SetShouldPerformDownload(value bool)
+	SourceFrame() WKFrameInfo
+	SetSourceFrame(value IWKFrameInfo)
 }
 
 // An object that contains information about an action that causes navigation to occur.

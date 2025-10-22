@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _PublicKeyCredentialClientDataClass struct {
 // An interface definition for the [PublicKeyCredentialClientData] class.
 type IPublicKeyCredentialClientData interface {
 	objectivec.IObject
+	CrossOrigin() PublicKeyCredentialClientDataCrossOriginValue
+	SetCrossOrigin(value IPublicKeyCredentialClientDataCrossOriginValue)
+	Origin() string
+	SetOrigin(value string)
 }
 
 // This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
@@ -96,8 +99,8 @@ func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value IPublicKeyCredentia
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) Origin() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("origin"))
+func (p_ PublicKeyCredentialClientData) Origin() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("origin"))
 	return rv
 }
 
@@ -105,8 +108,8 @@ func (p_ PublicKeyCredentialClientData) Origin() appkit.string {
 // SetOrigin sets the value of the origin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) SetOrigin(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), value)
+func (p_ PublicKeyCredentialClientData) SetOrigin(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
 }
 
 

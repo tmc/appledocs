@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,7 @@ type _SurfaceClass struct {
 type ISurface interface {
 	objectivec.IObject
 	AllAttachments() unsafe.Pointer
-	AttachmentForKey(key appkit.string) objc.ID
+	AttachmentForKey(key string) objc.ID
 	BaseAddressOfPlaneAtIndex(planeIndex uint)
 	BytesPerElementOfPlaneAtIndex(planeIndex uint) int
 	BytesPerRowOfPlaneAtIndex(planeIndex uint) int
@@ -43,12 +42,29 @@ type ISurface interface {
 	IncrementUseCount()
 	LockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
 	RemoveAllAttachments()
-	RemoveAttachmentForKey(key appkit.string)
+	RemoveAttachmentForKey(key string)
 	SetAllAttachments(dict unsafe.Pointer)
-	SetAttachmentForKey(anObject objectivec.IObject, key appkit.string)
+	SetAttachmentForKey(anObject objectivec.IObject, key string)
 	SetPurgeableOldState(newState SurfacePurgeabilityState, oldState IOSurfacePurgeabilityState) unsafe.Pointer
 	UnlockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
 	WidthOfPlaneAtIndex(planeIndex uint) int
+	AllocationSize() int
+	AllowsPixelSizeCasting() bool
+	BaseAddress() unsafe.Pointer
+	BytesPerElement() int
+	BytesPerRow() int
+	ElementHeight() int
+	ElementWidth() int
+	Height() int
+	InUse() bool
+	LocalUseCount() unsafe.Pointer
+	PixelFormat() unsafe.Pointer
+	PlaneCount() uint
+	Seed() uint32
+	SurfaceID() uint32
+	Width() int
+	IsInUse() bool
+	SetIsInUse(value bool)
 }
 
 // Data type representing an IOSurface opaque object.
@@ -116,8 +132,8 @@ func (s_ Surface) AllAttachments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/attachment(forKey:)
-func (s_ Surface) AttachmentForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("attachmentForKey:"), key)
+func (s_ Surface) AttachmentForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("attachmentForKey:"), objc.String(key))
 	return rv
 }
 
@@ -189,8 +205,8 @@ func (s_ Surface) RemoveAllAttachments() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/removeAttachment(forKey:)
-func (s_ Surface) RemoveAttachmentForKey(key appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("removeAttachmentForKey:"), key)
+func (s_ Surface) RemoveAttachmentForKey(key string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("removeAttachmentForKey:"), objc.String(key))
 }
 
 //
@@ -201,8 +217,8 @@ func (s_ Surface) SetAllAttachments(dict unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/setAttachment(_:forKey:)
-func (s_ Surface) SetAttachmentForKey(anObject objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachment:forKey:"), anObject, key)
+func (s_ Surface) SetAttachmentForKey(anObject objectivec.IObject, key string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachment:forKey:"), anObject, objc.String(key))
 }
 
 //
@@ -312,15 +328,15 @@ func (s_ Surface) PlaneCount() uint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/seed
-func (s_ Surface) Seed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("seed"))
+func (s_ Surface) Seed() uint32 {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("seed"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/surfaceID
-func (s_ Surface) SurfaceID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("surfaceID"))
+func (s_ Surface) SurfaceID() uint32 {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("surfaceID"))
 	return rv
 }
 

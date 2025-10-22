@@ -31,6 +31,9 @@ type _CXCallObserverClass struct {
 type ICXCallObserver interface {
 	objectivec.IObject
 	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
+	Calls() []CXCall
+	CallObserver() CXCallObserver
+	SetCallObserver(value ICXCallObserver)
 }
 
 // A programmatic interface for an object that manages a list of active calls and observes call changes.

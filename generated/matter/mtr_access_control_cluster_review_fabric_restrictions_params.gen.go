@@ -31,6 +31,12 @@ type _MTRAccessControlClusterReviewFabricRestrictionsParamsClass struct {
 // An interface definition for the [MTRAccessControlClusterReviewFabricRestrictionsParams] class.
 type IMTRAccessControlClusterReviewFabricRestrictionsParams interface {
 	objectivec.IObject
+	Arl() objc.ID
+	SetArl(value objc.ID)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

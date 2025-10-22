@@ -30,6 +30,16 @@ type _MKRouteStepClass struct {
 // An interface definition for the [MKRouteStep] class.
 type IMKRouteStep interface {
 	objectivec.IObject
+	Distance() unsafe.Pointer
+	SetDistance(value unsafe.Pointer)
+	Instructions() string
+	SetInstructions(value string)
+	Notice() string
+	SetNotice(value string)
+	Polyline() MKPolyline
+	SetPolyline(value IMKPolyline)
+	TransportType() unsafe.Pointer
+	SetTransportType(value unsafe.Pointer)
 }
 
 // One portion of an overall route.
@@ -101,8 +111,8 @@ func (m_ MKRouteStep) SetDistance(value unsafe.Pointer) {
 // The written instructions for following the path that the step represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) Instructions() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("instructions"))
+func (m_ MKRouteStep) Instructions() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
 	return rv
 }
 
@@ -112,15 +122,15 @@ func (m_ MKRouteStep) Instructions() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) SetInstructions(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), value)
+func (m_ MKRouteStep) SetInstructions(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
 }
 
 // Additional notices that apply to the step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
-func (m_ MKRouteStep) Notice() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("notice"))
+func (m_ MKRouteStep) Notice() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("notice"))
 	return rv
 }
 
@@ -130,8 +140,8 @@ func (m_ MKRouteStep) Notice() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
-func (m_ MKRouteStep) SetNotice(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), value)
+func (m_ MKRouteStep) SetNotice(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), objc.String(value))
 }
 
 // The detailed step geometry.

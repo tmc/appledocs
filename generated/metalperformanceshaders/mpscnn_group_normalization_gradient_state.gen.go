@@ -29,6 +29,13 @@ type _CNNGroupNormalizationGradientStateClass struct {
 // An interface definition for the [CNNGroupNormalizationGradientState] class.
 type ICNNGroupNormalizationGradientState interface {
 	IGradientState
+	Beta() objc.ID
+	GradientForBeta() objc.ID
+	GradientForGamma() objc.ID
+	Gamma() unsafe.Pointer
+	SetGamma(value unsafe.Pointer)
+	GroupNormalization() MPSCNNGroupNormalization
+	SetGroupNormalization(value IMPSCNNGroupNormalization)
 }
 
 //

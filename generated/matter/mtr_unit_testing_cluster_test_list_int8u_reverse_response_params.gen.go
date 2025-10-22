@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterTestListInt8UReverseResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestListInt8UReverseResponseParams] class.
 type IMTRUnitTestingClusterTestListInt8UReverseResponseParams interface {
 	objectivec.IObject
+	Arg1() unsafe.Pointer
+	SetArg1(value unsafe.Pointer)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,11 @@ type _CKUserIdentityClass struct {
 // An interface definition for the [CKUserIdentity] class.
 type ICKUserIdentity interface {
 	objectivec.IObject
+	ContactIdentifiers() []string
+	HasiCloudAccount() bool
+	LookupInfo() CKUserIdentityLookupInfo
+	NameComponents() foundation.PersonNameComponents
+	UserRecordID() CKRecordID
 }
 
 // The identity of a user.

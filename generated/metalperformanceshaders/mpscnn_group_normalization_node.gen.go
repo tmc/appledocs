@@ -30,6 +30,8 @@ type _CNNGroupNormalizationNodeClass struct {
 // An interface definition for the [CNNGroupNormalizationNode] class.
 type ICNNGroupNormalizationNode interface {
 	IFilterNode
+	TrainingStyle() unsafe.Pointer
+	SetTrainingStyle(value unsafe.Pointer)
 }
 
 //

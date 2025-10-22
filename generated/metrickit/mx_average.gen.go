@@ -30,6 +30,10 @@ type _MXAverageClass struct {
 // An interface definition for the [MXAverage] class.
 type IMXAverage interface {
 	objectivec.IObject
+	AverageMeasurement() unsafe.Pointer
+	SampleCount() int
+	StandardDeviation() float64
+	MXErrorDomain() string
 }
 
 // A unit of measure for an average.
@@ -97,16 +101,16 @@ func (m_ MXAverage) SampleCount() int {
 // The standard deviation of the distribution of values used to calculate the average.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/standardDeviation
-func (m_ MXAverage) StandardDeviation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("standardDeviation"))
+func (m_ MXAverage) StandardDeviation() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("standardDeviation"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXAverage) MXErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXAverage) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

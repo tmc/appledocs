@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
@@ -31,6 +30,7 @@ type _PHASEChannelMixerDefinitionClass struct {
 // An interface definition for the [PHASEChannelMixerDefinition] class.
 type IPHASEChannelMixerDefinition interface {
 	IPHASEMixerDefinition
+	InputChannelLayout() avfaudio.AudioChannelLayout
 }
 
 // An audio-layering object that routes sound directly to the device’s output.
@@ -100,9 +100,9 @@ func NewPHASEChannelMixerDefinitionWithChannelLayout(layout avfaudio.IAudioChann
 // Creates a named channel mixer with the given channel layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEChannelMixerDefinition/init(channelLayout:identifier:)
-func NewPHASEChannelMixerDefinitionWithChannelLayoutIdentifier(layout avfaudio.IAudioChannelLayout, identifier appkit.string) PHASEChannelMixerDefinition {
+func NewPHASEChannelMixerDefinitionWithChannelLayoutIdentifier(layout avfaudio.IAudioChannelLayout, identifier string) PHASEChannelMixerDefinition {
 	instance := getPHASEChannelMixerDefinitionClass().Alloc()
-	rv := objc.Send[PHASEChannelMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:identifier:"), layout, identifier)
+	rv := objc.Send[PHASEChannelMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:identifier:"), layout, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

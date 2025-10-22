@@ -30,6 +30,18 @@ type _MTRContentLauncherClusterBrandingInformationStructClass struct {
 // An interface definition for the [MTRContentLauncherClusterBrandingInformationStruct] class.
 type IMTRContentLauncherClusterBrandingInformationStruct interface {
 	objectivec.IObject
+	Background() MTRContentLauncherClusterStyleInformationStruct
+	SetBackground(value IMTRContentLauncherClusterStyleInformationStruct)
+	Logo() MTRContentLauncherClusterStyleInformationStruct
+	SetLogo(value IMTRContentLauncherClusterStyleInformationStruct)
+	ProgressBar() MTRContentLauncherClusterStyleInformationStruct
+	SetProgressBar(value IMTRContentLauncherClusterStyleInformationStruct)
+	ProviderName() string
+	SetProviderName(value string)
+	Splash() MTRContentLauncherClusterStyleInformationStruct
+	SetSplash(value IMTRContentLauncherClusterStyleInformationStruct)
+	WaterMark() MTRContentLauncherClusterStyleInformationStruct
+	SetWaterMark(value IMTRContentLauncherClusterStyleInformationStruct)
 }
 
 //
@@ -122,8 +134,8 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProgressBar(valu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/providername
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProviderName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("providerName"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProviderName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("providerName"))
 	return rv
 }
 
@@ -131,8 +143,8 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProviderName() appk
 // SetProviderName sets the value of the providerName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/providername
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProviderName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderName:"), value)
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProviderName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderName:"), objc.String(value))
 }
 
 //

@@ -29,6 +29,12 @@ type _INSendMessageIntentResponseClass struct {
 // An interface definition for the [INSendMessageIntentResponse] class.
 type IINSendMessageIntentResponse interface {
 	IINIntentResponse
+	Code() INSendMessageIntentResponseCode
+	SetCode(value INSendMessageIntentResponseCode)
+	SentMessage() INMessage
+	SetSentMessage(value INMessage)
+	SentMessages() INMessage
+	SetSentMessages(value INMessage)
 }
 
 // Your app’s response to a send message intent.

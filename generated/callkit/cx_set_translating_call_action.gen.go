@@ -31,6 +31,9 @@ type _CXSetTranslatingCallActionClass struct {
 type ICXSetTranslatingCallAction interface {
 	ICXCallAction
 	FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine)
+	IsTranslating() bool
+	LocalLanguage() string
+	RemoteLanguage() string
 }
 
 // An encapsulation of the act of translating a call.

@@ -32,6 +32,15 @@ type _PHContentEditingOutputClass struct {
 // An interface definition for the [PHContentEditingOutput] class.
 type IPHContentEditingOutput interface {
 	objectivec.IObject
+	AdjustmentData() PHAdjustmentData
+	SetAdjustmentData(value IPHAdjustmentData)
+	RenderedContentURL() foundation.URL
+	ContentEditingOutput() PHContentEditingOutput
+	SetContentEditingOutput(value IPHContentEditingOutput)
+	DefaultRenderedContentType() uniformtypeidentifiers.UTType
+	SetDefaultRenderedContentType(value uniformtypeidentifiers.UTType)
+	SupportedRenderedContentTypes() uniformtypeidentifiers.UTType
+	SetSupportedRenderedContentTypes(value uniformtypeidentifiers.UTType)
 }
 
 // A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.

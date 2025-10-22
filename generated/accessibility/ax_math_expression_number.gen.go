@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AXMathExpressionNumber] class.
@@ -30,6 +29,7 @@ type _AXMathExpressionNumberClass struct {
 // An interface definition for the [AXMathExpressionNumber] class.
 type IAXMathExpressionNumber interface {
 	IAXMathExpression
+	Content() string
 }
 
 //
@@ -79,9 +79,9 @@ func NewAXMathExpressionNumber() AXMathExpressionNumber {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber/init(content:)
-func NewAXMathExpressionNumberWithContent(content appkit.string) AXMathExpressionNumber {
+func NewAXMathExpressionNumberWithContent(content string) AXMathExpressionNumber {
 	instance := getAXMathExpressionNumberClass().Alloc()
-	rv := objc.Send[AXMathExpressionNumber](instance.ID, objc.Sel("initWithContent:"), content)
+	rv := objc.Send[AXMathExpressionNumber](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
 	rv.Autorelease()
 	return rv
 }
@@ -89,8 +89,8 @@ func NewAXMathExpressionNumberWithContent(content appkit.string) AXMathExpressio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber/content
-func (a_ AXMathExpressionNumber) Content() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionNumber) Content() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv
 }
 

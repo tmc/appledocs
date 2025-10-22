@@ -30,6 +30,42 @@ type _PreferencesClass struct {
 // An interface definition for the [Preferences] class.
 type IPreferences interface {
 	objectivec.IObject
+	InactiveSchedulingPolicy() InactiveSchedulingPolicy
+	SetInactiveSchedulingPolicy(value InactiveSchedulingPolicy)
+	ElementFullscreenEnabled() bool
+	SetElementFullscreenEnabled(value bool)
+	FraudulentWebsiteWarningEnabled() bool
+	SetFraudulentWebsiteWarningEnabled(value bool)
+	IsLookToScrollEnabled() bool
+	SetIsLookToScrollEnabled(value bool)
+	SiteSpecificQuirksModeEnabled() bool
+	SetSiteSpecificQuirksModeEnabled(value bool)
+	TextInteractionEnabled() bool
+	SetTextInteractionEnabled(value bool)
+	JavaEnabled() bool
+	SetJavaEnabled(value bool)
+	JavaScriptCanOpenWindowsAutomatically() bool
+	SetJavaScriptCanOpenWindowsAutomatically(value bool)
+	JavaScriptEnabled() bool
+	SetJavaScriptEnabled(value bool)
+	MinimumFontSize() float64
+	SetMinimumFontSize(value float64)
+	PlugInsEnabled() bool
+	SetPlugInsEnabled(value bool)
+	ShouldPrintBackgrounds() bool
+	SetShouldPrintBackgrounds(value bool)
+	TabFocusesLinks() bool
+	SetTabFocusesLinks(value bool)
+	IsElementFullscreenEnabled() bool
+	SetIsElementFullscreenEnabled(value bool)
+	IsFraudulentWebsiteWarningEnabled() bool
+	SetIsFraudulentWebsiteWarningEnabled(value bool)
+	IsSiteSpecificQuirksModeEnabled() bool
+	SetIsSiteSpecificQuirksModeEnabled(value bool)
+	IsTextInteractionEnabled() bool
+	SetIsTextInteractionEnabled(value bool)
+	Preferences() WKPreferences
+	SetPreferences(value IWKPreferences)
 }
 
 // An object that encapsulates the standard behaviors to apply to websites.

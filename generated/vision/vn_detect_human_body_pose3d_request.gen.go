@@ -29,6 +29,12 @@ type _DetectHumanBodyPose3DRequestClass struct {
 // An interface definition for the [DetectHumanBodyPose3DRequest] class.
 type IDetectHumanBodyPose3DRequest interface {
 	IStatefulRequest
+	Results() VNHumanBodyPose3DObservation
+	SetResults(value IVNHumanBodyPose3DObservation)
+	SupportedJointNames() unsafe.Pointer
+	SetSupportedJointNames(value unsafe.Pointer)
+	SupportedJointsGroupNames() unsafe.Pointer
+	SetSupportedJointsGroupNames(value unsafe.Pointer)
 }
 
 // A request that detects points on human bodies in 3D space, relative to the camera.

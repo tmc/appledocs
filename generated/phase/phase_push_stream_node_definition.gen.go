@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
@@ -31,6 +30,9 @@ type _PHASEPushStreamNodeDefinitionClass struct {
 // An interface definition for the [PHASEPushStreamNodeDefinition] class.
 type IPHASEPushStreamNodeDefinition interface {
 	IPHASEGeneratorNodeDefinition
+	Format() avfaudio.AudioFormat
+	Normalize() bool
+	SetNormalize(value bool)
 }
 
 // A node that plays a sequence of audio buffers.
@@ -100,9 +102,9 @@ func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition I
 // Creates a named node definition for audio streams.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/init(mixerDefinition:format:identifier:)
-func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat, identifier appkit.string) PHASEPushStreamNodeDefinition {
+func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat, identifier string) PHASEPushStreamNodeDefinition {
 	instance := getPHASEPushStreamNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, identifier)
+	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

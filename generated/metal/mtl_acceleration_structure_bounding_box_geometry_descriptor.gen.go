@@ -29,6 +29,14 @@ type _AccelerationStructureBoundingBoxGeometryDescriptorClass struct {
 // An interface definition for the [AccelerationStructureBoundingBoxGeometryDescriptor] class.
 type IAccelerationStructureBoundingBoxGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	BoundingBoxBuffer() unsafe.Pointer
+	SetBoundingBoxBuffer(value unsafe.Pointer)
+	BoundingBoxBufferOffset() int
+	SetBoundingBoxBufferOffset(value int)
+	BoundingBoxCount() int
+	SetBoundingBoxCount(value int)
+	BoundingBoxStride() int
+	SetBoundingBoxStride(value int)
 }
 
 // A description of a list of bounding boxes to turn into an acceleration structure.

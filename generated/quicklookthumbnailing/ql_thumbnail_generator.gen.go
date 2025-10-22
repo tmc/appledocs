@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,7 +35,7 @@ type IThumbnailGenerator interface {
 	GenerateBestRepresentationForRequestCompletionHandler(request IQLThumbnailGenerationRequest, completionHandler unsafe.Pointer)
 	GenerateRepresentationsForRequestUpdateHandler(request IQLThumbnailGenerationRequest, updateHandler unsafe.Pointer)
 	SaveBestRepresentationForRequestToFileAtURLAsContentTypeCompletionHandler(request IQLThumbnailGenerationRequest, fileURL foundation.IURL, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
-	SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request IQLThumbnailGenerationRequest, fileURL foundation.IURL, contentType appkit.string, completionHandler unsafe.Pointer)
+	SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request IQLThumbnailGenerationRequest, fileURL foundation.IURL, contentType string, completionHandler unsafe.Pointer)
 }
 
 // An object that generates thumbnail images based on provided requirements.
@@ -123,8 +122,8 @@ func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLAsConten
 // Saves the best representation of thumbnail for a specific request to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/saveBestRepresentation(for:to:contentType:completion:)
-func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request IQLThumbnailGenerationRequest, fileURL foundation.IURL, contentType appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:"), request, fileURL, contentType, completionHandler)
+func (t_ ThumbnailGenerator) SaveBestRepresentationForRequestToFileAtURLWithContentTypeCompletionHandler(request IQLThumbnailGenerationRequest, fileURL foundation.IURL, contentType string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:"), request, fileURL, objc.String(contentType), completionHandler)
 }
 
 // The singleton thumbnail generator instance.

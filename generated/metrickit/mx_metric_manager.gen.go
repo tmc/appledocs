@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,6 +32,8 @@ type IMXMetricManager interface {
 	objectivec.IObject
 	AddSubscriber(subscriber objectivec.IObject)
 	RemoveSubscriber(subscriber objectivec.IObject)
+	PastDiagnosticPayloads() []MXDiagnosticPayload
+	PastPayloads() []MXMetricPayload
 }
 
 // The shared object that registers you to receive metrics, creates logs for custom metrics, and gives access to past reports.
@@ -102,8 +103,8 @@ func (mc _MXMetricManagerClass) FinishExtendedLaunchMeasurementForTaskIDError(ta
 // Returns a log handle used for writing custom metric events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/makeLogHandle(category:)
-func (mc _MXMetricManagerClass) MakeLogHandleWithCategory(category appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("makeLogHandleWithCategory:"), category)
+func (mc _MXMetricManagerClass) MakeLogHandleWithCategory(category string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("makeLogHandleWithCategory:"), objc.String(category))
 	return rv
 }
 

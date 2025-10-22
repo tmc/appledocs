@@ -30,6 +30,8 @@ type _MXUnitAveragePixelLuminanceClass struct {
 // An interface definition for the [MXUnitAveragePixelLuminance] class.
 type IMXUnitAveragePixelLuminance interface {
 	foundation.IDimension
+	AveragePixelLuminance() MXUnitAveragePixelLuminance
+	SetAveragePixelLuminance(value IMXUnitAveragePixelLuminance)
 }
 
 // A unit of measure of pixel luminosity on an OLED display.

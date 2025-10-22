@@ -31,6 +31,19 @@ type _CKOperationGroupClass struct {
 // An interface definition for the [CKOperationGroup] class.
 type ICKOperationGroup interface {
 	objectivec.IObject
+	DefaultConfiguration() CKOperationConfiguration
+	SetDefaultConfiguration(value ICKOperationConfiguration)
+	ExpectedReceiveSize() CKOperationGroupTransferSize
+	SetExpectedReceiveSize(value ICKOperationGroupTransferSize)
+	ExpectedSendSize() CKOperationGroupTransferSize
+	SetExpectedSendSize(value ICKOperationGroupTransferSize)
+	Name() string
+	SetName(value string)
+	OperationGroupID() string
+	Quantity() uint
+	SetQuantity(value uint)
+	Group() CKOperationGroup
+	SetGroup(value ICKOperationGroup)
 }
 
 // An explicit association between two or more operations.

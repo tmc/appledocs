@@ -31,6 +31,7 @@ type IInputStream interface {
 	IStream
 	GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool
 	ReadMaxLength(buffer unsafe.Pointer, len_ uint) int
+	HasBytesAvailable() bool
 }
 
 // A stream that provides read-only stream functionality.

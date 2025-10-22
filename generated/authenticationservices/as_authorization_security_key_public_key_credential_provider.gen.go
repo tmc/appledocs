@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +31,9 @@ type _AuthorizationSecurityKeyPublicKeyCredentialProviderClass struct {
 // An interface definition for the [AuthorizationSecurityKeyPublicKeyCredentialProvider] class.
 type IAuthorizationSecurityKeyPublicKeyCredentialProvider interface {
 	objectivec.IObject
-	CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName appkit.string, name appkit.string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
+	CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName string, name string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
+	RelyingPartyIdentifier() string
+	SetRelyingPartyIdentifier(value string)
 }
 
 // A mechanism for providing public key credential requests to an app or service with a physical security key.
@@ -86,16 +87,16 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialProvider() AuthorizationSecur
 // Creates an assertion request with a challenge, display name, and user ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/createCredentialRegistrationRequest(challenge:displayName:name:userID:)
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName appkit.string, name appkit.string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
-	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest](a_.ID, objc.Sel("createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"), challenge, displayName, name, userID)
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName string, name string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
+	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest](a_.ID, objc.Sel("createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"), challenge, objc.String(displayName), objc.String(name), userID)
 	return rv
 }
 
 // The domain name of the service to authorize against.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/relyingpartyidentifier
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("relyingPartyIdentifier"))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdenti
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/relyingpartyidentifier
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), value)
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
 }
 
 

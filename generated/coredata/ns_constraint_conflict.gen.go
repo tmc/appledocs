@@ -31,6 +31,12 @@ type _ConstraintConflictClass struct {
 // An interface definition for the [ConstraintConflict] class.
 type IConstraintConflict interface {
 	objectivec.IObject
+	ConflictingObjects() []ManagedObject
+	ConflictingSnapshots() []foundation.Dictionary
+	Constraint() []string
+	ConstraintValues() unsafe.Pointer
+	DatabaseObject() NSManagedObject
+	DatabaseSnapshot() unsafe.Pointer
 }
 
 // An encapsulation of conflicts that occur during an attempt to save a managed object.

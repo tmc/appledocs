@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -88,8 +87,8 @@ func NewScreenSaverDefaults() ScreenSaverDefaults {
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)
-func NewScreenSaverDefaultsForModuleWithName(inModuleName appkit.string) ScreenSaverDefaults {
-	rv := objc.Send[ScreenSaverDefaults](objc.ID(getScreenSaverDefaultsClass().class), objc.Sel("defaultsForModuleWithName:"), inModuleName)
+func NewScreenSaverDefaultsForModuleWithName(inModuleName string) ScreenSaverDefaults {
+	rv := objc.Send[ScreenSaverDefaults](objc.ID(getScreenSaverDefaultsClass().class), objc.Sel("defaultsForModuleWithName:"), objc.String(inModuleName))
 	return rv
 }
 
@@ -97,8 +96,8 @@ func NewScreenSaverDefaultsForModuleWithName(inModuleName appkit.string) ScreenS
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)
-func (sc _ScreenSaverDefaultsClass) DefaultsForModuleWithName(inModuleName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultsForModuleWithName:"), inModuleName)
+func (sc _ScreenSaverDefaultsClass) DefaultsForModuleWithName(inModuleName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultsForModuleWithName:"), objc.String(inModuleName))
 	return rv
 }
 

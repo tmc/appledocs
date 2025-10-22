@@ -29,6 +29,28 @@ type _PolygonAccelerationStructureClass struct {
 // An interface definition for the [PolygonAccelerationStructure] class.
 type IPolygonAccelerationStructure interface {
 	IAccelerationStructure
+	PolygonBuffers() []PolygonBuffer
+	SetPolygonBuffers(value []PolygonBuffer)
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexBufferOffset() int
+	SetIndexBufferOffset(value int)
+	IndexType() unsafe.Pointer
+	SetIndexType(value unsafe.Pointer)
+	MaskBuffer() unsafe.Pointer
+	SetMaskBuffer(value unsafe.Pointer)
+	MaskBufferOffset() int
+	SetMaskBufferOffset(value int)
+	PolygonCount() int
+	SetPolygonCount(value int)
+	PolygonType() unsafe.Pointer
+	SetPolygonType(value unsafe.Pointer)
+	VertexBuffer() unsafe.Pointer
+	SetVertexBuffer(value unsafe.Pointer)
+	VertexBufferOffset() int
+	SetVertexBufferOffset(value int)
+	VertexStride() int
+	SetVertexStride(value int)
 }
 
 //

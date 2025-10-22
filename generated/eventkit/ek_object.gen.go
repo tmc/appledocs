@@ -33,6 +33,10 @@ type IEKObject interface {
 	Refresh() bool
 	Reset()
 	Rollback()
+	HasChanges() bool
+	New() bool
+	IsNew() bool
+	SetIsNew(value bool)
 }
 
 // An abstract superclass for all EventKit classes that have persistent instances.

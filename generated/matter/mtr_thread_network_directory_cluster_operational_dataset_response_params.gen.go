@@ -31,6 +31,8 @@ type _MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsClass stru
 // An interface definition for the [MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams] class.
 type IMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams interface {
 	objectivec.IObject
+	OperationalDataset() foundation.NSData
+	SetOperationalDataset(value foundation.IData)
 }
 
 //

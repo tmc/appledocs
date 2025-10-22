@@ -31,6 +31,12 @@ type _INRidePartySizeOptionClass struct {
 // An interface definition for the [INRidePartySizeOption] class.
 type IINRidePartySizeOption interface {
 	objectivec.IObject
+	PartySizeRange() foundation.Range
+	SetPartySizeRange(value foundation.IRange)
+	PriceRange() unsafe.Pointer
+	SetPriceRange(value unsafe.Pointer)
+	SizeDescription() string
+	SetSizeDescription(value string)
 }
 
 // The price of a ride involving the specified number of people.
@@ -120,8 +126,8 @@ func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
 // The user-visible description of the party size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SizeDescription() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("sizeDescription"))
+func (i_ INRidePartySizeOption) SizeDescription() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("sizeDescription"))
 	return rv
 }
 
@@ -131,8 +137,8 @@ func (i_ INRidePartySizeOption) SizeDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SetSizeDescription(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), value)
+func (i_ INRidePartySizeOption) SetSizeDescription(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), objc.String(value))
 }
 
 

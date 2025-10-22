@@ -29,6 +29,28 @@ type _MTL4IndirectInstanceAccelerationStructureDescriptorClass struct {
 // An interface definition for the [MTL4IndirectInstanceAccelerationStructureDescriptor] class.
 type IMTL4IndirectInstanceAccelerationStructureDescriptor interface {
 	IMTL4AccelerationStructureDescriptor
+	InstanceCountBuffer() unsafe.Pointer
+	SetInstanceCountBuffer(value unsafe.Pointer)
+	InstanceDescriptorBuffer() unsafe.Pointer
+	SetInstanceDescriptorBuffer(value unsafe.Pointer)
+	InstanceDescriptorStride() int
+	SetInstanceDescriptorStride(value int)
+	InstanceDescriptorType() unsafe.Pointer
+	SetInstanceDescriptorType(value unsafe.Pointer)
+	InstanceTransformationMatrixLayout() unsafe.Pointer
+	SetInstanceTransformationMatrixLayout(value unsafe.Pointer)
+	MaxInstanceCount() int
+	SetMaxInstanceCount(value int)
+	MaxMotionTransformCount() int
+	SetMaxMotionTransformCount(value int)
+	MotionTransformBuffer() unsafe.Pointer
+	SetMotionTransformBuffer(value unsafe.Pointer)
+	MotionTransformCountBuffer() unsafe.Pointer
+	SetMotionTransformCountBuffer(value unsafe.Pointer)
+	MotionTransformStride() int
+	SetMotionTransformStride(value int)
+	MotionTransformType() TransformType
+	SetMotionTransformType(value TransformType)
 }
 
 // Descriptor for an “indirect” instance acceleration structure that allows providing the instance count and motion transform count indirectly, through buffer references.

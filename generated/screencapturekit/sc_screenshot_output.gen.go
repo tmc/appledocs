@@ -33,6 +33,12 @@ type _ScreenshotOutputClass struct {
 // An interface definition for the [ScreenshotOutput] class.
 type IScreenshotOutput interface {
 	objectivec.IObject
+	FileURL() foundation.URL
+	SetFileURL(value foundation.IURL)
+	HdrImage() coregraphics.CGImageRef
+	SetHdrImage(value coregraphics.CGImageRef)
+	SdrImage() appkit.Image
+	SetSdrImage(value appkit.IImage)
 }
 
 //

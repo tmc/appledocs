@@ -30,6 +30,10 @@ type _CapturePhotoOutputReadinessCoordinatorClass struct {
 // An interface definition for the [CapturePhotoOutputReadinessCoordinator] class.
 type ICapturePhotoOutputReadinessCoordinator interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	CaptureReadiness() unsafe.Pointer
+	SetCaptureReadiness(value unsafe.Pointer)
 }
 
 // An object that monitors changes to a photo output’s capture readiness.

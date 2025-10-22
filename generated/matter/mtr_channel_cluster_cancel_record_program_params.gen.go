@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,16 @@ type _MTRChannelClusterCancelRecordProgramParamsClass struct {
 // An interface definition for the [MTRChannelClusterCancelRecordProgramParams] class.
 type IMTRChannelClusterCancelRecordProgramParams interface {
 	objectivec.IObject
+	Data() foundation.NSData
+	SetData(value foundation.IData)
+	ProgramIdentifier() string
+	SetProgramIdentifier(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	ShouldRecordSeries() foundation.Number
+	SetShouldRecordSeries(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -94,8 +103,8 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) SetData(value foundation.ID
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("programIdentifier"))
+func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("programIdentifier"))
 	return rv
 }
 
@@ -103,8 +112,8 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() appkit.
 // SetProgramIdentifier sets the value of the programIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterCancelRecordProgramParams) SetProgramIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), value)
+func (m_ MTRChannelClusterCancelRecordProgramParams) SetProgramIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.

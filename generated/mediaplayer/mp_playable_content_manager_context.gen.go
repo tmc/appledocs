@@ -31,6 +31,20 @@ type _PlayableContentManagerContextClass struct {
 // An interface definition for the [PlayableContentManagerContext] class.
 type IPlayableContentManagerContext interface {
 	objectivec.IObject
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	ContentLimitsEnabled() bool
+	SetContentLimitsEnabled(value bool)
+	ContentLimitsEnforced() bool
+	SetContentLimitsEnforced(value bool)
+	EndpointAvailable() bool
+	SetEndpointAvailable(value bool)
+	EnforcedContentItemsCount() int
+	SetEnforcedContentItemsCount(value int)
+	EnforcedContentTreeDepth() int
+	SetEnforcedContentTreeDepth(value int)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // An object representing the current state of the playable endpoint.

@@ -31,6 +31,18 @@ type _MTRLevelControlClusterMoveToLevelWithOnOffParamsClass struct {
 // An interface definition for the [MTRLevelControlClusterMoveToLevelWithOnOffParams] class.
 type IMTRLevelControlClusterMoveToLevelWithOnOffParams interface {
 	objectivec.IObject
+	Level() foundation.Number
+	SetLevel(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

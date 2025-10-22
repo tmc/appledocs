@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -38,6 +37,16 @@ type IFilter interface {
 	Apply(k ICIKernel) Image
 	SetDefaults()
 	ViewForUIConfigurationExcludedKeys(inUIConfiguration objectivec.IObject, inKeys objectivec.IObject) quartz.IKFilterUIView
+	Attributes() unsafe.Pointer
+	InputKeys() []string
+	Enabled() bool
+	SetEnabled(value bool)
+	Name() string
+	SetName(value string)
+	OutputImage() CIImage
+	OutputKeys() []string
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // An image processor that produces an image by manipulating one or more input images or by generating new image data.
@@ -123,8 +132,8 @@ func NewFilterWithImageURLOptions(url foundation.IURL, options unsafe.Pointer) F
 // Creates a object for a specific kind of filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
-func NewFilterWithName(name appkit.string) Filter {
-	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:"), name)
+func NewFilterWithName(name string) Filter {
+	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:"), objc.String(name))
 	return rv
 }
 
@@ -133,8 +142,8 @@ func NewFilterWithName(name appkit.string) Filter {
 // Creates a object for a specific kind of filter and initializes the input values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-func NewFilterWithNameWithInputParameters(name appkit.string, params unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:withInputParameters:"), name, params)
+func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
 }
 
@@ -929,16 +938,16 @@ func (fc _FilterClass) FilterNamesInCategories(categories []string) []string {
 // Returns an array of all published filter names in the specified category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterNames(inCategory:)
-func (fc _FilterClass) FilterNamesInCategory(category appkit.string) []string {
-	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("filterNamesInCategory:"), category)
+func (fc _FilterClass) FilterNamesInCategory(category string) []string {
+	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("filterNamesInCategory:"), objc.String(category))
 	return rv
 }
 
 // Creates a object for a specific kind of filter and initializes the input values with a -terminated list of arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterWithName:keysAndValues:
-func (fc _FilterClass) FilterWithNameKeysAndValues(name appkit.string, key0 objectivec.IObject) Filter {
-	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), name, key0)
+func (fc _FilterClass) FilterWithNameKeysAndValues(name string, key0 objectivec.IObject) Filter {
+	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), objc.String(name), key0)
 	return rv
 }
 
@@ -1145,16 +1154,16 @@ func (fc _FilterClass) FilterWithImageURLOptions(url foundation.IURL, options un
 // Creates a object for a specific kind of filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
-func (fc _FilterClass) FilterWithName(name appkit.string) Filter {
-	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:"), name)
+func (fc _FilterClass) FilterWithName(name string) Filter {
+	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:"), objc.String(name))
 	return rv
 }
 
 // Creates a object for a specific kind of filter and initializes the input values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-func (fc _FilterClass) FilterWithNameWithInputParameters(name appkit.string, params unsafe.Pointer) Filter {
-	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), name, params)
+func (fc _FilterClass) FilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
+	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
 }
 
@@ -1297,32 +1306,32 @@ func (fc _FilterClass) LinearToSRGBToneCurveFilter() unsafe.Pointer {
 // Returns the localized description of a filter for display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedDescription(forFilterName:)
-func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedDescriptionForFilterName:"), filterName)
+func (fc _FilterClass) LocalizedDescriptionForFilterName(filterName string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedDescriptionForFilterName:"), objc.String(filterName))
 	return rv
 }
 
 // Returns the localized name for the specified filter category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedName(forCategory:)
-func (fc _FilterClass) LocalizedNameForCategory(category appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForCategory:"), category)
+func (fc _FilterClass) LocalizedNameForCategory(category string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForCategory:"), objc.String(category))
 	return rv
 }
 
 // Returns the localized name for the specified filter name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedName(forFilterName:)
-func (fc _FilterClass) LocalizedNameForFilterName(filterName appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForFilterName:"), filterName)
+func (fc _FilterClass) LocalizedNameForFilterName(filterName string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(fc.class), objc.Sel("localizedNameForFilterName:"), objc.String(filterName))
 	return rv
 }
 
 // Returns the location of the localized reference documentation that describes the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/localizedReferenceDocumentation(forFilterName:)
-func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName appkit.string) foundation.URL {
-	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), filterName)
+func (fc _FilterClass) LocalizedReferenceDocumentationForFilterName(filterName string) foundation.URL {
+	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("localizedReferenceDocumentationForFilterName:"), objc.String(filterName))
 	return rv
 }
 
@@ -1744,8 +1753,8 @@ func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 // Publishes a custom filter that is not packaged as an image unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/registerName(_:constructor:classAttributes:)
-func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name appkit.string, anObject objectivec.IObject, attributes unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), name, anObject, attributes)
+func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name string, anObject objectivec.IObject, attributes unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), objc.String(name), anObject, attributes)
 }
 
 // Simulates a ripple in a pond to transiton from one image to another.
@@ -2235,8 +2244,8 @@ func (f_ Filter) SetEnabled(value bool) {
 // A name associated with a filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/name
-func (f_ Filter) Name() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("name"))
+func (f_ Filter) Name() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -2246,8 +2255,8 @@ func (f_ Filter) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/name
-func (f_ Filter) SetName(value appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
+func (f_ Filter) SetName(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // Returns a object that encapsulates the operations configured in the filter.

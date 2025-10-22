@@ -29,6 +29,7 @@ type _VZMacGraphicsDisplayClass struct {
 // An interface definition for the [VZMacGraphicsDisplay] class.
 type IVZMacGraphicsDisplay interface {
 	IVZGraphicsDisplay
+	PixelsPerInch() int
 }
 
 // An object that represents the graphics display on a Mac.

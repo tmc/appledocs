@@ -30,6 +30,8 @@ type _MTROperationalStateClusterOperationalCommandResponseParamsClass struct {
 // An interface definition for the [MTROperationalStateClusterOperationalCommandResponseParams] class.
 type IMTROperationalStateClusterOperationalCommandResponseParams interface {
 	objectivec.IObject
+	CommandResponseState() MTROperationalStateClusterErrorStateStruct
+	SetCommandResponseState(value IMTROperationalStateClusterErrorStateStruct)
 }
 
 //

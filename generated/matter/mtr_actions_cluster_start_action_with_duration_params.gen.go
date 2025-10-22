@@ -31,6 +31,16 @@ type _MTRActionsClusterStartActionWithDurationParamsClass struct {
 // An interface definition for the [MTRActionsClusterStartActionWithDurationParams] class.
 type IMTRActionsClusterStartActionWithDurationParams interface {
 	objectivec.IObject
+	ActionID() foundation.Number
+	SetActionID(value foundation.INumber)
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	InvokeID() foundation.Number
+	SetInvokeID(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

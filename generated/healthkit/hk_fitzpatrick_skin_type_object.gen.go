@@ -30,6 +30,8 @@ type _HKFitzpatrickSkinTypeObjectClass struct {
 // An interface definition for the [HKFitzpatrickSkinTypeObject] class.
 type IHKFitzpatrickSkinTypeObject interface {
 	objectivec.IObject
+	SkinType() HKFitzpatrickSkinType
+	SetSkinType(value HKFitzpatrickSkinType)
 }
 
 // This class acts as a wrapper for the enumeration.

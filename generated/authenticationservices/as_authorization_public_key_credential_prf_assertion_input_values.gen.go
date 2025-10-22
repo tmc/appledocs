@@ -31,6 +31,7 @@ type _AuthorizationPublicKeyCredentialPRFAssertionInputValuesClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFAssertionInputValues] class.
 type IAuthorizationPublicKeyCredentialPRFAssertionInputValues interface {
 	objectivec.IObject
+	SaltInput2() foundation.NSData
 }
 
 //

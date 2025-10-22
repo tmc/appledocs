@@ -29,6 +29,10 @@ type _UnarchiverClass struct {
 // An interface definition for the [Unarchiver] class.
 type IUnarchiver interface {
 	ICoder
+	IsAtEnd() bool
+	SetIsAtEnd(value bool)
+	SystemVersion() unsafe.Pointer
+	SetSystemVersion(value unsafe.Pointer)
 }
 
 // A decoder that restores data from an archive.

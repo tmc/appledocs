@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,26 @@ type _SpeechUtteranceClass struct {
 // An interface definition for the [SpeechUtterance] class.
 type ISpeechUtterance interface {
 	objectivec.IObject
+	AttributedSpeechString() foundation.AttributedString
+	PitchMultiplier() float32
+	SetPitchMultiplier(value float32)
+	PostUtteranceDelay() foundation.TimeInterval
+	SetPostUtteranceDelay(value foundation.ITimeInterval)
+	PreUtteranceDelay() foundation.TimeInterval
+	SetPreUtteranceDelay(value foundation.ITimeInterval)
+	Rate() float32
+	SetRate(value float32)
+	SpeechString() string
+	Voice() AVSpeechSynthesisVoice
+	SetVoice(value IAVSpeechSynthesisVoice)
+	Volume() float32
+	SetVolume(value float32)
+	AVSpeechSynthesisIPANotationAttribute() string
+	PrefersAssistiveTechnologySettings() bool
+	SetPrefersAssistiveTechnologySettings(value bool)
+	AVSpeechUtteranceDefaultSpeechRate() float32
+	AVSpeechUtteranceMaximumSpeechRate() float32
+	AVSpeechUtteranceMinimumSpeechRate() float32
 }
 
 // An object that encapsulates the text for speech synthesis and parameters that affect the speech.
@@ -93,8 +112,8 @@ func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ foun
 // Returns a new speech utterance with an Speech Synthesis Markup Language (SSML) string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechUtteranceWithSSMLRepresentation:
-func (sc _SpeechUtteranceClass) SpeechUtteranceWithSSMLRepresentation(string_ appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("speechUtteranceWithSSMLRepresentation:"), string_)
+func (sc _SpeechUtteranceClass) SpeechUtteranceWithSSMLRepresentation(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("speechUtteranceWithSSMLRepresentation:"), objc.String(string_))
 	return rv
 }
 
@@ -109,8 +128,8 @@ func (s_ SpeechUtterance) AttributedSpeechString() foundation.AttributedString {
 // The baseline pitch the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/pitchMultiplier
-func (s_ SpeechUtterance) PitchMultiplier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pitchMultiplier"))
+func (s_ SpeechUtterance) PitchMultiplier() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("pitchMultiplier"))
 	return rv
 }
 
@@ -120,7 +139,7 @@ func (s_ SpeechUtterance) PitchMultiplier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/pitchMultiplier
-func (s_ SpeechUtterance) SetPitchMultiplier(value unsafe.Pointer) {
+func (s_ SpeechUtterance) SetPitchMultiplier(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPitchMultiplier:"), value)
 }
 
@@ -163,8 +182,8 @@ func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.ITimeInterval) {
 // The rate the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/rate
-func (s_ SpeechUtterance) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rate"))
+func (s_ SpeechUtterance) Rate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -174,15 +193,15 @@ func (s_ SpeechUtterance) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/rate
-func (s_ SpeechUtterance) SetRate(value unsafe.Pointer) {
+func (s_ SpeechUtterance) SetRate(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
 }
 
 // A string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechString
-func (s_ SpeechUtterance) SpeechString() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("speechString"))
+func (s_ SpeechUtterance) SpeechString() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("speechString"))
 	return rv
 }
 
@@ -207,8 +226,8 @@ func (s_ SpeechUtterance) SetVoice(value IAVSpeechSynthesisVoice) {
 // The volume the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/volume
-func (s_ SpeechUtterance) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("volume"))
+func (s_ SpeechUtterance) Volume() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -218,15 +237,15 @@ func (s_ SpeechUtterance) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/volume
-func (s_ SpeechUtterance) SetVolume(value unsafe.Pointer) {
+func (s_ SpeechUtterance) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 
 // A string that contains International Phonetic Alphabet (IPA) symbols the speech synthesizer uses to control pronunciation of certain words or phrases.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute
-func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
+func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
 	return rv
 }
 
@@ -251,24 +270,24 @@ func (s_ SpeechUtterance) SetPrefersAssistiveTechnologySettings(value bool) {
 // The default rate the speech synthesizer uses when speaking an utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancedefaultspeechrate
-func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceDefaultSpeechRate"))
+func (s_ SpeechUtterance) AVSpeechUtteranceDefaultSpeechRate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("AVSpeechUtteranceDefaultSpeechRate"))
 	return rv
 }
 
 // The maximum rate the speech synthesizer uses when speaking an utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterancemaximumspeechrate
-func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMaximumSpeechRate"))
+func (s_ SpeechUtterance) AVSpeechUtteranceMaximumSpeechRate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("AVSpeechUtteranceMaximumSpeechRate"))
 	return rv
 }
 
 // The minimum rate the speech synthesizer uses when speaking an utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutteranceminimumspeechrate
-func (s_ SpeechUtterance) AVSpeechUtteranceMinimumSpeechRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("AVSpeechUtteranceMinimumSpeechRate"))
+func (s_ SpeechUtterance) AVSpeechUtteranceMinimumSpeechRate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("AVSpeechUtteranceMinimumSpeechRate"))
 	return rv
 }
 

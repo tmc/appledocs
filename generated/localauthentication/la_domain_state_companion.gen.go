@@ -32,6 +32,8 @@ type _DomainStateCompanionClass struct {
 type IDomainStateCompanion interface {
 	objectivec.IObject
 	StateHashForCompanionType(companionType CompanionType) foundation.Data
+	AvailableCompanionTypes() unsafe.Pointer
+	StateHash() foundation.NSData
 }
 
 //

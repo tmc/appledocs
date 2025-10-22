@@ -35,6 +35,7 @@ type IStateMachine interface {
 	EnterState(stateClass objc.Class) bool
 	StateForClass(stateClass objc.Class) State
 	UpdateWithDeltaTime(sec foundation.ITimeInterval)
+	CurrentState() GKState
 }
 
 // A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.

@@ -31,6 +31,28 @@ type _MTRElectricalPowerMeasurementClusterMeasurementRangeStructClass struct {
 // An interface definition for the [MTRElectricalPowerMeasurementClusterMeasurementRangeStruct] class.
 type IMTRElectricalPowerMeasurementClusterMeasurementRangeStruct interface {
 	objectivec.IObject
+	EndSystime() foundation.Number
+	SetEndSystime(value foundation.INumber)
+	EndTimestamp() foundation.Number
+	SetEndTimestamp(value foundation.INumber)
+	Max() foundation.Number
+	SetMax(value foundation.INumber)
+	MaxSystime() foundation.Number
+	SetMaxSystime(value foundation.INumber)
+	MaxTimestamp() foundation.Number
+	SetMaxTimestamp(value foundation.INumber)
+	MeasurementType() foundation.Number
+	SetMeasurementType(value foundation.INumber)
+	Min() foundation.Number
+	SetMin(value foundation.INumber)
+	MinSystime() foundation.Number
+	SetMinSystime(value foundation.INumber)
+	MinTimestamp() foundation.Number
+	SetMinTimestamp(value foundation.INumber)
+	StartSystime() foundation.Number
+	SetStartSystime(value foundation.INumber)
+	StartTimestamp() foundation.Number
+	SetStartTimestamp(value foundation.INumber)
 }
 
 //

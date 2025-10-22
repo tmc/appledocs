@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,11 @@ type _BADownloadClass struct {
 type IBADownload interface {
 	objectivec.IObject
 	CopyAsNonEssential() unsafe.Pointer
+	Identifier() string
+	IsEssential() bool
+	Priority() BADownloaderPriority
+	State() BADownloadState
+	UniqueIdentifier() string
 }
 
 // An object that represents an in-progress or concluded asset download.
@@ -90,8 +94,8 @@ func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 // The app-specific string that uniquely identifies the downloadable asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/identifier
-func (b_ BADownload) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("identifier"))
+func (b_ BADownload) Identifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -121,8 +125,8 @@ func (b_ BADownload) State() BADownloadState {
 // The system-provided string that uniquely identifies the download object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/uniqueIdentifier
-func (b_ BADownload) UniqueIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("uniqueIdentifier"))
+func (b_ BADownload) UniqueIdentifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 

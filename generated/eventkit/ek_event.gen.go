@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -33,6 +32,26 @@ type IEKEvent interface {
 	IEKCalendarItem
 	CompareStartDateWithEvent(other IEKEvent) unsafe.Pointer
 	Refresh() bool
+	Availability() EKEventAvailability
+	SetAvailability(value IEKEventAvailability)
+	BirthdayContactIdentifier() string
+	BirthdayPersonID() int
+	BirthdayPersonUniqueID() string
+	EndDate() foundation.NSDate
+	SetEndDate(value foundation.IDate)
+	EventIdentifier() string
+	AllDay() bool
+	SetAllDay(value bool)
+	IsDetached() bool
+	OccurrenceDate() foundation.NSDate
+	Organizer() EKParticipant
+	StartDate() foundation.NSDate
+	SetStartDate(value foundation.IDate)
+	Status() EKEventStatus
+	StructuredLocation() EKStructuredLocation
+	SetStructuredLocation(value IEKStructuredLocation)
+	IsAllDay() bool
+	SetIsAllDay(value bool)
 }
 
 // A class that represents an event in a calendar.
@@ -141,8 +160,8 @@ func (e_ EKEvent) SetAvailability(value IEKEventAvailability) {
 // The contact identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayContactIdentifier
-func (e_ EKEvent) BirthdayContactIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("birthdayContactIdentifier"))
+func (e_ EKEvent) BirthdayContactIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("birthdayContactIdentifier"))
 	return rv
 }
 
@@ -157,8 +176,8 @@ func (e_ EKEvent) BirthdayPersonID() int {
 // The Address Book framework record identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayPersonUniqueID
-func (e_ EKEvent) BirthdayPersonUniqueID() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("birthdayPersonUniqueID"))
+func (e_ EKEvent) BirthdayPersonUniqueID() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("birthdayPersonUniqueID"))
 	return rv
 }
 
@@ -183,8 +202,8 @@ func (e_ EKEvent) SetEndDate(value foundation.IDate) {
 // A unique identifier for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/eventIdentifier
-func (e_ EKEvent) EventIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("eventIdentifier"))
+func (e_ EKEvent) EventIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("eventIdentifier"))
 	return rv
 }
 

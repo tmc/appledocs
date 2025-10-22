@@ -29,6 +29,10 @@ type _GraphShapedTypeClass struct {
 // An interface definition for the [GraphShapedType] class.
 type IGraphShapedType interface {
 	IGraphType
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
+	Shape() unsafe.Pointer
+	SetShape(value unsafe.Pointer)
 }
 
 // The shaped type class for types on tensors with a shape and data type.

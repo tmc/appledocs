@@ -32,6 +32,10 @@ type IGridGraph interface {
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	ConnectNodeToAdjacentNodes(node IGKGridGraphNode)
 	NodeAtGridPosition(position unsafe.Pointer) unsafe.Pointer
+	DiagonalsAllowed() bool
+	GridHeight() uint
+	GridOrigin() unsafe.Pointer
+	GridWidth() uint
 }
 
 // A navigation graph for 2D game worlds where movement is constrained to an integer grid.
@@ -89,7 +93,7 @@ func NewGridGraph() GridGraph {
 // Initializes a graph that describes an integer grid with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/init(fromGridStartingAt:width:height:diagonalsAllowed:)
-func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, diagonalsAllowed bool) GridGraph {
+func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.Pointer, width int, height int, diagonalsAllowed bool) GridGraph {
 	instance := getGridGraphClass().Alloc()
 	rv := objc.Send[GridGraph](instance.ID, objc.Sel("initFromGridStartingAt:width:height:diagonalsAllowed:"), position, width, height, diagonalsAllowed)
 	rv.Autorelease()
@@ -101,7 +105,7 @@ func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.P
 // Initializes a graph that describes an integer grid with the specified dimensions, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/init(fromGridStartingAt:width:height:diagonalsAllowed:nodeClass:)
-func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, diagonalsAllowed bool, nodeClass objc.Class) GridGraph {
+func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position unsafe.Pointer, width int, height int, diagonalsAllowed bool, nodeClass objc.Class) GridGraph {
 	instance := getGridGraphClass().Alloc()
 	rv := objc.Send[GridGraph](instance.ID, objc.Sel("initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:"), position, width, height, diagonalsAllowed, nodeClass)
 	rv.Autorelease()
@@ -112,7 +116,7 @@ func NewGridGraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position
 // Creates a graph that describes an integer grid with the specified dimensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/graphFromGridStartingAt:width:height:diagonalsAllowed:
-func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, diagonalsAllowed bool) unsafe.Pointer {
+func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowed(position unsafe.Pointer, width int, height int, diagonalsAllowed bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphFromGridStartingAt:width:height:diagonalsAllowed:"), position, width, height, diagonalsAllowed)
 	return rv
 }
@@ -120,7 +124,7 @@ func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowed(pos
 // Creates a graph that describes an integer grid with the specified dimensions, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:
-func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, diagonalsAllowed bool, nodeClass objc.Class) unsafe.Pointer {
+func (gc _GridGraphClass) GraphFromGridStartingAtWidthHeightDiagonalsAllowedNodeClass(position unsafe.Pointer, width int, height int, diagonalsAllowed bool, nodeClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:"), position, width, height, diagonalsAllowed, nodeClass)
 	return rv
 }

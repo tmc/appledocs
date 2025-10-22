@@ -31,6 +31,26 @@ type _MTRThreadNetworkDiagnosticsClusterRouteTableStructClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterRouteTableStruct] class.
 type IMTRThreadNetworkDiagnosticsClusterRouteTableStruct interface {
 	objectivec.IObject
+	Age() foundation.Number
+	SetAge(value foundation.INumber)
+	Allocated() foundation.Number
+	SetAllocated(value foundation.INumber)
+	ExtAddress() foundation.Number
+	SetExtAddress(value foundation.INumber)
+	LinkEstablished() foundation.Number
+	SetLinkEstablished(value foundation.INumber)
+	LqiIn() foundation.Number
+	SetLqiIn(value foundation.INumber)
+	LqiOut() foundation.Number
+	SetLqiOut(value foundation.INumber)
+	NextHop() foundation.Number
+	SetNextHop(value foundation.INumber)
+	PathCost() foundation.Number
+	SetPathCost(value foundation.INumber)
+	Rloc16() foundation.Number
+	SetRloc16(value foundation.INumber)
+	RouterId() foundation.Number
+	SetRouterId(value foundation.INumber)
 }
 
 //

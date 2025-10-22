@@ -31,6 +31,7 @@ type _INFocusStatusClass struct {
 // An interface definition for the [INFocusStatus] class.
 type IINFocusStatus interface {
 	objectivec.IObject
+	IsFocused() foundation.Number
 }
 
 // The user’s preference for receiving notifications.

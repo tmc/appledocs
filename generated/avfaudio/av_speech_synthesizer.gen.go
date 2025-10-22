@@ -31,6 +31,23 @@ type _SpeechSynthesizerClass struct {
 type ISpeechSynthesizer interface {
 	objectivec.IObject
 	SpeakUtterance(utterance IAVSpeechUtterance)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Speaking() bool
+	IsPaused() bool
+	SetIsPaused(value bool)
+	IsSpeaking() bool
+	SetIsSpeaking(value bool)
+	MixToTelephonyUplink() bool
+	SetMixToTelephonyUplink(value bool)
+	OutputChannels() unsafe.Pointer
+	SetOutputChannels(value unsafe.Pointer)
+	UsesApplicationAudioSession() bool
+	SetUsesApplicationAudioSession(value bool)
+	PreUtteranceDelay() unsafe.Pointer
+	SetPreUtteranceDelay(value unsafe.Pointer)
+	Voice() AVSpeechSynthesisVoice
+	SetVoice(value IAVSpeechSynthesisVoice)
 }
 
 // An object that produces synthesized speech from text utterances and enables monitoring or controlling of ongoing speech.

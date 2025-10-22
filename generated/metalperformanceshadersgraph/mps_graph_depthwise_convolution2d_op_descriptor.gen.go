@@ -29,6 +29,28 @@ type _GraphDepthwiseConvolution2DOpDescriptorClass struct {
 // An interface definition for the [GraphDepthwiseConvolution2DOpDescriptor] class.
 type IGraphDepthwiseConvolution2DOpDescriptor interface {
 	IGraphObject
+	DilationRateInX() uint
+	SetDilationRateInX(value uint)
+	PaddingLeft() uint
+	SetPaddingLeft(value uint)
+	PaddingRight() uint
+	SetPaddingRight(value uint)
+	DataLayout() GraphTensorNamedDataLayout
+	SetDataLayout(value IGraphTensorNamedDataLayout)
+	DilationRateInY() int
+	SetDilationRateInY(value int)
+	PaddingBottom() int
+	SetPaddingBottom(value int)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	PaddingTop() int
+	SetPaddingTop(value int)
+	StrideInX() int
+	SetStrideInX(value int)
+	StrideInY() int
+	SetStrideInY(value int)
+	WeightsLayout() GraphTensorNamedDataLayout
+	SetWeightsLayout(value IGraphTensorNamedDataLayout)
 }
 
 // A class that defines the parameters for a 2D-depthwise convolution operation.

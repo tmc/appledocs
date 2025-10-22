@@ -29,6 +29,9 @@ type _GCControllerAxisInputClass struct {
 // An interface definition for the [GCControllerAxisInput] class.
 type IGCControllerAxisInput interface {
 	IGCControllerElement
+	Value() float32
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
 }
 
 // A control element that tracks movement along an axis.
@@ -84,8 +87,8 @@ func NewGCControllerAxisInput() GCControllerAxisInput {
 // The current value of the axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerAxisInput/value
-func (g_ GCControllerAxisInput) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("value"))
+func (g_ GCControllerAxisInput) Value() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("value"))
 	return rv
 }
 

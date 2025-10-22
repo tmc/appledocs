@@ -30,6 +30,13 @@ type _HKDocumentQueryClass struct {
 // An interface definition for the [HKDocumentQuery] class.
 type IHKDocumentQuery interface {
 	IHKQuery
+	IncludeDocumentData() bool
+	SetIncludeDocumentData(value bool)
+	Limit() int
+	SetLimit(value int)
+	SortDescriptors() foundation.SortDescriptor
+	SetSortDescriptors(value foundation.ISortDescriptor)
+	HKObjectQueryNoLimit() int
 }
 
 // A query that returns a snapshot of all matching documents currently saved in the HealthKit store.

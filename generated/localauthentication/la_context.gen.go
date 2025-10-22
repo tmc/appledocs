@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,11 +32,27 @@ type _ContextClass struct {
 type IContext interface {
 	objectivec.IObject
 	CanEvaluatePolicyError(policy Policy, error_ unsafe.Pointer) bool
-	EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation IAccessControlOperation, localizedReason appkit.string, reply unsafe.Pointer)
-	EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason appkit.string, reply unsafe.Pointer)
+	EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation IAccessControlOperation, localizedReason string, reply unsafe.Pointer)
+	EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason string, reply unsafe.Pointer)
 	Invalidate()
 	IsCredentialSet(type_ CredentialType) bool
 	SetCredentialType(credential foundation.IData, type_ CredentialType) bool
+	BiometryType() BiometryType
+	DomainState() LADomainState
+	EvaluatedPolicyDomainState() foundation.NSData
+	InteractionNotAllowed() bool
+	SetInteractionNotAllowed(value bool)
+	LocalizedCancelTitle() string
+	SetLocalizedCancelTitle(value string)
+	LocalizedFallbackTitle() string
+	SetLocalizedFallbackTitle(value string)
+	LocalizedReason() string
+	SetLocalizedReason(value string)
+	MaxBiometryFailures() foundation.Number
+	SetMaxBiometryFailures(value foundation.INumber)
+	TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval
+	SetTouchIDAuthenticationAllowableReuseDuration(value foundation.ITimeInterval)
+	LATouchIDAuthenticationMaximumAllowableReuseDuration() unsafe.Pointer
 }
 
 // A mechanism for evaluating authentication policies and access controls.
@@ -99,15 +114,15 @@ func (c_ Context) CanEvaluatePolicyError(policy Policy, error_ unsafe.Pointer) b
 // Evaluates an access control for a given operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluateAccessControl(_:operation:localizedReason:reply:)
-func (c_ Context) EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation IAccessControlOperation, localizedReason appkit.string, reply unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("evaluateAccessControl:operation:localizedReason:reply:"), accessControl, operation, localizedReason, reply)
+func (c_ Context) EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation IAccessControlOperation, localizedReason string, reply unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("evaluateAccessControl:operation:localizedReason:reply:"), accessControl, operation, objc.String(localizedReason), reply)
 }
 
 // Evaluates the specified policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)
-func (c_ Context) EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason appkit.string, reply unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("evaluatePolicy:localizedReason:reply:"), policy, localizedReason, reply)
+func (c_ Context) EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason string, reply unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("evaluatePolicy:localizedReason:reply:"), policy, objc.String(localizedReason), reply)
 }
 
 // Invalidates the authentication context.
@@ -178,8 +193,8 @@ func (c_ Context) SetInteractionNotAllowed(value bool) {
 // The localized title for the cancel button in the dialog presented to the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
-func (c_ Context) LocalizedCancelTitle() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedCancelTitle"))
+func (c_ Context) LocalizedCancelTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedCancelTitle"))
 	return rv
 }
 
@@ -189,15 +204,15 @@ func (c_ Context) LocalizedCancelTitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
-func (c_ Context) SetLocalizedCancelTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), value)
+func (c_ Context) SetLocalizedCancelTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), objc.String(value))
 }
 
 // The localized title for the fallback button in the dialog presented to the user during authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
-func (c_ Context) LocalizedFallbackTitle() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedFallbackTitle"))
+func (c_ Context) LocalizedFallbackTitle() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedFallbackTitle"))
 	return rv
 }
 
@@ -207,15 +222,15 @@ func (c_ Context) LocalizedFallbackTitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
-func (c_ Context) SetLocalizedFallbackTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), value)
+func (c_ Context) SetLocalizedFallbackTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), objc.String(value))
 }
 
 // The localized explanation for authentication shown in the dialog presented to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
-func (c_ Context) LocalizedReason() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedReason"))
+func (c_ Context) LocalizedReason() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedReason"))
 	return rv
 }
 
@@ -225,8 +240,8 @@ func (c_ Context) LocalizedReason() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
-func (c_ Context) SetLocalizedReason(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), value)
+func (c_ Context) SetLocalizedReason(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), objc.String(value))
 }
 
 // The number of biometric authentication failures after which the context falls back to another mechanism.

@@ -30,6 +30,14 @@ type _MotionActivityClass struct {
 // An interface definition for the [MotionActivity] class.
 type IMotionActivity interface {
 	ILogItem
+	Automotive() bool
+	Confidence() MotionActivityConfidence
+	Cycling() bool
+	Running() bool
+	StartDate() foundation.NSDate
+	Stationary() bool
+	Unknown() bool
+	Walking() bool
 }
 
 // The data for a single motion update event.

@@ -31,6 +31,11 @@ type _CustomRoutingPartialIPClass struct {
 // An interface definition for the [CustomRoutingPartialIP] class.
 type ICustomRoutingPartialIP interface {
 	objectivec.IObject
+	Address() foundation.NSData
+	KnownRouteIPs() AVCustomRoutingPartialIP
+	SetKnownRouteIPs(value IAVCustomRoutingPartialIP)
+	Mask() foundation.Data
+	SetMask(value foundation.IData)
 }
 
 // An object that represents a full or partial IP address.

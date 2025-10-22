@@ -30,6 +30,12 @@ type _ClassDescriptionClass struct {
 // An interface definition for the [ClassDescription] class.
 type IClassDescription interface {
 	objectivec.IObject
+	AttributeKeys() string
+	SetAttributeKeys(value string)
+	ToManyRelationshipKeys() string
+	SetToManyRelationshipKeys(value string)
+	ToOneRelationshipKeys() string
+	SetToOneRelationshipKeys(value string)
 }
 
 // An abstract class that provides the interface for querying the relationships and properties of a class.

@@ -31,6 +31,10 @@ type _OrderedCollectionDifferenceClass struct {
 type IOrderedCollectionDifference interface {
 	objectivec.IObject
 	InverseDifference() unsafe.Pointer
+	HasChanges() bool
+	Removals() []unsafe.Pointer
+	Insertions() unsafe.Pointer
+	SetInsertions(value unsafe.Pointer)
 }
 
 // An object representing the difference between two ordered collections.

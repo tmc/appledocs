@@ -31,6 +31,34 @@ type _INPersonClass struct {
 // An interface definition for the [INPerson] class.
 type IINPerson interface {
 	objectivec.IObject
+	Aliases() INPersonHandle
+	SetAliases(value INPersonHandle)
+	ContactIdentifier() string
+	SetContactIdentifier(value string)
+	CustomIdentifier() string
+	SetCustomIdentifier(value string)
+	DisplayName() string
+	SetDisplayName(value string)
+	Handle() string
+	SetHandle(value string)
+	Image() INImage
+	SetImage(value INImage)
+	IsContactSuggestion() bool
+	SetIsContactSuggestion(value bool)
+	IsMe() bool
+	SetIsMe(value bool)
+	NameComponents() foundation.PersonNameComponents
+	SetNameComponents(value foundation.IPersonNameComponents)
+	PersonHandle() INPersonHandle
+	SetPersonHandle(value INPersonHandle)
+	Relationship() unsafe.Pointer
+	SetRelationship(value unsafe.Pointer)
+	SiriMatches() INPerson
+	SetSiriMatches(value INPerson)
+	SuggestionType() INPersonSuggestionType
+	SetSuggestionType(value INPersonSuggestionType)
+	SpokenPhrase() string
+	SetSpokenPhrase(value string)
 }
 
 // Information about a person participating in a SiriKit interaction.
@@ -102,8 +130,8 @@ func (i_ INPerson) SetAliases(value INPersonHandle) {
 // The Contacts database identifier for the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/contactidentifier
-func (i_ INPerson) ContactIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("contactIdentifier"))
+func (i_ INPerson) ContactIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
@@ -113,15 +141,15 @@ func (i_ INPerson) ContactIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/contactidentifier
-func (i_ INPerson) SetContactIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setContactIdentifier:"), value)
+func (i_ INPerson) SetContactIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
 
 // The unique identifier that your app uses to identify the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/customidentifier
-func (i_ INPerson) CustomIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("customIdentifier"))
+func (i_ INPerson) CustomIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("customIdentifier"))
 	return rv
 }
 
@@ -131,15 +159,15 @@ func (i_ INPerson) CustomIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/customidentifier
-func (i_ INPerson) SetCustomIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCustomIdentifier:"), value)
+func (i_ INPerson) SetCustomIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCustomIdentifier:"), objc.String(value))
 }
 
 // The person’s formatted name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/displayname
-func (i_ INPerson) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("displayName"))
+func (i_ INPerson) DisplayName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -149,15 +177,15 @@ func (i_ INPerson) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/displayname
-func (i_ INPerson) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayName:"), value)
+func (i_ INPerson) SetDisplayName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 // The unique identifier that your app assigned to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/handle
-func (i_ INPerson) Handle() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("handle"))
+func (i_ INPerson) Handle() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("handle"))
 	return rv
 }
 
@@ -167,8 +195,8 @@ func (i_ INPerson) Handle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/handle
-func (i_ INPerson) SetHandle(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), value)
+func (i_ INPerson) SetHandle(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), objc.String(value))
 }
 
 // An image of the person.
@@ -318,8 +346,8 @@ func (i_ INPerson) SetSuggestionType(value INPersonSuggestionType) {
 // The phrase identified by Siri.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/spokenphrase
-func (i_ INPerson) SpokenPhrase() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("spokenPhrase"))
+func (i_ INPerson) SpokenPhrase() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("spokenPhrase"))
 	return rv
 }
 
@@ -329,8 +357,8 @@ func (i_ INPerson) SpokenPhrase() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/spokenphrase
-func (i_ INPerson) SetSpokenPhrase(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSpokenPhrase:"), value)
+func (i_ INPerson) SetSpokenPhrase(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSpokenPhrase:"), objc.String(value))
 }
 
 

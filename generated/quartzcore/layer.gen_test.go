@@ -15,3 +15,11 @@ func ExampleNewLayer() {
 	_ = quartzcore.NewLayer()
 	// Output:
 }
+// ExampleNewLayerWithRemoteClientId demonstrates how to create a Layer instance using NewLayerWithRemoteClientId.
+// Initializes a layer with a remote client ID.
+func ExampleNewLayerWithRemoteClientId() {
+	_ = quartzcore.NewLayerWithRemoteClientId(
+		0, // client_id uint32
+	)
+	// Output:
+}

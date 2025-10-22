@@ -29,6 +29,18 @@ type _INSearchCallHistoryIntentClass struct {
 // An interface definition for the [INSearchCallHistoryIntent] class.
 type IINSearchCallHistoryIntent interface {
 	IINIntent
+	CallCapabilities() unsafe.Pointer
+	SetCallCapabilities(value unsafe.Pointer)
+	CallType() INCallRecordType
+	SetCallType(value INCallRecordType)
+	CallTypes() unsafe.Pointer
+	SetCallTypes(value unsafe.Pointer)
+	DateCreated() INDateComponentsRange
+	SetDateCreated(value INDateComponentsRange)
+	Recipient() INPerson
+	SetRecipient(value INPerson)
+	Unseen() bool
+	SetUnseen(value bool)
 }
 
 // A request to list the calls matching the specified criteria.

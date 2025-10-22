@@ -29,6 +29,8 @@ type _INCancelWorkoutIntentClass struct {
 // An interface definition for the [INCancelWorkoutIntent] class.
 type IINCancelWorkoutIntent interface {
 	IINIntent
+	WorkoutName() INSpeakableString
+	SetWorkoutName(value INSpeakableString)
 }
 
 // A request to cancel an active workout.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _MTRMessagesClusterMessageCompleteEventClass struct {
 // An interface definition for the [MTRMessagesClusterMessageCompleteEvent] class.
 type IMTRMessagesClusterMessageCompleteEvent interface {
 	objectivec.IObject
+	FutureMessagesPreference() foundation.Number
+	SetFutureMessagesPreference(value foundation.INumber)
+	MessageID() foundation.NSData
+	SetMessageID(value foundation.IData)
+	Reply() string
+	SetReply(value string)
+	ResponseID() foundation.Number
+	SetResponseID(value foundation.INumber)
 }
 
 //
@@ -109,8 +116,8 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value foundation.I
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("reply"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("reply"))
 	return rv
 }
 
@@ -118,8 +125,8 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() appkit.string {
 // SetReply sets the value of the reply property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), value)
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), objc.String(value))
 }
 
 //

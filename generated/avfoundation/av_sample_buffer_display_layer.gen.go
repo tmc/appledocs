@@ -30,6 +30,23 @@ type _SampleBufferDisplayLayerClass struct {
 // An interface definition for the [SampleBufferDisplayLayer] class.
 type ISampleBufferDisplayLayer interface {
 	quartzcore.ILayer
+	ControlTimebase() unsafe.Pointer
+	SetControlTimebase(value unsafe.Pointer)
+	IsOutputObscuredDueToInsufficientExternalProtection() bool
+	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool)
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
+	PreventsAutomaticBackgroundingDuringVideoPlayback() bool
+	SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool)
+	PreventsCapture() bool
+	SetPreventsCapture(value bool)
+	PreventsDisplaySleepDuringVideoPlayback() bool
+	SetPreventsDisplaySleepDuringVideoPlayback(value bool)
+	SampleBufferRenderer() AVSampleBufferVideoRenderer
+	SetSampleBufferRenderer(value IAVSampleBufferVideoRenderer)
+	VideoGravity() LayerVideoGravity
+	SetVideoGravity(value ILayerVideoGravity)
+	AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() string
 }
 
 // An object that displays compressed or uncompressed video frames.

@@ -30,6 +30,7 @@ type _PolygonObstacleClass struct {
 type IPolygonObstacle interface {
 	IObstacle
 	VertexAtIndex(index uint) unsafe.Pointer
+	VertexCount() uint
 }
 
 // A polygon-shaped impassable area in a 2D game world.
@@ -87,7 +88,7 @@ func NewPolygonObstacle() PolygonObstacle {
 // Initializes a polygon obstacle with the specified list of vertices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/initWithPoints:count:
-func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints unsafe.Pointer) PolygonObstacle {
+func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints Iuintptr) PolygonObstacle {
 	instance := getPolygonObstacleClass().Alloc()
 	rv := objc.Send[PolygonObstacle](instance.ID, objc.Sel("initWithPoints:count:"), points, numPoints)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints unsafe.P
 // Creates a polygon obstacle with the specified list of vertices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/obstacleWithPoints:count:
-func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, numPoints unsafe.Pointer) unsafe.Pointer {
+func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, numPoints Iuintptr) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("obstacleWithPoints:count:"), points, numPoints)
 	return rv
 }

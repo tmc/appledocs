@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _NEFlowMetaDataClass struct {
 // An interface definition for the [NEFlowMetaData] class.
 type INEFlowMetaData interface {
 	objectivec.IObject
+	FilterFlowIdentifier() foundation.UUID
+	SourceAppAuditToken() foundation.NSData
+	SourceAppSigningIdentifier() string
+	SourceAppUniqueIdentifier() foundation.NSData
+	RoutingMethod() NETunnelProviderRoutingMethod
+	SetRoutingMethod(value INETunnelProviderRoutingMethod)
 }
 
 // Additional information about data flowing through a per-app VPN provider.
@@ -101,8 +106,8 @@ func (n_ NEFlowMetaData) SourceAppAuditToken() foundation.NSData {
 // A string that contains the signing identifier of the source application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppSigningIdentifier
-func (n_ NEFlowMetaData) SourceAppSigningIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
+func (n_ NEFlowMetaData) SourceAppSigningIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
 	return rv
 }
 

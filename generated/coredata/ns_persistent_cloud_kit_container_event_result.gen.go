@@ -29,6 +29,8 @@ type _PersistentCloudKitContainerEventResultClass struct {
 // An interface definition for the [PersistentCloudKitContainerEventResult] class.
 type IPersistentCloudKitContainerEventResult interface {
 	IPersistentStoreResult
+	Result() objc.ID
+	ResultType() PersistentCloudKitContainerEventResultType
 }
 
 // The result of a request to fetch persistent CloudKit container events.

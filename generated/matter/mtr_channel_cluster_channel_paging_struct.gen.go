@@ -30,6 +30,10 @@ type _MTRChannelClusterChannelPagingStructClass struct {
 // An interface definition for the [MTRChannelClusterChannelPagingStruct] class.
 type IMTRChannelClusterChannelPagingStruct interface {
 	objectivec.IObject
+	NextToken() MTRChannelClusterPageTokenStruct
+	SetNextToken(value IMTRChannelClusterPageTokenStruct)
+	PreviousToken() MTRChannelClusterPageTokenStruct
+	SetPreviousToken(value IMTRChannelClusterPageTokenStruct)
 }
 
 //

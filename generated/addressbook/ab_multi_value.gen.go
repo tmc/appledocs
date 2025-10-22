@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,13 +33,13 @@ type IABMultiValue interface {
 	objectivec.IObject
 	Count() uint
 	IdentifierAtIndex(index uint) foundation.String
-	IndexForIdentifier(identifier appkit.string) uint
+	IndexForIdentifier(identifier string) uint
 	LabelAtIndex(index uint) foundation.String
-	LabelForIdentifier(identifier appkit.string) objc.ID
+	LabelForIdentifier(identifier string) objc.ID
 	PrimaryIdentifier() foundation.String
 	PropertyType() ABPropertyType
 	ValueAtIndex(index uint) objc.ID
-	ValueForIdentifier(identifier appkit.string) objc.ID
+	ValueForIdentifier(identifier string) objc.ID
 }
 
 // An immutable representation of a property that might have multiple values.
@@ -110,8 +109,8 @@ func (a_ ABMultiValue) IdentifierAtIndex(index uint) foundation.String {
 // Returns the index for the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/index(forIdentifier:)
-func (a_ ABMultiValue) IndexForIdentifier(identifier appkit.string) uint {
-	rv := objc.Send[uint](a_.ID, objc.Sel("indexForIdentifier:"), identifier)
+func (a_ ABMultiValue) IndexForIdentifier(identifier string) uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("indexForIdentifier:"), objc.String(identifier))
 	return rv
 }
 
@@ -126,8 +125,8 @@ func (a_ ABMultiValue) LabelAtIndex(index uint) foundation.String {
 // Returns the label for the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/label(forIdentifier:)
-func (a_ ABMultiValue) LabelForIdentifier(identifier appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("labelForIdentifier:"), identifier)
+func (a_ ABMultiValue) LabelForIdentifier(identifier string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("labelForIdentifier:"), objc.String(identifier))
 	return rv
 }
 
@@ -158,8 +157,8 @@ func (a_ ABMultiValue) ValueAtIndex(index uint) objc.ID {
 // Returns the value for the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/value(forIdentifier:)
-func (a_ ABMultiValue) ValueForIdentifier(identifier appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForIdentifier:"), identifier)
+func (a_ ABMultiValue) ValueForIdentifier(identifier string) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForIdentifier:"), objc.String(identifier))
 	return rv
 }
 

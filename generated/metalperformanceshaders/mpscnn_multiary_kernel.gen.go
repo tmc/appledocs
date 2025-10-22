@@ -31,6 +31,20 @@ type _CNNMultiaryKernelClass struct {
 type ICNNMultiaryKernel interface {
 	IKernel
 	DilationRateYatIndex(index uint) uint
+	ClipRect() corelocation.Region
+	SetClipRect(value corelocation.IRegion)
+	DestinationFeatureChannelOffset() int
+	SetDestinationFeatureChannelOffset(value int)
+	DestinationImageAllocator() unsafe.Pointer
+	SetDestinationImageAllocator(value unsafe.Pointer)
+	IsBackwards() bool
+	SetIsBackwards(value bool)
+	IsStateModified() bool
+	SetIsStateModified(value bool)
+	Padding() unsafe.Pointer
+	SetPadding(value unsafe.Pointer)
+	SourceCount() int
+	SetSourceCount(value int)
 }
 
 //

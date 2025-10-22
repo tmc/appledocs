@@ -30,6 +30,12 @@ type _PDFAnnotationCircleClass struct {
 // An interface definition for the [PDFAnnotationCircle] class.
 type IPDFAnnotationCircle interface {
 	IPDFAnnotation
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	Style() PDFBorderStyle
+	SetStyle(value PDFBorderStyle)
 }
 
 //

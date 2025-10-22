@@ -29,6 +29,8 @@ type _QuadrilateralAccelerationStructureClass struct {
 // An interface definition for the [QuadrilateralAccelerationStructure] class.
 type IQuadrilateralAccelerationStructure interface {
 	IPolygonAccelerationStructure
+	QuadrilateralCount() uint
+	SetQuadrilateralCount(value uint)
 }
 
 //

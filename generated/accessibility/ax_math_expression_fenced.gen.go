@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AXMathExpressionFenced] class.
@@ -30,6 +29,9 @@ type _AXMathExpressionFencedClass struct {
 // An interface definition for the [AXMathExpressionFenced] class.
 type IAXMathExpressionFenced interface {
 	IAXMathExpression
+	CloseString() string
+	Expressions() []AXMathExpression
+	OpenString() string
 }
 
 //
@@ -79,9 +81,9 @@ func NewAXMathExpressionFenced() AXMathExpressionFenced {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/init(expressions:open:close:)
-func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []AXMathExpression, openString appkit.string, closeString appkit.string) AXMathExpressionFenced {
+func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []AXMathExpression, openString string, closeString string) AXMathExpressionFenced {
 	instance := getAXMathExpressionFencedClass().Alloc()
-	rv := objc.Send[AXMathExpressionFenced](instance.ID, objc.Sel("initWithExpressions:openString:closeString:"), expressions, openString, closeString)
+	rv := objc.Send[AXMathExpressionFenced](instance.ID, objc.Sel("initWithExpressions:openString:closeString:"), expressions, objc.String(openString), objc.String(closeString))
 	rv.Autorelease()
 	return rv
 }
@@ -89,8 +91,8 @@ func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions [
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/closeString
-func (a_ AXMathExpressionFenced) CloseString() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("closeString"))
+func (a_ AXMathExpressionFenced) CloseString() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("closeString"))
 	return rv
 }
 
@@ -103,8 +105,8 @@ func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/openString
-func (a_ AXMathExpressionFenced) OpenString() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("openString"))
+func (a_ AXMathExpressionFenced) OpenString() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("openString"))
 	return rv
 }
 

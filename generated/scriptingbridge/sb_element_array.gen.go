@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,7 +36,7 @@ type ISBElementArray interface {
 	Get() []objc.ID
 	ObjectAtLocation(location objectivec.IObject) unsafe.Pointer
 	ObjectWithID(identifier objectivec.IObject) unsafe.Pointer
-	ObjectWithName(name appkit.string) unsafe.Pointer
+	ObjectWithName(name string) unsafe.Pointer
 }
 
 // is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
@@ -133,8 +132,8 @@ func (s_ SBElementArray) ObjectWithID(identifier objectivec.IObject) unsafe.Poin
 // Returns the object in the array with the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(withName:)
-func (s_ SBElementArray) ObjectWithName(name appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), name)
+func (s_ SBElementArray) ObjectWithName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), objc.String(name))
 	return rv
 }
 

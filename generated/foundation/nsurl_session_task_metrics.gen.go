@@ -30,6 +30,9 @@ type _URLSessionTaskMetricsClass struct {
 // An interface definition for the [URLSessionTaskMetrics] class.
 type IURLSessionTaskMetrics interface {
 	objectivec.IObject
+	RedirectCount() uint
+	TaskInterval() NSDateInterval
+	TransactionMetrics() []URLSessionTaskTransactionMetrics
 }
 
 // An object encapsulating the metrics for a session task.

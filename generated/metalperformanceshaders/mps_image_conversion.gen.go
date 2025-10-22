@@ -31,6 +31,8 @@ type _ImageConversionClass struct {
 // An interface definition for the [ImageConversion] class.
 type IImageConversion interface {
 	IUnaryImageKernel
+	DestinationAlpha() AlphaType
+	SourceAlpha() AlphaType
 }
 
 // A filter that performs a conversion of color space, alpha, or pixel format.

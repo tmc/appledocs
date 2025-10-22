@@ -31,6 +31,12 @@ type _MTROTASoftwareUpdateRequestorClusterProviderLocationClass struct {
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterProviderLocation] class.
 type IMTROTASoftwareUpdateRequestorClusterProviderLocation interface {
 	objectivec.IObject
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	ProviderNodeID() foundation.Number
+	SetProviderNodeID(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,14 @@ type _VZMacHardwareModelClass struct {
 // An interface definition for the [VZMacHardwareModel] class.
 type IVZMacHardwareModel interface {
 	objectivec.IObject
+	DataRepresentation() foundation.NSData
+	Supported() bool
+	IsSupported() bool
+	SetIsSupported(value bool)
+	MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements
+	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
+	HardwareModel() VZMacHardwareModel
+	SetHardwareModel(value IVZMacHardwareModel)
 }
 
 // A specification for the hardware elements and configurations present in a particular Mac hardware model.

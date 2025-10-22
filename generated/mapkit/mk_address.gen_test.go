@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = mapkit.NewMKAddress
 
+// ExampleNewMKAddressWithFullAddressShortAddress demonstrates how to create a MKAddress instance using NewMKAddressWithFullAddressShortAddress.
+// Initializes a new address with a location’s full address using a string and a short address that provides an abbreviated form of the address such as a street address.
+func ExampleNewMKAddressWithFullAddressShortAddress() {
+	_ = mapkit.NewMKAddressWithFullAddressShortAddress(
+		"fullAddress", // fullAddress string
+		"shortAddress", // shortAddress string
+	)
+	// Output:
+}

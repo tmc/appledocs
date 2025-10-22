@@ -32,6 +32,30 @@ type _VideoCompositionClass struct {
 type IVideoComposition interface {
 	objectivec.IObject
 	IsValidForAssetTimeRangeValidationDelegate(asset IAVAsset, timeRange unsafe.Pointer, validationDelegate objectivec.IObject) bool
+	CustomVideoCompositorClass() unsafe.Pointer
+	FrameDuration() unsafe.Pointer
+	Instructions() []objc.ID
+	RenderScale() float32
+	AnimationTool() unsafe.Pointer
+	SetAnimationTool(value unsafe.Pointer)
+	ColorPrimaries() string
+	SetColorPrimaries(value string)
+	ColorTransferFunction() string
+	SetColorTransferFunction(value string)
+	ColorYCbCrMatrix() string
+	SetColorYCbCrMatrix(value string)
+	OutputBufferDescription() unsafe.Pointer
+	SetOutputBufferDescription(value unsafe.Pointer)
+	PerFrameHDRDisplayMetadataPolicy() unsafe.Pointer
+	SetPerFrameHDRDisplayMetadataPolicy(value unsafe.Pointer)
+	RenderSize() coregraphics.CGSize
+	SetRenderSize(value coregraphics.CGSize)
+	SourceSampleDataTrackIDs() unsafe.Pointer
+	SetSourceSampleDataTrackIDs(value unsafe.Pointer)
+	SourceTrackIDForFrameTiming() unsafe.Pointer
+	SetSourceTrackIDForFrameTiming(value unsafe.Pointer)
+	SpatialVideoConfigurations() unsafe.Pointer
+	SetSpatialVideoConfigurations(value unsafe.Pointer)
 }
 
 // An object that describes how to compose video frames at particular points in time.

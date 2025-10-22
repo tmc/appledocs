@@ -31,6 +31,12 @@ type _MTRChannelClusterChangeChannelParamsClass struct {
 // An interface definition for the [MTRChannelClusterChangeChannelParams] class.
 type IMTRChannelClusterChangeChannelParams interface {
 	objectivec.IObject
+	Match() string
+	SetMatch(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRChannelClusterChangeChannelParams() MTRChannelClusterChangeChannelPar
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
-func (m_ MTRChannelClusterChangeChannelParams) Match() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("match"))
+func (m_ MTRChannelClusterChangeChannelParams) Match() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("match"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRChannelClusterChangeChannelParams) Match() appkit.string {
 // SetMatch sets the value of the match property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
-func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), value)
+func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), objc.String(value))
 }
 
 //

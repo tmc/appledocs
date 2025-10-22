@@ -42,6 +42,16 @@ type IMusicPlayerController interface {
 	SkipToBeginning()
 	SkipToNextItem()
 	SkipToPreviousItem()
+	IndexOfNowPlayingItem() uint
+	NowPlayingItem() MPMediaItem
+	SetNowPlayingItem(value IMPMediaItem)
+	PlaybackState() MusicPlaybackState
+	RepeatMode() MusicRepeatMode
+	SetRepeatMode(value MusicRepeatMode)
+	ShuffleMode() MusicShuffleMode
+	SetShuffleMode(value MusicShuffleMode)
+	Volume() float32
+	SetVolume(value float32)
 }
 
 // An object that plays audio media items from the device’s Music app library.
@@ -309,8 +319,8 @@ func (m_ MusicPlayerController) SystemMusicPlayer() unsafe.Pointer {
 // The audio playback volume for the music player, in the range from (silent) through (maximum volume).
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/volume
-func (m_ MusicPlayerController) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("volume"))
+func (m_ MusicPlayerController) Volume() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -320,7 +330,7 @@ func (m_ MusicPlayerController) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/volume
-func (m_ MusicPlayerController) SetVolume(value unsafe.Pointer) {
+func (m_ MusicPlayerController) SetVolume(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVolume:"), value)
 }
 

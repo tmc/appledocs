@@ -30,6 +30,10 @@ type _MTRPowerSourceClusterBatChargeFaultChangeEventClass struct {
 // An interface definition for the [MTRPowerSourceClusterBatChargeFaultChangeEvent] class.
 type IMTRPowerSourceClusterBatChargeFaultChangeEvent interface {
 	objectivec.IObject
+	Current() unsafe.Pointer
+	SetCurrent(value unsafe.Pointer)
+	Previous() unsafe.Pointer
+	SetPrevious(value unsafe.Pointer)
 }
 
 //

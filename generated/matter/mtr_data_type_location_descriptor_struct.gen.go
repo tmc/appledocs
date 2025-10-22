@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MTRDataTypeLocationDescriptorStructClass struct {
 // An interface definition for the [MTRDataTypeLocationDescriptorStruct] class.
 type IMTRDataTypeLocationDescriptorStruct interface {
 	objectivec.IObject
+	AreaType() foundation.Number
+	SetAreaType(value foundation.INumber)
+	FloorNumber() foundation.Number
+	SetFloorNumber(value foundation.INumber)
+	LocationName() string
+	SetLocationName(value string)
 }
 
 //
@@ -109,8 +114,8 @@ func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value foundation.IN
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("locationName"))
+func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("locationName"))
 	return rv
 }
 
@@ -118,8 +123,8 @@ func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() appkit.string {
 // SetLocationName sets the value of the locationName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), value)
+func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), objc.String(value))
 }
 
 

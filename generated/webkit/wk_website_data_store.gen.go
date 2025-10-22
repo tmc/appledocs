@@ -31,6 +31,16 @@ type _WebsiteDataStoreClass struct {
 // An interface definition for the [WebsiteDataStore] class.
 type IWebsiteDataStore interface {
 	objectivec.IObject
+	WebsiteDataStore() WKWebsiteDataStore
+	SetWebsiteDataStore(value IWKWebsiteDataStore)
+	HttpCookieStore() WKHTTPCookieStore
+	SetHttpCookieStore(value IWKHTTPCookieStore)
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	IsPersistent() bool
+	SetIsPersistent(value bool)
+	ProxyConfigurations() unsafe.Pointer
+	SetProxyConfigurations(value unsafe.Pointer)
 }
 
 // An object that manages cookies, disk and memory caches, and other types of data for a web view.

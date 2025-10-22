@@ -30,6 +30,10 @@ type _ProxyClass struct {
 // An interface definition for the [Proxy] class.
 type IProxy interface {
 	objectivec.IObject
+	DebugDescription() string
+	SetDebugDescription(value string)
+	Description() string
+	SetDescription(value string)
 }
 
 // An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet.

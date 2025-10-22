@@ -42,6 +42,25 @@ type IRPScreenRecorder interface {
 	StopClipBufferingWithCompletionHandler(completionHandler func(error objc.ID))
 	StopRecordingWithHandler(handler unsafe.Pointer)
 	StopRecordingWithOutputURLCompletionHandler(url foundation.IURL, completionHandler func(error objc.ID))
+	CameraPosition() RPCameraPosition
+	SetCameraPosition(value RPCameraPosition)
+	CameraPreviewView() appkit.View
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Available() bool
+	CameraEnabled() bool
+	SetCameraEnabled(value bool)
+	MicrophoneEnabled() bool
+	SetMicrophoneEnabled(value bool)
+	Recording() bool
+	IsAvailable() bool
+	SetIsAvailable(value bool)
+	IsCameraEnabled() bool
+	SetIsCameraEnabled(value bool)
+	IsMicrophoneEnabled() bool
+	SetIsMicrophoneEnabled(value bool)
+	IsRecording() bool
+	SetIsRecording(value bool)
 }
 
 // The shared recorder object that provides the ability to record audio and video of your app.

@@ -36,6 +36,8 @@ type IScriptSuiteRegistry interface {
 	RegisterCommandDescription(commandDescription IScriptCommandDescription)
 	RegisterClassDescription(classDescription IScriptClassDescription)
 	SuiteForAppleEventCode(appleEventCode unsafe.Pointer) String
+	SuiteNames() string
+	SetSuiteNames(value string)
 }
 
 // The top-level repository of scriptability information for an app at runtime.

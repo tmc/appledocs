@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,8 @@ type _ThumbnailReplyClass struct {
 // An interface definition for the [ThumbnailReply] class.
 type IThumbnailReply interface {
 	objectivec.IObject
+	ExtensionBadge() string
+	SetExtensionBadge(value string)
 }
 
 // The object that provides a thumbnail for a custom file type.
@@ -120,8 +121,8 @@ func (tc _ThumbnailReplyClass) ReplyWithContextSizeDrawingBlock(contextSize core
 // A short string that identifies the file type that the system uses as a badge when producing an icon thumbnail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/extensionBadge
-func (t_ ThumbnailReply) ExtensionBadge() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("extensionBadge"))
+func (t_ ThumbnailReply) ExtensionBadge() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("extensionBadge"))
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (t_ ThumbnailReply) ExtensionBadge() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/extensionBadge
-func (t_ ThumbnailReply) SetExtensionBadge(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), value)
+func (t_ ThumbnailReply) SetExtensionBadge(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), objc.String(value))
 }
 
 

@@ -31,6 +31,16 @@ type _MTRDeviceEnergyManagementClusterConstraintsStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterConstraintsStruct] class.
 type IMTRDeviceEnergyManagementClusterConstraintsStruct interface {
 	objectivec.IObject
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	LoadControl() foundation.Number
+	SetLoadControl(value foundation.INumber)
+	MaximumEnergy() foundation.Number
+	SetMaximumEnergy(value foundation.INumber)
+	NominalPower() foundation.Number
+	SetNominalPower(value foundation.INumber)
+	StartTime() foundation.Number
+	SetStartTime(value foundation.INumber)
 }
 
 //

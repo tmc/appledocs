@@ -32,6 +32,14 @@ type _StrokeClass struct {
 // An interface definition for the [Stroke] class.
 type IStroke interface {
 	objectivec.IObject
+	Ink() PKInk
+	Mask() appkit.BezierPath
+	MaskedPathRanges() []FloatRange
+	Path() PKStrokePath
+	RandomSeed() uint32
+	RenderBounds() coregraphics.CGRect
+	RequiredContentVersion() ContentVersion
+	Transform() coregraphics.CGAffineTransform
 }
 
 // A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
@@ -97,7 +105,7 @@ func NewStrokeWithInkStrokePathTransformMask(ink IPKInk, strokePath IPKStrokePat
 // Creates a stroke with the line properties, path, transform, mask, and random seed that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/init(ink:strokePath:transform:mask:randomSeed:)
-func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink IPKInk, strokePath IPKStrokePath, transform coregraphics.CGAffineTransform, mask appkit.IBezierPath, randomSeed unsafe.Pointer) Stroke {
+func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink IPKInk, strokePath IPKStrokePath, transform coregraphics.CGAffineTransform, mask appkit.IBezierPath, randomSeed Iuint32) Stroke {
 	instance := getStrokeClass().Alloc()
 	rv := objc.Send[Stroke](instance.ID, objc.Sel("initWithInk:strokePath:transform:mask:randomSeed:"), ink, strokePath, transform, mask, randomSeed)
 	rv.Autorelease()
@@ -140,8 +148,8 @@ func (s_ Stroke) Path() PKStrokePath {
 // An unsigned 32-bit integer to use as a random seed for drawing strokes that use randomized effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/randomSeed
-func (s_ Stroke) RandomSeed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("randomSeed"))
+func (s_ Stroke) RandomSeed() uint32 {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("randomSeed"))
 	return rv
 }
 

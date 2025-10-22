@@ -31,6 +31,24 @@ type _LossGradientClass struct {
 type ILossGradient interface {
 	ICNNBinaryKernel
 	EncodeBatchToCommandBufferSourceGradientsSourceImagesLabelsWeightsSourceStatesDestinationGradients(commandBuffer objectivec.IObject, sourceGradients unsafe.Pointer, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, sourceStates unsafe.Pointer, destinationGradients unsafe.Pointer)
+	ComputeLabelGradients() bool
+	SetComputeLabelGradients(value bool)
+	Delta() float32
+	SetDelta(value float32)
+	Epsilon() float32
+	SetEpsilon(value float32)
+	LabelSmoothing() float32
+	SetLabelSmoothing(value float32)
+	LossType() unsafe.Pointer
+	SetLossType(value unsafe.Pointer)
+	NumberOfClasses() int
+	SetNumberOfClasses(value int)
+	ReduceAcrossBatch() bool
+	SetReduceAcrossBatch(value bool)
+	ReductionType() unsafe.Pointer
+	SetReductionType(value unsafe.Pointer)
+	Weight() float32
+	SetWeight(value float32)
 }
 
 //
@@ -111,8 +129,8 @@ func (l_ LossGradient) SetComputeLabelGradients(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/delta
-func (l_ LossGradient) Delta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("delta"))
+func (l_ LossGradient) Delta() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("delta"))
 	return rv
 }
 
@@ -120,14 +138,14 @@ func (l_ LossGradient) Delta() unsafe.Pointer {
 // SetDelta sets the value of the delta property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/delta
-func (l_ LossGradient) SetDelta(value unsafe.Pointer) {
+func (l_ LossGradient) SetDelta(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDelta:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/epsilon
-func (l_ LossGradient) Epsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("epsilon"))
+func (l_ LossGradient) Epsilon() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("epsilon"))
 	return rv
 }
 
@@ -135,14 +153,14 @@ func (l_ LossGradient) Epsilon() unsafe.Pointer {
 // SetEpsilon sets the value of the epsilon property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/epsilon
-func (l_ LossGradient) SetEpsilon(value unsafe.Pointer) {
+func (l_ LossGradient) SetEpsilon(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setEpsilon:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/labelsmoothing
-func (l_ LossGradient) LabelSmoothing() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("labelSmoothing"))
+func (l_ LossGradient) LabelSmoothing() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("labelSmoothing"))
 	return rv
 }
 
@@ -150,7 +168,7 @@ func (l_ LossGradient) LabelSmoothing() unsafe.Pointer {
 // SetLabelSmoothing sets the value of the labelSmoothing property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/labelsmoothing
-func (l_ LossGradient) SetLabelSmoothing(value unsafe.Pointer) {
+func (l_ LossGradient) SetLabelSmoothing(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLabelSmoothing:"), value)
 }
 
@@ -216,8 +234,8 @@ func (l_ LossGradient) SetReductionType(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/weight
-func (l_ LossGradient) Weight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("weight"))
+func (l_ LossGradient) Weight() float32 {
+	rv := objc.Send[float32](l_.ID, objc.Sel("weight"))
 	return rv
 }
 
@@ -225,7 +243,7 @@ func (l_ LossGradient) Weight() unsafe.Pointer {
 // SetWeight sets the value of the weight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient/weight
-func (l_ LossGradient) SetWeight(value unsafe.Pointer) {
+func (l_ LossGradient) SetWeight(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWeight:"), value)
 }
 

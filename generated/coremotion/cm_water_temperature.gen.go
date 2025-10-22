@@ -31,6 +31,9 @@ type _WaterTemperatureClass struct {
 // An interface definition for the [WaterTemperature] class.
 type IWaterTemperature interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	Temperature() unsafe.Pointer
+	TemperatureUncertainty() unsafe.Pointer
 }
 
 // An update that contains data about the water temperature.

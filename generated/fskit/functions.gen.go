@@ -15,9 +15,9 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_fs_errorForCocoaError func(unsafe.Pointer) unsafe.Pointer
-	_fs_errorForMachError func(unsafe.Pointer) unsafe.Pointer
-	_fs_errorForPOSIXError func(unsafe.Pointer) unsafe.Pointer
+	_fs_errorForCocoaError func(int) unsafe.Pointer
+	_fs_errorForMachError func(int) unsafe.Pointer
+	_fs_errorForPOSIXError func(int) unsafe.Pointer
 )
 
 func init() {
@@ -49,7 +49,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Added in macOS 15.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForCocoaError(_:)
-func fs_errorForCocoaError(errorCode unsafe.Pointer) unsafe.Pointer {
+func fs_errorForCocoaError(errorCode int) unsafe.Pointer {
 	return _fs_errorForCocoaError(errorCode)
 	}
 
@@ -59,7 +59,7 @@ func fs_errorForCocoaError(errorCode unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 15.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForMachError(_:)
-func fs_errorForMachError(errorCode unsafe.Pointer) unsafe.Pointer {
+func fs_errorForMachError(errorCode int) unsafe.Pointer {
 	return _fs_errorForMachError(errorCode)
 	}
 
@@ -69,7 +69,7 @@ func fs_errorForMachError(errorCode unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 15.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForPOSIXError(_:)
-func fs_errorForPOSIXError(p0 unsafe.Pointer) unsafe.Pointer {
+func fs_errorForPOSIXError(p0 int) unsafe.Pointer {
 	return _fs_errorForPOSIXError(p0)
 	}
 

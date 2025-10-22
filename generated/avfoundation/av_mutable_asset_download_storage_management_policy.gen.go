@@ -30,6 +30,10 @@ type _MutableAssetDownloadStorageManagementPolicyClass struct {
 // An interface definition for the [MutableAssetDownloadStorageManagementPolicy] class.
 type IMutableAssetDownloadStorageManagementPolicy interface {
 	IAssetDownloadStorageManagementPolicy
+	ExpirationDate() foundation.Date
+	SetExpirationDate(value foundation.IDate)
+	Priority() unsafe.Pointer
+	SetPriority(value unsafe.Pointer)
 }
 
 // A mutable object that you use to create a new storage management policy.

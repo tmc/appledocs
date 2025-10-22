@@ -30,6 +30,19 @@ type _CKSyncEngineEventClass struct {
 // An interface definition for the [CKSyncEngineEvent] class.
 type ICKSyncEngineEvent interface {
 	objectivec.IObject
+	AccountChangeEvent() CKSyncEngineAccountChangeEvent
+	DidFetchChangesEvent() CKSyncEngineDidFetchChangesEvent
+	DidFetchRecordZoneChangesEvent() CKSyncEngineDidFetchRecordZoneChangesEvent
+	DidSendChangesEvent() CKSyncEngineDidSendChangesEvent
+	FetchedDatabaseChangesEvent() CKSyncEngineFetchedDatabaseChangesEvent
+	FetchedRecordZoneChangesEvent() CKSyncEngineFetchedRecordZoneChangesEvent
+	SentDatabaseChangesEvent() CKSyncEngineSentDatabaseChangesEvent
+	SentRecordZoneChangesEvent() CKSyncEngineSentRecordZoneChangesEvent
+	StateUpdateEvent() CKSyncEngineStateUpdateEvent
+	Type() CKSyncEngineEventType
+	WillFetchChangesEvent() CKSyncEngineWillFetchChangesEvent
+	WillFetchRecordZoneChangesEvent() CKSyncEngineWillFetchRecordZoneChangesEvent
+	WillSendChangesEvent() CKSyncEngineWillSendChangesEvent
 }
 
 // An event that occurs during a sync operation.

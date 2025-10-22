@@ -32,6 +32,8 @@ type INEAppProxyTCPFlow interface {
 	INEAppProxyFlow
 	ReadDataWithCompletionHandler(completionHandler unsafe.Pointer)
 	WriteDataWithCompletionHandler(data foundation.IData, completionHandler unsafe.Pointer)
+	RemoteEndpoint() NWEndpoint
+	RemoteFlowEndpoint() unsafe.Pointer
 }
 
 // An object for reading and writing data to and from a TCP connection being proxied by the provider.

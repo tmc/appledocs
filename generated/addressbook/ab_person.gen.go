@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -137,16 +136,16 @@ func (ac _ABPersonClass) RemoveProperties(properties objectivec.IObject) int {
 // Returns a search element object that specifies a query for records of this type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/searchElement(forProperty:label:key:value:comparison:)
-func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(property appkit.string, label appkit.string, key appkit.string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
-	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), property, label, key, value, comparison)
+func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
+	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
 	return rv
 }
 
 // Returns the type of a given property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/type(ofProperty:)
-func (ac _ABPersonClass) TypeOfProperty(property appkit.string) ABPropertyType {
-	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), property)
+func (ac _ABPersonClass) TypeOfProperty(property string) ABPropertyType {
+	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), objc.String(property))
 	return rv
 }
 

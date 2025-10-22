@@ -29,6 +29,16 @@ type _INAddTasksIntentClass struct {
 // An interface definition for the [INAddTasksIntent] class.
 type IINAddTasksIntent interface {
 	IINIntent
+	Priority() unsafe.Pointer
+	SetPriority(value unsafe.Pointer)
+	SpatialEventTrigger() unsafe.Pointer
+	SetSpatialEventTrigger(value unsafe.Pointer)
+	TargetTaskList() unsafe.Pointer
+	SetTargetTaskList(value unsafe.Pointer)
+	TaskTitles() INSpeakableString
+	SetTaskTitles(value INSpeakableString)
+	TemporalEventTrigger() unsafe.Pointer
+	SetTemporalEventTrigger(value unsafe.Pointer)
 }
 
 // A request to add tasks to an existing task list.

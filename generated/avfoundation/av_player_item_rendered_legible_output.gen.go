@@ -31,6 +31,14 @@ type _PlayerItemRenderedLegibleOutputClass struct {
 // An interface definition for the [PlayerItemRenderedLegibleOutput] class.
 type IPlayerItemRenderedLegibleOutput interface {
 	objectivec.IObject
+	AdvanceIntervalForDelegateInvocation() unsafe.Pointer
+	SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DelegateQueue() unsafe.Pointer
+	SetDelegateQueue(value unsafe.Pointer)
+	VideoDisplaySize() coregraphics.CGSize
+	SetVideoDisplaySize(value coregraphics.CGSize)
 }
 
 // A player item output that vends media with a legible characteristic as rendered pixel buffers.

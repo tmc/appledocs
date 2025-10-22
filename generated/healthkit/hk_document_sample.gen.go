@@ -29,6 +29,8 @@ type _HKDocumentSampleClass struct {
 // An interface definition for the [HKDocumentSample] class.
 type IHKDocumentSample interface {
 	IHKSample
+	DocumentType() HKDocumentType
+	SetDocumentType(value HKDocumentType)
 }
 
 // An abstract class that represents a health document in the HealthKit store.

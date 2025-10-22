@@ -29,6 +29,10 @@ type _CaptureSynchronizedSampleBufferDataClass struct {
 // An interface definition for the [CaptureSynchronizedSampleBufferData] class.
 type ICaptureSynchronizedSampleBufferData interface {
 	ICaptureSynchronizedData
+	DroppedReason() CaptureOutputDataDroppedReason
+	SampleBufferWasDropped() bool
+	SampleBuffer() unsafe.Pointer
+	SetSampleBuffer(value unsafe.Pointer)
 }
 
 // A container for video or audio samples collected using synchronized capture.

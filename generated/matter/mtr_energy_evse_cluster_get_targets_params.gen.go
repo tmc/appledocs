@@ -31,6 +31,10 @@ type _MTREnergyEVSEClusterGetTargetsParamsClass struct {
 // An interface definition for the [MTREnergyEVSEClusterGetTargetsParams] class.
 type IMTREnergyEVSEClusterGetTargetsParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

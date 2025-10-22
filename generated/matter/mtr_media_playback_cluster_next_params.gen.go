@@ -31,6 +31,10 @@ type _MTRMediaPlaybackClusterNextParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterNextParams] class.
 type IMTRMediaPlaybackClusterNextParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

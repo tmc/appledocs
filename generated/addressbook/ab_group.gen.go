@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,12 +33,12 @@ type IABGroup interface {
 	IABRecord
 	AddMember(person IABPerson) bool
 	AddSubgroup(group IABGroup) bool
-	DistributionIdentifierForPropertyPerson(property appkit.string, person IABPerson) foundation.String
+	DistributionIdentifierForPropertyPerson(property string, person IABPerson) foundation.String
 	Members() foundation.Array
 	ParentGroups() foundation.Array
 	RemoveMember(person IABPerson) bool
 	RemoveSubgroup(group IABGroup) bool
-	SetDistributionIdentifierForPropertyPerson(identifier appkit.string, property appkit.string, person IABPerson) bool
+	SetDistributionIdentifierForPropertyPerson(identifier string, property string, person IABPerson) bool
 	Subgroups() foundation.Array
 }
 
@@ -120,16 +119,16 @@ func (ac _ABGroupClass) RemoveProperties(properties objectivec.IObject) int {
 // Returns a search element object that searches for records of this type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/searchElement(forProperty:label:key:value:comparison:)
-func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property appkit.string, label appkit.string, key appkit.string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
-	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), property, label, key, value, comparison)
+func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
+	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
 	return rv
 }
 
 // Returns the type for a given property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/type(ofProperty:)
-func (ac _ABGroupClass) TypeOfProperty(property appkit.string) ABPropertyType {
-	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), property)
+func (ac _ABGroupClass) TypeOfProperty(property string) ABPropertyType {
+	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), objc.String(property))
 	return rv
 }
 
@@ -152,8 +151,8 @@ func (a_ ABGroup) AddSubgroup(group IABGroup) bool {
 // Returns the distribution identifier for the given property and person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/distributionIdentifier(forProperty:person:)
-func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property appkit.string, person IABPerson) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), property, person)
+func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property string, person IABPerson) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), objc.String(property), person)
 	return rv
 }
 
@@ -192,8 +191,8 @@ func (a_ ABGroup) RemoveSubgroup(group IABGroup) bool {
 // Assigns a specific distribution identifier for a person’s multivalue list property so that the group can be used as a distribution list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/setDistributionIdentifier(_:forProperty:person:)
-func (a_ ABGroup) SetDistributionIdentifierForPropertyPerson(identifier appkit.string, property appkit.string, person IABPerson) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setDistributionIdentifier:forProperty:person:"), identifier, property, person)
+func (a_ ABGroup) SetDistributionIdentifierForPropertyPerson(identifier string, property string, person IABPerson) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setDistributionIdentifier:forProperty:person:"), objc.String(identifier), objc.String(property), person)
 	return rv
 }
 

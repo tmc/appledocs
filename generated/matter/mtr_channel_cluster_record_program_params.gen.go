@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,16 @@ type _MTRChannelClusterRecordProgramParamsClass struct {
 // An interface definition for the [MTRChannelClusterRecordProgramParams] class.
 type IMTRChannelClusterRecordProgramParams interface {
 	objectivec.IObject
+	Data() foundation.NSData
+	SetData(value foundation.IData)
+	ProgramIdentifier() string
+	SetProgramIdentifier(value string)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	ShouldRecordSeries() foundation.Number
+	SetShouldRecordSeries(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -94,8 +103,8 @@ func (m_ MTRChannelClusterRecordProgramParams) SetData(value foundation.IData) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("programIdentifier"))
+func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("programIdentifier"))
 	return rv
 }
 
@@ -103,8 +112,8 @@ func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() appkit.string
 // SetProgramIdentifier sets the value of the programIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), value)
+func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.

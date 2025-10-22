@@ -31,6 +31,9 @@ type _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobAssertionInput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobAssertionInput interface {
 	objectivec.IObject
+	DataToWrite() foundation.NSData
+	SetDataToWrite(value foundation.IData)
+	Operation() AuthorizationPublicKeyCredentialLargeBlobAssertionOperation
 }
 
 //

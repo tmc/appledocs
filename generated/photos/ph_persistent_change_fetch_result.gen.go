@@ -30,6 +30,8 @@ type _PHPersistentChangeFetchResultClass struct {
 // An interface definition for the [PHPersistentChangeFetchResult] class.
 type IPHPersistentChangeFetchResult interface {
 	objectivec.IObject
+	CurrentChangeToken() PHPersistentChangeToken
+	SetCurrentChangeToken(value IPHPersistentChangeToken)
 }
 
 // An object that represents a fetch result and allows you to enumerate a very large set of change records.

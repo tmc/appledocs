@@ -50,6 +50,18 @@ type IPDFPage interface {
 	ThumbnailOfSizeForBox(size coregraphics.CGSize, box IPDFDisplayBox) appkit.Image
 	TransformContextForBox(context coregraphics.CGContextRef, box IPDFDisplayBox)
 	TransformForBox(box IPDFDisplayBox) coregraphics.CGAffineTransform
+	Annotations() []PDFAnnotation
+	AttributedString() foundation.AttributedString
+	DataRepresentation() foundation.NSData
+	DisplaysAnnotations() bool
+	SetDisplaysAnnotations(value bool)
+	Document() PDFDocument
+	Label() string
+	NumberOfCharacters() uint
+	PageRef() coregraphics.CGPDFPageRef
+	Rotation() int
+	SetRotation(value int)
+	String() string
 }
 
 // , a subclass of , defines methods used to render PDF pages and work with annotations, text, and selections.
@@ -301,8 +313,8 @@ func (p_ PDFPage) Document() PDFDocument {
 // Returns the label for the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/label
-func (p_ PDFPage) Label() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("label"))
+func (p_ PDFPage) Label() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -342,8 +354,8 @@ func (p_ PDFPage) SetRotation(value int) {
 // Returns an object representing the text on the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/string
-func (p_ PDFPage) String() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("string"))
+func (p_ PDFPage) String() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("string"))
 	return rv
 }
 

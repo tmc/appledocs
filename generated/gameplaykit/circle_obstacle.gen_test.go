@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewCircleObstacle
 
+// ExampleNewCircleObstacleWithRadius demonstrates how to create a CircleObstacle instance using NewCircleObstacleWithRadius.
+// Initializes a circular obstacle with the specified radius.
+func ExampleNewCircleObstacleWithRadius() {
+	_ = gameplaykit.NewCircleObstacleWithRadius(
+		0.0, // radius float32
+	)
+	// Output:
+}

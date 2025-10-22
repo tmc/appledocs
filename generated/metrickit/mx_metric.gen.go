@@ -33,6 +33,7 @@ type IMXMetric interface {
 	objectivec.IObject
 	DictionaryRepresentation() foundation.Dictionary
 	JSONRepresentation() foundation.Data
+	MXErrorDomain() string
 }
 
 // An abstract data class for a metric.
@@ -100,8 +101,8 @@ func (m_ MXMetric) JSONRepresentation() foundation.Data {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXMetric) MXErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXMetric) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

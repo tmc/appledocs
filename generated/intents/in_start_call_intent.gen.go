@@ -29,6 +29,13 @@ type _INStartCallIntentClass struct {
 // An interface definition for the [INStartCallIntent] class.
 type IINStartCallIntent interface {
 	IINIntent
+	AudioRoute() INCallAudioRoute
+	CallCapability() INCallCapability
+	CallRecordFilter() INCallRecordFilter
+	CallRecordToCallBack() INCallRecord
+	Contacts() []INPerson
+	DestinationType() INCallDestinationType
+	RecordTypeForRedialing() INCallRecordType
 }
 
 // A request to start an audio or video call with one or more users.

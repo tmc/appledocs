@@ -30,6 +30,14 @@ type _MonteCarloStrategistClass struct {
 // An interface definition for the [MonteCarloStrategist] class.
 type IMonteCarloStrategist interface {
 	objectivec.IObject
+	Budget() uint
+	SetBudget(value uint)
+	ExplorationParameter() uint
+	SetExplorationParameter(value uint)
+	GameModel() unsafe.Pointer
+	SetGameModel(value unsafe.Pointer)
+	RandomSource() unsafe.Pointer
+	SetRandomSource(value unsafe.Pointer)
 }
 
 // An AI that chooses moves in turn-based games using a strategy.

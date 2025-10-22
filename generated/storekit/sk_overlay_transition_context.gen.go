@@ -32,6 +32,8 @@ type _OverlayTransitionContextClass struct {
 type IOverlayTransitionContext interface {
 	objectivec.IObject
 	AddAnimationBlock(block unsafe.Pointer)
+	EndFrame() coregraphics.CGRect
+	StartFrame() coregraphics.CGRect
 }
 
 // A context object you can use to animate UI changes while the platform presents or dismisses an overlay.

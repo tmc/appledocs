@@ -30,6 +30,10 @@ type _MTRBasicClusterCapabilityMinimaStructClass struct {
 // An interface definition for the [MTRBasicClusterCapabilityMinimaStruct] class.
 type IMTRBasicClusterCapabilityMinimaStruct interface {
 	IMTRBasicInformationClusterCapabilityMinimaStruct
+	CaseSessionsPerFabric() foundation.Number
+	SetCaseSessionsPerFabric(value foundation.INumber)
+	SubscriptionsPerFabric() foundation.Number
+	SetSubscriptionsPerFabric(value foundation.INumber)
 }
 
 //

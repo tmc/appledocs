@@ -36,6 +36,9 @@ type ICredentialProviderViewController interface {
 	PrepareInterfaceForUserChoosingTextToInsert()
 	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject)
 	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject)
+	ExtensionContext() unsafe.Pointer
+	SetExtensionContext(value unsafe.Pointer)
+	ASExtensionErrorDomain() string
 }
 
 // A view controller that a credential manager app uses to extend AutoFill.
@@ -144,8 +147,8 @@ func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Poin
 // The domain for a credential provider extension error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain
-func (c_ CredentialProviderViewController) ASExtensionErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
+func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
 	return rv
 }
 

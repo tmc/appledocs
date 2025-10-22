@@ -33,6 +33,23 @@ type _AccessPointClass struct {
 // An interface definition for the [AccessPoint] class.
 type IAccessPoint interface {
 	objectivec.IObject
+	Visible() bool
+	ShowHighlights() bool
+	SetShowHighlights(value bool)
+	FrameInScreenCoordinates() coregraphics.CGRect
+	SetFrameInScreenCoordinates(value coregraphics.CGRect)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsFocused() bool
+	SetIsFocused(value bool)
+	IsPresentingGameCenter() bool
+	SetIsPresentingGameCenter(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
+	Location() corelocation.Location
+	SetLocation(value corelocation.ILocation)
+	ParentWindow() appkit.Window
+	SetParentWindow(value appkit.IWindow)
 }
 
 // An object that allows players to view and manage their Game Center information from within your game.

@@ -30,6 +30,10 @@ type _VZNetworkDeviceClass struct {
 // An interface definition for the [VZNetworkDevice] class.
 type IVZNetworkDevice interface {
 	objectivec.IObject
+	Attachment() VZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	NetworkDevices() VZNetworkDevice
+	SetNetworkDevices(value IVZNetworkDevice)
 }
 
 // A base class that represents a network device in a virtual machine.

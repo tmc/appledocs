@@ -31,6 +31,12 @@ type _MTRWaterHeaterModeClusterChangeToModeParamsClass struct {
 // An interface definition for the [MTRWaterHeaterModeClusterChangeToModeParams] class.
 type IMTRWaterHeaterModeClusterChangeToModeParams interface {
 	objectivec.IObject
+	NewMode() foundation.Number
+	SetNewMode(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

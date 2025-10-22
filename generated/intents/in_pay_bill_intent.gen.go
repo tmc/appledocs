@@ -29,6 +29,20 @@ type _INPayBillIntentClass struct {
 // An interface definition for the [INPayBillIntent] class.
 type IINPayBillIntent interface {
 	IINIntent
+	BillPayee() unsafe.Pointer
+	SetBillPayee(value unsafe.Pointer)
+	BillType() unsafe.Pointer
+	SetBillType(value unsafe.Pointer)
+	DueDate() INDateComponentsRange
+	SetDueDate(value INDateComponentsRange)
+	FromAccount() unsafe.Pointer
+	SetFromAccount(value unsafe.Pointer)
+	TransactionAmount() unsafe.Pointer
+	SetTransactionAmount(value unsafe.Pointer)
+	TransactionNote() string
+	SetTransactionNote(value string)
+	TransactionScheduledDate() INDateComponentsRange
+	SetTransactionScheduledDate(value INDateComponentsRange)
 }
 
 // A request to transfer money to facilitate payment of a bill.
@@ -174,8 +188,8 @@ func (i_ INPayBillIntent) SetTransactionAmount(value unsafe.Pointer) {
 // A note to associate with the payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
-func (i_ INPayBillIntent) TransactionNote() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("transactionNote"))
+func (i_ INPayBillIntent) TransactionNote() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
 	return rv
 }
 
@@ -185,8 +199,8 @@ func (i_ INPayBillIntent) TransactionNote() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
-func (i_ INPayBillIntent) SetTransactionNote(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), value)
+func (i_ INPayBillIntent) SetTransactionNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
 }
 
 // The scheduled date for the payment, as requested by the user.

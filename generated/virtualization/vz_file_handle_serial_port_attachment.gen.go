@@ -30,6 +30,8 @@ type _VZFileHandleSerialPortAttachmentClass struct {
 // An interface definition for the [VZFileHandleSerialPortAttachment] class.
 type IVZFileHandleSerialPortAttachment interface {
 	IVZSerialPortAttachment
+	FileHandleForReading() foundation.FileHandle
+	FileHandleForWriting() foundation.FileHandle
 }
 
 // An attachment point that allows bidirectional communication using file handles.

@@ -38,6 +38,10 @@ type IXMLElement interface {
 	RemoveChildAtIndex(index uint)
 	RemoveNamespaceForPrefix(name string)
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
+	Attributes() NSXMLNode
+	SetAttributes(value IXMLNode)
+	Namespaces() NSXMLNode
+	SetNamespaces(value IXMLNode)
 }
 
 // The element nodes in an XML tree structure.

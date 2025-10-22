@@ -33,6 +33,10 @@ type IInterAppAudioSwitcherView interface {
 	appkit.IView
 	ContentWidth() float64
 	SetOutputAudioUnit(au audiotoolbox.IAudioUnit)
+	ShowingAppNames() bool
+	SetShowingAppNames(value bool)
+	IsShowingAppNames() bool
+	SetIsShowingAppNames(value bool)
 }
 
 // A view that provides an audio switcher user interface.

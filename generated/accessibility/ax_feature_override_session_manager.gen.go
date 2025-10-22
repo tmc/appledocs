@@ -32,6 +32,7 @@ type IAXFeatureOverrideSessionManager interface {
 	objectivec.IObject
 	BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) AXFeatureOverrideSession
 	EndOverrideSessionError(session IAXFeatureOverrideSession, error_ unsafe.Pointer) bool
+	AXFeatureOverrideSessionErrorDomain() string
 }
 
 // A manager class to begin and end accessibility feature override sessions. Multiple override sessions are reconciled by combining the requests, preferring feature enablement. Ending all sessions restores the prior state of Accessibility feature enablement. Your app must be entitled with com.apple.developer.accessibility.merchant-api-control.
@@ -109,8 +110,8 @@ func (a_ AXFeatureOverrideSessionManager) SharedInstance() AXFeatureOverrideSess
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
+func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }
 

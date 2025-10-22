@@ -30,6 +30,9 @@ type _PersistentStoreRequestClass struct {
 // An interface definition for the [PersistentStoreRequest] class.
 type IPersistentStoreRequest interface {
 	objectivec.IObject
+	AffectedStores() []PersistentStore
+	SetAffectedStores(value []PersistentStore)
+	RequestType() PersistentStoreRequestType
 }
 
 // Criteria used to retrieve data from or save data to a persistent store.

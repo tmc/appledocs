@@ -30,6 +30,13 @@ type _NIDiscoveryTokenClass struct {
 // An interface definition for the [NIDiscoveryToken] class.
 type INIDiscoveryToken interface {
 	objectivec.IObject
+	DeviceCapabilities() objc.ID
+	Configuration() NIConfiguration
+	SetConfiguration(value INIConfiguration)
+	DelegateQueue() unsafe.Pointer
+	SetDelegateQueue(value unsafe.Pointer)
+	DiscoveryToken() NIDiscoveryToken
+	SetDiscoveryToken(value INIDiscoveryToken)
 }
 
 // An object that uniquely identifies a peer that participates in an interaction session.

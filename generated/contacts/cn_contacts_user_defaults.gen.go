@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _CNContactsUserDefaultsClass struct {
 // An interface definition for the [CNContactsUserDefaults] class.
 type ICNContactsUserDefaults interface {
 	objectivec.IObject
+	CountryCode() string
+	SortOrder() CNContactSortOrder
 }
 
 // An object that defines the default options to use when displaying contacts.
@@ -90,8 +91,8 @@ func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 // An ISO country code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/countryCode
-func (c_ CNContactsUserDefaults) CountryCode() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("countryCode"))
+func (c_ CNContactsUserDefaults) CountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 

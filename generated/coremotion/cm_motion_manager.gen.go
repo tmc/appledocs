@@ -45,6 +45,46 @@ type IMotionManager interface {
 	StopDeviceMotionUpdates()
 	StopGyroUpdates()
 	StopMagnetometerUpdates()
+	AccelerometerData() CMAccelerometerData
+	AccelerometerUpdateInterval() foundation.TimeInterval
+	SetAccelerometerUpdateInterval(value foundation.ITimeInterval)
+	AttitudeReferenceFrame() AttitudeReferenceFrame
+	DeviceMotion() CMDeviceMotion
+	DeviceMotionUpdateInterval() foundation.TimeInterval
+	SetDeviceMotionUpdateInterval(value foundation.ITimeInterval)
+	GyroData() CMGyroData
+	GyroUpdateInterval() foundation.TimeInterval
+	SetGyroUpdateInterval(value foundation.ITimeInterval)
+	AccelerometerActive() bool
+	AccelerometerAvailable() bool
+	DeviceMotionActive() bool
+	DeviceMotionAvailable() bool
+	GyroActive() bool
+	GyroAvailable() bool
+	MagnetometerActive() bool
+	MagnetometerAvailable() bool
+	MagnetometerData() CMMagnetometerData
+	MagnetometerUpdateInterval() foundation.TimeInterval
+	SetMagnetometerUpdateInterval(value foundation.ITimeInterval)
+	ShowsDeviceMovementDisplay() bool
+	SetShowsDeviceMovementDisplay(value bool)
+	CMErrorDomain() string
+	IsAccelerometerActive() bool
+	SetIsAccelerometerActive(value bool)
+	IsAccelerometerAvailable() bool
+	SetIsAccelerometerAvailable(value bool)
+	IsDeviceMotionActive() bool
+	SetIsDeviceMotionActive(value bool)
+	IsDeviceMotionAvailable() bool
+	SetIsDeviceMotionAvailable(value bool)
+	IsGyroActive() bool
+	SetIsGyroActive(value bool)
+	IsGyroAvailable() bool
+	SetIsGyroAvailable(value bool)
+	IsMagnetometerActive() bool
+	SetIsMagnetometerActive(value bool)
+	IsMagnetometerAvailable() bool
+	SetIsMagnetometerAvailable(value bool)
 }
 
 // The object for starting and managing motion services.
@@ -398,8 +438,8 @@ func (m_ MotionManager) SetShowsDeviceMovementDisplay(value bool) {
 // The error domain for Core Motion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmerrordomain
-func (m_ MotionManager) CMErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("CMErrorDomain"))
+func (m_ MotionManager) CMErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("CMErrorDomain"))
 	return rv
 }
 

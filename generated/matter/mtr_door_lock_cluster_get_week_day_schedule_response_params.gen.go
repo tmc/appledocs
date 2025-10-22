@@ -31,6 +31,24 @@ type _MTRDoorLockClusterGetWeekDayScheduleResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetWeekDayScheduleResponseParams] class.
 type IMTRDoorLockClusterGetWeekDayScheduleResponseParams interface {
 	objectivec.IObject
+	DaysMask() foundation.Number
+	SetDaysMask(value foundation.INumber)
+	EndHour() foundation.Number
+	SetEndHour(value foundation.INumber)
+	EndMinute() foundation.Number
+	SetEndMinute(value foundation.INumber)
+	StartHour() foundation.Number
+	SetStartHour(value foundation.INumber)
+	StartMinute() foundation.Number
+	SetStartMinute(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
+	WeekDayIndex() foundation.Number
+	SetWeekDayIndex(value foundation.INumber)
 }
 
 //

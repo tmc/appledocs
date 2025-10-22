@@ -33,6 +33,11 @@ type _MKMapSnapshotClass struct {
 type IMKMapSnapshot interface {
 	objectivec.IObject
 	PointForCoordinate(coordinate unsafe.Pointer) coregraphics.CGPoint
+	Appearance() appkit.Appearance
+	Image() appkit.Image
+	SetImage(value appkit.IImage)
+	TraitCollection() unsafe.Pointer
+	SetTraitCollection(value unsafe.Pointer)
 }
 
 // An image that a snapshotter object generates.

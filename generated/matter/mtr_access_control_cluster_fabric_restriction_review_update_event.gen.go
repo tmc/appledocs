@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,12 @@ type _MTRAccessControlClusterFabricRestrictionReviewUpdateEventClass struct {
 // An interface definition for the [MTRAccessControlClusterFabricRestrictionReviewUpdateEvent] class.
 type IMTRAccessControlClusterFabricRestrictionReviewUpdateEvent interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	Instruction() string
+	SetInstruction(value string)
+	Token() foundation.Number
+	SetToken(value foundation.INumber)
 }
 
 //
@@ -94,8 +99,8 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetFabricInd
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/instruction
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("instruction"))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("instruction"))
 	return rv
 }
 
@@ -103,8 +108,8 @@ func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction(
 // SetInstruction sets the value of the instruction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/instruction
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetInstruction(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstruction:"), value)
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetInstruction(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstruction:"), objc.String(value))
 }
 
 //

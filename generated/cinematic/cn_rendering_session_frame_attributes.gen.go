@@ -31,6 +31,10 @@ type _CNRenderingSessionFrameAttributesClass struct {
 // An interface definition for the [CNRenderingSessionFrameAttributes] class.
 type ICNRenderingSessionFrameAttributes interface {
 	objectivec.IObject
+	FNumber() float32
+	SetFNumber(value float32)
+	FocusDisparity() float32
+	SetFocusDisparity(value float32)
 }
 
 // Creates an object with the per frame attributes that control the appearance of a single frame of the Cinematic movie.
@@ -109,8 +113,8 @@ func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes
 // The f-stop value that inversely affects the aperture used to render the Cinematic image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/fNumber
-func (c_ CNRenderingSessionFrameAttributes) FNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fNumber"))
+func (c_ CNRenderingSessionFrameAttributes) FNumber() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("fNumber"))
 	return rv
 }
 
@@ -120,15 +124,15 @@ func (c_ CNRenderingSessionFrameAttributes) FNumber() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/fNumber
-func (c_ CNRenderingSessionFrameAttributes) SetFNumber(value unsafe.Pointer) {
+func (c_ CNRenderingSessionFrameAttributes) SetFNumber(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFNumber:"), value)
 }
 
 // Represents the focus plane at which the rendered image should be in focus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
-func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("focusDisparity"))
+func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
 
@@ -138,7 +142,7 @@ func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
-func (c_ CNRenderingSessionFrameAttributes) SetFocusDisparity(value unsafe.Pointer) {
+func (c_ CNRenderingSessionFrameAttributes) SetFocusDisparity(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusDisparity:"), value)
 }
 

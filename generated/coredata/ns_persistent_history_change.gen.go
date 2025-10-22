@@ -30,6 +30,12 @@ type _PersistentHistoryChangeClass struct {
 // An interface definition for the [PersistentHistoryChange] class.
 type IPersistentHistoryChange interface {
 	objectivec.IObject
+	ChangeID() unsafe.Pointer
+	ChangeType() PersistentHistoryChangeType
+	ChangedObjectID() NSManagedObjectID
+	Tombstone() objc.ID
+	Transaction() NSPersistentHistoryTransaction
+	UpdatedProperties() unsafe.Pointer
 }
 
 // A change representing the insertion, update, or deletion of a managed object in the persistent store.

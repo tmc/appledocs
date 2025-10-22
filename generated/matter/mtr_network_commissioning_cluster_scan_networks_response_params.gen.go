@@ -31,6 +31,16 @@ type _MTRNetworkCommissioningClusterScanNetworksResponseParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterScanNetworksResponseParams] class.
 type IMTRNetworkCommissioningClusterScanNetworksResponseParams interface {
 	objectivec.IObject
+	DebugText() string
+	SetDebugText(value string)
+	NetworkingStatus() foundation.Number
+	SetNetworkingStatus(value foundation.INumber)
+	ThreadScanResults() unsafe.Pointer
+	SetThreadScanResults(value unsafe.Pointer)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	WiFiScanResults() unsafe.Pointer
+	SetWiFiScanResults(value unsafe.Pointer)
 }
 
 //
@@ -78,8 +88,8 @@ func NewMTRNetworkCommissioningClusterScanNetworksResponseParams() MTRNetworkCom
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +97,8 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() a
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 //

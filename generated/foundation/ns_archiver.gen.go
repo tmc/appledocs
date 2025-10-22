@@ -31,6 +31,8 @@ type _ArchiverClass struct {
 type IArchiver interface {
 	ICoder
 	EncodeRootObject(rootObject objectivec.IObject)
+	ArchiverData() NSMutableData
+	SetArchiverData(value IMutableData)
 }
 
 // A coder that stores an object’s data to an archive.

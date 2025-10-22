@@ -32,6 +32,10 @@ type _PushRegistryClass struct {
 type IPushRegistry interface {
 	objectivec.IObject
 	PushTokenForType(type_ PushType) foundation.Data
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DesiredPushTypes() unsafe.Pointer
+	SetDesiredPushTypes(value unsafe.Pointer)
 }
 
 // An object that requests the delivery and handles the receipt of PushKit notifications.

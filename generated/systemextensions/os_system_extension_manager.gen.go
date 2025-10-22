@@ -31,6 +31,8 @@ type _OSSystemExtensionManagerClass struct {
 type IOSSystemExtensionManager interface {
 	objectivec.IObject
 	SubmitRequest(request IOSSystemExtensionRequest)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A type that facilitates activation and deactivation of system extensions.

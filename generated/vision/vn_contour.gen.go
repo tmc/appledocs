@@ -32,6 +32,26 @@ type _ContourClass struct {
 // An interface definition for the [Contour] class.
 type IContour interface {
 	objectivec.IObject
+	AspectRatio() float32
+	SetAspectRatio(value float32)
+	ChildContourCount() int
+	SetChildContourCount(value int)
+	ChildContours() VNContour
+	SetChildContours(value IVNContour)
+	IndexPath() foundation.IndexPath
+	SetIndexPath(value foundation.IIndexPath)
+	NormalizedPath() gameplaykit.Path
+	SetNormalizedPath(value gameplaykit.IPath)
+	NormalizedPoints() unsafe.Pointer
+	SetNormalizedPoints(value unsafe.Pointer)
+	PointCount() int
+	SetPointCount(value int)
+	ContourCount() int
+	SetContourCount(value int)
+	TopLevelContourCount() int
+	SetTopLevelContourCount(value int)
+	TopLevelContours() VNContour
+	SetTopLevelContours(value IVNContour)
 }
 
 // A class that represents a detected contour in an image.
@@ -83,8 +103,8 @@ func NewContour() Contour {
 // The aspect ratio of the contour.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/aspectratio
-func (c_ Contour) AspectRatio() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("aspectRatio"))
+func (c_ Contour) AspectRatio() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("aspectRatio"))
 	return rv
 }
 
@@ -94,7 +114,7 @@ func (c_ Contour) AspectRatio() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/aspectratio
-func (c_ Contour) SetAspectRatio(value unsafe.Pointer) {
+func (c_ Contour) SetAspectRatio(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAspectRatio:"), value)
 }
 

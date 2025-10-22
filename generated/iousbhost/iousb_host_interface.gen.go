@@ -33,6 +33,11 @@ type IUSBHostInterface interface {
 	IUSBHostObject
 	CopyPipeWithAddressError(address uint, error_ unsafe.Pointer) USBHostPipe
 	SelectAlternateSettingError(alternateSetting uint, error_ unsafe.Pointer) bool
+	InterfaceDescriptor() unsafe.Pointer
+	ConfigurationDescriptor() unsafe.Pointer
+	SetConfigurationDescriptor(value unsafe.Pointer)
+	IdleTimeout() unsafe.Pointer
+	SetIdleTimeout(value unsafe.Pointer)
 }
 
 // The class for accessing USB-related services.

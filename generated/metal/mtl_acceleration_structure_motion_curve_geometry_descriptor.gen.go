@@ -29,6 +29,36 @@ type _AccelerationStructureMotionCurveGeometryDescriptorClass struct {
 // An interface definition for the [AccelerationStructureMotionCurveGeometryDescriptor] class.
 type IAccelerationStructureMotionCurveGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	ControlPointBuffers() MTLMotionKeyframeData
+	SetControlPointBuffers(value IMTLMotionKeyframeData)
+	ControlPointCount() int
+	SetControlPointCount(value int)
+	ControlPointFormat() unsafe.Pointer
+	SetControlPointFormat(value unsafe.Pointer)
+	ControlPointStride() int
+	SetControlPointStride(value int)
+	CurveBasis() CurveBasis
+	SetCurveBasis(value ICurveBasis)
+	CurveEndCaps() CurveEndCaps
+	SetCurveEndCaps(value ICurveEndCaps)
+	CurveType() CurveType
+	SetCurveType(value CurveType)
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexBufferOffset() int
+	SetIndexBufferOffset(value int)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	RadiusBuffers() MTLMotionKeyframeData
+	SetRadiusBuffers(value IMTLMotionKeyframeData)
+	RadiusFormat() unsafe.Pointer
+	SetRadiusFormat(value unsafe.Pointer)
+	RadiusStride() int
+	SetRadiusStride(value int)
+	SegmentControlPointCount() int
+	SetSegmentControlPointCount(value int)
+	SegmentCount() int
+	SetSegmentCount(value int)
 }
 
 //

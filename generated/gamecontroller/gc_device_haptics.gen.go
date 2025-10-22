@@ -31,6 +31,10 @@ type _GCDeviceHapticsClass struct {
 type IGCDeviceHaptics interface {
 	objectivec.IObject
 	CreateEngineWithLocality(locality IGCHapticsLocality) unsafe.Pointer
+	SupportedLocalities() unsafe.Pointer
+	SupportsHaptics() bool
+	SetSupportsHaptics(value bool)
+	GCHapticDurationInfinite() float32
 }
 
 // The locations of haptic actuators on a game controller.
@@ -118,8 +122,8 @@ func (g_ GCDeviceHaptics) SetSupportsHaptics(value bool) {
 // An infinite duration for a haptics event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gchapticdurationinfinite
-func (g_ GCDeviceHaptics) GCHapticDurationInfinite() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("GCHapticDurationInfinite"))
+func (g_ GCDeviceHaptics) GCHapticDurationInfinite() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("GCHapticDurationInfinite"))
 	return rv
 }
 

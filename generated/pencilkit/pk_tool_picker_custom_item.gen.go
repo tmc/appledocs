@@ -31,6 +31,15 @@ type _ToolPickerCustomItemClass struct {
 type IToolPickerCustomItem interface {
 	IToolPickerItem
 	ReloadImage()
+	AllowsColorSelection() bool
+	SetAllowsColorSelection(value bool)
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	Configuration() PKToolPickerCustomItemConfiguration
+	Width() float64
+	SetWidth(value float64)
+	ImageProvider() appkit.Image
+	SetImageProvider(value appkit.IImage)
 }
 
 // An item that represents a custom tool in the tool picker.

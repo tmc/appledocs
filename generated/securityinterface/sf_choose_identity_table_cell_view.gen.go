@@ -30,6 +30,8 @@ type _SFChooseIdentityTableCellViewClass struct {
 // An interface definition for the [SFChooseIdentityTableCellView] class.
 type ISFChooseIdentityTableCellView interface {
 	appkit.ITableCellView
+	IssuerTextField() appkit.TextField
+	SetIssuerTextField(value appkit.ITextField)
 }
 
 //

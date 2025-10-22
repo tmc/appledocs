@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,66 @@ type _MeshRenderPipelineDescriptorClass struct {
 type IMeshRenderPipelineDescriptor interface {
 	objectivec.IObject
 	Reset()
+	BinaryArchives() []objc.ID
+	SetBinaryArchives(value []objc.ID)
+	ColorAttachments() MTLRenderPipelineColorAttachmentDescriptorArray
+	DepthAttachmentPixelFormat() PixelFormat
+	SetDepthAttachmentPixelFormat(value PixelFormat)
+	FragmentBuffers() MTLPipelineBufferDescriptorArray
+	FragmentFunction() objc.ID
+	SetFragmentFunction(value objc.ID)
+	FragmentLinkedFunctions() MTLLinkedFunctions
+	SetFragmentLinkedFunctions(value IMTLLinkedFunctions)
+	AlphaToCoverageEnabled() bool
+	SetAlphaToCoverageEnabled(value bool)
+	AlphaToOneEnabled() bool
+	SetAlphaToOneEnabled(value bool)
+	RasterizationEnabled() bool
+	SetRasterizationEnabled(value bool)
+	Label() string
+	SetLabel(value string)
+	MaxTotalThreadgroupsPerMeshGrid() uint
+	SetMaxTotalThreadgroupsPerMeshGrid(value uint)
+	MaxTotalThreadsPerMeshThreadgroup() uint
+	SetMaxTotalThreadsPerMeshThreadgroup(value uint)
+	MaxTotalThreadsPerObjectThreadgroup() uint
+	SetMaxTotalThreadsPerObjectThreadgroup(value uint)
+	MaxVertexAmplificationCount() uint
+	SetMaxVertexAmplificationCount(value uint)
+	MeshBuffers() MTLPipelineBufferDescriptorArray
+	MeshFunction() objc.ID
+	SetMeshFunction(value objc.ID)
+	MeshLinkedFunctions() MTLLinkedFunctions
+	SetMeshLinkedFunctions(value IMTLLinkedFunctions)
+	MeshThreadgroupSizeIsMultipleOfThreadExecutionWidth() bool
+	SetMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool)
+	ObjectBuffers() MTLPipelineBufferDescriptorArray
+	ObjectFunction() objc.ID
+	SetObjectFunction(value objc.ID)
+	ObjectLinkedFunctions() MTLLinkedFunctions
+	SetObjectLinkedFunctions(value IMTLLinkedFunctions)
+	ObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth() bool
+	SetObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(value bool)
+	PayloadMemoryLength() uint
+	SetPayloadMemoryLength(value uint)
+	RasterSampleCount() uint
+	SetRasterSampleCount(value uint)
+	RequiredThreadsPerMeshThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerMeshThreadgroup(value coregraphics.ISize)
+	RequiredThreadsPerObjectThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerObjectThreadgroup(value coregraphics.ISize)
+	ShaderValidation() ShaderValidation
+	SetShaderValidation(value IShaderValidation)
+	StencilAttachmentPixelFormat() PixelFormat
+	SetStencilAttachmentPixelFormat(value PixelFormat)
+	SupportIndirectCommandBuffers() bool
+	SetSupportIndirectCommandBuffers(value bool)
+	IsAlphaToCoverageEnabled() bool
+	SetIsAlphaToCoverageEnabled(value bool)
+	IsAlphaToOneEnabled() bool
+	SetIsAlphaToOneEnabled(value bool)
+	IsRasterizationEnabled() bool
+	SetIsRasterizationEnabled(value bool)
 }
 
 // An object that configures new render pipeline state objects for mesh shading.
@@ -218,8 +277,8 @@ func (m_ MeshRenderPipelineDescriptor) SetRasterizationEnabled(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/label
-func (m_ MeshRenderPipelineDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MeshRenderPipelineDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -227,8 +286,8 @@ func (m_ MeshRenderPipelineDescriptor) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/label
-func (m_ MeshRenderPipelineDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MeshRenderPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

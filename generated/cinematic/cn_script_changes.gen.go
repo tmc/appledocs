@@ -31,6 +31,9 @@ type _CNScriptChangesClass struct {
 // An interface definition for the [CNScriptChanges] class.
 type ICNScriptChanges interface {
 	objectivec.IObject
+	AddedDetectionTracks() []CNDetectionTrack
+	DataRepresentation() foundation.NSData
+	UserDecisions() []CNDecision
 }
 
 // An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.

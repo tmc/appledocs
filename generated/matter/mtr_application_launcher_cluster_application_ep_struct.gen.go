@@ -31,6 +31,10 @@ type _MTRApplicationLauncherClusterApplicationEPStructClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterApplicationEPStruct] class.
 type IMTRApplicationLauncherClusterApplicationEPStruct interface {
 	objectivec.IObject
+	Application() MTRApplicationLauncherClusterApplicationStruct
+	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
 }
 
 //

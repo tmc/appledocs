@@ -29,6 +29,10 @@ type _MXAppRunTimeMetricClass struct {
 // An interface definition for the [MXAppRunTimeMetric] class.
 type IMXAppRunTimeMetric interface {
 	IMXMetric
+	CumulativeBackgroundAudioTime() unsafe.Pointer
+	CumulativeBackgroundLocationTime() unsafe.Pointer
+	CumulativeBackgroundTime() unsafe.Pointer
+	CumulativeForegroundTime() unsafe.Pointer
 }
 
 // An object representing metrics about the amount of time the app is active.

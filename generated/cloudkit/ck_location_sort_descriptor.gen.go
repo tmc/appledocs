@@ -31,6 +31,7 @@ type _CKLocationSortDescriptorClass struct {
 // An interface definition for the [CKLocationSortDescriptor] class.
 type ICKLocationSortDescriptor interface {
 	foundation.ISortDescriptor
+	RelativeLocation() corelocation.Location
 }
 
 // An object for sorting records that contain location data.

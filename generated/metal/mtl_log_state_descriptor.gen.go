@@ -30,6 +30,10 @@ type _LogStateDescriptorClass struct {
 // An interface definition for the [LogStateDescriptor] class.
 type ILogStateDescriptor interface {
 	objectivec.IObject
+	BufferSize() int
+	SetBufferSize(value int)
+	Level() LogLevel
+	SetLevel(value LogLevel)
 }
 
 // An interface that represents a log state configuration.

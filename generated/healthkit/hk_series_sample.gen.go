@@ -29,6 +29,9 @@ type _HKSeriesSampleClass struct {
 // An interface definition for the [HKSeriesSample] class.
 type IHKSeriesSample interface {
 	IHKSample
+	Count() int
+	SetCount(value int)
+	HKWorkoutRouteTypeIdentifier() string
 }
 
 // An abstract base class that defines samples that contain a series of items.
@@ -102,8 +105,8 @@ func (h_ HKSeriesSample) SetCount(value int) {
 // A series sample containing location data that defines the route the user took during a workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }
 

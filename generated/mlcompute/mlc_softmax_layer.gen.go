@@ -29,6 +29,10 @@ type _CSoftmaxLayerClass struct {
 // An interface definition for the [CSoftmaxLayer] class.
 type ICSoftmaxLayer interface {
 	ICLayer
+	Dimension() int
+	SetDimension(value int)
+	Operation() CSoftmaxOperation
+	SetOperation(value ICSoftmaxOperation)
 }
 
 // A layer that outputs a probability distribution as attention weights.

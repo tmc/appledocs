@@ -32,6 +32,11 @@ type _EAAccessoryManagerClass struct {
 type IEAAccessoryManager interface {
 	objectivec.IObject
 	ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate foundation.IPredicate, completion unsafe.Pointer)
+	EAAccessoryKey() string
+	ConnectedAccessories() EAAccessory
+	SetConnectedAccessories(value IEAAccessory)
+	EAAccessorySelectedKey() string
+	EABluetoothAccessoryPickerErrorDomain() string
 }
 
 // The object you use to identify connected accessories, and begin delivery of connection and disconnection notifications.
@@ -92,8 +97,8 @@ func (e_ EAAccessoryManager) ShowBluetoothAccessoryPickerWithNameFilterCompletio
 // A key that indicates the accessory object whose status changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorykey
-func (e_ EAAccessoryManager) EAAccessoryKey() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("EAAccessoryKey"))
+func (e_ EAAccessoryManager) EAAccessoryKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessoryKey"))
 	return rv
 }
 
@@ -118,16 +123,16 @@ func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 // A key that indicates the accessory object that the user selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey
-func (e_ EAAccessoryManager) EAAccessorySelectedKey() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
+func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
 	return rv
 }
 
 // The domain for errors passed to a Bluetooth picker completion block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain
-func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
+func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
 	return rv
 }
 

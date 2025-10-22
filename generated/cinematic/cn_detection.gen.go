@@ -31,6 +31,8 @@ type _CNDetectionClass struct {
 // An interface definition for the [CNDetection] class.
 type ICNDetection interface {
 	objectivec.IObject
+	FocusDisparity() float32
+	NormalizedRect() coregraphics.CGRect
 }
 
 // A structure that represents a detected subject, face, torso or pet at a particular time.
@@ -84,8 +86,8 @@ func NewCNDetection() CNDetection {
 // Determines the disparity to use to focus on the object in the rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:
-func (cc _CNDetectionClass) DisparityInNormalizedRectSourceDisparityDetectionTypePriorDisparity(normalizedRect coregraphics.CGRect, sourceDisparity unsafe.Pointer, detectionType CNDetectionType, priorDisparity unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:"), normalizedRect, sourceDisparity, detectionType, priorDisparity)
+func (cc _CNDetectionClass) DisparityInNormalizedRectSourceDisparityDetectionTypePriorDisparity(normalizedRect coregraphics.CGRect, sourceDisparity unsafe.Pointer, detectionType CNDetectionType, priorDisparity float32) float32 {
+	rv := objc.Send[float32](objc.ID(cc.class), objc.Sel("disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:"), normalizedRect, sourceDisparity, detectionType, priorDisparity)
 	return rv
 }
 
@@ -100,8 +102,8 @@ func (cc _CNDetectionClass) IsValidDetectionID(detectionID ICNDetectionID) bool 
 // The disparity to use in order to focus on the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/focusDisparity
-func (c_ CNDetection) FocusDisparity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("focusDisparity"))
+func (c_ CNDetection) FocusDisparity() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
 

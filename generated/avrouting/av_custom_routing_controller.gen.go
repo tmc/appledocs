@@ -32,6 +32,14 @@ type ICustomRoutingController interface {
 	objectivec.IObject
 	InvalidateAuthorizationForRoute(route IAVCustomDeviceRoute)
 	SetActiveForRoute(active bool, route IAVCustomDeviceRoute)
+	CustomActionItems() []CustomRoutingActionItem
+	SetCustomActionItems(value []CustomRoutingActionItem)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	AuthorizedRoutes() AVCustomDeviceRoute
+	SetAuthorizedRoutes(value IAVCustomDeviceRoute)
+	KnownRouteIPs() AVCustomRoutingPartialIP
+	SetKnownRouteIPs(value IAVCustomRoutingPartialIP)
 }
 
 // An object that manages the connection from a device to a destination.

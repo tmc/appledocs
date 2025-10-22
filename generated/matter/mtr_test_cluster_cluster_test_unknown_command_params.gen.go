@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTestUnknownCommandParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestUnknownCommandParams] class.
 type IMTRTestClusterClusterTestUnknownCommandParams interface {
 	IMTRUnitTestingClusterTestUnknownCommandParams
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

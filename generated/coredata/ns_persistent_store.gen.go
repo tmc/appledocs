@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,23 @@ type _PersistentStoreClass struct {
 type IPersistentStore interface {
 	objectivec.IObject
 	LoadMetadata(error_ unsafe.Pointer) bool
+	ReadOnly() bool
+	SetReadOnly(value bool)
+	Metadata() unsafe.Pointer
+	SetMetadata(value unsafe.Pointer)
+	Options() objc.ID
+	PersistentStoreCoordinator() NSPersistentStoreCoordinator
+	Type() string
+	ConfigurationName() string
+	SetConfigurationName(value string)
+	CoreSpotlightExporter() NSCoreDataCoreSpotlightDelegate
+	SetCoreSpotlightExporter(value ICoreDataCoreSpotlightDelegate)
+	Identifier() string
+	SetIdentifier(value string)
+	IsReadOnly() bool
+	SetIsReadOnly(value bool)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // The abstract base class for all Core Data persistent stores.
@@ -88,9 +104,9 @@ func NewPersistentStore() PersistentStore {
 // Returns a store initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
-func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root IPersistentStoreCoordinator, name appkit.string, url foundation.IURL, options objectivec.IObject) PersistentStore {
+func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root IPersistentStoreCoordinator, name string, url foundation.IURL, options objectivec.IObject) PersistentStore {
 	instance := getPersistentStoreClass().Alloc()
-	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, name, url, options)
+	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, objc.String(name), url, options)
 	rv.Autorelease()
 	return rv
 }
@@ -183,16 +199,16 @@ func (p_ PersistentStore) PersistentStoreCoordinator() NSPersistentStoreCoordina
 // The type string of the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/type
-func (p_ PersistentStore) Type() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("type"))
+func (p_ PersistentStore) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
 // The name of the managed object model configuration that creates the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
-func (p_ PersistentStore) ConfigurationName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("configurationName"))
+func (p_ PersistentStore) ConfigurationName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("configurationName"))
 	return rv
 }
 
@@ -202,8 +218,8 @@ func (p_ PersistentStore) ConfigurationName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
-func (p_ PersistentStore) SetConfigurationName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), value)
+func (p_ PersistentStore) SetConfigurationName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), objc.String(value))
 }
 
 // The spotlight exporter associated with this persistent store.
@@ -227,8 +243,8 @@ func (p_ PersistentStore) SetCoreSpotlightExporter(value ICoreDataCoreSpotlightD
 // The unique identifier for the persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (p_ PersistentStore) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PersistentStore) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -238,8 +254,8 @@ func (p_ PersistentStore) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (p_ PersistentStore) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
+func (p_ PersistentStore) SetIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the persistent store is read-only.

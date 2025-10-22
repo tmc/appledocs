@@ -31,6 +31,7 @@ type _LogItemClass struct {
 // An interface definition for the [LogItem] class.
 type ILogItem interface {
 	objectivec.IObject
+	Timestamp() foundation.TimeInterval
 }
 
 // The base class for all motion-related data objects.

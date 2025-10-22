@@ -31,6 +31,9 @@ type _DCDeviceClass struct {
 type IDCDevice interface {
 	objectivec.IObject
 	GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
+	Supported() bool
+	IsSupported() bool
+	SetIsSupported(value bool)
 }
 
 // A representation of a device that provides a unique, authenticated token.

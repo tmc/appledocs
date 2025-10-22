@@ -30,6 +30,11 @@ type _AudioSessionRouteDescriptionClass struct {
 // An interface definition for the [AudioSessionRouteDescription] class.
 type IAudioSessionRouteDescription interface {
 	objectivec.IObject
+	Inputs() []AudioSessionPortDescription
+	CurrentRoute() AVAudioSessionRouteDescription
+	SetCurrentRoute(value IAVAudioSessionRouteDescription)
+	Outputs() AVAudioSessionPortDescription
+	SetOutputs(value IAVAudioSessionPortDescription)
 }
 
 // An object that describes the input and output ports associated with a session’s audio route.

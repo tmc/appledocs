@@ -30,6 +30,18 @@ type _ScriptClassDescriptionClass struct {
 type IScriptClassDescription interface {
 	IClassDescription
 	TypeForKey(key string) String
+	AppleEventCode() unsafe.Pointer
+	SetAppleEventCode(value unsafe.Pointer)
+	ClassName() string
+	SetClassName(value string)
+	DefaultSubcontainerAttributeKey() string
+	SetDefaultSubcontainerAttributeKey(value string)
+	ImplementationClassName() string
+	SetImplementationClassName(value string)
+	SuiteName() string
+	SetSuiteName(value string)
+	Superclass() NSScriptClassDescription
+	SetSuperclass(value IScriptClassDescription)
 }
 
 // A scriptable class that a macOS app supports.

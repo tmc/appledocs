@@ -30,6 +30,16 @@ type _CNContactFetchRequestClass struct {
 // An interface definition for the [CNContactFetchRequest] class.
 type ICNContactFetchRequest interface {
 	ICNFetchRequest
+	KeysToFetch() []objc.ID
+	SetKeysToFetch(value []objc.ID)
+	MutableObjects() bool
+	SetMutableObjects(value bool)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	SortOrder() CNContactSortOrder
+	SetSortOrder(value ICNContactSortOrder)
+	UnifyResults() bool
+	SetUnifyResults(value bool)
 }
 
 // An object that defines the options to use when fetching contacts.

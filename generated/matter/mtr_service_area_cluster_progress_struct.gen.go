@@ -31,6 +31,12 @@ type _MTRServiceAreaClusterProgressStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterProgressStruct] class.
 type IMTRServiceAreaClusterProgressStruct interface {
 	objectivec.IObject
+	AreaID() foundation.Number
+	SetAreaID(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TotalOperationalTime() foundation.Number
+	SetTotalOperationalTime(value foundation.INumber)
 }
 
 //

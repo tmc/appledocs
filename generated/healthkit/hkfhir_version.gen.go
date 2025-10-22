@@ -31,6 +31,26 @@ type _HKFHIRVersionClass struct {
 // An interface definition for the [HKFHIRVersion] class.
 type IHKFHIRVersion interface {
 	objectivec.IObject
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	FhirVersion() HKFHIRVersion
+	SetFhirVersion(value IHKFHIRVersion)
+	Identifier() string
+	SetIdentifier(value string)
+	ResourceType() HKFHIRResourceType
+	SetResourceType(value HKFHIRResourceType)
+	SourceURL() foundation.URL
+	SetSourceURL(value foundation.IURL)
+	FhirRelease() unsafe.Pointer
+	SetFhirRelease(value unsafe.Pointer)
+	MajorVersion() int
+	SetMajorVersion(value int)
+	MinorVersion() int
+	SetMinorVersion(value int)
+	PatchVersion() int
+	SetPatchVersion(value int)
+	StringRepresentation() string
+	SetStringRepresentation(value string)
 }
 
 // The FHIR version.
@@ -120,8 +140,8 @@ func (h_ HKFHIRVersion) SetFhirVersion(value IHKFHIRVersion) {
 // The value from the FHIR resource’s
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRVersion) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("identifier"))
+func (h_ HKFHIRVersion) Identifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -131,8 +151,8 @@ func (h_ HKFHIRVersion) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRVersion) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
+func (h_ HKFHIRVersion) SetIdentifier(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The value from the FHIR resource’s
@@ -246,8 +266,8 @@ func (h_ HKFHIRVersion) SetPatchVersion(value int) {
 // A string representation of the version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/stringrepresentation
-func (h_ HKFHIRVersion) StringRepresentation() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("stringRepresentation"))
+func (h_ HKFHIRVersion) StringRepresentation() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 
@@ -257,8 +277,8 @@ func (h_ HKFHIRVersion) StringRepresentation() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/stringrepresentation
-func (h_ HKFHIRVersion) SetStringRepresentation(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setStringRepresentation:"), value)
+func (h_ HKFHIRVersion) SetStringRepresentation(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStringRepresentation:"), objc.String(value))
 }
 
 

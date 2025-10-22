@@ -29,6 +29,16 @@ type _CKFetchSubscriptionsOperationClass struct {
 // An interface definition for the [CKFetchSubscriptionsOperation] class.
 type ICKFetchSubscriptionsOperation interface {
 	ICKDatabaseOperation
+	FetchSubscriptionCompletionBlock() unsafe.Pointer
+	SetFetchSubscriptionCompletionBlock(value unsafe.Pointer)
+	FetchSubscriptionsResultBlock() unsafe.Pointer
+	SetFetchSubscriptionsResultBlock(value unsafe.Pointer)
+	PerSubscriptionResultBlock() unsafe.Pointer
+	SetPerSubscriptionResultBlock(value unsafe.Pointer)
+	SubscriptionIDs() unsafe.Pointer
+	SetSubscriptionIDs(value unsafe.Pointer)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
 }
 
 // An operation for fetching subscriptions.

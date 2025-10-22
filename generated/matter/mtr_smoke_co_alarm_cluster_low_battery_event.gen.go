@@ -31,6 +31,8 @@ type _MTRSmokeCOAlarmClusterLowBatteryEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterLowBatteryEvent] class.
 type IMTRSmokeCOAlarmClusterLowBatteryEvent interface {
 	objectivec.IObject
+	AlarmSeverityLevel() foundation.Number
+	SetAlarmSeverityLevel(value foundation.INumber)
 }
 
 //

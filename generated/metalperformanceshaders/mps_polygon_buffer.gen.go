@@ -30,6 +30,20 @@ type _PolygonBufferClass struct {
 // An interface definition for the [PolygonBuffer] class.
 type IPolygonBuffer interface {
 	objectivec.IObject
+	IndexBufferOffset() uint
+	SetIndexBufferOffset(value uint)
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	MaskBuffer() unsafe.Pointer
+	SetMaskBuffer(value unsafe.Pointer)
+	MaskBufferOffset() int
+	SetMaskBufferOffset(value int)
+	PolygonCount() int
+	SetPolygonCount(value int)
+	VertexBuffer() unsafe.Pointer
+	SetVertexBuffer(value unsafe.Pointer)
+	VertexBufferOffset() int
+	SetVertexBufferOffset(value int)
 }
 
 //

@@ -30,6 +30,8 @@ type _DocumentCameraViewControllerClass struct {
 // An interface definition for the [DocumentCameraViewController] class.
 type IDocumentCameraViewController interface {
 	appkit.IViewController
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // An object that presents UI for a camera pass-through that helps people scan physical documents.

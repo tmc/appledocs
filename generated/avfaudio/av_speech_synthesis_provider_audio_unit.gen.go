@@ -29,6 +29,10 @@ type _SpeechSynthesisProviderAudioUnitClass struct {
 // An interface definition for the [SpeechSynthesisProviderAudioUnit] class.
 type ISpeechSynthesisProviderAudioUnit interface {
 	IAudioUnit
+	SpeechSynthesisOutputMetadataBlock() unsafe.Pointer
+	SetSpeechSynthesisOutputMetadataBlock(value unsafe.Pointer)
+	SpeechVoices() AVSpeechSynthesisProviderVoice
+	SetSpeechVoices(value IAVSpeechSynthesisProviderVoice)
 }
 
 // An object that generates speech from text.

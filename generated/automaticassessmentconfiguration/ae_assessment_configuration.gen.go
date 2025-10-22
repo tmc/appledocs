@@ -32,6 +32,30 @@ type IAEAssessmentConfiguration interface {
 	objectivec.IObject
 	RemoveApplication(application IAEAssessmentApplication)
 	SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication)
+	AllowsAccessibilitySpeech() bool
+	SetAllowsAccessibilitySpeech(value bool)
+	AllowsAccessibilityTypingFeedback() bool
+	SetAllowsAccessibilityTypingFeedback(value bool)
+	AllowsActivityContinuation() bool
+	SetAllowsActivityContinuation(value bool)
+	AllowsContinuousPathKeyboard() bool
+	SetAllowsContinuousPathKeyboard(value bool)
+	AllowsDictation() bool
+	SetAllowsDictation(value bool)
+	AllowsKeyboardShortcuts() bool
+	SetAllowsKeyboardShortcuts(value bool)
+	AllowsPasswordAutoFill() bool
+	SetAllowsPasswordAutoFill(value bool)
+	AllowsPredictiveKeyboard() bool
+	SetAllowsPredictiveKeyboard(value bool)
+	AllowsScreenshots() bool
+	SetAllowsScreenshots(value bool)
+	AllowsSpellCheck() bool
+	SetAllowsSpellCheck(value bool)
+	AutocorrectMode() AEAutocorrectMode
+	SetAutocorrectMode(value AEAutocorrectMode)
+	ConfigurationsByApplication() unsafe.Pointer
+	MainParticipantConfiguration() AEAssessmentParticipantConfiguration
 }
 
 // Configuration information for an assessment session.

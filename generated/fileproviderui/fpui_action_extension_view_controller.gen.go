@@ -31,8 +31,9 @@ type _FPUIActionExtensionViewControllerClass struct {
 // An interface definition for the [FPUIActionExtensionViewController] class.
 type IFPUIActionExtensionViewController interface {
 	appkit.IViewController
-	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier appkit.string, itemIdentifiers []string)
+	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string)
 	PrepareForError(error_ foundation.IError)
+	ExtensionContext() FPUIActionExtensionContext
 }
 
 // The custom user interface used to perform a selected action.
@@ -88,8 +89,8 @@ func NewFPUIActionExtensionViewController() FPUIActionExtensionViewController {
 // Performs any necessary setup or configuration for the specified action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)
-func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier appkit.string, itemIdentifiers []string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), actionIdentifier, itemIdentifiers)
+func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), objc.String(actionIdentifier), itemIdentifiers)
 }
 
 // Performs any necessary setup or configuration when an authentication error occurs.

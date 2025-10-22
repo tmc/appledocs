@@ -32,6 +32,8 @@ type IMatchmaker interface {
 	objectivec.IObject
 	AddPlayersToMatchMatchRequestCompletionHandler(match IGKMatch, matchRequest IGKMatchRequest, completionHandler unsafe.Pointer)
 	FindPlayersForHostedMatchRequestWithCompletionHandler(request IGKMatchRequest, completionHandler unsafe.Pointer)
+	ExpectedPlayerCount() int
+	SetExpectedPlayerCount(value int)
 }
 
 // An object that creates matches with other players without presenting an interface to the players.

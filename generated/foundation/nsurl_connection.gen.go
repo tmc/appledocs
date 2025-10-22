@@ -35,6 +35,8 @@ type IURLConnection interface {
 	SetDelegateQueue(queue IOperationQueue)
 	Start()
 	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	CurrentRequest() NSURLRequest
+	OriginalRequest() NSURLRequest
 }
 
 // An object that enables you to start and stop URL requests.

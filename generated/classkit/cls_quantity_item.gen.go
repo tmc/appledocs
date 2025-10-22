@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SQuantityItem] class.
@@ -30,6 +29,8 @@ type _SQuantityItemClass struct {
 // An interface definition for the [SQuantityItem] class.
 type ISQuantityItem interface {
 	ISActivityItem
+	Quantity() float64
+	SetQuantity(value float64)
 }
 
 // Activity information that signifies a quantity.
@@ -87,9 +88,9 @@ func NewSQuantityItem() SQuantityItem {
 // Initializes an activity item that records a discrete quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/init(identifier:title:)
-func NewSQuantityItemWithIdentifierTitle(identifier appkit.string, title appkit.string) SQuantityItem {
+func NewSQuantityItemWithIdentifierTitle(identifier string, title string) SQuantityItem {
 	instance := getSQuantityItemClass().Alloc()
-	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), identifier, title)
+	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	rv.Autorelease()
 	return rv
 }
@@ -98,8 +99,8 @@ func NewSQuantityItemWithIdentifierTitle(identifier appkit.string, title appkit.
 // A quantity associated with the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
-func (s_ SQuantityItem) Quantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("quantity"))
+func (s_ SQuantityItem) Quantity() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("quantity"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (s_ SQuantityItem) Quantity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
-func (s_ SQuantityItem) SetQuantity(value unsafe.Pointer) {
+func (s_ SQuantityItem) SetQuantity(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuantity:"), value)
 }
 

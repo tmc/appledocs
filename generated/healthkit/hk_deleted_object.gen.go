@@ -31,6 +31,8 @@ type _HKDeletedObjectClass struct {
 // An interface definition for the [HKDeletedObject] class.
 type IHKDeletedObject interface {
 	objectivec.IObject
+	Metadata() unsafe.Pointer
+	UUID() foundation.UUID
 }
 
 // An object that represents a sample that has been deleted from the HealthKit store.

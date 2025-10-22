@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _NEHotspotConfigurationClass struct {
 // An interface definition for the [NEHotspotConfiguration] class.
 type INEHotspotConfiguration interface {
 	objectivec.IObject
+	Hidden() bool
+	SetHidden(value bool)
+	JoinOnce() bool
+	SetJoinOnce(value bool)
+	LifeTimeInDays() foundation.Number
+	SetLifeTimeInDays(value foundation.INumber)
+	SSID() string
+	SSIDPrefix() string
 }
 
 // Configuration settings for a Wi-Fi network.
@@ -99,9 +106,9 @@ func NewNEHotspotConfigurationWithHS20SettingsEapSettings(hs20Settings INEHotspo
 // Creates a new hotspot configuration, identified by an SSID, for an open Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:)
-func NewNEHotspotConfigurationWithSSID(SSID appkit.string) NEHotspotConfiguration {
+func NewNEHotspotConfigurationWithSSID(SSID string) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:"), SSID)
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:"), objc.String(SSID))
 	rv.Autorelease()
 	return rv
 }
@@ -111,9 +118,9 @@ func NewNEHotspotConfigurationWithSSID(SSID appkit.string) NEHotspotConfiguratio
 // Creates a new hotspot configuration, identified by an SSID, for a WPA/WPA2 enterprise Wi-Fi network with EAP settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:eapSettings:)
-func NewNEHotspotConfigurationWithSSIDEapSettings(SSID appkit.string, eapSettings INEHotspotEAPSettings) NEHotspotConfiguration {
+func NewNEHotspotConfigurationWithSSIDEapSettings(SSID string, eapSettings INEHotspotEAPSettings) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:eapSettings:"), SSID, eapSettings)
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:eapSettings:"), objc.String(SSID), eapSettings)
 	rv.Autorelease()
 	return rv
 }
@@ -123,9 +130,9 @@ func NewNEHotspotConfigurationWithSSIDEapSettings(SSID appkit.string, eapSetting
 // Creates a new hotspot configuration, identified by an SSID, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:passphrase:isWEP:)
-func NewNEHotspotConfigurationWithSSIDPassphraseIsWEP(SSID appkit.string, passphrase appkit.string, isWEP bool) NEHotspotConfiguration {
+func NewNEHotspotConfigurationWithSSIDPassphraseIsWEP(SSID string, passphrase string, isWEP bool) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:passphrase:isWEP:"), SSID, passphrase, isWEP)
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:passphrase:isWEP:"), objc.String(SSID), objc.String(passphrase), isWEP)
 	rv.Autorelease()
 	return rv
 }
@@ -135,9 +142,9 @@ func NewNEHotspotConfigurationWithSSIDPassphraseIsWEP(SSID appkit.string, passph
 // Creates a new hotspot configuration, identified by an SSID prefix string, for an open Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssidPrefix:)
-func NewNEHotspotConfigurationWithSSIDPrefix(SSIDPrefix appkit.string) NEHotspotConfiguration {
+func NewNEHotspotConfigurationWithSSIDPrefix(SSIDPrefix string) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSIDPrefix:"), SSIDPrefix)
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSIDPrefix:"), objc.String(SSIDPrefix))
 	rv.Autorelease()
 	return rv
 }
@@ -147,9 +154,9 @@ func NewNEHotspotConfigurationWithSSIDPrefix(SSIDPrefix appkit.string) NEHotspot
 // Creates a new hotspot configuration, identified by an SSID prefix string, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssidPrefix:passphrase:isWEP:)
-func NewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP(SSIDPrefix appkit.string, passphrase appkit.string, isWEP bool) NEHotspotConfiguration {
+func NewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP(SSIDPrefix string, passphrase string, isWEP bool) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSIDPrefix:passphrase:isWEP:"), SSIDPrefix, passphrase, isWEP)
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSIDPrefix:passphrase:isWEP:"), objc.String(SSIDPrefix), objc.String(passphrase), isWEP)
 	rv.Autorelease()
 	return rv
 }
@@ -212,16 +219,16 @@ func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value foundation.INumber) {
 // The SSID of an open, WEP, WPA/WPA2 personal, or WPA/WPA2 enterprise Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssid
-func (n_ NEHotspotConfiguration) SSID() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("SSID"))
+func (n_ NEHotspotConfiguration) SSID() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("SSID"))
 	return rv
 }
 
 // The string used to match networks against a known SSID prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssidPrefix
-func (n_ NEHotspotConfiguration) SSIDPrefix() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("SSIDPrefix"))
+func (n_ NEHotspotConfiguration) SSIDPrefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("SSIDPrefix"))
 	return rv
 }
 

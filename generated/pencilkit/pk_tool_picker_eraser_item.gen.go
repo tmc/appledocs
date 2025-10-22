@@ -29,6 +29,7 @@ type _ToolPickerEraserItemClass struct {
 // An interface definition for the [ToolPickerEraserItem] class.
 type IToolPickerEraserItem interface {
 	IToolPickerItem
+	EraserTool() PKEraserTool
 }
 
 // An item that represents an eraser tool in the tool picker.

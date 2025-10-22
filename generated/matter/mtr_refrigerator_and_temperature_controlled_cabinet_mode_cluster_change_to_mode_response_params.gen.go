@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeRespo
 // An interface definition for the [MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams] class.
 type IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams interface {
 	objectivec.IObject
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	StatusText() string
+	SetStatusText(value string)
 }
 
 //
@@ -107,8 +110,8 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeRe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams/statusText
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) StatusText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("statusText"))
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) StatusText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
@@ -116,8 +119,8 @@ func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeRe
 // SetStatusText sets the value of the statusText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams/statusText
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) SetStatusText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams) SetStatusText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
 }
 
 

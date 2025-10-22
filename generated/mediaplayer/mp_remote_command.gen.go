@@ -30,6 +30,8 @@ type _RemoteCommandClass struct {
 // An interface definition for the [RemoteCommand] class.
 type IRemoteCommand interface {
 	objectivec.IObject
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // An object that responds to remote command events.

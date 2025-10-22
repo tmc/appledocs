@@ -31,6 +31,16 @@ type _MKGeocodingRequestClass struct {
 // An interface definition for the [MKGeocodingRequest] class.
 type IMKGeocodingRequest interface {
 	objectivec.IObject
+	AddressString() string
+	SetAddressString(value string)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
+	PreferredLocale() foundation.Locale
+	SetPreferredLocale(value foundation.ILocale)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
 }
 
 // A class that looks up a geographic coordinate using the provided string.
@@ -82,8 +92,8 @@ func NewMKGeocodingRequest() MKGeocodingRequest {
 // The string used to initialize the geocoder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
-func (m_ MKGeocodingRequest) AddressString() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("addressString"))
+func (m_ MKGeocodingRequest) AddressString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
 	return rv
 }
 
@@ -93,8 +103,8 @@ func (m_ MKGeocodingRequest) AddressString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
-func (m_ MKGeocodingRequest) SetAddressString(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), value)
+func (m_ MKGeocodingRequest) SetAddressString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the current geocoding request is in a cancelled state.

@@ -30,6 +30,24 @@ type _PlayerInterstitialEventMonitorClass struct {
 // An interface definition for the [PlayerInterstitialEventMonitor] class.
 type IPlayerInterstitialEventMonitor interface {
 	objectivec.IObject
+	ReasonForWaitingToPlay() unsafe.Pointer
+	SetReasonForWaitingToPlay(value unsafe.Pointer)
+	TimeControlStatus() unsafe.Pointer
+	SetTimeControlStatus(value unsafe.Pointer)
+	TemplateItems() AVPlayerItem
+	SetTemplateItems(value IAVPlayerItem)
+	CurrentEvent() AVPlayerInterstitialEvent
+	SetCurrentEvent(value IAVPlayerInterstitialEvent)
+	CurrentEventSkipControlLabel() string
+	SetCurrentEventSkipControlLabel(value string)
+	CurrentEventSkippableState() unsafe.Pointer
+	SetCurrentEventSkippableState(value unsafe.Pointer)
+	Events() AVPlayerInterstitialEvent
+	SetEvents(value IAVPlayerInterstitialEvent)
+	InterstitialPlayer() AVQueuePlayer
+	SetInterstitialPlayer(value IAVQueuePlayer)
+	PrimaryPlayer() AVPlayer
+	SetPrimaryPlayer(value IAVPlayer)
 }
 
 // An object that monitors the scheduling and progress of interstitial events.

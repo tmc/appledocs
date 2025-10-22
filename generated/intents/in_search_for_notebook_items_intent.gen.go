@@ -30,6 +30,28 @@ type _INSearchForNotebookItemsIntentClass struct {
 // An interface definition for the [INSearchForNotebookItemsIntent] class.
 type IINSearchForNotebookItemsIntent interface {
 	IINIntent
+	Content() string
+	SetContent(value string)
+	DateSearchType() unsafe.Pointer
+	SetDateSearchType(value unsafe.Pointer)
+	DateTime() INDateComponentsRange
+	SetDateTime(value INDateComponentsRange)
+	ItemType() unsafe.Pointer
+	SetItemType(value unsafe.Pointer)
+	Location() corelocation.Placemark
+	SetLocation(value corelocation.IPlacemark)
+	LocationSearchType() unsafe.Pointer
+	SetLocationSearchType(value unsafe.Pointer)
+	NotebookItemIdentifier() string
+	SetNotebookItemIdentifier(value string)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	TaskPriority() unsafe.Pointer
+	SetTaskPriority(value unsafe.Pointer)
+	TemporalEventTriggerTypes() unsafe.Pointer
+	SetTemporalEventTriggerTypes(value unsafe.Pointer)
+	Title() INSpeakableString
+	SetTitle(value INSpeakableString)
 }
 
 // A request to search for notes, tasks, and reminders.
@@ -85,8 +107,8 @@ func NewINSearchForNotebookItemsIntent() INSearchForNotebookItemsIntent {
 // The text to search for in the body of a note.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/content
-func (i_ INSearchForNotebookItemsIntent) Content() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("content"))
+func (i_ INSearchForNotebookItemsIntent) Content() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -96,8 +118,8 @@ func (i_ INSearchForNotebookItemsIntent) Content() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/content
-func (i_ INSearchForNotebookItemsIntent) SetContent(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
+func (i_ INSearchForNotebookItemsIntent) SetContent(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
 }
 
 // An indicator of how to apply date values to your search.
@@ -193,8 +215,8 @@ func (i_ INSearchForNotebookItemsIntent) SetLocationSearchType(value unsafe.Poin
 // The unique identifier that your app assigned to the item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/notebookitemidentifier
-func (i_ INSearchForNotebookItemsIntent) NotebookItemIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("notebookItemIdentifier"))
+func (i_ INSearchForNotebookItemsIntent) NotebookItemIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("notebookItemIdentifier"))
 	return rv
 }
 
@@ -204,8 +226,8 @@ func (i_ INSearchForNotebookItemsIntent) NotebookItemIdentifier() appkit.string 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/notebookitemidentifier
-func (i_ INSearchForNotebookItemsIntent) SetNotebookItemIdentifier(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNotebookItemIdentifier:"), value)
+func (i_ INSearchForNotebookItemsIntent) SetNotebookItemIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNotebookItemIdentifier:"), objc.String(value))
 }
 
 // The completion state to look for when searching for tasks.

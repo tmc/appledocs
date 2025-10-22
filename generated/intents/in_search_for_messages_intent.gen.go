@@ -29,6 +29,24 @@ type _INSearchForMessagesIntentClass struct {
 // An interface definition for the [INSearchForMessagesIntent] class.
 type IINSearchForMessagesIntent interface {
 	IINIntent
+	Attributes() INMessageAttributeOptions
+	ConversationIdentifiers() []string
+	ConversationIdentifiersOperator() INConditionalOperator
+	DateTimeRange() INDateComponentsRange
+	GroupNames() []string
+	GroupNamesOperator() INConditionalOperator
+	Identifiers() []string
+	IdentifiersOperator() INConditionalOperator
+	NotificationIdentifiers() []string
+	NotificationIdentifiersOperator() INConditionalOperator
+	Recipients() []INPerson
+	RecipientsOperator() INConditionalOperator
+	SearchTerms() []string
+	SearchTermsOperator() INConditionalOperator
+	Senders() []INPerson
+	SendersOperator() INConditionalOperator
+	SpeakableGroupNames() []INSpeakableString
+	SpeakableGroupNamesOperator() INConditionalOperator
 }
 
 // A request to list the messages that match the specified criteria.

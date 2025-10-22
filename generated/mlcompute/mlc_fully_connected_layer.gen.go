@@ -29,6 +29,16 @@ type _CFullyConnectedLayerClass struct {
 // An interface definition for the [CFullyConnectedLayer] class.
 type ICFullyConnectedLayer interface {
 	ICLayer
+	Biases() MLCTensor
+	SetBiases(value IMLCTensor)
+	BiasesParameter() MLCTensorParameter
+	SetBiasesParameter(value IMLCTensorParameter)
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
+	Weights() MLCTensor
+	SetWeights(value IMLCTensor)
+	WeightsParameter() MLCTensorParameter
+	SetWeightsParameter(value IMLCTensorParameter)
 }
 
 // A layer that connects each input to each output within its layer.

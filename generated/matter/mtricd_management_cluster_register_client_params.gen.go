@@ -31,6 +31,20 @@ type _MTRICDManagementClusterRegisterClientParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterRegisterClientParams] class.
 type IMTRICDManagementClusterRegisterClientParams interface {
 	objectivec.IObject
+	CheckInNodeID() foundation.Number
+	SetCheckInNodeID(value foundation.INumber)
+	ClientType() foundation.Number
+	SetClientType(value foundation.INumber)
+	Key() foundation.NSData
+	SetKey(value foundation.IData)
+	MonitoredSubject() foundation.Number
+	SetMonitoredSubject(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	VerificationKey() foundation.NSData
+	SetVerificationKey(value foundation.IData)
 }
 
 //

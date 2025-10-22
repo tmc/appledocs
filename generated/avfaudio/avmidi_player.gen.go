@@ -34,6 +34,14 @@ type IMIDIPlayer interface {
 	Play(completionHandler unsafe.Pointer)
 	PrepareToPlay()
 	Stop()
+	CurrentPosition() foundation.TimeInterval
+	SetCurrentPosition(value foundation.ITimeInterval)
+	Duration() foundation.TimeInterval
+	Playing() bool
+	Rate() float32
+	SetRate(value float32)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
 }
 
 // An object that plays MIDI data through a system sound module.
@@ -167,8 +175,8 @@ func (m_ MIDIPlayer) Playing() bool {
 // The playback rate of the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
-func (m_ MIDIPlayer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rate"))
+func (m_ MIDIPlayer) Rate() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -178,7 +186,7 @@ func (m_ MIDIPlayer) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
-func (m_ MIDIPlayer) SetRate(value unsafe.Pointer) {
+func (m_ MIDIPlayer) SetRate(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
 }
 

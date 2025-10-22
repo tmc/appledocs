@@ -30,6 +30,10 @@ type _CTensorParameterClass struct {
 // An interface definition for the [CTensorParameter] class.
 type ICTensorParameter interface {
 	objectivec.IObject
+	IsUpdatable() bool
+	SetIsUpdatable(value bool)
+	Tensor() MLCTensor
+	SetTensor(value IMLCTensor)
 }
 
 // A tensor parameter object.

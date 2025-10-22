@@ -30,6 +30,12 @@ type _PersistentHistoryChangeRequestClass struct {
 // An interface definition for the [PersistentHistoryChangeRequest] class.
 type IPersistentHistoryChangeRequest interface {
 	IPersistentStoreRequest
+	FetchRequest() NSFetchRequest
+	SetFetchRequest(value IFetchRequest)
+	ResultType() PersistentHistoryResultType
+	SetResultType(value PersistentHistoryResultType)
+	Token() NSPersistentHistoryToken
+	SetToken(value IPersistentHistoryToken)
 }
 
 // A request to fetch or purge persistent history.

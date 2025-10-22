@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,57 @@ type _WebViewConfigurationClass struct {
 // An interface definition for the [WebViewConfiguration] class.
 type IWebViewConfiguration interface {
 	objectivec.IObject
-	SetURLSchemeHandlerForURLScheme(urlSchemeHandler objectivec.IObject, urlScheme appkit.string)
+	SetURLSchemeHandlerForURLScheme(urlSchemeHandler objectivec.IObject, urlScheme string)
+	LimitsNavigationsToAppBoundDomains() bool
+	SetLimitsNavigationsToAppBoundDomains(value bool)
+	Preferences() WKPreferences
+	SetPreferences(value IWKPreferences)
+	ProcessPool() WKProcessPool
+	SetProcessPool(value IWKProcessPool)
+	WebsiteDataStore() WKWebsiteDataStore
+	SetWebsiteDataStore(value IWKWebsiteDataStore)
+	AllowsAirPlayForMediaPlayback() bool
+	SetAllowsAirPlayForMediaPlayback(value bool)
+	AllowsInlineMediaPlayback() bool
+	SetAllowsInlineMediaPlayback(value bool)
+	AllowsInlinePredictions() bool
+	SetAllowsInlinePredictions(value bool)
+	AllowsPictureInPictureMediaPlayback() bool
+	SetAllowsPictureInPictureMediaPlayback(value bool)
+	ApplicationNameForUserAgent() string
+	SetApplicationNameForUserAgent(value string)
+	DataDetectorTypes() unsafe.Pointer
+	SetDataDetectorTypes(value unsafe.Pointer)
+	DefaultWebpagePreferences() WKWebpagePreferences
+	SetDefaultWebpagePreferences(value IWKWebpagePreferences)
+	IgnoresViewportScaleLimits() bool
+	SetIgnoresViewportScaleLimits(value bool)
+	MediaPlaybackAllowsAirPlay() bool
+	SetMediaPlaybackAllowsAirPlay(value bool)
+	MediaPlaybackRequiresUserAction() bool
+	SetMediaPlaybackRequiresUserAction(value bool)
+	MediaTypesRequiringUserActionForPlayback() unsafe.Pointer
+	SetMediaTypesRequiringUserActionForPlayback(value unsafe.Pointer)
+	RequiresUserActionForMediaPlayback() bool
+	SetRequiresUserActionForMediaPlayback(value bool)
+	SelectionGranularity() unsafe.Pointer
+	SetSelectionGranularity(value unsafe.Pointer)
+	ShowsSystemScreenTimeBlockingView() bool
+	SetShowsSystemScreenTimeBlockingView(value bool)
+	SupportsAdaptiveImageGlyph() bool
+	SetSupportsAdaptiveImageGlyph(value bool)
+	SuppressesIncrementalRendering() bool
+	SetSuppressesIncrementalRendering(value bool)
+	UpgradeKnownHostsToHTTPS() bool
+	SetUpgradeKnownHostsToHTTPS(value bool)
+	UserContentController() WKUserContentController
+	SetUserContentController(value IWKUserContentController)
+	UserInterfaceDirectionPolicy() UserInterfaceDirectionPolicy
+	SetUserInterfaceDirectionPolicy(value UserInterfaceDirectionPolicy)
+	WebExtensionController() WKWebExtensionController
+	SetWebExtensionController(value IWKWebExtensionController)
+	WritingToolsBehavior() unsafe.Pointer
+	SetWritingToolsBehavior(value unsafe.Pointer)
 }
 
 // A collection of properties that you use to initialize a web view.
@@ -85,8 +134,8 @@ func NewWebViewConfiguration() WebViewConfiguration {
 // Registers an object to load resources associated with the specified URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/setURLSchemeHandler(_:forURLScheme:)
-func (w_ WebViewConfiguration) SetURLSchemeHandlerForURLScheme(urlSchemeHandler objectivec.IObject, urlScheme appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setURLSchemeHandler:forURLScheme:"), urlSchemeHandler, urlScheme)
+func (w_ WebViewConfiguration) SetURLSchemeHandlerForURLScheme(urlSchemeHandler objectivec.IObject, urlScheme string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setURLSchemeHandler:forURLScheme:"), urlSchemeHandler, objc.String(urlScheme))
 }
 
 // A Boolean value that indicates whether the web view limits navigation to pages within the app’s domain.
@@ -233,8 +282,8 @@ func (w_ WebViewConfiguration) SetAllowsPictureInPictureMediaPlayback(value bool
 // The app name that appears in the user agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
-func (w_ WebViewConfiguration) ApplicationNameForUserAgent() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("applicationNameForUserAgent"))
+func (w_ WebViewConfiguration) ApplicationNameForUserAgent() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("applicationNameForUserAgent"))
 	return rv
 }
 
@@ -244,8 +293,8 @@ func (w_ WebViewConfiguration) ApplicationNameForUserAgent() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
-func (w_ WebViewConfiguration) SetApplicationNameForUserAgent(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), value)
+func (w_ WebViewConfiguration) SetApplicationNameForUserAgent(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), objc.String(value))
 }
 
 // The types of data detectors to apply to the web view’s content.

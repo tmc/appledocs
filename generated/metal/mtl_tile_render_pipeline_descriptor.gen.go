@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,32 @@ type _TileRenderPipelineDescriptorClass struct {
 type ITileRenderPipelineDescriptor interface {
 	objectivec.IObject
 	Reset()
+	BinaryArchives() []objc.ID
+	SetBinaryArchives(value []objc.ID)
+	ColorAttachments() MTLTileRenderPipelineColorAttachmentDescriptorArray
+	Label() string
+	SetLabel(value string)
+	LinkedFunctions() MTLLinkedFunctions
+	SetLinkedFunctions(value IMTLLinkedFunctions)
+	MaxCallStackDepth() uint
+	SetMaxCallStackDepth(value uint)
+	MaxTotalThreadsPerThreadgroup() uint
+	SetMaxTotalThreadsPerThreadgroup(value uint)
+	PreloadedLibraries() []objc.ID
+	SetPreloadedLibraries(value []objc.ID)
+	RasterSampleCount() uint
+	SetRasterSampleCount(value uint)
+	RequiredThreadsPerThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerThreadgroup(value coregraphics.ISize)
+	ShaderValidation() ShaderValidation
+	SetShaderValidation(value IShaderValidation)
+	SupportAddingBinaryFunctions() bool
+	SetSupportAddingBinaryFunctions(value bool)
+	ThreadgroupSizeMatchesTileSize() bool
+	SetThreadgroupSizeMatchesTileSize(value bool)
+	TileBuffers() MTLPipelineBufferDescriptorArray
+	TileFunction() objc.ID
+	SetTileFunction(value objc.ID)
 }
 
 // An object that configures new render pipeline state objects for tile shading.
@@ -127,8 +152,8 @@ func (t_ TileRenderPipelineDescriptor) ColorAttachments() MTLTileRenderPipelineC
 // A string that identifies the tile pipeline descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("label"))
+func (t_ TileRenderPipelineDescriptor) Label() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -138,8 +163,8 @@ func (t_ TileRenderPipelineDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
+func (t_ TileRenderPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // Functions that you can specify as function arguments for the tile shader when encoding commands that use the pipeline.

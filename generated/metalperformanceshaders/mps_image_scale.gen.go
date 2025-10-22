@@ -29,6 +29,8 @@ type _ImageScaleClass struct {
 // An interface definition for the [ImageScale] class.
 type IImageScale interface {
 	IUnaryImageKernel
+	ScaleTransform() unsafe.Pointer
+	SetScaleTransform(value unsafe.Pointer)
 }
 
 // A filter that resizes and changes the aspect ratio of an image.

@@ -30,6 +30,30 @@ type _InstanceAccelerationStructureDescriptorClass struct {
 // An interface definition for the [InstanceAccelerationStructureDescriptor] class.
 type IInstanceAccelerationStructureDescriptor interface {
 	IAccelerationStructureDescriptor
+	InstanceCount() int
+	SetInstanceCount(value int)
+	InstanceDescriptorBuffer() unsafe.Pointer
+	SetInstanceDescriptorBuffer(value unsafe.Pointer)
+	InstanceDescriptorBufferOffset() int
+	SetInstanceDescriptorBufferOffset(value int)
+	InstanceDescriptorStride() int
+	SetInstanceDescriptorStride(value int)
+	InstanceDescriptorType() unsafe.Pointer
+	SetInstanceDescriptorType(value unsafe.Pointer)
+	InstanceTransformationMatrixLayout() unsafe.Pointer
+	SetInstanceTransformationMatrixLayout(value unsafe.Pointer)
+	InstancedAccelerationStructures() metalperformanceshaders.AccelerationStructure
+	SetInstancedAccelerationStructures(value metalperformanceshaders.IAccelerationStructure)
+	MotionTransformBuffer() unsafe.Pointer
+	SetMotionTransformBuffer(value unsafe.Pointer)
+	MotionTransformBufferOffset() int
+	SetMotionTransformBufferOffset(value int)
+	MotionTransformCount() int
+	SetMotionTransformCount(value int)
+	MotionTransformStride() int
+	SetMotionTransformStride(value int)
+	MotionTransformType() TransformType
+	SetMotionTransformType(value TransformType)
 }
 
 // A description of an acceleration structure that derives from instances of primitive acceleration structures.

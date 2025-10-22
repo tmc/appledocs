@@ -31,6 +31,12 @@ type _VZMacGraphicsDisplayConfigurationClass struct {
 // An interface definition for the [VZMacGraphicsDisplayConfiguration] class.
 type IVZMacGraphicsDisplayConfiguration interface {
 	IVZGraphicsDisplayConfiguration
+	HeightInPixels() int
+	SetHeightInPixels(value int)
+	PixelsPerInch() int
+	SetPixelsPerInch(value int)
+	WidthInPixels() int
+	SetWidthInPixels(value int)
 }
 
 // The configuration for a Mac graphics device.

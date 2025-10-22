@@ -31,6 +31,8 @@ type _MTRSwitchClusterShortReleaseEventClass struct {
 // An interface definition for the [MTRSwitchClusterShortReleaseEvent] class.
 type IMTRSwitchClusterShortReleaseEvent interface {
 	objectivec.IObject
+	PreviousPosition() foundation.Number
+	SetPreviousPosition(value foundation.INumber)
 }
 
 //

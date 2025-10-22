@@ -32,6 +32,12 @@ type INETunnelProvider interface {
 	INEProvider
 	HandleAppMessageCompletionHandler(messageData foundation.IData, completionHandler unsafe.Pointer)
 	SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings INETunnelNetworkSettings, completionHandler unsafe.Pointer)
+	AppRules() []NEAppRule
+	ProtocolConfiguration() NEVPNProtocol
+	Reasserting() bool
+	SetReasserting(value bool)
+	RoutingMethod() NETunnelProviderRoutingMethod
+	NETunnelProviderErrorDomain() string
 }
 
 // An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.
@@ -143,8 +149,8 @@ func (n_ NETunnelProvider) RoutingMethod() NETunnelProviderRoutingMethod {
 // The domain used for Tunnel Provider errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain
-func (n_ NETunnelProvider) NETunnelProviderErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NETunnelProviderErrorDomain"))
+func (n_ NETunnelProvider) NETunnelProviderErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NETunnelProviderErrorDomain"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [Player] class.
@@ -30,6 +29,22 @@ type _PlayerClass struct {
 // An interface definition for the [Player] class.
 type IPlayer interface {
 	IBasePlayer
+	Alias() string
+	DisplayName() string
+	SetDisplayName(value string)
+	GamePlayerID() string
+	SetGamePlayerID(value string)
+	GuestIdentifier() string
+	SetGuestIdentifier(value string)
+	IsFriend() bool
+	SetIsFriend(value bool)
+	IsInvitable() bool
+	SetIsInvitable(value bool)
+	PlayerID() string
+	SetPlayerID(value string)
+	TeamPlayerID() string
+	SetTeamPlayerID(value string)
+	GKPlayerIDNoLongerAvailable() string
 }
 
 // A remote player who the local player running your game can invite and communicate with through Game Center.
@@ -85,16 +100,16 @@ func NewPlayer() Player {
 // A string the player chooses to identify themself to other players.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPlayer/alias
-func (p_ Player) Alias() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("alias"))
+func (p_ Player) Alias() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("alias"))
 	return rv
 }
 
 // A string to display for the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/displayname
-func (p_ Player) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("displayName"))
+func (p_ Player) DisplayName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -104,15 +119,15 @@ func (p_ Player) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/displayname
-func (p_ Player) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayName:"), value)
+func (p_ Player) SetDisplayName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 // A unique identifier for a player of the game.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/gameplayerid
-func (p_ Player) GamePlayerID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("gamePlayerID"))
+func (p_ Player) GamePlayerID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("gamePlayerID"))
 	return rv
 }
 
@@ -122,15 +137,15 @@ func (p_ Player) GamePlayerID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/gameplayerid
-func (p_ Player) SetGamePlayerID(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGamePlayerID:"), value)
+func (p_ Player) SetGamePlayerID(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGamePlayerID:"), objc.String(value))
 }
 
 // A developer-created string that identifies a guest player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/guestidentifier
-func (p_ Player) GuestIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("guestIdentifier"))
+func (p_ Player) GuestIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("guestIdentifier"))
 	return rv
 }
 
@@ -140,8 +155,8 @@ func (p_ Player) GuestIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/guestidentifier
-func (p_ Player) SetGuestIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGuestIdentifier:"), value)
+func (p_ Player) SetGuestIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGuestIdentifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the player is a friend of the local player.
@@ -183,8 +198,8 @@ func (p_ Player) SetIsInvitable(value bool) {
 // A unique identifier for a player of the game.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/playerid
-func (p_ Player) PlayerID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("playerID"))
+func (p_ Player) PlayerID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("playerID"))
 	return rv
 }
 
@@ -194,15 +209,15 @@ func (p_ Player) PlayerID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/playerid
-func (p_ Player) SetPlayerID(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayerID:"), value)
+func (p_ Player) SetPlayerID(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayerID:"), objc.String(value))
 }
 
 // A unique identifier for a player of all the games that you distribute using your developer account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/teamplayerid
-func (p_ Player) TeamPlayerID() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("teamPlayerID"))
+func (p_ Player) TeamPlayerID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("teamPlayerID"))
 	return rv
 }
 
@@ -212,15 +227,15 @@ func (p_ Player) TeamPlayerID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/teamplayerid
-func (p_ Player) SetTeamPlayerID(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTeamPlayerID:"), value)
+func (p_ Player) SetTeamPlayerID(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTeamPlayerID:"), objc.String(value))
 }
 
 // A constant for a player ID that’s no longer available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayeridnolongeravailable
-func (p_ Player) GKPlayerIDNoLongerAvailable() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("GKPlayerIDNoLongerAvailable"))
+func (p_ Player) GKPlayerIDNoLongerAvailable() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("GKPlayerIDNoLongerAvailable"))
 	return rv
 }
 

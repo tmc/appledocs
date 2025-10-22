@@ -30,6 +30,9 @@ type _WaterSubmersionManagerClass struct {
 // An interface definition for the [WaterSubmersionManager] class.
 type IWaterSubmersionManager interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MaximumDepth() unsafe.Pointer
 }
 
 // An object for managing the collection of pressure and temperature data during submersion.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,8 +31,21 @@ type _JSContextClass struct {
 // An interface definition for the [JSContext] class.
 type IJSContext interface {
 	objectivec.IObject
-	EvaluateScriptWithSourceURL(script appkit.string, sourceURL foundation.IURL) JSValue
+	EvaluateScriptWithSourceURL(script string, sourceURL foundation.IURL) JSValue
 	ObjectForKeyedSubscript(key objectivec.IObject) JSValue
+	Exception() JSValue
+	SetException(value IJSValue)
+	VirtualMachine() JSVirtualMachine
+	ExceptionHandler() unsafe.Pointer
+	SetExceptionHandler(value unsafe.Pointer)
+	GlobalObject() JSValue
+	SetGlobalObject(value IJSValue)
+	IsInspectable() bool
+	SetIsInspectable(value bool)
+	JsGlobalContextRef() JSGlobalContextRef
+	SetJsGlobalContextRef(value IJSGlobalContextRef)
+	Name() string
+	SetName(value string)
 }
 
 // A JavaScript execution environment.
@@ -95,8 +107,8 @@ func (jc _JSContextClass) CurrentCallee() JSValue {
 // Executes the specified JavaScript code, treating the specified URL as its source location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/evaluateScript(_:withSourceURL:)
-func (j_ JSContext) EvaluateScriptWithSourceURL(script appkit.string, sourceURL foundation.IURL) JSValue {
-	rv := objc.Send[JSValue](j_.ID, objc.Sel("evaluateScript:withSourceURL:"), script, sourceURL)
+func (j_ JSContext) EvaluateScriptWithSourceURL(script string, sourceURL foundation.IURL) JSValue {
+	rv := objc.Send[JSValue](j_.ID, objc.Sel("evaluateScript:withSourceURL:"), objc.String(script), sourceURL)
 	return rv
 }
 
@@ -209,8 +221,8 @@ func (j_ JSContext) SetJsGlobalContextRef(value IJSGlobalContextRef) {
 // A descriptive name for the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
-func (j_ JSContext) Name() appkit.string {
-	rv := objc.Send[appkit.string](j_.ID, objc.Sel("name"))
+func (j_ JSContext) Name() string {
+	rv := objc.Send[string](j_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -220,8 +232,8 @@ func (j_ JSContext) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
-func (j_ JSContext) SetName(value appkit.string) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), value)
+func (j_ JSContext) SetName(value string) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

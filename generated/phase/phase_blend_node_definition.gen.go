@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASEBlendNodeDefinition] class.
@@ -31,6 +30,10 @@ type _PHASEBlendNodeDefinitionClass struct {
 type IPHASEBlendNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
 	AddRangeWithEnvelopeSubtree(envelope IPHASEEnvelope, subtree IPHASESoundEventNodeDefinition)
+	BlendParameterDefinition() PHASENumberMetaParameterDefinition
+	SetBlendParameterDefinition(value IPHASENumberMetaParameterDefinition)
+	SpatialMixerDefinitionForDistance() PHASESpatialMixerDefinition
+	SetSpatialMixerDefinitionForDistance(value IPHASESpatialMixerDefinition)
 }
 
 // A node that smoothly fades between the audio of its child nodes.
@@ -100,9 +103,9 @@ func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition(blendMetaParame
 // Creates a named blend node with a maxiumum blend range value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:identifier:)
-func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition IPHASENumberMetaParameterDefinition, identifier appkit.string) PHASEBlendNodeDefinition {
+func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition IPHASENumberMetaParameterDefinition, identifier string) PHASEBlendNodeDefinition {
 	instance := getPHASEBlendNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEBlendNodeDefinition](instance.ID, objc.Sel("initWithBlendMetaParameterDefinition:identifier:"), blendMetaParameterDefinition, identifier)
+	rv := objc.Send[PHASEBlendNodeDefinition](instance.ID, objc.Sel("initWithBlendMetaParameterDefinition:identifier:"), blendMetaParameterDefinition, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

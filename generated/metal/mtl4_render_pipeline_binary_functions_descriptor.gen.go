@@ -31,6 +31,16 @@ type _MTL4RenderPipelineBinaryFunctionsDescriptorClass struct {
 type IMTL4RenderPipelineBinaryFunctionsDescriptor interface {
 	objectivec.IObject
 	Reset()
+	FragmentAdditionalBinaryFunctions() []objc.ID
+	SetFragmentAdditionalBinaryFunctions(value []objc.ID)
+	MeshAdditionalBinaryFunctions() []objc.ID
+	SetMeshAdditionalBinaryFunctions(value []objc.ID)
+	ObjectAdditionalBinaryFunctions() []objc.ID
+	SetObjectAdditionalBinaryFunctions(value []objc.ID)
+	TileAdditionalBinaryFunctions() []objc.ID
+	SetTileAdditionalBinaryFunctions(value []objc.ID)
+	VertexAdditionalBinaryFunctions() []objc.ID
+	SetVertexAdditionalBinaryFunctions(value []objc.ID)
 }
 
 // Allows you to specify additional binary functions to link to each stage of a render pipeline.

@@ -31,6 +31,10 @@ type _MTRSoftwareDiagnosticsClusterResetWatermarksParamsClass struct {
 // An interface definition for the [MTRSoftwareDiagnosticsClusterResetWatermarksParams] class.
 type IMTRSoftwareDiagnosticsClusterResetWatermarksParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

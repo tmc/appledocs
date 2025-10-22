@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -40,9 +39,10 @@ type ICNContactStore interface {
 	ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool
 	GroupsMatchingPredicateError(predicate foundation.IPredicate, error_ unsafe.Pointer) []CNGroup
 	RequestAccessForEntityTypeCompletionHandler(entityType CNEntityType, completionHandler unsafe.Pointer)
-	UnifiedContactWithIdentifierKeysToFetchError(identifier appkit.string, keys []objc.ID, error_ unsafe.Pointer) CNContact
+	UnifiedContactWithIdentifierKeysToFetchError(identifier string, keys []objc.ID, error_ unsafe.Pointer) CNContact
 	UnifiedContactsMatchingPredicateKeysToFetchError(predicate foundation.IPredicate, keys []objc.ID, error_ unsafe.Pointer) []CNContact
 	UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ unsafe.Pointer) CNContact
+	CurrentHistoryToken() foundation.NSData
 }
 
 // The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
@@ -167,8 +167,8 @@ func (c_ CNContactStore) RequestAccessForEntityTypeCompletionHandler(entityType 
 // Fetches a unified contact for the specified contact identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)
-func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier appkit.string, keys []objc.ID, error_ unsafe.Pointer) CNContact {
-	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedContactWithIdentifier:keysToFetch:error:"), identifier, keys, error_)
+func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier string, keys []objc.ID, error_ unsafe.Pointer) CNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedContactWithIdentifier:keysToFetch:error:"), objc.String(identifier), keys, error_)
 	return rv
 }
 

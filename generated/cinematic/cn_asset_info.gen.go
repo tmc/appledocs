@@ -31,6 +31,8 @@ type _CNAssetInfoClass struct {
 // An interface definition for the [CNAssetInfo] class.
 type ICNAssetInfo interface {
 	objectivec.IObject
+	FrameTimingTrack() avfoundation.AssetTrack
+	VideoCompositionTracks() []avfoundation.AssetTrack
 }
 
 // An object that provides Cinematic-specific information about an asset, including its tracks.

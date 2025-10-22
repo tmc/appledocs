@@ -39,6 +39,53 @@ type ICalendar interface {
 	OrdinalityOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalendarUnit, date IDate) uint
 	RangeOfUnitInUnitForDate(smaller ICalendarUnit, larger ICalendarUnit, date IDate) Range
 	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip ITimeInterval, date IDate) bool
+	CalendarIdentifier() CalendarIdentifier
+	FirstWeekday() uint
+	SetFirstWeekday(value uint)
+	Locale() NSLocale
+	SetLocale(value ILocale)
+	ShortStandaloneQuarterSymbols() []string
+	ShortStandaloneWeekdaySymbols() []string
+	TimeZone() NSTimeZone
+	SetTimeZone(value ITimeZone)
+	AmSymbol() string
+	SetAmSymbol(value string)
+	EraSymbols() string
+	SetEraSymbols(value string)
+	LongEraSymbols() string
+	SetLongEraSymbols(value string)
+	MinimumDaysInFirstWeek() int
+	SetMinimumDaysInFirstWeek(value int)
+	MonthSymbols() string
+	SetMonthSymbols(value string)
+	PmSymbol() string
+	SetPmSymbol(value string)
+	QuarterSymbols() string
+	SetQuarterSymbols(value string)
+	ShortMonthSymbols() string
+	SetShortMonthSymbols(value string)
+	ShortQuarterSymbols() string
+	SetShortQuarterSymbols(value string)
+	ShortStandaloneMonthSymbols() string
+	SetShortStandaloneMonthSymbols(value string)
+	ShortWeekdaySymbols() string
+	SetShortWeekdaySymbols(value string)
+	StandaloneMonthSymbols() string
+	SetStandaloneMonthSymbols(value string)
+	StandaloneQuarterSymbols() string
+	SetStandaloneQuarterSymbols(value string)
+	StandaloneWeekdaySymbols() string
+	SetStandaloneWeekdaySymbols(value string)
+	VeryShortMonthSymbols() string
+	SetVeryShortMonthSymbols(value string)
+	VeryShortStandaloneMonthSymbols() string
+	SetVeryShortStandaloneMonthSymbols(value string)
+	VeryShortStandaloneWeekdaySymbols() string
+	SetVeryShortStandaloneWeekdaySymbols(value string)
+	VeryShortWeekdaySymbols() string
+	SetVeryShortWeekdaySymbols(value string)
+	WeekdaySymbols() string
+	SetWeekdaySymbols(value string)
 }
 
 // A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.

@@ -31,6 +31,12 @@ type _MTRThermostatClusterWeeklyScheduleTransitionStructClass struct {
 // An interface definition for the [MTRThermostatClusterWeeklyScheduleTransitionStruct] class.
 type IMTRThermostatClusterWeeklyScheduleTransitionStruct interface {
 	objectivec.IObject
+	CoolSetpoint() foundation.Number
+	SetCoolSetpoint(value foundation.INumber)
+	HeatSetpoint() foundation.Number
+	SetHeatSetpoint(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

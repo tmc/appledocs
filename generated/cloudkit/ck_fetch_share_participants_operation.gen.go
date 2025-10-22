@@ -29,6 +29,25 @@ type _CKFetchShareParticipantsOperationClass struct {
 // An interface definition for the [CKFetchShareParticipantsOperation] class.
 type ICKFetchShareParticipantsOperation interface {
 	ICKOperation
+	FetchShareParticipantsCompletionBlock() unsafe.Pointer
+	SetFetchShareParticipantsCompletionBlock(value unsafe.Pointer)
+	PerShareParticipantCompletionBlock() unsafe.Pointer
+	SetPerShareParticipantCompletionBlock(value unsafe.Pointer)
+	ShareParticipantFetchedBlock() unsafe.Pointer
+	SetShareParticipantFetchedBlock(value unsafe.Pointer)
+	UserIdentityLookupInfos() []CKUserIdentityLookupInfo
+	SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo)
+	FetchShareParticipantsResultBlock() unsafe.Pointer
+	SetFetchShareParticipantsResultBlock(value unsafe.Pointer)
+	PerShareParticipantResultBlock() unsafe.Pointer
+	SetPerShareParticipantResultBlock(value unsafe.Pointer)
+	CKPartialErrorsByItemIDKey() string
+	UserIdentity() CKUserIdentity
+	SetUserIdentity(value ICKUserIdentity)
+	HasiCloudAccount() bool
+	SetHasiCloudAccount(value bool)
+	UserInfo() string
+	SetUserInfo(value string)
 }
 
 // An operation that converts user identities into share participants.

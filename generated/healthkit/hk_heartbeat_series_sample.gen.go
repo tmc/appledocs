@@ -29,6 +29,7 @@ type _HKHeartbeatSeriesSampleClass struct {
 // An interface definition for the [HKHeartbeatSeriesSample] class.
 type IHKHeartbeatSeriesSample interface {
 	IHKSeriesSample
+	HKMetadataKeyAlgorithmVersion() string
 }
 
 // A sample that represents a series of heartbeats.
@@ -84,8 +85,8 @@ func NewHKHeartbeatSeriesSample() HKHeartbeatSeriesSample {
 // A key that indicates the version number of the algorithm used to calculate the sample’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion
-func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
+func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
 	return rv
 }
 

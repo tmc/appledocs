@@ -30,6 +30,16 @@ type _WebpagePreferencesClass struct {
 // An interface definition for the [WebpagePreferences] class.
 type IWebpagePreferences interface {
 	objectivec.IObject
+	AllowsContentJavaScript() bool
+	SetAllowsContentJavaScript(value bool)
+	LockdownModeEnabled() bool
+	SetLockdownModeEnabled(value bool)
+	PreferredContentMode() ContentMode
+	SetPreferredContentMode(value ContentMode)
+	PreferredHTTPSNavigationPolicy() WebpagePreferencesUpgradeToHTTPSPolicy
+	SetPreferredHTTPSNavigationPolicy(value WebpagePreferencesUpgradeToHTTPSPolicy)
+	IsLockdownModeEnabled() bool
+	SetIsLockdownModeEnabled(value bool)
 }
 
 // An object that specifies the behaviors to use when loading and rendering page content.

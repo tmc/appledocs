@@ -32,6 +32,9 @@ type _SACrashDetectionEventClass struct {
 // An interface definition for the [SACrashDetectionEvent] class.
 type ISACrashDetectionEvent interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	Location() corelocation.Location
+	Response() SACrashDetectionEventResponse
 }
 
 // Describes the information about a vehicular crash.

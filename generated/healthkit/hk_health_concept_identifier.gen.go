@@ -30,6 +30,7 @@ type _HKHealthConceptIdentifierClass struct {
 // An interface definition for the [HKHealthConceptIdentifier] class.
 type IHKHealthConceptIdentifier interface {
 	objectivec.IObject
+	Domain() HKHealthConceptDomain
 }
 
 // A unique identifier for a specific health concept within a domain.

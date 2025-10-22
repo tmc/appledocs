@@ -31,6 +31,8 @@ type _MTRSmokeCOAlarmClusterInterconnectCOAlarmEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterInterconnectCOAlarmEvent] class.
 type IMTRSmokeCOAlarmClusterInterconnectCOAlarmEvent interface {
 	objectivec.IObject
+	AlarmSeverityLevel() foundation.Number
+	SetAlarmSeverityLevel(value foundation.INumber)
 }
 
 //

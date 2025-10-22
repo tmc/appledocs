@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,40 @@ type _TapDescriptionClass struct {
 // An interface definition for the [TapDescription] class.
 type ITapDescription interface {
 	objectivec.IObject
+	BundleIDs() []string
+	SetBundleIDs(value []string)
+	DeviceUID() string
+	SetDeviceUID(value string)
+	Exclusive() bool
+	SetExclusive(value bool)
+	Mixdown() bool
+	SetMixdown(value bool)
+	Mono() bool
+	SetMono(value bool)
+	PrivateTap() bool
+	SetPrivateTap(value bool)
+	ProcessRestoreEnabled() bool
+	SetProcessRestoreEnabled(value bool)
+	MuteBehavior() TapMuteBehavior
+	SetMuteBehavior(value TapMuteBehavior)
+	Name() string
+	SetName(value string)
+	Processes() []foundation.Number
+	SetProcesses(value []foundation.INumber)
+	Stream() foundation.Number
+	SetStream(value foundation.INumber)
+	UUID() foundation.UUID
+	SetUUID(value foundation.IUUID)
+	IsExclusive() bool
+	SetIsExclusive(value bool)
+	IsMixdown() bool
+	SetIsMixdown(value bool)
+	IsMono() bool
+	SetIsMono(value bool)
+	IsPrivate() bool
+	SetIsPrivate(value bool)
+	IsProcessRestoreEnabled() bool
+	SetIsProcessRestoreEnabled(value bool)
 }
 
 //
@@ -79,9 +112,9 @@ func NewTapDescription() TapDescription {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initExcludingProcesses:andDeviceUID:withStream:
-func NewTapDescriptionExcludingProcessesAndDeviceUIDWithStream(processesObjectIDsToExcludeFromTap []foundation.INumber, deviceUID appkit.string, stream int) TapDescription {
+func NewTapDescriptionExcludingProcessesAndDeviceUIDWithStream(processesObjectIDsToExcludeFromTap []foundation.INumber, deviceUID string, stream int) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
-	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initExcludingProcesses:andDeviceUID:withStream:"), processesObjectIDsToExcludeFromTap, deviceUID, stream)
+	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initExcludingProcesses:andDeviceUID:withStream:"), processesObjectIDsToExcludeFromTap, objc.String(deviceUID), stream)
 	rv.Autorelease()
 	return rv
 }
@@ -124,9 +157,9 @@ func NewTapDescriptionStereoMixdownOfProcesses(processesObjectIDsToIncludeInTap 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/initWithProcesses:andDeviceUID:withStream:
-func NewTapDescriptionWithProcessesAndDeviceUIDWithStream(processesObjectIDsToIncludeInTap []foundation.INumber, deviceUID appkit.string, stream int) TapDescription {
+func NewTapDescriptionWithProcessesAndDeviceUIDWithStream(processesObjectIDsToIncludeInTap []foundation.INumber, deviceUID string, stream int) TapDescription {
 	instance := getTapDescriptionClass().Alloc()
-	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initWithProcesses:andDeviceUID:withStream:"), processesObjectIDsToIncludeInTap, deviceUID, stream)
+	rv := objc.Send[TapDescription](instance.ID, objc.Sel("initWithProcesses:andDeviceUID:withStream:"), processesObjectIDsToIncludeInTap, objc.String(deviceUID), stream)
 	rv.Autorelease()
 	return rv
 }
@@ -159,8 +192,8 @@ func (t_ TapDescription) SetBundleIDs(value []string) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/deviceUID
-func (t_ TapDescription) DeviceUID() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("deviceUID"))
+func (t_ TapDescription) DeviceUID() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("deviceUID"))
 	return rv
 }
 
@@ -168,8 +201,8 @@ func (t_ TapDescription) DeviceUID() appkit.string {
 // SetDeviceUID sets the value of the deviceUID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/deviceUID
-func (t_ TapDescription) SetDeviceUID(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceUID:"), value)
+func (t_ TapDescription) SetDeviceUID(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceUID:"), objc.String(value))
 }
 
 //
@@ -264,8 +297,8 @@ func (t_ TapDescription) SetMuteBehavior(value TapMuteBehavior) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
-func (t_ TapDescription) Name() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
+func (t_ TapDescription) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -273,8 +306,8 @@ func (t_ TapDescription) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
-func (t_ TapDescription) SetName(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
+func (t_ TapDescription) SetName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

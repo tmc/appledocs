@@ -30,6 +30,8 @@ type _MTL4CompilerTaskOptionsClass struct {
 // An interface definition for the [MTL4CompilerTaskOptions] class.
 type IMTL4CompilerTaskOptions interface {
 	objectivec.IObject
+	LookupArchives() []objc.ID
+	SetLookupArchives(value []objc.ID)
 }
 
 //

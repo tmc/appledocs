@@ -31,6 +31,11 @@ type _SynchronizedLayerClass struct {
 // An interface definition for the [SynchronizedLayer] class.
 type ISynchronizedLayer interface {
 	quartzcore.ILayer
+	AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval
+	PlayerItem() AVPlayerItem
+	SetPlayerItem(value IAVPlayerItem)
+	BeginTime() foundation.TimeInterval
+	SetBeginTime(value foundation.ITimeInterval)
 }
 
 // A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.

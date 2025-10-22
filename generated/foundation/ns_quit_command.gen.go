@@ -29,6 +29,7 @@ type _QuitCommandClass struct {
 // An interface definition for the [QuitCommand] class.
 type IQuitCommand interface {
 	IScriptCommand
+	SaveOptions() SaveOptions
 }
 
 // A command that quits the specified app.

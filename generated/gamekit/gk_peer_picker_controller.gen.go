@@ -32,6 +32,13 @@ type IPeerPickerController interface {
 	objectivec.IObject
 	Dismiss()
 	Show()
+	ConnectionTypesMask() PeerPickerConnectionType
+	SetConnectionTypesMask(value PeerPickerConnectionType)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Visible() bool
+	IsVisible() bool
+	SetIsVisible(value bool)
 }
 
 // Provides a standard user interface to allow one iOS device to discover and connect to another.

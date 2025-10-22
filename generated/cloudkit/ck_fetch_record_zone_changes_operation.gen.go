@@ -29,6 +29,30 @@ type _CKFetchRecordZoneChangesOperationClass struct {
 // An interface definition for the [CKFetchRecordZoneChangesOperation] class.
 type ICKFetchRecordZoneChangesOperation interface {
 	ICKDatabaseOperation
+	ConfigurationsByRecordZoneID() unsafe.Pointer
+	SetConfigurationsByRecordZoneID(value unsafe.Pointer)
+	FetchAllChanges() bool
+	SetFetchAllChanges(value bool)
+	FetchRecordZoneChangesCompletionBlock() unsafe.Pointer
+	SetFetchRecordZoneChangesCompletionBlock(value unsafe.Pointer)
+	OptionsByRecordZoneID() unsafe.Pointer
+	SetOptionsByRecordZoneID(value unsafe.Pointer)
+	RecordChangedBlock() unsafe.Pointer
+	SetRecordChangedBlock(value unsafe.Pointer)
+	RecordWasChangedBlock() unsafe.Pointer
+	SetRecordWasChangedBlock(value unsafe.Pointer)
+	RecordWithIDWasDeletedBlock() unsafe.Pointer
+	SetRecordWithIDWasDeletedBlock(value unsafe.Pointer)
+	RecordZoneChangeTokensUpdatedBlock() unsafe.Pointer
+	SetRecordZoneChangeTokensUpdatedBlock(value unsafe.Pointer)
+	RecordZoneFetchCompletionBlock() unsafe.Pointer
+	SetRecordZoneFetchCompletionBlock(value unsafe.Pointer)
+	RecordZoneIDs() []CKRecordZoneID
+	SetRecordZoneIDs(value []CKRecordZoneID)
+	FetchRecordZoneChangesResultBlock() unsafe.Pointer
+	SetFetchRecordZoneChangesResultBlock(value unsafe.Pointer)
+	RecordZoneFetchResultBlock() unsafe.Pointer
+	SetRecordZoneFetchResultBlock(value unsafe.Pointer)
 }
 
 // An operation that fetches record zone changes.

@@ -30,6 +30,22 @@ type _ImageEDLinesClass struct {
 // An interface definition for the [ImageEDLines] class.
 type IImageEDLines interface {
 	IKernel
+	ClipRectSource() corelocation.Region
+	SetClipRectSource(value corelocation.IRegion)
+	GradientThreshold() float32
+	SetGradientThreshold(value float32)
+	MergeLocalityThreshold() float32
+	SetMergeLocalityThreshold(value float32)
+	DetailRatio() unsafe.Pointer
+	SetDetailRatio(value unsafe.Pointer)
+	GaussianSigma() float32
+	SetGaussianSigma(value float32)
+	LineErrorThreshold() float32
+	SetLineErrorThreshold(value float32)
+	MaxLines() int
+	SetMaxLines(value int)
+	MinLineLength() unsafe.Pointer
+	SetMinLineLength(value unsafe.Pointer)
 }
 
 //
@@ -94,8 +110,8 @@ func (i_ ImageEDLines) SetClipRectSource(value corelocation.IRegion) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/gradientThreshold
-func (i_ ImageEDLines) GradientThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("gradientThreshold"))
+func (i_ ImageEDLines) GradientThreshold() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("gradientThreshold"))
 	return rv
 }
 
@@ -103,14 +119,14 @@ func (i_ ImageEDLines) GradientThreshold() unsafe.Pointer {
 // SetGradientThreshold sets the value of the gradientThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/gradientThreshold
-func (i_ ImageEDLines) SetGradientThreshold(value unsafe.Pointer) {
+func (i_ ImageEDLines) SetGradientThreshold(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGradientThreshold:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/mergeLocalityThreshold
-func (i_ ImageEDLines) MergeLocalityThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mergeLocalityThreshold"))
+func (i_ ImageEDLines) MergeLocalityThreshold() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("mergeLocalityThreshold"))
 	return rv
 }
 
@@ -118,7 +134,7 @@ func (i_ ImageEDLines) MergeLocalityThreshold() unsafe.Pointer {
 // SetMergeLocalityThreshold sets the value of the mergeLocalityThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/mergeLocalityThreshold
-func (i_ ImageEDLines) SetMergeLocalityThreshold(value unsafe.Pointer) {
+func (i_ ImageEDLines) SetMergeLocalityThreshold(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMergeLocalityThreshold:"), value)
 }
 
@@ -139,8 +155,8 @@ func (i_ ImageEDLines) SetDetailRatio(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedlines/gaussiansigma
-func (i_ ImageEDLines) GaussianSigma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("gaussianSigma"))
+func (i_ ImageEDLines) GaussianSigma() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("gaussianSigma"))
 	return rv
 }
 
@@ -148,14 +164,14 @@ func (i_ ImageEDLines) GaussianSigma() unsafe.Pointer {
 // SetGaussianSigma sets the value of the gaussianSigma property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedlines/gaussiansigma
-func (i_ ImageEDLines) SetGaussianSigma(value unsafe.Pointer) {
+func (i_ ImageEDLines) SetGaussianSigma(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGaussianSigma:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedlines/lineerrorthreshold
-func (i_ ImageEDLines) LineErrorThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("lineErrorThreshold"))
+func (i_ ImageEDLines) LineErrorThreshold() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("lineErrorThreshold"))
 	return rv
 }
 
@@ -163,7 +179,7 @@ func (i_ ImageEDLines) LineErrorThreshold() unsafe.Pointer {
 // SetLineErrorThreshold sets the value of the lineErrorThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedlines/lineerrorthreshold
-func (i_ ImageEDLines) SetLineErrorThreshold(value unsafe.Pointer) {
+func (i_ ImageEDLines) SetLineErrorThreshold(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLineErrorThreshold:"), value)
 }
 

@@ -31,6 +31,14 @@ type _MTRApplicationBasicClusterApplicationStructClass struct {
 // An interface definition for the [MTRApplicationBasicClusterApplicationStruct] class.
 type IMTRApplicationBasicClusterApplicationStruct interface {
 	objectivec.IObject
+	ApplicationID() string
+	SetApplicationID(value string)
+	ApplicationId() string
+	SetApplicationId(value string)
+	CatalogVendorID() foundation.Number
+	SetCatalogVendorID(value foundation.INumber)
+	CatalogVendorId() foundation.Number
+	SetCatalogVendorId(value foundation.INumber)
 }
 
 //
@@ -78,8 +86,8 @@ func NewMTRApplicationBasicClusterApplicationStruct() MTRApplicationBasicCluster
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jzu
-func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationID"))
+func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationID"))
 	return rv
 }
 
@@ -87,14 +95,14 @@ func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationID() appkit.str
 // SetApplicationID sets the value of the applicationID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jzu
-func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationID(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), value)
+func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jyy
-func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationId() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationId"))
+func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationId() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationId"))
 	return rv
 }
 
@@ -102,8 +110,8 @@ func (m_ MTRApplicationBasicClusterApplicationStruct) ApplicationId() appkit.str
 // SetApplicationId sets the value of the applicationId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationbasicclusterapplicationstruct/applicationid-1jyy
-func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationId(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationId:"), value)
+func (m_ MTRApplicationBasicClusterApplicationStruct) SetApplicationId(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationId:"), objc.String(value))
 }
 
 //

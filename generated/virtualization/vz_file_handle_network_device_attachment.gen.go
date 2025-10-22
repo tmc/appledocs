@@ -30,6 +30,14 @@ type _VZFileHandleNetworkDeviceAttachmentClass struct {
 // An interface definition for the [VZFileHandleNetworkDeviceAttachment] class.
 type IVZFileHandleNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
+	MaximumTransmissionUnit() int
+	SetMaximumTransmissionUnit(value int)
+	FileHandle() foundation.FileHandle
+	SetFileHandle(value foundation.IFileHandle)
+	Attachment() VZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	NetworkDevices() VZNetworkDeviceConfiguration
+	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
 }
 
 // A network device that transmits raw network packets and frames using a datagram socket.

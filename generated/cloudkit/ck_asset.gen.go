@@ -31,6 +31,7 @@ type _CKAssetClass struct {
 // An interface definition for the [CKAsset] class.
 type ICKAsset interface {
 	objectivec.IObject
+	FileURL() foundation.URL
 }
 
 // An external file that belongs to a record.

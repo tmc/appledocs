@@ -30,6 +30,8 @@ type _CBMutableDescriptorClass struct {
 // An interface definition for the [CBMutableDescriptor] class.
 type ICBMutableDescriptor interface {
 	ICBDescriptor
+	CBUUIDCharacteristicFormatString() string
+	CBUUIDCharacteristicUserDescriptionString() string
 }
 
 // An object that provides additional information about a local peripheral’s characteristic.
@@ -98,16 +100,16 @@ func NewCBMutableDescriptorWithTypeValue(UUID ICBUUID, value objectivec.IObject)
 // The UUID for the Presentation Format descriptor, as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
-func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
+func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
 	return rv
 }
 
 // The UUID for the User Description descriptor, as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
-func (c_ CBMutableDescriptor) CBUUIDCharacteristicUserDescriptionString() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
+func (c_ CBMutableDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
 	return rv
 }
 

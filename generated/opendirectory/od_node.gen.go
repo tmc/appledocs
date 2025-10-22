@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,19 +33,19 @@ type IODNode interface {
 	objectivec.IObject
 	AccountPoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
 	AddAccountPolicyToCategoryError(policy objectivec.IObject, category ODPolicyCategoryType, error_ unsafe.Pointer) bool
-	CreateRecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName appkit.string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord
+	CreateRecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord
 	CustomCallSendDataError(inCustomCode int, inSendData foundation.IData, outError unsafe.Pointer) foundation.Data
-	CustomFunctionPayloadError(function appkit.string, payload objectivec.IObject, error_ unsafe.Pointer) objc.ID
+	CustomFunctionPayloadError(function string, payload objectivec.IObject, error_ unsafe.Pointer) objc.ID
 	NodeDetailsForKeysError(inKeys objectivec.IObject, outError unsafe.Pointer) foundation.Dictionary
-	PasswordContentCheckForRecordNameError(password appkit.string, recordName appkit.string, error_ unsafe.Pointer) bool
+	PasswordContentCheckForRecordNameError(password string, recordName string, error_ unsafe.Pointer) bool
 	PoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
-	RecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName appkit.string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord
+	RecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord
 	RemoveAccountPolicyFromCategoryError(policy objectivec.IObject, category ODPolicyCategoryType, error_ unsafe.Pointer) bool
 	RemovePolicyError(policy ODPolicyType, error_ unsafe.Pointer) bool
 	SetAccountPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool
-	SetCredentialsUsingKerberosCacheError(inCacheName appkit.string, outError unsafe.Pointer) bool
+	SetCredentialsUsingKerberosCacheError(inCacheName string, outError unsafe.Pointer) bool
 	SetCredentialsWithRecordTypeAuthenticationTypeAuthenticationItemsContinueItemsContextError(inRecordType unsafe.Pointer, inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool
-	SetCredentialsWithRecordTypeRecordNamePasswordError(inRecordType unsafe.Pointer, inRecordName appkit.string, inPassword appkit.string, outError unsafe.Pointer) bool
+	SetCredentialsWithRecordTypeRecordNamePasswordError(inRecordType unsafe.Pointer, inRecordName string, inPassword string, outError unsafe.Pointer) bool
 	SetPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool
 	SetPolicyValueError(policy ODPolicyType, value objectivec.IObject, error_ unsafe.Pointer) bool
 	SubnodeNamesAndReturnError(outError unsafe.Pointer) foundation.Array
@@ -54,6 +53,8 @@ type IODNode interface {
 	SupportedPoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
 	SupportedRecordTypesAndReturnError(outError unsafe.Pointer) foundation.Array
 	UnreachableSubnodeNamesAndReturnError(outError unsafe.Pointer) foundation.Array
+	Configuration() ODConfiguration
+	NodeName() string
 }
 
 // An object serves as a Cocoa wrapper for an Open Directory node.
@@ -107,9 +108,9 @@ func NewODNode() ODNode {
 // Creates a node object with a specified session and name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/init(session:name:)
-func NewODNodeWithSessionNameError(inSession IODSession, inName appkit.string, outError unsafe.Pointer) ODNode {
+func NewODNodeWithSessionNameError(inSession IODSession, inName string, outError unsafe.Pointer) ODNode {
 	instance := getODNodeClass().Alloc()
-	rv := objc.Send[ODNode](instance.ID, objc.Sel("initWithSession:name:error:"), inSession, inName, outError)
+	rv := objc.Send[ODNode](instance.ID, objc.Sel("initWithSession:name:error:"), inSession, objc.String(inName), outError)
 	rv.Autorelease()
 	return rv
 }
@@ -130,8 +131,8 @@ func NewODNodeWithSessionTypeError(inSession IODSession, inType ODNodeType, outE
 // Returns an autoreleased node object with a specified session and name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/nodeWithSession:name:error:
-func (oc _ODNodeClass) NodeWithSessionNameError(inSession IODSession, inName appkit.string, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("nodeWithSession:name:error:"), inSession, inName, outError)
+func (oc _ODNodeClass) NodeWithSessionNameError(inSession IODSession, inName string, outError unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("nodeWithSession:name:error:"), inSession, objc.String(inName), outError)
 	return rv
 }
 
@@ -160,8 +161,8 @@ func (o_ ODNode) AddAccountPolicyToCategoryError(policy objectivec.IObject, cate
 // Creates a record in a specified node with specified properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/createRecord(withRecordType:name:attributes:)
-func (o_ ODNode) CreateRecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName appkit.string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord {
-	rv := objc.Send[ODRecord](o_.ID, objc.Sel("createRecordWithRecordType:name:attributes:error:"), inRecordType, inRecordName, inAttributes, outError)
+func (o_ ODNode) CreateRecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord {
+	rv := objc.Send[ODRecord](o_.ID, objc.Sel("createRecordWithRecordType:name:attributes:error:"), inRecordType, objc.String(inRecordName), inAttributes, outError)
 	return rv
 }
 
@@ -175,8 +176,8 @@ func (o_ ODNode) CustomCallSendDataError(inCustomCode int, inSendData foundation
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/customFunction(_:payload:)
-func (o_ ODNode) CustomFunctionPayloadError(function appkit.string, payload objectivec.IObject, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("customFunction:payload:error:"), function, payload, error_)
+func (o_ ODNode) CustomFunctionPayloadError(function string, payload objectivec.IObject, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("customFunction:payload:error:"), objc.String(function), payload, error_)
 	return rv
 }
 
@@ -190,8 +191,8 @@ func (o_ ODNode) NodeDetailsForKeysError(inKeys objectivec.IObject, outError uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/passwordContentCheck(_:forRecordName:)
-func (o_ ODNode) PasswordContentCheckForRecordNameError(password appkit.string, recordName appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("passwordContentCheck:forRecordName:error:"), password, recordName, error_)
+func (o_ ODNode) PasswordContentCheckForRecordNameError(password string, recordName string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("passwordContentCheck:forRecordName:error:"), objc.String(password), objc.String(recordName), error_)
 	return rv
 }
 
@@ -205,8 +206,8 @@ func (o_ ODNode) PoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictio
 // Returns a record from the node with a specified type and name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/record(withRecordType:name:attributes:)
-func (o_ ODNode) RecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName appkit.string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord {
-	rv := objc.Send[ODRecord](o_.ID, objc.Sel("recordWithRecordType:name:attributes:error:"), inRecordType, inRecordName, inAttributes, outError)
+func (o_ ODNode) RecordWithRecordTypeNameAttributesError(inRecordType unsafe.Pointer, inRecordName string, inAttributes objectivec.IObject, outError unsafe.Pointer) ODRecord {
+	rv := objc.Send[ODRecord](o_.ID, objc.Sel("recordWithRecordType:name:attributes:error:"), inRecordType, objc.String(inRecordName), inAttributes, outError)
 	return rv
 }
 
@@ -233,8 +234,8 @@ func (o_ ODNode) SetAccountPoliciesError(policies objectivec.IObject, error_ uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/setCredentialsUsingKerberosCache:error:
-func (o_ ODNode) SetCredentialsUsingKerberosCacheError(inCacheName appkit.string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setCredentialsUsingKerberosCache:error:"), inCacheName, outError)
+func (o_ ODNode) SetCredentialsUsingKerberosCacheError(inCacheName string, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("setCredentialsUsingKerberosCache:error:"), objc.String(inCacheName), outError)
 	return rv
 }
 
@@ -249,8 +250,8 @@ func (o_ ODNode) SetCredentialsWithRecordTypeAuthenticationTypeAuthenticationIte
 // Sets credentials for interacting with the node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/setCredentialsWithRecordType(_:recordName:password:)
-func (o_ ODNode) SetCredentialsWithRecordTypeRecordNamePasswordError(inRecordType unsafe.Pointer, inRecordName appkit.string, inPassword appkit.string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setCredentialsWithRecordType:recordName:password:error:"), inRecordType, inRecordName, inPassword, outError)
+func (o_ ODNode) SetCredentialsWithRecordTypeRecordNamePasswordError(inRecordType unsafe.Pointer, inRecordName string, inPassword string, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("setCredentialsWithRecordType:recordName:password:error:"), inRecordType, objc.String(inRecordName), objc.String(inPassword), outError)
 	return rv
 }
 
@@ -317,8 +318,8 @@ func (o_ ODNode) Configuration() ODConfiguration {
 // The node’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNode/nodeName
-func (o_ ODNode) NodeName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("nodeName"))
+func (o_ ODNode) NodeName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("nodeName"))
 	return rv
 }
 

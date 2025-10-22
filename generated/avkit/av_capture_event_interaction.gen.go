@@ -30,6 +30,10 @@ type _CaptureEventInteractionClass struct {
 // An interface definition for the [CaptureEventInteraction] class.
 type ICaptureEventInteraction interface {
 	objectivec.IObject
+	Enabled() bool
+	SetEnabled(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // An object that registers handlers to respond to capture events from system hardware buttons.

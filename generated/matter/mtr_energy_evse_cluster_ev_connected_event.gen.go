@@ -31,6 +31,8 @@ type _MTREnergyEVSEClusterEVConnectedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEVConnectedEvent] class.
 type IMTREnergyEVSEClusterEVConnectedEvent interface {
 	objectivec.IObject
+	SessionID() foundation.Number
+	SetSessionID(value foundation.INumber)
 }
 
 //

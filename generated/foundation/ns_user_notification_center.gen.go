@@ -31,6 +31,18 @@ type _UserNotificationCenterClass struct {
 type IUserNotificationCenter interface {
 	objectivec.IObject
 	RemoveDeliveredNotification(notification IUserNotification)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ActualDeliveryDate() Date
+	SetActualDeliveryDate(value IDate)
+	DeliveryDate() Date
+	SetDeliveryDate(value IDate)
+	IsPresented() bool
+	SetIsPresented(value bool)
+	DeliveredNotifications() NSUserNotification
+	SetDeliveredNotifications(value IUserNotification)
+	ScheduledNotifications() NSUserNotification
+	SetScheduledNotifications(value IUserNotification)
 }
 
 // An object that delivers notifications from apps to the user.

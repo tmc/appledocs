@@ -31,6 +31,12 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustEndEventClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustEndEvent] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustEndEvent interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
+	Duration() foundation.Number
+	SetDuration(value foundation.INumber)
+	EnergyUse() foundation.Number
+	SetEnergyUse(value foundation.INumber)
 }
 
 //

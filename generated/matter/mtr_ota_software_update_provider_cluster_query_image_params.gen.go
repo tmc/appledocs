@@ -30,6 +30,22 @@ type _MTROtaSoftwareUpdateProviderClusterQueryImageParamsClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateProviderClusterQueryImageParams] class.
 type IMTROtaSoftwareUpdateProviderClusterQueryImageParams interface {
 	IMTROTASoftwareUpdateProviderClusterQueryImageParams
+	HardwareVersion() foundation.Number
+	SetHardwareVersion(value foundation.INumber)
+	Location() string
+	SetLocation(value string)
+	MetadataForProvider() foundation.Data
+	SetMetadataForProvider(value foundation.IData)
+	ProtocolsSupported() unsafe.Pointer
+	SetProtocolsSupported(value unsafe.Pointer)
+	RequestorCanConsent() foundation.Number
+	SetRequestorCanConsent(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -94,8 +110,8 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetHardwareVersion
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/location
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) Location() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("location"))
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) Location() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -103,8 +119,8 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) Location() appkit.
 // SetLocation sets the value of the location property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/location
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetLocation(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), value)
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetLocation(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), objc.String(value))
 }
 
 //

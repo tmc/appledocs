@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,10 @@ type IMXDiagnostic interface {
 	objectivec.IObject
 	DictionaryRepresentation() foundation.Dictionary
 	JSONRepresentation() foundation.Data
+	ApplicationVersion() string
+	MetaData() MXMetaData
+	SignpostData() []MXSignpostRecord
+	MXErrorDomain() string
 }
 
 // An abstract data class for a diagnostic.
@@ -101,8 +104,8 @@ func (m_ MXDiagnostic) JSONRepresentation() foundation.Data {
 // The value of the bundle version key, short form, in the app’s property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/applicationVersion
-func (m_ MXDiagnostic) ApplicationVersion() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationVersion"))
+func (m_ MXDiagnostic) ApplicationVersion() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("applicationVersion"))
 	return rv
 }
 
@@ -124,8 +127,8 @@ func (m_ MXDiagnostic) SignpostData() []MXSignpostRecord {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXDiagnostic) MXErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXDiagnostic) MXErrorDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

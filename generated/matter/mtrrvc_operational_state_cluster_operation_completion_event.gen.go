@@ -31,6 +31,12 @@ type _MTRRVCOperationalStateClusterOperationCompletionEventClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterOperationCompletionEvent] class.
 type IMTRRVCOperationalStateClusterOperationCompletionEvent interface {
 	objectivec.IObject
+	CompletionErrorCode() foundation.Number
+	SetCompletionErrorCode(value foundation.INumber)
+	PausedTime() foundation.Number
+	SetPausedTime(value foundation.INumber)
+	TotalOperationalTime() foundation.Number
+	SetTotalOperationalTime(value foundation.INumber)
 }
 
 //

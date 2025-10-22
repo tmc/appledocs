@@ -33,6 +33,27 @@ type IThread interface {
 	Cancel()
 	Main()
 	Start()
+	Cancelled() bool
+	Executing() bool
+	Finished() bool
+	IsMainThread() bool
+	Name() string
+	SetName(value string)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
+	StackSize() uint
+	SetStackSize(value uint)
+	ThreadPriority() float64
+	SetThreadPriority(value float64)
+	NSAssertionHandlerKey() string
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsExecuting() bool
+	SetIsExecuting(value bool)
+	IsFinished() bool
+	SetIsFinished(value bool)
+	ThreadDictionary() NSMutableDictionary
+	SetThreadDictionary(value IMutableDictionary)
 }
 
 // A thread of execution.

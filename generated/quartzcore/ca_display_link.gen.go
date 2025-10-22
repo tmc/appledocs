@@ -34,6 +34,19 @@ type IDisplayLink interface {
 	AddToRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
 	Invalidate()
 	RemoveFromRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
+	Duration() TimeInterval
+	FrameInterval() int
+	SetFrameInterval(value int)
+	Paused() bool
+	SetPaused(value bool)
+	PreferredFrameRateRange() unsafe.Pointer
+	SetPreferredFrameRateRange(value unsafe.Pointer)
+	PreferredFramesPerSecond() int
+	SetPreferredFramesPerSecond(value int)
+	TargetTimestamp() TimeInterval
+	Timestamp() TimeInterval
+	IsPaused() bool
+	SetIsPaused(value bool)
 }
 
 // A timer object that allows your app to synchronize its drawing to the refresh rate of the display.

@@ -29,6 +29,8 @@ type _SaliencyImageObservationClass struct {
 // An interface definition for the [SaliencyImageObservation] class.
 type ISaliencyImageObservation interface {
 	IPixelBufferObservation
+	SalientObjects() VNRectangleObservation
+	SetSalientObjects(value IVNRectangleObservation)
 }
 
 // An observation that contains a grayscale heat map of important areas across an image.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -34,6 +33,25 @@ type _AudioUnitBusClass struct {
 type IAudioUnitBus interface {
 	objectivec.IObject
 	SetFormatError(format avfaudio.AudioFormat, outError unsafe.Pointer) bool
+	BusType() AudioUnitBusType
+	ContextPresentationLatency() foundation.TimeInterval
+	SetContextPresentationLatency(value foundation.ITimeInterval)
+	Format() avfaudio.AudioFormat
+	Index() uint
+	Enabled() bool
+	SetEnabled(value bool)
+	MaximumChannelCount() AudioChannelCount
+	SetMaximumChannelCount(value IAudioChannelCount)
+	Name() string
+	SetName(value string)
+	OwnerAudioUnit() AUAudioUnit
+	ShouldAllocateBuffer() bool
+	SetShouldAllocateBuffer(value bool)
+	SupportedChannelCounts() []foundation.Number
+	SetSupportedChannelCounts(value []foundation.INumber)
+	SupportedChannelLayoutTags() []foundation.Number
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 }
 
 // A class that defines an input or output connection point on an audio unit.
@@ -184,8 +202,8 @@ func (a_ AudioUnitBus) SetMaximumChannelCount(value IAudioChannelCount) {
 // A name for the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
-func (a_ AudioUnitBus) Name() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
+func (a_ AudioUnitBus) Name() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -195,8 +213,8 @@ func (a_ AudioUnitBus) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
-func (a_ AudioUnitBus) SetName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
+func (a_ AudioUnitBus) SetName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The audio unit that owns the bus.

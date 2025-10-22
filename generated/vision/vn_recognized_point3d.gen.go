@@ -29,6 +29,7 @@ type _RecognizedPoint3DClass struct {
 // An interface definition for the [RecognizedPoint3D] class.
 type IRecognizedPoint3D interface {
 	IPoint3D
+	Identifier() RecognizedPointKey
 }
 
 // A 3D point that includes an identifier to the point.

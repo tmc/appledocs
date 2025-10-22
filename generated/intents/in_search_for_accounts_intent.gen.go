@@ -29,6 +29,14 @@ type _INSearchForAccountsIntentClass struct {
 // An interface definition for the [INSearchForAccountsIntent] class.
 type IINSearchForAccountsIntent interface {
 	IINIntent
+	AccountNickname() INSpeakableString
+	SetAccountNickname(value INSpeakableString)
+	AccountType() unsafe.Pointer
+	SetAccountType(value unsafe.Pointer)
+	OrganizationName() INSpeakableString
+	SetOrganizationName(value INSpeakableString)
+	RequestedBalanceType() unsafe.Pointer
+	SetRequestedBalanceType(value unsafe.Pointer)
 }
 
 // A user request for information about their accounts in your app.

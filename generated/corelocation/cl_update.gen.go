@@ -30,6 +30,17 @@ type _UpdateClass struct {
 // An interface definition for the [Update] class.
 type IUpdate interface {
 	objectivec.IObject
+	AccuracyLimited() bool
+	AuthorizationDenied() bool
+	AuthorizationDeniedGlobally() bool
+	AuthorizationRequestInProgress() bool
+	AuthorizationRestricted() bool
+	InsufficientlyInUse() bool
+	IsStationary() bool
+	Location() CLLocation
+	LocationUnavailable() bool
+	ServiceSessionRequired() bool
+	Stationary() bool
 }
 
 // An object that represents a location update.

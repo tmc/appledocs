@@ -31,6 +31,12 @@ type _InkingToolClass struct {
 // An interface definition for the [InkingTool] class.
 type IInkingTool interface {
 	ITool
+	Azimuth() float64
+	Color() appkit.Color
+	Ink() PKInk
+	InkType() unsafe.Pointer
+	RequiredContentVersion() ContentVersion
+	Width() float64
 }
 
 // An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.

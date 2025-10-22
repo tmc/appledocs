@@ -30,6 +30,8 @@ type _HKWheelchairUseObjectClass struct {
 // An interface definition for the [HKWheelchairUseObject] class.
 type IHKWheelchairUseObject interface {
 	objectivec.IObject
+	WheelchairUse() HKWheelchairUse
+	SetWheelchairUse(value IHKWheelchairUse)
 }
 
 // This class acts as a wrapper for the wheelchair use enumeration.

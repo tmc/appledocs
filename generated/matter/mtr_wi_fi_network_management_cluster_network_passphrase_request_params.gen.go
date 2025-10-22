@@ -31,6 +31,10 @@ type _MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParamsClass struct 
 // An interface definition for the [MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams] class.
 type IMTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

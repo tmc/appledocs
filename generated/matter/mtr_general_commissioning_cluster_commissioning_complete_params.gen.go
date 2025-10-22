@@ -31,6 +31,10 @@ type _MTRGeneralCommissioningClusterCommissioningCompleteParamsClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterCommissioningCompleteParams] class.
 type IMTRGeneralCommissioningClusterCommissioningCompleteParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

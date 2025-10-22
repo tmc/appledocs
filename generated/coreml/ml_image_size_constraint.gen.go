@@ -31,6 +31,16 @@ type _ImageSizeConstraintClass struct {
 // An interface definition for the [ImageSizeConstraint] class.
 type IImageSizeConstraint interface {
 	objectivec.IObject
+	EnumeratedImageSizes() []ImageSize
+	PixelsHighRange() foundation.Range
+	PixelsWideRange() foundation.Range
+	Type() ImageSizeConstraintType
+	PixelsHigh() int
+	SetPixelsHigh(value int)
+	PixelsWide() int
+	SetPixelsWide(value int)
+	SizeConstraint() MLImageSizeConstraint
+	SetSizeConstraint(value IMLImageSizeConstraint)
 }
 
 // A list or range of sizes that augment an image constraint’s default size.

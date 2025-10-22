@@ -31,6 +31,8 @@ type _CXHandleClass struct {
 type ICXHandle interface {
 	objectivec.IObject
 	IsEqualToHandle(handle ICXHandle) bool
+	Type() CXHandleType
+	Value() string
 }
 
 // A way to reach a call recipient, such as a phone number or email address.

@@ -29,6 +29,8 @@ type _TriangleAccelerationStructureClass struct {
 // An interface definition for the [TriangleAccelerationStructure] class.
 type ITriangleAccelerationStructure interface {
 	IPolygonAccelerationStructure
+	TriangleCount() uint
+	SetTriangleCount(value uint)
 }
 
 // An acceleration structure built over triangles.

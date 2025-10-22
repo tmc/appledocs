@@ -31,6 +31,16 @@ type _MTRDiagnosticLogsClusterRetrieveLogsRequestParamsClass struct {
 // An interface definition for the [MTRDiagnosticLogsClusterRetrieveLogsRequestParams] class.
 type IMTRDiagnosticLogsClusterRetrieveLogsRequestParams interface {
 	objectivec.IObject
+	Intent() foundation.Number
+	SetIntent(value foundation.INumber)
+	RequestedProtocol() foundation.Number
+	SetRequestedProtocol(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransferFileDesignator() string
+	SetTransferFileDesignator(value string)
 }
 
 //
@@ -138,8 +148,8 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTimedInvokeTimeou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignator() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("transferFileDesignator"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignator() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("transferFileDesignator"))
 	return rv
 }
 
@@ -147,8 +157,8 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignat
 // SetTransferFileDesignator sets the value of the transferFileDesignator property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), value)
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), objc.String(value))
 }
 
 

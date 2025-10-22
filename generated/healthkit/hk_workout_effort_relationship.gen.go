@@ -30,6 +30,12 @@ type _HKWorkoutEffortRelationshipClass struct {
 // An interface definition for the [HKWorkoutEffortRelationship] class.
 type IHKWorkoutEffortRelationship interface {
 	objectivec.IObject
+	Activity() HKWorkoutActivity
+	SetActivity(value IHKWorkoutActivity)
+	Samples() HKSample
+	SetSamples(value IHKSample)
+	Workout() HKWorkout
+	SetWorkout(value IHKWorkout)
 }
 
 //

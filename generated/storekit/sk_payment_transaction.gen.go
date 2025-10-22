@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,16 @@ type _PaymentTransactionClass struct {
 // An interface definition for the [PaymentTransaction] class.
 type IPaymentTransaction interface {
 	objectivec.IObject
+	Downloads() []Download
+	Error() foundation.Error
+	OriginalTransaction() SKPaymentTransaction
+	Payment() SKPayment
+	TransactionDate() foundation.NSDate
+	TransactionIdentifier() string
+	TransactionReceipt() foundation.NSData
+	TransactionState() PaymentTransactionState
+	Original() SKPaymentTransaction
+	SetOriginal(value ISKPaymentTransaction)
 }
 
 // An object in the payment queue.
@@ -125,8 +134,8 @@ func (p_ PaymentTransaction) TransactionDate() foundation.NSDate {
 // A string that uniquely identifies a successful payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier
-func (p_ PaymentTransaction) TransactionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("transactionIdentifier"))
+func (p_ PaymentTransaction) TransactionIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("transactionIdentifier"))
 	return rv
 }
 

@@ -31,6 +31,9 @@ type _PushCredentialsClass struct {
 // An interface definition for the [PushCredentials] class.
 type IPushCredentials interface {
 	objectivec.IObject
+	Token() foundation.NSData
+	Type() PushType
+	SetType(value PushType)
 }
 
 // An object that encapsulates the device token you use to deliver push notifications to your app.

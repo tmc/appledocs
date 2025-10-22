@@ -33,12 +33,14 @@ type IFIFinderSyncController interface {
 	foundation.IExtensionContext
 	LastUsedDateForItemWithURL(itemURL foundation.IURL) foundation.Date
 	SelectedItemURLs() []foundation.URL
-	SetBadgeIdentifierForURL(badgeID appkit.string, url foundation.IURL)
-	SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label appkit.string, badgeID appkit.string)
+	SetBadgeIdentifierForURL(badgeID string, url foundation.IURL)
+	SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label string, badgeID string)
 	SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.IDate, itemURL foundation.IURL, completion unsafe.Pointer)
 	SetTagDataForItemWithURLCompletion(tagData foundation.IData, itemURL foundation.IURL, completion unsafe.Pointer)
 	TagDataForItemWithURL(itemURL foundation.IURL) foundation.Data
 	TargetedURL() foundation.URL
+	DirectoryURLs() unsafe.Pointer
+	SetDirectoryURLs(value unsafe.Pointer)
 }
 
 // A controller that acts as a bridge between your Finder Sync extension and the Finder itself.
@@ -129,15 +131,15 @@ func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.URL {
 // Sets the badge for a file or directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeIdentifier(_:for:)
-func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID appkit.string, url foundation.IURL) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeIdentifier:forURL:"), badgeID, url)
+func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url foundation.IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeIdentifier:forURL:"), objc.String(badgeID), url)
 }
 
 // Sets the badge image and label for the given ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeImage(_:label:forBadgeIdentifier:)
-func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label appkit.string, badgeID appkit.string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeImage:label:forBadgeIdentifier:"), image, label, badgeID)
+func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label string, badgeID string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeImage:label:forBadgeIdentifier:"), image, objc.String(label), objc.String(badgeID))
 }
 
 //

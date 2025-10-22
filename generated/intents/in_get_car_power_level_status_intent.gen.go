@@ -29,6 +29,8 @@ type _INGetCarPowerLevelStatusIntentClass struct {
 // An interface definition for the [INGetCarPowerLevelStatusIntent] class.
 type IINGetCarPowerLevelStatusIntent interface {
 	IINIntent
+	CarName() INSpeakableString
+	SetCarName(value INSpeakableString)
 }
 
 // A request for the current power level of the user’s car.

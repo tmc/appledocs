@@ -34,6 +34,17 @@ type INowPlayingSession interface {
 	AddPlayer(player avfoundation.IPlayer)
 	BecomeActiveIfPossibleWithCompletion(completion unsafe.Pointer)
 	RemovePlayer(player avfoundation.IPlayer)
+	AutomaticallyPublishesNowPlayingInfo() bool
+	SetAutomaticallyPublishesNowPlayingInfo(value bool)
+	CanBecomeActive() bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Active() bool
+	NowPlayingInfoCenter() MPNowPlayingInfoCenter
+	Players() []avfoundation.Player
+	RemoteCommandCenter() MPRemoteCommandCenter
+	IsActive() bool
+	SetIsActive(value bool)
 }
 
 // An object that manages Now Playing information and remote commands for multiple players.

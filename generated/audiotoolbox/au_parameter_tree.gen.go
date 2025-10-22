@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -33,6 +32,8 @@ type IParameterTree interface {
 	IParameterGroup
 	ParameterWithAddress(address IParameterAddress) Parameter
 	ParameterWithIDScopeElement(paramID IAudioUnitParameterID, scope IAudioUnitScope, element IAudioUnitElement) Parameter
+	ParameterTree() AUParameterTree
+	SetParameterTree(value IAUParameterTree)
 }
 
 // An object that represents a top-level group node that contains all of an audio unit’s parameters.
@@ -88,16 +89,16 @@ func NewParameterTree() ParameterTree {
 // Initializes a group as a copied instance of a template group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createGroup(fromTemplate:identifier:name:addressOffset:)
-func (pc _ParameterTreeClass) CreateGroupFromTemplateIdentifierNameAddressOffset(templateGroup IAUParameterGroup, identifier appkit.string, name appkit.string, addressOffset IParameterAddress) ParameterGroup {
-	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupFromTemplate:identifier:name:addressOffset:"), templateGroup, identifier, name, addressOffset)
+func (pc _ParameterTreeClass) CreateGroupFromTemplateIdentifierNameAddressOffset(templateGroup IAUParameterGroup, identifier string, name string, addressOffset IParameterAddress) ParameterGroup {
+	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupFromTemplate:identifier:name:addressOffset:"), templateGroup, objc.String(identifier), objc.String(name), addressOffset)
 	return rv
 }
 
 // Creates a parameter group object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createGroup(withIdentifier:name:children:)
-func (pc _ParameterTreeClass) CreateGroupWithIdentifierNameChildren(identifier appkit.string, name appkit.string, children []ParameterNode) ParameterGroup {
-	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupWithIdentifier:name:children:"), identifier, name, children)
+func (pc _ParameterTreeClass) CreateGroupWithIdentifierNameChildren(identifier string, name string, children []ParameterNode) ParameterGroup {
+	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupWithIdentifier:name:children:"), objc.String(identifier), objc.String(name), children)
 	return rv
 }
 
@@ -112,8 +113,8 @@ func (pc _ParameterTreeClass) CreateGroupTemplate(children []ParameterNode) Para
 // Creates a single parameter object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createParameter(withIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)
-func (pc _ParameterTreeClass) CreateParameterWithIdentifierNameAddressMinMaxUnitUnitNameFlagsValueStringsDependentParameters(identifier appkit.string, name appkit.string, address IParameterAddress, min IValue, max IValue, unit IAudioUnitParameterUnit, unitName appkit.string, flags AudioUnitParameterOptions, valueStrings []string, dependentParameters []foundation.INumber) Parameter {
-	rv := objc.Send[Parameter](objc.ID(pc.class), objc.Sel("createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:"), identifier, name, address, min, max, unit, unitName, flags, valueStrings, dependentParameters)
+func (pc _ParameterTreeClass) CreateParameterWithIdentifierNameAddressMinMaxUnitUnitNameFlagsValueStringsDependentParameters(identifier string, name string, address IParameterAddress, min IValue, max IValue, unit IAudioUnitParameterUnit, unitName string, flags AudioUnitParameterOptions, valueStrings []string, dependentParameters []foundation.INumber) Parameter {
+	rv := objc.Send[Parameter](objc.ID(pc.class), objc.Sel("createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:"), objc.String(identifier), objc.String(name), address, min, max, unit, objc.String(unitName), flags, valueStrings, dependentParameters)
 	return rv
 }
 

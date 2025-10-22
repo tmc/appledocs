@@ -29,6 +29,14 @@ type _CustomMigrationStageClass struct {
 // An interface definition for the [CustomMigrationStage] class.
 type ICustomMigrationStage interface {
 	IMigrationStage
+	CurrentModel() NSManagedObjectModelReference
+	DidMigrateHandler() unsafe.Pointer
+	SetDidMigrateHandler(value unsafe.Pointer)
+	NextModel() NSManagedObjectModelReference
+	WillMigrateHandler() unsafe.Pointer
+	SetWillMigrateHandler(value unsafe.Pointer)
+	Container() NSPersistentContainer
+	SetContainer(value IPersistentContainer)
 }
 
 // An object that enables you to participate in the migration between two versions of the same model.

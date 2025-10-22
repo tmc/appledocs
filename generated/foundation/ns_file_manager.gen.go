@@ -98,6 +98,15 @@ type IFileManager interface {
 	LinkPathToPathHandler(src string, dest string, handler objectivec.IObject) bool
 	MovePathToPathHandler(src string, dest string, handler objectivec.IObject) bool
 	RemoveFileAtPathHandler(path string, handler objectivec.IObject) bool
+	CurrentDirectoryPath() string
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	HomeDirectoryForCurrentUser() URL
+	TemporaryDirectory() URL
+	UbiquityIdentityToken() objc.ID
+	NSFileManagerUnmountDissentingProcessIdentifierErrorKey() string
+	NSFoundationVersionWithFileManagerResourceForkSupport() unsafe.Pointer
+	SetNSFoundationVersionWithFileManagerResourceForkSupport(value unsafe.Pointer)
 }
 
 // A convenient interface to the contents of the file system, and the primary means of interacting with it.

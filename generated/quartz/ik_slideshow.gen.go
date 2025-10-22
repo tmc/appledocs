@@ -30,6 +30,8 @@ type _IKSlideshowClass struct {
 // An interface definition for the [IKSlideshow] class.
 type IIKSlideshow interface {
 	objectivec.IObject
+	AutoPlayDelay() unsafe.Pointer
+	SetAutoPlayDelay(value unsafe.Pointer)
 }
 
 // The class encapsulates a data source and options for a slideshow.

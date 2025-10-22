@@ -31,6 +31,8 @@ type IUSBHostDevice interface {
 	IUSBHostObject
 	ConfigureWithValueError(value uint, error_ unsafe.Pointer) bool
 	ResetWithError(error_ unsafe.Pointer) bool
+	ConfigurationDescriptor() unsafe.Pointer
+	SetConfigurationDescriptor(value unsafe.Pointer)
 }
 
 // The class that claims and configures devices, retrieves descriptors, and sends device requests.

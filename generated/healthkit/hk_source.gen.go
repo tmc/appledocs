@@ -30,6 +30,10 @@ type _HKSourceClass struct {
 // An interface definition for the [HKSource] class.
 type IHKSource interface {
 	objectivec.IObject
+	BundleIdentifier() string
+	SetBundleIdentifier(value string)
+	Name() string
+	SetName(value string)
 }
 
 // An object indicating the app or device that created a HealthKit sample
@@ -83,8 +87,8 @@ func NewHKSource() HKSource {
 // The source’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/bundleidentifier
-func (h_ HKSource) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("bundleIdentifier"))
+func (h_ HKSource) BundleIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -94,15 +98,15 @@ func (h_ HKSource) BundleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/bundleidentifier
-func (h_ HKSource) SetBundleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setBundleIdentifier:"), value)
+func (h_ HKSource) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
 // The source’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/name
-func (h_ HKSource) Name() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("name"))
+func (h_ HKSource) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -112,8 +116,8 @@ func (h_ HKSource) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/name
-func (h_ HKSource) SetName(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
+func (h_ HKSource) SetName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

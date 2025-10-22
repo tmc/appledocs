@@ -30,6 +30,12 @@ type _MTRContentLauncherClusterDimensionClass struct {
 // An interface definition for the [MTRContentLauncherClusterDimension] class.
 type IMTRContentLauncherClusterDimension interface {
 	IMTRContentLauncherClusterDimensionStruct
+	Height() foundation.Number
+	SetHeight(value foundation.INumber)
+	Metric() foundation.Number
+	SetMetric(value foundation.INumber)
+	Width() foundation.Number
+	SetWidth(value foundation.INumber)
 }
 
 //

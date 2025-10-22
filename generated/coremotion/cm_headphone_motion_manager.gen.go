@@ -36,6 +36,18 @@ type IHeadphoneMotionManager interface {
 	StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
 	StopConnectionStatusUpdates()
 	StopDeviceMotionUpdates()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DeviceMotion() CMDeviceMotion
+	ConnectionStatusActive() bool
+	DeviceMotionActive() bool
+	DeviceMotionAvailable() bool
+	IsConnectionStatusActive() bool
+	SetIsConnectionStatusActive(value bool)
+	IsDeviceMotionActive() bool
+	SetIsDeviceMotionActive(value bool)
+	IsDeviceMotionAvailable() bool
+	SetIsDeviceMotionAvailable(value bool)
 }
 
 // An object that starts and manages headphone motion services.

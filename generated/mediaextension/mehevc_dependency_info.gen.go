@@ -31,6 +31,28 @@ type _MEHEVCDependencyInfoClass struct {
 // An interface definition for the [MEHEVCDependencyInfo] class.
 type IMEHEVCDependencyInfo interface {
 	objectivec.IObject
+	ConstraintIndicatorFlags() foundation.NSData
+	SetConstraintIndicatorFlags(value foundation.IData)
+	TemporalSubLayerAccess() bool
+	SetTemporalSubLayerAccess(value bool)
+	LevelIndex() unsafe.Pointer
+	SetLevelIndex(value unsafe.Pointer)
+	ProfileSpace() unsafe.Pointer
+	SetProfileSpace(value unsafe.Pointer)
+	SyncSampleNALUnitType() unsafe.Pointer
+	SetSyncSampleNALUnitType(value unsafe.Pointer)
+	TemporalLevel() unsafe.Pointer
+	SetTemporalLevel(value unsafe.Pointer)
+	HasStepwiseTemporalSubLayerAccess() bool
+	SetHasStepwiseTemporalSubLayerAccess(value bool)
+	HasTemporalSubLayerAccess() bool
+	SetHasTemporalSubLayerAccess(value bool)
+	ProfileCompatibilityFlags() foundation.Data
+	SetProfileCompatibilityFlags(value foundation.IData)
+	ProfileIndex() unsafe.Pointer
+	SetProfileIndex(value unsafe.Pointer)
+	TierFlag() unsafe.Pointer
+	SetTierFlag(value unsafe.Pointer)
 }
 
 // An object that provides information about the HEVC dependency attributes of a sample.

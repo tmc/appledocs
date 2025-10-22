@@ -30,6 +30,8 @@ type _GridSampleClass struct {
 // An interface definition for the [GridSample] class.
 type IGridSample interface {
 	ICNNBinaryKernel
+	UseGridValueAsInputCoordinate() bool
+	SetUseGridValueAsInputCoordinate(value bool)
 }
 
 //

@@ -31,6 +31,12 @@ type _MTRTimeSynchronizationClusterDSTOffsetStructClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterDSTOffsetStruct] class.
 type IMTRTimeSynchronizationClusterDSTOffsetStruct interface {
 	objectivec.IObject
+	Offset() foundation.Number
+	SetOffset(value foundation.INumber)
+	ValidStarting() foundation.Number
+	SetValidStarting(value foundation.INumber)
+	ValidUntil() foundation.Number
+	SetValidUntil(value foundation.INumber)
 }
 
 //

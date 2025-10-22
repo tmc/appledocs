@@ -30,6 +30,8 @@ type _GenericViewControllerClass struct {
 // An interface definition for the [GenericViewController] class.
 type IGenericViewController interface {
 	IViewController
+	AuAudioUnit() audiotoolbox.AudioUnit
+	SetAuAudioUnit(value audiotoolbox.IAudioUnit)
 }
 
 //

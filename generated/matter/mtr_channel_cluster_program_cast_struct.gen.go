@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _MTRChannelClusterProgramCastStructClass struct {
 // An interface definition for the [MTRChannelClusterProgramCastStruct] class.
 type IMTRChannelClusterProgramCastStruct interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
+	Role() string
+	SetRole(value string)
 }
 
 //
@@ -78,8 +81,8 @@ func NewMTRChannelClusterProgramCastStruct() MTRChannelClusterProgramCastStruct 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/name
-func (m_ MTRChannelClusterProgramCastStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRChannelClusterProgramCastStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -87,14 +90,14 @@ func (m_ MTRChannelClusterProgramCastStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/name
-func (m_ MTRChannelClusterProgramCastStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRChannelClusterProgramCastStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/role
-func (m_ MTRChannelClusterProgramCastStruct) Role() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("role"))
+func (m_ MTRChannelClusterProgramCastStruct) Role() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("role"))
 	return rv
 }
 
@@ -102,8 +105,8 @@ func (m_ MTRChannelClusterProgramCastStruct) Role() appkit.string {
 // SetRole sets the value of the role property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCastStruct/role
-func (m_ MTRChannelClusterProgramCastStruct) SetRole(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRole:"), value)
+func (m_ MTRChannelClusterProgramCastStruct) SetRole(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRole:"), objc.String(value))
 }
 
 

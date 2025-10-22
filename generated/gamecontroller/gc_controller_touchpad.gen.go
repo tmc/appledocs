@@ -29,6 +29,19 @@ type _GCControllerTouchpadClass struct {
 // An interface definition for the [GCControllerTouchpad] class.
 type IGCControllerTouchpad interface {
 	IGCControllerElement
+	Button() GCControllerButtonInput
+	TouchMoved() unsafe.Pointer
+	SetTouchMoved(value unsafe.Pointer)
+	ReportsAbsoluteTouchSurfaceValues() bool
+	SetReportsAbsoluteTouchSurfaceValues(value bool)
+	TouchDown() unsafe.Pointer
+	SetTouchDown(value unsafe.Pointer)
+	TouchState() unsafe.Pointer
+	SetTouchState(value unsafe.Pointer)
+	TouchSurface() GCControllerDirectionPad
+	SetTouchSurface(value IGCControllerDirectionPad)
+	TouchUp() unsafe.Pointer
+	SetTouchUp(value unsafe.Pointer)
 }
 
 // A control element that represents a touch event on a touchpad.

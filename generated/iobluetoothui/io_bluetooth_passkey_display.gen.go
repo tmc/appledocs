@@ -31,6 +31,20 @@ type _BluetoothPasskeyDisplayClass struct {
 type IBluetoothPasskeyDisplay interface {
 	appkit.IView
 	RetreatPasskeyIndicator()
+	BackgroundImageConstraint() appkit.LayoutConstraint
+	SetBackgroundImageConstraint(value appkit.ILayoutConstraint)
+	CenteredView() appkit.View
+	SetCenteredView(value appkit.IView)
+	IsIncomingRequest() bool
+	SetIsIncomingRequest(value bool)
+	Passkey() string
+	SetPasskey(value string)
+	ReturnHighlightImage() appkit.Image
+	SetReturnHighlightImage(value appkit.IImage)
+	ReturnImage() appkit.Image
+	SetReturnImage(value appkit.IImage)
+	UsePasskeyNotificaitons() bool
+	SetUsePasskeyNotificaitons(value bool)
 }
 
 //
@@ -131,8 +145,8 @@ func (b_ BluetoothPasskeyDisplay) SetIsIncomingRequest(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/passkey-swift.property
-func (b_ BluetoothPasskeyDisplay) Passkey() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("passkey"))
+func (b_ BluetoothPasskeyDisplay) Passkey() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("passkey"))
 	return rv
 }
 
@@ -140,8 +154,8 @@ func (b_ BluetoothPasskeyDisplay) Passkey() appkit.string {
 // SetPasskey sets the value of the passkey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/passkey-swift.property
-func (b_ BluetoothPasskeyDisplay) SetPasskey(value appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPasskey:"), value)
+func (b_ BluetoothPasskeyDisplay) SetPasskey(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPasskey:"), objc.String(value))
 }
 
 //

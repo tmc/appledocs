@@ -30,6 +30,12 @@ type _DecimalNumberHandlerClass struct {
 // An interface definition for the [DecimalNumberHandler] class.
 type IDecimalNumberHandler interface {
 	objectivec.IObject
+	RoundingBehavior() NSDecimalNumberHandler
+	SetRoundingBehavior(value IDecimalNumberHandler)
+	RoundingIncrement() Number
+	SetRoundingIncrement(value INumber)
+	RoundingMode() unsafe.Pointer
+	SetRoundingMode(value unsafe.Pointer)
 }
 
 // A class that adopts the decimal number behaviors protocol.

@@ -31,6 +31,14 @@ type _MTRIdentifyClusterTriggerEffectParamsClass struct {
 // An interface definition for the [MTRIdentifyClusterTriggerEffectParams] class.
 type IMTRIdentifyClusterTriggerEffectParams interface {
 	objectivec.IObject
+	EffectIdentifier() foundation.Number
+	SetEffectIdentifier(value foundation.INumber)
+	EffectVariant() foundation.Number
+	SetEffectVariant(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

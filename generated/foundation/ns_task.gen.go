@@ -32,6 +32,39 @@ type ITask interface {
 	objectivec.IObject
 	LaunchAndReturnError(error_ IError) bool
 	Terminate()
+	Environment() unsafe.Pointer
+	SetEnvironment(value unsafe.Pointer)
+	ExecutableURL() URL
+	SetExecutableURL(value IURL)
+	LaunchRequirementData() NSData
+	SetLaunchRequirementData(value IData)
+	ProcessIdentifier() int
+	Arguments() string
+	SetArguments(value string)
+	CurrentDirectoryPath() string
+	SetCurrentDirectoryPath(value string)
+	CurrentDirectoryURL() URL
+	SetCurrentDirectoryURL(value IURL)
+	IsRunning() bool
+	SetIsRunning(value bool)
+	LaunchPath() string
+	SetLaunchPath(value string)
+	LaunchRequirement() unsafe.Pointer
+	SetLaunchRequirement(value unsafe.Pointer)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
+	StandardError() unsafe.Pointer
+	SetStandardError(value unsafe.Pointer)
+	StandardInput() unsafe.Pointer
+	SetStandardInput(value unsafe.Pointer)
+	StandardOutput() unsafe.Pointer
+	SetStandardOutput(value unsafe.Pointer)
+	TerminationHandler() unsafe.Pointer
+	SetTerminationHandler(value unsafe.Pointer)
+	TerminationReason() unsafe.Pointer
+	SetTerminationReason(value unsafe.Pointer)
+	TerminationStatus() unsafe.Pointer
+	SetTerminationStatus(value unsafe.Pointer)
 }
 
 // An object that represents a subprocess of the current process.

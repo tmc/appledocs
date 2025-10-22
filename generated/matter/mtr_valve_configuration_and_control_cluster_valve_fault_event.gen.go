@@ -31,6 +31,8 @@ type _MTRValveConfigurationAndControlClusterValveFaultEventClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterValveFaultEvent] class.
 type IMTRValveConfigurationAndControlClusterValveFaultEvent interface {
 	objectivec.IObject
+	ValveFault() foundation.Number
+	SetValveFault(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterTestEmitTestEventResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestEmitTestEventResponseParams] class.
 type IMTRUnitTestingClusterTestEmitTestEventResponseParams interface {
 	objectivec.IObject
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

@@ -29,6 +29,24 @@ type _CBatchNormalizationLayerClass struct {
 // An interface definition for the [CBatchNormalizationLayer] class.
 type ICBatchNormalizationLayer interface {
 	ICLayer
+	Beta() MLCTensor
+	SetBeta(value IMLCTensor)
+	BetaParameter() MLCTensorParameter
+	SetBetaParameter(value IMLCTensorParameter)
+	FeatureChannelCount() int
+	SetFeatureChannelCount(value int)
+	Gamma() MLCTensor
+	SetGamma(value IMLCTensor)
+	GammaParameter() MLCTensorParameter
+	SetGammaParameter(value IMLCTensorParameter)
+	Mean() MLCTensor
+	SetMean(value IMLCTensor)
+	Momentum() float32
+	SetMomentum(value float32)
+	Variance() MLCTensor
+	SetVariance(value IMLCTensor)
+	VarianceEpsilon() float32
+	SetVarianceEpsilon(value float32)
 }
 
 // A layer that normalizes a batch of inputs.
@@ -190,8 +208,8 @@ func (c_ CBatchNormalizationLayer) SetMean(value IMLCTensor) {
 // The value you use for the running mean and variance computation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/momentum
-func (c_ CBatchNormalizationLayer) Momentum() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("momentum"))
+func (c_ CBatchNormalizationLayer) Momentum() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("momentum"))
 	return rv
 }
 
@@ -201,7 +219,7 @@ func (c_ CBatchNormalizationLayer) Momentum() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/momentum
-func (c_ CBatchNormalizationLayer) SetMomentum(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetMomentum(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMomentum:"), value)
 }
 
@@ -226,8 +244,8 @@ func (c_ CBatchNormalizationLayer) SetVariance(value IMLCTensor) {
 // The variance epsilon you use for numerical stability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/varianceepsilon
-func (c_ CBatchNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+func (c_ CBatchNormalizationLayer) VarianceEpsilon() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("varianceEpsilon"))
 	return rv
 }
 
@@ -237,7 +255,7 @@ func (c_ CBatchNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/varianceepsilon
-func (c_ CBatchNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetVarianceEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
 }
 

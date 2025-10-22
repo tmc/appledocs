@@ -30,6 +30,10 @@ type _MTRApplicationLauncherClusterApplicationEPClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterApplicationEP] class.
 type IMTRApplicationLauncherClusterApplicationEP interface {
 	IMTRApplicationLauncherClusterApplicationEPStruct
+	Application() MTRApplicationLauncherClusterApplicationStruct
+	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
 }
 
 //

@@ -38,6 +38,10 @@ type IDrawing interface {
 	DrawingByApplyingTransform(transform coregraphics.CGAffineTransform) Drawing
 	DataRepresentation() foundation.Data
 	ImageFromRectScale(rect coregraphics.CGRect, scale float64) appkit.Image
+	Bounds() coregraphics.CGRect
+	RequiredContentVersion() ContentVersion
+	Strokes() []Stroke
+	PKAppleDrawingTypeIdentifier() foundation.String
 }
 
 // A data structure that contains the drawing information captured by a canvas view.

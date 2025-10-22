@@ -29,6 +29,8 @@ type _CGatherLayerClass struct {
 // An interface definition for the [CGatherLayer] class.
 type ICGatherLayer interface {
 	ICLayer
+	Dimension() int
+	SetDimension(value int)
 }
 
 // A layer that fetches data at the locations you specify.

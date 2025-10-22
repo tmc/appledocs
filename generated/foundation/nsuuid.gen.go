@@ -31,6 +31,8 @@ type _UUIDClass struct {
 type IUUID interface {
 	objectivec.IObject
 	Compare(otherUUID IUUID) ComparisonResult
+	UuidString() string
+	SetUuidString(value string)
 }
 
 // A universally unique value that can be used to identify types, interfaces, and other items.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,11 +35,22 @@ type IPHASESoundEvent interface {
 	PrepareWithCompletion(handler unsafe.Pointer)
 	Resume()
 	ResumeAtTime(time avfaudio.IAudioTime)
-	SeekToTimeCompletion(time unsafe.Pointer, handler unsafe.Pointer)
-	SeekToTimeResumeAtEngineTimeCompletion(time unsafe.Pointer, engineTime avfaudio.IAudioTime, handler unsafe.Pointer)
+	SeekToTimeCompletion(time float64, handler unsafe.Pointer)
+	SeekToTimeResumeAtEngineTimeCompletion(time float64, engineTime avfaudio.IAudioTime, handler unsafe.Pointer)
 	StartAtTimeCompletion(when avfaudio.IAudioTime, handler unsafe.Pointer)
 	StartWithCompletion(handler unsafe.Pointer)
 	StopAndInvalidate()
+	Indefinite() bool
+	MetaParameters() unsafe.Pointer
+	Mixers() unsafe.Pointer
+	PrepareState() PHASESoundEventPrepareState
+	PullStreamNodes() unsafe.Pointer
+	PushStreamNodes() unsafe.Pointer
+	RenderingState() PHASERenderingState
+	PlaybackMode() PHASEPlaybackMode
+	SetPlaybackMode(value PHASEPlaybackMode)
+	IsIndefinite() bool
+	SetIsIndefinite(value bool)
 }
 
 // An object that determines which audio to play.
@@ -96,9 +106,9 @@ func NewPHASESoundEvent() PHASESoundEvent {
 // Creates a sound event node with the given asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:)
-func NewPHASESoundEventWithEngineAssetIdentifierError(engine IPHASEEngine, assetIdentifier appkit.string, error_ unsafe.Pointer) PHASESoundEvent {
+func NewPHASESoundEventWithEngineAssetIdentifierError(engine IPHASEEngine, assetIdentifier string, error_ unsafe.Pointer) PHASESoundEvent {
 	instance := getPHASESoundEventClass().Alloc()
-	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:error:"), engine, assetIdentifier, error_)
+	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:error:"), engine, objc.String(assetIdentifier), error_)
 	rv.Autorelease()
 	return rv
 }
@@ -108,9 +118,9 @@ func NewPHASESoundEventWithEngineAssetIdentifierError(engine IPHASEEngine, asset
 // Creates a sound event node with the given asset and mixer parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)
-func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine IPHASEEngine, assetIdentifier appkit.string, mixerParameters IPHASEMixerParameters, error_ unsafe.Pointer) PHASESoundEvent {
+func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine IPHASEEngine, assetIdentifier string, mixerParameters IPHASEMixerParameters, error_ unsafe.Pointer) PHASESoundEvent {
 	instance := getPHASESoundEventClass().Alloc()
-	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:mixerParameters:error:"), engine, assetIdentifier, mixerParameters, error_)
+	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:mixerParameters:error:"), engine, objc.String(assetIdentifier), mixerParameters, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -146,13 +156,13 @@ func (p_ PHASESoundEvent) ResumeAtTime(time avfaudio.IAudioTime) {
 // Advances the sound event’s playback position to a specific time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/seek(to:completion:)
-func (p_ PHASESoundEvent) SeekToTimeCompletion(time unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PHASESoundEvent) SeekToTimeCompletion(time float64, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:completion:"), time, handler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/seek(to:resumeAt:completion:)
-func (p_ PHASESoundEvent) SeekToTimeResumeAtEngineTimeCompletion(time unsafe.Pointer, engineTime avfaudio.IAudioTime, handler unsafe.Pointer) {
+func (p_ PHASESoundEvent) SeekToTimeResumeAtEngineTimeCompletion(time float64, engineTime avfaudio.IAudioTime, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:resumeAtEngineTime:completion:"), time, engineTime, handler)
 }
 

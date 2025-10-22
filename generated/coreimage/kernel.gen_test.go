@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewKernel
 
+// ExampleNewKernelWithString demonstrates how to create a Kernel instance using NewKernelWithString.
+// Creates a single kernel object.
+func ExampleNewKernelWithString() {
+	_ = coreimage.NewKernelWithString(
+		"string", // string string
+	)
+	// Output:
+}

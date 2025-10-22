@@ -33,6 +33,18 @@ type IPlayableContentManager interface {
 	objectivec.IObject
 	BeginUpdates()
 	EndUpdates()
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	Context() MPPlayableContentManagerContext
+	SetContext(value IMPPlayableContentManagerContext)
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	NowPlayingIdentifiers() string
+	SetNowPlayingIdentifiers(value string)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // A shared content manager for controlling interactions between your media app and system-provided or external media player interfaces.
@@ -172,8 +184,8 @@ func (p_ PlayableContentManager) SetDelegate(value unsafe.Pointer) {
 // The content items currently playing based on their identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/nowplayingidentifiers
-func (p_ PlayableContentManager) NowPlayingIdentifiers() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("nowPlayingIdentifiers"))
+func (p_ PlayableContentManager) NowPlayingIdentifiers() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("nowPlayingIdentifiers"))
 	return rv
 }
 
@@ -183,8 +195,8 @@ func (p_ PlayableContentManager) NowPlayingIdentifiers() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/nowplayingidentifiers
-func (p_ PlayableContentManager) SetNowPlayingIdentifiers(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingIdentifiers:"), value)
+func (p_ PlayableContentManager) SetNowPlayingIdentifiers(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingIdentifiers:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the route button is visible in the volume view.

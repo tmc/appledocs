@@ -30,6 +30,7 @@ type _ModelStructureProgramClass struct {
 // An interface definition for the [ModelStructureProgram] class.
 type IModelStructureProgram interface {
 	objectivec.IObject
+	Functions() unsafe.Pointer
 }
 
 // A class representing the structure of an ML Program model.

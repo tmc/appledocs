@@ -29,6 +29,20 @@ type _DetectTrajectoriesRequestClass struct {
 // An interface definition for the [DetectTrajectoriesRequest] class.
 type IDetectTrajectoriesRequest interface {
 	IStatefulRequest
+	Results() []TrajectoryObservation
+	MaximumObjectSize() float32
+	SetMaximumObjectSize(value float32)
+	MinimumObjectSize() float32
+	SetMinimumObjectSize(value float32)
+	ObjectMaximumNormalizedRadius() float32
+	SetObjectMaximumNormalizedRadius(value float32)
+	ObjectMinimumNormalizedRadius() float32
+	SetObjectMinimumNormalizedRadius(value float32)
+	TargetFrameTime() unsafe.Pointer
+	SetTargetFrameTime(value unsafe.Pointer)
+	TrajectoryLength() int
+	SetTrajectoryLength(value int)
+	VNDetectTrajectoriesRequestRevision1() int
 }
 
 // A request that detects the trajectories of shapes moving along a parabolic path.
@@ -92,8 +106,8 @@ func (d_ DetectTrajectoriesRequest) Results() []TrajectoryObservation {
 // The maximum radius of the tracked shape’s bounding circle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/maximumobjectsize
-func (d_ DetectTrajectoriesRequest) MaximumObjectSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("maximumObjectSize"))
+func (d_ DetectTrajectoriesRequest) MaximumObjectSize() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("maximumObjectSize"))
 	return rv
 }
 
@@ -103,15 +117,15 @@ func (d_ DetectTrajectoriesRequest) MaximumObjectSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/maximumobjectsize
-func (d_ DetectTrajectoriesRequest) SetMaximumObjectSize(value unsafe.Pointer) {
+func (d_ DetectTrajectoriesRequest) SetMaximumObjectSize(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumObjectSize:"), value)
 }
 
 // The minimum radius of the tracked shape’s bounding circle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/minimumobjectsize
-func (d_ DetectTrajectoriesRequest) MinimumObjectSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumObjectSize"))
+func (d_ DetectTrajectoriesRequest) MinimumObjectSize() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("minimumObjectSize"))
 	return rv
 }
 
@@ -121,15 +135,15 @@ func (d_ DetectTrajectoriesRequest) MinimumObjectSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/minimumobjectsize
-func (d_ DetectTrajectoriesRequest) SetMinimumObjectSize(value unsafe.Pointer) {
+func (d_ DetectTrajectoriesRequest) SetMinimumObjectSize(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumObjectSize:"), value)
 }
 
 // The maximum radius of the bounding circle of the object to track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectmaximumnormalizedradius
-func (d_ DetectTrajectoriesRequest) ObjectMaximumNormalizedRadius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objectMaximumNormalizedRadius"))
+func (d_ DetectTrajectoriesRequest) ObjectMaximumNormalizedRadius() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("objectMaximumNormalizedRadius"))
 	return rv
 }
 
@@ -139,15 +153,15 @@ func (d_ DetectTrajectoriesRequest) ObjectMaximumNormalizedRadius() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectmaximumnormalizedradius
-func (d_ DetectTrajectoriesRequest) SetObjectMaximumNormalizedRadius(value unsafe.Pointer) {
+func (d_ DetectTrajectoriesRequest) SetObjectMaximumNormalizedRadius(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setObjectMaximumNormalizedRadius:"), value)
 }
 
 // The minimum radius of the bounding circle of the object to track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectminimumnormalizedradius
-func (d_ DetectTrajectoriesRequest) ObjectMinimumNormalizedRadius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objectMinimumNormalizedRadius"))
+func (d_ DetectTrajectoriesRequest) ObjectMinimumNormalizedRadius() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("objectMinimumNormalizedRadius"))
 	return rv
 }
 
@@ -157,7 +171,7 @@ func (d_ DetectTrajectoriesRequest) ObjectMinimumNormalizedRadius() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectminimumnormalizedradius
-func (d_ DetectTrajectoriesRequest) SetObjectMinimumNormalizedRadius(value unsafe.Pointer) {
+func (d_ DetectTrajectoriesRequest) SetObjectMinimumNormalizedRadius(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setObjectMinimumNormalizedRadius:"), value)
 }
 

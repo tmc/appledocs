@@ -31,6 +31,10 @@ type _PHASEStreamNodeClass struct {
 // An interface definition for the [PHASEStreamNode] class.
 type IPHASEStreamNode interface {
 	objectivec.IObject
+	Format() avfaudio.AudioFormat
+	GainMetaParameter() PHASENumberMetaParameter
+	Mixer() PHASEMixer
+	RateMetaParameter() PHASENumberMetaParameter
 }
 
 //

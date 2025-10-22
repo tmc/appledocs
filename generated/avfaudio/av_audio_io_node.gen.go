@@ -29,6 +29,12 @@ type _AudioIONodeClass struct {
 // An interface definition for the [AudioIONode] class.
 type IAudioIONode interface {
 	IAudioNode
+	AudioUnit() AudioUnit
+	SetAudioUnit(value IAudioUnit)
+	IsVoiceProcessingEnabled() bool
+	SetIsVoiceProcessingEnabled(value bool)
+	PresentationLatency() unsafe.Pointer
+	SetPresentationLatency(value unsafe.Pointer)
 }
 
 // An object that performs audio input or output in the engine.

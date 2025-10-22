@@ -30,6 +30,16 @@ type _MTRAccessControlClusterAccessControlEntryClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessControlEntry] class.
 type IMTRAccessControlClusterAccessControlEntry interface {
 	IMTRAccessControlClusterAccessControlEntryStruct
+	AuthMode() foundation.Number
+	SetAuthMode(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	Privilege() foundation.Number
+	SetPrivilege(value foundation.INumber)
+	Subjects() unsafe.Pointer
+	SetSubjects(value unsafe.Pointer)
+	Targets() unsafe.Pointer
+	SetTargets(value unsafe.Pointer)
 }
 
 //

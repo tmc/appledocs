@@ -30,6 +30,9 @@ type _NowPlayingInfoLanguageOptionGroupClass struct {
 // An interface definition for the [NowPlayingInfoLanguageOptionGroup] class.
 type INowPlayingInfoLanguageOptionGroup interface {
 	objectivec.IObject
+	AllowEmptySelection() bool
+	DefaultLanguageOption() MPNowPlayingInfoLanguageOption
+	LanguageOptions() []NowPlayingInfoLanguageOption
 }
 
 // A grouped set of language options where only a single language option can be active at a time.

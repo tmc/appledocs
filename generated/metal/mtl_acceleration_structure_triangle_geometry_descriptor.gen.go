@@ -29,6 +29,28 @@ type _AccelerationStructureTriangleGeometryDescriptorClass struct {
 // An interface definition for the [AccelerationStructureTriangleGeometryDescriptor] class.
 type IAccelerationStructureTriangleGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	IndexBuffer() unsafe.Pointer
+	SetIndexBuffer(value unsafe.Pointer)
+	IndexBufferOffset() int
+	SetIndexBufferOffset(value int)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	TransformationMatrixBuffer() unsafe.Pointer
+	SetTransformationMatrixBuffer(value unsafe.Pointer)
+	TransformationMatrixBufferOffset() int
+	SetTransformationMatrixBufferOffset(value int)
+	TransformationMatrixLayout() unsafe.Pointer
+	SetTransformationMatrixLayout(value unsafe.Pointer)
+	TriangleCount() int
+	SetTriangleCount(value int)
+	VertexBuffer() unsafe.Pointer
+	SetVertexBuffer(value unsafe.Pointer)
+	VertexBufferOffset() int
+	SetVertexBufferOffset(value int)
+	VertexFormat() unsafe.Pointer
+	SetVertexFormat(value unsafe.Pointer)
+	VertexStride() int
+	SetVertexStride(value int)
 }
 
 // A description of a list of triangle primitives to turn into an acceleration structure.

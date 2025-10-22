@@ -29,6 +29,11 @@ type _GLKEffectPropertyTransformClass struct {
 // An interface definition for the [GLKEffectPropertyTransform] class.
 type IGLKEffectPropertyTransform interface {
 	IGLKEffectProperty
+	ModelviewMatrix() GLKMatrix4
+	SetModelviewMatrix(value IGLKMatrix4)
+	NormalMatrix() GLKMatrix3
+	ProjectionMatrix() GLKMatrix4
+	SetProjectionMatrix(value IGLKMatrix4)
 }
 
 // Coordinate transform information for use in GLKit rendering effects.

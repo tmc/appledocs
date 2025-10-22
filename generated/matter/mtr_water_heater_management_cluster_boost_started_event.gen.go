@@ -30,6 +30,8 @@ type _MTRWaterHeaterManagementClusterBoostStartedEventClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterBoostStartedEvent] class.
 type IMTRWaterHeaterManagementClusterBoostStartedEvent interface {
 	objectivec.IObject
+	BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
+	SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct)
 }
 
 //

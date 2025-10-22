@@ -32,6 +32,20 @@ type _CameraCalibrationDataClass struct {
 // An interface definition for the [CameraCalibrationData] class.
 type ICameraCalibrationData interface {
 	objectivec.IObject
+	ExtrinsicMatrix() unsafe.Pointer
+	SetExtrinsicMatrix(value unsafe.Pointer)
+	IntrinsicMatrix() unsafe.Pointer
+	SetIntrinsicMatrix(value unsafe.Pointer)
+	IntrinsicMatrixReferenceDimensions() coregraphics.CGSize
+	SetIntrinsicMatrixReferenceDimensions(value coregraphics.CGSize)
+	InverseLensDistortionLookupTable() foundation.Data
+	SetInverseLensDistortionLookupTable(value foundation.IData)
+	LensDistortionCenter() coregraphics.CGPoint
+	SetLensDistortionCenter(value coregraphics.CGPoint)
+	LensDistortionLookupTable() foundation.Data
+	SetLensDistortionLookupTable(value foundation.IData)
+	PixelSize() float32
+	SetPixelSize(value float32)
 }
 
 // Information about the camera characteristics used to capture images and depth data.

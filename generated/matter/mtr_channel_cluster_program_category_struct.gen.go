@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _MTRChannelClusterProgramCategoryStructClass struct {
 // An interface definition for the [MTRChannelClusterProgramCategoryStruct] class.
 type IMTRChannelClusterProgramCategoryStruct interface {
 	objectivec.IObject
+	Category() string
+	SetCategory(value string)
+	SubCategory() string
+	SetSubCategory(value string)
 }
 
 //
@@ -78,8 +81,8 @@ func NewMTRChannelClusterProgramCategoryStruct() MTRChannelClusterProgramCategor
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/category
-func (m_ MTRChannelClusterProgramCategoryStruct) Category() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("category"))
+func (m_ MTRChannelClusterProgramCategoryStruct) Category() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -87,14 +90,14 @@ func (m_ MTRChannelClusterProgramCategoryStruct) Category() appkit.string {
 // SetCategory sets the value of the category property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/category
-func (m_ MTRChannelClusterProgramCategoryStruct) SetCategory(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCategory:"), value)
+func (m_ MTRChannelClusterProgramCategoryStruct) SetCategory(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCategory:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/subCategory
-func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subCategory"))
+func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subCategory"))
 	return rv
 }
 
@@ -102,8 +105,8 @@ func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() appkit.string {
 // SetSubCategory sets the value of the subCategory property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/subCategory
-func (m_ MTRChannelClusterProgramCategoryStruct) SetSubCategory(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubCategory:"), value)
+func (m_ MTRChannelClusterProgramCategoryStruct) SetSubCategory(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubCategory:"), objc.String(value))
 }
 
 

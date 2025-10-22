@@ -29,6 +29,10 @@ type _ChangeLanguageOptionCommandEventClass struct {
 // An interface definition for the [ChangeLanguageOptionCommandEvent] class.
 type IChangeLanguageOptionCommandEvent interface {
 	IRemoteCommandEvent
+	LanguageOption() MPNowPlayingInfoLanguageOption
+	SetLanguageOption(value IMPNowPlayingInfoLanguageOption)
+	Setting() unsafe.Pointer
+	SetSetting(value unsafe.Pointer)
 }
 
 // An event requesting a change in the language option.

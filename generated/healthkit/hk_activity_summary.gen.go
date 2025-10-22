@@ -32,6 +32,33 @@ type _HKActivitySummaryClass struct {
 type IHKActivitySummary interface {
 	objectivec.IObject
 	DateComponentsForCalendar(calendar foundation.ICalendar) foundation.DateComponents
+	ActiveEnergyBurned() HKQuantity
+	SetActiveEnergyBurned(value IHKQuantity)
+	ActiveEnergyBurnedGoal() HKQuantity
+	SetActiveEnergyBurnedGoal(value IHKQuantity)
+	ActivityMoveMode() HKActivityMoveMode
+	SetActivityMoveMode(value HKActivityMoveMode)
+	AppleExerciseTime() HKQuantity
+	SetAppleExerciseTime(value IHKQuantity)
+	AppleExerciseTimeGoal() HKQuantity
+	SetAppleExerciseTimeGoal(value IHKQuantity)
+	AppleMoveTime() HKQuantity
+	SetAppleMoveTime(value IHKQuantity)
+	AppleMoveTimeGoal() HKQuantity
+	SetAppleMoveTimeGoal(value IHKQuantity)
+	AppleStandHours() HKQuantity
+	SetAppleStandHours(value IHKQuantity)
+	AppleStandHoursGoal() HKQuantity
+	SetAppleStandHoursGoal(value IHKQuantity)
+	ExerciseTimeGoal() HKQuantity
+	SetExerciseTimeGoal(value IHKQuantity)
+	Paused() bool
+	SetPaused(value bool)
+	StandHoursGoal() HKQuantity
+	SetStandHoursGoal(value IHKQuantity)
+	IsPaused() bool
+	SetIsPaused(value bool)
+	HKPredicateKeyPathDateComponents() string
 }
 
 // An object that contains the move, exercise, and stand data for a given day.
@@ -321,8 +348,8 @@ func (h_ HKActivitySummary) SetIsPaused(value bool) {
 // The key path for accessing an activity summary’s date components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents
-func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
+func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
 	return rv
 }
 

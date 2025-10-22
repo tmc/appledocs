@@ -47,6 +47,13 @@ type IBluetoothL2CAPChannel interface {
 	WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer
 	WriteAsyncTrapLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer
 	WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
+	Device() IOBluetoothDevice
+	IncomingMTU() BluetoothL2CAPMTU
+	LocalChannelID() BluetoothL2CAPChannelID
+	ObjectID() BluetoothObjectID
+	OutgoingMTU() BluetoothL2CAPMTU
+	PSM() BluetoothL2CAPPSM
+	RemoteChannelID() BluetoothL2CAPChannelID
 }
 
 // An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.

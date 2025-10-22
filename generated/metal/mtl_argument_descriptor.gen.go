@@ -30,6 +30,19 @@ type _ArgumentDescriptorClass struct {
 // An interface definition for the [ArgumentDescriptor] class.
 type IArgumentDescriptor interface {
 	objectivec.IObject
+	ArrayLength() uint
+	SetArrayLength(value uint)
+	Access() unsafe.Pointer
+	SetAccess(value unsafe.Pointer)
+	ConstantBlockAlignment() int
+	SetConstantBlockAlignment(value int)
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
+	Index() int
+	SetIndex(value int)
+	TextureType() TextureType
+	SetTextureType(value TextureType)
+	MTLAttributeStrideStatic() int
 }
 
 // A representation of an argument within an argument buffer.

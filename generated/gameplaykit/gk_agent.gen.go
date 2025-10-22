@@ -29,6 +29,20 @@ type _AgentClass struct {
 // An interface definition for the [Agent] class.
 type IAgent interface {
 	IComponent
+	Behavior() GKBehavior
+	SetBehavior(value GKBehavior)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Mass() float32
+	SetMass(value float32)
+	MaxAcceleration() float32
+	SetMaxAcceleration(value float32)
+	MaxSpeed() float32
+	SetMaxSpeed(value float32)
+	Radius() float32
+	SetRadius(value float32)
+	Speed() float32
+	SetSpeed(value float32)
 }
 
 // A component that moves a game entity according to a set of goals and realistic constraints.
@@ -120,8 +134,8 @@ func (a_ Agent) SetDelegate(value objc.ID) {
 // The resistance of the agent to changes in speed or direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
-func (a_ Agent) Mass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mass"))
+func (a_ Agent) Mass() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("mass"))
 	return rv
 }
 
@@ -131,15 +145,15 @@ func (a_ Agent) Mass() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
-func (a_ Agent) SetMass(value unsafe.Pointer) {
+func (a_ Agent) SetMass(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMass:"), value)
 }
 
 // The upper limit to changes in the agent’s speed or direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
-func (a_ Agent) MaxAcceleration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("maxAcceleration"))
+func (a_ Agent) MaxAcceleration() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("maxAcceleration"))
 	return rv
 }
 
@@ -149,15 +163,15 @@ func (a_ Agent) MaxAcceleration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
-func (a_ Agent) SetMaxAcceleration(value unsafe.Pointer) {
+func (a_ Agent) SetMaxAcceleration(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxAcceleration:"), value)
 }
 
 // The agent’s maximum forward speed, in units per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
-func (a_ Agent) MaxSpeed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("maxSpeed"))
+func (a_ Agent) MaxSpeed() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("maxSpeed"))
 	return rv
 }
 
@@ -167,15 +181,15 @@ func (a_ Agent) MaxSpeed() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
-func (a_ Agent) SetMaxSpeed(value unsafe.Pointer) {
+func (a_ Agent) SetMaxSpeed(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxSpeed:"), value)
 }
 
 // The agent’s radius.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
-func (a_ Agent) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("radius"))
+func (a_ Agent) Radius() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("radius"))
 	return rv
 }
 
@@ -185,15 +199,15 @@ func (a_ Agent) Radius() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
-func (a_ Agent) SetRadius(value unsafe.Pointer) {
+func (a_ Agent) SetRadius(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadius:"), value)
 }
 
 // The agent’s current forward speed, in units per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
-func (a_ Agent) Speed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("speed"))
+func (a_ Agent) Speed() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("speed"))
 	return rv
 }
 
@@ -203,7 +217,7 @@ func (a_ Agent) Speed() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
-func (a_ Agent) SetSpeed(value unsafe.Pointer) {
+func (a_ Agent) SetSpeed(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSpeed:"), value)
 }
 

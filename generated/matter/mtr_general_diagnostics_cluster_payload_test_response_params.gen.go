@@ -31,6 +31,8 @@ type _MTRGeneralDiagnosticsClusterPayloadTestResponseParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterPayloadTestResponseParams] class.
 type IMTRGeneralDiagnosticsClusterPayloadTestResponseParams interface {
 	objectivec.IObject
+	Payload() foundation.NSData
+	SetPayload(value foundation.IData)
 }
 
 //

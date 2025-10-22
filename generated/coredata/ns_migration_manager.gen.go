@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,11 +34,22 @@ type IMigrationManager interface {
 	AssociateSourceInstanceWithDestinationInstanceForEntityMapping(sourceInstance IManagedObject, destinationInstance IManagedObject, entityMapping IEntityMapping)
 	CancelMigrationWithError(error_ foundation.IError)
 	DestinationEntityForEntityMapping(mEntity IEntityMapping) EntityDescription
-	DestinationInstancesForEntityMappingNamedSourceInstances(mappingName appkit.string, sourceInstances []ManagedObject) []ManagedObject
-	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.IURL, sStoreType appkit.string, sOptions objectivec.IObject, mappings IMappingModel, dURL foundation.IURL, dStoreType appkit.string, dOptions objectivec.IObject, error_ unsafe.Pointer) bool
+	DestinationInstancesForEntityMappingNamedSourceInstances(mappingName string, sourceInstances []ManagedObject) []ManagedObject
+	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.IURL, sStoreType string, sOptions objectivec.IObject, mappings IMappingModel, dURL foundation.IURL, dStoreType string, dOptions objectivec.IObject, error_ unsafe.Pointer) bool
 	Reset()
 	SourceEntityForEntityMapping(mEntity IEntityMapping) EntityDescription
-	SourceInstancesForEntityMappingNamedDestinationInstances(mappingName appkit.string, destinationInstances []ManagedObject) []ManagedObject
+	SourceInstancesForEntityMappingNamedDestinationInstances(mappingName string, destinationInstances []ManagedObject) []ManagedObject
+	CurrentEntityMapping() NSEntityMapping
+	DestinationContext() NSManagedObjectContext
+	DestinationModel() NSManagedObjectModel
+	MappingModel() NSMappingModel
+	MigrationProgress() float32
+	SourceContext() NSManagedObjectContext
+	SourceModel() NSManagedObjectModel
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
+	UsesStoreSpecificMigrationManager() bool
+	SetUsesStoreSpecificMigrationManager(value bool)
 }
 
 // A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model.
@@ -126,16 +136,16 @@ func (m_ MigrationManager) DestinationEntityForEntityMapping(mEntity IEntityMapp
 // Returns the managed object instances created in the destination store for the named entity mapping for the given array of source instances.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/destinationInstances(forEntityMappingName:sourceInstances:)
-func (m_ MigrationManager) DestinationInstancesForEntityMappingNamedSourceInstances(mappingName appkit.string, sourceInstances []ManagedObject) []ManagedObject {
-	rv := objc.Send[[]ManagedObject](m_.ID, objc.Sel("destinationInstancesForEntityMappingNamed:sourceInstances:"), mappingName, sourceInstances)
+func (m_ MigrationManager) DestinationInstancesForEntityMappingNamedSourceInstances(mappingName string, sourceInstances []ManagedObject) []ManagedObject {
+	rv := objc.Send[[]ManagedObject](m_.ID, objc.Sel("destinationInstancesForEntityMappingNamed:sourceInstances:"), objc.String(mappingName), sourceInstances)
 	return rv
 }
 
 // Migrates the store at a given source URL to the store at a given destination URL, performing all of the mappings specified in a given mapping model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/migrateStore(from:sourceType:options:with:toDestinationURL:destinationType:destinationOptions:)
-func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.IURL, sStoreType appkit.string, sOptions objectivec.IObject, mappings IMappingModel, dURL foundation.IURL, dStoreType appkit.string, dOptions objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:"), sourceURL, sStoreType, sOptions, mappings, dURL, dStoreType, dOptions, error_)
+func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.IURL, sStoreType string, sOptions objectivec.IObject, mappings IMappingModel, dURL foundation.IURL, dStoreType string, dOptions objectivec.IObject, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:"), sourceURL, objc.String(sStoreType), sOptions, mappings, dURL, objc.String(dStoreType), dOptions, error_)
 	return rv
 }
 
@@ -157,8 +167,8 @@ func (m_ MigrationManager) SourceEntityForEntityMapping(mEntity IEntityMapping) 
 // Returns the managed object instances in the source store used to create the given destination instances for the passed in property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/sourceInstances(forEntityMappingName:destinationInstances:)
-func (m_ MigrationManager) SourceInstancesForEntityMappingNamedDestinationInstances(mappingName appkit.string, destinationInstances []ManagedObject) []ManagedObject {
-	rv := objc.Send[[]ManagedObject](m_.ID, objc.Sel("sourceInstancesForEntityMappingNamed:destinationInstances:"), mappingName, destinationInstances)
+func (m_ MigrationManager) SourceInstancesForEntityMappingNamedDestinationInstances(mappingName string, destinationInstances []ManagedObject) []ManagedObject {
+	rv := objc.Send[[]ManagedObject](m_.ID, objc.Sel("sourceInstancesForEntityMappingNamed:destinationInstances:"), objc.String(mappingName), destinationInstances)
 	return rv
 }
 
@@ -197,8 +207,8 @@ func (m_ MigrationManager) MappingModel() NSMappingModel {
 // A number between and that indicates the proportion of completeness of the migration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/migrationProgress
-func (m_ MigrationManager) MigrationProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("migrationProgress"))
+func (m_ MigrationManager) MigrationProgress() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("migrationProgress"))
 	return rv
 }
 

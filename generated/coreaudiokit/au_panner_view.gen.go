@@ -31,6 +31,7 @@ type _PannerViewClass struct {
 // An interface definition for the [PannerView] class.
 type IPannerView interface {
 	appkit.IView
+	AudioUnit() audiotoolbox.AudioUnit
 }
 
 // A view that provides a specialized user interface for a Cocoa-based panner audio unit.

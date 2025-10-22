@@ -30,6 +30,10 @@ type _ComputePassDescriptorClass struct {
 // An interface definition for the [ComputePassDescriptor] class.
 type IComputePassDescriptor interface {
 	objectivec.IObject
+	DispatchType() DispatchType
+	SetDispatchType(value DispatchType)
+	SampleBufferAttachments() MTLComputePassSampleBufferAttachmentDescriptorArray
+	SetSampleBufferAttachments(value IMTLComputePassSampleBufferAttachmentDescriptorArray)
 }
 
 // A description of how to dispatch execution of pass commands and GPU performance sampling.

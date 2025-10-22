@@ -30,6 +30,8 @@ type _NDArrayQuantizationDescriptorClass struct {
 // An interface definition for the [NDArrayQuantizationDescriptor] class.
 type INDArrayQuantizationDescriptor interface {
 	objectivec.IObject
+	QuantizationDataType() unsafe.Pointer
+	QuantizationScheme() unsafe.Pointer
 }
 
 //

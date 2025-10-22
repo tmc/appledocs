@@ -35,6 +35,22 @@ type IHKWorkoutSession interface {
 	EndCurrentActivityOnDate(date foundation.IDate)
 	Pause()
 	Resume()
+	LocationType() HKWorkoutSessionLocationType
+	State() HKWorkoutSessionState
+	ActivityType() HKWorkoutActivityType
+	SetActivityType(value HKWorkoutActivityType)
+	CurrentActivity() HKWorkoutActivity
+	SetCurrentActivity(value IHKWorkoutActivity)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	Type() HKWorkoutSessionType
+	SetType(value HKWorkoutSessionType)
+	WorkoutConfiguration() HKWorkoutConfiguration
+	SetWorkoutConfiguration(value IHKWorkoutConfiguration)
 }
 
 // A session that tracks a person’s workout.

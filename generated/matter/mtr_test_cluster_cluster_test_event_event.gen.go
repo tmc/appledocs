@@ -30,6 +30,18 @@ type _MTRTestClusterClusterTestEventEventClass struct {
 // An interface definition for the [MTRTestClusterClusterTestEventEvent] class.
 type IMTRTestClusterClusterTestEventEvent interface {
 	IMTRUnitTestingClusterTestEventEvent
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	Arg2() foundation.Number
+	SetArg2(value foundation.INumber)
+	Arg3() foundation.Number
+	SetArg3(value foundation.INumber)
+	Arg4() MTRTestClusterClusterSimpleStruct
+	SetArg4(value IMTRTestClusterClusterSimpleStruct)
+	Arg5() unsafe.Pointer
+	SetArg5(value unsafe.Pointer)
+	Arg6() unsafe.Pointer
+	SetArg6(value unsafe.Pointer)
 }
 
 //

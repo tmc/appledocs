@@ -30,6 +30,11 @@ type _CKRecordZoneSubscriptionClass struct {
 // An interface definition for the [CKRecordZoneSubscription] class.
 type ICKRecordZoneSubscription interface {
 	ICKSubscription
+	RecordType() unsafe.Pointer
+	SetRecordType(value unsafe.Pointer)
+	ZoneID() CKRecordZoneID
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // A subscription that generates push notifications when CloudKit modifies records in a specific record zone.

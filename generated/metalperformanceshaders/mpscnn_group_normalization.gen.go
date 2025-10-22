@@ -30,6 +30,10 @@ type _CNNGroupNormalizationClass struct {
 // An interface definition for the [CNNGroupNormalization] class.
 type ICNNGroupNormalization interface {
 	objectivec.IObject
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	Epsilon() float32
+	SetEpsilon(value float32)
 }
 
 //
@@ -102,8 +106,8 @@ func (c_ CNNGroupNormalization) SetDataSource(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
-func (c_ CNNGroupNormalization) Epsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("epsilon"))
+func (c_ CNNGroupNormalization) Epsilon() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("epsilon"))
 	return rv
 }
 
@@ -111,7 +115,7 @@ func (c_ CNNGroupNormalization) Epsilon() unsafe.Pointer {
 // SetEpsilon sets the value of the epsilon property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
-func (c_ CNNGroupNormalization) SetEpsilon(value unsafe.Pointer) {
+func (c_ CNNGroupNormalization) SetEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEpsilon:"), value)
 }
 

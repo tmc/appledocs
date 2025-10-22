@@ -30,6 +30,20 @@ type _PropertyListSerializationClass struct {
 // An interface definition for the [PropertyListSerialization] class.
 type IPropertyListSerialization interface {
 	objectivec.IObject
+	NSPropertyListErrorMaximum() int
+	SetNSPropertyListErrorMaximum(value int)
+	NSPropertyListErrorMinimum() int
+	SetNSPropertyListErrorMinimum(value int)
+	NSPropertyListReadCorruptError() int
+	SetNSPropertyListReadCorruptError(value int)
+	NSPropertyListReadStreamError() int
+	SetNSPropertyListReadStreamError(value int)
+	NSPropertyListReadUnknownVersionError() int
+	SetNSPropertyListReadUnknownVersionError(value int)
+	NSPropertyListWriteInvalidError() int
+	SetNSPropertyListWriteInvalidError(value int)
+	NSPropertyListWriteStreamError() int
+	SetNSPropertyListWriteStreamError(value int)
 }
 
 // An object that converts between a property list and one of several serialized representations.

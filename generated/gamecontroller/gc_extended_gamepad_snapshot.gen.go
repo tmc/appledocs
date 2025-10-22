@@ -30,6 +30,10 @@ type _GCExtendedGamepadSnapshotClass struct {
 // An interface definition for the [GCExtendedGamepadSnapshot] class.
 type IGCExtendedGamepadSnapshot interface {
 	IGCExtendedGamepad
+	GCCurrentExtendedGamepadSnapshotDataVersion() unsafe.Pointer
+	GCCurrentMicroGamepadSnapshotDataVersion() unsafe.Pointer
+	SnapshotData() foundation.Data
+	SetSnapshotData(value foundation.IData)
 }
 
 // A recording of all of the values provided by a object.

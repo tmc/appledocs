@@ -29,6 +29,15 @@ type _DetectFaceLandmarksRequestClass struct {
 // An interface definition for the [DetectFaceLandmarksRequest] class.
 type IDetectFaceLandmarksRequest interface {
 	IImageBasedRequest
+	Constellation() unsafe.Pointer
+	SetConstellation(value unsafe.Pointer)
+	Results() VNFaceObservation
+	SetResults(value IVNFaceObservation)
+	VNDetectFaceLandmarksRequestRevision1() int
+	VNDetectFaceLandmarksRequestRevision2() int
+	VNDetectFaceLandmarksRequestRevision3() int
+	InputFaceObservations() VNFaceObservation
+	SetInputFaceObservations(value IVNFaceObservation)
 }
 
 // An image-analysis request that finds facial features like eyes and mouth in an image.

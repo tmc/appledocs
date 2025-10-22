@@ -31,6 +31,10 @@ type _MTRServiceAreaClusterLandmarkInfoStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterLandmarkInfoStruct] class.
 type IMTRServiceAreaClusterLandmarkInfoStruct interface {
 	objectivec.IObject
+	LandmarkTag() foundation.Number
+	SetLandmarkTag(value foundation.INumber)
+	RelativePositionTag() foundation.Number
+	SetRelativePositionTag(value foundation.INumber)
 }
 
 //

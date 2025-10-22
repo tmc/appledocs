@@ -32,6 +32,8 @@ type ISpellServer interface {
 	objectivec.IObject
 	IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool
 	Run()
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // A server that your app uses to provide a spell checker service to other apps running in the system.

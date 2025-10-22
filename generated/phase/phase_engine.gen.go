@@ -35,6 +35,24 @@ type IPHASEEngine interface {
 	StartAndReturnError(error_ unsafe.Pointer) bool
 	Stop()
 	Update()
+	ActiveGroupPreset() PHASEGroupPreset
+	AssetRegistry() PHASEAssetRegistry
+	DefaultMedium() PHASEMedium
+	SetDefaultMedium(value IPHASEMedium)
+	DefaultReverbPreset() PHASEReverbPreset
+	SetDefaultReverbPreset(value IPHASEReverbPreset)
+	Duckers() []PHASEDucker
+	Groups() unsafe.Pointer
+	LastRenderTime() avfaudio.AudioTime
+	OutputSpatializationMode() PHASESpatializationMode
+	SetOutputSpatializationMode(value PHASESpatializationMode)
+	RenderingState() PHASERenderingState
+	RootObject() PHASEObject
+	SoundEvents() []PHASESoundEvent
+	UnitsPerMeter() float64
+	SetUnitsPerMeter(value float64)
+	UnitsPerSecond() float64
+	SetUnitsPerSecond(value float64)
 }
 
 // An object that manages audio assets, controls playback, and configures environmental effects.
@@ -259,8 +277,8 @@ func (p_ PHASEEngine) SoundEvents() []PHASESoundEvent {
 // A conversion factor from meters to your app’s preferred unit of measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/unitsPerMeter
-func (p_ PHASEEngine) UnitsPerMeter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("unitsPerMeter"))
+func (p_ PHASEEngine) UnitsPerMeter() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("unitsPerMeter"))
 	return rv
 }
 
@@ -270,15 +288,15 @@ func (p_ PHASEEngine) UnitsPerMeter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/unitsPerMeter
-func (p_ PHASEEngine) SetUnitsPerMeter(value unsafe.Pointer) {
+func (p_ PHASEEngine) SetUnitsPerMeter(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUnitsPerMeter:"), value)
 }
 
 // A conversion factor from seconds to your app’s preferred unit of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/unitsPerSecond
-func (p_ PHASEEngine) UnitsPerSecond() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("unitsPerSecond"))
+func (p_ PHASEEngine) UnitsPerSecond() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("unitsPerSecond"))
 	return rv
 }
 
@@ -288,7 +306,7 @@ func (p_ PHASEEngine) UnitsPerSecond() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/unitsPerSecond
-func (p_ PHASEEngine) SetUnitsPerSecond(value unsafe.Pointer) {
+func (p_ PHASEEngine) SetUnitsPerSecond(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUnitsPerSecond:"), value)
 }
 

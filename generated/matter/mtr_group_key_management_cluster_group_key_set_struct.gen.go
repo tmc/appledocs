@@ -31,6 +31,22 @@ type _MTRGroupKeyManagementClusterGroupKeySetStructClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterGroupKeySetStruct] class.
 type IMTRGroupKeyManagementClusterGroupKeySetStruct interface {
 	objectivec.IObject
+	EpochKey0() foundation.Data
+	SetEpochKey0(value foundation.IData)
+	EpochKey1() foundation.Data
+	SetEpochKey1(value foundation.IData)
+	EpochKey2() foundation.Data
+	SetEpochKey2(value foundation.IData)
+	EpochStartTime0() foundation.Number
+	SetEpochStartTime0(value foundation.INumber)
+	EpochStartTime1() foundation.Number
+	SetEpochStartTime1(value foundation.INumber)
+	EpochStartTime2() foundation.Number
+	SetEpochStartTime2(value foundation.INumber)
+	GroupKeySecurityPolicy() foundation.Number
+	SetGroupKeySecurityPolicy(value foundation.INumber)
+	GroupKeySetID() foundation.Number
+	SetGroupKeySetID(value foundation.INumber)
 }
 
 //

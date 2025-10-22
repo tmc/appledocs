@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,8 @@ type _PHPickerResultClass struct {
 // An interface definition for the [PHPickerResult] class.
 type IPHPickerResult interface {
 	objectivec.IObject
+	AssetIdentifier() string
+	ItemProvider() foundation.ItemProvider
 }
 
 // Types that represent a selected asset from the user’s photo library.
@@ -83,8 +84,8 @@ func NewPHPickerResult() PHPickerResult {
 // The selected asset’s local identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class/assetIdentifier
-func (p_ PHPickerResult) AssetIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetIdentifier"))
+func (p_ PHPickerResult) AssetIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
 	return rv
 }
 

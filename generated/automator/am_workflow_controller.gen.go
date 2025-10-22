@@ -36,6 +36,19 @@ type IAMWorkflowController interface {
 	Run(sender objectivec.IObject)
 	Step(sender objectivec.IObject)
 	Stop(sender objectivec.IObject)
+	CanRun() bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Paused() bool
+	Running() bool
+	Workflow() AMWorkflow
+	SetWorkflow(value IAMWorkflow)
+	WorkflowView() AMWorkflowView
+	SetWorkflowView(value IAMWorkflowView)
+	IsPaused() bool
+	SetIsPaused(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
 }
 
 // An object that lets you manage an Automator workflow in your app.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,16 @@ type _TKSmartCardSlotClass struct {
 type ITKSmartCardSlot interface {
 	objectivec.IObject
 	MakeSmartCard() TKSmartCard
+	Name() string
+	State() TKSmartCardSlotState
+	Atr() unsafe.Pointer
+	SetAtr(value unsafe.Pointer)
+	MaxInputLength() int
+	SetMaxInputLength(value int)
+	MaxOutputLength() int
+	SetMaxOutputLength(value int)
+	SlotNames() string
+	SetSlotNames(value string)
 }
 
 // A single smart card reader slot in the system.
@@ -93,8 +102,8 @@ func (t_ TKSmartCardSlot) MakeSmartCard() TKSmartCard {
 // The name of the Smart Card reader slot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/name
-func (t_ TKSmartCardSlot) Name() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
+func (t_ TKSmartCardSlot) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -163,8 +172,8 @@ func (t_ TKSmartCardSlot) SetMaxOutputLength(value int) {
 // A list of identifiers for all the Smart Card reader slots available to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
-func (t_ TKSmartCardSlot) SlotNames() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("slotNames"))
+func (t_ TKSmartCardSlot) SlotNames() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("slotNames"))
 	return rv
 }
 
@@ -174,8 +183,8 @@ func (t_ TKSmartCardSlot) SlotNames() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
-func (t_ TKSmartCardSlot) SetSlotNames(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), value)
+func (t_ TKSmartCardSlot) SetSlotNames(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), objc.String(value))
 }
 
 

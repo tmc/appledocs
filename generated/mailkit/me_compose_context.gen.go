@@ -31,6 +31,18 @@ type _MEComposeContextClass struct {
 // An interface definition for the [MEComposeContext] class.
 type IMEComposeContext interface {
 	objectivec.IObject
+	Action() MEComposeUserAction
+	OriginalMessage() MEMessage
+	ContextID() foundation.UUID
+	SetContextID(value foundation.IUUID)
+	IsEncrypted() bool
+	SetIsEncrypted(value bool)
+	IsSigned() bool
+	SetIsSigned(value bool)
+	ShouldEncrypt() bool
+	SetShouldEncrypt(value bool)
+	ShouldSign() bool
+	SetShouldSign(value bool)
 }
 
 //

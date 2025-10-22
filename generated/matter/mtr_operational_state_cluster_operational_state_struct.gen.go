@@ -31,6 +31,10 @@ type _MTROperationalStateClusterOperationalStateStructClass struct {
 // An interface definition for the [MTROperationalStateClusterOperationalStateStruct] class.
 type IMTROperationalStateClusterOperationalStateStruct interface {
 	objectivec.IObject
+	OperationalStateID() foundation.Number
+	SetOperationalStateID(value foundation.INumber)
+	OperationalStateLabel() string
+	SetOperationalStateLabel(value string)
 }
 
 //
@@ -93,8 +97,8 @@ func (m_ MTROperationalStateClusterOperationalStateStruct) SetOperationalStateID
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalstatestruct/operationalstatelabel
-func (m_ MTROperationalStateClusterOperationalStateStruct) OperationalStateLabel() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("operationalStateLabel"))
+func (m_ MTROperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
 	return rv
 }
 
@@ -102,8 +106,8 @@ func (m_ MTROperationalStateClusterOperationalStateStruct) OperationalStateLabel
 // SetOperationalStateLabel sets the value of the operationalStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalstatestruct/operationalstatelabel
-func (m_ MTROperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), value)
+func (m_ MTROperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
 }
 
 

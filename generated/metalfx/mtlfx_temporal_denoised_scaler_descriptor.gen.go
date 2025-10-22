@@ -32,6 +32,60 @@ type IFXTemporalDenoisedScalerDescriptor interface {
 	objectivec.IObject
 	NewTemporalDenoisedScalerWithDevice(device objectivec.IObject) objc.ID
 	NewTemporalDenoisedScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
+	ColorTextureFormat() unsafe.Pointer
+	SetColorTextureFormat(value unsafe.Pointer)
+	DenoiseStrengthMaskTextureFormat() unsafe.Pointer
+	SetDenoiseStrengthMaskTextureFormat(value unsafe.Pointer)
+	DepthTextureFormat() unsafe.Pointer
+	SetDepthTextureFormat(value unsafe.Pointer)
+	DiffuseAlbedoTextureFormat() unsafe.Pointer
+	SetDiffuseAlbedoTextureFormat(value unsafe.Pointer)
+	InputHeight() uint
+	SetInputHeight(value uint)
+	InputWidth() uint
+	SetInputWidth(value uint)
+	AutoExposureEnabled() bool
+	SetAutoExposureEnabled(value bool)
+	DenoiseStrengthMaskTextureEnabled() bool
+	SetDenoiseStrengthMaskTextureEnabled(value bool)
+	ReactiveMaskTextureEnabled() bool
+	SetReactiveMaskTextureEnabled(value bool)
+	SpecularHitDistanceTextureEnabled() bool
+	SetSpecularHitDistanceTextureEnabled(value bool)
+	TransparencyOverlayTextureEnabled() bool
+	SetTransparencyOverlayTextureEnabled(value bool)
+	MotionTextureFormat() unsafe.Pointer
+	SetMotionTextureFormat(value unsafe.Pointer)
+	NormalTextureFormat() unsafe.Pointer
+	SetNormalTextureFormat(value unsafe.Pointer)
+	OutputHeight() uint
+	SetOutputHeight(value uint)
+	OutputTextureFormat() unsafe.Pointer
+	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputWidth() uint
+	SetOutputWidth(value uint)
+	ReactiveMaskTextureFormat() unsafe.Pointer
+	SetReactiveMaskTextureFormat(value unsafe.Pointer)
+	RequiresSynchronousInitialization() bool
+	SetRequiresSynchronousInitialization(value bool)
+	RoughnessTextureFormat() unsafe.Pointer
+	SetRoughnessTextureFormat(value unsafe.Pointer)
+	SpecularAlbedoTextureFormat() unsafe.Pointer
+	SetSpecularAlbedoTextureFormat(value unsafe.Pointer)
+	SpecularHitDistanceTextureFormat() unsafe.Pointer
+	SetSpecularHitDistanceTextureFormat(value unsafe.Pointer)
+	TransparencyOverlayTextureFormat() unsafe.Pointer
+	SetTransparencyOverlayTextureFormat(value unsafe.Pointer)
+	IsAutoExposureEnabled() bool
+	SetIsAutoExposureEnabled(value bool)
+	IsDenoiseStrengthMaskTextureEnabled() bool
+	SetIsDenoiseStrengthMaskTextureEnabled(value bool)
+	IsReactiveMaskTextureEnabled() bool
+	SetIsReactiveMaskTextureEnabled(value bool)
+	IsSpecularHitDistanceTextureEnabled() bool
+	SetIsSpecularHitDistanceTextureEnabled(value bool)
+	IsTransparencyOverlayTextureEnabled() bool
+	SetIsTransparencyOverlayTextureEnabled(value bool)
 }
 
 //
@@ -80,16 +134,16 @@ func NewFXTemporalDenoisedScalerDescriptor() FXTemporalDenoisedScalerDescriptor 
 // Returns the largest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportedInputContentMaxScale(device:)
-func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
+func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) float32 {
+	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
 	return rv
 }
 
 // Returns the smallest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportedInputContentMinScale(device:)
-func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
+func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) float32 {
+	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
 	return rv
 }
 

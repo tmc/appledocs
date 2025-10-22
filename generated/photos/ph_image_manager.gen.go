@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,12 +33,14 @@ type IPHImageManager interface {
 	objectivec.IObject
 	CancelImageRequest(requestID IPHImageRequestID)
 	RequestAVAssetForVideoOptionsResultHandler(asset IPHAsset, options PHVideoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
-	RequestExportSessionForVideoOptionsExportPresetResultHandler(asset IPHAsset, options PHVideoRequestOptions, exportPreset appkit.string, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestExportSessionForVideoOptionsExportPresetResultHandler(asset IPHAsset, options PHVideoRequestOptions, exportPreset string, resultHandler unsafe.Pointer) PHImageRequestID
 	RequestImageForAssetTargetSizeContentModeOptionsResultHandler(asset IPHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
 	RequestImageDataAndOrientationForAssetOptionsResultHandler(asset IPHAsset, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
 	RequestImageDataForAssetOptionsResultHandler(asset IPHAsset, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
 	RequestLivePhotoForAssetTargetSizeContentModeOptionsResultHandler(asset IPHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHLivePhotoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
 	RequestPlayerItemForVideoOptionsResultHandler(asset IPHAsset, options PHVideoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
+	PHImageManagerMaximumSize() coregraphics.CGSize
+	PHInvalidImageRequestID() PHImageRequestID
 }
 
 // An object that facilitates retrieving or generating preview thumbnails and asset data.
@@ -116,8 +117,8 @@ func (p_ PHImageManager) RequestAVAssetForVideoOptionsResultHandler(asset IPHAss
 // Requests an export session for writing the video asset’s data to a file, to be loaded asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestExportSession(forVideo:options:exportPreset:resultHandler:)
-func (p_ PHImageManager) RequestExportSessionForVideoOptionsExportPresetResultHandler(asset IPHAsset, options PHVideoRequestOptions, exportPreset appkit.string, resultHandler unsafe.Pointer) PHImageRequestID {
-	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestExportSessionForVideo:options:exportPreset:resultHandler:"), asset, options, exportPreset, resultHandler)
+func (p_ PHImageManager) RequestExportSessionForVideoOptionsExportPresetResultHandler(asset IPHAsset, options PHVideoRequestOptions, exportPreset string, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestExportSessionForVideo:options:exportPreset:resultHandler:"), asset, options, objc.String(exportPreset), resultHandler)
 	return rv
 }
 

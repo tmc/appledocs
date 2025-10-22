@@ -29,6 +29,7 @@ type _CComparisonLayerClass struct {
 // An interface definition for the [CComparisonLayer] class.
 type ICComparisonLayer interface {
 	ICLayer
+	Operation() CComparisonOperation
 }
 
 // A layer that performs elementwise comparison of two tensors.

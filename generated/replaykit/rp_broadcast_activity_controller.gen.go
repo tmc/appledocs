@@ -32,6 +32,8 @@ type _RPBroadcastActivityControllerClass struct {
 // An interface definition for the [RPBroadcastActivityController] class.
 type IRPBroadcastActivityController interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A controller object that presents the macOS broadcast picker.
@@ -83,8 +85,8 @@ func NewRPBroadcastActivityController() RPBroadcastActivityController {
 // Presents a list of available broadcast services for the user to select.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityController/showBroadcastPicker(at:from:preferredExtensionIdentifier:completionHandler:)
-func (rc _RPBroadcastActivityControllerClass) ShowBroadcastPickerAtPointFromWindowPreferredExtensionIdentifierCompletionHandler(point coregraphics.CGPoint, window appkit.IWindow, preferredExtension appkit.string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:"), point, window, preferredExtension, handler)
+func (rc _RPBroadcastActivityControllerClass) ShowBroadcastPickerAtPointFromWindowPreferredExtensionIdentifierCompletionHandler(point coregraphics.CGPoint, window appkit.IWindow, preferredExtension string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:"), point, window, objc.String(preferredExtension), handler)
 }
 
 // The broadcast activity controller’s delegate object.

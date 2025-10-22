@@ -30,6 +30,16 @@ type _HKSourceRevisionClass struct {
 // An interface definition for the [HKSourceRevision] class.
 type IHKSourceRevision interface {
 	objectivec.IObject
+	SourceRevision() HKSourceRevision
+	SetSourceRevision(value IHKSourceRevision)
+	OperatingSystemVersion() unsafe.Pointer
+	SetOperatingSystemVersion(value unsafe.Pointer)
+	ProductType() string
+	SetProductType(value string)
+	Source() HKSource
+	SetSource(value IHKSource)
+	Version() string
+	SetVersion(value string)
 }
 
 // An object indicating the source of a HealthKit sample.
@@ -119,8 +129,8 @@ func (h_ HKSourceRevision) SetOperatingSystemVersion(value unsafe.Pointer) {
 // A string that identifies the device used to save a sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
-func (h_ HKSourceRevision) ProductType() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("productType"))
+func (h_ HKSourceRevision) ProductType() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("productType"))
 	return rv
 }
 
@@ -130,8 +140,8 @@ func (h_ HKSourceRevision) ProductType() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
-func (h_ HKSourceRevision) SetProductType(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setProductType:"), value)
+func (h_ HKSourceRevision) SetProductType(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setProductType:"), objc.String(value))
 }
 
 // The source for a sample.
@@ -155,8 +165,8 @@ func (h_ HKSourceRevision) SetSource(value IHKSource) {
 // A string that identifies a particular version of the source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
-func (h_ HKSourceRevision) Version() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("version"))
+func (h_ HKSourceRevision) Version() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -166,8 +176,8 @@ func (h_ HKSourceRevision) Version() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
-func (h_ HKSourceRevision) SetVersion(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), value)
+func (h_ HKSourceRevision) SetVersion(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 
 

@@ -30,6 +30,11 @@ type _CharacterSetClass struct {
 // An interface definition for the [CharacterSet] class.
 type ICharacterSet interface {
 	objectivec.IObject
+	InvertedSet() NSCharacterSet
+	BitmapRepresentation() Data
+	SetBitmapRepresentation(value IData)
+	Inverted() CharacterSet
+	SetInverted(value ICharacterSet)
 }
 
 // An object representing a fixed set of Unicode character values for use in search operations.

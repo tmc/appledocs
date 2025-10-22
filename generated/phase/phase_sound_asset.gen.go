@@ -30,6 +30,9 @@ type _PHASESoundAssetClass struct {
 // An interface definition for the [PHASESoundAsset] class.
 type IPHASESoundAsset interface {
 	IPHASEAsset
+	Data() foundation.NSData
+	Type() PHASEAssetType
+	Url() foundation.URL
 }
 
 // A sound resource stored in the asset registry.

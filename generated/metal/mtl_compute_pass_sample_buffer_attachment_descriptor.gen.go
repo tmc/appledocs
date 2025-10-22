@@ -30,6 +30,12 @@ type _ComputePassSampleBufferAttachmentDescriptorClass struct {
 // An interface definition for the [ComputePassSampleBufferAttachmentDescriptor] class.
 type IComputePassSampleBufferAttachmentDescriptor interface {
 	objectivec.IObject
+	StartOfEncoderSampleIndex() uint
+	SetStartOfEncoderSampleIndex(value uint)
+	EndOfEncoderSampleIndex() int
+	SetEndOfEncoderSampleIndex(value int)
+	SampleBuffer() unsafe.Pointer
+	SetSampleBuffer(value unsafe.Pointer)
 }
 
 // A configuration that instructs the GPU where to store counter data from the beginning and end of a compute pass.

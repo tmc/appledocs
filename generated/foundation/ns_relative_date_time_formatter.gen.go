@@ -29,6 +29,16 @@ type _RelativeDateTimeFormatterClass struct {
 // An interface definition for the [RelativeDateTimeFormatter] class.
 type IRelativeDateTimeFormatter interface {
 	IFormatter
+	Calendar() Calendar
+	SetCalendar(value ICalendar)
+	DateTimeStyle() unsafe.Pointer
+	SetDateTimeStyle(value unsafe.Pointer)
+	FormattingContext() int
+	SetFormattingContext(value int)
+	Locale() Locale
+	SetLocale(value ILocale)
+	UnitsStyle() unsafe.Pointer
+	SetUnitsStyle(value unsafe.Pointer)
 }
 
 // A formatter that creates locale-aware string representations of a relative date or time.

@@ -29,6 +29,16 @@ type _HumanBodyPose3DObservationClass struct {
 // An interface definition for the [HumanBodyPose3DObservation] class.
 type IHumanBodyPose3DObservation interface {
 	IRecognizedPoints3DObservation
+	AvailableJointNames() unsafe.Pointer
+	SetAvailableJointNames(value unsafe.Pointer)
+	AvailableJointsGroupNames() unsafe.Pointer
+	SetAvailableJointsGroupNames(value unsafe.Pointer)
+	BodyHeight() float32
+	SetBodyHeight(value float32)
+	CameraOriginMatrix() unsafe.Pointer
+	SetCameraOriginMatrix(value unsafe.Pointer)
+	HeightEstimation() unsafe.Pointer
+	SetHeightEstimation(value unsafe.Pointer)
 }
 
 // An observation that provides the 3D body points the request recognizes.
@@ -118,8 +128,8 @@ func (h_ HumanBodyPose3DObservation) SetAvailableJointsGroupNames(value unsafe.P
 // The estimated human body height, in meters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/bodyheight
-func (h_ HumanBodyPose3DObservation) BodyHeight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("bodyHeight"))
+func (h_ HumanBodyPose3DObservation) BodyHeight() float32 {
+	rv := objc.Send[float32](h_.ID, objc.Sel("bodyHeight"))
 	return rv
 }
 
@@ -129,7 +139,7 @@ func (h_ HumanBodyPose3DObservation) BodyHeight() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/bodyheight
-func (h_ HumanBodyPose3DObservation) SetBodyHeight(value unsafe.Pointer) {
+func (h_ HumanBodyPose3DObservation) SetBodyHeight(value float32) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBodyHeight:"), value)
 }
 

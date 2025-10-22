@@ -31,6 +31,12 @@ type _MTRGroupKeyManagementClusterKeySetWriteParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetWriteParams] class.
 type IMTRGroupKeyManagementClusterKeySetWriteParams interface {
 	objectivec.IObject
+	GroupKeySet() MTRGroupKeyManagementClusterGroupKeySetStruct
+	SetGroupKeySet(value IMTRGroupKeyManagementClusterGroupKeySetStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

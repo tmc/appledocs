@@ -33,6 +33,46 @@ type _AssetWriterInputClass struct {
 type IAssetWriterInput interface {
 	objectivec.IObject
 	AppendSampleBuffer(sampleBuffer unsafe.Pointer) bool
+	CanPerformMultiplePasses() bool
+	SetCanPerformMultiplePasses(value bool)
+	CurrentPassDescription() unsafe.Pointer
+	SetCurrentPassDescription(value unsafe.Pointer)
+	ExpectsMediaDataInRealTime() bool
+	SetExpectsMediaDataInRealTime(value bool)
+	ExtendedLanguageTag() string
+	SetExtendedLanguageTag(value string)
+	IsReadyForMoreMediaData() bool
+	SetIsReadyForMoreMediaData(value bool)
+	LanguageCode() string
+	SetLanguageCode(value string)
+	MarksOutputTrackAsEnabled() bool
+	SetMarksOutputTrackAsEnabled(value bool)
+	MediaDataLocation() unsafe.Pointer
+	SetMediaDataLocation(value unsafe.Pointer)
+	MediaTimeScale() unsafe.Pointer
+	SetMediaTimeScale(value unsafe.Pointer)
+	MediaType() MediaType
+	SetMediaType(value MediaType)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
+	NaturalSize() coregraphics.CGSize
+	SetNaturalSize(value coregraphics.CGSize)
+	OutputSettings() string
+	SetOutputSettings(value string)
+	PerformsMultiPassEncodingIfSupported() bool
+	SetPerformsMultiPassEncodingIfSupported(value bool)
+	PreferredMediaChunkAlignment() int
+	SetPreferredMediaChunkAlignment(value int)
+	PreferredMediaChunkDuration() unsafe.Pointer
+	SetPreferredMediaChunkDuration(value unsafe.Pointer)
+	PreferredVolume() float32
+	SetPreferredVolume(value float32)
+	SampleReferenceBaseURL() foundation.URL
+	SetSampleReferenceBaseURL(value foundation.IURL)
+	SourceFormatHint() unsafe.Pointer
+	SetSourceFormatHint(value unsafe.Pointer)
+	Transform() coregraphics.CGAffineTransform
+	SetTransform(value coregraphics.CGAffineTransform)
 }
 
 // An object that appends media samples to a track in an asset writer’s output file.

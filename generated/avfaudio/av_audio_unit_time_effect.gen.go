@@ -29,6 +29,8 @@ type _AudioUnitTimeEffectClass struct {
 // An interface definition for the [AudioUnitTimeEffect] class.
 type IAudioUnitTimeEffect interface {
 	IAudioUnit
+	Bypass() bool
+	SetBypass(value bool)
 }
 
 // An object that processes audio in nonreal time.

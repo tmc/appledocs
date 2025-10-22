@@ -29,6 +29,22 @@ type _CKFetchRecordsOperationClass struct {
 // An interface definition for the [CKFetchRecordsOperation] class.
 type ICKFetchRecordsOperation interface {
 	ICKDatabaseOperation
+	DesiredKeys() []string
+	SetDesiredKeys(value []string)
+	FetchRecordsCompletionBlock() unsafe.Pointer
+	SetFetchRecordsCompletionBlock(value unsafe.Pointer)
+	PerRecordCompletionBlock() unsafe.Pointer
+	SetPerRecordCompletionBlock(value unsafe.Pointer)
+	PerRecordProgressBlock() unsafe.Pointer
+	SetPerRecordProgressBlock(value unsafe.Pointer)
+	RecordIDs() []CKRecordID
+	SetRecordIDs(value []CKRecordID)
+	FetchRecordsResultBlock() unsafe.Pointer
+	SetFetchRecordsResultBlock(value unsafe.Pointer)
+	PerRecordResultBlock() unsafe.Pointer
+	SetPerRecordResultBlock(value unsafe.Pointer)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
 }
 
 // An operation for retrieving records from a database.

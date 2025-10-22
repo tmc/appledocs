@@ -29,6 +29,8 @@ type _ChangePlaybackRateCommandEventClass struct {
 // An interface definition for the [ChangePlaybackRateCommandEvent] class.
 type IChangePlaybackRateCommandEvent interface {
 	IRemoteCommandEvent
+	PlaybackRate() float32
+	SetPlaybackRate(value float32)
 }
 
 // An event requesting a change in the playback rate.
@@ -82,8 +84,8 @@ func NewChangePlaybackRateCommandEvent() ChangePlaybackRateCommandEvent {
 // The chosen playback rate for the command event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent/playbackrate
-func (c_ ChangePlaybackRateCommandEvent) PlaybackRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("playbackRate"))
+func (c_ ChangePlaybackRateCommandEvent) PlaybackRate() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("playbackRate"))
 	return rv
 }
 
@@ -93,7 +95,7 @@ func (c_ ChangePlaybackRateCommandEvent) PlaybackRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent/playbackrate
-func (c_ ChangePlaybackRateCommandEvent) SetPlaybackRate(value unsafe.Pointer) {
+func (c_ ChangePlaybackRateCommandEvent) SetPlaybackRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlaybackRate:"), value)
 }
 

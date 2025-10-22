@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MIDIUMPMutableFunctionBlock] class.
@@ -32,7 +31,8 @@ type IMIDIUMPMutableFunctionBlock interface {
 	IMIDIUMPFunctionBlock
 	ReconfigureWithFirstGroupDirectionMIDI1InfoUIHintError(firstGroup IMIDIUMPGroupNumber, direction MIDIUMPFunctionBlockDirection, MIDI1Info IMIDIUMPFunctionBlockMIDI1Info, UIHint IMIDIUMPFunctionBlockUIHint, error_ unsafe.Pointer) bool
 	SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool
-	SetNameError(name appkit.string, error_ unsafe.Pointer) bool
+	SetNameError(name string, error_ unsafe.Pointer) bool
+	UMPEndpoint() MIDIUMPMutableEndpoint
 }
 
 //
@@ -82,9 +82,9 @@ func NewMIDIUMPMutableFunctionBlock() MIDIUMPMutableFunctionBlock {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock/init(name:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:midi1Info:uiHint:isEnabled:)
-func NewMIDIUMPMutableFunctionBlockWithNameDirectionFirstGroupTotalGroupsSpannedMaxSysEx8StreamsMIDI1InfoUIHintIsEnabled(name appkit.string, direction MIDIUMPFunctionBlockDirection, firstGroup IMIDIUMPGroupNumber, totalGroupsSpanned IMIDIUInteger7, maxSysEx8Streams IMIDIUInteger7, MIDI1Info IMIDIUMPFunctionBlockMIDI1Info, UIHint IMIDIUMPFunctionBlockUIHint, isEnabled bool) MIDIUMPMutableFunctionBlock {
+func NewMIDIUMPMutableFunctionBlockWithNameDirectionFirstGroupTotalGroupsSpannedMaxSysEx8StreamsMIDI1InfoUIHintIsEnabled(name string, direction MIDIUMPFunctionBlockDirection, firstGroup IMIDIUMPGroupNumber, totalGroupsSpanned IMIDIUInteger7, maxSysEx8Streams IMIDIUInteger7, MIDI1Info IMIDIUMPFunctionBlockMIDI1Info, UIHint IMIDIUMPFunctionBlockUIHint, isEnabled bool) MIDIUMPMutableFunctionBlock {
 	instance := getMIDIUMPMutableFunctionBlockClass().Alloc()
-	rv := objc.Send[MIDIUMPMutableFunctionBlock](instance.ID, objc.Sel("initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:"), name, direction, firstGroup, totalGroupsSpanned, maxSysEx8Streams, MIDI1Info, UIHint, isEnabled)
+	rv := objc.Send[MIDIUMPMutableFunctionBlock](instance.ID, objc.Sel("initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:"), objc.String(name), direction, firstGroup, totalGroupsSpanned, maxSysEx8Streams, MIDI1Info, UIHint, isEnabled)
 	rv.Autorelease()
 	return rv
 }
@@ -106,8 +106,8 @@ func (m_ MIDIUMPMutableFunctionBlock) SetEnabledError(isEnabled bool, error_ uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableFunctionBlock/setName(_:)
-func (m_ MIDIUMPMutableFunctionBlock) SetNameError(name appkit.string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), name, error_)
+func (m_ MIDIUMPMutableFunctionBlock) SetNameError(name string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error_)
 	return rv
 }
 

@@ -31,6 +31,8 @@ type _MTRWiFiNetworkDiagnosticsClusterDisconnectionEventClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent] class.
 type IMTRWiFiNetworkDiagnosticsClusterDisconnectionEvent interface {
 	objectivec.IObject
+	ReasonCode() foundation.Number
+	SetReasonCode(value foundation.INumber)
 }
 
 //

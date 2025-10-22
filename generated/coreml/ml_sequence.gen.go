@@ -31,6 +31,12 @@ type _SequenceClass struct {
 // An interface definition for the [Sequence] class.
 type ISequence interface {
 	objectivec.IObject
+	Int64Values() foundation.Number
+	SetInt64Values(value foundation.INumber)
+	StringValues() string
+	SetStringValues(value string)
+	Type() FeatureType
+	SetType(value FeatureType)
 }
 
 // A machine learning collection type that stores a series of strings or integers.
@@ -102,8 +108,8 @@ func (s_ Sequence) SetInt64Values(value foundation.INumber) {
 // An array of strings in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) StringValues() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("stringValues"))
+func (s_ Sequence) StringValues() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("stringValues"))
 	return rv
 }
 
@@ -113,8 +119,8 @@ func (s_ Sequence) StringValues() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) SetStringValues(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), value)
+func (s_ Sequence) SetStringValues(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
 }
 
 // The underlying type of the sequence’s elements.

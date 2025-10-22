@@ -32,6 +32,22 @@ type _PDFDestinationClass struct {
 // An interface definition for the [PDFDestination] class.
 type IPDFDestination interface {
 	objectivec.IObject
+	Page() PDFPage
+	Action() PDFAction
+	SetAction(value IPDFAction)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.IDate)
+	Type() string
+	SetType(value string)
+	UserName() string
+	SetUserName(value string)
+	Point() coregraphics.CGPoint
+	SetPoint(value coregraphics.CGPoint)
+	Zoom() float64
+	SetZoom(value float64)
+	CurrentDestination() PDFDestination
+	SetCurrentDestination(value IPDFDestination)
+	KPDFDestinationUnspecifiedValue() float64
 }
 
 // A object describes a point on a PDF page.
@@ -129,8 +145,8 @@ func (p_ PDFDestination) SetModificationDate(value foundation.IDate) {
 // Returns the type of the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) Type() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("type"))
+func (p_ PDFDestination) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -140,15 +156,15 @@ func (p_ PDFDestination) Type() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) SetType(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+func (p_ PDFDestination) SetType(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }
 
 // Returns the name of the user who created the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFDestination) UserName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("userName"))
+func (p_ PDFDestination) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -158,8 +174,8 @@ func (p_ PDFDestination) UserName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFDestination) SetUserName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
+func (p_ PDFDestination) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 // Returns the point, in page space, that the destination refers to.

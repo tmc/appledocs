@@ -30,6 +30,8 @@ type _MTROvenCavityOperationalStateClusterOperationalErrorEventClass struct {
 // An interface definition for the [MTROvenCavityOperationalStateClusterOperationalErrorEvent] class.
 type IMTROvenCavityOperationalStateClusterOperationalErrorEvent interface {
 	objectivec.IObject
+	ErrorState() MTROvenCavityOperationalStateClusterErrorStateStruct
+	SetErrorState(value IMTROvenCavityOperationalStateClusterErrorStateStruct)
 }
 
 //

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -33,6 +32,101 @@ type _RAWFilterClass struct {
 // An interface definition for the [RAWFilter] class.
 type IRAWFilter interface {
 	IFilter
+	BaselineExposure() float32
+	SetBaselineExposure(value float32)
+	BoostAmount() float32
+	SetBoostAmount(value float32)
+	BoostShadowAmount() float32
+	SetBoostShadowAmount(value float32)
+	ColorNoiseReductionAmount() float32
+	SetColorNoiseReductionAmount(value float32)
+	ContrastAmount() float32
+	SetContrastAmount(value float32)
+	DecoderVersion() RAWDecoderVersion
+	SetDecoderVersion(value IRAWDecoderVersion)
+	DetailAmount() float32
+	SetDetailAmount(value float32)
+	Exposure() float32
+	SetExposure(value float32)
+	ExtendedDynamicRangeAmount() float32
+	SetExtendedDynamicRangeAmount(value float32)
+	ColorNoiseReductionSupported() bool
+	ContrastSupported() bool
+	DetailSupported() bool
+	DraftModeEnabled() bool
+	SetDraftModeEnabled(value bool)
+	GamutMappingEnabled() bool
+	SetGamutMappingEnabled(value bool)
+	HighlightRecoveryEnabled() bool
+	SetHighlightRecoveryEnabled(value bool)
+	HighlightRecoverySupported() bool
+	LensCorrectionEnabled() bool
+	SetLensCorrectionEnabled(value bool)
+	LensCorrectionSupported() bool
+	LocalToneMapSupported() bool
+	LuminanceNoiseReductionSupported() bool
+	MoireReductionSupported() bool
+	SharpnessSupported() bool
+	LinearSpaceFilter() CIFilter
+	SetLinearSpaceFilter(value ICIFilter)
+	LocalToneMapAmount() float32
+	SetLocalToneMapAmount(value float32)
+	LuminanceNoiseReductionAmount() float32
+	SetLuminanceNoiseReductionAmount(value float32)
+	MoireReductionAmount() float32
+	SetMoireReductionAmount(value float32)
+	NativeSize() coregraphics.CGSize
+	NeutralChromaticity() coregraphics.CGPoint
+	SetNeutralChromaticity(value coregraphics.CGPoint)
+	NeutralLocation() coregraphics.CGPoint
+	SetNeutralLocation(value coregraphics.CGPoint)
+	NeutralTemperature() float32
+	SetNeutralTemperature(value float32)
+	NeutralTint() float32
+	SetNeutralTint(value float32)
+	Orientation() unsafe.Pointer
+	SetOrientation(value unsafe.Pointer)
+	PortraitEffectsMatte() CIImage
+	PreviewImage() CIImage
+	Properties() objc.ID
+	ScaleFactor() float32
+	SetScaleFactor(value float32)
+	SemanticSegmentationGlassesMatte() CIImage
+	SemanticSegmentationHairMatte() CIImage
+	SemanticSegmentationSkinMatte() CIImage
+	SemanticSegmentationSkyMatte() CIImage
+	SemanticSegmentationTeethMatte() CIImage
+	ShadowBias() float32
+	SetShadowBias(value float32)
+	SharpnessAmount() float32
+	SetSharpnessAmount(value float32)
+	SupportedDecoderVersions() []string
+	IsColorNoiseReductionSupported() bool
+	SetIsColorNoiseReductionSupported(value bool)
+	IsContrastSupported() bool
+	SetIsContrastSupported(value bool)
+	IsDetailSupported() bool
+	SetIsDetailSupported(value bool)
+	IsDraftModeEnabled() bool
+	SetIsDraftModeEnabled(value bool)
+	IsGamutMappingEnabled() bool
+	SetIsGamutMappingEnabled(value bool)
+	IsHighlightRecoveryEnabled() bool
+	SetIsHighlightRecoveryEnabled(value bool)
+	IsHighlightRecoverySupported() bool
+	SetIsHighlightRecoverySupported(value bool)
+	IsLensCorrectionEnabled() bool
+	SetIsLensCorrectionEnabled(value bool)
+	IsLensCorrectionSupported() bool
+	SetIsLensCorrectionSupported(value bool)
+	IsLocalToneMapSupported() bool
+	SetIsLocalToneMapSupported(value bool)
+	IsLuminanceNoiseReductionSupported() bool
+	SetIsLuminanceNoiseReductionSupported(value bool)
+	IsMoireReductionSupported() bool
+	SetIsMoireReductionSupported(value bool)
+	IsSharpnessSupported() bool
+	SetIsSharpnessSupported(value bool)
 }
 
 // A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner.
@@ -100,8 +194,8 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties o
 // Creates a RAW filter from the image data and type hint that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func NewRAWFilterWithImageDataIdentifierHint(data foundation.IData, identifierHint appkit.string) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
+func NewRAWFilterWithImageDataIdentifierHint(data foundation.IData, identifierHint string) RAWFilter {
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
 
@@ -127,8 +221,8 @@ func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointe
 // Creates a RAW filter from the image data and type hint that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.IData, identifierHint appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
+func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.IData, identifierHint string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
 
@@ -150,8 +244,8 @@ func (rc _RAWFilterClass) SupportedCameraModels() []string {
 // A value that indicates the baseline exposure to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/baselineExposure
-func (r_ RAWFilter) BaselineExposure() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("baselineExposure"))
+func (r_ RAWFilter) BaselineExposure() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("baselineExposure"))
 	return rv
 }
 
@@ -161,15 +255,15 @@ func (r_ RAWFilter) BaselineExposure() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/baselineExposure
-func (r_ RAWFilter) SetBaselineExposure(value unsafe.Pointer) {
+func (r_ RAWFilter) SetBaselineExposure(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaselineExposure:"), value)
 }
 
 // A value that indicates the amount of global tone curve to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostAmount
-func (r_ RAWFilter) BoostAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("boostAmount"))
+func (r_ RAWFilter) BoostAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("boostAmount"))
 	return rv
 }
 
@@ -179,15 +273,15 @@ func (r_ RAWFilter) BoostAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostAmount
-func (r_ RAWFilter) SetBoostAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetBoostAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBoostAmount:"), value)
 }
 
 // A value that indicates the amount to boost the shadow areas of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostShadowAmount
-func (r_ RAWFilter) BoostShadowAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("boostShadowAmount"))
+func (r_ RAWFilter) BoostShadowAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("boostShadowAmount"))
 	return rv
 }
 
@@ -197,15 +291,15 @@ func (r_ RAWFilter) BoostShadowAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostShadowAmount
-func (r_ RAWFilter) SetBoostShadowAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetBoostShadowAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBoostShadowAmount:"), value)
 }
 
 // A value that indicates the amount of chroma noise reduction to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/colorNoiseReductionAmount
-func (r_ RAWFilter) ColorNoiseReductionAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("colorNoiseReductionAmount"))
+func (r_ RAWFilter) ColorNoiseReductionAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("colorNoiseReductionAmount"))
 	return rv
 }
 
@@ -215,15 +309,15 @@ func (r_ RAWFilter) ColorNoiseReductionAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/colorNoiseReductionAmount
-func (r_ RAWFilter) SetColorNoiseReductionAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetColorNoiseReductionAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setColorNoiseReductionAmount:"), value)
 }
 
 // A value that indicates the amount of local contrast to apply to the edges of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/contrastAmount
-func (r_ RAWFilter) ContrastAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("contrastAmount"))
+func (r_ RAWFilter) ContrastAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("contrastAmount"))
 	return rv
 }
 
@@ -233,7 +327,7 @@ func (r_ RAWFilter) ContrastAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/contrastAmount
-func (r_ RAWFilter) SetContrastAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetContrastAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setContrastAmount:"), value)
 }
 
@@ -258,8 +352,8 @@ func (r_ RAWFilter) SetDecoderVersion(value IRAWDecoderVersion) {
 // A value that indicates the amount of detail enhancement to apply to the edges of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/detailAmount
-func (r_ RAWFilter) DetailAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("detailAmount"))
+func (r_ RAWFilter) DetailAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("detailAmount"))
 	return rv
 }
 
@@ -269,15 +363,15 @@ func (r_ RAWFilter) DetailAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/detailAmount
-func (r_ RAWFilter) SetDetailAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetDetailAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDetailAmount:"), value)
 }
 
 // A value that indicates the amount of exposure to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/exposure
-func (r_ RAWFilter) Exposure() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("exposure"))
+func (r_ RAWFilter) Exposure() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("exposure"))
 	return rv
 }
 
@@ -287,15 +381,15 @@ func (r_ RAWFilter) Exposure() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/exposure
-func (r_ RAWFilter) SetExposure(value unsafe.Pointer) {
+func (r_ RAWFilter) SetExposure(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExposure:"), value)
 }
 
 // A value that indicates the amount of extended dynamic range (EDR) to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/extendedDynamicRangeAmount
-func (r_ RAWFilter) ExtendedDynamicRangeAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("extendedDynamicRangeAmount"))
+func (r_ RAWFilter) ExtendedDynamicRangeAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("extendedDynamicRangeAmount"))
 	return rv
 }
 
@@ -305,7 +399,7 @@ func (r_ RAWFilter) ExtendedDynamicRangeAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/extendedDynamicRangeAmount
-func (r_ RAWFilter) SetExtendedDynamicRangeAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetExtendedDynamicRangeAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExtendedDynamicRangeAmount:"), value)
 }
 
@@ -470,8 +564,8 @@ func (r_ RAWFilter) SetLinearSpaceFilter(value ICIFilter) {
 // A value that indicates the amount of local tone curve to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/localToneMapAmount
-func (r_ RAWFilter) LocalToneMapAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("localToneMapAmount"))
+func (r_ RAWFilter) LocalToneMapAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("localToneMapAmount"))
 	return rv
 }
 
@@ -481,15 +575,15 @@ func (r_ RAWFilter) LocalToneMapAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/localToneMapAmount
-func (r_ RAWFilter) SetLocalToneMapAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetLocalToneMapAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLocalToneMapAmount:"), value)
 }
 
 // A value that indicates the amount of luminance noise reduction to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/luminanceNoiseReductionAmount
-func (r_ RAWFilter) LuminanceNoiseReductionAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("luminanceNoiseReductionAmount"))
+func (r_ RAWFilter) LuminanceNoiseReductionAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("luminanceNoiseReductionAmount"))
 	return rv
 }
 
@@ -499,15 +593,15 @@ func (r_ RAWFilter) LuminanceNoiseReductionAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/luminanceNoiseReductionAmount
-func (r_ RAWFilter) SetLuminanceNoiseReductionAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetLuminanceNoiseReductionAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLuminanceNoiseReductionAmount:"), value)
 }
 
 // A value that indicates the amount of moire artifact reduction to apply to high frequency areas of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/moireReductionAmount
-func (r_ RAWFilter) MoireReductionAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("moireReductionAmount"))
+func (r_ RAWFilter) MoireReductionAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("moireReductionAmount"))
 	return rv
 }
 
@@ -517,7 +611,7 @@ func (r_ RAWFilter) MoireReductionAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/moireReductionAmount
-func (r_ RAWFilter) SetMoireReductionAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetMoireReductionAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMoireReductionAmount:"), value)
 }
 
@@ -568,8 +662,8 @@ func (r_ RAWFilter) SetNeutralLocation(value coregraphics.CGPoint) {
 // A value that indicates the amount of white balance based on temperature values to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTemperature
-func (r_ RAWFilter) NeutralTemperature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("neutralTemperature"))
+func (r_ RAWFilter) NeutralTemperature() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("neutralTemperature"))
 	return rv
 }
 
@@ -579,15 +673,15 @@ func (r_ RAWFilter) NeutralTemperature() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTemperature
-func (r_ RAWFilter) SetNeutralTemperature(value unsafe.Pointer) {
+func (r_ RAWFilter) SetNeutralTemperature(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNeutralTemperature:"), value)
 }
 
 // A value that indicates the amount of white balance based on tint values to apply to the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTint
-func (r_ RAWFilter) NeutralTint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("neutralTint"))
+func (r_ RAWFilter) NeutralTint() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("neutralTint"))
 	return rv
 }
 
@@ -597,7 +691,7 @@ func (r_ RAWFilter) NeutralTint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTint
-func (r_ RAWFilter) SetNeutralTint(value unsafe.Pointer) {
+func (r_ RAWFilter) SetNeutralTint(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNeutralTint:"), value)
 }
 
@@ -646,8 +740,8 @@ func (r_ RAWFilter) Properties() objc.ID {
 // A value that indicates the desired scale factor to draw the output image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/scaleFactor
-func (r_ RAWFilter) ScaleFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("scaleFactor"))
+func (r_ RAWFilter) ScaleFactor() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("scaleFactor"))
 	return rv
 }
 
@@ -657,7 +751,7 @@ func (r_ RAWFilter) ScaleFactor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/scaleFactor
-func (r_ RAWFilter) SetScaleFactor(value unsafe.Pointer) {
+func (r_ RAWFilter) SetScaleFactor(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScaleFactor:"), value)
 }
 
@@ -704,8 +798,8 @@ func (r_ RAWFilter) SemanticSegmentationTeethMatte() CIImage {
 // A value that indicates the amount to subtract from the shadows in the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/shadowBias
-func (r_ RAWFilter) ShadowBias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("shadowBias"))
+func (r_ RAWFilter) ShadowBias() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("shadowBias"))
 	return rv
 }
 
@@ -715,15 +809,15 @@ func (r_ RAWFilter) ShadowBias() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/shadowBias
-func (r_ RAWFilter) SetShadowBias(value unsafe.Pointer) {
+func (r_ RAWFilter) SetShadowBias(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setShadowBias:"), value)
 }
 
 // A value that indicates the amount of sharpness to apply to the edges of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/sharpnessAmount
-func (r_ RAWFilter) SharpnessAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sharpnessAmount"))
+func (r_ RAWFilter) SharpnessAmount() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("sharpnessAmount"))
 	return rv
 }
 
@@ -733,7 +827,7 @@ func (r_ RAWFilter) SharpnessAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/sharpnessAmount
-func (r_ RAWFilter) SetSharpnessAmount(value unsafe.Pointer) {
+func (r_ RAWFilter) SetSharpnessAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSharpnessAmount:"), value)
 }
 

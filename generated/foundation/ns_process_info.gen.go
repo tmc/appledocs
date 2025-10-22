@@ -40,6 +40,41 @@ type IProcessInfo interface {
 	OperatingSystemName() String
 	PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason string, block unsafe.Pointer)
 	PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer)
+	ActiveProcessorCount() uint
+	Arguments() []string
+	Environment() unsafe.Pointer
+	FullUserName() string
+	GloballyUniqueString() string
+	LowPowerModeEnabled() bool
+	MacCatalystApp() bool
+	IOSAppOnMac() bool
+	IOSAppOnVision() bool
+	OperatingSystemVersionString() string
+	PhysicalMemory() uint64
+	ProcessIdentifier() int
+	ProcessName() string
+	SetProcessName(value string)
+	SystemUptime() TimeInterval
+	AutomaticTerminationSupportEnabled() bool
+	SetAutomaticTerminationSupportEnabled(value bool)
+	HostName() string
+	SetHostName(value string)
+	IsLowPowerModeEnabled() bool
+	SetIsLowPowerModeEnabled(value bool)
+	IsMacCatalystApp() bool
+	SetIsMacCatalystApp(value bool)
+	IsiOSAppOnMac() bool
+	SetIsiOSAppOnMac(value bool)
+	IsiOSAppOnVision() bool
+	SetIsiOSAppOnVision(value bool)
+	OperatingSystemVersion() unsafe.Pointer
+	SetOperatingSystemVersion(value unsafe.Pointer)
+	ProcessorCount() int
+	SetProcessorCount(value int)
+	ThermalState() unsafe.Pointer
+	SetThermalState(value unsafe.Pointer)
+	UserName() string
+	SetUserName(value string)
 }
 
 // A collection of information about the current process.

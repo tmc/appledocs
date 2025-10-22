@@ -30,6 +30,12 @@ type _MKPinAnnotationViewClass struct {
 // An interface definition for the [MKPinAnnotationView] class.
 type IMKPinAnnotationView interface {
 	IMKAnnotationView
+	AnimatesDrop() bool
+	SetAnimatesDrop(value bool)
+	PinColor() unsafe.Pointer
+	SetPinColor(value unsafe.Pointer)
+	PinTintColor() appkit.Color
+	SetPinTintColor(value appkit.IColor)
 }
 
 // An annotation view that displays a pin image on the map.

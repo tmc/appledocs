@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _OSSystemExtensionInfoClass struct {
 // An interface definition for the [OSSystemExtensionInfo] class.
 type IOSSystemExtensionInfo interface {
 	objectivec.IObject
+	BundleIdentifier() string
+	BundleShortVersion() string
+	BundleVersion() string
+	SetBundleVersion(value string)
 }
 
 //
@@ -78,22 +81,22 @@ func NewOSSystemExtensionInfo() OSSystemExtensionInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleIdentifier
-func (o_ OSSystemExtensionInfo) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleIdentifier"))
+func (o_ OSSystemExtensionInfo) BundleIdentifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleShortVersion
-func (o_ OSSystemExtensionInfo) BundleShortVersion() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleShortVersion"))
+func (o_ OSSystemExtensionInfo) BundleShortVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
-func (o_ OSSystemExtensionInfo) BundleVersion() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleVersion"))
+func (o_ OSSystemExtensionInfo) BundleVersion() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
 	return rv
 }
 
@@ -101,8 +104,8 @@ func (o_ OSSystemExtensionInfo) BundleVersion() appkit.string {
 // SetBundleVersion sets the value of the bundleVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
-func (o_ OSSystemExtensionInfo) SetBundleVersion(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleVersion:"), value)
+func (o_ OSSystemExtensionInfo) SetBundleVersion(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleVersion:"), objc.String(value))
 }
 
 

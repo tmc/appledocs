@@ -29,6 +29,10 @@ type _INSearchForMediaIntentClass struct {
 // An interface definition for the [INSearchForMediaIntent] class.
 type IINSearchForMediaIntent interface {
 	IINIntent
+	MediaItems() INMediaItem
+	SetMediaItems(value INMediaItem)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
 }
 
 // A request to search for a media item.

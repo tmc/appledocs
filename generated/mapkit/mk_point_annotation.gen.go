@@ -29,6 +29,8 @@ type _MKPointAnnotationClass struct {
 // An interface definition for the [MKPointAnnotation] class.
 type IMKPointAnnotation interface {
 	IMKShape
+	Coordinate() unsafe.Pointer
+	SetCoordinate(value unsafe.Pointer)
 }
 
 // A string-based piece of location-specific data that you apply to a specific point on a map.

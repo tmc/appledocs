@@ -31,6 +31,21 @@ type _WindowFeaturesClass struct {
 // An interface definition for the [WindowFeatures] class.
 type IWindowFeatures interface {
 	objectivec.IObject
+	Height() foundation.Number
+	AllowsResizing() foundation.Number
+	SetAllowsResizing(value foundation.INumber)
+	MenuBarVisibility() foundation.Number
+	SetMenuBarVisibility(value foundation.INumber)
+	StatusBarVisibility() foundation.Number
+	SetStatusBarVisibility(value foundation.INumber)
+	ToolbarsVisibility() foundation.Number
+	SetToolbarsVisibility(value foundation.INumber)
+	Width() foundation.Number
+	SetWidth(value foundation.INumber)
+	X() foundation.Number
+	SetX(value foundation.INumber)
+	Y() foundation.Number
+	SetY(value foundation.INumber)
 }
 
 // Display-related attributes that a webpage requests for its window.

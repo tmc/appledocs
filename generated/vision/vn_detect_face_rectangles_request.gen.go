@@ -29,6 +29,11 @@ type _DetectFaceRectanglesRequestClass struct {
 // An interface definition for the [DetectFaceRectanglesRequest] class.
 type IDetectFaceRectanglesRequest interface {
 	IImageBasedRequest
+	Results() VNFaceObservation
+	SetResults(value IVNFaceObservation)
+	VNDetectFaceRectanglesRequestRevision1() int
+	VNDetectFaceRectanglesRequestRevision2() int
+	VNDetectFaceRectanglesRequestRevision3() int
 }
 
 // A request that finds faces within an image.

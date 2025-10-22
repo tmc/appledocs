@@ -31,6 +31,10 @@ type _MTRTargetNavigatorClusterTargetInfoStructClass struct {
 // An interface definition for the [MTRTargetNavigatorClusterTargetInfoStruct] class.
 type IMTRTargetNavigatorClusterTargetInfoStruct interface {
 	objectivec.IObject
+	Identifier() foundation.Number
+	SetIdentifier(value foundation.INumber)
+	Name() string
+	SetName(value string)
 }
 
 //
@@ -93,8 +97,8 @@ func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetIdentifier(value foundati
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
-func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +106,8 @@ func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
-func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

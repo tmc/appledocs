@@ -31,6 +31,10 @@ type _IdentifierManagerClass struct {
 // An interface definition for the [IdentifierManager] class.
 type IIdentifierManager interface {
 	objectivec.IObject
+	AdvertisingIdentifier() foundation.UUID
+	AdvertisingTrackingEnabled() bool
+	IsAdvertisingTrackingEnabled() bool
+	SetIsAdvertisingTrackingEnabled(value bool)
 }
 
 // The object that contains the advertising identifier.

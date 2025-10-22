@@ -29,6 +29,18 @@ type _INSetTaskAttributeIntentClass struct {
 // An interface definition for the [INSetTaskAttributeIntent] class.
 type IINSetTaskAttributeIntent interface {
 	IINIntent
+	Priority() unsafe.Pointer
+	SetPriority(value unsafe.Pointer)
+	SpatialEventTrigger() unsafe.Pointer
+	SetSpatialEventTrigger(value unsafe.Pointer)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	TargetTask() unsafe.Pointer
+	SetTargetTask(value unsafe.Pointer)
+	TaskTitle() INSpeakableString
+	SetTaskTitle(value INSpeakableString)
+	TemporalEventTrigger() unsafe.Pointer
+	SetTemporalEventTrigger(value unsafe.Pointer)
 }
 
 // A request to modify the attributes of a task.

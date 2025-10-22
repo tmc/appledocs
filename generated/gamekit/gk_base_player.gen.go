@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _BasePlayerClass struct {
 // An interface definition for the [BasePlayer] class.
 type IBasePlayer interface {
 	objectivec.IObject
+	PlayerID() string
+	DisplayName() string
+	SetDisplayName(value string)
 }
 
 // A class that provides common data and methods for the different player objects.
@@ -84,16 +86,16 @@ func NewBasePlayer() BasePlayer {
 // A unique identifier for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID
-func (b_ BasePlayer) PlayerID() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("playerID"))
+func (b_ BasePlayer) PlayerID() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("playerID"))
 	return rv
 }
 
 // The Game Center profile name for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-func (b_ BasePlayer) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("displayName"))
+func (b_ BasePlayer) DisplayName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -103,8 +105,8 @@ func (b_ BasePlayer) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-func (b_ BasePlayer) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), value)
+func (b_ BasePlayer) SetDisplayName(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 

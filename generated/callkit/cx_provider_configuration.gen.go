@@ -31,6 +31,23 @@ type _CXProviderConfigurationClass struct {
 // An interface definition for the [CXProviderConfiguration] class.
 type ICXProviderConfiguration interface {
 	objectivec.IObject
+	IconTemplateImageData() foundation.NSData
+	SetIconTemplateImageData(value foundation.IData)
+	IncludesCallsInRecents() bool
+	SetIncludesCallsInRecents(value bool)
+	LocalizedName() string
+	MaximumCallGroups() uint
+	SetMaximumCallGroups(value uint)
+	MaximumCallsPerCallGroup() uint
+	SetMaximumCallsPerCallGroup(value uint)
+	RingtoneSound() string
+	SetRingtoneSound(value string)
+	SupportedHandleTypes() unsafe.Pointer
+	SetSupportedHandleTypes(value unsafe.Pointer)
+	SupportsAudioTranslation() bool
+	SetSupportsAudioTranslation(value bool)
+	SupportsVideo() bool
+	SetSupportsVideo(value bool)
 }
 
 // An encapsulation of the configuration of a provider object.

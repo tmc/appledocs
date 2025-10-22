@@ -29,6 +29,12 @@ type _PHASESwitchNodeDefinitionClass struct {
 // An interface definition for the [PHASESwitchNodeDefinition] class.
 type IPHASESwitchNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
+	GlobalMetaParameters() PHASEMetaParameter
+	SetGlobalMetaParameters(value IPHASEMetaParameter)
+	MetaParameters() PHASEMetaParameter
+	SetMetaParameters(value IPHASEMetaParameter)
+	SwitchMetaParameterDefinition() PHASEStringMetaParameterDefinition
+	SetSwitchMetaParameterDefinition(value IPHASEStringMetaParameterDefinition)
 }
 
 // A node that passes invocation to only one of its child nodes.

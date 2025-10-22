@@ -31,6 +31,14 @@ type _MTRGeneralCommissioningClusterArmFailSafeParamsClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterArmFailSafeParams] class.
 type IMTRGeneralCommissioningClusterArmFailSafeParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	ExpiryLengthSeconds() foundation.Number
+	SetExpiryLengthSeconds(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

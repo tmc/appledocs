@@ -30,6 +30,24 @@ type _MKRouteClass struct {
 // An interface definition for the [MKRoute] class.
 type IMKRoute interface {
 	objectivec.IObject
+	AdvisoryNotices() string
+	SetAdvisoryNotices(value string)
+	Distance() unsafe.Pointer
+	SetDistance(value unsafe.Pointer)
+	ExpectedTravelTime() unsafe.Pointer
+	SetExpectedTravelTime(value unsafe.Pointer)
+	HasHighways() bool
+	SetHasHighways(value bool)
+	HasTolls() bool
+	SetHasTolls(value bool)
+	Name() string
+	SetName(value string)
+	Polyline() MKPolyline
+	SetPolyline(value IMKPolyline)
+	Steps() MKRouteStep
+	SetSteps(value IMKRouteStep)
+	TransportType() unsafe.Pointer
+	SetTransportType(value unsafe.Pointer)
 }
 
 // A single route between a requested start and end point.
@@ -83,8 +101,8 @@ func NewMKRoute() MKRoute {
 // An array of advisory notice strings for the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/advisorynotices
-func (m_ MKRoute) AdvisoryNotices() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("advisoryNotices"))
+func (m_ MKRoute) AdvisoryNotices() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("advisoryNotices"))
 	return rv
 }
 
@@ -94,8 +112,8 @@ func (m_ MKRoute) AdvisoryNotices() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/advisorynotices
-func (m_ MKRoute) SetAdvisoryNotices(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAdvisoryNotices:"), value)
+func (m_ MKRoute) SetAdvisoryNotices(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAdvisoryNotices:"), objc.String(value))
 }
 
 // The route distance, in meters.
@@ -173,8 +191,8 @@ func (m_ MKRoute) SetHasTolls(value bool) {
 // The assigned name for the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/name
-func (m_ MKRoute) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MKRoute) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -184,8 +202,8 @@ func (m_ MKRoute) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/name
-func (m_ MKRoute) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MKRoute) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The detailed route geometry.

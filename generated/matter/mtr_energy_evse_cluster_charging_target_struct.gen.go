@@ -31,6 +31,12 @@ type _MTREnergyEVSEClusterChargingTargetStructClass struct {
 // An interface definition for the [MTREnergyEVSEClusterChargingTargetStruct] class.
 type IMTREnergyEVSEClusterChargingTargetStruct interface {
 	objectivec.IObject
+	AddedEnergy() foundation.Number
+	SetAddedEnergy(value foundation.INumber)
+	TargetSoC() foundation.Number
+	SetTargetSoC(value foundation.INumber)
+	TargetTimeMinutesPastMidnight() foundation.Number
+	SetTargetTimeMinutesPastMidnight(value foundation.INumber)
 }
 
 //

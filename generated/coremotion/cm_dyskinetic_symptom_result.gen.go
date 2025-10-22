@@ -31,6 +31,10 @@ type _DyskineticSymptomResultClass struct {
 // An interface definition for the [DyskineticSymptomResult] class.
 type IDyskineticSymptomResult interface {
 	objectivec.IObject
+	EndDate() foundation.NSDate
+	PercentLikely() float32
+	PercentUnlikely() float32
+	StartDate() foundation.NSDate
 }
 
 // A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.
@@ -92,16 +96,16 @@ func (d_ DyskineticSymptomResult) EndDate() foundation.NSDate {
 // The percentage of time when dyskinetic symptoms were likely.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentLikely
-func (d_ DyskineticSymptomResult) PercentLikely() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("percentLikely"))
+func (d_ DyskineticSymptomResult) PercentLikely() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("percentLikely"))
 	return rv
 }
 
 // The percentage of time when dyskinetic symptoms were unlikely.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentUnlikely
-func (d_ DyskineticSymptomResult) PercentUnlikely() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("percentUnlikely"))
+func (d_ DyskineticSymptomResult) PercentUnlikely() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("percentUnlikely"))
 	return rv
 }
 

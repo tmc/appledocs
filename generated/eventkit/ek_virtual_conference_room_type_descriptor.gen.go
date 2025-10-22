@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _EKVirtualConferenceRoomTypeDescriptorClass struct {
 // An interface definition for the [EKVirtualConferenceRoomTypeDescriptor] class.
 type IEKVirtualConferenceRoomTypeDescriptor interface {
 	objectivec.IObject
+	Identifier() EKVirtualConferenceRoomTypeIdentifier
+	Title() string
 }
 
 // Details about a room where virtual conferences take place.
@@ -86,9 +87,9 @@ func NewEKVirtualConferenceRoomTypeDescriptor() EKVirtualConferenceRoomTypeDescr
 // Creates an object that describes a location where a virtual conference takes place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/init(title:identifier:)
-func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title appkit.string, identifier IEKVirtualConferenceRoomTypeIdentifier) EKVirtualConferenceRoomTypeDescriptor {
+func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, identifier IEKVirtualConferenceRoomTypeIdentifier) EKVirtualConferenceRoomTypeDescriptor {
 	instance := getEKVirtualConferenceRoomTypeDescriptorClass().Alloc()
-	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), title, identifier)
+	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), objc.String(title), identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -105,8 +106,8 @@ func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConference
 // The user-visible name of a room where virtual conferences take place, such as Personal Room or Team Room.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/title
-func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

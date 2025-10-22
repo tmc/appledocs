@@ -31,6 +31,12 @@ type _MTRRVCCleanModeClusterModeOptionStructClass struct {
 // An interface definition for the [MTRRVCCleanModeClusterModeOptionStruct] class.
 type IMTRRVCCleanModeClusterModeOptionStruct interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	Mode() foundation.Number
+	SetMode(value foundation.INumber)
+	ModeTags() unsafe.Pointer
+	SetModeTags(value unsafe.Pointer)
 }
 
 //
@@ -78,8 +84,8 @@ func NewMTRRVCCleanModeClusterModeOptionStruct() MTRRVCCleanModeClusterModeOptio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/label
-func (m_ MTRRVCCleanModeClusterModeOptionStruct) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +93,8 @@ func (m_ MTRRVCCleanModeClusterModeOptionStruct) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/label
-func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

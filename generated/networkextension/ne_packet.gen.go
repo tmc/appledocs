@@ -31,6 +31,10 @@ type _NEPacketClass struct {
 // An interface definition for the [NEPacket] class.
 type INEPacket interface {
 	objectivec.IObject
+	Data() foundation.NSData
+	Direction() NETrafficDirection
+	Metadata() NEFlowMetaData
+	ProtocolFamily() unsafe.Pointer
 }
 
 // A network packet and its associated properties.

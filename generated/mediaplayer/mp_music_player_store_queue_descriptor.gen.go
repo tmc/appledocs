@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,8 +30,12 @@ type _MusicPlayerStoreQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerStoreQueueDescriptor] class.
 type IMusicPlayerStoreQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItemWithStoreID(endTime foundation.ITimeInterval, storeID appkit.string)
-	SetStartTimeForItemWithStoreID(startTime foundation.ITimeInterval, storeID appkit.string)
+	SetEndTimeForItemWithStoreID(endTime foundation.ITimeInterval, storeID string)
+	SetStartTimeForItemWithStoreID(startTime foundation.ITimeInterval, storeID string)
+	StartItemID() string
+	SetStartItemID(value string)
+	StoreIDs() []string
+	SetStoreIDs(value []string)
 }
 
 // A set of properties and methods for modifying items, based on their store identifier, in the player’s queue.
@@ -101,22 +104,22 @@ func NewMusicPlayerStoreQueueDescriptorWithStoreIDs(storeIDs []string) MusicPlay
 // Sets the time the designated store item is to stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/setEndTime(_:forItemWithStoreID:)
-func (m_ MusicPlayerStoreQueueDescriptor) SetEndTimeForItemWithStoreID(endTime foundation.ITimeInterval, storeID appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItemWithStoreID:"), endTime, storeID)
+func (m_ MusicPlayerStoreQueueDescriptor) SetEndTimeForItemWithStoreID(endTime foundation.ITimeInterval, storeID string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItemWithStoreID:"), endTime, objc.String(storeID))
 }
 
 // Sets the time the designated store item is to start playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/setStartTime(_:forItemWithStoreID:)
-func (m_ MusicPlayerStoreQueueDescriptor) SetStartTimeForItemWithStoreID(startTime foundation.ITimeInterval, storeID appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItemWithStoreID:"), startTime, storeID)
+func (m_ MusicPlayerStoreQueueDescriptor) SetStartTimeForItemWithStoreID(startTime foundation.ITimeInterval, storeID string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItemWithStoreID:"), startTime, objc.String(storeID))
 }
 
 // The item identified by the store identifier to play first.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/startItemID
-func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("startItemID"))
+func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("startItemID"))
 	return rv
 }
 
@@ -126,8 +129,8 @@ func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/startItemID
-func (m_ MusicPlayerStoreQueueDescriptor) SetStartItemID(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemID:"), value)
+func (m_ MusicPlayerStoreQueueDescriptor) SetStartItemID(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemID:"), objc.String(value))
 }
 
 // An array containing the store identifiers found by the query used to create the queue descriptor.

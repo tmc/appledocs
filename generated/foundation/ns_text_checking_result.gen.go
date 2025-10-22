@@ -30,6 +30,31 @@ type _TextCheckingResultClass struct {
 // An interface definition for the [TextCheckingResult] class.
 type ITextCheckingResult interface {
 	objectivec.IObject
+	Date() NSDate
+	Duration() TimeInterval
+	PhoneNumber() string
+	Range() Range
+	RegularExpression() NSRegularExpression
+	ResultType() TextCheckingType
+	NSNotFound() int
+	AddressComponents() string
+	SetAddressComponents(value string)
+	AlternativeStrings() string
+	SetAlternativeStrings(value string)
+	Components() string
+	SetComponents(value string)
+	GrammarDetails() string
+	SetGrammarDetails(value string)
+	NumberOfRanges() int
+	SetNumberOfRanges(value int)
+	Orthography() NSOrthography
+	SetOrthography(value IOrthography)
+	ReplacementString() string
+	SetReplacementString(value string)
+	TimeZone() TimeZone
+	SetTimeZone(value ITimeZone)
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.

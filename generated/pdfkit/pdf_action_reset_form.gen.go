@@ -29,6 +29,10 @@ type _PDFActionResetFormClass struct {
 // An interface definition for the [PDFActionResetForm] class.
 type IPDFActionResetForm interface {
 	IPDFAction
+	Fields() []string
+	SetFields(value []string)
+	FieldsIncludedAreCleared() bool
+	SetFieldsIncludedAreCleared(value bool)
 }
 
 // , a subclass of , defines methods for getting and clearing fields in a PDF form.

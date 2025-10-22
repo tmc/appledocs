@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,15 @@ type _PDFActionClass struct {
 // An interface definition for the [PDFAction] class.
 type IPDFAction interface {
 	objectivec.IObject
+	Type() string
+	Action() PDFAction
+	SetAction(value IPDFAction)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.IDate)
+	Page() PDFPage
+	SetPage(value IPDFPage)
+	UserName() string
+	SetUserName(value string)
 }
 
 // An action that is performed when, for example, a PDF annotation is activated or an outline item is clicked.
@@ -85,8 +93,8 @@ func NewPDFAction() PDFAction {
 // Returns the type of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAction/type
-func (p_ PDFAction) Type() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("type"))
+func (p_ PDFAction) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -147,8 +155,8 @@ func (p_ PDFAction) SetPage(value IPDFPage) {
 // Returns the name of the user who created the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFAction) UserName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("userName"))
+func (p_ PDFAction) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -158,8 +166,8 @@ func (p_ PDFAction) UserName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFAction) SetUserName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
+func (p_ PDFAction) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 

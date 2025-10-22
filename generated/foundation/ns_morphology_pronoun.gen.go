@@ -30,6 +30,7 @@ type _MorphologyPronounClass struct {
 // An interface definition for the [MorphologyPronoun] class.
 type IMorphologyPronoun interface {
 	objectivec.IObject
+	Morphology() NSMorphology
 }
 
 // A custom pronoun for referring to a third person.

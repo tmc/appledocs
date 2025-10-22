@@ -30,6 +30,8 @@ type _AssetWriterInputMetadataAdaptorClass struct {
 // An interface definition for the [AssetWriterInputMetadataAdaptor] class.
 type IAssetWriterInputMetadataAdaptor interface {
 	objectivec.IObject
+	AssetWriterInput() AVAssetWriterInput
+	SetAssetWriterInput(value IAVAssetWriterInput)
 }
 
 // An object that appends timed metadata groups to an asset writer input.

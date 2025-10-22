@@ -30,6 +30,12 @@ type _MEFileInfoClass struct {
 // An interface definition for the [MEFileInfo] class.
 type IMEFileInfo interface {
 	objectivec.IObject
+	FragmentsStatus() unsafe.Pointer
+	SetFragmentsStatus(value unsafe.Pointer)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	SidecarFileName() string
+	SetSidecarFileName(value string)
 }
 
 // An object that contains file properties from the media asset.
@@ -116,8 +122,8 @@ func (m_ MEFileInfo) SetDuration(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
-func (m_ MEFileInfo) SidecarFileName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("sidecarFileName"))
+func (m_ MEFileInfo) SidecarFileName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("sidecarFileName"))
 	return rv
 }
 
@@ -125,8 +131,8 @@ func (m_ MEFileInfo) SidecarFileName() appkit.string {
 // SetSidecarFileName sets the value of the sidecarFileName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
-func (m_ MEFileInfo) SetSidecarFileName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), value)
+func (m_ MEFileInfo) SetSidecarFileName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), objc.String(value))
 }
 
 

@@ -30,6 +30,10 @@ type _AztecCodeDescriptorClass struct {
 // An interface definition for the [AztecCodeDescriptor] class.
 type IAztecCodeDescriptor interface {
 	IBarcodeDescriptor
+	DataCodewordCount() int
+	ErrorCorrectedPayload() foundation.NSData
+	IsCompact() bool
+	LayerCount() int
 }
 
 // A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol.

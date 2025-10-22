@@ -30,6 +30,20 @@ type _HKVisionPrismClass struct {
 // An interface definition for the [HKVisionPrism] class.
 type IHKVisionPrism interface {
 	objectivec.IObject
+	Amount() HKQuantity
+	SetAmount(value IHKQuantity)
+	Angle() HKQuantity
+	SetAngle(value IHKQuantity)
+	Eye() unsafe.Pointer
+	SetEye(value unsafe.Pointer)
+	HorizontalAmount() HKQuantity
+	SetHorizontalAmount(value IHKQuantity)
+	HorizontalBase() unsafe.Pointer
+	SetHorizontalBase(value unsafe.Pointer)
+	VerticalAmount() HKQuantity
+	SetVerticalAmount(value IHKQuantity)
+	VerticalBase() unsafe.Pointer
+	SetVerticalBase(value unsafe.Pointer)
 }
 
 // Prescription data for eye alignment.

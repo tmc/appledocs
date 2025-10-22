@@ -31,6 +31,14 @@ type _MEDecodedMessageClass struct {
 // An interface definition for the [MEDecodedMessage] class.
 type IMEDecodedMessage interface {
 	objectivec.IObject
+	Banner() MEDecodedMessageBanner
+	SetBanner(value IMEDecodedMessageBanner)
+	Context() foundation.Data
+	SetContext(value foundation.IData)
+	RawData() foundation.Data
+	SetRawData(value foundation.IData)
+	SecurityInformation() unsafe.Pointer
+	SetSecurityInformation(value unsafe.Pointer)
 }
 
 // An object that contains the RFC 2822 data for a message, without encryption or digital signatures.

@@ -30,6 +30,7 @@ type _INStartCallIntentResponseClass struct {
 // An interface definition for the [INStartCallIntentResponse] class.
 type IINStartCallIntentResponse interface {
 	IINIntentResponse
+	Code() INStartCallIntentResponseCode
 }
 
 // Your app’s response to a start call intent.

@@ -30,6 +30,8 @@ type _CaptureSynchronizedDataClass struct {
 // An interface definition for the [CaptureSynchronizedData] class.
 type ICaptureSynchronizedData interface {
 	objectivec.IObject
+	Timestamp() unsafe.Pointer
+	SetTimestamp(value unsafe.Pointer)
 }
 
 // The abstract superclass for media samples collected using synchronized capture.

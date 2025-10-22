@@ -30,6 +30,10 @@ type _VZNetworkDeviceConfigurationClass struct {
 // An interface definition for the [VZNetworkDeviceConfiguration] class.
 type IVZNetworkDeviceConfiguration interface {
 	objectivec.IObject
+	Attachment() VZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	MACAddress() VZMACAddress
+	SetMACAddress(value IVZMACAddress)
 }
 
 // The common configuration traits for network devices.

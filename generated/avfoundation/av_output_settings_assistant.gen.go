@@ -30,6 +30,20 @@ type _OutputSettingsAssistantClass struct {
 // An interface definition for the [OutputSettingsAssistant] class.
 type IOutputSettingsAssistant interface {
 	objectivec.IObject
+	AudioSettings() string
+	SetAudioSettings(value string)
+	OutputFileType() FileType
+	SetOutputFileType(value FileType)
+	SourceAudioFormat() unsafe.Pointer
+	SetSourceAudioFormat(value unsafe.Pointer)
+	SourceVideoAverageFrameDuration() unsafe.Pointer
+	SetSourceVideoAverageFrameDuration(value unsafe.Pointer)
+	SourceVideoFormat() unsafe.Pointer
+	SetSourceVideoFormat(value unsafe.Pointer)
+	SourceVideoMinFrameDuration() unsafe.Pointer
+	SetSourceVideoMinFrameDuration(value unsafe.Pointer)
+	VideoSettings() string
+	SetVideoSettings(value string)
 }
 
 // An object that builds audio and video output settings dictionaries.

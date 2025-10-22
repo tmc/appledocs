@@ -29,6 +29,8 @@ type _MKMultiPointClass struct {
 // An interface definition for the [MKMultiPoint] class.
 type IMKMultiPoint interface {
 	IMKShape
+	PointCount() int
+	SetPointCount(value int)
 }
 
 // An abstract class that defines the common behavior that open and closed polygon overlays share.

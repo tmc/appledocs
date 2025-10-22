@@ -29,6 +29,9 @@ type _CBGroupIdentityClass struct {
 // An interface definition for the [CBGroupIdentity] class.
 type ICBGroupIdentity interface {
 	ICBIdentity
+	MemberIdentities() []CBIdentity
+	Members() objc.ID
+	PosixGID() unsafe.Pointer
 }
 
 // An object of the class represents a group identity and is used for viewing the attributes of group identities from an identity authority. The principal attributes of a object are a POSIX group identifier (GID) and a list of members.

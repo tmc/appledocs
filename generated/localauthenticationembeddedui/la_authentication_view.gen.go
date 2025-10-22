@@ -31,6 +31,8 @@ type _AuthenticationViewClass struct {
 // An interface definition for the [AuthenticationView] class.
 type IAuthenticationView interface {
 	appkit.IView
+	Context() coreimage.Context
+	ControlSize() unsafe.Pointer
 }
 
 // A graphical representation of the state of biometric authentication.

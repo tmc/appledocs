@@ -31,6 +31,16 @@ type _MTROnOffClusterOffWithEffectParamsClass struct {
 // An interface definition for the [MTROnOffClusterOffWithEffectParams] class.
 type IMTROnOffClusterOffWithEffectParams interface {
 	objectivec.IObject
+	EffectId() foundation.Number
+	SetEffectId(value foundation.INumber)
+	EffectIdentifier() foundation.Number
+	SetEffectIdentifier(value foundation.INumber)
+	EffectVariant() foundation.Number
+	SetEffectVariant(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

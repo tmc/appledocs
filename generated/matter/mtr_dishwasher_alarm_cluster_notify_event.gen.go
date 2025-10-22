@@ -31,6 +31,14 @@ type _MTRDishwasherAlarmClusterNotifyEventClass struct {
 // An interface definition for the [MTRDishwasherAlarmClusterNotifyEvent] class.
 type IMTRDishwasherAlarmClusterNotifyEvent interface {
 	objectivec.IObject
+	Active() foundation.Number
+	SetActive(value foundation.INumber)
+	Inactive() foundation.Number
+	SetInactive(value foundation.INumber)
+	Mask() foundation.Number
+	SetMask(value foundation.INumber)
+	State() foundation.Number
+	SetState(value foundation.INumber)
 }
 
 //

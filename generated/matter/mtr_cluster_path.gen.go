@@ -31,6 +31,10 @@ type _MTRClusterPathClass struct {
 // An interface definition for the [MTRClusterPath] class.
 type IMTRClusterPath interface {
 	objectivec.IObject
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
 }
 
 //

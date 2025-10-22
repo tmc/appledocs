@@ -31,6 +31,22 @@ type _MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStructClass s
 // An interface definition for the [MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct] class.
 type IMTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct interface {
 	objectivec.IObject
+	FixedMax() foundation.Number
+	SetFixedMax(value foundation.INumber)
+	FixedMin() foundation.Number
+	SetFixedMin(value foundation.INumber)
+	FixedTypical() foundation.Number
+	SetFixedTypical(value foundation.INumber)
+	PercentMax() foundation.Number
+	SetPercentMax(value foundation.INumber)
+	PercentMin() foundation.Number
+	SetPercentMin(value foundation.INumber)
+	PercentTypical() foundation.Number
+	SetPercentTypical(value foundation.INumber)
+	RangeMax() foundation.Number
+	SetRangeMax(value foundation.INumber)
+	RangeMin() foundation.Number
+	SetRangeMin(value foundation.INumber)
 }
 
 //

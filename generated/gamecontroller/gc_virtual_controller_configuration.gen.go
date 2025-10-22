@@ -30,6 +30,12 @@ type _GCVirtualControllerConfigurationClass struct {
 // An interface definition for the [GCVirtualControllerConfiguration] class.
 type IGCVirtualControllerConfiguration interface {
 	objectivec.IObject
+	Hidden() bool
+	SetHidden(value bool)
+	Elements() string
+	SetElements(value string)
+	IsHidden() bool
+	SetIsHidden(value bool)
 }
 
 // The configuration of a virtual controller.
@@ -101,8 +107,8 @@ func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
 // The input elements of a virtual controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-func (g_ GCVirtualControllerConfiguration) Elements() appkit.string {
-	rv := objc.Send[appkit.string](g_.ID, objc.Sel("elements"))
+func (g_ GCVirtualControllerConfiguration) Elements() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("elements"))
 	return rv
 }
 
@@ -112,8 +118,8 @@ func (g_ GCVirtualControllerConfiguration) Elements() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-func (g_ GCVirtualControllerConfiguration) SetElements(value appkit.string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), value)
+func (g_ GCVirtualControllerConfiguration) SetElements(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the system or the app presents the virtual interface.

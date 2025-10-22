@@ -31,6 +31,10 @@ type _HKVerifiableClinicalRecordSubjectClass struct {
 // An interface definition for the [HKVerifiableClinicalRecordSubject] class.
 type IHKVerifiableClinicalRecordSubject interface {
 	objectivec.IObject
+	DateOfBirthComponents() foundation.DateComponents
+	SetDateOfBirthComponents(value foundation.IDateComponents)
+	FullName() string
+	SetFullName(value string)
 }
 
 // The subject associated with a signed clinical record.
@@ -102,8 +106,8 @@ func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value found
 // The subject’s full name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-func (h_ HKVerifiableClinicalRecordSubject) FullName() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("fullName"))
+func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("fullName"))
 	return rv
 }
 
@@ -113,8 +117,8 @@ func (h_ HKVerifiableClinicalRecordSubject) FullName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), value)
+func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), objc.String(value))
 }
 
 

@@ -30,6 +30,20 @@ type _NEDNSSettingsClass struct {
 // An interface definition for the [NEDNSSettings] class.
 type INEDNSSettings interface {
 	objectivec.IObject
+	AllowFailover() bool
+	SetAllowFailover(value bool)
+	DnsProtocol() unsafe.Pointer
+	SetDnsProtocol(value unsafe.Pointer)
+	DomainName() string
+	SetDomainName(value string)
+	MatchDomains() string
+	SetMatchDomains(value string)
+	MatchDomainsNoSearch() bool
+	SetMatchDomainsNoSearch(value bool)
+	SearchDomains() string
+	SetSearchDomains(value string)
+	Servers() string
+	SetServers(value string)
 }
 
 // The DNS resolver settings of a network tunnel or a system-wide configuration.
@@ -114,8 +128,8 @@ func (n_ NEDNSSettings) SetDnsProtocol(value unsafe.Pointer) {
 // The primary domain of the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/domainname
-func (n_ NEDNSSettings) DomainName() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("domainName"))
+func (n_ NEDNSSettings) DomainName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("domainName"))
 	return rv
 }
 
@@ -125,15 +139,15 @@ func (n_ NEDNSSettings) DomainName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/domainname
-func (n_ NEDNSSettings) SetDomainName(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), value)
+func (n_ NEDNSSettings) SetDomainName(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), objc.String(value))
 }
 
 // A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
-func (n_ NEDNSSettings) MatchDomains() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchDomains"))
+func (n_ NEDNSSettings) MatchDomains() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("matchDomains"))
 	return rv
 }
 
@@ -143,8 +157,8 @@ func (n_ NEDNSSettings) MatchDomains() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
-func (n_ NEDNSSettings) SetMatchDomains(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
+func (n_ NEDNSSettings) SetMatchDomains(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), objc.String(value))
 }
 
 // A Boolean that specifies if the domains in the
@@ -168,8 +182,8 @@ func (n_ NEDNSSettings) SetMatchDomainsNoSearch(value bool) {
 // A list of domain strings used to fully qualify single-label host names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/searchdomains
-func (n_ NEDNSSettings) SearchDomains() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("searchDomains"))
+func (n_ NEDNSSettings) SearchDomains() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("searchDomains"))
 	return rv
 }
 
@@ -179,15 +193,15 @@ func (n_ NEDNSSettings) SearchDomains() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/searchdomains
-func (n_ NEDNSSettings) SetSearchDomains(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDomains:"), value)
+func (n_ NEDNSSettings) SetSearchDomains(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDomains:"), objc.String(value))
 }
 
 // The DNS server IP addresses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/servers
-func (n_ NEDNSSettings) Servers() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("servers"))
+func (n_ NEDNSSettings) Servers() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("servers"))
 	return rv
 }
 
@@ -197,8 +211,8 @@ func (n_ NEDNSSettings) Servers() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/servers
-func (n_ NEDNSSettings) SetServers(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServers:"), value)
+func (n_ NEDNSSettings) SetServers(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServers:"), objc.String(value))
 }
 
 

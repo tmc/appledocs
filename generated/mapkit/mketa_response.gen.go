@@ -31,6 +31,20 @@ type _MKETAResponseClass struct {
 // An interface definition for the [MKETAResponse] class.
 type IMKETAResponse interface {
 	objectivec.IObject
+	Destination() MKMapItem
+	SetDestination(value IMKMapItem)
+	Distance() unsafe.Pointer
+	SetDistance(value unsafe.Pointer)
+	ExpectedArrivalDate() foundation.Date
+	SetExpectedArrivalDate(value foundation.IDate)
+	ExpectedDepartureDate() foundation.Date
+	SetExpectedDepartureDate(value foundation.IDate)
+	ExpectedTravelTime() unsafe.Pointer
+	SetExpectedTravelTime(value unsafe.Pointer)
+	Source() MKMapItem
+	SetSource(value IMKMapItem)
+	TransportType() unsafe.Pointer
+	SetTransportType(value unsafe.Pointer)
 }
 
 // The travel-time information that Apple servers return.

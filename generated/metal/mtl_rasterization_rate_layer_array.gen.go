@@ -32,6 +32,10 @@ type IRasterizationRateLayerArray interface {
 	objectivec.IObject
 	SetObjectAtIndexedSubscript(layer IMTLRasterizationRateLayerDescriptor, layerIndex uint)
 	ObjectAtIndexedSubscript(layerIndex uint) RasterizationRateLayerDescriptor
+	LayerCount() int
+	SetLayerCount(value int)
+	Layers() MTLRasterizationRateLayerArray
+	SetLayers(value IMTLRasterizationRateLayerArray)
 }
 
 // Descriptions for the rasterization rates to apply to the set of layers in a rate map.

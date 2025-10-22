@@ -31,7 +31,7 @@ type _SFSafariToolbarItemClass struct {
 // An interface definition for the [SFSafariToolbarItem] class.
 type ISFSafariToolbarItem interface {
 	objectivec.IObject
-	SetBadgeText(badgeText appkit.string)
+	SetBadgeText(badgeText string)
 	SetEnabled(enabled bool)
 	SetImage(image appkit.IImage)
 	ShowPopover()
@@ -88,8 +88,8 @@ func NewSFSafariToolbarItem() SFSafariToolbarItem {
 // Sets the badge text for the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/setBadgeText(_:)
-func (s_ SFSafariToolbarItem) SetBadgeText(badgeText appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBadgeText:"), badgeText)
+func (s_ SFSafariToolbarItem) SetBadgeText(badgeText string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBadgeText:"), objc.String(badgeText))
 }
 
 // Sets whether the toolbar item is enabled.

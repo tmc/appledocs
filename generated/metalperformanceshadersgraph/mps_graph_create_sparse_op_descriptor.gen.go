@@ -29,6 +29,10 @@ type _GraphCreateSparseOpDescriptorClass struct {
 // An interface definition for the [GraphCreateSparseOpDescriptor] class.
 type IGraphCreateSparseOpDescriptor interface {
 	IGraphObject
+	SparseStorageType() GraphSparseStorageType
+	SetSparseStorageType(value GraphSparseStorageType)
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
 }
 
 // A class that describes the properties of a create sparse operation.

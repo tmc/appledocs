@@ -31,6 +31,16 @@ type _FaceObservationClass struct {
 // An interface definition for the [FaceObservation] class.
 type IFaceObservation interface {
 	IDetectedObjectObservation
+	FaceCaptureQuality() foundation.Number
+	Landmarks() unsafe.Pointer
+	Results() VNFaceObservation
+	SetResults(value IVNFaceObservation)
+	Pitch() foundation.Number
+	SetPitch(value foundation.INumber)
+	Roll() foundation.Number
+	SetRoll(value foundation.INumber)
+	Yaw() foundation.Number
+	SetYaw(value foundation.INumber)
 }
 
 // Face or facial-feature information that an image analysis request detects.

@@ -31,6 +31,11 @@ type _CWConfigurationClass struct {
 type ICWConfiguration interface {
 	objectivec.IObject
 	IsEqualToConfiguration(configuration ICWConfiguration) bool
+	NetworkProfiles() unsafe.Pointer
+	RememberJoinedNetworks() bool
+	RequireAdministratorForAssociation() bool
+	RequireAdministratorForIBSSMode() bool
+	RequireAdministratorForPower() bool
 }
 
 // Encapsulates an immutable configuration for an AirPort WLAN interface.

@@ -31,6 +31,16 @@ type _MTRDeviceEnergyManagementClusterModifyForecastRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterModifyForecastRequestParams] class.
 type IMTRDeviceEnergyManagementClusterModifyForecastRequestParams interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
+	ForecastID() foundation.Number
+	SetForecastID(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	SlotAdjustments() objc.ID
+	SetSlotAdjustments(value objc.ID)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

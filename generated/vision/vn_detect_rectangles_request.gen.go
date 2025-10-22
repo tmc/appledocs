@@ -29,6 +29,21 @@ type _DetectRectanglesRequestClass struct {
 // An interface definition for the [DetectRectanglesRequest] class.
 type IDetectRectanglesRequest interface {
 	IImageBasedRequest
+	MaximumAspectRatio() AspectRatio
+	SetMaximumAspectRatio(value IAspectRatio)
+	MaximumObservations() uint
+	SetMaximumObservations(value uint)
+	MinimumAspectRatio() AspectRatio
+	SetMinimumAspectRatio(value IAspectRatio)
+	MinimumConfidence() Confidence
+	SetMinimumConfidence(value IConfidence)
+	MinimumSize() float32
+	SetMinimumSize(value float32)
+	QuadratureTolerance() Degrees
+	SetQuadratureTolerance(value IDegrees)
+	Results() VNRectangleObservation
+	SetResults(value IVNRectangleObservation)
+	VNDetectRectanglesRequestRevision1() int
 }
 
 // An image-analysis request that finds projected rectangular regions in an image.
@@ -156,8 +171,8 @@ func (d_ DetectRectanglesRequest) SetMinimumConfidence(value IConfidence) {
 // The minimum size of a rectangle to detect, as a proportion of the smallest dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumSize
-func (d_ DetectRectanglesRequest) MinimumSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumSize"))
+func (d_ DetectRectanglesRequest) MinimumSize() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("minimumSize"))
 	return rv
 }
 
@@ -167,7 +182,7 @@ func (d_ DetectRectanglesRequest) MinimumSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumSize
-func (d_ DetectRectanglesRequest) SetMinimumSize(value unsafe.Pointer) {
+func (d_ DetectRectanglesRequest) SetMinimumSize(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumSize:"), value)
 }
 

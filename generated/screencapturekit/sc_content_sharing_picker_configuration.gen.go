@@ -30,6 +30,10 @@ type _ContentSharingPickerConfigurationClass struct {
 // An interface definition for the [ContentSharingPickerConfiguration] class.
 type IContentSharingPickerConfiguration interface {
 	objectivec.IObject
+	AllowedPickerModes() ContentSharingPickerMode
+	SetAllowedPickerModes(value ContentSharingPickerMode)
+	ExcludedBundleIDs() []string
+	SetExcludedBundleIDs(value []string)
 }
 
 // An instance for configuring the system content-sharing picker.

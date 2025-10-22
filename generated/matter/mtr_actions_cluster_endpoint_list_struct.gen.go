@@ -31,6 +31,14 @@ type _MTRActionsClusterEndpointListStructClass struct {
 // An interface definition for the [MTRActionsClusterEndpointListStruct] class.
 type IMTRActionsClusterEndpointListStruct interface {
 	objectivec.IObject
+	EndpointListID() foundation.Number
+	SetEndpointListID(value foundation.INumber)
+	Endpoints() unsafe.Pointer
+	SetEndpoints(value unsafe.Pointer)
+	Name() string
+	SetName(value string)
+	Type() foundation.Number
+	SetType(value foundation.INumber)
 }
 
 //
@@ -108,8 +116,8 @@ func (m_ MTRActionsClusterEndpointListStruct) SetEndpoints(value unsafe.Pointer)
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/name
-func (m_ MTRActionsClusterEndpointListStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRActionsClusterEndpointListStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -117,8 +125,8 @@ func (m_ MTRActionsClusterEndpointListStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterendpointliststruct/name
-func (m_ MTRActionsClusterEndpointListStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRActionsClusterEndpointListStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

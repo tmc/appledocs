@@ -30,6 +30,10 @@ type _MTRGeneralDiagnosticsClusterNetworkFaultChangeEventClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent] class.
 type IMTRGeneralDiagnosticsClusterNetworkFaultChangeEvent interface {
 	objectivec.IObject
+	Current() unsafe.Pointer
+	SetCurrent(value unsafe.Pointer)
+	Previous() unsafe.Pointer
+	SetPrevious(value unsafe.Pointer)
 }
 
 //

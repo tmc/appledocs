@@ -31,6 +31,11 @@ type _GraphTensorDataClass struct {
 // An interface definition for the [GraphTensorData] class.
 type IGraphTensorData interface {
 	IGraphObject
+	DataType() unsafe.Pointer
+	Device() MPSGraphDevice
+	SetDevice(value IMPSGraphDevice)
+	Shape() foundation.Number
+	SetShape(value foundation.INumber)
 }
 
 // The representation of a compute data type.

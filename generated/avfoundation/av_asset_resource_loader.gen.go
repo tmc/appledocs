@@ -30,6 +30,16 @@ type _AssetResourceLoaderClass struct {
 // An interface definition for the [AssetResourceLoader] class.
 type IAssetResourceLoader interface {
 	objectivec.IObject
+	SendsCommonMediaClientDataAsHTTPHeaders() bool
+	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DelegateQueue() unsafe.Pointer
+	SetDelegateQueue(value unsafe.Pointer)
+	PreloadsEligibleContentKeys() bool
+	SetPreloadsEligibleContentKeys(value bool)
+	ResourceLoader() AVAssetResourceLoader
+	SetResourceLoader(value IAVAssetResourceLoader)
 }
 
 // An object that mediates resource requests from a URL asset.

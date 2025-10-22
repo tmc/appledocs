@@ -29,6 +29,11 @@ type _PHASESourceClass struct {
 // An interface definition for the [PHASESource] class.
 type IPHASESource interface {
 	IPHASEObject
+	Gain() float64
+	SetGain(value float64)
+	Shapes() []PHASEShape
+	Transform() unsafe.Pointer
+	SetTransform(value unsafe.Pointer)
 }
 
 // An object that plays audio from a 3D location and orientation in a scene.
@@ -109,8 +114,8 @@ func NewPHASESourceWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) PH
 // The amount of sound the source emanates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/gain
-func (p_ PHASESource) Gain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gain"))
+func (p_ PHASESource) Gain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
@@ -120,7 +125,7 @@ func (p_ PHASESource) Gain() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/gain
-func (p_ PHASESource) SetGain(value unsafe.Pointer) {
+func (p_ PHASESource) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
 

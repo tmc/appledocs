@@ -31,6 +31,18 @@ type _MTRColorControlClusterMoveToSaturationParamsClass struct {
 // An interface definition for the [MTRColorControlClusterMoveToSaturationParams] class.
 type IMTRColorControlClusterMoveToSaturationParams interface {
 	objectivec.IObject
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	Saturation() foundation.Number
+	SetSaturation(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

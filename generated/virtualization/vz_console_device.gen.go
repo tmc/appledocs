@@ -30,6 +30,8 @@ type _VZConsoleDeviceClass struct {
 // An interface definition for the [VZConsoleDevice] class.
 type IVZConsoleDevice interface {
 	objectivec.IObject
+	ConsoleDevices() VZConsoleDevice
+	SetConsoleDevices(value IVZConsoleDevice)
 }
 
 // A class that represents a console device in a VM.

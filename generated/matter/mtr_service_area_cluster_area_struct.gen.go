@@ -31,6 +31,12 @@ type _MTRServiceAreaClusterAreaStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterAreaStruct] class.
 type IMTRServiceAreaClusterAreaStruct interface {
 	objectivec.IObject
+	AreaID() foundation.Number
+	SetAreaID(value foundation.INumber)
+	AreaInfo() MTRServiceAreaClusterAreaInfoStruct
+	SetAreaInfo(value IMTRServiceAreaClusterAreaInfoStruct)
+	MapID() foundation.Number
+	SetMapID(value foundation.INumber)
 }
 
 //

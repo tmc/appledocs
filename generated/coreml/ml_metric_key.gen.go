@@ -29,6 +29,8 @@ type _MetricKeyClass struct {
 // An interface definition for the [MetricKey] class.
 type IMetricKey interface {
 	IKey
+	Metrics() MLMetricKey
+	SetMetrics(value IMLMetricKey)
 }
 
 // A key for the metrics dictionary in an update context.

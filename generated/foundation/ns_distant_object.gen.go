@@ -31,6 +31,7 @@ type _DistantObjectClass struct {
 type IDistantObject interface {
 	IProxy
 	SetProtocolForProxy(proto objectivec.Protocol)
+	ConnectionForProxy() NSConnection
 }
 
 // A proxy for objects in other applications or threads.

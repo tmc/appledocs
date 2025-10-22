@@ -29,6 +29,8 @@ type _HumanObservationClass struct {
 // An interface definition for the [HumanObservation] class.
 type IHumanObservation interface {
 	IDetectedObjectObservation
+	UpperBodyOnly() bool
+	SetUpperBodyOnly(value bool)
 }
 
 // An object that represents a person that the request detects.

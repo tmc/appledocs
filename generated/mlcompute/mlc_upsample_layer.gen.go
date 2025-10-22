@@ -29,6 +29,12 @@ type _CUpsampleLayerClass struct {
 // An interface definition for the [CUpsampleLayer] class.
 type ICUpsampleLayer interface {
 	ICLayer
+	AlignsCorners() bool
+	SetAlignsCorners(value bool)
+	SampleMode() unsafe.Pointer
+	SetSampleMode(value unsafe.Pointer)
+	Shape() int
+	SetShape(value int)
 }
 
 // A layer that applies upsampling with the shape you specify.

@@ -29,6 +29,12 @@ type _INCreateNoteIntentClass struct {
 // An interface definition for the [INCreateNoteIntent] class.
 type IINCreateNoteIntent interface {
 	IINIntent
+	Content() unsafe.Pointer
+	SetContent(value unsafe.Pointer)
+	GroupName() INSpeakableString
+	SetGroupName(value INSpeakableString)
+	Title() INSpeakableString
+	SetTitle(value INSpeakableString)
 }
 
 // A request to create a new note.

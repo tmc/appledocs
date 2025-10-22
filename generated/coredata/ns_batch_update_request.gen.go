@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,16 @@ type _BatchUpdateRequestClass struct {
 // An interface definition for the [BatchUpdateRequest] class.
 type IBatchUpdateRequest interface {
 	IPersistentStoreRequest
+	Entity() NSEntityDescription
+	EntityName() string
+	IncludesSubentities() bool
+	SetIncludesSubentities(value bool)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	PropertiesToUpdate() objc.ID
+	SetPropertiesToUpdate(value objc.ID)
+	ResultType() unsafe.Pointer
+	SetResultType(value unsafe.Pointer)
 }
 
 // A request to Core Data to do a batch update of data in a persistent store without loading any data into memory.
@@ -98,9 +107,9 @@ func NewBatchUpdateRequestWithEntity(entity IEntityDescription) BatchUpdateReque
 // Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
-func NewBatchUpdateRequestWithEntityName(entityName appkit.string) BatchUpdateRequest {
+func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
-	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), entityName)
+	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +118,8 @@ func NewBatchUpdateRequestWithEntityName(entityName appkit.string) BatchUpdateRe
 // Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/batchUpdateRequestWithEntityName:
-func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), entityName)
+func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
 
@@ -125,8 +134,8 @@ func (b_ BatchUpdateRequest) Entity() NSEntityDescription {
 // The name of the managed entity to update data for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entityName
-func (b_ BatchUpdateRequest) EntityName() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("entityName"))
+func (b_ BatchUpdateRequest) EntityName() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
 	return rv
 }
 

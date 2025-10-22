@@ -30,6 +30,12 @@ type _CWMutableNetworkProfileClass struct {
 // An interface definition for the [CWMutableNetworkProfile] class.
 type ICWMutableNetworkProfile interface {
 	ICWNetworkProfile
+	Security() CWSecurity
+	SetSecurity(value ICWSecurity)
+	SsidData() foundation.NSData
+	SetSsidData(value foundation.IData)
+	NetworkProfiles() foundation.OrderedSet
+	SetNetworkProfiles(value foundation.IOrderedSet)
 }
 
 // Encapsulates a mutable network profile entry.

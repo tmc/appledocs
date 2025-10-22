@@ -30,6 +30,10 @@ type _CXSetHeldCallActionClass struct {
 // An interface definition for the [CXSetHeldCallAction] class.
 type ICXSetHeldCallAction interface {
 	ICXCallAction
+	OnHold() bool
+	SetOnHold(value bool)
+	IsOnHold() bool
+	SetIsOnHold(value bool)
 }
 
 // An encapsulation of the act of placing a call on hold or removing a call from hold.

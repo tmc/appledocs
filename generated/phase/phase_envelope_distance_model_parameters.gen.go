@@ -29,6 +29,9 @@ type _PHASEEnvelopeDistanceModelParametersClass struct {
 // An interface definition for the [PHASEEnvelopeDistanceModelParameters] class.
 type IPHASEEnvelopeDistanceModelParameters interface {
 	IPHASEDistanceModelParameters
+	Envelope() PHASEEnvelope
+	RolloffFactor() float64
+	SetRolloffFactor(value float64)
 }
 
 // A graph of points and curves that shapes the volume of a sound over distance.
@@ -105,8 +108,8 @@ func (p_ PHASEEnvelopeDistanceModelParameters) Envelope() PHASEEnvelope {
 // A value that fades specific frequencies over a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor
-func (p_ PHASEEnvelopeDistanceModelParameters) RolloffFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rolloffFactor"))
+func (p_ PHASEEnvelopeDistanceModelParameters) RolloffFactor() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("rolloffFactor"))
 	return rv
 }
 
@@ -116,7 +119,7 @@ func (p_ PHASEEnvelopeDistanceModelParameters) RolloffFactor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor
-func (p_ PHASEEnvelopeDistanceModelParameters) SetRolloffFactor(value unsafe.Pointer) {
+func (p_ PHASEEnvelopeDistanceModelParameters) SetRolloffFactor(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloffFactor:"), value)
 }
 

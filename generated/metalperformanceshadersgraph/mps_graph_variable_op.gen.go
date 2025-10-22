@@ -29,6 +29,9 @@ type _GraphVariableOpClass struct {
 // An interface definition for the [GraphVariableOp] class.
 type IGraphVariableOp interface {
 	IGraphOperation
+	Shape() unsafe.Pointer
+	DataType() unsafe.Pointer
+	SetDataType(value unsafe.Pointer)
 }
 
 // The class that defines the parameters for a variable.

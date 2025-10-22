@@ -31,6 +31,7 @@ type _EPDeveloperToolClass struct {
 type IEPDeveloperTool interface {
 	objectivec.IObject
 	RequestDeveloperToolAccessWithCompletionHandler(handler unsafe.Pointer)
+	AuthorizationStatus() EPDeveloperToolStatus
 }
 
 //

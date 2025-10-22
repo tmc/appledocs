@@ -31,6 +31,12 @@ type _MTRUnitTestingClusterTestNestedStructListArgumentRequestParamsClass struct
 // An interface definition for the [MTRUnitTestingClusterTestNestedStructListArgumentRequestParams] class.
 type IMTRUnitTestingClusterTestNestedStructListArgumentRequestParams interface {
 	objectivec.IObject
+	Arg1() MTRUnitTestingClusterNestedStructList
+	SetArg1(value IMTRUnitTestingClusterNestedStructList)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

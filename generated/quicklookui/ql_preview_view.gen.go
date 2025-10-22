@@ -32,6 +32,14 @@ type _PreviewViewClass struct {
 type IPreviewView interface {
 	appkit.IView
 	Close()
+	Autostarts() bool
+	SetAutostarts(value bool)
+	DisplayState() unsafe.Pointer
+	SetDisplayState(value unsafe.Pointer)
+	PreviewItem() unsafe.Pointer
+	SetPreviewItem(value unsafe.Pointer)
+	ShouldCloseWithWindow() bool
+	SetShouldCloseWithWindow(value bool)
 }
 
 // A Quick Look preview of an item that you can embed into your view hierarchy.

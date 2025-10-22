@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,10 +38,17 @@ type IPaymentQueue interface {
 	PresentCodeRedemptionSheet()
 	RemoveTransactionObserver(observer objectivec.IObject)
 	RestoreCompletedTransactions()
-	RestoreCompletedTransactionsWithApplicationUsername(username appkit.string)
+	RestoreCompletedTransactionsWithApplicationUsername(username string)
 	ResumeDownloads(downloads []Download)
 	ShowPriceConsentIfNeeded()
 	StartDownloads(downloads []Download)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Transactions() []PaymentTransaction
+	Storefront() SKStorefront
+	SetStorefront(value ISKStorefront)
+	TransactionObservers() unsafe.Pointer
+	SetTransactionObservers(value unsafe.Pointer)
 }
 
 // A queue of payment transactions for the App Store to process.
@@ -152,8 +158,8 @@ func (p_ PaymentQueue) RestoreCompletedTransactions() {
 // Asks the payment queue to restore previously completed purchases, providing an opaque identifier for the user’s account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)
-func (p_ PaymentQueue) RestoreCompletedTransactionsWithApplicationUsername(username appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("restoreCompletedTransactionsWithApplicationUsername:"), username)
+func (p_ PaymentQueue) RestoreCompletedTransactionsWithApplicationUsername(username string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("restoreCompletedTransactionsWithApplicationUsername:"), objc.String(username))
 }
 
 // Resumes a set of downloads.

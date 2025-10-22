@@ -30,6 +30,8 @@ type _UniqueIDSpecifierClass struct {
 // An interface definition for the [UniqueIDSpecifier] class.
 type IUniqueIDSpecifier interface {
 	IScriptObjectSpecifier
+	UniqueID() unsafe.Pointer
+	SetUniqueID(value unsafe.Pointer)
 }
 
 // A specifier for an object in a collection (or container) by unique ID.

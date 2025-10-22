@@ -29,6 +29,7 @@ type _TextObservationClass struct {
 // An interface definition for the [TextObservation] class.
 type ITextObservation interface {
 	IRectangleObservation
+	CharacterBoxes() []RectangleObservation
 }
 
 // Information about regions of text that an image-analysis request detects.

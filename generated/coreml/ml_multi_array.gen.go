@@ -38,6 +38,22 @@ type IMultiArray interface {
 	ObjectAtIndexedSubscript(idx int) foundation.Number
 	ObjectForKeyedSubscript(key []foundation.INumber) foundation.Number
 	TransferToMultiArray(destinationMultiArray IMLMultiArray)
+	Count() int
+	DataPointer() unsafe.Pointer
+	DataType() MultiArrayDataType
+	PixelBuffer() unsafe.Pointer
+	Shape() []foundation.Number
+	Strides() []foundation.Number
+	MultiArrayConstraint() MLMultiArrayConstraint
+	SetMultiArrayConstraint(value IMLMultiArrayConstraint)
+	ModelDescription() MLModelDescription
+	SetModelDescription(value IMLModelDescription)
+	InputDescriptionsByName() MLFeatureDescription
+	SetInputDescriptionsByName(value IMLFeatureDescription)
+	OutputDescriptionsByName() MLFeatureDescription
+	SetOutputDescriptionsByName(value IMLFeatureDescription)
+	ShapeConstraint() MLMultiArrayShapeConstraint
+	SetShapeConstraint(value IMLMultiArrayShapeConstraint)
 }
 
 // A machine learning collection type that stores numeric values in an array with multiple dimensions.

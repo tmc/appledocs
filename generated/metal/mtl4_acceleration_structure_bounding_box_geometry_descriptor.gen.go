@@ -29,6 +29,12 @@ type _MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass struct {
 // An interface definition for the [MTL4AccelerationStructureBoundingBoxGeometryDescriptor] class.
 type IMTL4AccelerationStructureBoundingBoxGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
+	BoundingBoxBuffer() unsafe.Pointer
+	SetBoundingBoxBuffer(value unsafe.Pointer)
+	BoundingBoxCount() int
+	SetBoundingBoxCount(value int)
+	BoundingBoxStride() int
+	SetBoundingBoxStride(value int)
 }
 
 // Describes bounding-box geometry suitable for ray tracing.

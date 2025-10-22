@@ -30,6 +30,8 @@ type _MTRControllerFactoryClass struct {
 // An interface definition for the [MTRControllerFactory] class.
 type IMTRControllerFactory interface {
 	objectivec.IObject
+	IsRunning() bool
+	SetIsRunning(value bool)
 }
 
 //

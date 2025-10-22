@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -43,6 +42,14 @@ type ICBPeripheral interface {
 	SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic)
 	WriteValueForDescriptor(data foundation.IData, descriptor ICBDescriptor)
 	WriteValueForCharacteristicType(data foundation.IData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType)
+	AncsAuthorized() bool
+	CanSendWriteWithoutResponse() bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Name() string
+	RSSI() foundation.Number
+	Services() []CBService
+	State() CBPeripheralState
 }
 
 // A remote peripheral device.
@@ -217,8 +224,8 @@ func (c_ CBPeripheral) SetDelegate(value objc.ID) {
 // The name of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/name
-func (c_ CBPeripheral) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ CBPeripheral) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 

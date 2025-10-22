@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureExternalDisplayConfigurator] class.
@@ -31,6 +30,16 @@ type _CaptureExternalDisplayConfiguratorClass struct {
 // An interface definition for the [CaptureExternalDisplayConfigurator] class.
 type ICaptureExternalDisplayConfigurator interface {
 	objectivec.IObject
+	ActiveFormat() unsafe.Pointer
+	SetActiveFormat(value unsafe.Pointer)
+	ActiveExternalDisplayFrameRate() float64
+	SetActiveExternalDisplayFrameRate(value float64)
+	Device() AVCaptureDevice
+	SetDevice(value IAVCaptureDevice)
+	IsActive() bool
+	SetIsActive(value bool)
+	PreviewLayer() SampleBufferDisplayLayer
+	SetPreviewLayer(value ISampleBufferDisplayLayer)
 }
 
 // A configurator class allowing you to configure properties of an external display to match the camera’s active video format.
@@ -156,8 +165,8 @@ func (c_ CaptureExternalDisplayConfigurator) SetIsActive(value bool) {
 // The layer for which the configurator adjusts display properties to match the device’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() quartzcore.Layer {
-	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
+func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() SynchronizedLayer {
+	rv := objc.Send[SynchronizedLayer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
 
@@ -167,7 +176,7 @@ func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() quartzcore.Layer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value quartzcore.ILayer) {
+func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value ISynchronizedLayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 

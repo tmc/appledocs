@@ -31,6 +31,10 @@ type _MTRGroupKeyManagementClusterKeySetReadResponseParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetReadResponseParams] class.
 type IMTRGroupKeyManagementClusterKeySetReadResponseParams interface {
 	objectivec.IObject
+	GroupKeySet() MTRGroupKeyManagementClusterGroupKeySetStruct
+	SetGroupKeySet(value IMTRGroupKeyManagementClusterGroupKeySetStruct)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

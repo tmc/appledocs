@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _MTRMessagesClusterMessageResponseOptionStructClass struct {
 // An interface definition for the [MTRMessagesClusterMessageResponseOptionStruct] class.
 type IMTRMessagesClusterMessageResponseOptionStruct interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	MessageResponseID() foundation.Number
+	SetMessageResponseID(value foundation.INumber)
 }
 
 //
@@ -79,8 +82,8 @@ func NewMTRMessagesClusterMessageResponseOptionStruct() MTRMessagesClusterMessag
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/label
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -88,8 +91,8 @@ func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/label
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

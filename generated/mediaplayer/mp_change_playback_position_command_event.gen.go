@@ -30,6 +30,7 @@ type _ChangePlaybackPositionCommandEventClass struct {
 // An interface definition for the [ChangePlaybackPositionCommandEvent] class.
 type IChangePlaybackPositionCommandEvent interface {
 	IRemoteCommandEvent
+	PositionTime() foundation.TimeInterval
 }
 
 // An event requesting a change in the playback position.

@@ -30,6 +30,14 @@ type _ContentSharingPickerClass struct {
 // An interface definition for the [ContentSharingPicker] class.
 type IContentSharingPicker interface {
 	objectivec.IObject
+	Configuration() ContentSharingPickerConfiguration
+	SetConfiguration(value IContentSharingPickerConfiguration)
+	DefaultConfiguration() ContentSharingPickerConfiguration
+	SetDefaultConfiguration(value IContentSharingPickerConfiguration)
+	IsActive() bool
+	SetIsActive(value bool)
+	MaximumStreamCount() int
+	SetMaximumStreamCount(value int)
 }
 
 // An instance of a picker presented by the operating system for managing frame-capture streams.

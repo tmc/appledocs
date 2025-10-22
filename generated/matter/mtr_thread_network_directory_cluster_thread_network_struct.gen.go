@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,14 @@ type _MTRThreadNetworkDirectoryClusterThreadNetworkStructClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterThreadNetworkStruct] class.
 type IMTRThreadNetworkDirectoryClusterThreadNetworkStruct interface {
 	objectivec.IObject
+	ActiveTimestamp() foundation.Number
+	SetActiveTimestamp(value foundation.INumber)
+	Channel() foundation.Number
+	SetChannel(value foundation.INumber)
+	ExtendedPanID() foundation.NSData
+	SetExtendedPanID(value foundation.IData)
+	NetworkName() string
+	SetNetworkName(value string)
 }
 
 //
@@ -124,8 +131,8 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(v
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -133,8 +140,8 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() appk
 // SetNetworkName sets the value of the networkName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }
 
 

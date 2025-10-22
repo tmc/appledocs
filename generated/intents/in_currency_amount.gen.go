@@ -31,6 +31,10 @@ type _INCurrencyAmountClass struct {
 // An interface definition for the [INCurrencyAmount] class.
 type IINCurrencyAmount interface {
 	objectivec.IObject
+	Amount() foundation.DecimalNumber
+	SetAmount(value foundation.IDecimalNumber)
+	CurrencyCode() string
+	SetCurrencyCode(value string)
 }
 
 // An amount of money to transfer during a financial transaction.
@@ -102,8 +106,8 @@ func (i_ INCurrencyAmount) SetAmount(value foundation.IDecimalNumber) {
 // The ISO 4217 currency code that applies to the monetary amount.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
-func (i_ INCurrencyAmount) CurrencyCode() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("currencyCode"))
+func (i_ INCurrencyAmount) CurrencyCode() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("currencyCode"))
 	return rv
 }
 
@@ -113,8 +117,8 @@ func (i_ INCurrencyAmount) CurrencyCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
-func (i_ INCurrencyAmount) SetCurrencyCode(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), value)
+func (i_ INCurrencyAmount) SetCurrencyCode(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), objc.String(value))
 }
 
 

@@ -30,6 +30,20 @@ type _TransitionClass struct {
 // An interface definition for the [Transition] class.
 type ITransition interface {
 	IAnimation
+	EndProgress() float32
+	SetEndProgress(value float32)
+	Filter() objc.ID
+	SetFilter(value objc.ID)
+	StartProgress() float32
+	SetStartProgress(value float32)
+	Subtype() TransitionSubtype
+	SetSubtype(value ITransitionSubtype)
+	Type() TransitionType
+	SetType(value TransitionType)
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.IColor)
+	String() unsafe.Pointer
+	SetString(value unsafe.Pointer)
 }
 
 // An object that provides an animated transition between a layer’s states.
@@ -85,8 +99,8 @@ func NewTransition() Transition {
 // Indicates the end point of the receiver as a fraction of the entire transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/endProgress
-func (t_ Transition) EndProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("endProgress"))
+func (t_ Transition) EndProgress() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("endProgress"))
 	return rv
 }
 
@@ -96,7 +110,7 @@ func (t_ Transition) EndProgress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/endProgress
-func (t_ Transition) SetEndProgress(value unsafe.Pointer) {
+func (t_ Transition) SetEndProgress(value float32) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEndProgress:"), value)
 }
 
@@ -121,8 +135,8 @@ func (t_ Transition) SetFilter(value objc.ID) {
 // Indicates the start point of the receiver as a fraction of the entire transition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/startProgress
-func (t_ Transition) StartProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("startProgress"))
+func (t_ Transition) StartProgress() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("startProgress"))
 	return rv
 }
 
@@ -132,7 +146,7 @@ func (t_ Transition) StartProgress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/startProgress
-func (t_ Transition) SetStartProgress(value unsafe.Pointer) {
+func (t_ Transition) SetStartProgress(value float32) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStartProgress:"), value)
 }
 

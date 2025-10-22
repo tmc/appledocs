@@ -31,6 +31,12 @@ type _MTROperationalCredentialsClusterAttestationRequestParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterAttestationRequestParams] class.
 type IMTROperationalCredentialsClusterAttestationRequestParams interface {
 	objectivec.IObject
+	AttestationNonce() foundation.Data
+	SetAttestationNonce(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

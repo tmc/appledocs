@@ -30,6 +30,10 @@ type _HKVerifiableClinicalRecordQueryClass struct {
 // An interface definition for the [HKVerifiableClinicalRecordQuery] class.
 type IHKVerifiableClinicalRecordQuery interface {
 	IHKQuery
+	RecordTypes() string
+	SetRecordTypes(value string)
+	SourceTypes() HKVerifiableClinicalRecordSourceType
+	SetSourceTypes(value HKVerifiableClinicalRecordSourceType)
 }
 
 // A query for one-time access to a SMART Health Card or EU Digital COVID Certificate.
@@ -98,8 +102,8 @@ func NewHKVerifiableClinicalRecordQueryWithRecordTypesSourceTypesPredicateResult
 // The type of records that this query returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
-func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("recordTypes"))
+func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
 	return rv
 }
 
@@ -109,8 +113,8 @@ func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
-func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), value)
+func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
 }
 
 // The format of the verifiable clinical record.

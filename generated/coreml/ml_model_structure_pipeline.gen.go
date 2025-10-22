@@ -30,6 +30,8 @@ type _ModelStructurePipelineClass struct {
 // An interface definition for the [ModelStructurePipeline] class.
 type IModelStructurePipeline interface {
 	objectivec.IObject
+	SubModelNames() []string
+	SubModels() []ModelStructure
 }
 
 // A class representing the structure of a Pipeline model.

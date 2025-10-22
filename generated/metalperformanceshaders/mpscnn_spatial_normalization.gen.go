@@ -30,6 +30,12 @@ type _CNNSpatialNormalizationClass struct {
 // An interface definition for the [CNNSpatialNormalization] class.
 type ICNNSpatialNormalization interface {
 	objectivec.IObject
+	Alpha() float32
+	SetAlpha(value float32)
+	Beta() float32
+	SetBeta(value float32)
+	Delta() float32
+	SetDelta(value float32)
 }
 
 // A spatial normalization kernel.
@@ -83,8 +89,8 @@ func NewCNNSpatialNormalization() CNNSpatialNormalization {
 // The “alpha” variable of the kernel function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha
-func (c_ CNNSpatialNormalization) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alpha"))
+func (c_ CNNSpatialNormalization) Alpha() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("alpha"))
 	return rv
 }
 
@@ -94,15 +100,15 @@ func (c_ CNNSpatialNormalization) Alpha() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha
-func (c_ CNNSpatialNormalization) SetAlpha(value unsafe.Pointer) {
+func (c_ CNNSpatialNormalization) SetAlpha(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlpha:"), value)
 }
 
 // The “beta” variable of the kernel function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/beta
-func (c_ CNNSpatialNormalization) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+func (c_ CNNSpatialNormalization) Beta() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
@@ -112,15 +118,15 @@ func (c_ CNNSpatialNormalization) Beta() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/beta
-func (c_ CNNSpatialNormalization) SetBeta(value unsafe.Pointer) {
+func (c_ CNNSpatialNormalization) SetBeta(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
 // The “delta” variable of the kernel function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta
-func (c_ CNNSpatialNormalization) Delta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delta"))
+func (c_ CNNSpatialNormalization) Delta() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("delta"))
 	return rv
 }
 
@@ -130,7 +136,7 @@ func (c_ CNNSpatialNormalization) Delta() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta
-func (c_ CNNSpatialNormalization) SetDelta(value unsafe.Pointer) {
+func (c_ CNNSpatialNormalization) SetDelta(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelta:"), value)
 }
 

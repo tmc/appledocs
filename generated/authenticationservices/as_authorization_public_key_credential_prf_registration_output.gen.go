@@ -31,6 +31,8 @@ type _AuthorizationPublicKeyCredentialPRFRegistrationOutputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFRegistrationOutput] class.
 type IAuthorizationPublicKeyCredentialPRFRegistrationOutput interface {
 	objectivec.IObject
+	First() foundation.NSData
+	IsSupported() bool
 }
 
 //

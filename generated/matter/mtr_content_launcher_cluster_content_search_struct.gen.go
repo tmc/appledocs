@@ -30,6 +30,8 @@ type _MTRContentLauncherClusterContentSearchStructClass struct {
 // An interface definition for the [MTRContentLauncherClusterContentSearchStruct] class.
 type IMTRContentLauncherClusterContentSearchStruct interface {
 	objectivec.IObject
+	ParameterList() unsafe.Pointer
+	SetParameterList(value unsafe.Pointer)
 }
 
 //

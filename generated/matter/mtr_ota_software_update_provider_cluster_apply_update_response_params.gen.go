@@ -30,6 +30,12 @@ type _MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParamsClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams] class.
 type IMTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams interface {
 	IMTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams
+	Action() foundation.Number
+	SetAction(value foundation.INumber)
+	DelayedActionTime() foundation.Number
+	SetDelayedActionTime(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,7 @@ type _MIDICIDeviceManagerClass struct {
 // An interface definition for the [MIDICIDeviceManager] class.
 type IMIDICIDeviceManager interface {
 	objectivec.IObject
+	DiscoveredCIDevices() []MIDICIDevice
 }
 
 //

@@ -30,6 +30,10 @@ type _FriendRequestComposeViewControllerClass struct {
 // An interface definition for the [FriendRequestComposeViewController] class.
 type IFriendRequestComposeViewController interface {
 	appkit.IViewController
+	ComposeViewDelegate() unsafe.Pointer
+	SetComposeViewDelegate(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 }
 
 // Your game uses the class to present a screen that allows the local player to send friend requests to other players.

@@ -29,6 +29,18 @@ type _GCControllerDirectionPadClass struct {
 // An interface definition for the [GCControllerDirectionPad] class.
 type IGCControllerDirectionPad interface {
 	IGCControllerElement
+	XAxis() GCControllerAxisInput
+	YAxis() GCControllerAxisInput
+	Down() GCControllerButtonInput
+	SetDown(value IGCControllerButtonInput)
+	Left() GCControllerButtonInput
+	SetLeft(value IGCControllerButtonInput)
+	Right() GCControllerButtonInput
+	SetRight(value IGCControllerButtonInput)
+	Up() GCControllerButtonInput
+	SetUp(value IGCControllerButtonInput)
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
 }
 
 // A control element associated with a directional pad or a thumbstick.

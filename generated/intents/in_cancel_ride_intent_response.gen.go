@@ -30,6 +30,12 @@ type _INCancelRideIntentResponseClass struct {
 // An interface definition for the [INCancelRideIntentResponse] class.
 type IINCancelRideIntentResponse interface {
 	IINIntentResponse
+	CancellationFee() INCurrencyAmount
+	SetCancellationFee(value INCurrencyAmount)
+	CancellationFeeThreshold() foundation.DateComponents
+	SetCancellationFeeThreshold(value foundation.IDateComponents)
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // Your app’s response to a cancel ride intent.

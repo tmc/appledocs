@@ -16,7 +16,7 @@ import (
 
 var (
 	_MPSGetImageType func(unsafe.Pointer) unsafe.Pointer
-	_MPSSupportsMTLDevice func(unsafe.Pointer) unsafe.Pointer
+	_MPSSupportsMTLDevice func(unsafe.Pointer) bool
 )
 
 func init() {
@@ -55,7 +55,7 @@ func MPSGetImageType(image unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSupportsMTLDevice(_:)
-func MPSSupportsMTLDevice(device unsafe.Pointer) unsafe.Pointer {
+func MPSSupportsMTLDevice(device unsafe.Pointer) bool {
 	return _MPSSupportsMTLDevice(device)
 	}
 

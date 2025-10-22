@@ -30,6 +30,8 @@ type _MKPointOfInterestFilterClass struct {
 // An interface definition for the [MKPointOfInterestFilter] class.
 type IMKPointOfInterestFilter interface {
 	objectivec.IObject
+	PointOfInterestFilter() MKPointOfInterestFilter
+	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
 }
 
 // A filter that includes or excludes point of interest categories from a map view, local search, or local search completer.

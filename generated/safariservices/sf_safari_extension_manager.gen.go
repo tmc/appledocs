@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,7 @@ type _SFSafariExtensionManagerClass struct {
 // An interface definition for the [SFSafariExtensionManager] class.
 type ISFSafariExtensionManager interface {
 	objectivec.IObject
+	SFExtensionProfileKey() string
 }
 
 // A class that your app uses to find out the current state of a Safari app extension.
@@ -82,15 +82,15 @@ func NewSFSafariExtensionManager() SFSafariExtensionManager {
 // Gets the current state of the Safari app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtensionManager/getStateOfSafariExtension(withIdentifier:completionHandler:)
-func (sc _SFSafariExtensionManagerClass) GetStateOfSafariExtensionWithIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStateOfSafariExtensionWithIdentifier:completionHandler:"), identifier, completionHandler)
+func (sc _SFSafariExtensionManagerClass) GetStateOfSafariExtensionWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStateOfSafariExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
 
 // A string the system uses as a key in a user info dictionary to identify a profile identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariExtensionManager) SFExtensionProfileKey() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+func (s_ SFSafariExtensionManager) SFExtensionProfileKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
 	return rv
 }
 

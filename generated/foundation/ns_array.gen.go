@@ -83,6 +83,11 @@ type IArray interface {
 	WriteToURLError(url IURL, error_ IError) bool
 	WriteToURLAtomically(url IURL, atomically bool) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
+	Count() uint
+	Description() string
+	FirstObject() unsafe.Pointer
+	LastObject() unsafe.Pointer
+	SortedArrayHint() NSData
 }
 
 // A static ordered collection of objects.

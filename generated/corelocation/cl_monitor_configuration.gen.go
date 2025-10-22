@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _MonitorConfigurationClass struct {
 // An interface definition for the [MonitorConfiguration] class.
 type IMonitorConfiguration interface {
 	objectivec.IObject
+	EventHandler() unsafe.Pointer
+	Name() string
+	Queue() unsafe.Pointer
 }
 
 // An object for configuring a location monitor instance.
@@ -90,8 +92,8 @@ func (m_ MonitorConfiguration) EventHandler() unsafe.Pointer {
 // The name of the monitor instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/name
-func (m_ MonitorConfiguration) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MonitorConfiguration) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

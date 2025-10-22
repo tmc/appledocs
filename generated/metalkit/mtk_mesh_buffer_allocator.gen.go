@@ -30,6 +30,7 @@ type _MeshBufferAllocatorClass struct {
 // An interface definition for the [MeshBufferAllocator] class.
 type IMeshBufferAllocator interface {
 	objectivec.IObject
+	Device() objc.ID
 }
 
 // An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.

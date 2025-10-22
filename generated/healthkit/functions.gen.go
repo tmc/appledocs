@@ -17,7 +17,7 @@ import (
 var (
 	_HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
 	_HKAppleSleepingBreathingDisturbancesClassificationForQuantity func(unsafe.Pointer) unsafe.Pointer
-	_HKAppleWalkingSteadinessClassificationForQuantity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_HKAppleWalkingSteadinessClassificationForQuantity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_HKAppleWalkingSteadinessMaximumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
 	_HKAppleWalkingSteadinessMinimumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
 	_HKCategoryValueSleepAnalysisAsleepValues func() unsafe.Pointer
@@ -85,7 +85,7 @@ func HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value unsafe.
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity
-func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, classificationOut unsafe.Pointer, errorOut unsafe.Pointer) unsafe.Pointer {
+func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, classificationOut unsafe.Pointer, errorOut unsafe.Pointer) bool {
 	return _HKAppleWalkingSteadinessClassificationForQuantity(value, classificationOut, errorOut)
 	}
 

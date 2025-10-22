@@ -31,6 +31,24 @@ type _MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParamsClass struct 
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams] class.
 type IMTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams interface {
 	objectivec.IObject
+	AnnouncementReason() foundation.Number
+	SetAnnouncementReason(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
+	MetadataForNode() foundation.Data
+	SetMetadataForNode(value foundation.IData)
+	ProviderNodeID() foundation.Number
+	SetProviderNodeID(value foundation.INumber)
+	ProviderNodeId() foundation.Number
+	SetProviderNodeId(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
+	VendorId() foundation.Number
+	SetVendorId(value foundation.INumber)
 }
 
 //

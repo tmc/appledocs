@@ -29,6 +29,10 @@ type _ListFormatterClass struct {
 // An interface definition for the [ListFormatter] class.
 type IListFormatter interface {
 	IFormatter
+	ItemFormatter() NSFormatter
+	SetItemFormatter(value IFormatter)
+	Locale() Locale
+	SetLocale(value ILocale)
 }
 
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.

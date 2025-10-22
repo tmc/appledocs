@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,13 @@ type _MXCrashDiagnosticClass struct {
 // An interface definition for the [MXCrashDiagnostic] class.
 type IMXCrashDiagnostic interface {
 	IMXDiagnostic
+	CallStackTree() MXCallStackTree
+	ExceptionCode() foundation.Number
+	ExceptionReason() MXCrashDiagnosticObjectiveCExceptionReason
+	ExceptionType() foundation.Number
+	Signal() foundation.Number
+	TerminationReason() string
+	VirtualMemoryRegionInfo() string
 }
 
 // An object representing a diagnostic report for an app crash.
@@ -123,16 +129,16 @@ func (m_ MXCrashDiagnostic) Signal() foundation.Number {
 // The reason the app was terminated as a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/terminationReason
-func (m_ MXCrashDiagnostic) TerminationReason() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("terminationReason"))
+func (m_ MXCrashDiagnostic) TerminationReason() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("terminationReason"))
 	return rv
 }
 
 // Information about the region of memory an app accessed incorrectly, resulting in a bad-access crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/virtualMemoryRegionInfo
-func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
+func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
 	return rv
 }
 

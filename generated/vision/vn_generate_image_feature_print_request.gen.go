@@ -29,6 +29,11 @@ type _GenerateImageFeaturePrintRequestClass struct {
 // An interface definition for the [GenerateImageFeaturePrintRequest] class.
 type IGenerateImageFeaturePrintRequest interface {
 	IImageBasedRequest
+	ImageCropAndScaleOption() ImageCropAndScaleOption
+	SetImageCropAndScaleOption(value IImageCropAndScaleOption)
+	Results() VNFeaturePrintObservation
+	SetResults(value IVNFeaturePrintObservation)
+	VNGenerateImageFeaturePrintRequestRevision1() int
 }
 
 // An image-based request to generate feature prints from an image.

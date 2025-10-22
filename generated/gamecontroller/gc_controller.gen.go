@@ -30,6 +30,34 @@ type _GCControllerClass struct {
 // An interface definition for the [GCController] class.
 type IGCController interface {
 	objectivec.IObject
+	ExtendedGamepad() GCExtendedGamepad
+	Gamepad() unsafe.Pointer
+	PlayerIndex() unsafe.Pointer
+	SetPlayerIndex(value unsafe.Pointer)
+	Battery() GCDeviceBattery
+	SetBattery(value IGCDeviceBattery)
+	ControllerPausedHandler() unsafe.Pointer
+	SetControllerPausedHandler(value unsafe.Pointer)
+	Haptics() GCDeviceHaptics
+	SetHaptics(value IGCDeviceHaptics)
+	Input() GCControllerLiveInput
+	SetInput(value IGCControllerLiveInput)
+	IsAttachedToDevice() bool
+	SetIsAttachedToDevice(value bool)
+	IsSnapshot() bool
+	SetIsSnapshot(value bool)
+	Light() GCDeviceLight
+	SetLight(value IGCDeviceLight)
+	MicroGamepad() GCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
+	Motion() GCMotion
+	SetMotion(value IGCMotion)
+	PhysicalInputProfile() GCPhysicalInputProfile
+	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
+	LeftThumbstick() GCControllerDirectionPad
+	SetLeftThumbstick(value IGCControllerDirectionPad)
+	ValueChangedHandler() unsafe.Pointer
+	SetValueChangedHandler(value unsafe.Pointer)
 }
 
 // A representation of a real game controller, a virtual controller, or a snapshot of a controller.

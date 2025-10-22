@@ -31,6 +31,9 @@ type _CNScriptFrameClass struct {
 type ICNScriptFrame interface {
 	objectivec.IObject
 	DetectionForID(detectionID ICNDetectionID) CNDetection
+	AllDetections() []CNDetection
+	FocusDetection() CNDetection
+	FocusDisparity() float32
 }
 
 // An object that represents what to focus on, and where to focus, in a given movie frame.
@@ -106,8 +109,8 @@ func (c_ CNScriptFrame) FocusDetection() CNDetection {
 // Where to focus in a given frame of the movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/focusDisparity
-func (c_ CNScriptFrame) FocusDisparity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("focusDisparity"))
+func (c_ CNScriptFrame) FocusDisparity() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
 

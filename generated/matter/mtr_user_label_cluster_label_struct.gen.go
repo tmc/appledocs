@@ -30,6 +30,10 @@ type _MTRUserLabelClusterLabelStructClass struct {
 // An interface definition for the [MTRUserLabelClusterLabelStruct] class.
 type IMTRUserLabelClusterLabelStruct interface {
 	objectivec.IObject
+	Label() string
+	SetLabel(value string)
+	Value() string
+	SetValue(value string)
 }
 
 //
@@ -77,8 +81,8 @@ func NewMTRUserLabelClusterLabelStruct() MTRUserLabelClusterLabelStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/label
-func (m_ MTRUserLabelClusterLabelStruct) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTRUserLabelClusterLabelStruct) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -86,14 +90,14 @@ func (m_ MTRUserLabelClusterLabelStruct) Label() appkit.string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/label
-func (m_ MTRUserLabelClusterLabelStruct) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTRUserLabelClusterLabelStruct) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/value
-func (m_ MTRUserLabelClusterLabelStruct) Value() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
+func (m_ MTRUserLabelClusterLabelStruct) Value() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,8 +105,8 @@ func (m_ MTRUserLabelClusterLabelStruct) Value() appkit.string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/value
-func (m_ MTRUserLabelClusterLabelStruct) SetValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
+func (m_ MTRUserLabelClusterLabelStruct) SetValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

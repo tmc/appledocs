@@ -30,6 +30,9 @@ type _StagedMigrationManagerClass struct {
 // An interface definition for the [StagedMigrationManager] class.
 type IStagedMigrationManager interface {
 	objectivec.IObject
+	Container() NSPersistentContainer
+	Stages() []MigrationStage
+	NSPersistentStoreStagedMigrationManagerOptionKey() string
 }
 
 // An object that handles the migration event loop and provides access to the migrating persistent store.
@@ -99,8 +102,8 @@ func (s_ StagedMigrationManager) Stages() []MigrationStage {
 // The key for specifying your staged migration manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
-func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
+func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv
 }
 

@@ -33,6 +33,24 @@ type IOperationQueue interface {
 	AddBarrierBlock(barrier unsafe.Pointer)
 	AddOperation(op IOperation)
 	CancelAllOperations()
+	OperationCount() uint
+	Operations() []Operation
+	IsReady() bool
+	SetIsReady(value bool)
+	QueuePriority() unsafe.Pointer
+	SetQueuePriority(value unsafe.Pointer)
+	IsSuspended() bool
+	SetIsSuspended(value bool)
+	MaxConcurrentOperationCount() int
+	SetMaxConcurrentOperationCount(value int)
+	Name() string
+	SetName(value string)
+	Progress() NSProgress
+	SetProgress(value IProgress)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
+	UnderlyingQueue() unsafe.Pointer
+	SetUnderlyingQueue(value unsafe.Pointer)
 }
 
 // A queue that regulates the execution of operations.

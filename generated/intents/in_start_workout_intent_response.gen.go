@@ -29,6 +29,8 @@ type _INStartWorkoutIntentResponseClass struct {
 // An interface definition for the [INStartWorkoutIntentResponse] class.
 type IINStartWorkoutIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // Your app’s response to a start workout intent.

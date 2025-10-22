@@ -30,6 +30,13 @@ type _ValueFunctionClass struct {
 // An interface definition for the [ValueFunction] class.
 type IValueFunction interface {
 	objectivec.IObject
+	Name() ValueFunctionName
+	FromValue() unsafe.Pointer
+	SetFromValue(value unsafe.Pointer)
+	ToValue() unsafe.Pointer
+	SetToValue(value unsafe.Pointer)
+	ValueFunction() CAValueFunction
+	SetValueFunction(value IValueFunction)
 }
 
 // An object that provides a flexible method of defining animated transformations.

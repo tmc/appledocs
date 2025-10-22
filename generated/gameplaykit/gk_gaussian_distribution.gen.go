@@ -30,6 +30,12 @@ type _GaussianDistributionClass struct {
 // An interface definition for the [GaussianDistribution] class.
 type IGaussianDistribution interface {
 	IRandomDistribution
+	Deviation() float32
+	Mean() float32
+	HighestValue() int
+	SetHighestValue(value int)
+	LowestValue() int
+	SetLowestValue(value int)
 }
 
 // A generator for random numbers that follow a (also known as a ) across multiple samplings.
@@ -99,7 +105,7 @@ func NewGaussianDistributionWithRandomSourceLowestValueHighestValue(source objec
 // Initializes a Gaussian random distribution with the specified mean and deviation, using the specified source randomizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/init(randomSource:mean:deviation:)
-func NewGaussianDistributionWithRandomSourceMeanDeviation(source objectivec.IObject, mean unsafe.Pointer, deviation unsafe.Pointer) GaussianDistribution {
+func NewGaussianDistributionWithRandomSourceMeanDeviation(source objectivec.IObject, mean float32, deviation float32) GaussianDistribution {
 	instance := getGaussianDistributionClass().Alloc()
 	rv := objc.Send[GaussianDistribution](instance.ID, objc.Sel("initWithRandomSource:mean:deviation:"), source, mean, deviation)
 	rv.Autorelease()
@@ -110,16 +116,16 @@ func NewGaussianDistributionWithRandomSourceMeanDeviation(source objectivec.IObj
 // The standard deviation of the distribution (also called ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/deviation
-func (g_ GaussianDistribution) Deviation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("deviation"))
+func (g_ GaussianDistribution) Deviation() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("deviation"))
 	return rv
 }
 
 // The mean value of the distribution (also called the or ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGaussianDistribution/mean
-func (g_ GaussianDistribution) Mean() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mean"))
+func (g_ GaussianDistribution) Mean() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("mean"))
 	return rv
 }
 

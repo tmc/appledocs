@@ -29,6 +29,10 @@ type _AsynchronousFetchRequestClass struct {
 // An interface definition for the [AsynchronousFetchRequest] class.
 type IAsynchronousFetchRequest interface {
 	IPersistentStoreRequest
+	CompletionBlock() unsafe.Pointer
+	EstimatedResultCount() int
+	SetEstimatedResultCount(value int)
+	FetchRequest() unsafe.Pointer
 }
 
 // A fetch request that retrieves results asynchronously and supports progress notification.

@@ -31,6 +31,11 @@ type _DateIntervalClass struct {
 type IDateInterval interface {
 	objectivec.IObject
 	Compare(dateInterval IDateInterval) ComparisonResult
+	StartDate() NSDate
+	Duration() TimeInterval
+	SetDuration(value ITimeInterval)
+	EndDate() Date
+	SetEndDate(value IDate)
 }
 
 // An object representing the span of time between a specific start date and end date.

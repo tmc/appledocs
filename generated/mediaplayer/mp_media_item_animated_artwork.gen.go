@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,9 +85,9 @@ func NewMediaItemAnimatedArtwork() MediaItemAnimatedArtwork {
 // Creates an animated artwork.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemAnimatedArtwork/init(artworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:)-ieue
-func NewMediaItemAnimatedArtworkWithArtworkIDPreviewImageRequestHandlerVideoAssetFileURLRequestHandler(artworkID appkit.string, previewImageRequestHandler unsafe.Pointer, videoAssetFileURLRequestHandler unsafe.Pointer) MediaItemAnimatedArtwork {
+func NewMediaItemAnimatedArtworkWithArtworkIDPreviewImageRequestHandlerVideoAssetFileURLRequestHandler(artworkID string, previewImageRequestHandler unsafe.Pointer, videoAssetFileURLRequestHandler unsafe.Pointer) MediaItemAnimatedArtwork {
 	instance := getMediaItemAnimatedArtworkClass().Alloc()
-	rv := objc.Send[MediaItemAnimatedArtwork](instance.ID, objc.Sel("initWithArtworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:"), artworkID, previewImageRequestHandler, videoAssetFileURLRequestHandler)
+	rv := objc.Send[MediaItemAnimatedArtwork](instance.ID, objc.Sel("initWithArtworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:"), objc.String(artworkID), previewImageRequestHandler, videoAssetFileURLRequestHandler)
 	rv.Autorelease()
 	return rv
 }

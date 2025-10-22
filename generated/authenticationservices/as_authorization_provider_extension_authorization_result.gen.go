@@ -31,6 +31,12 @@ type _AuthorizationProviderExtensionAuthorizationResultClass struct {
 // An interface definition for the [AuthorizationProviderExtensionAuthorizationResult] class.
 type IAuthorizationProviderExtensionAuthorizationResult interface {
 	objectivec.IObject
+	HttpAuthorizationHeaders() string
+	SetHttpAuthorizationHeaders(value string)
+	HttpBody() foundation.Data
+	SetHttpBody(value foundation.IData)
+	HttpResponse() foundation.HTTPURLResponse
+	SetHttpResponse(value foundation.IHTTPURLResponse)
 }
 
 // The result of an authorization request.
@@ -82,8 +88,8 @@ func NewAuthorizationProviderExtensionAuthorizationResult() AuthorizationProvide
 // A dictionary of authorization HTTP headers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
-func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHeaders() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("httpAuthorizationHeaders"))
+func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHeaders() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("httpAuthorizationHeaders"))
 	return rv
 }
 
@@ -93,8 +99,8 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHea
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
-func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorizationHeaders(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpAuthorizationHeaders:"), value)
+func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorizationHeaders(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpAuthorizationHeaders:"), objc.String(value))
 }
 
 // The HTTP response body.

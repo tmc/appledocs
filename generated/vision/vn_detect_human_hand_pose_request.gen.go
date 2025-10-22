@@ -31,6 +31,14 @@ type IDetectHumanHandPoseRequest interface {
 	IImageBasedRequest
 	SupportedJointNamesAndReturnError(error_ unsafe.Pointer) []string
 	SupportedJointsGroupNamesAndReturnError(error_ unsafe.Pointer) []string
+	MaximumHandCount() uint
+	SetMaximumHandCount(value uint)
+	Results() []HumanHandPoseObservation
+	SupportedJointNames() unsafe.Pointer
+	SetSupportedJointNames(value unsafe.Pointer)
+	SupportedJointsGroupNames() unsafe.Pointer
+	SetSupportedJointsGroupNames(value unsafe.Pointer)
+	VNDetectHumanHandPoseRequestRevision1() int
 }
 
 // A request that detects a human hand pose.

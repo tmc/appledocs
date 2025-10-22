@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CNMutableGroup] class.
@@ -30,6 +29,8 @@ type _CNMutableGroupClass struct {
 // An interface definition for the [CNMutableGroup] class.
 type ICNMutableGroup interface {
 	ICNGroup
+	Name() string
+	SetName(value string)
 }
 
 // A mutable object that represents a group of contacts.
@@ -85,8 +86,8 @@ func NewCNMutableGroup() CNMutableGroup {
 // The name of the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup/name
-func (c_ CNMutableGroup) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ CNMutableGroup) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -96,8 +97,8 @@ func (c_ CNMutableGroup) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup/name
-func (c_ CNMutableGroup) SetName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
+func (c_ CNMutableGroup) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

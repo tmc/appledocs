@@ -33,6 +33,9 @@ type IMKMapSnapshotter interface {
 	Cancel()
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
 	StartWithQueueCompletionHandler(queue unsafe.Pointer, completionHandler unsafe.Pointer)
+	Loading() bool
+	IsLoading() bool
+	SetIsLoading(value bool)
 }
 
 // A utility class for capturing a map and its content into an image.

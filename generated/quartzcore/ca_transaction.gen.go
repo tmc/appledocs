@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -171,8 +170,8 @@ func (tc _TransactionClass) SetDisableActions(flag bool) {
 // Sets the arbitrary keyed-data for the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/setValue(_:forKey:)
-func (tc _TransactionClass) SetValueForKey(anObject objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, key)
+func (tc _TransactionClass) SetValueForKey(anObject objectivec.IObject, key string) {
+	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, objc.String(key))
 }
 
 // Relinquishes a previously acquired transaction lock.
@@ -185,8 +184,8 @@ func (tc _TransactionClass) Unlock() {
 // Returns the arbitrary keyed-data specified by the given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/value(forKey:)
-func (tc _TransactionClass) ValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("valueForKey:"), key)
+func (tc _TransactionClass) ValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
 

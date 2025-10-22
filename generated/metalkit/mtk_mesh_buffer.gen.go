@@ -30,6 +30,12 @@ type _MeshBufferClass struct {
 // An interface definition for the [MeshBuffer] class.
 type IMeshBuffer interface {
 	objectivec.IObject
+	Allocator() MTKMeshBufferAllocator
+	Buffer() objc.ID
+	Length() uint
+	Offset() uint
+	Type() unsafe.Pointer
+	Zone() objc.ID
 }
 
 // A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.

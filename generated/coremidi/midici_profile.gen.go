@@ -31,6 +31,10 @@ type _MIDICIProfileClass struct {
 // An interface definition for the [MIDICIProfile] class.
 type IMIDICIProfile interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
+	ProfileID() foundation.Data
+	SetProfileID(value foundation.IData)
 }
 
 // A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on.
@@ -82,8 +86,8 @@ func NewMIDICIProfile() MIDICIProfile {
 // A string that describes the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-func (m_ MIDICIProfile) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MIDICIProfile) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -93,8 +97,8 @@ func (m_ MIDICIProfile) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-func (m_ MIDICIProfile) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MIDICIProfile) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The unique five-byte profile identifier that represents the profile.

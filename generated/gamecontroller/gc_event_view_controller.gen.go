@@ -30,6 +30,8 @@ type _GCEventViewControllerClass struct {
 // An interface definition for the [GCEventViewController] class.
 type IGCEventViewController interface {
 	appkit.IViewController
+	ControllerUserInteractionEnabled() bool
+	SetControllerUserInteractionEnabled(value bool)
 }
 
 // A view controller that delivers input either from the responder chain to views, or from game controllers to profiles.

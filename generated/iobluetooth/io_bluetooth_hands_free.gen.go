@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,9 +34,36 @@ type IBluetoothHandsFree interface {
 	ConnectSCO()
 	Disconnect()
 	DisconnectSCO()
-	Indicator(indicatorName appkit.string) unsafe.Pointer
+	Indicator(indicatorName string) int
 	IsSCOConnected() bool
-	SetIndicatorValue(indicatorName appkit.string, indicatorValue unsafe.Pointer)
+	SetIndicatorValue(indicatorName string, indicatorValue int)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Device() IOBluetoothDevice
+	DeviceCallHoldModes() uint32
+	DeviceSupportedFeatures() uint32
+	DeviceSupportedSMSServices() uint32
+	InputVolume() float32
+	SetInputVolume(value float32)
+	Connected() bool
+	InputMuted() bool
+	SetInputMuted(value bool)
+	OutputMuted() bool
+	SetOutputMuted(value bool)
+	SMSEnabled() bool
+	OutputVolume() float32
+	SetOutputVolume(value float32)
+	SMSMode() BluetoothSMSMode
+	SupportedFeatures() uint32
+	SetSupportedFeatures(value Iuint32)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	IsInputMuted() bool
+	SetIsInputMuted(value bool)
+	IsOutputMuted() bool
+	SetIsOutputMuted(value bool)
+	IsSMSEnabled() bool
+	SetIsSMSEnabled(value bool)
 }
 
 // Hands free profile class.
@@ -132,8 +158,8 @@ func (b_ BluetoothHandsFree) DisconnectSCO() {
 // Return an indicator’s value
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/indicator(_:)
-func (b_ BluetoothHandsFree) Indicator(indicatorName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("indicator:"), indicatorName)
+func (b_ BluetoothHandsFree) Indicator(indicatorName string) int {
+	rv := objc.Send[int](b_.ID, objc.Sel("indicator:"), objc.String(indicatorName))
 	return rv
 }
 
@@ -148,8 +174,8 @@ func (b_ BluetoothHandsFree) IsSCOConnected() bool {
 // Set an indicator’s value
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/setIndicator(_:value:)
-func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName appkit.string, indicatorValue unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), indicatorName, indicatorValue)
+func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName string, indicatorValue int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), objc.String(indicatorName), indicatorValue)
 }
 
 // Return the delegate
@@ -181,32 +207,32 @@ func (b_ BluetoothHandsFree) Device() IOBluetoothDevice {
 // Return the device’s supported call hold modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/deviceCallHoldModes
-func (b_ BluetoothHandsFree) DeviceCallHoldModes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("deviceCallHoldModes"))
+func (b_ BluetoothHandsFree) DeviceCallHoldModes() uint32 {
+	rv := objc.Send[uint32](b_.ID, objc.Sel("deviceCallHoldModes"))
 	return rv
 }
 
 // Return the device’s supported features.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/deviceSupportedFeatures
-func (b_ BluetoothHandsFree) DeviceSupportedFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("deviceSupportedFeatures"))
+func (b_ BluetoothHandsFree) DeviceSupportedFeatures() uint32 {
+	rv := objc.Send[uint32](b_.ID, objc.Sel("deviceSupportedFeatures"))
 	return rv
 }
 
 // Return the device’s supported SMS services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/deviceSupportedSMSServices
-func (b_ BluetoothHandsFree) DeviceSupportedSMSServices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("deviceSupportedSMSServices"))
+func (b_ BluetoothHandsFree) DeviceSupportedSMSServices() uint32 {
+	rv := objc.Send[uint32](b_.ID, objc.Sel("deviceSupportedSMSServices"))
 	return rv
 }
 
 // Return the input volume
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/inputVolume
-func (b_ BluetoothHandsFree) InputVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("inputVolume"))
+func (b_ BluetoothHandsFree) InputVolume() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("inputVolume"))
 	return rv
 }
 
@@ -216,7 +242,7 @@ func (b_ BluetoothHandsFree) InputVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/inputVolume
-func (b_ BluetoothHandsFree) SetInputVolume(value unsafe.Pointer) {
+func (b_ BluetoothHandsFree) SetInputVolume(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInputVolume:"), value)
 }
 
@@ -274,8 +300,8 @@ func (b_ BluetoothHandsFree) SMSEnabled() bool {
 // Return the output volume
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/outputVolume
-func (b_ BluetoothHandsFree) OutputVolume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("outputVolume"))
+func (b_ BluetoothHandsFree) OutputVolume() float32 {
+	rv := objc.Send[float32](b_.ID, objc.Sel("outputVolume"))
 	return rv
 }
 
@@ -285,7 +311,7 @@ func (b_ BluetoothHandsFree) OutputVolume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/outputVolume
-func (b_ BluetoothHandsFree) SetOutputVolume(value unsafe.Pointer) {
+func (b_ BluetoothHandsFree) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOutputVolume:"), value)
 }
 
@@ -300,8 +326,8 @@ func (b_ BluetoothHandsFree) SMSMode() BluetoothSMSMode {
 // Set the supported features
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/supportedFeatures
-func (b_ BluetoothHandsFree) SupportedFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("supportedFeatures"))
+func (b_ BluetoothHandsFree) SupportedFeatures() uint32 {
+	rv := objc.Send[uint32](b_.ID, objc.Sel("supportedFeatures"))
 	return rv
 }
 
@@ -311,7 +337,7 @@ func (b_ BluetoothHandsFree) SupportedFeatures() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/supportedFeatures
-func (b_ BluetoothHandsFree) SetSupportedFeatures(value unsafe.Pointer) {
+func (b_ BluetoothHandsFree) SetSupportedFeatures(value Iuint32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSupportedFeatures:"), value)
 }
 

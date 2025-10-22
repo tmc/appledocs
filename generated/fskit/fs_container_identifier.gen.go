@@ -29,6 +29,7 @@ type _FSContainerIdentifierClass struct {
 // An interface definition for the [FSContainerIdentifier] class.
 type IFSContainerIdentifier interface {
 	IFSEntityIdentifier
+	VolumeIdentifier() FSVolumeIdentifier
 }
 
 // A type that identifies a container.

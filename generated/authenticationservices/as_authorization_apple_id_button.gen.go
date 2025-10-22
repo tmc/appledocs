@@ -30,6 +30,8 @@ type _AuthorizationAppleIDButtonClass struct {
 // An interface definition for the [AuthorizationAppleIDButton] class.
 type IAuthorizationAppleIDButton interface {
 	appkit.IControl
+	CornerRadius() float64
+	SetCornerRadius(value float64)
 }
 
 // A control you add to your interface that enables users to initiate the Sign In with Apple flow.

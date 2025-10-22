@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,18 @@ type _AXBrailleTableClass struct {
 // An interface definition for the [AXBrailleTable] class.
 type IAXBrailleTable interface {
 	objectivec.IObject
+	LocalizedProviderName() string
+	ProviderIdentifier() string
+	Identifier() string
+	SetIdentifier(value string)
+	IsEightDot() bool
+	SetIsEightDot(value bool)
+	Language() unsafe.Pointer
+	SetLanguage(value unsafe.Pointer)
+	Locales() foundation.Locale
+	SetLocales(value foundation.ILocale)
+	LocalizedName() string
+	SetLocalizedName(value string)
 }
 
 // A rule for translating print text to Braille, and back-translating Braille to print text.
@@ -85,9 +96,9 @@ func NewAXBrailleTable() AXBrailleTable {
 // Returns nil if there is no table with the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/init(identifier:)
-func NewAXBrailleTableWithIdentifier(identifier appkit.string) AXBrailleTable {
+func NewAXBrailleTableWithIdentifier(identifier string) AXBrailleTable {
 	instance := getAXBrailleTableClass().Alloc()
-	rv := objc.Send[AXBrailleTable](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv := objc.Send[AXBrailleTable](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }
@@ -104,24 +115,24 @@ func (ac _AXBrailleTableClass) TablesForLocale(locale foundation.ILocale) unsafe
 // The localized name of the provider of this table for user display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/localizedProviderName
-func (a_ AXBrailleTable) LocalizedProviderName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("localizedProviderName"))
+func (a_ AXBrailleTable) LocalizedProviderName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("localizedProviderName"))
 	return rv
 }
 
 // The identifier of the provider of this table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/providerIdentifier
-func (a_ AXBrailleTable) ProviderIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("providerIdentifier"))
+func (a_ AXBrailleTable) ProviderIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 
 // A unique string that identifies this table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/identifier
-func (a_ AXBrailleTable) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
+func (a_ AXBrailleTable) Identifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -131,8 +142,8 @@ func (a_ AXBrailleTable) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/identifier
-func (a_ AXBrailleTable) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
+func (a_ AXBrailleTable) SetIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // Returns true if this table makes use of eight dots as opposed to six dots.
@@ -189,8 +200,8 @@ func (a_ AXBrailleTable) SetLocales(value foundation.ILocale) {
 // The localized name of this table for user display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/localizedname
-func (a_ AXBrailleTable) LocalizedName() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("localizedName"))
+func (a_ AXBrailleTable) LocalizedName() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -200,8 +211,8 @@ func (a_ AXBrailleTable) LocalizedName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/localizedname
-func (a_ AXBrailleTable) SetLocalizedName(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLocalizedName:"), value)
+func (a_ AXBrailleTable) SetLocalizedName(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 
 

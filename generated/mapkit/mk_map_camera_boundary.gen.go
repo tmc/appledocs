@@ -30,6 +30,14 @@ type _MKMapCameraBoundaryClass struct {
 // An interface definition for the [MKMapCameraBoundary] class.
 type IMKMapCameraBoundary interface {
 	objectivec.IObject
+	MapRect() unsafe.Pointer
+	SetMapRect(value unsafe.Pointer)
+	Region() unsafe.Pointer
+	SetRegion(value unsafe.Pointer)
+	CameraBoundary() MKMapCameraBoundary
+	SetCameraBoundary(value IMKMapCameraBoundary)
+	CameraZoomRange() MKMapCameraZoomRange
+	SetCameraZoomRange(value IMKMapCameraZoomRange)
 }
 
 // A boundary of an area within which the map’s center needs to remain.

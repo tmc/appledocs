@@ -30,6 +30,8 @@ type _VZMemoryBalloonDeviceClass struct {
 // An interface definition for the [VZMemoryBalloonDevice] class.
 type IVZMemoryBalloonDevice interface {
 	objectivec.IObject
+	MemoryBalloonDevices() VZMemoryBalloonDeviceConfiguration
+	SetMemoryBalloonDevices(value IVZMemoryBalloonDeviceConfiguration)
 }
 
 // The common behavior for memory devices.

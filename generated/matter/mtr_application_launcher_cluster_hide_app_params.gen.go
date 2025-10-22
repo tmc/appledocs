@@ -31,6 +31,12 @@ type _MTRApplicationLauncherClusterHideAppParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterHideAppParams] class.
 type IMTRApplicationLauncherClusterHideAppParams interface {
 	objectivec.IObject
+	Application() MTRApplicationLauncherClusterApplicationStruct
+	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

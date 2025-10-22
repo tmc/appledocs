@@ -31,6 +31,11 @@ type _PlayerItemIntegratedTimelineClass struct {
 // An interface definition for the [PlayerItemIntegratedTimeline] class.
 type IPlayerItemIntegratedTimeline interface {
 	objectivec.IObject
+	CurrentTime() unsafe.Pointer
+	CurrentDate() foundation.Date
+	SetCurrentDate(value foundation.IDate)
+	CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot
+	SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot)
 }
 
 // An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.

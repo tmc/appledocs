@@ -30,6 +30,28 @@ type _ScriptObjectSpecifierClass struct {
 // An interface definition for the [ScriptObjectSpecifier] class.
 type IScriptObjectSpecifier interface {
 	objectivec.IObject
+	Child() NSScriptObjectSpecifier
+	SetChild(value IScriptObjectSpecifier)
+	Container() NSScriptObjectSpecifier
+	SetContainer(value IScriptObjectSpecifier)
+	ContainerClassDescription() NSScriptClassDescription
+	SetContainerClassDescription(value IScriptClassDescription)
+	ContainerIsObjectBeingTested() bool
+	SetContainerIsObjectBeingTested(value bool)
+	ContainerIsRangeContainerObject() bool
+	SetContainerIsRangeContainerObject(value bool)
+	Descriptor() NSAppleEventDescriptor
+	SetDescriptor(value IAppleEventDescriptor)
+	EvaluationError() NSScriptObjectSpecifier
+	SetEvaluationError(value IScriptObjectSpecifier)
+	EvaluationErrorNumber() int
+	SetEvaluationErrorNumber(value int)
+	Key() string
+	SetKey(value string)
+	KeyClassDescription() NSScriptClassDescription
+	SetKeyClassDescription(value IScriptClassDescription)
+	ObjectsByEvaluatingSpecifier() unsafe.Pointer
+	SetObjectsByEvaluatingSpecifier(value unsafe.Pointer)
 }
 
 // An abstract class used to represent natural language expressions.

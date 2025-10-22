@@ -32,6 +32,8 @@ type IURLCredentialStorage interface {
 	objectivec.IObject
 	CredentialsForProtectionSpace(space IURLProtectionSpace) unsafe.Pointer
 	SetDefaultCredentialForProtectionSpace(credential IURLCredential, space IURLProtectionSpace)
+	AllCredentials() NSURLCredential
+	SetAllCredentials(value IURLCredential)
 }
 
 // The manager of a shared credentials cache.

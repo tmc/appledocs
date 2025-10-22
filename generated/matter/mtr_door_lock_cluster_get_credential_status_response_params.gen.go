@@ -31,6 +31,20 @@ type _MTRDoorLockClusterGetCredentialStatusResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetCredentialStatusResponseParams] class.
 type IMTRDoorLockClusterGetCredentialStatusResponseParams interface {
 	objectivec.IObject
+	CreatorFabricIndex() foundation.Number
+	SetCreatorFabricIndex(value foundation.INumber)
+	CredentialData() foundation.Data
+	SetCredentialData(value foundation.IData)
+	CredentialExists() foundation.Number
+	SetCredentialExists(value foundation.INumber)
+	LastModifiedFabricIndex() foundation.Number
+	SetLastModifiedFabricIndex(value foundation.INumber)
+	NextCredentialIndex() foundation.Number
+	SetNextCredentialIndex(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
 }
 
 //

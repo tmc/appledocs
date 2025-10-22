@@ -31,6 +31,16 @@ type _MTRElectricalEnergyMeasurementClusterEnergyMeasurementStructClass struct {
 // An interface definition for the [MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct] class.
 type IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct interface {
 	objectivec.IObject
+	EndSystime() foundation.Number
+	SetEndSystime(value foundation.INumber)
+	EndTimestamp() foundation.Number
+	SetEndTimestamp(value foundation.INumber)
+	Energy() foundation.Number
+	SetEnergy(value foundation.INumber)
+	StartSystime() foundation.Number
+	SetStartSystime(value foundation.INumber)
+	StartTimestamp() foundation.Number
+	SetStartTimestamp(value foundation.INumber)
 }
 
 //

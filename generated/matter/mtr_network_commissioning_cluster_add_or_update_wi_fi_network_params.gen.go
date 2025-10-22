@@ -31,6 +31,16 @@ type _MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams] class.
 type IMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	Credentials() foundation.Data
+	SetCredentials(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	Ssid() foundation.Data
+	SetSsid(value foundation.IData)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

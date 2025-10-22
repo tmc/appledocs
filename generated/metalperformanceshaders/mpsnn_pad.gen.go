@@ -31,6 +31,12 @@ type _PadClass struct {
 // An interface definition for the [Pad] class.
 type IPad interface {
 	objectivec.IObject
+	PaddingSizeBefore() unsafe.Pointer
+	SetPaddingSizeBefore(value unsafe.Pointer)
+	FillValue() float32
+	SetFillValue(value float32)
+	PaddingSizeAfter() unsafe.Pointer
+	SetPaddingSizeAfter(value unsafe.Pointer)
 }
 
 //
@@ -103,8 +109,8 @@ func (p_ Pad) SetPaddingSizeBefore(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/fillvalue
-func (p_ Pad) FillValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fillValue"))
+func (p_ Pad) FillValue() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("fillValue"))
 	return rv
 }
 
@@ -112,7 +118,7 @@ func (p_ Pad) FillValue() unsafe.Pointer {
 // SetFillValue sets the value of the fillValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/fillvalue
-func (p_ Pad) SetFillValue(value unsafe.Pointer) {
+func (p_ Pad) SetFillValue(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFillValue:"), value)
 }
 

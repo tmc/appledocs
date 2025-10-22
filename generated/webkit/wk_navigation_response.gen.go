@@ -31,6 +31,11 @@ type _NavigationResponseClass struct {
 // An interface definition for the [NavigationResponse] class.
 type INavigationResponse interface {
 	objectivec.IObject
+	CanShowMIMEType() bool
+	IsForMainFrame() bool
+	SetIsForMainFrame(value bool)
+	Response() foundation.URLResponse
+	SetResponse(value foundation.IURLResponse)
 }
 
 // An object that contains the response to a navigation request, and which you use to make navigation-related policy decisions.

@@ -30,6 +30,12 @@ type _AuthorizationRequestClass struct {
 // An interface definition for the [AuthorizationRequest] class.
 type IAuthorizationRequest interface {
 	objectivec.IObject
+	AuthorizationRequests() ASAuthorizationRequest
+	SetAuthorizationRequests(value IASAuthorizationRequest)
+	CustomAuthorizationMethods() AuthorizationCustomMethod
+	SetCustomAuthorizationMethods(value IAuthorizationCustomMethod)
+	Provider() unsafe.Pointer
+	SetProvider(value unsafe.Pointer)
 }
 
 // A base class for different kinds of authorization requests.

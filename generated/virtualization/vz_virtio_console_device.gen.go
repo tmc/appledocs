@@ -29,6 +29,9 @@ type _VZVirtioConsoleDeviceClass struct {
 // An interface definition for the [VZVirtioConsoleDevice] class.
 type IVZVirtioConsoleDevice interface {
 	IVZConsoleDevice
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Ports() VZVirtioConsolePortArray
 }
 
 // A class that represents a Virtio console device in a virtual machine.

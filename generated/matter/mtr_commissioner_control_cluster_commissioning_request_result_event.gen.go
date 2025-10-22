@@ -31,6 +31,14 @@ type _MTRCommissionerControlClusterCommissioningRequestResultEventClass struct {
 // An interface definition for the [MTRCommissionerControlClusterCommissioningRequestResultEvent] class.
 type IMTRCommissionerControlClusterCommissioningRequestResultEvent interface {
 	objectivec.IObject
+	ClientNodeID() foundation.Number
+	SetClientNodeID(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	RequestID() foundation.Number
+	SetRequestID(value foundation.INumber)
+	StatusCode() foundation.Number
+	SetStatusCode(value foundation.INumber)
 }
 
 //

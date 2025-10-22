@@ -31,6 +31,12 @@ type _MTRTimeSynchronizationClusterSetTrustedTimeSourceParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetTrustedTimeSourceParams] class.
 type IMTRTimeSynchronizationClusterSetTrustedTimeSourceParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TrustedTimeSource() MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct
+	SetTrustedTimeSource(value IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct)
 }
 
 //

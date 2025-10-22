@@ -31,6 +31,12 @@ type _MTRDishwasherAlarmClusterResetParamsClass struct {
 // An interface definition for the [MTRDishwasherAlarmClusterResetParams] class.
 type IMTRDishwasherAlarmClusterResetParams interface {
 	objectivec.IObject
+	Alarms() foundation.Number
+	SetAlarms(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

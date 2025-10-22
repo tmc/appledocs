@@ -31,6 +31,7 @@ type _VZMacMachineIdentifierClass struct {
 // An interface definition for the [VZMacMachineIdentifier] class.
 type IVZMacMachineIdentifier interface {
 	objectivec.IObject
+	DataRepresentation() foundation.NSData
 }
 
 // A unique identifier for a VM.

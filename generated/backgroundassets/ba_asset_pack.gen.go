@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,10 @@ type IBAAssetPack interface {
 	objectivec.IObject
 	Download() BADownload
 	DownloadForContentRequest(contentRequest IBAContentRequest) BADownload
+	DownloadSize() int
+	Identifier() string
+	UserInfo() foundation.NSData
+	Version() int
 }
 
 // An archive of assets that the system downloads together.
@@ -111,8 +114,8 @@ func (b_ BAAssetPack) DownloadSize() int {
 // A unique identifier for the asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/identifier
-func (b_ BAAssetPack) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("identifier"))
+func (b_ BAAssetPack) Identifier() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 

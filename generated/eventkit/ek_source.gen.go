@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [EKSource] class.
@@ -31,6 +30,11 @@ type _EKSourceClass struct {
 type IEKSource interface {
 	IEKObject
 	CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer
+	Calendars() unsafe.Pointer
+	IsDelegate() bool
+	SourceIdentifier() string
+	SourceType() EKSourceType
+	Title() string
 }
 
 // An abstract superclass that represents the account a calendar belongs to.
@@ -109,8 +113,8 @@ func (e_ EKSource) IsDelegate() bool {
 // A unique identifier for the source object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceIdentifier
-func (e_ EKSource) SourceIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("sourceIdentifier"))
+func (e_ EKSource) SourceIdentifier() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
@@ -125,8 +129,8 @@ func (e_ EKSource) SourceType() EKSourceType {
 // The name of this source object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/title
-func (e_ EKSource) Title() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
+func (e_ EKSource) Title() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,8 @@ type _AXBrailleTranslatorClass struct {
 // An interface definition for the [AXBrailleTranslator] class.
 type IAXBrailleTranslator interface {
 	objectivec.IObject
-	BackTranslateBraille(braille appkit.string) AXBrailleTranslationResult
-	TranslatePrintText(printText appkit.string) AXBrailleTranslationResult
+	BackTranslateBraille(braille string) AXBrailleTranslationResult
+	TranslatePrintText(printText string) AXBrailleTranslationResult
 }
 
 // Translates print text to Braille and Braille to print text according to the given Braille table.
@@ -84,16 +83,16 @@ func NewAXBrailleTranslator() AXBrailleTranslator {
 // Input Braille should use the unicode Braille characters (0x2800-0x28FF).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslator/backTranslateBraille(_:)
-func (a_ AXBrailleTranslator) BackTranslateBraille(braille appkit.string) AXBrailleTranslationResult {
-	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("backTranslateBraille:"), braille)
+func (a_ AXBrailleTranslator) BackTranslateBraille(braille string) AXBrailleTranslationResult {
+	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("backTranslateBraille:"), objc.String(braille))
 	return rv
 }
 
 // Output Braille uses the unicode Braille characters (0x2800-0x28FF).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslator/translatePrintText(_:)
-func (a_ AXBrailleTranslator) TranslatePrintText(printText appkit.string) AXBrailleTranslationResult {
-	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("translatePrintText:"), printText)
+func (a_ AXBrailleTranslator) TranslatePrintText(printText string) AXBrailleTranslationResult {
+	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("translatePrintText:"), objc.String(printText))
 	return rv
 }
 

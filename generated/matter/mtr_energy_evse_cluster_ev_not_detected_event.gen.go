@@ -31,6 +31,14 @@ type _MTREnergyEVSEClusterEVNotDetectedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEVNotDetectedEvent] class.
 type IMTREnergyEVSEClusterEVNotDetectedEvent interface {
 	objectivec.IObject
+	SessionDuration() foundation.Number
+	SetSessionDuration(value foundation.INumber)
+	SessionEnergyCharged() foundation.Number
+	SetSessionEnergyCharged(value foundation.INumber)
+	SessionID() foundation.Number
+	SetSessionID(value foundation.INumber)
+	State() foundation.Number
+	SetState(value foundation.INumber)
 }
 
 //

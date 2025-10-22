@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,14 @@ type _AEAssessmentApplicationClass struct {
 // An interface definition for the [AEAssessmentApplication] class.
 type IAEAssessmentApplication interface {
 	objectivec.IObject
+	BundleIdentifier() string
+	RequiresSignatureValidation() bool
+	SetRequiresSignatureValidation(value bool)
+	TeamIdentifier() string
+	ConfigurationsByApplication() AEAssessmentParticipantConfiguration
+	SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration)
+	MainParticipantConfiguration() AEAssessmentParticipantConfiguration
+	SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration)
 }
 
 // A representation of an app that users can access during an assessment.
@@ -86,9 +93,9 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 // Creates a representation of an app using its bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier appkit.string) AEAssessmentApplication {
+func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), bundleIdentifier)
+	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(bundleIdentifier))
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +105,9 @@ func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier appkit.stri
 // Creates a representation of an app using its bundle and team identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier appkit.string, teamIdentifier appkit.string) AEAssessmentApplication {
+func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), bundleIdentifier, teamIdentifier)
+	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +116,8 @@ func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifi
 // The bundle identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/bundleIdentifier
-func (a_ AEAssessmentApplication) BundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("bundleIdentifier"))
+func (a_ AEAssessmentApplication) BundleIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -135,8 +142,8 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 // The team identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/teamIdentifier
-func (a_ AEAssessmentApplication) TeamIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("teamIdentifier"))
+func (a_ AEAssessmentApplication) TeamIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
 }
 

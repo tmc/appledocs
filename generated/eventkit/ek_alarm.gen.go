@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,21 @@ type _EKAlarmClass struct {
 // An interface definition for the [EKAlarm] class.
 type IEKAlarm interface {
 	IEKObject
+	AbsoluteDate() foundation.NSDate
+	SetAbsoluteDate(value foundation.IDate)
+	EmailAddress() string
+	SetEmailAddress(value string)
+	Proximity() EKAlarmProximity
+	SetProximity(value IEKAlarmProximity)
+	RelativeOffset() foundation.TimeInterval
+	SetRelativeOffset(value foundation.ITimeInterval)
+	SoundName() string
+	SetSoundName(value string)
+	StructuredLocation() EKStructuredLocation
+	SetStructuredLocation(value IEKStructuredLocation)
+	Type() EKAlarmType
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
 }
 
 // A class that represents an alarm.
@@ -141,8 +155,8 @@ func (e_ EKAlarm) SetAbsoluteDate(value foundation.IDate) {
 // The recipient of an email to send when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
-func (e_ EKAlarm) EmailAddress() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("emailAddress"))
+func (e_ EKAlarm) EmailAddress() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
@@ -152,8 +166,8 @@ func (e_ EKAlarm) EmailAddress() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
-func (e_ EKAlarm) SetEmailAddress(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), value)
+func (e_ EKAlarm) SetEmailAddress(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), objc.String(value))
 }
 
 // A value indicating how a location-based alarm is triggered.
@@ -195,8 +209,8 @@ func (e_ EKAlarm) SetRelativeOffset(value foundation.ITimeInterval) {
 // The name of the sound to play when the alarm triggers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
-func (e_ EKAlarm) SoundName() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("soundName"))
+func (e_ EKAlarm) SoundName() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("soundName"))
 	return rv
 }
 
@@ -206,8 +220,8 @@ func (e_ EKAlarm) SoundName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
-func (e_ EKAlarm) SetSoundName(value appkit.string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), value)
+func (e_ EKAlarm) SetSoundName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 
 // The location to trigger an alarm.

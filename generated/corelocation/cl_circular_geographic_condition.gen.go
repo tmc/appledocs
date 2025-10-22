@@ -29,6 +29,8 @@ type _CircularGeographicConditionClass struct {
 // An interface definition for the [CircularGeographicCondition] class.
 type ICircularGeographicCondition interface {
 	ICondition
+	Center() unsafe.Pointer
+	Radius() unsafe.Pointer
 }
 
 // A circular geographic condition that a center point and radius define.

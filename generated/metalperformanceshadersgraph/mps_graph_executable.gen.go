@@ -30,6 +30,11 @@ type _GraphExecutableClass struct {
 type IGraphExecutable interface {
 	IGraphObject
 	GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []GraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []GraphShapedType
+	TargetTensors() []GraphTensor
+	FeedTensors() MPSGraphTensor
+	SetFeedTensors(value IMPSGraphTensor)
+	Options() GraphOptions
+	SetOptions(value GraphOptions)
 }
 
 // The compiled representation of a compute graph executable.

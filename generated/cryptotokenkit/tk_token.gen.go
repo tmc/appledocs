@@ -30,6 +30,13 @@ type _TKTokenClass struct {
 // An interface definition for the [TKToken] class.
 type ITKToken interface {
 	objectivec.IObject
+	Configuration() unsafe.Pointer
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	KeychainContents() TKTokenKeychainContents
+	SetKeychainContents(value ITKTokenKeychainContents)
+	TokenDriver() TKTokenDriver
+	SetTokenDriver(value ITKTokenDriver)
 }
 
 // A representation of a hardware-based cryptographic token.

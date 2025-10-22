@@ -32,6 +32,26 @@ type _MKOverlayPathRendererClass struct {
 // An interface definition for the [MKOverlayPathRenderer] class.
 type IMKOverlayPathRenderer interface {
 	IMKOverlayRenderer
+	FillColor() appkit.Color
+	SetFillColor(value appkit.IColor)
+	LineCap() unsafe.Pointer
+	SetLineCap(value unsafe.Pointer)
+	LineDashPattern() foundation.Number
+	SetLineDashPattern(value foundation.INumber)
+	LineDashPhase() float64
+	SetLineDashPhase(value float64)
+	LineJoin() unsafe.Pointer
+	SetLineJoin(value unsafe.Pointer)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	MiterLimit() float64
+	SetMiterLimit(value float64)
+	Path() gameplaykit.Path
+	SetPath(value gameplaykit.IPath)
+	ShouldRasterize() bool
+	SetShouldRasterize(value bool)
+	StrokeColor() appkit.Color
+	SetStrokeColor(value appkit.IColor)
 }
 
 // The visual representation of a path-based overlay.

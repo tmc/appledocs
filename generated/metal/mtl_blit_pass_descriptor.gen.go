@@ -30,6 +30,7 @@ type _BlitPassDescriptorClass struct {
 // An interface definition for the [BlitPassDescriptor] class.
 type IBlitPassDescriptor interface {
 	objectivec.IObject
+	SampleBufferAttachments() MTLBlitPassSampleBufferAttachmentDescriptorArray
 }
 
 // A configuration you create to customize a blit command encoder, which affects the runtime behavior of the blit pass you encode with it.

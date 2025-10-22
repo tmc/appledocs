@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,6 +34,7 @@ type IAppService interface {
 	RegisterAndReturnError(error_ unsafe.Pointer) bool
 	UnregisterAndReturnError(error_ unsafe.Pointer) bool
 	UnregisterWithCompletionHandler(handler unsafe.Pointer)
+	Status() AppServiceStatus
 }
 
 // An object the framework uses to control helper executables that live inside an app’s main bundle.
@@ -88,24 +88,24 @@ func NewAppService() AppService {
 // Initializes an app service object with a launch agent with the property list name you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/agent(plistName:)
-func (ac _AppServiceClass) AgentServiceWithPlistName(plistName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("agentServiceWithPlistName:"), plistName)
+func (ac _AppServiceClass) AgentServiceWithPlistName(plistName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("agentServiceWithPlistName:"), objc.String(plistName))
 	return rv
 }
 
 // Initializes an app service object with a launch daemon with the property list name you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/daemon(plistName:)
-func (ac _AppServiceClass) DaemonServiceWithPlistName(plistName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("daemonServiceWithPlistName:"), plistName)
+func (ac _AppServiceClass) DaemonServiceWithPlistName(plistName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("daemonServiceWithPlistName:"), objc.String(plistName))
 	return rv
 }
 
 // Initializes an app service object for a login item corresponding to the bundle with the identifier you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/loginItem(identifier:)
-func (ac _AppServiceClass) LoginItemServiceWithIdentifier(identifier appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("loginItemServiceWithIdentifier:"), identifier)
+func (ac _AppServiceClass) LoginItemServiceWithIdentifier(identifier string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("loginItemServiceWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 

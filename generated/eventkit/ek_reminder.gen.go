@@ -30,6 +30,18 @@ type _EKReminderClass struct {
 // An interface definition for the [EKReminder] class.
 type IEKReminder interface {
 	IEKCalendarItem
+	CompletionDate() foundation.NSDate
+	SetCompletionDate(value foundation.IDate)
+	DueDateComponents() foundation.DateComponents
+	SetDueDateComponents(value foundation.IDateComponents)
+	Completed() bool
+	SetCompleted(value bool)
+	Priority() uint
+	SetPriority(value uint)
+	StartDateComponents() foundation.DateComponents
+	SetStartDateComponents(value foundation.IDateComponents)
+	IsCompleted() bool
+	SetIsCompleted(value bool)
 }
 
 // A class that represents a reminder in a calendar.

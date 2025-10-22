@@ -30,6 +30,7 @@ type _HKBiologicalSexObjectClass struct {
 // An interface definition for the [HKBiologicalSexObject] class.
 type IHKBiologicalSexObject interface {
 	objectivec.IObject
+	BiologicalSex() HKBiologicalSex
 }
 
 // This class acts as a wrapper for the enumeration.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +31,13 @@ type _LanguageRecognizerClass struct {
 type ILanguageRecognizer interface {
 	objectivec.IObject
 	LanguageHypothesesWithMaximum(maxHypotheses uint) unsafe.Pointer
-	ProcessString(string_ appkit.string)
+	ProcessString(string_ string)
 	Reset()
+	DominantLanguage() Language
+	LanguageConstraints() []string
+	SetLanguageConstraints(value []string)
+	LanguageHints() unsafe.Pointer
+	SetLanguageHints(value unsafe.Pointer)
 }
 
 // The language of a body of text.
@@ -88,8 +92,8 @@ func NewLanguageRecognizer() LanguageRecognizer {
 // Finds the most likely language of a piece of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)
-func (lc _LanguageRecognizerClass) DominantLanguageForString(string_ appkit.string) Language {
-	rv := objc.Send[Language](objc.ID(lc.class), objc.Sel("dominantLanguageForString:"), string_)
+func (lc _LanguageRecognizerClass) DominantLanguageForString(string_ string) Language {
+	rv := objc.Send[Language](objc.ID(lc.class), objc.Sel("dominantLanguageForString:"), objc.String(string_))
 	return rv
 }
 
@@ -104,8 +108,8 @@ func (l_ LanguageRecognizer) LanguageHypothesesWithMaximum(maxHypotheses uint) u
 // Analyzes the piece of text to determine its dominant language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)
-func (l_ LanguageRecognizer) ProcessString(string_ appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("processString:"), string_)
+func (l_ LanguageRecognizer) ProcessString(string_ string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("processString:"), objc.String(string_))
 }
 
 // Resets the recognizer to its initial state.

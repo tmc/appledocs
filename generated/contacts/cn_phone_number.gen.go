@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _CNPhoneNumberClass struct {
 // An interface definition for the [CNPhoneNumber] class.
 type ICNPhoneNumber interface {
 	objectivec.IObject
+	StringValue() string
+	CNContactPhoneNumbersKey() string
 }
 
 // An immutable object representing a phone number for a contact.
@@ -86,9 +87,9 @@ func NewCNPhoneNumber() CNPhoneNumber {
 // Returns a new phone number object initialized with the specified phone number string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPhoneNumber/init(stringValue:)
-func NewCNPhoneNumberWithStringValue(string_ appkit.string) CNPhoneNumber {
+func NewCNPhoneNumberWithStringValue(string_ string) CNPhoneNumber {
 	instance := getCNPhoneNumberClass().Alloc()
-	rv := objc.Send[CNPhoneNumber](instance.ID, objc.Sel("initWithStringValue:"), string_)
+	rv := objc.Send[CNPhoneNumber](instance.ID, objc.Sel("initWithStringValue:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
@@ -97,24 +98,24 @@ func NewCNPhoneNumberWithStringValue(string_ appkit.string) CNPhoneNumber {
 // Returns a new phone number object initialized with the specified phone number string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPhoneNumber/phoneNumberWithStringValue:
-func (cc _CNPhoneNumberClass) PhoneNumberWithStringValue(stringValue appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("phoneNumberWithStringValue:"), stringValue)
+func (cc _CNPhoneNumberClass) PhoneNumberWithStringValue(stringValue string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("phoneNumberWithStringValue:"), objc.String(stringValue))
 	return rv
 }
 
 // The string value of the phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPhoneNumber/stringValue
-func (c_ CNPhoneNumber) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("stringValue"))
+func (c_ CNPhoneNumber) StringValue() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 // A phone numbers of a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactphonenumberskey
-func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNContactPhoneNumbersKey"))
+func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPhoneNumbersKey"))
 	return rv
 }
 

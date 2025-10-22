@@ -31,6 +31,14 @@ type _MTRChannelClusterChangeChannelByNumberParamsClass struct {
 // An interface definition for the [MTRChannelClusterChangeChannelByNumberParams] class.
 type IMTRChannelClusterChangeChannelByNumberParams interface {
 	objectivec.IObject
+	MajorNumber() foundation.Number
+	SetMajorNumber(value foundation.INumber)
+	MinorNumber() foundation.Number
+	SetMinorNumber(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

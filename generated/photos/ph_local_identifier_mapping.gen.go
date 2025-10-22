@@ -30,6 +30,7 @@ type _PHLocalIdentifierMappingClass struct {
 // An interface definition for the [PHLocalIdentifierMapping] class.
 type IPHLocalIdentifierMapping interface {
 	objectivec.IObject
+	PHLocalIdentifierNotFound() string
 }
 
 // An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.
@@ -81,8 +82,8 @@ func NewPHLocalIdentifierMapping() PHLocalIdentifierMapping {
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
-func (p_ PHLocalIdentifierMapping) PHLocalIdentifierNotFound() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+func (p_ PHLocalIdentifierMapping) PHLocalIdentifierNotFound() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
 

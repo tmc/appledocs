@@ -31,6 +31,7 @@ type _NEHotspotHelperClass struct {
 // An interface definition for the [NEHotspotHelper] class.
 type INEHotspotHelper interface {
 	objectivec.IObject
+	KNEHotspotHelperOptionDisplayName() string
 }
 
 // A class to register a hotspot helper.
@@ -92,8 +93,8 @@ func (nc _NEHotspotHelperClass) SupportedNetworkInterfaces() foundation.Array {
 // The string displayed in Wi-Fi Settings for a network handled by the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/knehotspothelperoptiondisplayname
-func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
+func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
 	return rv
 }
 

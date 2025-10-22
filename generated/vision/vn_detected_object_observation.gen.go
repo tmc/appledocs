@@ -30,6 +30,10 @@ type _DetectedObjectObservationClass struct {
 // An interface definition for the [DetectedObjectObservation] class.
 type IDetectedObjectObservation interface {
 	IObservation
+	BoundingBox() coregraphics.CGRect
+	SetBoundingBox(value coregraphics.CGRect)
+	GlobalSegmentationMask() VNPixelBufferObservation
+	SetGlobalSegmentationMask(value IVNPixelBufferObservation)
 }
 
 // An observation that provides the position and extent of an image feature that an image- analysis request detects.

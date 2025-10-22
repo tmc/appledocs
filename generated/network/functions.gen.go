@@ -19,8 +19,8 @@ var (
 	_nw_advertise_descriptor_create_application_service func(unsafe.Pointer) unsafe.Pointer
 	_nw_advertise_descriptor_create_bonjour_service func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_advertise_descriptor_get_application_service_name func(unsafe.Pointer) unsafe.Pointer
-	_nw_advertise_descriptor_get_no_auto_rename func(unsafe.Pointer) unsafe.Pointer
-	_nw_advertise_descriptor_set_no_auto_rename func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_advertise_descriptor_get_no_auto_rename func(unsafe.Pointer) bool
+	_nw_advertise_descriptor_set_no_auto_rename func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_advertise_descriptor_set_txt_record func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_advertise_descriptor_set_txt_record_object func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_browse_descriptor_create_application_service func(unsafe.Pointer) unsafe.Pointer
@@ -28,8 +28,8 @@ var (
 	_nw_browse_descriptor_get_application_service_name func(unsafe.Pointer) unsafe.Pointer
 	_nw_browse_descriptor_get_bonjour_service_domain func(unsafe.Pointer) unsafe.Pointer
 	_nw_browse_descriptor_get_bonjour_service_type func(unsafe.Pointer) unsafe.Pointer
-	_nw_browse_descriptor_get_include_txt_record func(unsafe.Pointer) unsafe.Pointer
-	_nw_browse_descriptor_set_include_txt_record func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_browse_descriptor_get_include_txt_record func(unsafe.Pointer) bool
+	_nw_browse_descriptor_set_include_txt_record func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_browse_result_copy_endpoint func(unsafe.Pointer) unsafe.Pointer
 	_nw_browse_result_copy_txt_record_object func(unsafe.Pointer) unsafe.Pointer
 	_nw_browse_result_enumerate_interfaces func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -67,18 +67,18 @@ var (
 	_nw_connection_group_create func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_extract_connection func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_extract_connection_for_message func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_connection_group_reinsert_extracted_connection func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_connection_group_reinsert_extracted_connection func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_connection_group_reply func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_send_message func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_set_new_connection_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_set_queue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_connection_group_set_receive_handler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_connection_group_set_receive_handler func(unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_set_state_changed_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_group_start func(unsafe.Pointer) unsafe.Pointer
 	_nw_connection_receive func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_receive_message func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_restart func(unsafe.Pointer) unsafe.Pointer
-	_nw_connection_send func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_connection_send func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_set_better_path_available_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_set_path_changed_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_connection_set_queue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -91,11 +91,11 @@ var (
 	_nw_content_context_foreach_protocol_metadata func(unsafe.Pointer) unsafe.Pointer
 	_nw_content_context_get_expiration_milliseconds func(unsafe.Pointer) unsafe.Pointer
 	_nw_content_context_get_identifier func(unsafe.Pointer) unsafe.Pointer
-	_nw_content_context_get_is_final func(unsafe.Pointer) unsafe.Pointer
+	_nw_content_context_get_is_final func(unsafe.Pointer) bool
 	_nw_content_context_get_relative_priority func(unsafe.Pointer) unsafe.Pointer
 	_nw_content_context_set_antecedent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_content_context_set_expiration_milliseconds func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_content_context_set_is_final func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_content_context_set_is_final func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_content_context_set_metadata_for_protocol func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_content_context_set_relative_priority func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_data_transfer_report_collect func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -133,7 +133,7 @@ var (
 	_nw_endpoint_get_type func(unsafe.Pointer) unsafe.Pointer
 	_nw_endpoint_get_url func(unsafe.Pointer) unsafe.Pointer
 	_nw_error_copy_cf_error func(unsafe.Pointer) unsafe.Pointer
-	_nw_error_get_error_code func(unsafe.Pointer) unsafe.Pointer
+	_nw_error_get_error_code func(unsafe.Pointer) int
 	_nw_error_get_error_domain func(unsafe.Pointer) unsafe.Pointer
 	_nw_establishment_report_copy_proxy_endpoint func(unsafe.Pointer) unsafe.Pointer
 	_nw_establishment_report_enumerate_protocols func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -142,8 +142,8 @@ var (
 	_nw_establishment_report_get_attempt_started_after_milliseconds func(unsafe.Pointer) unsafe.Pointer
 	_nw_establishment_report_get_duration_milliseconds func(unsafe.Pointer) unsafe.Pointer
 	_nw_establishment_report_get_previous_attempt_count func(unsafe.Pointer) unsafe.Pointer
-	_nw_establishment_report_get_proxy_configured func(unsafe.Pointer) unsafe.Pointer
-	_nw_establishment_report_get_used_proxy func(unsafe.Pointer) unsafe.Pointer
+	_nw_establishment_report_get_proxy_configured func(unsafe.Pointer) bool
+	_nw_establishment_report_get_used_proxy func(unsafe.Pointer) bool
 	_nw_ethernet_channel_cancel func(unsafe.Pointer) unsafe.Pointer
 	_nw_ethernet_channel_create func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ethernet_channel_create_with_parameters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -160,22 +160,22 @@ var (
 	_nw_framer_copy_remote_endpoint func(unsafe.Pointer) unsafe.Pointer
 	_nw_framer_create_definition func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_create_options func(unsafe.Pointer) unsafe.Pointer
-	_nw_framer_deliver_input func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_framer_deliver_input_no_copy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_framer_mark_failed_with_error func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_framer_deliver_input func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_nw_framer_deliver_input_no_copy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) bool
+	_nw_framer_mark_failed_with_error func(unsafe.Pointer, int) unsafe.Pointer
 	_nw_framer_mark_ready func(unsafe.Pointer) unsafe.Pointer
-	_nw_framer_message_access_value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_framer_message_access_value func(unsafe.Pointer, unsafe.Pointer, bool) bool
 	_nw_framer_message_copy_object_value func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_message_create func(unsafe.Pointer) unsafe.Pointer
 	_nw_framer_message_set_object_value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_message_set_value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_options_copy_object_value func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_options_set_object_value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_framer_parse_input func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_framer_parse_output func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_framer_parse_input func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_nw_framer_parse_output func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_nw_framer_pass_through_input func(unsafe.Pointer) unsafe.Pointer
 	_nw_framer_pass_through_output func(unsafe.Pointer) unsafe.Pointer
-	_nw_framer_prepend_application_protocol func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_framer_prepend_application_protocol func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_framer_protocol_create_message func(unsafe.Pointer) unsafe.Pointer
 	_nw_framer_schedule_wakeup func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_set_cleanup_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -185,8 +185,8 @@ var (
 	_nw_framer_set_wakeup_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_write_output func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_framer_write_output_data func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_framer_write_output_no_copy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_group_descriptor_add_endpoint func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_framer_write_output_no_copy func(unsafe.Pointer, unsafe.Pointer) bool
+	_nw_group_descriptor_add_endpoint func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_group_descriptor_create_multicast func(unsafe.Pointer) unsafe.Pointer
 	_nw_group_descriptor_create_multiplex func(unsafe.Pointer) unsafe.Pointer
 	_nw_group_descriptor_enumerate_endpoints func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -199,12 +199,12 @@ var (
 	_nw_ip_metadata_get_service_class func(unsafe.Pointer) unsafe.Pointer
 	_nw_ip_metadata_set_ecn_flag func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ip_metadata_set_service_class func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ip_options_set_calculate_receive_time func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ip_options_set_disable_fragmentation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ip_options_set_disable_multicast_loopback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_ip_options_set_calculate_receive_time func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_ip_options_set_disable_fragmentation func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_ip_options_set_disable_multicast_loopback func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_ip_options_set_hop_limit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ip_options_set_local_address_preference func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ip_options_set_use_minimum_mtu func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_ip_options_set_use_minimum_mtu func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_ip_options_set_version func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_listener_cancel func(unsafe.Pointer) unsafe.Pointer
 	_nw_listener_create func(unsafe.Pointer) unsafe.Pointer
@@ -221,8 +221,8 @@ var (
 	_nw_listener_set_queue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_listener_set_state_changed_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_listener_start func(unsafe.Pointer) unsafe.Pointer
-	_nw_multicast_group_descriptor_get_disable_unicast_traffic func(unsafe.Pointer) unsafe.Pointer
-	_nw_multicast_group_descriptor_set_disable_unicast_traffic func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_multicast_group_descriptor_get_disable_unicast_traffic func(unsafe.Pointer) bool
+	_nw_multicast_group_descriptor_set_disable_unicast_traffic func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_multicast_group_descriptor_set_specific_source func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_clear_prohibited_interface_types func(unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_clear_prohibited_interfaces func(unsafe.Pointer) unsafe.Pointer
@@ -236,40 +236,40 @@ var (
 	_nw_parameters_create_quic func(unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_create_secure_tcp func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_create_secure_udp func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_allow_ultra_constrained func(unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_get_allow_ultra_constrained func(unsafe.Pointer) bool
 	_nw_parameters_get_attribution func(unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_get_expired_dns_behavior func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_fast_open_enabled func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_include_peer_to_peer func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_local_only func(unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_get_fast_open_enabled func(unsafe.Pointer) bool
+	_nw_parameters_get_include_peer_to_peer func(unsafe.Pointer) bool
+	_nw_parameters_get_local_only func(unsafe.Pointer) bool
 	_nw_parameters_get_multipath_service func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_prefer_no_proxy func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_prohibit_constrained func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_prohibit_expensive func(unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_get_prefer_no_proxy func(unsafe.Pointer) bool
+	_nw_parameters_get_prohibit_constrained func(unsafe.Pointer) bool
+	_nw_parameters_get_prohibit_expensive func(unsafe.Pointer) bool
 	_nw_parameters_get_required_interface_type func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_get_reuse_local_address func(unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_get_reuse_local_address func(unsafe.Pointer) bool
 	_nw_parameters_get_service_class func(unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_iterate_prohibited_interface_types func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_iterate_prohibited_interfaces func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_prohibit_interface func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_prohibit_interface_type func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_require_interface func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_requires_dnssec_validation func(unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_allow_ultra_constrained func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_requires_dnssec_validation func(unsafe.Pointer) bool
+	_nw_parameters_set_allow_ultra_constrained func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_parameters_set_attribution func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_parameters_set_expired_dns_behavior func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_fast_open_enabled func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_include_peer_to_peer func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_set_fast_open_enabled func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_parameters_set_include_peer_to_peer func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_parameters_set_local_endpoint func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_local_only func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_set_local_only func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_parameters_set_multipath_service func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_prefer_no_proxy func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_set_prefer_no_proxy func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_parameters_set_privacy_context func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_prohibit_constrained func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_prohibit_expensive func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_set_prohibit_constrained func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_parameters_set_prohibit_expensive func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_parameters_set_required_interface_type func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_requires_dnssec_validation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_parameters_set_reuse_local_address func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_parameters_set_requires_dnssec_validation func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_parameters_set_reuse_local_address func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_parameters_set_service_class func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_path_copy_effective_local_endpoint func(unsafe.Pointer) unsafe.Pointer
 	_nw_path_copy_effective_remote_endpoint func(unsafe.Pointer) unsafe.Pointer
@@ -278,13 +278,13 @@ var (
 	_nw_path_get_link_quality func(unsafe.Pointer) unsafe.Pointer
 	_nw_path_get_status func(unsafe.Pointer) unsafe.Pointer
 	_nw_path_get_unsatisfied_reason func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_has_dns func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_has_ipv4 func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_has_ipv6 func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_is_constrained func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_is_equal func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_path_is_expensive func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_is_ultra_constrained func(unsafe.Pointer) unsafe.Pointer
+	_nw_path_has_dns func(unsafe.Pointer) bool
+	_nw_path_has_ipv4 func(unsafe.Pointer) bool
+	_nw_path_has_ipv6 func(unsafe.Pointer) bool
+	_nw_path_is_constrained func(unsafe.Pointer) bool
+	_nw_path_is_equal func(unsafe.Pointer, unsafe.Pointer) bool
+	_nw_path_is_expensive func(unsafe.Pointer) bool
+	_nw_path_is_ultra_constrained func(unsafe.Pointer) bool
 	_nw_path_monitor_cancel func(unsafe.Pointer) unsafe.Pointer
 	_nw_path_monitor_create func() unsafe.Pointer
 	_nw_path_monitor_create_for_ethernet_channel func() unsafe.Pointer
@@ -294,7 +294,7 @@ var (
 	_nw_path_monitor_set_queue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_path_monitor_set_update_handler func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_path_monitor_start func(unsafe.Pointer) unsafe.Pointer
-	_nw_path_uses_interface_type func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_path_uses_interface_type func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_protocol_copy_ip_definition func() unsafe.Pointer
 	_nw_protocol_copy_quic_definition func() unsafe.Pointer
 	_nw_protocol_copy_tcp_definition func() unsafe.Pointer
@@ -302,14 +302,14 @@ var (
 	_nw_protocol_copy_udp_definition func() unsafe.Pointer
 	_nw_protocol_copy_ws_definition func() unsafe.Pointer
 	_nw_protocol_metadata_copy_definition func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_framer_message func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_ip func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_quic func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_tcp func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_tls func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_udp func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_metadata_is_ws func(unsafe.Pointer) unsafe.Pointer
-	_nw_protocol_options_is_quic func(unsafe.Pointer) unsafe.Pointer
+	_nw_protocol_metadata_is_framer_message func(unsafe.Pointer) bool
+	_nw_protocol_metadata_is_ip func(unsafe.Pointer) bool
+	_nw_protocol_metadata_is_quic func(unsafe.Pointer) bool
+	_nw_protocol_metadata_is_tcp func(unsafe.Pointer) bool
+	_nw_protocol_metadata_is_tls func(unsafe.Pointer) bool
+	_nw_protocol_metadata_is_udp func(unsafe.Pointer) bool
+	_nw_protocol_metadata_is_ws func(unsafe.Pointer) bool
+	_nw_protocol_options_is_quic func(unsafe.Pointer) bool
 	_nw_protocol_stack_clear_application_protocols func(unsafe.Pointer) unsafe.Pointer
 	_nw_protocol_stack_copy_internet_protocol func(unsafe.Pointer) unsafe.Pointer
 	_nw_protocol_stack_copy_transport_protocol func(unsafe.Pointer) unsafe.Pointer
@@ -345,8 +345,8 @@ var (
 	_nw_quic_get_remote_max_streams_unidirectional func(unsafe.Pointer) unsafe.Pointer
 	_nw_quic_get_stream_application_error func(unsafe.Pointer) unsafe.Pointer
 	_nw_quic_get_stream_id func(unsafe.Pointer) unsafe.Pointer
-	_nw_quic_get_stream_is_datagram func(unsafe.Pointer) unsafe.Pointer
-	_nw_quic_get_stream_is_unidirectional func(unsafe.Pointer) unsafe.Pointer
+	_nw_quic_get_stream_is_datagram func(unsafe.Pointer) bool
+	_nw_quic_get_stream_is_unidirectional func(unsafe.Pointer) bool
 	_nw_quic_get_stream_type func(unsafe.Pointer) unsafe.Pointer
 	_nw_quic_get_stream_usable_datagram_frame_size func(unsafe.Pointer) unsafe.Pointer
 	_nw_quic_set_application_error func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -363,8 +363,8 @@ var (
 	_nw_quic_set_max_datagram_frame_size func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_quic_set_max_udp_payload_size func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_quic_set_stream_application_error func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_quic_set_stream_is_datagram func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_quic_set_stream_is_unidirectional func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_quic_set_stream_is_datagram func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_quic_set_stream_is_unidirectional func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_release func(unsafe.Pointer) unsafe.Pointer
 	_nw_resolution_report_copy_preferred_endpoint func(unsafe.Pointer) unsafe.Pointer
 	_nw_resolution_report_copy_successful_endpoint func(unsafe.Pointer) unsafe.Pointer
@@ -377,39 +377,39 @@ var (
 	_nw_tcp_get_available_receive_buffer func(unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_get_available_send_buffer func(unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_options_set_connection_timeout func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_disable_ack_stretching func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_disable_ecn func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_enable_fast_open func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_enable_keepalive func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_tcp_options_set_disable_ack_stretching func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_tcp_options_set_disable_ecn func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_tcp_options_set_enable_fast_open func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_tcp_options_set_enable_keepalive func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_tcp_options_set_keepalive_count func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_options_set_keepalive_idle_time func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_options_set_keepalive_interval func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_options_set_maximum_segment_size func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_options_set_multipath_force_version func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_no_delay func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_no_options func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_no_push func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_tcp_options_set_no_delay func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_tcp_options_set_no_options func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_tcp_options_set_no_push func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_tcp_options_set_persist_timeout func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_options_set_retransmit_connection_drop_time func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_tcp_options_set_retransmit_fin_drop func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_tcp_options_set_retransmit_fin_drop func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_tls_copy_sec_protocol_metadata func(unsafe.Pointer) unsafe.Pointer
 	_nw_tls_copy_sec_protocol_options func(unsafe.Pointer) unsafe.Pointer
 	_nw_tls_create_options func() unsafe.Pointer
-	_nw_txt_record_access_bytes func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_txt_record_access_key func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_txt_record_apply func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_txt_record_access_bytes func(unsafe.Pointer, unsafe.Pointer) bool
+	_nw_txt_record_access_key func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_nw_txt_record_apply func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_txt_record_copy func(unsafe.Pointer) unsafe.Pointer
 	_nw_txt_record_create_dictionary func() unsafe.Pointer
 	_nw_txt_record_create_with_bytes func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_txt_record_find_key func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_txt_record_get_key_count func(unsafe.Pointer) unsafe.Pointer
-	_nw_txt_record_is_dictionary func(unsafe.Pointer) unsafe.Pointer
-	_nw_txt_record_is_equal func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_txt_record_remove_key func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_txt_record_set_key func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_txt_record_is_dictionary func(unsafe.Pointer) bool
+	_nw_txt_record_is_equal func(unsafe.Pointer, unsafe.Pointer) bool
+	_nw_txt_record_remove_key func(unsafe.Pointer, unsafe.Pointer) bool
+	_nw_txt_record_set_key func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_nw_udp_create_metadata func() unsafe.Pointer
 	_nw_udp_create_options func() unsafe.Pointer
-	_nw_udp_options_set_prefer_no_checksum func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_udp_options_set_prefer_no_checksum func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_ws_create_metadata func(unsafe.Pointer) unsafe.Pointer
 	_nw_ws_create_options func(unsafe.Pointer) unsafe.Pointer
 	_nw_ws_metadata_copy_server_response func(unsafe.Pointer) unsafe.Pointer
@@ -419,15 +419,15 @@ var (
 	_nw_ws_metadata_set_pong_handler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ws_options_add_additional_header func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ws_options_add_subprotocol func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ws_options_set_auto_reply_ping func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_ws_options_set_auto_reply_ping func(unsafe.Pointer, bool) unsafe.Pointer
 	_nw_ws_options_set_client_request_handler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ws_options_set_maximum_message_size func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ws_options_set_skip_handshake func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ws_request_enumerate_additional_headers func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ws_request_enumerate_subprotocols func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_ws_options_set_skip_handshake func(unsafe.Pointer, bool) unsafe.Pointer
+	_nw_ws_request_enumerate_additional_headers func(unsafe.Pointer, unsafe.Pointer) bool
+	_nw_ws_request_enumerate_subprotocols func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_ws_response_add_additional_header func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_nw_ws_response_create func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_nw_ws_response_enumerate_additional_headers func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_nw_ws_response_enumerate_additional_headers func(unsafe.Pointer, unsafe.Pointer) bool
 	_nw_ws_response_get_selected_subprotocol func(unsafe.Pointer) unsafe.Pointer
 	_nw_ws_response_get_status func(unsafe.Pointer) unsafe.Pointer
 )
@@ -913,7 +913,7 @@ func nw_advertise_descriptor_get_application_service_name(advertise_descriptor u
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_get_no_auto_rename(_:)
-func nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor unsafe.Pointer) unsafe.Pointer {
+func nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor unsafe.Pointer) bool {
 	return _nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor)
 	}
 
@@ -923,7 +923,7 @@ func nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor unsafe.Poin
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_set_no_auto_rename(_:_:)
-func nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor unsafe.Pointer, no_auto_rename unsafe.Pointer) {
+func nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor unsafe.Pointer, no_auto_rename bool) {
 	_nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor, no_auto_rename)
 	}
 
@@ -1003,7 +1003,7 @@ func nw_browse_descriptor_get_bonjour_service_type(descriptor unsafe.Pointer) un
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_get_include_txt_record(_:)
-func nw_browse_descriptor_get_include_txt_record(descriptor unsafe.Pointer) unsafe.Pointer {
+func nw_browse_descriptor_get_include_txt_record(descriptor unsafe.Pointer) bool {
 	return _nw_browse_descriptor_get_include_txt_record(descriptor)
 	}
 
@@ -1013,7 +1013,7 @@ func nw_browse_descriptor_get_include_txt_record(descriptor unsafe.Pointer) unsa
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_set_include_txt_record(_:_:)
-func nw_browse_descriptor_set_include_txt_record(descriptor unsafe.Pointer, include_txt_record unsafe.Pointer) {
+func nw_browse_descriptor_set_include_txt_record(descriptor unsafe.Pointer, include_txt_record bool) {
 	_nw_browse_descriptor_set_include_txt_record(descriptor, include_txt_record)
 	}
 
@@ -1393,7 +1393,7 @@ func nw_connection_group_extract_connection_for_message(group unsafe.Pointer, co
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_reinsert_extracted_connection(_:_:)
-func nw_connection_group_reinsert_extracted_connection(group unsafe.Pointer, connection unsafe.Pointer) unsafe.Pointer {
+func nw_connection_group_reinsert_extracted_connection(group unsafe.Pointer, connection unsafe.Pointer) bool {
 	return _nw_connection_group_reinsert_extracted_connection(group, connection)
 	}
 
@@ -1443,7 +1443,7 @@ func nw_connection_group_set_queue(group unsafe.Pointer, queue unsafe.Pointer) {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_set_receive_handler(_:_:_:_:)
-func nw_connection_group_set_receive_handler(group unsafe.Pointer, maximum_message_size unsafe.Pointer, reject_oversized_messages unsafe.Pointer, receive_handler unsafe.Pointer) {
+func nw_connection_group_set_receive_handler(group unsafe.Pointer, maximum_message_size unsafe.Pointer, reject_oversized_messages bool, receive_handler unsafe.Pointer) {
 	_nw_connection_group_set_receive_handler(group, maximum_message_size, reject_oversized_messages, receive_handler)
 	}
 
@@ -1503,7 +1503,7 @@ func nw_connection_restart(connection unsafe.Pointer) {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_send(_:_:_:_:_:)
-func nw_connection_send(connection unsafe.Pointer, content unsafe.Pointer, context unsafe.Pointer, is_complete unsafe.Pointer, completion unsafe.Pointer) {
+func nw_connection_send(connection unsafe.Pointer, content unsafe.Pointer, context unsafe.Pointer, is_complete bool, completion unsafe.Pointer) {
 	_nw_connection_send(connection, content, context, is_complete, completion)
 	}
 
@@ -1633,7 +1633,7 @@ func nw_content_context_get_identifier(context unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_get_is_final(_:)
-func nw_content_context_get_is_final(context unsafe.Pointer) unsafe.Pointer {
+func nw_content_context_get_is_final(context unsafe.Pointer) bool {
 	return _nw_content_context_get_is_final(context)
 	}
 
@@ -1673,7 +1673,7 @@ func nw_content_context_set_expiration_milliseconds(context unsafe.Pointer, expi
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_set_is_final(_:_:)
-func nw_content_context_set_is_final(context unsafe.Pointer, is_final unsafe.Pointer) {
+func nw_content_context_set_is_final(context unsafe.Pointer, is_final bool) {
 	_nw_content_context_set_is_final(context, is_final)
 	}
 
@@ -2053,7 +2053,7 @@ func nw_error_copy_cf_error(error_ unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_error_get_error_code(_:)
-func nw_error_get_error_code(error_ unsafe.Pointer) unsafe.Pointer {
+func nw_error_get_error_code(error_ unsafe.Pointer) int {
 	return _nw_error_get_error_code(error_)
 	}
 
@@ -2143,7 +2143,7 @@ func nw_establishment_report_get_previous_attempt_count(report unsafe.Pointer) u
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_proxy_configured(_:)
-func nw_establishment_report_get_proxy_configured(report unsafe.Pointer) unsafe.Pointer {
+func nw_establishment_report_get_proxy_configured(report unsafe.Pointer) bool {
 	return _nw_establishment_report_get_proxy_configured(report)
 	}
 
@@ -2153,7 +2153,7 @@ func nw_establishment_report_get_proxy_configured(report unsafe.Pointer) unsafe.
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_used_proxy(_:)
-func nw_establishment_report_get_used_proxy(report unsafe.Pointer) unsafe.Pointer {
+func nw_establishment_report_get_used_proxy(report unsafe.Pointer) bool {
 	return _nw_establishment_report_get_used_proxy(report)
 	}
 
@@ -2323,7 +2323,7 @@ func nw_framer_create_options(framer_definition unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_deliver_input(_:_:_:_:_:)
-func nw_framer_deliver_input(framer unsafe.Pointer, input_buffer unsafe.Pointer, input_length unsafe.Pointer, message unsafe.Pointer, is_complete unsafe.Pointer) {
+func nw_framer_deliver_input(framer unsafe.Pointer, input_buffer unsafe.Pointer, input_length unsafe.Pointer, message unsafe.Pointer, is_complete bool) {
 	_nw_framer_deliver_input(framer, input_buffer, input_length, message, is_complete)
 	}
 
@@ -2333,7 +2333,7 @@ func nw_framer_deliver_input(framer unsafe.Pointer, input_buffer unsafe.Pointer,
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_deliver_input_no_copy(_:_:_:_:)
-func nw_framer_deliver_input_no_copy(framer unsafe.Pointer, input_length unsafe.Pointer, message unsafe.Pointer, is_complete unsafe.Pointer) unsafe.Pointer {
+func nw_framer_deliver_input_no_copy(framer unsafe.Pointer, input_length unsafe.Pointer, message unsafe.Pointer, is_complete bool) bool {
 	return _nw_framer_deliver_input_no_copy(framer, input_length, message, is_complete)
 	}
 
@@ -2343,7 +2343,7 @@ func nw_framer_deliver_input_no_copy(framer unsafe.Pointer, input_length unsafe.
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_mark_failed_with_error(_:_:)
-func nw_framer_mark_failed_with_error(framer unsafe.Pointer, error_code unsafe.Pointer) {
+func nw_framer_mark_failed_with_error(framer unsafe.Pointer, error_code int) {
 	_nw_framer_mark_failed_with_error(framer, error_code)
 	}
 
@@ -2363,7 +2363,7 @@ func nw_framer_mark_ready(framer unsafe.Pointer) {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_message_access_value(_:_:_:)
-func nw_framer_message_access_value(message unsafe.Pointer, key unsafe.Pointer, access_value unsafe.Pointer) unsafe.Pointer {
+func nw_framer_message_access_value(message unsafe.Pointer, key unsafe.Pointer, access_value bool) bool {
 	return _nw_framer_message_access_value(message, key, access_value)
 	}
 
@@ -2433,7 +2433,7 @@ func nw_framer_options_set_object_value(options unsafe.Pointer, key unsafe.Point
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_parse_input(_:_:_:_:_:)
-func nw_framer_parse_input(framer unsafe.Pointer, minimum_incomplete_length unsafe.Pointer, maximum_length unsafe.Pointer, temp_buffer unsafe.Pointer, parse unsafe.Pointer) unsafe.Pointer {
+func nw_framer_parse_input(framer unsafe.Pointer, minimum_incomplete_length unsafe.Pointer, maximum_length unsafe.Pointer, temp_buffer unsafe.Pointer, parse unsafe.Pointer) bool {
 	return _nw_framer_parse_input(framer, minimum_incomplete_length, maximum_length, temp_buffer, parse)
 	}
 
@@ -2443,7 +2443,7 @@ func nw_framer_parse_input(framer unsafe.Pointer, minimum_incomplete_length unsa
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_parse_output(_:_:_:_:_:)
-func nw_framer_parse_output(framer unsafe.Pointer, minimum_incomplete_length unsafe.Pointer, maximum_length unsafe.Pointer, temp_buffer unsafe.Pointer, parse unsafe.Pointer) unsafe.Pointer {
+func nw_framer_parse_output(framer unsafe.Pointer, minimum_incomplete_length unsafe.Pointer, maximum_length unsafe.Pointer, temp_buffer unsafe.Pointer, parse unsafe.Pointer) bool {
 	return _nw_framer_parse_output(framer, minimum_incomplete_length, maximum_length, temp_buffer, parse)
 	}
 
@@ -2473,7 +2473,7 @@ func nw_framer_pass_through_output(framer unsafe.Pointer) {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_prepend_application_protocol(_:_:)
-func nw_framer_prepend_application_protocol(framer unsafe.Pointer, protocol_options unsafe.Pointer) unsafe.Pointer {
+func nw_framer_prepend_application_protocol(framer unsafe.Pointer, protocol_options unsafe.Pointer) bool {
 	return _nw_framer_prepend_application_protocol(framer, protocol_options)
 	}
 
@@ -2573,7 +2573,7 @@ func nw_framer_write_output_data(framer unsafe.Pointer, output_data unsafe.Point
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_write_output_no_copy(_:_:)
-func nw_framer_write_output_no_copy(framer unsafe.Pointer, output_length unsafe.Pointer) unsafe.Pointer {
+func nw_framer_write_output_no_copy(framer unsafe.Pointer, output_length unsafe.Pointer) bool {
 	return _nw_framer_write_output_no_copy(framer, output_length)
 	}
 
@@ -2583,7 +2583,7 @@ func nw_framer_write_output_no_copy(framer unsafe.Pointer, output_length unsafe.
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_group_descriptor_add_endpoint(_:_:)
-func nw_group_descriptor_add_endpoint(descriptor unsafe.Pointer, endpoint unsafe.Pointer) unsafe.Pointer {
+func nw_group_descriptor_add_endpoint(descriptor unsafe.Pointer, endpoint unsafe.Pointer) bool {
 	return _nw_group_descriptor_add_endpoint(descriptor, endpoint)
 	}
 
@@ -2713,7 +2713,7 @@ func nw_ip_metadata_set_service_class(metadata unsafe.Pointer, service_class uns
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_calculate_receive_time(_:_:)
-func nw_ip_options_set_calculate_receive_time(options unsafe.Pointer, calculate_receive_time unsafe.Pointer) {
+func nw_ip_options_set_calculate_receive_time(options unsafe.Pointer, calculate_receive_time bool) {
 	_nw_ip_options_set_calculate_receive_time(options, calculate_receive_time)
 	}
 
@@ -2723,7 +2723,7 @@ func nw_ip_options_set_calculate_receive_time(options unsafe.Pointer, calculate_
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_disable_fragmentation(_:_:)
-func nw_ip_options_set_disable_fragmentation(options unsafe.Pointer, disable_fragmentation unsafe.Pointer) {
+func nw_ip_options_set_disable_fragmentation(options unsafe.Pointer, disable_fragmentation bool) {
 	_nw_ip_options_set_disable_fragmentation(options, disable_fragmentation)
 	}
 
@@ -2733,7 +2733,7 @@ func nw_ip_options_set_disable_fragmentation(options unsafe.Pointer, disable_fra
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_disable_multicast_loopback(_:_:)
-func nw_ip_options_set_disable_multicast_loopback(options unsafe.Pointer, disable_multicast_loopback unsafe.Pointer) {
+func nw_ip_options_set_disable_multicast_loopback(options unsafe.Pointer, disable_multicast_loopback bool) {
 	_nw_ip_options_set_disable_multicast_loopback(options, disable_multicast_loopback)
 	}
 
@@ -2763,7 +2763,7 @@ func nw_ip_options_set_local_address_preference(options unsafe.Pointer, preferen
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_use_minimum_mtu(_:_:)
-func nw_ip_options_set_use_minimum_mtu(options unsafe.Pointer, use_minimum_mtu unsafe.Pointer) {
+func nw_ip_options_set_use_minimum_mtu(options unsafe.Pointer, use_minimum_mtu bool) {
 	_nw_ip_options_set_use_minimum_mtu(options, use_minimum_mtu)
 	}
 
@@ -2933,7 +2933,7 @@ func nw_listener_start(listener unsafe.Pointer) {
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_multicast_group_descriptor_get_disable_unicast_traffic(_:)
-func nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor unsafe.Pointer) unsafe.Pointer {
+func nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor unsafe.Pointer) bool {
 	return _nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor)
 	}
 
@@ -2943,7 +2943,7 @@ func nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descrip
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_multicast_group_descriptor_set_disable_unicast_traffic(_:_:)
-func nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor unsafe.Pointer, disable_unicast_traffic unsafe.Pointer) {
+func nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor unsafe.Pointer, disable_unicast_traffic bool) {
 	_nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor, disable_unicast_traffic)
 	}
 
@@ -3083,7 +3083,7 @@ func nw_parameters_create_secure_udp(configure_dtls unsafe.Pointer, configure_ud
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_allow_ultra_constrained(_:)
-func nw_parameters_get_allow_ultra_constrained(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_allow_ultra_constrained(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_allow_ultra_constrained(parameters)
 	}
 
@@ -3113,7 +3113,7 @@ func nw_parameters_get_expired_dns_behavior(parameters unsafe.Pointer) unsafe.Po
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_fast_open_enabled(_:)
-func nw_parameters_get_fast_open_enabled(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_fast_open_enabled(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_fast_open_enabled(parameters)
 	}
 
@@ -3123,7 +3123,7 @@ func nw_parameters_get_fast_open_enabled(parameters unsafe.Pointer) unsafe.Point
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_include_peer_to_peer(_:)
-func nw_parameters_get_include_peer_to_peer(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_include_peer_to_peer(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_include_peer_to_peer(parameters)
 	}
 
@@ -3133,7 +3133,7 @@ func nw_parameters_get_include_peer_to_peer(parameters unsafe.Pointer) unsafe.Po
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_local_only(_:)
-func nw_parameters_get_local_only(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_local_only(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_local_only(parameters)
 	}
 
@@ -3153,7 +3153,7 @@ func nw_parameters_get_multipath_service(parameters unsafe.Pointer) unsafe.Point
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_prefer_no_proxy(_:)
-func nw_parameters_get_prefer_no_proxy(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_prefer_no_proxy(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_prefer_no_proxy(parameters)
 	}
 
@@ -3163,7 +3163,7 @@ func nw_parameters_get_prefer_no_proxy(parameters unsafe.Pointer) unsafe.Pointer
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_prohibit_constrained(_:)
-func nw_parameters_get_prohibit_constrained(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_prohibit_constrained(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_prohibit_constrained(parameters)
 	}
 
@@ -3173,7 +3173,7 @@ func nw_parameters_get_prohibit_constrained(parameters unsafe.Pointer) unsafe.Po
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_prohibit_expensive(_:)
-func nw_parameters_get_prohibit_expensive(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_prohibit_expensive(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_prohibit_expensive(parameters)
 	}
 
@@ -3193,7 +3193,7 @@ func nw_parameters_get_required_interface_type(parameters unsafe.Pointer) unsafe
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_reuse_local_address(_:)
-func nw_parameters_get_reuse_local_address(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_get_reuse_local_address(parameters unsafe.Pointer) bool {
 	return _nw_parameters_get_reuse_local_address(parameters)
 	}
 
@@ -3263,7 +3263,7 @@ func nw_parameters_require_interface(parameters unsafe.Pointer, interface_ unsaf
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_requires_dnssec_validation(_:)
-func nw_parameters_requires_dnssec_validation(parameters unsafe.Pointer) unsafe.Pointer {
+func nw_parameters_requires_dnssec_validation(parameters unsafe.Pointer) bool {
 	return _nw_parameters_requires_dnssec_validation(parameters)
 	}
 
@@ -3273,7 +3273,7 @@ func nw_parameters_requires_dnssec_validation(parameters unsafe.Pointer) unsafe.
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_allow_ultra_constrained(_:_:)
-func nw_parameters_set_allow_ultra_constrained(parameters unsafe.Pointer, allow_ultra_constrained unsafe.Pointer) {
+func nw_parameters_set_allow_ultra_constrained(parameters unsafe.Pointer, allow_ultra_constrained bool) {
 	_nw_parameters_set_allow_ultra_constrained(parameters, allow_ultra_constrained)
 	}
 
@@ -3303,7 +3303,7 @@ func nw_parameters_set_expired_dns_behavior(parameters unsafe.Pointer, expired_d
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_fast_open_enabled(_:_:)
-func nw_parameters_set_fast_open_enabled(parameters unsafe.Pointer, fast_open_enabled unsafe.Pointer) {
+func nw_parameters_set_fast_open_enabled(parameters unsafe.Pointer, fast_open_enabled bool) {
 	_nw_parameters_set_fast_open_enabled(parameters, fast_open_enabled)
 	}
 
@@ -3313,7 +3313,7 @@ func nw_parameters_set_fast_open_enabled(parameters unsafe.Pointer, fast_open_en
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_include_peer_to_peer(_:_:)
-func nw_parameters_set_include_peer_to_peer(parameters unsafe.Pointer, include_peer_to_peer unsafe.Pointer) {
+func nw_parameters_set_include_peer_to_peer(parameters unsafe.Pointer, include_peer_to_peer bool) {
 	_nw_parameters_set_include_peer_to_peer(parameters, include_peer_to_peer)
 	}
 
@@ -3333,7 +3333,7 @@ func nw_parameters_set_local_endpoint(parameters unsafe.Pointer, local_endpoint 
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_local_only(_:_:)
-func nw_parameters_set_local_only(parameters unsafe.Pointer, local_only unsafe.Pointer) {
+func nw_parameters_set_local_only(parameters unsafe.Pointer, local_only bool) {
 	_nw_parameters_set_local_only(parameters, local_only)
 	}
 
@@ -3353,7 +3353,7 @@ func nw_parameters_set_multipath_service(parameters unsafe.Pointer, multipath_se
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_prefer_no_proxy(_:_:)
-func nw_parameters_set_prefer_no_proxy(parameters unsafe.Pointer, prefer_no_proxy unsafe.Pointer) {
+func nw_parameters_set_prefer_no_proxy(parameters unsafe.Pointer, prefer_no_proxy bool) {
 	_nw_parameters_set_prefer_no_proxy(parameters, prefer_no_proxy)
 	}
 
@@ -3373,7 +3373,7 @@ func nw_parameters_set_privacy_context(parameters unsafe.Pointer, privacy_contex
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_prohibit_constrained(_:_:)
-func nw_parameters_set_prohibit_constrained(parameters unsafe.Pointer, prohibit_constrained unsafe.Pointer) {
+func nw_parameters_set_prohibit_constrained(parameters unsafe.Pointer, prohibit_constrained bool) {
 	_nw_parameters_set_prohibit_constrained(parameters, prohibit_constrained)
 	}
 
@@ -3383,7 +3383,7 @@ func nw_parameters_set_prohibit_constrained(parameters unsafe.Pointer, prohibit_
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_prohibit_expensive(_:_:)
-func nw_parameters_set_prohibit_expensive(parameters unsafe.Pointer, prohibit_expensive unsafe.Pointer) {
+func nw_parameters_set_prohibit_expensive(parameters unsafe.Pointer, prohibit_expensive bool) {
 	_nw_parameters_set_prohibit_expensive(parameters, prohibit_expensive)
 	}
 
@@ -3403,7 +3403,7 @@ func nw_parameters_set_required_interface_type(parameters unsafe.Pointer, interf
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_requires_dnssec_validation(_:_:)
-func nw_parameters_set_requires_dnssec_validation(parameters unsafe.Pointer, requires_dnssec_validation unsafe.Pointer) {
+func nw_parameters_set_requires_dnssec_validation(parameters unsafe.Pointer, requires_dnssec_validation bool) {
 	_nw_parameters_set_requires_dnssec_validation(parameters, requires_dnssec_validation)
 	}
 
@@ -3413,7 +3413,7 @@ func nw_parameters_set_requires_dnssec_validation(parameters unsafe.Pointer, req
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_reuse_local_address(_:_:)
-func nw_parameters_set_reuse_local_address(parameters unsafe.Pointer, reuse_local_address unsafe.Pointer) {
+func nw_parameters_set_reuse_local_address(parameters unsafe.Pointer, reuse_local_address bool) {
 	_nw_parameters_set_reuse_local_address(parameters, reuse_local_address)
 	}
 
@@ -3503,7 +3503,7 @@ func nw_path_get_unsatisfied_reason(path unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_has_dns(_:)
-func nw_path_has_dns(path unsafe.Pointer) unsafe.Pointer {
+func nw_path_has_dns(path unsafe.Pointer) bool {
 	return _nw_path_has_dns(path)
 	}
 
@@ -3513,7 +3513,7 @@ func nw_path_has_dns(path unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_has_ipv4(_:)
-func nw_path_has_ipv4(path unsafe.Pointer) unsafe.Pointer {
+func nw_path_has_ipv4(path unsafe.Pointer) bool {
 	return _nw_path_has_ipv4(path)
 	}
 
@@ -3523,7 +3523,7 @@ func nw_path_has_ipv4(path unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_has_ipv6(_:)
-func nw_path_has_ipv6(path unsafe.Pointer) unsafe.Pointer {
+func nw_path_has_ipv6(path unsafe.Pointer) bool {
 	return _nw_path_has_ipv6(path)
 	}
 
@@ -3533,7 +3533,7 @@ func nw_path_has_ipv6(path unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_constrained(_:)
-func nw_path_is_constrained(path unsafe.Pointer) unsafe.Pointer {
+func nw_path_is_constrained(path unsafe.Pointer) bool {
 	return _nw_path_is_constrained(path)
 	}
 
@@ -3543,7 +3543,7 @@ func nw_path_is_constrained(path unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_equal(_:_:)
-func nw_path_is_equal(path unsafe.Pointer, other_path unsafe.Pointer) unsafe.Pointer {
+func nw_path_is_equal(path unsafe.Pointer, other_path unsafe.Pointer) bool {
 	return _nw_path_is_equal(path, other_path)
 	}
 
@@ -3553,7 +3553,7 @@ func nw_path_is_equal(path unsafe.Pointer, other_path unsafe.Pointer) unsafe.Poi
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_expensive(_:)
-func nw_path_is_expensive(path unsafe.Pointer) unsafe.Pointer {
+func nw_path_is_expensive(path unsafe.Pointer) bool {
 	return _nw_path_is_expensive(path)
 	}
 
@@ -3563,7 +3563,7 @@ func nw_path_is_expensive(path unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 26.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_ultra_constrained(_:)
-func nw_path_is_ultra_constrained(path unsafe.Pointer) unsafe.Pointer {
+func nw_path_is_ultra_constrained(path unsafe.Pointer) bool {
 	return _nw_path_is_ultra_constrained(path)
 	}
 
@@ -3663,7 +3663,7 @@ func nw_path_monitor_start(monitor unsafe.Pointer) {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_uses_interface_type(_:_:)
-func nw_path_uses_interface_type(path unsafe.Pointer, interface_type unsafe.Pointer) unsafe.Pointer {
+func nw_path_uses_interface_type(path unsafe.Pointer, interface_type unsafe.Pointer) bool {
 	return _nw_path_uses_interface_type(path, interface_type)
 	}
 
@@ -3743,7 +3743,7 @@ func nw_protocol_metadata_copy_definition(metadata unsafe.Pointer) unsafe.Pointe
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_framer_message(_:)
-func nw_protocol_metadata_is_framer_message(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_framer_message(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_framer_message(metadata)
 	}
 
@@ -3753,7 +3753,7 @@ func nw_protocol_metadata_is_framer_message(metadata unsafe.Pointer) unsafe.Poin
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_ip(_:)
-func nw_protocol_metadata_is_ip(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_ip(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_ip(metadata)
 	}
 
@@ -3763,7 +3763,7 @@ func nw_protocol_metadata_is_ip(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_quic(_:)
-func nw_protocol_metadata_is_quic(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_quic(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_quic(metadata)
 	}
 
@@ -3773,7 +3773,7 @@ func nw_protocol_metadata_is_quic(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_tcp(_:)
-func nw_protocol_metadata_is_tcp(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_tcp(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_tcp(metadata)
 	}
 
@@ -3783,7 +3783,7 @@ func nw_protocol_metadata_is_tcp(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_tls(_:)
-func nw_protocol_metadata_is_tls(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_tls(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_tls(metadata)
 	}
 
@@ -3793,7 +3793,7 @@ func nw_protocol_metadata_is_tls(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_udp(_:)
-func nw_protocol_metadata_is_udp(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_udp(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_udp(metadata)
 	}
 
@@ -3803,7 +3803,7 @@ func nw_protocol_metadata_is_udp(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_ws(_:)
-func nw_protocol_metadata_is_ws(metadata unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_metadata_is_ws(metadata unsafe.Pointer) bool {
 	return _nw_protocol_metadata_is_ws(metadata)
 	}
 
@@ -3813,7 +3813,7 @@ func nw_protocol_metadata_is_ws(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_options_is_quic(_:)
-func nw_protocol_options_is_quic(options unsafe.Pointer) unsafe.Pointer {
+func nw_protocol_options_is_quic(options unsafe.Pointer) bool {
 	return _nw_protocol_options_is_quic(options)
 	}
 
@@ -4173,7 +4173,7 @@ func nw_quic_get_stream_id(metadata unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_is_datagram(_:)
-func nw_quic_get_stream_is_datagram(options unsafe.Pointer) unsafe.Pointer {
+func nw_quic_get_stream_is_datagram(options unsafe.Pointer) bool {
 	return _nw_quic_get_stream_is_datagram(options)
 	}
 
@@ -4183,7 +4183,7 @@ func nw_quic_get_stream_is_datagram(options unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_is_unidirectional(_:)
-func nw_quic_get_stream_is_unidirectional(options unsafe.Pointer) unsafe.Pointer {
+func nw_quic_get_stream_is_unidirectional(options unsafe.Pointer) bool {
 	return _nw_quic_get_stream_is_unidirectional(options)
 	}
 
@@ -4353,7 +4353,7 @@ func nw_quic_set_stream_application_error(metadata unsafe.Pointer, application_e
 // Added in macOS 13.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_stream_is_datagram(_:_:)
-func nw_quic_set_stream_is_datagram(options unsafe.Pointer, is_datagram unsafe.Pointer) {
+func nw_quic_set_stream_is_datagram(options unsafe.Pointer, is_datagram bool) {
 	_nw_quic_set_stream_is_datagram(options, is_datagram)
 	}
 
@@ -4363,7 +4363,7 @@ func nw_quic_set_stream_is_datagram(options unsafe.Pointer, is_datagram unsafe.P
 // Added in macOS 12.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_stream_is_unidirectional(_:_:)
-func nw_quic_set_stream_is_unidirectional(options unsafe.Pointer, is_unidirectional unsafe.Pointer) {
+func nw_quic_set_stream_is_unidirectional(options unsafe.Pointer, is_unidirectional bool) {
 	_nw_quic_set_stream_is_unidirectional(options, is_unidirectional)
 	}
 
@@ -4493,7 +4493,7 @@ func nw_tcp_options_set_connection_timeout(options unsafe.Pointer, connection_ti
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_disable_ack_stretching(_:_:)
-func nw_tcp_options_set_disable_ack_stretching(options unsafe.Pointer, disable_ack_stretching unsafe.Pointer) {
+func nw_tcp_options_set_disable_ack_stretching(options unsafe.Pointer, disable_ack_stretching bool) {
 	_nw_tcp_options_set_disable_ack_stretching(options, disable_ack_stretching)
 	}
 
@@ -4503,7 +4503,7 @@ func nw_tcp_options_set_disable_ack_stretching(options unsafe.Pointer, disable_a
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_disable_ecn(_:_:)
-func nw_tcp_options_set_disable_ecn(options unsafe.Pointer, disable_ecn unsafe.Pointer) {
+func nw_tcp_options_set_disable_ecn(options unsafe.Pointer, disable_ecn bool) {
 	_nw_tcp_options_set_disable_ecn(options, disable_ecn)
 	}
 
@@ -4513,7 +4513,7 @@ func nw_tcp_options_set_disable_ecn(options unsafe.Pointer, disable_ecn unsafe.P
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_enable_fast_open(_:_:)
-func nw_tcp_options_set_enable_fast_open(options unsafe.Pointer, enable_fast_open unsafe.Pointer) {
+func nw_tcp_options_set_enable_fast_open(options unsafe.Pointer, enable_fast_open bool) {
 	_nw_tcp_options_set_enable_fast_open(options, enable_fast_open)
 	}
 
@@ -4523,7 +4523,7 @@ func nw_tcp_options_set_enable_fast_open(options unsafe.Pointer, enable_fast_ope
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_enable_keepalive(_:_:)
-func nw_tcp_options_set_enable_keepalive(options unsafe.Pointer, enable_keepalive unsafe.Pointer) {
+func nw_tcp_options_set_enable_keepalive(options unsafe.Pointer, enable_keepalive bool) {
 	_nw_tcp_options_set_enable_keepalive(options, enable_keepalive)
 	}
 
@@ -4583,7 +4583,7 @@ func nw_tcp_options_set_multipath_force_version(options unsafe.Pointer, multipat
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_no_delay(_:_:)
-func nw_tcp_options_set_no_delay(options unsafe.Pointer, no_delay unsafe.Pointer) {
+func nw_tcp_options_set_no_delay(options unsafe.Pointer, no_delay bool) {
 	_nw_tcp_options_set_no_delay(options, no_delay)
 	}
 
@@ -4593,7 +4593,7 @@ func nw_tcp_options_set_no_delay(options unsafe.Pointer, no_delay unsafe.Pointer
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_no_options(_:_:)
-func nw_tcp_options_set_no_options(options unsafe.Pointer, no_options unsafe.Pointer) {
+func nw_tcp_options_set_no_options(options unsafe.Pointer, no_options bool) {
 	_nw_tcp_options_set_no_options(options, no_options)
 	}
 
@@ -4603,7 +4603,7 @@ func nw_tcp_options_set_no_options(options unsafe.Pointer, no_options unsafe.Poi
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_no_push(_:_:)
-func nw_tcp_options_set_no_push(options unsafe.Pointer, no_push unsafe.Pointer) {
+func nw_tcp_options_set_no_push(options unsafe.Pointer, no_push bool) {
 	_nw_tcp_options_set_no_push(options, no_push)
 	}
 
@@ -4633,7 +4633,7 @@ func nw_tcp_options_set_retransmit_connection_drop_time(options unsafe.Pointer, 
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_retransmit_fin_drop(_:_:)
-func nw_tcp_options_set_retransmit_fin_drop(options unsafe.Pointer, retransmit_fin_drop unsafe.Pointer) {
+func nw_tcp_options_set_retransmit_fin_drop(options unsafe.Pointer, retransmit_fin_drop bool) {
 	_nw_tcp_options_set_retransmit_fin_drop(options, retransmit_fin_drop)
 	}
 
@@ -4673,7 +4673,7 @@ func nw_tls_create_options() unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_access_bytes(_:_:)
-func nw_txt_record_access_bytes(txt_record unsafe.Pointer, access_bytes unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_access_bytes(txt_record unsafe.Pointer, access_bytes unsafe.Pointer) bool {
 	return _nw_txt_record_access_bytes(txt_record, access_bytes)
 	}
 
@@ -4683,7 +4683,7 @@ func nw_txt_record_access_bytes(txt_record unsafe.Pointer, access_bytes unsafe.P
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_access_key(_:_:_:)
-func nw_txt_record_access_key(txt_record unsafe.Pointer, key unsafe.Pointer, access_value unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_access_key(txt_record unsafe.Pointer, key unsafe.Pointer, access_value unsafe.Pointer) bool {
 	return _nw_txt_record_access_key(txt_record, key, access_value)
 	}
 
@@ -4693,7 +4693,7 @@ func nw_txt_record_access_key(txt_record unsafe.Pointer, key unsafe.Pointer, acc
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_apply(_:_:)
-func nw_txt_record_apply(txt_record unsafe.Pointer, applier unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_apply(txt_record unsafe.Pointer, applier unsafe.Pointer) bool {
 	return _nw_txt_record_apply(txt_record, applier)
 	}
 
@@ -4753,7 +4753,7 @@ func nw_txt_record_get_key_count(txt_record unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_is_dictionary(_:)
-func nw_txt_record_is_dictionary(txt_record unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_is_dictionary(txt_record unsafe.Pointer) bool {
 	return _nw_txt_record_is_dictionary(txt_record)
 	}
 
@@ -4763,7 +4763,7 @@ func nw_txt_record_is_dictionary(txt_record unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_is_equal(_:_:)
-func nw_txt_record_is_equal(left unsafe.Pointer, right unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_is_equal(left unsafe.Pointer, right unsafe.Pointer) bool {
 	return _nw_txt_record_is_equal(left, right)
 	}
 
@@ -4773,7 +4773,7 @@ func nw_txt_record_is_equal(left unsafe.Pointer, right unsafe.Pointer) unsafe.Po
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_remove_key(_:_:)
-func nw_txt_record_remove_key(txt_record unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_remove_key(txt_record unsafe.Pointer, key unsafe.Pointer) bool {
 	return _nw_txt_record_remove_key(txt_record, key)
 	}
 
@@ -4783,7 +4783,7 @@ func nw_txt_record_remove_key(txt_record unsafe.Pointer, key unsafe.Pointer) uns
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_set_key(_:_:_:_:)
-func nw_txt_record_set_key(txt_record unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, value_len unsafe.Pointer) unsafe.Pointer {
+func nw_txt_record_set_key(txt_record unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer, value_len unsafe.Pointer) bool {
 	return _nw_txt_record_set_key(txt_record, key, value, value_len)
 	}
 
@@ -4813,7 +4813,7 @@ func nw_udp_create_options() unsafe.Pointer {
 // Added in macOS 10.14.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_udp_options_set_prefer_no_checksum(_:_:)
-func nw_udp_options_set_prefer_no_checksum(options unsafe.Pointer, prefer_no_checksum unsafe.Pointer) {
+func nw_udp_options_set_prefer_no_checksum(options unsafe.Pointer, prefer_no_checksum bool) {
 	_nw_udp_options_set_prefer_no_checksum(options, prefer_no_checksum)
 	}
 
@@ -4913,7 +4913,7 @@ func nw_ws_options_add_subprotocol(options unsafe.Pointer, subprotocol unsafe.Po
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_set_auto_reply_ping(_:_:)
-func nw_ws_options_set_auto_reply_ping(options unsafe.Pointer, auto_reply_ping unsafe.Pointer) {
+func nw_ws_options_set_auto_reply_ping(options unsafe.Pointer, auto_reply_ping bool) {
 	_nw_ws_options_set_auto_reply_ping(options, auto_reply_ping)
 	}
 
@@ -4943,7 +4943,7 @@ func nw_ws_options_set_maximum_message_size(options unsafe.Pointer, maximum_mess
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_set_skip_handshake(_:_:)
-func nw_ws_options_set_skip_handshake(options unsafe.Pointer, skip_handshake unsafe.Pointer) {
+func nw_ws_options_set_skip_handshake(options unsafe.Pointer, skip_handshake bool) {
 	_nw_ws_options_set_skip_handshake(options, skip_handshake)
 	}
 
@@ -4953,7 +4953,7 @@ func nw_ws_options_set_skip_handshake(options unsafe.Pointer, skip_handshake uns
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_request_enumerate_additional_headers(_:_:)
-func nw_ws_request_enumerate_additional_headers(request unsafe.Pointer, enumerator unsafe.Pointer) unsafe.Pointer {
+func nw_ws_request_enumerate_additional_headers(request unsafe.Pointer, enumerator unsafe.Pointer) bool {
 	return _nw_ws_request_enumerate_additional_headers(request, enumerator)
 	}
 
@@ -4963,7 +4963,7 @@ func nw_ws_request_enumerate_additional_headers(request unsafe.Pointer, enumerat
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_request_enumerate_subprotocols(_:_:)
-func nw_ws_request_enumerate_subprotocols(request unsafe.Pointer, enumerator unsafe.Pointer) unsafe.Pointer {
+func nw_ws_request_enumerate_subprotocols(request unsafe.Pointer, enumerator unsafe.Pointer) bool {
 	return _nw_ws_request_enumerate_subprotocols(request, enumerator)
 	}
 
@@ -4993,7 +4993,7 @@ func nw_ws_response_create(status unsafe.Pointer, selected_subprotocol unsafe.Po
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_response_enumerate_additional_headers(_:_:)
-func nw_ws_response_enumerate_additional_headers(response unsafe.Pointer, enumerator unsafe.Pointer) unsafe.Pointer {
+func nw_ws_response_enumerate_additional_headers(response unsafe.Pointer, enumerator unsafe.Pointer) bool {
 	return _nw_ws_response_enumerate_additional_headers(response, enumerator)
 	}
 

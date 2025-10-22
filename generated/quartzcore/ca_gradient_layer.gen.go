@@ -31,6 +31,16 @@ type _GradientLayerClass struct {
 // An interface definition for the [GradientLayer] class.
 type IGradientLayer interface {
 	ILayer
+	Colors() objc.ID
+	SetColors(value objc.ID)
+	EndPoint() coregraphics.CGPoint
+	SetEndPoint(value coregraphics.CGPoint)
+	Locations() []foundation.Number
+	SetLocations(value []foundation.INumber)
+	StartPoint() coregraphics.CGPoint
+	SetStartPoint(value coregraphics.CGPoint)
+	Type() GradientLayerType
+	SetType(value GradientLayerType)
 }
 
 // A layer that draws a color gradient over its background color, filling the shape of the layer.

@@ -33,6 +33,9 @@ type ITKTokenKeychainContents interface {
 	CertificateForObjectIDError(objectID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 	FillWithItems(items []TKTokenKeychainItem)
 	KeyForObjectIDError(objectID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	Items() []TKTokenKeychainItem
+	KeychainContents() TKTokenKeychainContents
+	SetKeychainContents(value ITKTokenKeychainContents)
 }
 
 // A representation of the state of the keychain for a particular token.

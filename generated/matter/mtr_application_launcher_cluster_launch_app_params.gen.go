@@ -31,6 +31,14 @@ type _MTRApplicationLauncherClusterLaunchAppParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterLaunchAppParams] class.
 type IMTRApplicationLauncherClusterLaunchAppParams interface {
 	objectivec.IObject
+	Application() MTRApplicationLauncherClusterApplicationStruct
+	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

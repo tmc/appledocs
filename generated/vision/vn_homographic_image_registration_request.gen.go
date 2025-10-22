@@ -29,6 +29,9 @@ type _HomographicImageRegistrationRequestClass struct {
 // An interface definition for the [HomographicImageRegistrationRequest] class.
 type IHomographicImageRegistrationRequest interface {
 	IImageRegistrationRequest
+	Results() VNImageHomographicAlignmentObservation
+	SetResults(value IVNImageHomographicAlignmentObservation)
+	VNHomographicImageRegistrationRequestRevision1() int
 }
 
 // An image-analysis request that determines the perspective warp matrix necessary to align the content of two images.

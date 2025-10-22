@@ -32,6 +32,38 @@ type IMTL4RenderPassDescriptor interface {
 	objectivec.IObject
 	GetSamplePositionsCount(positions unsafe.Pointer, count uint) uint
 	SetSamplePositionsCount(positions unsafe.Pointer, count uint)
+	DefaultRasterSampleCount() uint
+	SetDefaultRasterSampleCount(value uint)
+	DepthAttachment() MTLRenderPassDepthAttachmentDescriptor
+	SetDepthAttachment(value IMTLRenderPassDepthAttachmentDescriptor)
+	ImageblockSampleLength() uint
+	SetImageblockSampleLength(value uint)
+	RasterizationRateMap() objc.ID
+	SetRasterizationRateMap(value objc.ID)
+	RenderTargetArrayLength() uint
+	SetRenderTargetArrayLength(value uint)
+	RenderTargetHeight() uint
+	SetRenderTargetHeight(value uint)
+	RenderTargetWidth() uint
+	SetRenderTargetWidth(value uint)
+	StencilAttachment() MTLRenderPassStencilAttachmentDescriptor
+	SetStencilAttachment(value IMTLRenderPassStencilAttachmentDescriptor)
+	SupportColorAttachmentMapping() bool
+	SetSupportColorAttachmentMapping(value bool)
+	ThreadgroupMemoryLength() uint
+	SetThreadgroupMemoryLength(value uint)
+	TileHeight() uint
+	SetTileHeight(value uint)
+	TileWidth() uint
+	SetTileWidth(value uint)
+	VisibilityResultBuffer() objc.ID
+	SetVisibilityResultBuffer(value objc.ID)
+	VisibilityResultType() VisibilityResultType
+	SetVisibilityResultType(value VisibilityResultType)
+	ColorAttachments() MTLRenderPassColorAttachmentDescriptorArray
+	SetColorAttachments(value IMTLRenderPassColorAttachmentDescriptorArray)
+	SamplePositions() unsafe.Pointer
+	SetSamplePositions(value unsafe.Pointer)
 }
 
 // Describes a render pass.

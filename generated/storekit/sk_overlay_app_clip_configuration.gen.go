@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,20 @@ type _OverlayAppClipConfigurationClass struct {
 // An interface definition for the [OverlayAppClipConfiguration] class.
 type IOverlayAppClipConfiguration interface {
 	IOverlayConfiguration
-	AdditionalValueForKey(key appkit.string) objc.ID
-	SetAdditionalValueForKey(value objectivec.IObject, key appkit.string)
+	AdditionalValueForKey(key string) objc.ID
+	SetAdditionalValueForKey(value objectivec.IObject, key string)
+	CampaignToken() string
+	SetCampaignToken(value string)
+	CustomProductPageIdentifier() string
+	SetCustomProductPageIdentifier(value string)
+	LatestReleaseID() string
+	SetLatestReleaseID(value string)
+	Position() OverlayPosition
+	SetPosition(value OverlayPosition)
+	ProviderToken() string
+	SetProviderToken(value string)
+	Configuration() SKOverlayConfiguration
+	SetConfiguration(value ISKOverlayConfiguration)
 }
 
 // An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
@@ -99,23 +110,23 @@ func NewOverlayAppClipConfigurationWithPosition(position OverlayPosition) Overla
 // Returns the object associated with the key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/additionalValue(forKey:)
-func (o_ OverlayAppClipConfiguration) AdditionalValueForKey(key appkit.string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("additionalValueForKey:"), key)
+func (o_ OverlayAppClipConfiguration) AdditionalValueForKey(key string) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("additionalValueForKey:"), objc.String(key))
 	return rv
 }
 
 // Sets an additional value for a key, such as a value for measuring the effectiveness of an ad campaign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/setAdditionalValue(_:forKey:)
-func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objectivec.IObject, key appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, key)
+func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objectivec.IObject, key string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, objc.String(key))
 }
 
 // A token you use to represent an ad campaign and measure its effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/campaignToken
-func (o_ OverlayAppClipConfiguration) CampaignToken() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("campaignToken"))
+func (o_ OverlayAppClipConfiguration) CampaignToken() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("campaignToken"))
 	return rv
 }
 
@@ -125,15 +136,15 @@ func (o_ OverlayAppClipConfiguration) CampaignToken() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/campaignToken
-func (o_ OverlayAppClipConfiguration) SetCampaignToken(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), value)
+func (o_ OverlayAppClipConfiguration) SetCampaignToken(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), objc.String(value))
 }
 
 // An identifier for a parent app’s custom product page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/customProductPageIdentifier
-func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("customProductPageIdentifier"))
+func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("customProductPageIdentifier"))
 	return rv
 }
 
@@ -143,15 +154,15 @@ func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() appkit.strin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/customProductPageIdentifier
-func (o_ OverlayAppClipConfiguration) SetCustomProductPageIdentifier(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), value)
+func (o_ OverlayAppClipConfiguration) SetCustomProductPageIdentifier(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), objc.String(value))
 }
 
 // The release ID of the latest version of your parent app as displayed in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/latestReleaseID
-func (o_ OverlayAppClipConfiguration) LatestReleaseID() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("latestReleaseID"))
+func (o_ OverlayAppClipConfiguration) LatestReleaseID() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("latestReleaseID"))
 	return rv
 }
 
@@ -161,8 +172,8 @@ func (o_ OverlayAppClipConfiguration) LatestReleaseID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/latestReleaseID
-func (o_ OverlayAppClipConfiguration) SetLatestReleaseID(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), value)
+func (o_ OverlayAppClipConfiguration) SetLatestReleaseID(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), objc.String(value))
 }
 
 // The position of the overlay on the screen.
@@ -186,8 +197,8 @@ func (o_ OverlayAppClipConfiguration) SetPosition(value OverlayPosition) {
 // A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/providerToken
-func (o_ OverlayAppClipConfiguration) ProviderToken() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("providerToken"))
+func (o_ OverlayAppClipConfiguration) ProviderToken() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("providerToken"))
 	return rv
 }
 
@@ -197,8 +208,8 @@ func (o_ OverlayAppClipConfiguration) ProviderToken() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/providerToken
-func (o_ OverlayAppClipConfiguration) SetProviderToken(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), value)
+func (o_ OverlayAppClipConfiguration) SetProviderToken(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), objc.String(value))
 }
 
 // An overlay’s attributes; for example, its position on the screen.

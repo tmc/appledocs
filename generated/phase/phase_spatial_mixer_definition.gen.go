@@ -29,6 +29,13 @@ type _PHASESpatialMixerDefinitionClass struct {
 // An interface definition for the [PHASESpatialMixerDefinition] class.
 type IPHASESpatialMixerDefinition interface {
 	IPHASEMixerDefinition
+	DistanceModelParameters() PHASEDistanceModelParameters
+	SetDistanceModelParameters(value IPHASEDistanceModelParameters)
+	ListenerDirectivityModelParameters() PHASEDirectivityModelParameters
+	SetListenerDirectivityModelParameters(value IPHASEDirectivityModelParameters)
+	SpatialPipeline() PHASESpatialPipeline
+	SourceDirectivityModelParameters() PHASEDirectivityModelParameters
+	SetSourceDirectivityModelParameters(value IPHASEDirectivityModelParameters)
 }
 
 // An audio-layering object that produces environmental effects and plays sound with a 3D position and orientation.

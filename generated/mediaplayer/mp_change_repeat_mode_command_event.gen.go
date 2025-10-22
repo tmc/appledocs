@@ -29,6 +29,10 @@ type _ChangeRepeatModeCommandEventClass struct {
 // An interface definition for the [ChangeRepeatModeCommandEvent] class.
 type IChangeRepeatModeCommandEvent interface {
 	IRemoteCommandEvent
+	PreservesRepeatMode() bool
+	SetPreservesRepeatMode(value bool)
+	RepeatType() RepeatType
+	SetRepeatType(value RepeatType)
 }
 
 // An event requesting a change in the repeat mode.

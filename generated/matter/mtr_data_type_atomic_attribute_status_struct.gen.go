@@ -31,6 +31,10 @@ type _MTRDataTypeAtomicAttributeStatusStructClass struct {
 // An interface definition for the [MTRDataTypeAtomicAttributeStatusStruct] class.
 type IMTRDataTypeAtomicAttributeStatusStruct interface {
 	objectivec.IObject
+	AttributeID() foundation.Number
+	SetAttributeID(value foundation.INumber)
+	StatusCode() foundation.Number
+	SetStatusCode(value foundation.INumber)
 }
 
 //

@@ -31,6 +31,10 @@ type _MTREnergyEVSEModeClusterModeTagStructClass struct {
 // An interface definition for the [MTREnergyEVSEModeClusterModeTagStruct] class.
 type IMTREnergyEVSEModeClusterModeTagStruct interface {
 	objectivec.IObject
+	MfgCode() foundation.Number
+	SetMfgCode(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

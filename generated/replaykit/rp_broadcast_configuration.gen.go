@@ -31,6 +31,10 @@ type _RPBroadcastConfigurationClass struct {
 // An interface definition for the [RPBroadcastConfiguration] class.
 type IRPBroadcastConfiguration interface {
 	objectivec.IObject
+	ClipDuration() foundation.TimeInterval
+	SetClipDuration(value foundation.ITimeInterval)
+	VideoCompressionProperties() unsafe.Pointer
+	SetVideoCompressionProperties(value unsafe.Pointer)
 }
 
 // An object used to configure the movie clips produced during a live broadcast.

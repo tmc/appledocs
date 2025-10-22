@@ -28,3 +28,14 @@ func ExampleNewAXDataPointWithXYAdditionalValues() {
 	)
 	// Output:
 }
+// ExampleNewAXDataPointWithXYAdditionalValuesLabel demonstrates how to create a AXDataPoint instance using NewAXDataPointWithXYAdditionalValuesLabel.
+// Creates a data point with the specified x-value, y-value, additional values, and   label.
+func ExampleNewAXDataPointWithXYAdditionalValuesLabel() {
+	_ = accessibility.NewAXDataPointWithXYAdditionalValuesLabel(
+		accessibility.AXDataPointValue{}, // xValue AXDataPointValue
+		accessibility.AXDataPointValue{}, // yValue AXDataPointValue
+		[]accessibility.AXDataPointValue{}, // additionalValues []AXDataPointValue
+		"label", // label string
+	)
+	// Output:
+}

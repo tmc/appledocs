@@ -31,6 +31,50 @@ type _WebExtensionClass struct {
 // An interface definition for the [WebExtension] class.
 type IWebExtension interface {
 	objectivec.IObject
+	AllRequestedMatchPatterns() unsafe.Pointer
+	SetAllRequestedMatchPatterns(value unsafe.Pointer)
+	DefaultLocale() foundation.Locale
+	SetDefaultLocale(value foundation.ILocale)
+	DisplayActionLabel() string
+	SetDisplayActionLabel(value string)
+	DisplayDescription() string
+	SetDisplayDescription(value string)
+	DisplayName() string
+	SetDisplayName(value string)
+	DisplayShortName() string
+	SetDisplayShortName(value string)
+	DisplayVersion() string
+	SetDisplayVersion(value string)
+	Errors() foundation.Error
+	SetErrors(value foundation.IError)
+	HasBackgroundContent() bool
+	SetHasBackgroundContent(value bool)
+	HasCommands() bool
+	SetHasCommands(value bool)
+	HasContentModificationRules() bool
+	SetHasContentModificationRules(value bool)
+	HasInjectedContent() bool
+	SetHasInjectedContent(value bool)
+	HasOptionsPage() bool
+	SetHasOptionsPage(value bool)
+	HasOverrideNewTabPage() bool
+	SetHasOverrideNewTabPage(value bool)
+	HasPersistentBackgroundContent() bool
+	SetHasPersistentBackgroundContent(value bool)
+	Manifest() string
+	SetManifest(value string)
+	ManifestVersion() float64
+	SetManifestVersion(value float64)
+	OptionalPermissionMatchPatterns() unsafe.Pointer
+	SetOptionalPermissionMatchPatterns(value unsafe.Pointer)
+	OptionalPermissions() unsafe.Pointer
+	SetOptionalPermissions(value unsafe.Pointer)
+	RequestedPermissionMatchPatterns() unsafe.Pointer
+	SetRequestedPermissionMatchPatterns(value unsafe.Pointer)
+	RequestedPermissions() unsafe.Pointer
+	SetRequestedPermissions(value unsafe.Pointer)
+	Version() string
+	SetVersion(value string)
 }
 
 // An object that encapsulates a web extension’s resources that the manifest file defines.
@@ -120,8 +164,8 @@ func (w_ WebExtension) SetDefaultLocale(value foundation.ILocale) {
 // The default localized extension action label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayactionlabel
-func (w_ WebExtension) DisplayActionLabel() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayActionLabel"))
+func (w_ WebExtension) DisplayActionLabel() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayActionLabel"))
 	return rv
 }
 
@@ -131,15 +175,15 @@ func (w_ WebExtension) DisplayActionLabel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayactionlabel
-func (w_ WebExtension) SetDisplayActionLabel(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayActionLabel:"), value)
+func (w_ WebExtension) SetDisplayActionLabel(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayActionLabel:"), objc.String(value))
 }
 
 // The localized extension description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displaydescription
-func (w_ WebExtension) DisplayDescription() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayDescription"))
+func (w_ WebExtension) DisplayDescription() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayDescription"))
 	return rv
 }
 
@@ -149,15 +193,15 @@ func (w_ WebExtension) DisplayDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displaydescription
-func (w_ WebExtension) SetDisplayDescription(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayDescription:"), value)
+func (w_ WebExtension) SetDisplayDescription(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayDescription:"), objc.String(value))
 }
 
 // The localized extension name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayname
-func (w_ WebExtension) DisplayName() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayName"))
+func (w_ WebExtension) DisplayName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -167,15 +211,15 @@ func (w_ WebExtension) DisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayname
-func (w_ WebExtension) SetDisplayName(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), value)
+func (w_ WebExtension) SetDisplayName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
 // The localized extension short name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayshortname
-func (w_ WebExtension) DisplayShortName() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayShortName"))
+func (w_ WebExtension) DisplayShortName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayShortName"))
 	return rv
 }
 
@@ -185,15 +229,15 @@ func (w_ WebExtension) DisplayShortName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayshortname
-func (w_ WebExtension) SetDisplayShortName(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayShortName:"), value)
+func (w_ WebExtension) SetDisplayShortName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayShortName:"), objc.String(value))
 }
 
 // The localized extension display version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayversion
-func (w_ WebExtension) DisplayVersion() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayVersion"))
+func (w_ WebExtension) DisplayVersion() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("displayVersion"))
 	return rv
 }
 
@@ -203,8 +247,8 @@ func (w_ WebExtension) DisplayVersion() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayversion
-func (w_ WebExtension) SetDisplayVersion(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayVersion:"), value)
+func (w_ WebExtension) SetDisplayVersion(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayVersion:"), objc.String(value))
 }
 
 // An array of all errors that occurred during the processing of the extension.
@@ -354,8 +398,8 @@ func (w_ WebExtension) SetHasPersistentBackgroundContent(value bool) {
 // The parsed manifest as a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifest
-func (w_ WebExtension) Manifest() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("manifest"))
+func (w_ WebExtension) Manifest() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("manifest"))
 	return rv
 }
 
@@ -365,15 +409,15 @@ func (w_ WebExtension) Manifest() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifest
-func (w_ WebExtension) SetManifest(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setManifest:"), value)
+func (w_ WebExtension) SetManifest(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setManifest:"), objc.String(value))
 }
 
 // The parsed manifest version, or
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifestversion
-func (w_ WebExtension) ManifestVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("manifestVersion"))
+func (w_ WebExtension) ManifestVersion() float64 {
+	rv := objc.Send[float64](w_.ID, objc.Sel("manifestVersion"))
 	return rv
 }
 
@@ -383,7 +427,7 @@ func (w_ WebExtension) ManifestVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifestversion
-func (w_ WebExtension) SetManifestVersion(value unsafe.Pointer) {
+func (w_ WebExtension) SetManifestVersion(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setManifestVersion:"), value)
 }
 
@@ -462,8 +506,8 @@ func (w_ WebExtension) SetRequestedPermissions(value unsafe.Pointer) {
 // The extension version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/version
-func (w_ WebExtension) Version() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("version"))
+func (w_ WebExtension) Version() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -473,8 +517,8 @@ func (w_ WebExtension) Version() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/version
-func (w_ WebExtension) SetVersion(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setVersion:"), value)
+func (w_ WebExtension) SetVersion(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 
 

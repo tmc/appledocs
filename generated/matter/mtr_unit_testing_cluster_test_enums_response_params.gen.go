@@ -31,6 +31,12 @@ type _MTRUnitTestingClusterTestEnumsResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestEnumsResponseParams] class.
 type IMTRUnitTestingClusterTestEnumsResponseParams interface {
 	objectivec.IObject
+	Arg1() foundation.Number
+	SetArg1(value foundation.INumber)
+	Arg2() foundation.Number
+	SetArg2(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

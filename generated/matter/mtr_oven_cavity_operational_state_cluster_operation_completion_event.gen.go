@@ -31,6 +31,12 @@ type _MTROvenCavityOperationalStateClusterOperationCompletionEventClass struct {
 // An interface definition for the [MTROvenCavityOperationalStateClusterOperationCompletionEvent] class.
 type IMTROvenCavityOperationalStateClusterOperationCompletionEvent interface {
 	objectivec.IObject
+	CompletionErrorCode() foundation.Number
+	SetCompletionErrorCode(value foundation.INumber)
+	PausedTime() foundation.Number
+	SetPausedTime(value foundation.INumber)
+	TotalOperationalTime() foundation.Number
+	SetTotalOperationalTime(value foundation.INumber)
 }
 
 //

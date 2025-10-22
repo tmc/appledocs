@@ -31,6 +31,10 @@ type _MTRLaundryWasherModeClusterModeTagStructClass struct {
 // An interface definition for the [MTRLaundryWasherModeClusterModeTagStruct] class.
 type IMTRLaundryWasherModeClusterModeTagStruct interface {
 	objectivec.IObject
+	MfgCode() foundation.Number
+	SetMfgCode(value foundation.INumber)
+	Value() foundation.Number
+	SetValue(value foundation.INumber)
 }
 
 //

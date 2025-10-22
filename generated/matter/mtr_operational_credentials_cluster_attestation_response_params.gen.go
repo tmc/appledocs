@@ -31,6 +31,14 @@ type _MTROperationalCredentialsClusterAttestationResponseParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterAttestationResponseParams] class.
 type IMTROperationalCredentialsClusterAttestationResponseParams interface {
 	objectivec.IObject
+	AttestationElements() foundation.Data
+	SetAttestationElements(value foundation.IData)
+	AttestationSignature() foundation.Data
+	SetAttestationSignature(value foundation.IData)
+	Signature() foundation.Data
+	SetSignature(value foundation.IData)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,6 +33,18 @@ type IPDFOutline interface {
 	ChildAtIndex(index uint) PDFOutline
 	InsertChildAtIndex(child IPDFOutline, index uint)
 	RemoveFromParent()
+	Action() PDFAction
+	SetAction(value IPDFAction)
+	Destination() PDFDestination
+	SetDestination(value IPDFDestination)
+	Document() PDFDocument
+	Index() uint
+	IsOpen() bool
+	SetIsOpen(value bool)
+	Label() string
+	SetLabel(value string)
+	NumberOfChildren() uint
+	Parent() PDFOutline
 }
 
 // A object is an element in a tree-structured hierarchy that can represent the structure of a PDF document.
@@ -180,8 +191,8 @@ func (p_ PDFOutline) SetIsOpen(value bool) {
 // Returns the label for the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
-func (p_ PDFOutline) Label() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("label"))
+func (p_ PDFOutline) Label() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -191,8 +202,8 @@ func (p_ PDFOutline) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
-func (p_ PDFOutline) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), value)
+func (p_ PDFOutline) SetLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // Returns the number of child outline objects in the outline.

@@ -30,6 +30,9 @@ type _MTRCommissioneeInfoClass struct {
 // An interface definition for the [MTRCommissioneeInfo] class.
 type IMTRCommissioneeInfo interface {
 	objectivec.IObject
+	EndpointsById() unsafe.Pointer
+	ProductIdentity() MTRProductIdentity
+	RootEndpoint() MTREndpointInfo
 }
 
 // Information read from the commissionee device during commissioning.

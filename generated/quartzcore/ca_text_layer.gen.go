@@ -30,6 +30,24 @@ type _TextLayerClass struct {
 // An interface definition for the [TextLayer] class.
 type ITextLayer interface {
 	ILayer
+	AlignmentMode() TextLayerAlignmentMode
+	SetAlignmentMode(value TextLayerAlignmentMode)
+	AllowsFontSubpixelQuantization() bool
+	SetAllowsFontSubpixelQuantization(value bool)
+	Font() unsafe.Pointer
+	SetFont(value unsafe.Pointer)
+	FontSize() float64
+	SetFontSize(value float64)
+	ForegroundColor() coregraphics.CGColorRef
+	SetForegroundColor(value coregraphics.CGColorRef)
+	Wrapped() bool
+	SetWrapped(value bool)
+	String() objc.ID
+	SetString(value objc.ID)
+	TruncationMode() TextLayerTruncationMode
+	SetTruncationMode(value TextLayerTruncationMode)
+	IsWrapped() bool
+	SetIsWrapped(value bool)
 }
 
 // A layer that provides simple text layout and rendering of plain or attributed strings.

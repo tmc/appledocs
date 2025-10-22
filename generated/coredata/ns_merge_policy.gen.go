@@ -32,6 +32,7 @@ type IMergePolicy interface {
 	objectivec.IObject
 	ResolveConstraintConflictsError(list []ConstraintConflict, error_ unsafe.Pointer) bool
 	ResolveOptimisticLockingVersionConflictsError(list []MergeConflict, error_ unsafe.Pointer) bool
+	MergeType() MergePolicyType
 }
 
 // A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.

@@ -33,6 +33,42 @@ type IXMLNode interface {
 	ChildAtIndex(index uint) XMLNode
 	SetStringValueResolvingEntities(string_ string, resolve bool)
 	XMLStringWithOptions(options XMLNodeOptions) String
+	Index() uint
+	Kind() XMLNodeKind
+	Level() uint
+	Name() string
+	SetName(value string)
+	ObjectValue() objc.ID
+	SetObjectValue(value objc.ID)
+	Parent() NSXMLNode
+	StringValue() string
+	SetStringValue(value string)
+	URI() string
+	SetURI(value string)
+	ChildCount() int
+	SetChildCount(value int)
+	Children() NSXMLNode
+	SetChildren(value IXMLNode)
+	Description() string
+	SetDescription(value string)
+	LocalName() string
+	SetLocalName(value string)
+	Next() NSXMLNode
+	SetNext(value IXMLNode)
+	NextSibling() NSXMLNode
+	SetNextSibling(value IXMLNode)
+	Prefix() string
+	SetPrefix(value string)
+	Previous() NSXMLNode
+	SetPrevious(value IXMLNode)
+	PreviousSibling() NSXMLNode
+	SetPreviousSibling(value IXMLNode)
+	RootDocument() NSXMLDocument
+	SetRootDocument(value IXMLDocument)
+	XPath() string
+	SetXPath(value string)
+	XmlString() string
+	SetXmlString(value string)
 }
 
 // The nodes in the abstract, logical tree structure that represents an XML document.

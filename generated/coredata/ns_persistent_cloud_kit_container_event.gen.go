@@ -31,6 +31,18 @@ type _PersistentCloudKitContainerEventClass struct {
 // An interface definition for the [PersistentCloudKitContainerEvent] class.
 type IPersistentCloudKitContainerEvent interface {
 	objectivec.IObject
+	Error() foundation.Error
+	Succeeded() bool
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	Identifier() foundation.UUID
+	SetIdentifier(value foundation.IUUID)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	StoreIdentifier() string
+	SetStoreIdentifier(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 }
 
 // An object that represents activity in a persistent CloudKit container.
@@ -152,8 +164,8 @@ func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.IDate) 
 // The associated store identifier in the container for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("storeIdentifier"))
+func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
 	return rv
 }
 
@@ -163,8 +175,8 @@ func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), value)
+func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
 }
 
 // The type of event, either setup, import, or export.

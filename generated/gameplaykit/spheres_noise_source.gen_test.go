@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewSpheresNoiseSource
 
+// ExampleNewSpheresNoiseSourceWithFrequency demonstrates how to create a SpheresNoiseSource instance using NewSpheresNoiseSourceWithFrequency.
+// Initializes a sphere noise source with the specified frequency.
+func ExampleNewSpheresNoiseSourceWithFrequency() {
+	_ = gameplaykit.NewSpheresNoiseSourceWithFrequency(
+		0.0, // frequency float64
+	)
+	// Output:
+}

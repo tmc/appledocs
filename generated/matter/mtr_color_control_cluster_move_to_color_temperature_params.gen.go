@@ -31,6 +31,20 @@ type _MTRColorControlClusterMoveToColorTemperatureParamsClass struct {
 // An interface definition for the [MTRColorControlClusterMoveToColorTemperatureParams] class.
 type IMTRColorControlClusterMoveToColorTemperatureParams interface {
 	objectivec.IObject
+	ColorTemperature() foundation.Number
+	SetColorTemperature(value foundation.INumber)
+	ColorTemperatureMireds() foundation.Number
+	SetColorTemperatureMireds(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

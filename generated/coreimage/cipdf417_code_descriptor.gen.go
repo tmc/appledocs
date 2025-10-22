@@ -30,6 +30,10 @@ type _PDF417CodeDescriptorClass struct {
 // An interface definition for the [PDF417CodeDescriptor] class.
 type IPDF417CodeDescriptor interface {
 	IBarcodeDescriptor
+	ColumnCount() int
+	ErrorCorrectedPayload() foundation.NSData
+	IsCompact() bool
+	RowCount() int
 }
 
 // A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.

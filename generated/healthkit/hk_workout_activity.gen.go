@@ -31,6 +31,31 @@ type _HKWorkoutActivityClass struct {
 // An interface definition for the [HKWorkoutActivity] class.
 type IHKWorkoutActivity interface {
 	objectivec.IObject
+	Duration() foundation.TimeInterval
+	HKPredicateKeyPathWorkoutActivity() string
+	HKPredicateKeyPathWorkoutActivityAverageQuantity() string
+	HKPredicateKeyPathWorkoutActivityDuration() string
+	HKPredicateKeyPathWorkoutActivityEndDate() string
+	HKPredicateKeyPathWorkoutActivityMaximumQuantity() string
+	HKPredicateKeyPathWorkoutActivityMinimumQuantity() string
+	HKPredicateKeyPathWorkoutActivityStartDate() string
+	HKPredicateKeyPathWorkoutActivitySumQuantity() string
+	HKPredicateKeyPathWorkoutActivityType() string
+	AllStatistics() HKStatistics
+	SetAllStatistics(value IHKStatistics)
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	Metadata() string
+	SetMetadata(value string)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.IUUID)
+	WorkoutConfiguration() HKWorkoutConfiguration
+	SetWorkoutConfiguration(value IHKWorkoutConfiguration)
+	WorkoutEvents() HKWorkoutEvent
+	SetWorkoutEvents(value IHKWorkoutEvent)
+	HKWorkoutTypeIdentifier() string
 }
 
 // An object that describes an activity within a longer workout.
@@ -92,72 +117,72 @@ func (h_ HKWorkoutActivity) Duration() foundation.TimeInterval {
 // The key path for accessing a specific workout activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivity() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivity"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivity"))
 	return rv
 }
 
 // The key path for accessing activities with a matching average quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityaveragequantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityAverageQuantity() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityAverageQuantity"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityAverageQuantity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityAverageQuantity"))
 	return rv
 }
 
 // The key path for accessing activities with a matching duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityduration
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityDuration() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityDuration"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityDuration() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityDuration"))
 	return rv
 }
 
 // The key path for accessing activities with a matching end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityenddate
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityEndDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityEndDate"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityEndDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityEndDate"))
 	return rv
 }
 
 // The key path for accessing activities with a matching maximum quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitymaximumquantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMaximumQuantity() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityMaximumQuantity"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMaximumQuantity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityMaximumQuantity"))
 	return rv
 }
 
 // The key path for accessing activities with a matching minimum quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityminimumquantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMinimumQuantity() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityMinimumQuantity"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMinimumQuantity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityMinimumQuantity"))
 	return rv
 }
 
 // The key path for accessing activities with a matching start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitystartdate
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityStartDate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityStartDate"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityStartDate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityStartDate"))
 	return rv
 }
 
 // The key path for accessing activities with a matching sum.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitysumquantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivitySumQuantity() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivitySumQuantity"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivitySumQuantity() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivitySumQuantity"))
 	return rv
 }
 
 // The key path for accessing activities that match a workout activity type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitytype
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityType() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityType"))
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityType() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityType"))
 	return rv
 }
 
@@ -200,8 +225,8 @@ func (h_ HKWorkoutActivity) SetEndDate(value foundation.IDate) {
 // Metadata that describes the activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/metadata
-func (h_ HKWorkoutActivity) Metadata() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("metadata"))
+func (h_ HKWorkoutActivity) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -211,8 +236,8 @@ func (h_ HKWorkoutActivity) Metadata() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/metadata
-func (h_ HKWorkoutActivity) SetMetadata(value appkit.string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
+func (h_ HKWorkoutActivity) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
 // The activitiy’s start date and time.
@@ -290,8 +315,8 @@ func (h_ HKWorkoutActivity) SetWorkoutEvents(value IHKWorkoutEvent) {
 // The workout type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkoutActivity) HKWorkoutTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+func (h_ HKWorkoutActivity) HKWorkoutTypeIdentifier() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }
 

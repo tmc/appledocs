@@ -31,6 +31,10 @@ type _MTRThermostatClusterClearWeeklyScheduleParamsClass struct {
 // An interface definition for the [MTRThermostatClusterClearWeeklyScheduleParams] class.
 type IMTRThermostatClusterClearWeeklyScheduleParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

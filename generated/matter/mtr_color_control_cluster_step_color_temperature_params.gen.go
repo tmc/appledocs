@@ -31,6 +31,24 @@ type _MTRColorControlClusterStepColorTemperatureParamsClass struct {
 // An interface definition for the [MTRColorControlClusterStepColorTemperatureParams] class.
 type IMTRColorControlClusterStepColorTemperatureParams interface {
 	objectivec.IObject
+	ColorTemperatureMaximumMireds() foundation.Number
+	SetColorTemperatureMaximumMireds(value foundation.INumber)
+	ColorTemperatureMinimumMireds() foundation.Number
+	SetColorTemperatureMinimumMireds(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StepMode() foundation.Number
+	SetStepMode(value foundation.INumber)
+	StepSize() foundation.Number
+	SetStepSize(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TransitionTime() foundation.Number
+	SetTransitionTime(value foundation.INumber)
 }
 
 //

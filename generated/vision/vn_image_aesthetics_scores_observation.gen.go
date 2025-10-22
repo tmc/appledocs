@@ -29,6 +29,11 @@ type _ImageAestheticsScoresObservationClass struct {
 // An interface definition for the [ImageAestheticsScoresObservation] class.
 type IImageAestheticsScoresObservation interface {
 	IObservation
+	OverallScore() float32
+	Results() VNImageAestheticsScoresObservation
+	SetResults(value IVNImageAestheticsScoresObservation)
+	IsUtility() bool
+	SetIsUtility(value bool)
 }
 
 // An object that represents the overall score of aesthetic attributes for an image.
@@ -82,8 +87,8 @@ func NewImageAestheticsScoresObservation() ImageAestheticsScoresObservation {
 // A score which incorporates aesthetic score, failure score, and utility labels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageAestheticsScoresObservation/overallScore
-func (i_ ImageAestheticsScoresObservation) OverallScore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("overallScore"))
+func (i_ ImageAestheticsScoresObservation) OverallScore() float32 {
+	rv := objc.Send[float32](i_.ID, objc.Sel("overallScore"))
 	return rv
 }
 

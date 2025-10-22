@@ -30,6 +30,18 @@ type _StencilDescriptorClass struct {
 // An interface definition for the [StencilDescriptor] class.
 type IStencilDescriptor interface {
 	objectivec.IObject
+	DepthFailureOperation() StencilOperation
+	SetDepthFailureOperation(value IStencilOperation)
+	DepthStencilPassOperation() StencilOperation
+	SetDepthStencilPassOperation(value IStencilOperation)
+	ReadMask() uint32
+	SetReadMask(value Iuint32)
+	StencilCompareFunction() unsafe.Pointer
+	SetStencilCompareFunction(value unsafe.Pointer)
+	StencilFailureOperation() StencilOperation
+	SetStencilFailureOperation(value IStencilOperation)
+	WriteMask() uint32
+	SetWriteMask(value Iuint32)
 }
 
 // An object that defines the front-facing or back-facing stencil operations of a depth and stencil state object.
@@ -119,8 +131,8 @@ func (s_ StencilDescriptor) SetDepthStencilPassOperation(value IStencilOperation
 // A bitmask that determines from which bits that stencil comparison tests can read.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/readMask
-func (s_ StencilDescriptor) ReadMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("readMask"))
+func (s_ StencilDescriptor) ReadMask() uint32 {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("readMask"))
 	return rv
 }
 
@@ -130,7 +142,7 @@ func (s_ StencilDescriptor) ReadMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/readMask
-func (s_ StencilDescriptor) SetReadMask(value unsafe.Pointer) {
+func (s_ StencilDescriptor) SetReadMask(value Iuint32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReadMask:"), value)
 }
 
@@ -173,8 +185,8 @@ func (s_ StencilDescriptor) SetStencilFailureOperation(value IStencilOperation) 
 // A bitmask that determines to which bits that stencil operations can write.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/writeMask
-func (s_ StencilDescriptor) WriteMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("writeMask"))
+func (s_ StencilDescriptor) WriteMask() uint32 {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("writeMask"))
 	return rv
 }
 
@@ -184,7 +196,7 @@ func (s_ StencilDescriptor) WriteMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/writeMask
-func (s_ StencilDescriptor) SetWriteMask(value unsafe.Pointer) {
+func (s_ StencilDescriptor) SetWriteMask(value Iuint32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setWriteMask:"), value)
 }
 

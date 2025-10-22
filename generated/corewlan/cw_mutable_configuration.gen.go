@@ -29,6 +29,16 @@ type _CWMutableConfigurationClass struct {
 // An interface definition for the [CWMutableConfiguration] class.
 type ICWMutableConfiguration interface {
 	ICWConfiguration
+	NetworkProfiles() unsafe.Pointer
+	SetNetworkProfiles(value unsafe.Pointer)
+	RememberJoinedNetworks() bool
+	SetRememberJoinedNetworks(value bool)
+	RequireAdministratorForAssociation() bool
+	SetRequireAdministratorForAssociation(value bool)
+	RequireAdministratorForIBSSMode() bool
+	SetRequireAdministratorForIBSSMode(value bool)
+	RequireAdministratorForPower() bool
+	SetRequireAdministratorForPower(value bool)
 }
 
 // Encapsulates a mutable configuration for an AirPort WLAN interface.

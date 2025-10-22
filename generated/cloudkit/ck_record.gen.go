@@ -41,6 +41,17 @@ type ICKRecord interface {
 	SetParentReferenceFromRecord(parentRecord ICKRecord)
 	SetParentReferenceFromRecordID(parentRecordID ICKRecordID)
 	ObjectForKeyedSubscript(key unsafe.Pointer) objc.ID
+	CreationDate() foundation.NSDate
+	CreatorUserRecordID() CKRecordID
+	EncryptedValues() objc.ID
+	LastModifiedUserRecordID() CKRecordID
+	ModificationDate() foundation.NSDate
+	Parent() CKReference
+	SetParent(value ICKReference)
+	RecordChangeTag() string
+	RecordID() CKRecordID
+	RecordType() unsafe.Pointer
+	Share() CKReference
 }
 
 // A collection of key-value pairs that store your app’s data.

@@ -18,3 +18,12 @@ func ExampleNewMCBrowserViewControllerWithBrowserSession() {
 	)
 	// Output:
 }
+// ExampleNewMCBrowserViewControllerWithServiceTypeSession demonstrates how to create a MCBrowserViewController instance using NewMCBrowserViewControllerWithServiceTypeSession.
+// Initializes a browser view controller using the provided service type and session.
+func ExampleNewMCBrowserViewControllerWithServiceTypeSession() {
+	_ = multipeerconnectivity.NewMCBrowserViewControllerWithServiceTypeSession(
+		"serviceType", // serviceType string
+		multipeerconnectivity.MCSession{}, // session MCSession
+	)
+	// Output:
+}

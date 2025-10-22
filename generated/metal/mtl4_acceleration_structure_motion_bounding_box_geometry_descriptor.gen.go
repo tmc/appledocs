@@ -29,6 +29,12 @@ type _MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptorClass struct {
 // An interface definition for the [MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor] class.
 type IMTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
+	BoundingBoxBuffers() unsafe.Pointer
+	SetBoundingBoxBuffers(value unsafe.Pointer)
+	BoundingBoxCount() int
+	SetBoundingBoxCount(value int)
+	BoundingBoxStride() int
+	SetBoundingBoxStride(value int)
 }
 
 // Describes motion bounding box geometry, suitable for motion ray tracing.

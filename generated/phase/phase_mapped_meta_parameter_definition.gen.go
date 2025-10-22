@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASEMappedMetaParameterDefinition] class.
@@ -30,6 +29,10 @@ type _PHASEMappedMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASEMappedMetaParameterDefinition] class.
 type IPHASEMappedMetaParameterDefinition interface {
 	IPHASENumberMetaParameterDefinition
+	Envelope() PHASEEnvelope
+	SetEnvelope(value IPHASEEnvelope)
+	InputMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
 }
 
 // A metaparameter that graphs an input value on a set of mathematical curves.
@@ -87,9 +90,9 @@ func NewPHASEMappedMetaParameterDefinition() PHASEMappedMetaParameterDefinition 
 // Creates a specification for a named metaparameter that the app plots on a graph defined by the given set of curves.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMappedMetaParameterDefinition/init(inputMetaParameterDefinition:envelope:identifier:)
-func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition IPHASENumberMetaParameterDefinition, envelope IPHASEEnvelope, identifier appkit.string) PHASEMappedMetaParameterDefinition {
+func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition IPHASENumberMetaParameterDefinition, envelope IPHASEEnvelope, identifier string) PHASEMappedMetaParameterDefinition {
 	instance := getPHASEMappedMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEMappedMetaParameterDefinition](instance.ID, objc.Sel("initWithInputMetaParameterDefinition:envelope:identifier:"), inputMetaParameterDefinition, envelope, identifier)
+	rv := objc.Send[PHASEMappedMetaParameterDefinition](instance.ID, objc.Sel("initWithInputMetaParameterDefinition:envelope:identifier:"), inputMetaParameterDefinition, envelope, objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

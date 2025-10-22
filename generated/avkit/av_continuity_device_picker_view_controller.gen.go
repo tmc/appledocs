@@ -30,6 +30,8 @@ type _ContinuityDevicePickerViewControllerClass struct {
 // An interface definition for the [ContinuityDevicePickerViewController] class.
 type IContinuityDevicePickerViewController interface {
 	appkit.IViewController
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A view controller that provides an interface to a person so they can select and connect a continuity device to the system.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SScoreItem] class.
@@ -30,6 +29,10 @@ type _SScoreItemClass struct {
 // An interface definition for the [SScoreItem] class.
 type ISScoreItem interface {
 	ISActivityItem
+	MaxScore() float64
+	SetMaxScore(value float64)
+	Score() float64
+	SetScore(value float64)
 }
 
 // Activity information that signifies a score out of a possible maximum.
@@ -87,9 +90,9 @@ func NewSScoreItem() SScoreItem {
 // Initializes an activity item that holds a score value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/init(identifier:title:score:maxScore:)
-func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier appkit.string, title appkit.string, score unsafe.Pointer, maxScore unsafe.Pointer) SScoreItem {
+func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier string, title string, score float64, maxScore float64) SScoreItem {
 	instance := getSScoreItemClass().Alloc()
-	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), identifier, title, score, maxScore)
+	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), objc.String(identifier), objc.String(title), score, maxScore)
 	rv.Autorelease()
 	return rv
 }
@@ -98,8 +101,8 @@ func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier appkit.string, tit
 // The maximum possible score that the user can earn on a given task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/maxScore
-func (s_ SScoreItem) MaxScore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxScore"))
+func (s_ SScoreItem) MaxScore() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxScore"))
 	return rv
 }
 
@@ -109,15 +112,15 @@ func (s_ SScoreItem) MaxScore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/maxScore
-func (s_ SScoreItem) SetMaxScore(value unsafe.Pointer) {
+func (s_ SScoreItem) SetMaxScore(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxScore:"), value)
 }
 
 // The score earned by a user in completing the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
-func (s_ SScoreItem) Score() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("score"))
+func (s_ SScoreItem) Score() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("score"))
 	return rv
 }
 
@@ -127,7 +130,7 @@ func (s_ SScoreItem) Score() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
-func (s_ SScoreItem) SetScore(value unsafe.Pointer) {
+func (s_ SScoreItem) SetScore(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScore:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/imagecapturecore"
 )
@@ -31,14 +30,48 @@ type _IKCameraDeviceViewClass struct {
 
 // An interface definition for the [IKCameraDeviceView] class.
 type IIKCameraDeviceView interface {
-	appkit.IView
+	IView
+	CameraDevice() imagecapturecore.ICCameraDevice
+	SetCameraDevice(value imagecapturecore.ICCameraDevice)
+	CanDeleteSelectedItems() bool
+	SetCanDeleteSelectedItems(value bool)
+	CanDownloadSelectedItems() bool
+	SetCanDownloadSelectedItems(value bool)
+	CanRotateSelectedItemsLeft() bool
+	SetCanRotateSelectedItemsLeft(value bool)
+	CanRotateSelectedItemsRight() bool
+	SetCanRotateSelectedItemsRight(value bool)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DisplaysDownloadsDirectoryControl() bool
+	SetDisplaysDownloadsDirectoryControl(value bool)
+	DisplaysPostProcessApplicationControl() bool
+	SetDisplaysPostProcessApplicationControl(value bool)
+	DownloadAllControlLabel() string
+	SetDownloadAllControlLabel(value string)
+	DownloadSelectedControlLabel() string
+	SetDownloadSelectedControlLabel(value string)
+	DownloadsDirectory() foundation.URL
+	SetDownloadsDirectory(value foundation.IURL)
+	HasDisplayModeIcon() bool
+	SetHasDisplayModeIcon(value bool)
+	HasDisplayModeTable() bool
+	SetHasDisplayModeTable(value bool)
+	IconSize() int
+	SetIconSize(value int)
+	Mode() unsafe.Pointer
+	SetMode(value unsafe.Pointer)
+	PostProcessApplication() foundation.URL
+	SetPostProcessApplication(value foundation.IURL)
+	TransferMode() unsafe.Pointer
+	SetTransferMode(value unsafe.Pointer)
 }
 
 // The class displays the contents of the selected camera.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKCameraDeviceView
 type IKCameraDeviceView struct {
-	appkit.View
+	View
 }
 
 // IKCameraDeviceViewFrom constructs a [IKCameraDeviceView] from an unsafe.Pointer.
@@ -46,7 +79,7 @@ type IKCameraDeviceView struct {
 // The class displays the contents of the selected camera.
 func IKCameraDeviceViewFrom(ptr unsafe.Pointer) IKCameraDeviceView {
 	return IKCameraDeviceView{
-		View: appkit.ViewFrom(ptr),
+		View: ViewFrom(ptr),
 	}
 }
 
@@ -229,8 +262,8 @@ func (i_ IKCameraDeviceView) SetDisplaysPostProcessApplicationControl(value bool
 // Allows the “Download All” control to be renamed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadallcontrollabel
-func (i_ IKCameraDeviceView) DownloadAllControlLabel() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("downloadAllControlLabel"))
+func (i_ IKCameraDeviceView) DownloadAllControlLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("downloadAllControlLabel"))
 	return rv
 }
 
@@ -240,15 +273,15 @@ func (i_ IKCameraDeviceView) DownloadAllControlLabel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadallcontrollabel
-func (i_ IKCameraDeviceView) SetDownloadAllControlLabel(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadAllControlLabel:"), value)
+func (i_ IKCameraDeviceView) SetDownloadAllControlLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadAllControlLabel:"), objc.String(value))
 }
 
 // Allows the “Download Selected” control to be renamed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadselectedcontrollabel
-func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("downloadSelectedControlLabel"))
+func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("downloadSelectedControlLabel"))
 	return rv
 }
 
@@ -258,8 +291,8 @@ func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadselectedcontrollabel
-func (i_ IKCameraDeviceView) SetDownloadSelectedControlLabel(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadSelectedControlLabel:"), value)
+func (i_ IKCameraDeviceView) SetDownloadSelectedControlLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadSelectedControlLabel:"), objc.String(value))
 }
 
 // Specifies the directory where files are downloaded

@@ -30,6 +30,10 @@ type _DataMatrixCodeDescriptorClass struct {
 // An interface definition for the [DataMatrixCodeDescriptor] class.
 type IDataMatrixCodeDescriptor interface {
 	IBarcodeDescriptor
+	ColumnCount() int
+	EccVersion() DataMatrixCodeECCVersion
+	ErrorCorrectedPayload() foundation.NSData
+	RowCount() int
 }
 
 // A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.

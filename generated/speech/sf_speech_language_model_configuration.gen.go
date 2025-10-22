@@ -31,6 +31,11 @@ type _SFSpeechLanguageModelConfigurationClass struct {
 // An interface definition for the [SFSpeechLanguageModelConfiguration] class.
 type ISFSpeechLanguageModelConfiguration interface {
 	objectivec.IObject
+	LanguageModel() foundation.URL
+	Vocabulary() foundation.URL
+	Weight() foundation.Number
+	CustomizedLanguageModel() SFSpeechLanguageModelConfiguration
+	SetCustomizedLanguageModel(value ISFSpeechLanguageModelConfiguration)
 }
 
 // An object describing the location of a custom language model and specialized vocabulary.

@@ -31,6 +31,12 @@ type _CaptureDescriptorClass struct {
 // An interface definition for the [CaptureDescriptor] class.
 type ICaptureDescriptor interface {
 	objectivec.IObject
+	CaptureObject() objc.ID
+	SetCaptureObject(value objc.ID)
+	Destination() CaptureDestination
+	SetDestination(value ICaptureDestination)
+	OutputURL() foundation.URL
+	SetOutputURL(value foundation.IURL)
 }
 
 // A configuration for a Metal capture session.

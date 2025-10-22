@@ -29,6 +29,8 @@ type _INGetCarLockStatusIntentClass struct {
 // An interface definition for the [INGetCarLockStatusIntent] class.
 type IINGetCarLockStatusIntent interface {
 	IINIntent
+	CarName() INSpeakableString
+	SetCarName(value INSpeakableString)
 }
 
 // A request to get the lock status of the user’s car.

@@ -30,6 +30,17 @@ type _NEFilterManagerClass struct {
 // An interface definition for the [NEFilterManager] class.
 type INEFilterManager interface {
 	objectivec.IObject
+	NEFilterErrorDomain() string
+	DisableEncryptedDNSSettings() bool
+	SetDisableEncryptedDNSSettings(value bool)
+	Grade() unsafe.Pointer
+	SetGrade(value unsafe.Pointer)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	LocalizedDescription() string
+	SetLocalizedDescription(value string)
+	ProviderConfiguration() NEFilterProviderConfiguration
+	SetProviderConfiguration(value INEFilterProviderConfiguration)
 }
 
 // An object to create and manage a content filter’s configuration.
@@ -83,8 +94,8 @@ func NewNEFilterManager() NEFilterManager {
 // The domain for errors resulting from calls to the filter manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterManager) NEFilterErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+func (n_ NEFilterManager) NEFilterErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
 	return rv
 }
 
@@ -142,8 +153,8 @@ func (n_ NEFilterManager) SetIsEnabled(value bool) {
 // A string containing a description of the filter configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/localizeddescription
-func (n_ NEFilterManager) LocalizedDescription() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEFilterManager) LocalizedDescription() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -153,8 +164,8 @@ func (n_ NEFilterManager) LocalizedDescription() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/localizeddescription
-func (n_ NEFilterManager) SetLocalizedDescription(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+func (n_ NEFilterManager) SetLocalizedDescription(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
 // A

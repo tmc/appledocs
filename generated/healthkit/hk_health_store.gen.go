@@ -68,6 +68,10 @@ type IHKHealthStore interface {
 	SupportsHealthRecords() bool
 	UnrelateWorkoutEffortSampleFromWorkoutActivityCompletion(sample IHKSample, workout IHKWorkout, activity IHKWorkoutActivity, completion unsafe.Pointer)
 	WheelchairUseWithError(error_ unsafe.Pointer) HKWheelchairUseObject
+	AuthorizationViewControllerPresenter() appkit.ViewController
+	SetAuthorizationViewControllerPresenter(value appkit.IViewController)
+	WorkoutSessionMirroringStartHandler() unsafe.Pointer
+	SetWorkoutSessionMirroringStartHandler(value unsafe.Pointer)
 }
 
 // The access point for all data managed by HealthKit.

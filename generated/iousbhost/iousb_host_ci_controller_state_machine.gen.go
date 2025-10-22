@@ -32,6 +32,8 @@ type IUSBHostCIControllerStateMachine interface {
 	objectivec.IObject
 	EnqueueUpdatedFrameTimestampError(frame uint64, timestamp uint64, error_ unsafe.Pointer) bool
 	RespondToCommandStatusFrameTimestampError(command unsafe.Pointer, status unsafe.Pointer, frame uint64, timestamp uint64, error_ unsafe.Pointer) bool
+	ControllerInterface() IOUSBHostControllerInterface
+	ControllerState() unsafe.Pointer
 }
 
 //

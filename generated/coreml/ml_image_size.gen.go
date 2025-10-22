@@ -30,6 +30,12 @@ type _ImageSizeClass struct {
 // An interface definition for the [ImageSize] class.
 type IImageSize interface {
 	objectivec.IObject
+	PixelsHigh() int
+	SetPixelsHigh(value int)
+	PixelsWide() int
+	SetPixelsWide(value int)
+	EnumeratedImageSizes() MLImageSize
+	SetEnumeratedImageSizes(value IMLImageSize)
 }
 
 // The width and height of an image feature size.

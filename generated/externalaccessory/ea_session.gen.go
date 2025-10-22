@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,10 @@ type _EASessionClass struct {
 // An interface definition for the [EASession] class.
 type IEASession interface {
 	objectivec.IObject
+	Accessory() EAAccessory
+	InputStream() foundation.InputStream
+	OutputStream() foundation.OutputStream
+	ProtocolString() string
 }
 
 // The object you use to manage communications between your app and a connected hardware accessory.
@@ -87,9 +90,9 @@ func NewEASession() EASession {
 // Initializes the session for the specified accessory and protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)
-func NewEASessionWithAccessoryForProtocol(accessory IEAAccessory, protocolString appkit.string) EASession {
+func NewEASessionWithAccessoryForProtocol(accessory IEAAccessory, protocolString string) EASession {
 	instance := getEASessionClass().Alloc()
-	rv := objc.Send[EASession](instance.ID, objc.Sel("initWithAccessory:forProtocol:"), accessory, protocolString)
+	rv := objc.Send[EASession](instance.ID, objc.Sel("initWithAccessory:forProtocol:"), accessory, objc.String(protocolString))
 	rv.Autorelease()
 	return rv
 }
@@ -122,8 +125,8 @@ func (e_ EASession) OutputStream() foundation.OutputStream {
 // The protocol being used for communication with the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/protocolString
-func (e_ EASession) ProtocolString() appkit.string {
-	rv := objc.Send[appkit.string](e_.ID, objc.Sel("protocolString"))
+func (e_ EASession) ProtocolString() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("protocolString"))
 	return rv
 }
 

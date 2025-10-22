@@ -35,6 +35,12 @@ type INEVPNConnection interface {
 	StartVPNTunnelAndReturnError(error_ unsafe.Pointer) bool
 	StartVPNTunnelWithOptionsAndReturnError(options unsafe.Pointer, error_ unsafe.Pointer) bool
 	StopVPNTunnel()
+	ConnectedDate() foundation.NSDate
+	Manager() NEVPNManager
+	Status() NEVPNStatus
+	NEVPNConnectionErrorDomain() string
+	NEVPNConnectionStartOptionPassword() string
+	NEVPNConnectionStartOptionUsername() string
 }
 
 // An object to start and stop a Personal VPN connection and get its status.
@@ -141,22 +147,22 @@ func (n_ NEVPNConnection) Status() NEVPNStatus {
 // The domain for errors resulting from VPN connection calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain
-func (n_ NEVPNConnection) NEVPNConnectionErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEVPNConnectionErrorDomain"))
+func (n_ NEVPNConnection) NEVPNConnectionErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionErrorDomain"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword
-func (n_ NEVPNConnection) NEVPNConnectionStartOptionPassword() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEVPNConnectionStartOptionPassword"))
+func (n_ NEVPNConnection) NEVPNConnectionStartOptionPassword() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionPassword"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername
-func (n_ NEVPNConnection) NEVPNConnectionStartOptionUsername() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEVPNConnectionStartOptionUsername"))
+func (n_ NEVPNConnection) NEVPNConnectionStartOptionUsername() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionUsername"))
 	return rv
 }
 

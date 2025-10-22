@@ -31,6 +31,10 @@ type _ConstraintLayoutManagerClass struct {
 // An interface definition for the [ConstraintLayoutManager] class.
 type IConstraintLayoutManager interface {
 	objectivec.IObject
+	LayoutManager() appkit.LayoutManager
+	SetLayoutManager(value appkit.ILayoutManager)
+	Name() string
+	SetName(value string)
 }
 
 // An object that provides a constraint-based layout manager.
@@ -110,8 +114,8 @@ func (c_ ConstraintLayoutManager) SetLayoutManager(value appkit.ILayoutManager) 
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/name
-func (c_ ConstraintLayoutManager) Name() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
+func (c_ ConstraintLayoutManager) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -121,8 +125,8 @@ func (c_ ConstraintLayoutManager) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/name
-func (c_ ConstraintLayoutManager) SetName(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
+func (c_ ConstraintLayoutManager) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

@@ -33,6 +33,16 @@ type _ThumbnailGenerationRequestClass struct {
 // An interface definition for the [ThumbnailGenerationRequest] class.
 type IThumbnailGenerationRequest interface {
 	objectivec.IObject
+	MinimumDimension() float64
+	SetMinimumDimension(value float64)
+	RepresentationTypes() ThumbnailGenerationRequestRepresentationTypes
+	Scale() float64
+	ContentType() uniformtypeidentifiers.UTType
+	SetContentType(value uniformtypeidentifiers.UTType)
+	IconMode() bool
+	SetIconMode(value bool)
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
 }
 
 // A request to generate a thumbnail for a file.

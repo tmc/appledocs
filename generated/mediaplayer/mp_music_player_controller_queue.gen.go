@@ -30,6 +30,7 @@ type _MusicPlayerControllerQueueClass struct {
 // An interface definition for the [MusicPlayerControllerQueue] class.
 type IMusicPlayerControllerQueue interface {
 	objectivec.IObject
+	Items() []MediaItem
 }
 
 // An immutable queue containing the media items to play.

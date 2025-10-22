@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,9 @@ type _INCancelRideIntentClass struct {
 // An interface definition for the [INCancelRideIntent] class.
 type IINCancelRideIntent interface {
 	IINIntent
+	RideIdentifier() string
+	UserActivityForCancelingInApplication() foundation.UserActivity
+	SetUserActivityForCancelingInApplication(value foundation.IUserActivity)
 }
 
 // An intent requesting the cancellation of a previously booked ride.
@@ -88,9 +90,9 @@ func NewINCancelRideIntent() INCancelRideIntent {
 // Initializes the intent object with the specified ride identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/init(rideIdentifier:)
-func NewINCancelRideIntentWithRideIdentifier(rideIdentifier appkit.string) INCancelRideIntent {
+func NewINCancelRideIntentWithRideIdentifier(rideIdentifier string) INCancelRideIntent {
 	instance := getINCancelRideIntentClass().Alloc()
-	rv := objc.Send[INCancelRideIntent](instance.ID, objc.Sel("initWithRideIdentifier:"), rideIdentifier)
+	rv := objc.Send[INCancelRideIntent](instance.ID, objc.Sel("initWithRideIdentifier:"), objc.String(rideIdentifier))
 	rv.Autorelease()
 	return rv
 }
@@ -99,8 +101,8 @@ func NewINCancelRideIntentWithRideIdentifier(rideIdentifier appkit.string) INCan
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/rideIdentifier
-func (i_ INCancelRideIntent) RideIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INCancelRideIntent) RideIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 

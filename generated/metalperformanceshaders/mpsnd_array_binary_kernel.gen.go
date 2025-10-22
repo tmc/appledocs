@@ -31,6 +31,26 @@ type _NDArrayBinaryKernelClass struct {
 type INDArrayBinaryKernel interface {
 	INDArrayMultiaryKernel
 	EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) NDArray
+	PrimaryDilationRates() unsafe.Pointer
+	SetPrimaryDilationRates(value unsafe.Pointer)
+	PrimaryEdgeMode() unsafe.Pointer
+	SetPrimaryEdgeMode(value unsafe.Pointer)
+	PrimaryKernelSizes() unsafe.Pointer
+	SetPrimaryKernelSizes(value unsafe.Pointer)
+	PrimaryOffsets() unsafe.Pointer
+	SetPrimaryOffsets(value unsafe.Pointer)
+	PrimaryStrides() unsafe.Pointer
+	SetPrimaryStrides(value unsafe.Pointer)
+	SecondaryDilationRates() unsafe.Pointer
+	SetSecondaryDilationRates(value unsafe.Pointer)
+	SecondaryEdgeMode() unsafe.Pointer
+	SetSecondaryEdgeMode(value unsafe.Pointer)
+	SecondaryKernelSizes() unsafe.Pointer
+	SetSecondaryKernelSizes(value unsafe.Pointer)
+	SecondaryOffsets() unsafe.Pointer
+	SetSecondaryOffsets(value unsafe.Pointer)
+	SecondaryStrides() unsafe.Pointer
+	SetSecondaryStrides(value unsafe.Pointer)
 }
 
 //

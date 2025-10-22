@@ -31,6 +31,10 @@ type _MTREnergyEVSEClusterClearTargetsParamsClass struct {
 // An interface definition for the [MTREnergyEVSEClusterClearTargetsParams] class.
 type IMTREnergyEVSEClusterClearTargetsParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

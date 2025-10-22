@@ -30,6 +30,8 @@ type _FunctionStitchingInputNodeClass struct {
 // An interface definition for the [FunctionStitchingInputNode] class.
 type IFunctionStitchingInputNode interface {
 	objectivec.IObject
+	ArgumentIndex() int
+	SetArgumentIndex(value int)
 }
 
 // A call graph node that describes an input to the call graph.

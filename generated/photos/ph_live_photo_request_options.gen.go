@@ -30,6 +30,16 @@ type _PHLivePhotoRequestOptionsClass struct {
 // An interface definition for the [PHLivePhotoRequestOptions] class.
 type IPHLivePhotoRequestOptions interface {
 	objectivec.IObject
+	DeliveryMode() PHImageRequestOptionsDeliveryMode
+	SetDeliveryMode(value PHImageRequestOptionsDeliveryMode)
+	NetworkAccessAllowed() bool
+	SetNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	Version() PHImageRequestOptionsVersion
+	SetVersion(value IPHImageRequestOptionsVersion)
+	IsNetworkAccessAllowed() bool
+	SetIsNetworkAccessAllowed(value bool)
 }
 
 // A set of options affecting the delivery of Live Photo assets you request from an image manager.

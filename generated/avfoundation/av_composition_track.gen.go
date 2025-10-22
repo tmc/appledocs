@@ -31,6 +31,56 @@ type _CompositionTrackClass struct {
 type ICompositionTrack interface {
 	IAssetTrack
 	MetadataForFormat(format MetadataFormat) []MetadataItem
+	AvailableMetadataFormats() MetadataFormat
+	SetAvailableMetadataFormats(value MetadataFormat)
+	AvailableTrackAssociationTypes() unsafe.Pointer
+	SetAvailableTrackAssociationTypes(value unsafe.Pointer)
+	CanProvideSampleCursors() bool
+	SetCanProvideSampleCursors(value bool)
+	CommonMetadata() AVMetadataItem
+	SetCommonMetadata(value IAVMetadataItem)
+	EstimatedDataRate() float32
+	SetEstimatedDataRate(value float32)
+	ExtendedLanguageTag() string
+	SetExtendedLanguageTag(value string)
+	FormatDescriptionReplacements() unsafe.Pointer
+	SetFormatDescriptionReplacements(value unsafe.Pointer)
+	FormatDescriptions() unsafe.Pointer
+	SetFormatDescriptions(value unsafe.Pointer)
+	HasAudioSampleDependencies() bool
+	SetHasAudioSampleDependencies(value bool)
+	IsDecodable() bool
+	SetIsDecodable(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
+	IsSelfContained() bool
+	SetIsSelfContained(value bool)
+	LanguageCode() string
+	SetLanguageCode(value string)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
+	MinFrameDuration() unsafe.Pointer
+	SetMinFrameDuration(value unsafe.Pointer)
+	NaturalSize() coregraphics.CGSize
+	SetNaturalSize(value coregraphics.CGSize)
+	NaturalTimeScale() unsafe.Pointer
+	SetNaturalTimeScale(value unsafe.Pointer)
+	NominalFrameRate() float32
+	SetNominalFrameRate(value float32)
+	PreferredTransform() coregraphics.CGAffineTransform
+	SetPreferredTransform(value coregraphics.CGAffineTransform)
+	PreferredVolume() float32
+	SetPreferredVolume(value float32)
+	RequiresFrameReordering() bool
+	SetRequiresFrameReordering(value bool)
+	Segments() AVCompositionTrackSegment
+	SetSegments(value IAVCompositionTrackSegment)
+	TimeRange() unsafe.Pointer
+	SetTimeRange(value unsafe.Pointer)
+	TotalSampleDataLength() unsafe.Pointer
+	SetTotalSampleDataLength(value unsafe.Pointer)
 }
 
 // A track in a composition that presents media of a uniform type.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -41,8 +40,8 @@ type IABAddressBook interface {
 	HasUnsavedChanges() bool
 	Me() ABPerson
 	People() foundation.Array
-	RecordForUniqueId(uniqueId appkit.string) ABRecord
-	RecordClassFromUniqueId(uniqueId appkit.string) foundation.String
+	RecordForUniqueId(uniqueId string) ABRecord
+	RecordClassFromUniqueId(uniqueId string) foundation.String
 	RecordsMatchingSearchElement(search IABSearchElement) foundation.Array
 	RemoveRecord(record IABRecord) bool
 	RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool
@@ -190,16 +189,16 @@ func (a_ ABAddressBook) People() foundation.Array {
 // Returns the person or group record that matches the given unique ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/record(forUniqueId:)
-func (a_ ABAddressBook) RecordForUniqueId(uniqueId appkit.string) ABRecord {
-	rv := objc.Send[ABRecord](a_.ID, objc.Sel("recordForUniqueId:"), uniqueId)
+func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) ABRecord {
+	rv := objc.Send[ABRecord](a_.ID, objc.Sel("recordForUniqueId:"), objc.String(uniqueId))
 	return rv
 }
 
 // Returns the class name of the record that matches the given unique ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/recordClass(fromUniqueId:)
-func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("recordClassFromUniqueId:"), uniqueId)
+func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("recordClassFromUniqueId:"), objc.String(uniqueId))
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _AltitudeDataClass struct {
 // An interface definition for the [AltitudeData] class.
 type IAltitudeData interface {
 	ILogItem
+	Pressure() foundation.Number
+	RelativeAltitude() foundation.Number
 }
 
 // Data for a recorded change in altitude.

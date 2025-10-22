@@ -31,6 +31,22 @@ type _MTRDeviceClass struct {
 // An interface definition for the [MTRDevice] class.
 type IMTRDevice interface {
 	objectivec.IObject
+	DeviceCachePrimed() bool
+	SetDeviceCachePrimed(value bool)
+	DeviceController() MTRDeviceController
+	SetDeviceController(value IMTRDeviceController)
+	EstimatedStartTime() foundation.Date
+	SetEstimatedStartTime(value foundation.IDate)
+	EstimatedSubscriptionLatency() foundation.Number
+	SetEstimatedSubscriptionLatency(value foundation.INumber)
+	NetworkCommissioningFeatures() MTRNetworkCommissioningFeature
+	SetNetworkCommissioningFeatures(value IMTRNetworkCommissioningFeature)
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	State() MTRDeviceState
+	SetState(value MTRDeviceState)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
 }
 
 //

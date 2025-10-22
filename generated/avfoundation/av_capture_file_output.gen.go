@@ -32,6 +32,24 @@ type _CaptureFileOutputClass struct {
 type ICaptureFileOutput interface {
 	ICaptureOutput
 	StartRecordingToOutputFileURLRecordingDelegate(outputFileURL foundation.IURL, delegate objectivec.IObject)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsRecording() bool
+	SetIsRecording(value bool)
+	IsRecordingPaused() bool
+	SetIsRecordingPaused(value bool)
+	MaxRecordedDuration() unsafe.Pointer
+	SetMaxRecordedDuration(value unsafe.Pointer)
+	MaxRecordedFileSize() unsafe.Pointer
+	SetMaxRecordedFileSize(value unsafe.Pointer)
+	MinFreeDiskSpaceLimit() unsafe.Pointer
+	SetMinFreeDiskSpaceLimit(value unsafe.Pointer)
+	OutputFileURL() foundation.URL
+	SetOutputFileURL(value foundation.IURL)
+	RecordedDuration() unsafe.Pointer
+	SetRecordedDuration(value unsafe.Pointer)
+	RecordedFileSize() unsafe.Pointer
+	SetRecordedFileSize(value unsafe.Pointer)
 }
 
 // The abstract superclass for capture outputs that can record captured data to a file.

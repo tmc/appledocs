@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,6 +33,9 @@ type IContextualEmbeddingResult interface {
 	objectivec.IObject
 	EnumerateTokenVectorsInRangeUsingBlock(range_ foundation.IRange, block unsafe.Pointer)
 	TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []foundation.Number
+	Language() Language
+	SequenceLength() uint
+	String() string
 }
 
 // An object that represents the embedding vector result from applying a contextual embedding to a string.
@@ -116,8 +118,8 @@ func (c_ ContextualEmbeddingResult) SequenceLength() uint {
 // The string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/string
-func (c_ ContextualEmbeddingResult) String() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("string"))
+func (c_ ContextualEmbeddingResult) String() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("string"))
 	return rv
 }
 

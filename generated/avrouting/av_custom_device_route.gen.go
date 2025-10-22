@@ -31,6 +31,12 @@ type _CustomDeviceRouteClass struct {
 // An interface definition for the [CustomDeviceRoute] class.
 type ICustomDeviceRoute interface {
 	objectivec.IObject
+	BluetoothIdentifier() foundation.UUID
+	NetworkEndpoint() unsafe.Pointer
+	Reason() CustomRoutingEventReason
+	SetReason(value ICustomRoutingEventReason)
+	Route() AVCustomDeviceRoute
+	SetRoute(value IAVCustomDeviceRoute)
 }
 
 // An object that represents a custom device route.

@@ -31,6 +31,12 @@ type _MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParamsClas
 // An interface definition for the [MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams] class.
 type IMTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams interface {
 	objectivec.IObject
+	CommissioningTimeout() foundation.Number
+	SetCommissioningTimeout(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -32,6 +32,8 @@ type IStoreProductViewController interface {
 	appkit.IViewController
 	LoadProductWithParametersCompletionBlock(parameters unsafe.Pointer, block unsafe.Pointer)
 	LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression ISKAdImpression, block unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 }
 
 // A view controller that provides a page where customers can purchase media from the App Store.

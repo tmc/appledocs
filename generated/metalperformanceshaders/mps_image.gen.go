@@ -30,6 +30,33 @@ type _ImageClass struct {
 // An interface definition for the [Image] class.
 type IImage interface {
 	objectivec.IObject
+	Texture() objc.ID
+	Device() unsafe.Pointer
+	SetDevice(value unsafe.Pointer)
+	FeatureChannelFormat() unsafe.Pointer
+	SetFeatureChannelFormat(value unsafe.Pointer)
+	FeatureChannels() int
+	SetFeatureChannels(value int)
+	Height() int
+	SetHeight(value int)
+	Label() string
+	SetLabel(value string)
+	NumberOfImages() int
+	SetNumberOfImages(value int)
+	Parent() MPSImage
+	SetParent(value IMPSImage)
+	PixelFormat() unsafe.Pointer
+	SetPixelFormat(value unsafe.Pointer)
+	PixelSize() int
+	SetPixelSize(value int)
+	Precision() int
+	SetPrecision(value int)
+	TextureType() unsafe.Pointer
+	SetTextureType(value unsafe.Pointer)
+	Usage() unsafe.Pointer
+	SetUsage(value unsafe.Pointer)
+	Width() int
+	SetWidth(value int)
 }
 
 // A texture that may have more than four channels for use in convolutional neural networks.
@@ -160,8 +187,8 @@ func (i_ Image) SetHeight(value int) {
 // A string to help identify this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/label
-func (i_ Image) Label() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("label"))
+func (i_ Image) Label() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -171,8 +198,8 @@ func (i_ Image) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/label
-func (i_ Image) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), value)
+func (i_ Image) SetLabel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The number of images for batch processing.

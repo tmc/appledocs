@@ -31,6 +31,12 @@ type _MTRMediaPlaybackClusterSkipForwardParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterSkipForwardParams] class.
 type IMTRMediaPlaybackClusterSkipForwardParams interface {
 	objectivec.IObject
+	DeltaPositionMilliseconds() foundation.Number
+	SetDeltaPositionMilliseconds(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

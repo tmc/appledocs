@@ -30,6 +30,13 @@ type _VertexAttributeDescriptorClass struct {
 // An interface definition for the [VertexAttributeDescriptor] class.
 type IVertexAttributeDescriptor interface {
 	objectivec.IObject
+	BufferIndex() uint
+	SetBufferIndex(value uint)
+	Format() VertexFormat
+	SetFormat(value VertexFormat)
+	Offset() uint
+	SetOffset(value uint)
+	MTLBufferLayoutStrideDynamic() int
 }
 
 // An object that determines how to store attribute data in memory and map it to the arguments of a vertex function.

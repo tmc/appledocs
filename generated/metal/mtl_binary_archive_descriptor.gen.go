@@ -31,6 +31,9 @@ type _BinaryArchiveDescriptorClass struct {
 // An interface definition for the [BinaryArchiveDescriptor] class.
 type IBinaryArchiveDescriptor interface {
 	objectivec.IObject
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
+	MTLBinaryArchiveDomain() string
 }
 
 // A description of a binary shader archive that you want to create.
@@ -100,8 +103,8 @@ func (b_ BinaryArchiveDescriptor) SetUrl(value foundation.IURL) {
 // The domain for Metal binary archive errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlbinaryarchivedomain
-func (b_ BinaryArchiveDescriptor) MTLBinaryArchiveDomain() appkit.string {
-	rv := objc.Send[appkit.string](b_.ID, objc.Sel("MTLBinaryArchiveDomain"))
+func (b_ BinaryArchiveDescriptor) MTLBinaryArchiveDomain() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("MTLBinaryArchiveDomain"))
 	return rv
 }
 

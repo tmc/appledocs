@@ -31,6 +31,14 @@ type _NDArrayUnaryKernelClass struct {
 type INDArrayUnaryKernel interface {
 	INDArrayMultiaryKernel
 	EncodeToCommandBufferSourceArray(cmdBuf objectivec.IObject, sourceArray IMPSNDArray) NDArray
+	EdgeMode() unsafe.Pointer
+	Strides() unsafe.Pointer
+	DilationRates() unsafe.Pointer
+	SetDilationRates(value unsafe.Pointer)
+	KernelSizes() unsafe.Pointer
+	SetKernelSizes(value unsafe.Pointer)
+	Offsets() unsafe.Pointer
+	SetOffsets(value unsafe.Pointer)
 }
 
 //

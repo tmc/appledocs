@@ -29,6 +29,26 @@ type _GraphLSTMDescriptorClass struct {
 // An interface definition for the [GraphLSTMDescriptor] class.
 type IGraphLSTMDescriptor interface {
 	IGraphObject
+	CellGateActivation() GraphRNNActivation
+	SetCellGateActivation(value IGraphRNNActivation)
+	Activation() GraphRNNActivation
+	SetActivation(value IGraphRNNActivation)
+	Bidirectional() bool
+	SetBidirectional(value bool)
+	ForgetGateActivation() GraphRNNActivation
+	SetForgetGateActivation(value IGraphRNNActivation)
+	ForgetGateLast() bool
+	SetForgetGateLast(value bool)
+	InputGateActivation() GraphRNNActivation
+	SetInputGateActivation(value IGraphRNNActivation)
+	OutputGateActivation() GraphRNNActivation
+	SetOutputGateActivation(value IGraphRNNActivation)
+	ProduceCell() bool
+	SetProduceCell(value bool)
+	Reverse() bool
+	SetReverse(value bool)
+	Training() bool
+	SetTraining(value bool)
 }
 
 // The class that defines the parameters for a long short-term memory (LSTM) operation.

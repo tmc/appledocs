@@ -37,7 +37,7 @@ type IBluetoothSDPDataElement interface {
 	GetDataValue() foundation.Data
 	GetNumberValue() foundation.Number
 	GetSDPDataElementRef() BluetoothSDPDataElementRef
-	GetSize() unsafe.Pointer
+	GetSize() uint32
 	GetSizeDescriptor() BluetoothSDPDataElementSizeDescriptor
 	GetStringValue() foundation.String
 	GetTypeDescriptor() BluetoothSDPDataElementTypeDescriptor
@@ -110,7 +110,7 @@ func NewBluetoothSDPDataElementWithElementValue(element foundation.IObject) Blue
 // Initializes a new IOBluetoothSDPDataElement with the given attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(type:sizeDescriptor:size:value:)
-func NewBluetoothSDPDataElementWithTypeSizeDescriptorSizeValue(newType IBluetoothSDPDataElementTypeDescriptor, newSizeDescriptor IBluetoothSDPDataElementSizeDescriptor, newSize unsafe.Pointer, newValue foundation.IObject) BluetoothSDPDataElement {
+func NewBluetoothSDPDataElementWithTypeSizeDescriptorSizeValue(newType IBluetoothSDPDataElementTypeDescriptor, newSizeDescriptor IBluetoothSDPDataElementSizeDescriptor, newSize Iuint32, newValue foundation.IObject) BluetoothSDPDataElement {
 	instance := getBluetoothSDPDataElementClass().Alloc()
 	rv := objc.Send[BluetoothSDPDataElement](instance.ID, objc.Sel("initWithType:sizeDescriptor:size:value:"), newType, newSizeDescriptor, newSize, newValue)
 	rv.Autorelease()
@@ -137,7 +137,7 @@ func (bc _BluetoothSDPDataElementClass) WithSDPDataElementRef(sdpDataElementRef 
 // Creates a new IOBluetoothSDPDataElement with the given attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/withType(_:sizeDescriptor:size:value:)
-func (bc _BluetoothSDPDataElementClass) WithTypeSizeDescriptorSizeValue(type_ IBluetoothSDPDataElementTypeDescriptor, newSizeDescriptor IBluetoothSDPDataElementSizeDescriptor, newSize unsafe.Pointer, newValue foundation.IObject) unsafe.Pointer {
+func (bc _BluetoothSDPDataElementClass) WithTypeSizeDescriptorSizeValue(type_ IBluetoothSDPDataElementTypeDescriptor, newSizeDescriptor IBluetoothSDPDataElementSizeDescriptor, newSize Iuint32, newValue foundation.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withType:sizeDescriptor:size:value:"), type_, newSizeDescriptor, newSize, newValue)
 	return rv
 }
@@ -193,8 +193,8 @@ func (b_ BluetoothSDPDataElement) GetSDPDataElementRef() BluetoothSDPDataElement
 // Returns the size in bytes of the target data element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSize()
-func (b_ BluetoothSDPDataElement) GetSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getSize"))
+func (b_ BluetoothSDPDataElement) GetSize() uint32 {
+	rv := objc.Send[uint32](b_.ID, objc.Sel("getSize"))
 	return rv
 }
 

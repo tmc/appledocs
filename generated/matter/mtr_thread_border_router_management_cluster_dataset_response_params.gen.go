@@ -31,6 +31,8 @@ type _MTRThreadBorderRouterManagementClusterDatasetResponseParamsClass struct {
 // An interface definition for the [MTRThreadBorderRouterManagementClusterDatasetResponseParams] class.
 type IMTRThreadBorderRouterManagementClusterDatasetResponseParams interface {
 	objectivec.IObject
+	Dataset() foundation.NSData
+	SetDataset(value foundation.IData)
 }
 
 //

@@ -41,8 +41,8 @@ var (
 	_es_release_message func(unsafe.Pointer) unsafe.Pointer
 	_es_release_muted_paths func(unsafe.Pointer) unsafe.Pointer
 	_es_release_muted_processes func(unsafe.Pointer) unsafe.Pointer
-	_es_respond_auth_result func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_es_respond_flags_result func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_es_respond_auth_result func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_es_respond_flags_result func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_es_retain_message func(unsafe.Pointer) unsafe.Pointer
 	_es_subscribe func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_es_subscriptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -393,7 +393,7 @@ func es_release_muted_processes(muted_processes unsafe.Pointer) {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)
-func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, result unsafe.Pointer, cache unsafe.Pointer) unsafe.Pointer {
+func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, result unsafe.Pointer, cache bool) unsafe.Pointer {
 	return _es_respond_auth_result(client, message, result, cache)
 	}
 
@@ -403,7 +403,7 @@ func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, resul
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)
-func es_respond_flags_result(client unsafe.Pointer, message unsafe.Pointer, authorized_flags unsafe.Pointer, cache unsafe.Pointer) unsafe.Pointer {
+func es_respond_flags_result(client unsafe.Pointer, message unsafe.Pointer, authorized_flags unsafe.Pointer, cache bool) unsafe.Pointer {
 	return _es_respond_flags_result(client, message, authorized_flags, cache)
 	}
 

@@ -29,6 +29,12 @@ type _INSendPaymentIntentClass struct {
 // An interface definition for the [INSendPaymentIntent] class.
 type IINSendPaymentIntent interface {
 	IINIntent
+	CurrencyAmount() INCurrencyAmount
+	SetCurrencyAmount(value INCurrencyAmount)
+	Note() string
+	SetNote(value string)
+	Payee() INPerson
+	SetPayee(value INPerson)
 }
 
 // A request to transfer money from the current user’s account to a different user’s account.
@@ -102,8 +108,8 @@ func (i_ INSendPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 // A note associated with the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
-func (i_ INSendPaymentIntent) Note() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("note"))
+func (i_ INSendPaymentIntent) Note() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("note"))
 	return rv
 }
 
@@ -113,8 +119,8 @@ func (i_ INSendPaymentIntent) Note() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
-func (i_ INSendPaymentIntent) SetNote(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), value)
+func (i_ INSendPaymentIntent) SetNote(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
 }
 
 // The recipient of the payment.

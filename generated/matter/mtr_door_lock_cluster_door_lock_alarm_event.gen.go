@@ -31,6 +31,8 @@ type _MTRDoorLockClusterDoorLockAlarmEventClass struct {
 // An interface definition for the [MTRDoorLockClusterDoorLockAlarmEvent] class.
 type IMTRDoorLockClusterDoorLockAlarmEvent interface {
 	objectivec.IObject
+	AlarmCode() foundation.Number
+	SetAlarmCode(value foundation.INumber)
 }
 
 //

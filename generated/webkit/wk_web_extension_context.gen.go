@@ -31,6 +31,62 @@ type _WebExtensionContextClass struct {
 // An interface definition for the [WebExtensionContext] class.
 type IWebExtensionContext interface {
 	objectivec.IObject
+	BaseURL() foundation.URL
+	SetBaseURL(value foundation.IURL)
+	Commands() unsafe.Pointer
+	SetCommands(value unsafe.Pointer)
+	CurrentPermissionMatchPatterns() unsafe.Pointer
+	SetCurrentPermissionMatchPatterns(value unsafe.Pointer)
+	CurrentPermissions() unsafe.Pointer
+	SetCurrentPermissions(value unsafe.Pointer)
+	DeniedPermissionMatchPatterns() foundation.Date
+	SetDeniedPermissionMatchPatterns(value foundation.IDate)
+	DeniedPermissions() foundation.Date
+	SetDeniedPermissions(value foundation.IDate)
+	Errors() foundation.Error
+	SetErrors(value foundation.IError)
+	FocusedWindow() unsafe.Pointer
+	SetFocusedWindow(value unsafe.Pointer)
+	GrantedPermissionMatchPatterns() foundation.Date
+	SetGrantedPermissionMatchPatterns(value foundation.IDate)
+	GrantedPermissions() foundation.Date
+	SetGrantedPermissions(value foundation.IDate)
+	HasAccessToAllHosts() bool
+	SetHasAccessToAllHosts(value bool)
+	HasAccessToAllURLs() bool
+	SetHasAccessToAllURLs(value bool)
+	HasAccessToPrivateData() bool
+	SetHasAccessToPrivateData(value bool)
+	HasContentModificationRules() bool
+	SetHasContentModificationRules(value bool)
+	HasInjectedContent() bool
+	SetHasInjectedContent(value bool)
+	HasRequestedOptionalAccessToAllHosts() bool
+	SetHasRequestedOptionalAccessToAllHosts(value bool)
+	InspectionName() string
+	SetInspectionName(value string)
+	IsInspectable() bool
+	SetIsInspectable(value bool)
+	IsLoaded() bool
+	SetIsLoaded(value bool)
+	OpenTabs() unsafe.Pointer
+	SetOpenTabs(value unsafe.Pointer)
+	OpenWindows() unsafe.Pointer
+	SetOpenWindows(value unsafe.Pointer)
+	OptionsPageURL() foundation.URL
+	SetOptionsPageURL(value foundation.IURL)
+	OverrideNewTabPageURL() foundation.URL
+	SetOverrideNewTabPageURL(value foundation.IURL)
+	UniqueIdentifier() string
+	SetUniqueIdentifier(value string)
+	UnsupportedAPIs() string
+	SetUnsupportedAPIs(value string)
+	WebExtension() WKWebExtension
+	SetWebExtension(value IWKWebExtension)
+	WebExtensionController() WKWebExtensionController
+	SetWebExtensionController(value IWKWebExtensionController)
+	WebViewConfiguration() WKWebViewConfiguration
+	SetWebViewConfiguration(value IWKWebViewConfiguration)
 }
 
 // An object that represents the runtime environment for a web extension.
@@ -372,8 +428,8 @@ func (w_ WebExtensionContext) SetHasRequestedOptionalAccessToAllHosts(value bool
 // The name shown when inspecting the background web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/inspectionname
-func (w_ WebExtensionContext) InspectionName() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("inspectionName"))
+func (w_ WebExtensionContext) InspectionName() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("inspectionName"))
 	return rv
 }
 
@@ -383,8 +439,8 @@ func (w_ WebExtensionContext) InspectionName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/inspectionname
-func (w_ WebExtensionContext) SetInspectionName(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setInspectionName:"), value)
+func (w_ WebExtensionContext) SetInspectionName(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setInspectionName:"), objc.String(value))
 }
 
 // Determines whether Web Inspector can inspect the
@@ -498,8 +554,8 @@ func (w_ WebExtensionContext) SetOverrideNewTabPageURL(value foundation.IURL) {
 // A unique identifier used to distinguish the extension from other extensions and target it for messages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/uniqueidentifier
-func (w_ WebExtensionContext) UniqueIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("uniqueIdentifier"))
+func (w_ WebExtensionContext) UniqueIdentifier() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
@@ -509,15 +565,15 @@ func (w_ WebExtensionContext) UniqueIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/uniqueidentifier
-func (w_ WebExtensionContext) SetUniqueIdentifier(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUniqueIdentifier:"), value)
+func (w_ WebExtensionContext) SetUniqueIdentifier(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUniqueIdentifier:"), objc.String(value))
 }
 
 // Specifies unsupported APIs for this extension, making them
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/unsupportedapis
-func (w_ WebExtensionContext) UnsupportedAPIs() appkit.string {
-	rv := objc.Send[appkit.string](w_.ID, objc.Sel("unsupportedAPIs"))
+func (w_ WebExtensionContext) UnsupportedAPIs() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("unsupportedAPIs"))
 	return rv
 }
 
@@ -527,8 +583,8 @@ func (w_ WebExtensionContext) UnsupportedAPIs() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/unsupportedapis
-func (w_ WebExtensionContext) SetUnsupportedAPIs(value appkit.string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUnsupportedAPIs:"), value)
+func (w_ WebExtensionContext) SetUnsupportedAPIs(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUnsupportedAPIs:"), objc.String(value))
 }
 
 // The extension this context represents.

@@ -33,6 +33,22 @@ type IAudioSequencer interface {
 	objectivec.IObject
 	HostTimeForBeatsError(inBeats IMusicTimeStamp, outError unsafe.Pointer) uint64
 	SecondsForBeats(beats IMusicTimeStamp) foundation.TimeInterval
+	CurrentPositionInBeats() unsafe.Pointer
+	SetCurrentPositionInBeats(value unsafe.Pointer)
+	CurrentPositionInSeconds() unsafe.Pointer
+	SetCurrentPositionInSeconds(value unsafe.Pointer)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
+	Rate() float32
+	SetRate(value float32)
+	TempoTrack() unsafe.Pointer
+	SetTempoTrack(value unsafe.Pointer)
+	Tracks() unsafe.Pointer
+	SetTracks(value unsafe.Pointer)
+	UserInfo() string
+	SetUserInfo(value string)
+	AVMusicTimeStampEndOfTrack() float64
+	SetAVMusicTimeStampEndOfTrack(value float64)
 }
 
 // An object that plays audio from a collection of MIDI events the system organizes into music tracks.
@@ -154,8 +170,8 @@ func (a_ AudioSequencer) SetIsPlaying(value bool) {
 // The playback rate of the sequencer’s player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/rate
-func (a_ AudioSequencer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rate"))
+func (a_ AudioSequencer) Rate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -165,7 +181,7 @@ func (a_ AudioSequencer) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/rate
-func (a_ AudioSequencer) SetRate(value unsafe.Pointer) {
+func (a_ AudioSequencer) SetRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -208,8 +224,8 @@ func (a_ AudioSequencer) SetTracks(value unsafe.Pointer) {
 // A dictionary that contains metadata from a sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/userinfo
-func (a_ AudioSequencer) UserInfo() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("userInfo"))
+func (a_ AudioSequencer) UserInfo() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -219,15 +235,15 @@ func (a_ AudioSequencer) UserInfo() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosequencer/userinfo
-func (a_ AudioSequencer) SetUserInfo(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInfo:"), value)
+func (a_ AudioSequencer) SetUserInfo(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }
 
 // A timestamp you use to access all events in a music track through a beat range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmusictimestampendoftrack
-func (a_ AudioSequencer) AVMusicTimeStampEndOfTrack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("AVMusicTimeStampEndOfTrack"))
+func (a_ AudioSequencer) AVMusicTimeStampEndOfTrack() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("AVMusicTimeStampEndOfTrack"))
 	return rv
 }
 
@@ -237,7 +253,7 @@ func (a_ AudioSequencer) AVMusicTimeStampEndOfTrack() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmusictimestampendoftrack
-func (a_ AudioSequencer) SetAVMusicTimeStampEndOfTrack(value unsafe.Pointer) {
+func (a_ AudioSequencer) SetAVMusicTimeStampEndOfTrack(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAVMusicTimeStampEndOfTrack:"), value)
 }
 

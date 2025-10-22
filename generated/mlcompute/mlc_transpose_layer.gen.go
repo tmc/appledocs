@@ -29,6 +29,8 @@ type _CTransposeLayerClass struct {
 // An interface definition for the [CTransposeLayer] class.
 type ICTransposeLayer interface {
 	ICLayer
+	Dimensions() int
+	SetDimensions(value int)
 }
 
 // A layer that permutes the dimensions you specify.

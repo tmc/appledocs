@@ -30,6 +30,40 @@ type _SamplerDescriptorClass struct {
 // An interface definition for the [SamplerDescriptor] class.
 type ISamplerDescriptor interface {
 	objectivec.IObject
+	LodMinClamp() float32
+	SetLodMinClamp(value float32)
+	MaxAnisotropy() uint
+	SetMaxAnisotropy(value uint)
+	BorderColor() unsafe.Pointer
+	SetBorderColor(value unsafe.Pointer)
+	CompareFunction() unsafe.Pointer
+	SetCompareFunction(value unsafe.Pointer)
+	Label() string
+	SetLabel(value string)
+	LodAverage() bool
+	SetLodAverage(value bool)
+	LodBias() float32
+	SetLodBias(value float32)
+	LodMaxClamp() float32
+	SetLodMaxClamp(value float32)
+	MagFilter() unsafe.Pointer
+	SetMagFilter(value unsafe.Pointer)
+	MinFilter() unsafe.Pointer
+	SetMinFilter(value unsafe.Pointer)
+	MipFilter() unsafe.Pointer
+	SetMipFilter(value unsafe.Pointer)
+	NormalizedCoordinates() bool
+	SetNormalizedCoordinates(value bool)
+	RAddressMode() unsafe.Pointer
+	SetRAddressMode(value unsafe.Pointer)
+	ReductionMode() SamplerReductionMode
+	SetReductionMode(value SamplerReductionMode)
+	SAddressMode() unsafe.Pointer
+	SetSAddressMode(value unsafe.Pointer)
+	SupportArgumentBuffers() bool
+	SetSupportArgumentBuffers(value bool)
+	TAddressMode() unsafe.Pointer
+	SetTAddressMode(value unsafe.Pointer)
 }
 
 // An object that you use to configure a texture sampler.
@@ -83,8 +117,8 @@ func NewSamplerDescriptor() SamplerDescriptor {
 // The minimum level of detail (LOD) to use when sampling from a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodMinClamp
-func (s_ SamplerDescriptor) LodMinClamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lodMinClamp"))
+func (s_ SamplerDescriptor) LodMinClamp() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("lodMinClamp"))
 	return rv
 }
 
@@ -94,7 +128,7 @@ func (s_ SamplerDescriptor) LodMinClamp() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodMinClamp
-func (s_ SamplerDescriptor) SetLodMinClamp(value unsafe.Pointer) {
+func (s_ SamplerDescriptor) SetLodMinClamp(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLodMinClamp:"), value)
 }
 
@@ -155,8 +189,8 @@ func (s_ SamplerDescriptor) SetCompareFunction(value unsafe.Pointer) {
 // A string that identifies the sampler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/label
-func (s_ SamplerDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("label"))
+func (s_ SamplerDescriptor) Label() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -166,8 +200,8 @@ func (s_ SamplerDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/label
-func (s_ SamplerDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
+func (s_ SamplerDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // A Boolean value that specifies whether the GPU can use an average level of detail (LOD) when sampling from a texture.
@@ -191,8 +225,8 @@ func (s_ SamplerDescriptor) SetLodAverage(value bool) {
 // Sets the level-of-detail (lod) bias when sampling from a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodbias
-func (s_ SamplerDescriptor) LodBias() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lodBias"))
+func (s_ SamplerDescriptor) LodBias() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("lodBias"))
 	return rv
 }
 
@@ -202,15 +236,15 @@ func (s_ SamplerDescriptor) LodBias() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodbias
-func (s_ SamplerDescriptor) SetLodBias(value unsafe.Pointer) {
+func (s_ SamplerDescriptor) SetLodBias(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLodBias:"), value)
 }
 
 // The maximum level of detail (LOD) to use when sampling from a texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodmaxclamp
-func (s_ SamplerDescriptor) LodMaxClamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lodMaxClamp"))
+func (s_ SamplerDescriptor) LodMaxClamp() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("lodMaxClamp"))
 	return rv
 }
 
@@ -220,7 +254,7 @@ func (s_ SamplerDescriptor) LodMaxClamp() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodmaxclamp
-func (s_ SamplerDescriptor) SetLodMaxClamp(value unsafe.Pointer) {
+func (s_ SamplerDescriptor) SetLodMaxClamp(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLodMaxClamp:"), value)
 }
 

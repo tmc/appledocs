@@ -30,6 +30,13 @@ type _CommandBufferDescriptorClass struct {
 // An interface definition for the [CommandBufferDescriptor] class.
 type ICommandBufferDescriptor interface {
 	objectivec.IObject
+	ErrorOptions() CommandBufferErrorOption
+	SetErrorOptions(value ICommandBufferErrorOption)
+	LogState() objc.ID
+	SetLogState(value objc.ID)
+	RetainedReferences() bool
+	SetRetainedReferences(value bool)
+	MTLCommandBufferErrorDomain() string
 }
 
 // A configuration that customizes the behavior for a new command buffer.
@@ -137,8 +144,8 @@ func (c_ CommandBufferDescriptor) SetRetainedReferences(value bool) {
 // The domain for Metal command buffer errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain
-func (c_ CommandBufferDescriptor) MTLCommandBufferErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
+func (c_ CommandBufferDescriptor) MTLCommandBufferErrorDomain() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
 	return rv
 }
 

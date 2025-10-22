@@ -29,6 +29,11 @@ type _MKCircleRendererClass struct {
 // An interface definition for the [MKCircleRenderer] class.
 type IMKCircleRenderer interface {
 	IMKOverlayPathRenderer
+	Circle() MKCircle
+	StrokeEnd() float64
+	SetStrokeEnd(value float64)
+	StrokeStart() float64
+	SetStrokeStart(value float64)
 }
 
 // The visual representation of a circular overlay.

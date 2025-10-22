@@ -29,6 +29,12 @@ type _VZGenericPlatformConfigurationClass struct {
 // An interface definition for the [VZGenericPlatformConfiguration] class.
 type IVZGenericPlatformConfiguration interface {
 	IVZPlatformConfiguration
+	NestedVirtualizationEnabled() bool
+	SetNestedVirtualizationEnabled(value bool)
+	MachineIdentifier() VZGenericMachineIdentifier
+	SetMachineIdentifier(value IVZGenericMachineIdentifier)
+	IsNestedVirtualizationEnabled() bool
+	SetIsNestedVirtualizationEnabled(value bool)
 }
 
 // The platform configuration for a generic Intel or ARM virtual machine.

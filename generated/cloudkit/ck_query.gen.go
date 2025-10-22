@@ -31,6 +31,10 @@ type _CKQueryClass struct {
 // An interface definition for the [CKQuery] class.
 type ICKQuery interface {
 	objectivec.IObject
+	Predicate() foundation.Predicate
+	RecordType() unsafe.Pointer
+	SortDescriptors() []foundation.SortDescriptor
+	SetSortDescriptors(value []foundation.ISortDescriptor)
 }
 
 // A query that describes the criteria to apply when searching for records in a database.

@@ -31,6 +31,9 @@ type _SFAddToHomeScreenInfoClass struct {
 // An interface definition for the [SFAddToHomeScreenInfo] class.
 type ISFAddToHomeScreenInfo interface {
 	objectivec.IObject
+	Manifest() unsafe.Pointer
+	WebsiteCookies() []foundation.HTTPCookie
+	SetWebsiteCookies(value []foundation.IHTTPCookie)
 }
 
 // A class that provides information about a web app that someone adds to their Home Screen.

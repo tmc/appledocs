@@ -30,6 +30,8 @@ type _CloneCommandClass struct {
 type ICloneCommand interface {
 	IScriptCommand
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
+	KeySpecifier() NSScriptObjectSpecifier
+	SetKeySpecifier(value IScriptObjectSpecifier)
 }
 
 // A command that clones one or more scriptable objects.

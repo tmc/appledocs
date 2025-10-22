@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +31,79 @@ type _RenderPipelineDescriptorClass struct {
 type IRenderPipelineDescriptor interface {
 	objectivec.IObject
 	Reset()
+	BinaryArchives() []objc.ID
+	SetBinaryArchives(value []objc.ID)
+	ColorAttachments() MTLRenderPipelineColorAttachmentDescriptorArray
+	DepthAttachmentPixelFormat() PixelFormat
+	SetDepthAttachmentPixelFormat(value PixelFormat)
+	FragmentBuffers() MTLPipelineBufferDescriptorArray
+	FragmentFunction() objc.ID
+	SetFragmentFunction(value objc.ID)
+	FragmentLinkedFunctions() MTLLinkedFunctions
+	SetFragmentLinkedFunctions(value IMTLLinkedFunctions)
+	FragmentPreloadedLibraries() []objc.ID
+	SetFragmentPreloadedLibraries(value []objc.ID)
+	InputPrimitiveTopology() PrimitiveTopologyClass
+	SetInputPrimitiveTopology(value IPrimitiveTopologyClass)
+	AlphaToCoverageEnabled() bool
+	SetAlphaToCoverageEnabled(value bool)
+	AlphaToOneEnabled() bool
+	SetAlphaToOneEnabled(value bool)
+	RasterizationEnabled() bool
+	SetRasterizationEnabled(value bool)
+	TessellationFactorScaleEnabled() bool
+	SetTessellationFactorScaleEnabled(value bool)
+	Label() string
+	SetLabel(value string)
+	MaxFragmentCallStackDepth() uint
+	SetMaxFragmentCallStackDepth(value uint)
+	MaxTessellationFactor() uint
+	SetMaxTessellationFactor(value uint)
+	MaxVertexAmplificationCount() uint
+	SetMaxVertexAmplificationCount(value uint)
+	MaxVertexCallStackDepth() uint
+	SetMaxVertexCallStackDepth(value uint)
+	RasterSampleCount() uint
+	SetRasterSampleCount(value uint)
+	SampleCount() uint
+	SetSampleCount(value uint)
+	ShaderValidation() ShaderValidation
+	SetShaderValidation(value IShaderValidation)
+	StencilAttachmentPixelFormat() PixelFormat
+	SetStencilAttachmentPixelFormat(value PixelFormat)
+	SupportAddingFragmentBinaryFunctions() bool
+	SetSupportAddingFragmentBinaryFunctions(value bool)
+	SupportAddingVertexBinaryFunctions() bool
+	SetSupportAddingVertexBinaryFunctions(value bool)
+	SupportIndirectCommandBuffers() bool
+	SetSupportIndirectCommandBuffers(value bool)
+	TessellationControlPointIndexType() TessellationControlPointIndexType
+	SetTessellationControlPointIndexType(value TessellationControlPointIndexType)
+	TessellationFactorFormat() TessellationFactorFormat
+	SetTessellationFactorFormat(value TessellationFactorFormat)
+	TessellationFactorStepFunction() TessellationFactorStepFunction
+	SetTessellationFactorStepFunction(value ITessellationFactorStepFunction)
+	TessellationOutputWindingOrder() Winding
+	SetTessellationOutputWindingOrder(value IWinding)
+	TessellationPartitionMode() TessellationPartitionMode
+	SetTessellationPartitionMode(value TessellationPartitionMode)
+	VertexBuffers() MTLPipelineBufferDescriptorArray
+	VertexDescriptor() MTLVertexDescriptor
+	SetVertexDescriptor(value IMTLVertexDescriptor)
+	VertexLinkedFunctions() MTLLinkedFunctions
+	SetVertexLinkedFunctions(value IMTLLinkedFunctions)
+	IsAlphaToCoverageEnabled() bool
+	SetIsAlphaToCoverageEnabled(value bool)
+	IsAlphaToOneEnabled() bool
+	SetIsAlphaToOneEnabled(value bool)
+	IsRasterizationEnabled() bool
+	SetIsRasterizationEnabled(value bool)
+	IsTessellationFactorScaleEnabled() bool
+	SetIsTessellationFactorScaleEnabled(value bool)
+	VertexFunction() unsafe.Pointer
+	SetVertexFunction(value unsafe.Pointer)
+	VertexPreloadedLibraries() unsafe.Pointer
+	SetVertexPreloadedLibraries(value unsafe.Pointer)
 }
 
 // An argument of options you pass to a GPU device to get a render pipeline state.
@@ -305,8 +377,8 @@ func (r_ RenderPipelineDescriptor) SetTessellationFactorScaleEnabled(value bool)
 // A string that identifies the render pipeline descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/label
-func (r_ RenderPipelineDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](r_.ID, objc.Sel("label"))
+func (r_ RenderPipelineDescriptor) Label() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -316,8 +388,8 @@ func (r_ RenderPipelineDescriptor) Label() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineDescriptor/label
-func (r_ RenderPipelineDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+func (r_ RenderPipelineDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 // The maximum function call depth from the top-most fragment shader function.

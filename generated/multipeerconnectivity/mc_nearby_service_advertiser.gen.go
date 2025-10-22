@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,6 +32,11 @@ type IMCNearbyServiceAdvertiser interface {
 	objectivec.IObject
 	StartAdvertisingPeer()
 	StopAdvertisingPeer()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DiscoveryInfo() unsafe.Pointer
+	MyPeerID() MCPeerID
+	ServiceType() string
 }
 
 // The class publishes an advertisement for a specific service that your app provides through the Multipeer Connectivity framework and notifies its delegate about invitations from nearby peers.
@@ -88,9 +92,9 @@ func NewMCNearbyServiceAdvertiser() MCNearbyServiceAdvertiser {
 // Initializes an advertiser object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/init(peer:discoveryInfo:serviceType:)
-func NewMCNearbyServiceAdvertiserWithPeerDiscoveryInfoServiceType(myPeerID IMCPeerID, info unsafe.Pointer, serviceType appkit.string) MCNearbyServiceAdvertiser {
+func NewMCNearbyServiceAdvertiserWithPeerDiscoveryInfoServiceType(myPeerID IMCPeerID, info unsafe.Pointer, serviceType string) MCNearbyServiceAdvertiser {
 	instance := getMCNearbyServiceAdvertiserClass().Alloc()
-	rv := objc.Send[MCNearbyServiceAdvertiser](instance.ID, objc.Sel("initWithPeer:discoveryInfo:serviceType:"), myPeerID, info, serviceType)
+	rv := objc.Send[MCNearbyServiceAdvertiser](instance.ID, objc.Sel("initWithPeer:discoveryInfo:serviceType:"), myPeerID, info, objc.String(serviceType))
 	rv.Autorelease()
 	return rv
 }
@@ -147,8 +151,8 @@ func (m_ MCNearbyServiceAdvertiser) MyPeerID() MCPeerID {
 // The service type that your app is advertising
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/serviceType
-func (m_ MCNearbyServiceAdvertiser) ServiceType() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceAdvertiser) ServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

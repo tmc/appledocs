@@ -31,6 +31,10 @@ type _MTRHEPAFilterMonitoringClusterResetConditionParamsClass struct {
 // An interface definition for the [MTRHEPAFilterMonitoringClusterResetConditionParams] class.
 type IMTRHEPAFilterMonitoringClusterResetConditionParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

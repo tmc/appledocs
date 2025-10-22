@@ -29,6 +29,12 @@ type _INCreateTaskListIntentClass struct {
 // An interface definition for the [INCreateTaskListIntent] class.
 type IINCreateTaskListIntent interface {
 	IINIntent
+	GroupName() INSpeakableString
+	SetGroupName(value INSpeakableString)
+	TaskTitles() INSpeakableString
+	SetTaskTitles(value INSpeakableString)
+	Title() INSpeakableString
+	SetTitle(value INSpeakableString)
 }
 
 // A request to create a new task list.

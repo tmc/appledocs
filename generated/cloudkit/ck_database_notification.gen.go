@@ -29,6 +29,16 @@ type _CKDatabaseNotificationClass struct {
 // An interface definition for the [CKDatabaseNotification] class.
 type ICKDatabaseNotification interface {
 	ICKNotification
+	DatabaseScope() unsafe.Pointer
+	SetDatabaseScope(value unsafe.Pointer)
+	IsPruned() bool
+	SetIsPruned(value bool)
+	NotificationType() unsafe.Pointer
+	SetNotificationType(value unsafe.Pointer)
+	ShouldSendContentAvailable() bool
+	SetShouldSendContentAvailable(value bool)
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // A notification that triggers when the contents of a database change.

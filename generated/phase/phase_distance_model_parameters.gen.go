@@ -30,6 +30,10 @@ type _PHASEDistanceModelParametersClass struct {
 // An interface definition for the [PHASEDistanceModelParameters] class.
 type IPHASEDistanceModelParameters interface {
 	objectivec.IObject
+	FadeOutParameters() PHASEDistanceModelFadeOutParameters
+	SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters)
+	DistanceModelParameters() PHASEDistanceModelParameters
+	SetDistanceModelParameters(value IPHASEDistanceModelParameters)
 }
 
 // A base class for a sound’s rate of change over distance.

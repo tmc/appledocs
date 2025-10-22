@@ -31,6 +31,12 @@ type _MTRDoorLockClusterUnboltDoorParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterUnboltDoorParams] class.
 type IMTRDoorLockClusterUnboltDoorParams interface {
 	objectivec.IObject
+	PinCode() foundation.NSData
+	SetPinCode(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

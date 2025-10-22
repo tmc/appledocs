@@ -31,6 +31,12 @@ type _MTRSwitchClusterMultiPressCompleteEventClass struct {
 // An interface definition for the [MTRSwitchClusterMultiPressCompleteEvent] class.
 type IMTRSwitchClusterMultiPressCompleteEvent interface {
 	objectivec.IObject
+	NewPosition() foundation.Number
+	SetNewPosition(value foundation.INumber)
+	PreviousPosition() foundation.Number
+	SetPreviousPosition(value foundation.INumber)
+	TotalNumberOfPressesCounted() foundation.Number
+	SetTotalNumberOfPressesCounted(value foundation.INumber)
 }
 
 //

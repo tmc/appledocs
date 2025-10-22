@@ -32,6 +32,15 @@ type _StrokePointClass struct {
 // An interface definition for the [StrokePoint] class.
 type IStrokePoint interface {
 	objectivec.IObject
+	Altitude() float64
+	Azimuth() float64
+	Force() float64
+	Location() coregraphics.CGPoint
+	Opacity() float64
+	SecondaryScale() float64
+	Size() coregraphics.CGSize
+	Threshold() float64
+	TimeOffset() foundation.TimeInterval
 }
 
 // A class that represents the properties of a specific point along a stroke’s path.

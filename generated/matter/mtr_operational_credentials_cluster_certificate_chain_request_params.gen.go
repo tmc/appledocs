@@ -31,6 +31,12 @@ type _MTROperationalCredentialsClusterCertificateChainRequestParamsClass struct 
 // An interface definition for the [MTROperationalCredentialsClusterCertificateChainRequestParams] class.
 type IMTROperationalCredentialsClusterCertificateChainRequestParams interface {
 	objectivec.IObject
+	CertificateType() foundation.Number
+	SetCertificateType(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

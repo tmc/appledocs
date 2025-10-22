@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,10 +31,26 @@ type _ManagedObjectModelClass struct {
 // An interface definition for the [ManagedObjectModel] class.
 type IManagedObjectModel interface {
 	objectivec.IObject
-	FetchRequestFromTemplateWithNameSubstitutionVariables(name appkit.string, variables unsafe.Pointer) FetchRequest
-	FetchRequestTemplateForName(name appkit.string) FetchRequest
-	IsConfigurationCompatibleWithStoreMetadata(configuration appkit.string, metadata unsafe.Pointer) bool
-	SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name appkit.string)
+	FetchRequestFromTemplateWithNameSubstitutionVariables(name string, variables unsafe.Pointer) FetchRequest
+	FetchRequestTemplateForName(name string) FetchRequest
+	IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool
+	SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name string)
+	Configurations() string
+	SetConfigurations(value string)
+	Entities() NSEntityDescription
+	SetEntities(value IEntityDescription)
+	EntitiesByName() NSEntityDescription
+	SetEntitiesByName(value IEntityDescription)
+	EntityVersionHashesByName() foundation.Data
+	SetEntityVersionHashesByName(value foundation.IData)
+	FetchRequestTemplatesByName() unsafe.Pointer
+	SetFetchRequestTemplatesByName(value unsafe.Pointer)
+	LocalizationDictionary() string
+	SetLocalizationDictionary(value string)
+	VersionChecksum() string
+	SetVersionChecksum(value string)
+	VersionIdentifiers() unsafe.Pointer
+	SetVersionIdentifiers(value unsafe.Pointer)
 }
 
 // A programmatic representation of the file describing your objects.
@@ -89,39 +104,39 @@ func NewManagedObjectModel() ManagedObjectModel {
 // Returns a copy of the fetch request template with the variables substituted by values from the substitutions dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/fetchRequestFromTemplate(withName:substitutionVariables:)
-func (m_ ManagedObjectModel) FetchRequestFromTemplateWithNameSubstitutionVariables(name appkit.string, variables unsafe.Pointer) FetchRequest {
-	rv := objc.Send[FetchRequest](m_.ID, objc.Sel("fetchRequestFromTemplateWithName:substitutionVariables:"), name, variables)
+func (m_ ManagedObjectModel) FetchRequestFromTemplateWithNameSubstitutionVariables(name string, variables unsafe.Pointer) FetchRequest {
+	rv := objc.Send[FetchRequest](m_.ID, objc.Sel("fetchRequestFromTemplateWithName:substitutionVariables:"), objc.String(name), variables)
 	return rv
 }
 
 // Returns the fetch request with a specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/fetchRequestTemplate(forName:)
-func (m_ ManagedObjectModel) FetchRequestTemplateForName(name appkit.string) FetchRequest {
-	rv := objc.Send[FetchRequest](m_.ID, objc.Sel("fetchRequestTemplateForName:"), name)
+func (m_ ManagedObjectModel) FetchRequestTemplateForName(name string) FetchRequest {
+	rv := objc.Send[FetchRequest](m_.ID, objc.Sel("fetchRequestTemplateForName:"), objc.String(name))
 	return rv
 }
 
 // Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/isConfiguration(withName:compatibleWithStoreMetadata:)
-func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration appkit.string, metadata unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), configuration, metadata)
+func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), objc.String(configuration), metadata)
 	return rv
 }
 
 // Associates the specified fetch request with the receiver using the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/setFetchRequestTemplate(_:forName:)
-func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, name)
+func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, objc.String(name))
 }
 
 // All the available configuration names of the model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
-func (m_ ManagedObjectModel) Configurations() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("configurations"))
+func (m_ ManagedObjectModel) Configurations() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("configurations"))
 	return rv
 }
 
@@ -131,8 +146,8 @@ func (m_ ManagedObjectModel) Configurations() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
-func (m_ ManagedObjectModel) SetConfigurations(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), value)
+func (m_ ManagedObjectModel) SetConfigurations(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), objc.String(value))
 }
 
 // The entities in the model.
@@ -210,8 +225,8 @@ func (m_ ManagedObjectModel) SetFetchRequestTemplatesByName(value unsafe.Pointer
 // The localization dictionary of the model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
-func (m_ ManagedObjectModel) LocalizationDictionary() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("localizationDictionary"))
+func (m_ ManagedObjectModel) LocalizationDictionary() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("localizationDictionary"))
 	return rv
 }
 
@@ -221,15 +236,15 @@ func (m_ ManagedObjectModel) LocalizationDictionary() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
-func (m_ ManagedObjectModel) SetLocalizationDictionary(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), value)
+func (m_ ManagedObjectModel) SetLocalizationDictionary(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), objc.String(value))
 }
 
 // The Base64-encoded 128-bit model version hash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
-func (m_ ManagedObjectModel) VersionChecksum() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("versionChecksum"))
+func (m_ ManagedObjectModel) VersionChecksum() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
 	return rv
 }
 
@@ -239,8 +254,8 @@ func (m_ ManagedObjectModel) VersionChecksum() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
-func (m_ ManagedObjectModel) SetVersionChecksum(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), value)
+func (m_ ManagedObjectModel) SetVersionChecksum(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
 }
 
 // The set of developer-defined version identifiers for the object model.

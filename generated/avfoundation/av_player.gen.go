@@ -51,6 +51,76 @@ type IPlayer interface {
 	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
 	SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer)
 	SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
+	ActionAtItemEnd() PlayerActionAtItemEnd
+	SetActionAtItemEnd(value IPlayerActionAtItemEnd)
+	AllowsAirPlayVideo() bool
+	SetAllowsAirPlayVideo(value bool)
+	AllowsExternalPlayback() bool
+	SetAllowsExternalPlayback(value bool)
+	AppliesMediaSelectionCriteriaAutomatically() bool
+	SetAppliesMediaSelectionCriteriaAutomatically(value bool)
+	AudioOutputDeviceUniqueID() string
+	SetAudioOutputDeviceUniqueID(value string)
+	AudioOutputSuppressedDueToNonMixableAudioRoute() bool
+	AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgroundPlaybackPolicy
+	SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualBackgroundPlaybackPolicy)
+	AutomaticallyWaitsToMinimizeStalling() bool
+	SetAutomaticallyWaitsToMinimizeStalling(value bool)
+	CurrentItem() AVPlayerItem
+	DefaultRate() float32
+	SetDefaultRate(value float32)
+	Error() Error
+	ExternalPlaybackVideoGravity() LayerVideoGravity
+	SetExternalPlaybackVideoGravity(value ILayerVideoGravity)
+	IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience
+	SetIntendedSpatialAudioExperience(value audiotoolbox.ISpatialAudioExperience)
+	AirPlayVideoActive() bool
+	ClosedCaptionDisplayEnabled() bool
+	SetClosedCaptionDisplayEnabled(value bool)
+	ExternalPlaybackActive() bool
+	Muted() bool
+	SetMuted(value bool)
+	OutputObscuredDueToInsufficientExternalProtection() bool
+	MasterClock() unsafe.Pointer
+	SetMasterClock(value unsafe.Pointer)
+	NetworkResourcePriority() PlayerNetworkResourcePriority
+	SetNetworkResourcePriority(value PlayerNetworkResourcePriority)
+	PlaybackCoordinator() AVPlayerPlaybackCoordinator
+	PreferredVideoDecoderGPURegistryID() uint64
+	SetPreferredVideoDecoderGPURegistryID(value uint64)
+	PreventsAutomaticBackgroundingDuringVideoPlayback() bool
+	SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool)
+	PreventsDisplaySleepDuringVideoPlayback() bool
+	SetPreventsDisplaySleepDuringVideoPlayback(value bool)
+	Rate() float32
+	SetRate(value float32)
+	ReasonForWaitingToPlay() PlayerWaitingReason
+	SourceClock() unsafe.Pointer
+	SetSourceClock(value unsafe.Pointer)
+	Status() PlayerStatus
+	TimeControlStatus() PlayerTimeControlStatus
+	UsesAirPlayVideoWhileAirPlayScreenIsActive() bool
+	SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool)
+	UsesExternalPlaybackWhileExternalScreenIsActive() bool
+	SetUsesExternalPlaybackWhileExternalScreenIsActive(value bool)
+	VideoOutput() unsafe.Pointer
+	SetVideoOutput(value unsafe.Pointer)
+	Volume() float32
+	SetVolume(value float32)
+	IsAirPlayVideoActive() bool
+	SetIsAirPlayVideoActive(value bool)
+	IsClosedCaptionDisplayEnabled() bool
+	SetIsClosedCaptionDisplayEnabled(value bool)
+	IsExternalPlaybackActive() bool
+	SetIsExternalPlaybackActive(value bool)
+	IsMuted() bool
+	SetIsMuted(value bool)
+	IsOutputObscuredDueToInsufficientExternalProtection() bool
+	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool)
+	AllowedAudioSpatializationFormats() unsafe.Pointer
+	SetAllowedAudioSpatializationFormats(value unsafe.Pointer)
+	IsAudioSpatializationAllowed() bool
+	SetIsAudioSpatializationAllowed(value bool)
 }
 
 // An object that provides the interface to control the player’s transport behavior.

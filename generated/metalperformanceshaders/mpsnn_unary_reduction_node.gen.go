@@ -30,6 +30,8 @@ type _UnaryReductionNodeClass struct {
 // An interface definition for the [UnaryReductionNode] class.
 type IUnaryReductionNode interface {
 	IFilterNode
+	ClipRectSource() corelocation.Region
+	SetClipRectSource(value corelocation.IRegion)
 }
 
 //

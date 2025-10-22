@@ -30,6 +30,12 @@ type _LeaderboardSetClass struct {
 // An interface definition for the [LeaderboardSet] class.
 type ILeaderboardSet interface {
 	objectivec.IObject
+	GroupIdentifier() string
+	SetGroupIdentifier(value string)
+	Identifier() string
+	SetIdentifier(value string)
+	Title() string
+	SetTitle(value string)
 }
 
 // Organizes leaderboards into logical and coherent groups.
@@ -90,8 +96,8 @@ func (lc _LeaderboardSetClass) LoadLeaderboardSetsWithCompletionHandler(completi
 // The identifier for the group that the leaderboard set belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
-func (l_ LeaderboardSet) GroupIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("groupIdentifier"))
+func (l_ LeaderboardSet) GroupIdentifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -101,15 +107,15 @@ func (l_ LeaderboardSet) GroupIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
-func (l_ LeaderboardSet) SetGroupIdentifier(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), value)
+func (l_ LeaderboardSet) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
 // The identifier for the leaderboard set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
-func (l_ LeaderboardSet) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("identifier"))
+func (l_ LeaderboardSet) Identifier() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -119,15 +125,15 @@ func (l_ LeaderboardSet) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
-func (l_ LeaderboardSet) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), value)
+func (l_ LeaderboardSet) SetIdentifier(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // The localized title for the leaderboard set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
-func (l_ LeaderboardSet) Title() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("title"))
+func (l_ LeaderboardSet) Title() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -137,8 +143,8 @@ func (l_ LeaderboardSet) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
-func (l_ LeaderboardSet) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), value)
+func (l_ LeaderboardSet) SetTitle(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

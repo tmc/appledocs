@@ -30,6 +30,16 @@ type _TextureViewDescriptorClass struct {
 // An interface definition for the [TextureViewDescriptor] class.
 type ITextureViewDescriptor interface {
 	objectivec.IObject
+	TextureType() TextureType
+	SetTextureType(value TextureType)
+	LevelRange() int
+	SetLevelRange(value int)
+	PixelFormat() PixelFormat
+	SetPixelFormat(value PixelFormat)
+	SliceRange() int
+	SetSliceRange(value int)
+	Swizzle() unsafe.Pointer
+	SetSwizzle(value unsafe.Pointer)
 }
 
 //

@@ -30,6 +30,9 @@ type _INSendPaymentIntentResponseClass struct {
 // An interface definition for the [INSendPaymentIntentResponse] class.
 type IINSendPaymentIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	PaymentRecord() unsafe.Pointer
+	SetPaymentRecord(value unsafe.Pointer)
 }
 
 // Your app’s response to a send payment intent.

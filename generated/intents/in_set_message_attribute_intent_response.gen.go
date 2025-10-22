@@ -29,6 +29,8 @@ type _INSetMessageAttributeIntentResponseClass struct {
 // An interface definition for the [INSetMessageAttributeIntentResponse] class.
 type IINSetMessageAttributeIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // Your app’s response to a set message attribute intent.

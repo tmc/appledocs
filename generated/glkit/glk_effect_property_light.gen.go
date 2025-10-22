@@ -29,6 +29,30 @@ type _GLKEffectPropertyLightClass struct {
 // An interface definition for the [GLKEffectPropertyLight] class.
 type IGLKEffectPropertyLight interface {
 	IGLKEffectProperty
+	AmbientColor() GLKVector4
+	SetAmbientColor(value IGLKVector4)
+	ConstantAttenuation() unsafe.Pointer
+	SetConstantAttenuation(value unsafe.Pointer)
+	DiffuseColor() GLKVector4
+	SetDiffuseColor(value IGLKVector4)
+	Enabled() unsafe.Pointer
+	SetEnabled(value unsafe.Pointer)
+	LinearAttenuation() unsafe.Pointer
+	SetLinearAttenuation(value unsafe.Pointer)
+	Position() GLKVector4
+	SetPosition(value IGLKVector4)
+	QuadraticAttenuation() unsafe.Pointer
+	SetQuadraticAttenuation(value unsafe.Pointer)
+	SpecularColor() GLKVector4
+	SetSpecularColor(value IGLKVector4)
+	SpotCutoff() unsafe.Pointer
+	SetSpotCutoff(value unsafe.Pointer)
+	SpotDirection() GLKVector3
+	SetSpotDirection(value IGLKVector3)
+	SpotExponent() unsafe.Pointer
+	SetSpotExponent(value unsafe.Pointer)
+	Transform() GLKEffectPropertyTransform
+	SetTransform(value IGLKEffectPropertyTransform)
 }
 
 // Lighting information for use in GLKit rendering effects.

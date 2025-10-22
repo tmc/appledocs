@@ -29,6 +29,7 @@ type _RecognizedPointClass struct {
 // An interface definition for the [RecognizedPoint] class.
 type IRecognizedPoint interface {
 	IDetectedPoint
+	Identifier() RecognizedPointKey
 }
 
 // An object that represents a normalized point in an image, along with an identifier label and a confidence value.

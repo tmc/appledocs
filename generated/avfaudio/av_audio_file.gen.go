@@ -35,6 +35,14 @@ type IAudioFile interface {
 	ReadIntoBufferError(buffer IAVAudioPCMBuffer, outError unsafe.Pointer) bool
 	ReadIntoBufferFrameCountError(buffer IAVAudioPCMBuffer, frames IAudioFrameCount, outError unsafe.Pointer) bool
 	WriteFromBufferError(buffer IAVAudioPCMBuffer, outError unsafe.Pointer) bool
+	FileFormat() AVAudioFormat
+	FramePosition() AudioFramePosition
+	SetFramePosition(value AudioFramePosition)
+	IsOpen() bool
+	Length() AudioFramePosition
+	ProcessingFormat() AVAudioFormat
+	Url() foundation.URL
+	AVAudioFileTypeKey() string
 }
 
 // An object that represents an audio file that the system can open for reading or writing.
@@ -226,8 +234,8 @@ func (a_ AudioFile) Url() foundation.URL {
 // A string that indicates the audio file type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey
-func (a_ AudioFile) AVAudioFileTypeKey() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
+func (a_ AudioFile) AVAudioFileTypeKey() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
 	return rv
 }
 

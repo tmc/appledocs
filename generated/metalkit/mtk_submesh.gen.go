@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,13 @@ type _SubmeshClass struct {
 // An interface definition for the [Submesh] class.
 type ISubmesh interface {
 	objectivec.IObject
+	IndexBuffer() MTKMeshBuffer
+	IndexCount() uint
+	IndexType() unsafe.Pointer
+	Mesh() MTKMesh
+	Name() string
+	SetName(value string)
+	PrimitiveType() unsafe.Pointer
 }
 
 // A container for the index data of a Model I/O submesh, suitable for use in a Metal app.
@@ -116,8 +122,8 @@ func (s_ Submesh) Mesh() MTKMesh {
 // The name of the submesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) Name() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("name"))
+func (s_ Submesh) Name() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -127,8 +133,8 @@ func (s_ Submesh) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) SetName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
+func (s_ Submesh) SetName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The primitive type with which to draw the submesh object.

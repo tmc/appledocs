@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _HKUserAnnotatedMedicationClass struct {
 // An interface definition for the [HKUserAnnotatedMedication] class.
 type IHKUserAnnotatedMedication interface {
 	objectivec.IObject
+	HasSchedule() bool
+	IsArchived() bool
+	Medication() HKMedicationConcept
+	Nickname() string
 }
 
 // A reference to the tracked medication and the details a person can customize.
@@ -108,8 +111,8 @@ func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
 // The nickname that a person added to a medication during the entry experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/nickname
-func (h_ HKUserAnnotatedMedication) Nickname() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("nickname"))
+func (h_ HKUserAnnotatedMedication) Nickname() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
 	return rv
 }
 

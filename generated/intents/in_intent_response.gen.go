@@ -31,6 +31,8 @@ type _INIntentResponseClass struct {
 // An interface definition for the [INIntentResponse] class.
 type IINIntentResponse interface {
 	objectivec.IObject
+	UserActivity() foundation.UserActivity
+	SetUserActivity(value foundation.IUserActivity)
 }
 
 // Your response to an intent object.

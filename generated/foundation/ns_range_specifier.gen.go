@@ -29,6 +29,10 @@ type _RangeSpecifierClass struct {
 // An interface definition for the [RangeSpecifier] class.
 type IRangeSpecifier interface {
 	IScriptObjectSpecifier
+	StartSpecifier() NSScriptObjectSpecifier
+	SetStartSpecifier(value IScriptObjectSpecifier)
+	EndSpecifier() NSScriptObjectSpecifier
+	SetEndSpecifier(value IScriptObjectSpecifier)
 }
 
 // A specifier for a range of objects in a container.

@@ -30,6 +30,10 @@ type _CKDatabaseSubscriptionClass struct {
 // An interface definition for the [CKDatabaseSubscription] class.
 type ICKDatabaseSubscription interface {
 	ICKSubscription
+	RecordType() unsafe.Pointer
+	SetRecordType(value unsafe.Pointer)
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // A subscription that generates push notifications when CloudKit modifies records in a database.

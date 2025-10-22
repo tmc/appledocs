@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,11 @@ type _NETunnelNetworkSettingsClass struct {
 // An interface definition for the [NETunnelNetworkSettings] class.
 type INETunnelNetworkSettings interface {
 	objectivec.IObject
+	DNSSettings() NEDNSSettings
+	SetDNSSettings(value INEDNSSettings)
+	ProxySettings() NEProxySettings
+	SetProxySettings(value INEProxySettings)
+	TunnelRemoteAddress() string
 }
 
 // The configuration for a tunnel provider’s virtual interface.
@@ -84,9 +88,9 @@ func NewNETunnelNetworkSettings() NETunnelNetworkSettings {
 // Initialize a object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/init(tunnelRemoteAddress:)
-func NewNETunnelNetworkSettingsWithTunnelRemoteAddress(address appkit.string) NETunnelNetworkSettings {
+func NewNETunnelNetworkSettingsWithTunnelRemoteAddress(address string) NETunnelNetworkSettings {
 	instance := getNETunnelNetworkSettingsClass().Alloc()
-	rv := objc.Send[NETunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:"), address)
+	rv := objc.Send[NETunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:"), objc.String(address))
 	rv.Autorelease()
 	return rv
 }
@@ -131,8 +135,8 @@ func (n_ NETunnelNetworkSettings) SetProxySettings(value INEProxySettings) {
 // The IP address of the tunnel server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/tunnelRemoteAddress
-func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("tunnelRemoteAddress"))
+func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("tunnelRemoteAddress"))
 	return rv
 }
 

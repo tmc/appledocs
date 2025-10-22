@@ -29,6 +29,8 @@ type _NameSpecifierClass struct {
 // An interface definition for the [NameSpecifier] class.
 type INameSpecifier interface {
 	IScriptObjectSpecifier
+	Name() string
+	SetName(value string)
 }
 
 // A specifier for an object in a collection (or container) by name.

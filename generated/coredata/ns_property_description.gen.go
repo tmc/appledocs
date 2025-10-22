@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,38 @@ type _PropertyDescriptionClass struct {
 type IPropertyDescription interface {
 	objectivec.IObject
 	SetValidationPredicatesWithValidationWarnings(validationPredicates []foundation.IPredicate, validationWarnings []string)
+	Entity() NSEntityDescription
+	Indexed() bool
+	SetIndexed(value bool)
+	IndexedBySpotlight() bool
+	SetIndexedBySpotlight(value bool)
+	Optional() bool
+	SetOptional(value bool)
+	StoredInExternalRecord() bool
+	SetStoredInExternalRecord(value bool)
+	Transient() bool
+	SetTransient(value bool)
+	Name() string
+	SetName(value string)
+	RenamingIdentifier() string
+	SetRenamingIdentifier(value string)
+	UserInfo() objc.ID
+	SetUserInfo(value objc.ID)
+	ValidationPredicates() []foundation.Predicate
+	ValidationWarnings() objc.ID
+	VersionHash() foundation.NSData
+	VersionHashModifier() string
+	SetVersionHashModifier(value string)
+	IsIndexed() bool
+	SetIsIndexed(value bool)
+	IsIndexedBySpotlight() bool
+	SetIsIndexedBySpotlight(value bool)
+	IsOptional() bool
+	SetIsOptional(value bool)
+	IsStoredInExternalRecord() bool
+	SetIsStoredInExternalRecord(value bool)
+	IsTransient() bool
+	SetIsTransient(value bool)
 }
 
 // A description of a single property belonging to an entity.
@@ -191,8 +222,8 @@ func (p_ PropertyDescription) SetTransient(value bool) {
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-func (p_ PropertyDescription) Name() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
+func (p_ PropertyDescription) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -202,15 +233,15 @@ func (p_ PropertyDescription) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-func (p_ PropertyDescription) SetName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+func (p_ PropertyDescription) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The renaming identifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-func (p_ PropertyDescription) RenamingIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("renamingIdentifier"))
+func (p_ PropertyDescription) RenamingIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("renamingIdentifier"))
 	return rv
 }
 
@@ -220,8 +251,8 @@ func (p_ PropertyDescription) RenamingIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-func (p_ PropertyDescription) SetRenamingIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), value)
+func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
 }
 
 // The user info dictionary of the receiver.
@@ -269,8 +300,8 @@ func (p_ PropertyDescription) VersionHash() foundation.NSData {
 // The version hash modifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-func (p_ PropertyDescription) VersionHashModifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("versionHashModifier"))
+func (p_ PropertyDescription) VersionHashModifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("versionHashModifier"))
 	return rv
 }
 
@@ -280,8 +311,8 @@ func (p_ PropertyDescription) VersionHashModifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-func (p_ PropertyDescription) SetVersionHashModifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), value)
+func (p_ PropertyDescription) SetVersionHashModifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the receiver should be indexed for searching.

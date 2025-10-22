@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/securityfoundation"
@@ -33,9 +32,52 @@ type _ODConfigurationClass struct {
 // An interface definition for the [ODConfiguration] class.
 type IODConfiguration interface {
 	objectivec.IObject
-	AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType appkit.string, account appkit.string, accountPassword appkit.string, username appkit.string, password appkit.string, join bool, error_ unsafe.Pointer) bool
-	RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username appkit.string, password appkit.string, deleteAccount bool, error_ unsafe.Pointer) bool
+	AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType string, account string, accountPassword string, username string, password string, join bool, error_ unsafe.Pointer) bool
+	RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username string, password string, deleteAccount bool, error_ unsafe.Pointer) bool
 	SaveUsingAuthorizationError(authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
+	AuthenticationModuleEntries() objc.ID
+	SetAuthenticationModuleEntries(value objc.ID)
+	Comment() string
+	SetComment(value string)
+	ConnectionIdleTimeoutInSeconds() int
+	SetConnectionIdleTimeoutInSeconds(value int)
+	ConnectionSetupTimeoutInSeconds() int
+	SetConnectionSetupTimeoutInSeconds(value int)
+	DefaultMappings() ODMappings
+	SetDefaultMappings(value IODMappings)
+	DefaultModuleEntries() objc.ID
+	SetDefaultModuleEntries(value objc.ID)
+	DiscoveryModuleEntries() objc.ID
+	SetDiscoveryModuleEntries(value objc.ID)
+	GeneralModuleEntries() objc.ID
+	SetGeneralModuleEntries(value objc.ID)
+	HideRegistration() bool
+	SetHideRegistration(value bool)
+	ManInTheMiddleProtection() bool
+	SetManInTheMiddleProtection(value bool)
+	NodeName() string
+	SetNodeName(value string)
+	PacketEncryption() int
+	SetPacketEncryption(value int)
+	PacketSigning() int
+	SetPacketSigning(value int)
+	PreferredDestinationHostName() string
+	SetPreferredDestinationHostName(value string)
+	PreferredDestinationHostPort() unsafe.Pointer
+	SetPreferredDestinationHostPort(value unsafe.Pointer)
+	QueryTimeoutInSeconds() int
+	SetQueryTimeoutInSeconds(value int)
+	TemplateName() string
+	SetTemplateName(value string)
+	TrustAccount() string
+	TrustKerberosPrincipal() string
+	TrustMetaAccount() string
+	TrustType() string
+	TrustUsesKerberosKeytab() bool
+	TrustUsesMutualAuthentication() bool
+	TrustUsesSystemKeychain() bool
+	VirtualSubnodes() objc.ID
+	SetVirtualSubnodes(value objc.ID)
 }
 
 //
@@ -90,29 +132,29 @@ func (oc _ODConfigurationClass) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustAccount(_:)
-func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), hostname)
+func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), objc.String(hostname))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustPassword(_:)
-func (oc _ODConfigurationClass) SuggestedTrustPassword(length unsafe.Pointer) foundation.String {
+func (oc _ODConfigurationClass) SuggestedTrustPassword(length Iuintptr) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustPassword:"), length)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/addTrustType(_:trustAccount:trustPassword:username:password:joinExisting:)
-func (o_ ODConfiguration) AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType appkit.string, account appkit.string, accountPassword appkit.string, username appkit.string, password appkit.string, join bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:"), trustType, account, accountPassword, username, password, join, error_)
+func (o_ ODConfiguration) AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType string, account string, accountPassword string, username string, password string, join bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:"), objc.String(trustType), objc.String(account), objc.String(accountPassword), objc.String(username), objc.String(password), join, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/removeTrust(usingUsername:password:deleteTrustAccount:)
-func (o_ ODConfiguration) RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username appkit.string, password appkit.string, deleteAccount bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("removeTrustUsingUsername:password:deleteTrustAccount:error:"), username, password, deleteAccount, error_)
+func (o_ ODConfiguration) RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username string, password string, deleteAccount bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("removeTrustUsingUsername:password:deleteTrustAccount:error:"), objc.String(username), objc.String(password), deleteAccount, error_)
 	return rv
 }
 
@@ -140,8 +182,8 @@ func (o_ ODConfiguration) SetAuthenticationModuleEntries(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
-func (o_ ODConfiguration) Comment() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("comment"))
+func (o_ ODConfiguration) Comment() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -149,8 +191,8 @@ func (o_ ODConfiguration) Comment() appkit.string {
 // SetComment sets the value of the comment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
-func (o_ ODConfiguration) SetComment(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
+func (o_ ODConfiguration) SetComment(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
 }
 
 //
@@ -275,8 +317,8 @@ func (o_ ODConfiguration) SetManInTheMiddleProtection(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
-func (o_ ODConfiguration) NodeName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("nodeName"))
+func (o_ ODConfiguration) NodeName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("nodeName"))
 	return rv
 }
 
@@ -284,8 +326,8 @@ func (o_ ODConfiguration) NodeName() appkit.string {
 // SetNodeName sets the value of the nodeName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
-func (o_ ODConfiguration) SetNodeName(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), value)
+func (o_ ODConfiguration) SetNodeName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), objc.String(value))
 }
 
 //
@@ -320,8 +362,8 @@ func (o_ ODConfiguration) SetPacketSigning(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
-func (o_ ODConfiguration) PreferredDestinationHostName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("preferredDestinationHostName"))
+func (o_ ODConfiguration) PreferredDestinationHostName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("preferredDestinationHostName"))
 	return rv
 }
 
@@ -329,8 +371,8 @@ func (o_ ODConfiguration) PreferredDestinationHostName() appkit.string {
 // SetPreferredDestinationHostName sets the value of the preferredDestinationHostName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
-func (o_ ODConfiguration) SetPreferredDestinationHostName(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), value)
+func (o_ ODConfiguration) SetPreferredDestinationHostName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), objc.String(value))
 }
 
 //
@@ -365,8 +407,8 @@ func (o_ ODConfiguration) SetQueryTimeoutInSeconds(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
-func (o_ ODConfiguration) TemplateName() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("templateName"))
+func (o_ ODConfiguration) TemplateName() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("templateName"))
 	return rv
 }
 
@@ -374,35 +416,35 @@ func (o_ ODConfiguration) TemplateName() appkit.string {
 // SetTemplateName sets the value of the templateName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
-func (o_ ODConfiguration) SetTemplateName(value appkit.string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
+func (o_ ODConfiguration) SetTemplateName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustAccount-swift.property
-func (o_ ODConfiguration) TrustAccount() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("trustAccount"))
+func (o_ ODConfiguration) TrustAccount() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustAccount"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustKerberosPrincipal-swift.property
-func (o_ ODConfiguration) TrustKerberosPrincipal() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("trustKerberosPrincipal"))
+func (o_ ODConfiguration) TrustKerberosPrincipal() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustKerberosPrincipal"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustMetaAccount-swift.property
-func (o_ ODConfiguration) TrustMetaAccount() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("trustMetaAccount"))
+func (o_ ODConfiguration) TrustMetaAccount() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustMetaAccount"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustType-swift.property
-func (o_ ODConfiguration) TrustType() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("trustType"))
+func (o_ ODConfiguration) TrustType() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("trustType"))
 	return rv
 }
 

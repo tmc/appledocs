@@ -30,6 +30,12 @@ type _MKClusterAnnotationClass struct {
 // An interface definition for the [MKClusterAnnotation] class.
 type IMKClusterAnnotation interface {
 	objectivec.IObject
+	MemberAnnotations() unsafe.Pointer
+	SetMemberAnnotations(value unsafe.Pointer)
+	Subtitle() string
+	SetSubtitle(value string)
+	Title() string
+	SetTitle(value string)
 }
 
 // An annotation that groups two or more distinct annotations into a single entity.
@@ -101,8 +107,8 @@ func (m_ MKClusterAnnotation) SetMemberAnnotations(value unsafe.Pointer) {
 // The subtitle string to display for the group of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/subtitle
-func (m_ MKClusterAnnotation) Subtitle() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subtitle"))
+func (m_ MKClusterAnnotation) Subtitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -112,15 +118,15 @@ func (m_ MKClusterAnnotation) Subtitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/subtitle
-func (m_ MKClusterAnnotation) SetSubtitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
+func (m_ MKClusterAnnotation) SetSubtitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
 // The title string to display for the group of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/title
-func (m_ MKClusterAnnotation) Title() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
+func (m_ MKClusterAnnotation) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -130,8 +136,8 @@ func (m_ MKClusterAnnotation) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/title
-func (m_ MKClusterAnnotation) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+func (m_ MKClusterAnnotation) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

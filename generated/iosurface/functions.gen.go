@@ -61,7 +61,7 @@ var (
 	_IOSurfaceLookupFromXPCObject func(unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceRemoveAllValues func(unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceRemoveValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceSetOwnershipIdentity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_IOSurfaceSetOwnershipIdentity func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceSetPurgeable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceSetValues func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -605,7 +605,7 @@ func IOSurfaceRemoveValue(buffer unsafe.Pointer, key unsafe.Pointer) {
 // Added in macOS 14.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetOwnershipIdentity(_:_:_:_:)
-func IOSurfaceSetOwnershipIdentity(buffer unsafe.Pointer, task_id_token unsafe.Pointer, newLedgerTag unsafe.Pointer, newLedgerOptions unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceSetOwnershipIdentity(buffer unsafe.Pointer, task_id_token unsafe.Pointer, newLedgerTag int, newLedgerOptions unsafe.Pointer) unsafe.Pointer {
 	return _IOSurfaceSetOwnershipIdentity(buffer, task_id_token, newLedgerTag, newLedgerOptions)
 	}
 

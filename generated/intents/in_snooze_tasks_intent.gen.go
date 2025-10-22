@@ -29,6 +29,12 @@ type _INSnoozeTasksIntentClass struct {
 // An interface definition for the [INSnoozeTasksIntent] class.
 type IINSnoozeTasksIntent interface {
 	IINIntent
+	All() bool
+	SetAll(value bool)
+	NextTriggerTime() INDateComponentsRange
+	SetNextTriggerTime(value INDateComponentsRange)
+	Tasks() unsafe.Pointer
+	SetTasks(value unsafe.Pointer)
 }
 
 // A request to snooze one or more tasks.

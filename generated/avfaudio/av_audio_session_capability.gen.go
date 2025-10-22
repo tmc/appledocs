@@ -30,6 +30,12 @@ type _AudioSessionCapabilityClass struct {
 // An interface definition for the [AudioSessionCapability] class.
 type IAudioSessionCapability interface {
 	objectivec.IObject
+	Enabled() bool
+	Supported() bool
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsSupported() bool
+	SetIsSupported(value bool)
 }
 
 // Describes whether a specific capability is supported and if that capability is currently enabled

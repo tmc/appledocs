@@ -31,6 +31,12 @@ type _MTRTimeSynchronizationClusterSetDSTOffsetParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetDSTOffsetParams] class.
 type IMTRTimeSynchronizationClusterSetDSTOffsetParams interface {
 	objectivec.IObject
+	DstOffset() objc.ID
+	SetDstOffset(value objc.ID)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

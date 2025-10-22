@@ -31,6 +31,10 @@ type _MTRBridgedDeviceBasicInformationClusterProductAppearanceStructClass struct
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct] class.
 type IMTRBridgedDeviceBasicInformationClusterProductAppearanceStruct interface {
 	objectivec.IObject
+	Finish() foundation.Number
+	SetFinish(value foundation.INumber)
+	PrimaryColor() foundation.Number
+	SetPrimaryColor(value foundation.INumber)
 }
 
 //

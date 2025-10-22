@@ -30,6 +30,10 @@ type _MTRTestClusterClusterTestAddArgumentsResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestAddArgumentsResponseParams] class.
 type IMTRTestClusterClusterTestAddArgumentsResponseParams interface {
 	IMTRUnitTestingClusterTestAddArgumentsResponseParams
+	ReturnValue() foundation.Number
+	SetReturnValue(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

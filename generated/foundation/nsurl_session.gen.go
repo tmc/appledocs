@@ -58,6 +58,11 @@ type IURLSession interface {
 	WebSocketTaskWithURL(url IURL) URLSessionWebSocketTask
 	WebSocketTaskWithRequest(request IURLRequest) URLSessionWebSocketTask
 	WebSocketTaskWithURLProtocols(url IURL, protocols []string) URLSessionWebSocketTask
+	Configuration() NSURLSessionConfiguration
+	Delegate() objc.ID
+	DelegateQueue() NSOperationQueue
+	SessionDescription() string
+	SetSessionDescription(value string)
 }
 
 // An object that coordinates a group of related, network data transfer tasks.

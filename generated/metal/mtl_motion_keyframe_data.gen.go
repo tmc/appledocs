@@ -30,6 +30,10 @@ type _MotionKeyframeDataClass struct {
 // An interface definition for the [MotionKeyframeData] class.
 type IMotionKeyframeData interface {
 	objectivec.IObject
+	Buffer() unsafe.Pointer
+	SetBuffer(value unsafe.Pointer)
+	Offset() int
+	SetOffset(value int)
 }
 
 // Geometry data for a specific keyframe to use in a moving instance.

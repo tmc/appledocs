@@ -30,6 +30,7 @@ type _INSendMessageAttachmentClass struct {
 // An interface definition for the [INSendMessageAttachment] class.
 type IINSendMessageAttachment interface {
 	objectivec.IObject
+	AudioMessageFile() unsafe.Pointer
 }
 
 // A file to include in a message.

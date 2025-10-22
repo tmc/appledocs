@@ -30,6 +30,11 @@ type _UpdateContextClass struct {
 // An interface definition for the [UpdateContext] class.
 type IUpdateContext interface {
 	objectivec.IObject
+	Event() UpdateProgressEvent
+	Metrics() unsafe.Pointer
+	Model() unsafe.Pointer
+	Parameters() unsafe.Pointer
+	Task() MLUpdateTask
 }
 
 // The context an update task provides to your app’s completion and update progress handlers.

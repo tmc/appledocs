@@ -31,10 +31,10 @@ type _AudioRecorderClass struct {
 // An interface definition for the [AudioRecorder] class.
 type IAudioRecorder interface {
 	objectivec.IObject
-	AveragePowerForChannel(channelNumber uint) unsafe.Pointer
+	AveragePowerForChannel(channelNumber uint) float32
 	DeleteRecording() bool
 	Pause()
-	PeakPowerForChannel(channelNumber uint) unsafe.Pointer
+	PeakPowerForChannel(channelNumber uint) float32
 	PrepareToRecord() bool
 	Record() bool
 	RecordAtTime(time foundation.ITimeInterval) bool
@@ -42,6 +42,22 @@ type IAudioRecorder interface {
 	RecordForDuration(duration foundation.ITimeInterval) bool
 	Stop()
 	UpdateMeters()
+	ChannelAssignments() []unsafe.Pointer
+	SetChannelAssignments(value []unsafe.IPointer)
+	CurrentTime() foundation.TimeInterval
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DeviceCurrentTime() foundation.TimeInterval
+	Format() AVAudioFormat
+	MeteringEnabled() bool
+	SetMeteringEnabled(value bool)
+	Recording() bool
+	Settings() unsafe.Pointer
+	Url() foundation.URL
+	IsMeteringEnabled() bool
+	SetIsMeteringEnabled(value bool)
+	IsRecording() bool
+	SetIsRecording(value bool)
 }
 
 // An object that records audio data to a file.
@@ -120,8 +136,8 @@ func NewAudioRecorderWithURLSettingsError(url foundation.IURL, settings unsafe.P
 // Returns the average power, in decibels full-scale (dBFS), for an audio channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/averagePower(forChannel:)
-func (a_ AudioRecorder) AveragePowerForChannel(channelNumber uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("averagePowerForChannel:"), channelNumber)
+func (a_ AudioRecorder) AveragePowerForChannel(channelNumber uint) float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("averagePowerForChannel:"), channelNumber)
 	return rv
 }
 
@@ -143,8 +159,8 @@ func (a_ AudioRecorder) Pause() {
 // Returns the peak power, in decibels full-scale (dBFS), for an audio channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/peakPower(forChannel:)
-func (a_ AudioRecorder) PeakPowerForChannel(channelNumber uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("peakPowerForChannel:"), channelNumber)
+func (a_ AudioRecorder) PeakPowerForChannel(channelNumber uint) float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("peakPowerForChannel:"), channelNumber)
 	return rv
 }
 

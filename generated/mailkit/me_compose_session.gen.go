@@ -31,6 +31,12 @@ type _MEComposeSessionClass struct {
 // An interface definition for the [MEComposeSession] class.
 type IMEComposeSession interface {
 	objectivec.IObject
+	ComposeContext() MEComposeContext
+	SetComposeContext(value IMEComposeContext)
+	MailMessage() MEMessage
+	SetMailMessage(value IMEMessage)
+	SessionID() foundation.UUID
+	SetSessionID(value foundation.IUUID)
 }
 
 // An object that represents a single mail compose window.

@@ -30,6 +30,25 @@ type _FileVersionClass struct {
 // An interface definition for the [FileVersion] class.
 type IFileVersion interface {
 	objectivec.IObject
+	HasLocalContents() bool
+	PersistentIdentifier() objc.ID
+	URL() URL
+	HasThumbnail() bool
+	SetHasThumbnail(value bool)
+	IsConflict() bool
+	SetIsConflict(value bool)
+	IsDiscardable() bool
+	SetIsDiscardable(value bool)
+	IsResolved() bool
+	SetIsResolved(value bool)
+	LocalizedName() string
+	SetLocalizedName(value string)
+	LocalizedNameOfSavingComputer() string
+	SetLocalizedNameOfSavingComputer(value string)
+	ModificationDate() Date
+	SetModificationDate(value IDate)
+	OriginatorNameComponents() PersonNameComponents
+	SetOriginatorNameComponents(value IPersonNameComponents)
 }
 
 // A snapshot of a file at a specific point in time.

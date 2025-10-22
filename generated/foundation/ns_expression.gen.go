@@ -32,6 +32,35 @@ type IExpression interface {
 	objectivec.IObject
 	AllowEvaluation()
 	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
+	FalseExpression() NSExpression
+	Predicate() NSPredicate
+	TrueExpression() NSExpression
+	Arguments() NSExpression
+	SetArguments(value IExpression)
+	Collection() unsafe.Pointer
+	SetCollection(value unsafe.Pointer)
+	ConstantValue() unsafe.Pointer
+	SetConstantValue(value unsafe.Pointer)
+	ExpressionBlock() NSMutableDictionary
+	SetExpressionBlock(value IMutableDictionary)
+	ExpressionType() unsafe.Pointer
+	SetExpressionType(value unsafe.Pointer)
+	False() NSExpression
+	SetFalse(value IExpression)
+	Function() string
+	SetFunction(value string)
+	KeyPath() string
+	SetKeyPath(value string)
+	Left() NSExpression
+	SetLeft(value IExpression)
+	Operand() NSExpression
+	SetOperand(value IExpression)
+	Right() NSExpression
+	SetRight(value IExpression)
+	True() NSExpression
+	SetTrue(value IExpression)
+	Variable() string
+	SetVariable(value string)
 }
 
 // An expression for use in a comparison predicate.

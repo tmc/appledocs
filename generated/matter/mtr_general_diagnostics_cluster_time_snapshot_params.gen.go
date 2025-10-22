@@ -31,6 +31,10 @@ type _MTRGeneralDiagnosticsClusterTimeSnapshotParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterTimeSnapshotParams] class.
 type IMTRGeneralDiagnosticsClusterTimeSnapshotParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

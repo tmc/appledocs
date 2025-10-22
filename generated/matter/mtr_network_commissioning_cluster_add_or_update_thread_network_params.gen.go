@@ -31,6 +31,14 @@ type _MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams] class.
 type IMTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	OperationalDataset() foundation.Data
+	SetOperationalDataset(value foundation.IData)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,16 @@ type _MXForegroundExitDataClass struct {
 // An interface definition for the [MXForegroundExitData] class.
 type IMXForegroundExitData interface {
 	objectivec.IObject
+	CumulativeBadAccessExitCount() uint
+	CumulativeIllegalInstructionExitCount() uint
+	CumulativeMemoryResourceLimitExitCount() uint
+	CumulativeNormalAppExitCount() uint
+	ForegroundExitData() MXForegroundExitData
+	SetForegroundExitData(value IMXForegroundExitData)
+	CumulativeAbnormalExitCount() int
+	SetCumulativeAbnormalExitCount(value int)
+	CumulativeAppWatchdogExitCount() int
+	SetCumulativeAppWatchdogExitCount(value int)
 }
 
 // An object representing counts for the different types of foreground app exits.

@@ -31,6 +31,12 @@ type _MTRUnitTestingClusterTestListInt8UArgumentRequestParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestListInt8UArgumentRequestParams] class.
 type IMTRUnitTestingClusterTestListInt8UArgumentRequestParams interface {
 	objectivec.IObject
+	Arg1() unsafe.Pointer
+	SetArg1(value unsafe.Pointer)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

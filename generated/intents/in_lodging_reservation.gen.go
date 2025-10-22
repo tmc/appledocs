@@ -30,6 +30,14 @@ type _INLodgingReservationClass struct {
 // An interface definition for the [INLodgingReservation] class.
 type IINLodgingReservation interface {
 	IINReservation
+	LodgingBusinessLocation() corelocation.Placemark
+	SetLodgingBusinessLocation(value corelocation.IPlacemark)
+	NumberOfAdults() int
+	SetNumberOfAdults(value int)
+	NumberOfChildren() int
+	SetNumberOfChildren(value int)
+	ReservationDuration() INDateComponentsRange
+	SetReservationDuration(value INDateComponentsRange)
 }
 
 // The information that describes a lodging reservation.

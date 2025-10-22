@@ -36,6 +36,35 @@ type IOperation interface {
 	RemoveDependency(op IOperation)
 	Start()
 	WaitUntilFinished()
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
+	Dependencies() []Operation
+	Asynchronous() bool
+	Cancelled() bool
+	Concurrent() bool
+	Executing() bool
+	Finished() bool
+	Ready() bool
+	Name() string
+	SetName(value string)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
+	QueuePriority() OperationQueuePriority
+	SetQueuePriority(value OperationQueuePriority)
+	ThreadPriority() float64
+	SetThreadPriority(value float64)
+	IsAsynchronous() bool
+	SetIsAsynchronous(value bool)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsConcurrent() bool
+	SetIsConcurrent(value bool)
+	IsExecuting() bool
+	SetIsExecuting(value bool)
+	IsFinished() bool
+	SetIsFinished(value bool)
+	IsReady() bool
+	SetIsReady(value bool)
 }
 
 // An abstract class that represents the code and data associated with a single task.

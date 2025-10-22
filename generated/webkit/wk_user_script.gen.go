@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,11 @@ type _UserScriptClass struct {
 // An interface definition for the [UserScript] class.
 type IUserScript interface {
 	objectivec.IObject
+	InjectionTime() UserScriptInjectionTime
+	ForMainFrameOnly() bool
+	Source() string
+	IsForMainFrameOnly() bool
+	SetIsForMainFrameOnly(value bool)
 }
 
 // A script that the web view injects into a webpage.
@@ -86,9 +90,9 @@ func NewUserScript() UserScript {
 // Creates a user script object that contains the specified source code and attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserScript/init(source:injectionTime:forMainFrameOnly:)
-func NewUserScriptWithSourceInjectionTimeForMainFrameOnly(source appkit.string, injectionTime IUserScriptInjectionTime, forMainFrameOnly bool) UserScript {
+func NewUserScriptWithSourceInjectionTimeForMainFrameOnly(source string, injectionTime IUserScriptInjectionTime, forMainFrameOnly bool) UserScript {
 	instance := getUserScriptClass().Alloc()
-	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:"), source, injectionTime, forMainFrameOnly)
+	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:"), objc.String(source), injectionTime, forMainFrameOnly)
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +102,9 @@ func NewUserScriptWithSourceInjectionTimeForMainFrameOnly(source appkit.string, 
 // Creates a user script object that is scoped to a particular content world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserScript/init(source:injectionTime:forMainFrameOnly:in:)
-func NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(source appkit.string, injectionTime IUserScriptInjectionTime, forMainFrameOnly bool, contentWorld IWKContentWorld) UserScript {
+func NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(source string, injectionTime IUserScriptInjectionTime, forMainFrameOnly bool, contentWorld IWKContentWorld) UserScript {
 	instance := getUserScriptClass().Alloc()
-	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:inContentWorld:"), source, injectionTime, forMainFrameOnly, contentWorld)
+	rv := objc.Send[UserScript](instance.ID, objc.Sel("initWithSource:injectionTime:forMainFrameOnly:inContentWorld:"), objc.String(source), injectionTime, forMainFrameOnly, contentWorld)
 	rv.Autorelease()
 	return rv
 }
@@ -125,8 +129,8 @@ func (u_ UserScript) ForMainFrameOnly() bool {
 // The script’s source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserScript/source
-func (u_ UserScript) Source() appkit.string {
-	rv := objc.Send[appkit.string](u_.ID, objc.Sel("source"))
+func (u_ UserScript) Source() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("source"))
 	return rv
 }
 

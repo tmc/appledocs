@@ -30,6 +30,7 @@ type _AuthorizationPublicKeyCredentialLargeBlobRegistrationOutputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput interface {
 	objectivec.IObject
+	IsSupported() bool
 }
 
 //

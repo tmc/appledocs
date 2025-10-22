@@ -33,6 +33,8 @@ type ICountedSet interface {
 	CountForObject(object unsafe.Pointer) uint
 	ObjectEnumerator() unsafe.Pointer
 	RemoveObject(object unsafe.Pointer)
+	Count() int
+	SetCount(value int)
 }
 
 // A mutable, unordered collection of distinct objects that may appear more than once in the collection.

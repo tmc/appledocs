@@ -31,6 +31,14 @@ type _RasterizationRateSampleArrayClass struct {
 // An interface definition for the [RasterizationRateSampleArray] class.
 type IRasterizationRateSampleArray interface {
 	objectivec.IObject
+	Horizontal() MTLRasterizationRateSampleArray
+	SetHorizontal(value IMTLRasterizationRateSampleArray)
+	MaxSampleCount() coregraphics.Size
+	SetMaxSampleCount(value coregraphics.ISize)
+	SampleCount() coregraphics.Size
+	SetSampleCount(value coregraphics.ISize)
+	Vertical() MTLRasterizationRateSampleArray
+	SetVertical(value IMTLRasterizationRateSampleArray)
 }
 
 // An array instance that contains rasterization rates.

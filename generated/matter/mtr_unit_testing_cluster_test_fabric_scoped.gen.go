@@ -31,6 +31,22 @@ type _MTRUnitTestingClusterTestFabricScopedClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestFabricScoped] class.
 type IMTRUnitTestingClusterTestFabricScoped interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	FabricSensitiveCharString() string
+	SetFabricSensitiveCharString(value string)
+	FabricSensitiveInt8u() foundation.Number
+	SetFabricSensitiveInt8u(value foundation.INumber)
+	FabricSensitiveInt8uList() unsafe.Pointer
+	SetFabricSensitiveInt8uList(value unsafe.Pointer)
+	FabricSensitiveStruct() MTRUnitTestingClusterSimpleStruct
+	SetFabricSensitiveStruct(value IMTRUnitTestingClusterSimpleStruct)
+	NullableFabricSensitiveInt8u() foundation.Number
+	SetNullableFabricSensitiveInt8u(value foundation.INumber)
+	NullableOptionalFabricSensitiveInt8u() foundation.Number
+	SetNullableOptionalFabricSensitiveInt8u(value foundation.INumber)
+	OptionalFabricSensitiveInt8u() foundation.Number
+	SetOptionalFabricSensitiveInt8u(value foundation.INumber)
 }
 
 //
@@ -93,8 +109,8 @@ func (m_ MTRUnitTestingClusterTestFabricScoped) SetFabricIndex(value foundation.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestfabricscoped/fabricsensitivecharstring
-func (m_ MTRUnitTestingClusterTestFabricScoped) FabricSensitiveCharString() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("fabricSensitiveCharString"))
+func (m_ MTRUnitTestingClusterTestFabricScoped) FabricSensitiveCharString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("fabricSensitiveCharString"))
 	return rv
 }
 
@@ -102,8 +118,8 @@ func (m_ MTRUnitTestingClusterTestFabricScoped) FabricSensitiveCharString() appk
 // SetFabricSensitiveCharString sets the value of the fabricSensitiveCharString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestfabricscoped/fabricsensitivecharstring
-func (m_ MTRUnitTestingClusterTestFabricScoped) SetFabricSensitiveCharString(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveCharString:"), value)
+func (m_ MTRUnitTestingClusterTestFabricScoped) SetFabricSensitiveCharString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveCharString:"), objc.String(value))
 }
 
 //

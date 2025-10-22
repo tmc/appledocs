@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,15 @@ type _VZMacOSRestoreImageClass struct {
 // An interface definition for the [VZMacOSRestoreImage] class.
 type IVZMacOSRestoreImage interface {
 	objectivec.IObject
+	BuildVersion() string
+	Supported() bool
+	MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements
+	OperatingSystemVersion() unsafe.Pointer
+	URL() foundation.URL
+	IsSupported() bool
+	SetIsSupported(value bool)
+	HardwareModel() VZMacHardwareModel
+	SetHardwareModel(value IVZMacHardwareModel)
 }
 
 // An object that describes a version of macOS to install on to a virtual machine.
@@ -99,8 +107,8 @@ func (vc _VZMacOSRestoreImageClass) FetchLatestSupportedWithCompletionHandler(co
 // The build version this restore image contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/buildVersion
-func (v_ VZMacOSRestoreImage) BuildVersion() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("buildVersion"))
+func (v_ VZMacOSRestoreImage) BuildVersion() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("buildVersion"))
 	return rv
 }
 

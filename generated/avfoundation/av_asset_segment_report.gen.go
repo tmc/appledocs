@@ -30,6 +30,10 @@ type _AssetSegmentReportClass struct {
 // An interface definition for the [AssetSegmentReport] class.
 type IAssetSegmentReport interface {
 	objectivec.IObject
+	SegmentType() unsafe.Pointer
+	SetSegmentType(value unsafe.Pointer)
+	TrackReports() unsafe.Pointer
+	SetTrackReports(value unsafe.Pointer)
 }
 
 // An object that provides information about segment data.

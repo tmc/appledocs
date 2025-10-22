@@ -30,6 +30,8 @@ type _MTROvenCavityOperationalStateClusterOperationalCommandResponseParamsClass 
 // An interface definition for the [MTROvenCavityOperationalStateClusterOperationalCommandResponseParams] class.
 type IMTROvenCavityOperationalStateClusterOperationalCommandResponseParams interface {
 	objectivec.IObject
+	CommandResponseState() MTROvenCavityOperationalStateClusterErrorStateStruct
+	SetCommandResponseState(value IMTROvenCavityOperationalStateClusterErrorStateStruct)
 }
 
 //

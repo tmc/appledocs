@@ -31,6 +31,23 @@ type _CKRecordIDClass struct {
 // An interface definition for the [CKRecordID] class.
 type ICKRecordID interface {
 	objectivec.IObject
+	RecordName() string
+	ZoneID() CKRecordZoneID
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.IDate)
+	CreatorUserRecordID() CKRecordID
+	SetCreatorUserRecordID(value ICKRecordID)
+	LastModifiedUserRecordID() CKRecordID
+	SetLastModifiedUserRecordID(value ICKRecordID)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.IDate)
+	RecordChangeTag() string
+	SetRecordChangeTag(value string)
+	RecordID() CKRecordID
+	SetRecordID(value ICKRecordID)
+	RecordType() unsafe.Pointer
+	SetRecordType(value unsafe.Pointer)
+	CKRecordNameZoneWideShare() string
 }
 
 // An object that uniquely identifies a record in a database.

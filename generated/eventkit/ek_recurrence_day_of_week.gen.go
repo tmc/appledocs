@@ -30,6 +30,8 @@ type _EKRecurrenceDayOfWeekClass struct {
 // An interface definition for the [EKRecurrenceDayOfWeek] class.
 type IEKRecurrenceDayOfWeek interface {
 	objectivec.IObject
+	DayOfTheWeek() EKWeekday
+	WeekNumber() int
 }
 
 // A class that represents the day of the week.

@@ -31,6 +31,16 @@ type _MTRElectricalPowerMeasurementClusterMeasurementAccuracyStructClass struct 
 // An interface definition for the [MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct] class.
 type IMTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct interface {
 	objectivec.IObject
+	AccuracyRanges() unsafe.Pointer
+	SetAccuracyRanges(value unsafe.Pointer)
+	MaxMeasuredValue() foundation.Number
+	SetMaxMeasuredValue(value foundation.INumber)
+	Measured() foundation.Number
+	SetMeasured(value foundation.INumber)
+	MeasurementType() foundation.Number
+	SetMeasurementType(value foundation.INumber)
+	MinMeasuredValue() foundation.Number
+	SetMinMeasuredValue(value foundation.INumber)
 }
 
 //

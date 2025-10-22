@@ -31,6 +31,9 @@ type _DomainStateClass struct {
 // An interface definition for the [DomainState] class.
 type IDomainState interface {
 	objectivec.IObject
+	Biometry() LADomainStateBiometry
+	Companion() LADomainStateCompanion
+	StateHash() foundation.NSData
 }
 
 //

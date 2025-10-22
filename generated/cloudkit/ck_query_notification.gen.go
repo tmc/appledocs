@@ -29,6 +29,22 @@ type _CKQueryNotificationClass struct {
 // An interface definition for the [CKQueryNotification] class.
 type ICKQueryNotification interface {
 	ICKNotification
+	DatabaseScope() CKDatabaseScope
+	RecordID() CKRecordID
+	IsPruned() bool
+	SetIsPruned(value bool)
+	NotificationType() unsafe.Pointer
+	SetNotificationType(value unsafe.Pointer)
+	QueryNotificationReason() unsafe.Pointer
+	SetQueryNotificationReason(value unsafe.Pointer)
+	RecordFields() string
+	SetRecordFields(value string)
+	DesiredKeys() unsafe.Pointer
+	SetDesiredKeys(value unsafe.Pointer)
+	ShouldSendContentAvailable() bool
+	SetShouldSendContentAvailable(value bool)
+	NotificationInfo() CKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
 }
 
 // A notification that triggers when a record that matches the subscription’s predicate changes.

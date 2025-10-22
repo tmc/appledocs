@@ -31,6 +31,24 @@ type _NEIPv4SettingsClass struct {
 // An interface definition for the [NEIPv4Settings] class.
 type INEIPv4Settings interface {
 	objectivec.IObject
+	ExcludedRoutes() []NEIPv4Route
+	SetExcludedRoutes(value []NEIPv4Route)
+	IncludedRoutes() []NEIPv4Route
+	SetIncludedRoutes(value []NEIPv4Route)
+	Addresses() string
+	SetAddresses(value string)
+	Router() string
+	SetRouter(value string)
+	SubnetMasks() string
+	SetSubnetMasks(value string)
+	Ipv4Settings() NEIPv4Settings
+	SetIpv4Settings(value INEIPv4Settings)
+	Ipv6Settings() NEIPv6Settings
+	SetIpv6Settings(value INEIPv6Settings)
+	Mtu() foundation.Number
+	SetMtu(value foundation.INumber)
+	TunnelOverheadBytes() foundation.Number
+	SetTunnelOverheadBytes(value foundation.INumber)
 }
 
 // The IPv4 settings of an IP layer network tunnel.
@@ -140,8 +158,8 @@ func (n_ NEIPv4Settings) SetIncludedRoutes(value []NEIPv4Route) {
 // The IPv4 addresses to assign to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/addresses
-func (n_ NEIPv4Settings) Addresses() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("addresses"))
+func (n_ NEIPv4Settings) Addresses() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("addresses"))
 	return rv
 }
 
@@ -151,15 +169,15 @@ func (n_ NEIPv4Settings) Addresses() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/addresses
-func (n_ NEIPv4Settings) SetAddresses(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setAddresses:"), value)
+func (n_ NEIPv4Settings) SetAddresses(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAddresses:"), objc.String(value))
 }
 
 // The address of the next-hop gateway router represented as a dotted decimal string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/router
-func (n_ NEIPv4Settings) Router() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("router"))
+func (n_ NEIPv4Settings) Router() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("router"))
 	return rv
 }
 
@@ -169,15 +187,15 @@ func (n_ NEIPv4Settings) Router() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/router
-func (n_ NEIPv4Settings) SetRouter(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRouter:"), value)
+func (n_ NEIPv4Settings) SetRouter(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRouter:"), objc.String(value))
 }
 
 // The IPv4 network masks to assign to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/subnetmasks
-func (n_ NEIPv4Settings) SubnetMasks() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("subnetMasks"))
+func (n_ NEIPv4Settings) SubnetMasks() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("subnetMasks"))
 	return rv
 }
 
@@ -187,8 +205,8 @@ func (n_ NEIPv4Settings) SubnetMasks() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/subnetmasks
-func (n_ NEIPv4Settings) SetSubnetMasks(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSubnetMasks:"), value)
+func (n_ NEIPv4Settings) SetSubnetMasks(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSubnetMasks:"), objc.String(value))
 }
 
 // The tunnel IP version 4 settings.

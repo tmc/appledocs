@@ -31,6 +31,10 @@ type _MTREndpointInfoClass struct {
 // An interface definition for the [MTREndpointInfo] class.
 type IMTREndpointInfo interface {
 	objectivec.IObject
+	Children() []MTREndpointInfo
+	DeviceTypes() []MTRDeviceTypeRevision
+	EndpointID() foundation.Number
+	PartsList() []foundation.Number
 }
 
 // Meta-data about an endpoint of a Matter node.

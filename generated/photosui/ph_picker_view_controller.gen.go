@@ -31,11 +31,16 @@ type _PHPickerViewControllerClass struct {
 type IPHPickerViewController interface {
 	appkit.IViewController
 	DeselectAssetsWithIdentifiers(identifiers []string)
-	MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier appkit.string, afterIdentifier appkit.string)
+	MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier string, afterIdentifier string)
 	ScrollToInitialPosition()
 	UpdatePickerUsingConfiguration(configuration IPHPickerUpdateConfiguration)
 	ZoomIn()
 	ZoomOut()
+	Configuration() PHPickerConfiguration
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Opacity() float32
+	SetOpacity(value float32)
 }
 
 // A view controller that provides the user interface for choosing assets from the photo library.
@@ -111,8 +116,8 @@ func (p_ PHPickerViewController) DeselectAssetsWithIdentifiers(identifiers []str
 // Reorders assets that are in a selected state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)
-func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier appkit.string, afterIdentifier appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), identifier, afterIdentifier)
+func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier string, afterIdentifier string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), objc.String(identifier), objc.String(afterIdentifier))
 }
 
 // Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.
@@ -172,8 +177,8 @@ func (p_ PHPickerViewController) SetDelegate(value objc.ID) {
 // The opacity of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
-func (p_ PHPickerViewController) Opacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("opacity"))
+func (p_ PHPickerViewController) Opacity() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("opacity"))
 	return rv
 }
 
@@ -183,7 +188,7 @@ func (p_ PHPickerViewController) Opacity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
-func (p_ PHPickerViewController) SetOpacity(value unsafe.Pointer) {
+func (p_ PHPickerViewController) SetOpacity(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOpacity:"), value)
 }
 

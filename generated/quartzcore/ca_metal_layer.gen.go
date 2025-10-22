@@ -31,6 +31,36 @@ type _MetalLayerClass struct {
 type IMetalLayer interface {
 	ILayer
 	NextDrawable() objc.ID
+	AllowsNextDrawableTimeout() bool
+	SetAllowsNextDrawableTimeout(value bool)
+	Colorspace() coregraphics.CGColorSpaceRef
+	SetColorspace(value coregraphics.CGColorSpaceRef)
+	DeveloperHUDProperties() objc.ID
+	SetDeveloperHUDProperties(value objc.ID)
+	Device() objc.ID
+	SetDevice(value objc.ID)
+	DisplaySyncEnabled() bool
+	SetDisplaySyncEnabled(value bool)
+	DrawableSize() coregraphics.CGSize
+	SetDrawableSize(value coregraphics.CGSize)
+	EDRMetadata() CAEDRMetadata
+	SetEDRMetadata(value IEDRMetadata)
+	FramebufferOnly() bool
+	SetFramebufferOnly(value bool)
+	MaximumDrawableCount() uint
+	SetMaximumDrawableCount(value uint)
+	PixelFormat() unsafe.Pointer
+	SetPixelFormat(value unsafe.Pointer)
+	PreferredDevice() objc.ID
+	PresentsWithTransaction() bool
+	SetPresentsWithTransaction(value bool)
+	ResidencySet() objc.ID
+	WantsExtendedDynamicRangeContent() bool
+	SetWantsExtendedDynamicRangeContent(value bool)
+	DrawableID() int
+	SetDrawableID(value int)
+	PresentedTime() TimeInterval
+	SetPresentedTime(value ITimeInterval)
 }
 
 // A Core Animation layer that Metal can render into, typically displayed onscreen.

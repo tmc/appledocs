@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,8 @@ type _AXBrailleTranslationResultClass struct {
 // An interface definition for the [AXBrailleTranslationResult] class.
 type IAXBrailleTranslationResult interface {
 	objectivec.IObject
+	LocationMap() []foundation.Number
+	ResultString() string
 }
 
 // The result of translation or back-translation.
@@ -91,8 +92,8 @@ func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
 // The resulting string after translation or back-translation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
-func (a_ AXBrailleTranslationResult) ResultString() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("resultString"))
+func (a_ AXBrailleTranslationResult) ResultString() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
 	return rv
 }
 

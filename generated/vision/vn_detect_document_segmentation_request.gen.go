@@ -29,6 +29,9 @@ type _DetectDocumentSegmentationRequestClass struct {
 // An interface definition for the [DetectDocumentSegmentationRequest] class.
 type IDetectDocumentSegmentationRequest interface {
 	IImageBasedRequest
+	Results() VNRectangleObservation
+	SetResults(value IVNRectangleObservation)
+	VNDetectDocumentSegmentationRequestRevision1() int
 }
 
 // An object that detects rectangular regions that contain text in the input image.

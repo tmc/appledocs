@@ -31,6 +31,10 @@ type _CNBoundsPredictionClass struct {
 // An interface definition for the [CNBoundsPrediction] class.
 type ICNBoundsPrediction interface {
 	objectivec.IObject
+	Confidence() float32
+	SetConfidence(value float32)
+	NormalizedBounds() coregraphics.CGRect
+	SetNormalizedBounds(value coregraphics.CGRect)
 }
 
 // An object representing the bounds of the predicted subject.
@@ -82,8 +86,8 @@ func NewCNBoundsPrediction() CNBoundsPrediction {
 // A number between 0.0 and 1.0 representing the probability that a defined object is within the bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
-func (c_ CNBoundsPrediction) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("confidence"))
+func (c_ CNBoundsPrediction) Confidence() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -93,7 +97,7 @@ func (c_ CNBoundsPrediction) Confidence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
-func (c_ CNBoundsPrediction) SetConfidence(value unsafe.Pointer) {
+func (c_ CNBoundsPrediction) SetConfidence(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
 

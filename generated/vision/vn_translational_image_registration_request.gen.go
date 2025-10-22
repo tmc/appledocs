@@ -29,6 +29,8 @@ type _TranslationalImageRegistrationRequestClass struct {
 // An interface definition for the [TranslationalImageRegistrationRequest] class.
 type ITranslationalImageRegistrationRequest interface {
 	IImageRegistrationRequest
+	Results() VNImageTranslationAlignmentObservation
+	SetResults(value IVNImageTranslationAlignmentObservation)
 }
 
 // An image-analysis request that determines the affine transform necessary to align the content of two images.

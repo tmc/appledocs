@@ -30,6 +30,8 @@ type _MediaPresentationSettingClass struct {
 // An interface definition for the [MediaPresentationSetting] class.
 type IMediaPresentationSetting interface {
 	objectivec.IObject
+	MediaCharacteristic() unsafe.Pointer
+	SetMediaCharacteristic(value unsafe.Pointer)
 }
 
 // For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.

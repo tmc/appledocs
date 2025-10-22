@@ -29,6 +29,20 @@ type _PHASEGeneratorNodeDefinitionClass struct {
 // An interface definition for the [PHASEGeneratorNodeDefinition] class.
 type IPHASEGeneratorNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
+	GainMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	SetGainMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
+	Rate() float64
+	SetRate(value float64)
+	RateMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	SetRateMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
+	CalibrationMode() PHASECalibrationMode
+	SetCalibrationMode(value PHASECalibrationMode)
+	Group() PHASEGroup
+	SetGroup(value IPHASEGroup)
+	Level() float64
+	SetLevel(value float64)
+	MixerDefinition() PHASEMixerDefinition
+	SetMixerDefinition(value IPHASEMixerDefinition)
 }
 
 // A base class for nodes that provide audio data to generate sound.
@@ -102,8 +116,8 @@ func (p_ PHASEGeneratorNodeDefinition) SetGainMetaParameterDefinition(value IPHA
 // A playback speed for the node’s audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rate
-func (p_ PHASEGeneratorNodeDefinition) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rate"))
+func (p_ PHASEGeneratorNodeDefinition) Rate() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -113,7 +127,7 @@ func (p_ PHASEGeneratorNodeDefinition) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rate
-func (p_ PHASEGeneratorNodeDefinition) SetRate(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetRate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -174,8 +188,8 @@ func (p_ PHASEGeneratorNodeDefinition) SetGroup(value IPHASEGroup) {
 // The node’s loudness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/level
-func (p_ PHASEGeneratorNodeDefinition) Level() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("level"))
+func (p_ PHASEGeneratorNodeDefinition) Level() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("level"))
 	return rv
 }
 
@@ -185,7 +199,7 @@ func (p_ PHASEGeneratorNodeDefinition) Level() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/level
-func (p_ PHASEGeneratorNodeDefinition) SetLevel(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetLevel(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLevel:"), value)
 }
 

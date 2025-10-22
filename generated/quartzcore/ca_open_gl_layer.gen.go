@@ -32,10 +32,18 @@ type IOpenGLLayer interface {
 	ILayer
 	CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) bool
 	CopyCGLContextForPixelFormat(pf unsafe.Pointer) unsafe.Pointer
-	CopyCGLPixelFormatForDisplayMask(mask unsafe.Pointer) unsafe.Pointer
+	CopyCGLPixelFormatForDisplayMask(mask Iuint32) unsafe.Pointer
 	DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer)
 	ReleaseCGLContext(ctx unsafe.Pointer)
 	ReleaseCGLPixelFormat(pf unsafe.Pointer)
+	Colorspace() coregraphics.CGColorSpaceRef
+	SetColorspace(value coregraphics.CGColorSpaceRef)
+	Asynchronous() bool
+	SetAsynchronous(value bool)
+	WantsExtendedDynamicRangeContent() bool
+	SetWantsExtendedDynamicRangeContent(value bool)
+	IsAsynchronous() bool
+	SetIsAsynchronous(value bool)
 }
 
 // A layer that provides a layer suitable for rendering OpenGL content.
@@ -107,7 +115,7 @@ func (o_ OpenGLLayer) CopyCGLContextForPixelFormat(pf unsafe.Pointer) unsafe.Poi
 // Returns the OpenGL pixel format suitable for rendering to the set of displays specified by the display mask.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/copyCGLPixelFormat(forDisplayMask:)
-func (o_ OpenGLLayer) CopyCGLPixelFormatForDisplayMask(mask unsafe.Pointer) unsafe.Pointer {
+func (o_ OpenGLLayer) CopyCGLPixelFormatForDisplayMask(mask Iuint32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("copyCGLPixelFormatForDisplayMask:"), mask)
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -90,8 +89,8 @@ func NewBlendKernel() BlendKernel {
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func NewBlendKernelWithString(string_ appkit.string) BlendKernel {
-	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), string_)
+func NewBlendKernelWithString(string_ string) BlendKernel {
+	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 
@@ -99,8 +98,8 @@ func NewBlendKernelWithString(string_ appkit.string) BlendKernel {
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func (bc _BlendKernelClass) KernelWithString(string_ appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), string_)
+func (bc _BlendKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
 

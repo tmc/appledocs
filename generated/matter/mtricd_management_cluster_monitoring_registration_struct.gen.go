@@ -31,6 +31,14 @@ type _MTRICDManagementClusterMonitoringRegistrationStructClass struct {
 // An interface definition for the [MTRICDManagementClusterMonitoringRegistrationStruct] class.
 type IMTRICDManagementClusterMonitoringRegistrationStruct interface {
 	objectivec.IObject
+	CheckInNodeID() foundation.Number
+	SetCheckInNodeID(value foundation.INumber)
+	ClientType() foundation.Number
+	SetClientType(value foundation.INumber)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	MonitoredSubject() foundation.Number
+	SetMonitoredSubject(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,8 @@ type _OverlayConfigurationClass struct {
 // An interface definition for the [OverlayConfiguration] class.
 type IOverlayConfiguration interface {
 	objectivec.IObject
+	Configuration() SKOverlayConfiguration
+	SetConfiguration(value ISKOverlayConfiguration)
 }
 
 // The abstract superclass for all classes that represent an overlay’s attributes.

@@ -32,6 +32,7 @@ type IVertexBufferLayoutDescriptorArray interface {
 	objectivec.IObject
 	SetObjectAtIndexedSubscript(bufferDesc IMTLVertexBufferLayoutDescriptor, index uint)
 	ObjectAtIndexedSubscript(index uint) VertexBufferLayoutDescriptor
+	MTLBufferLayoutStrideDynamic() int
 }
 
 // An array of vertex buffer layout descriptor instances.

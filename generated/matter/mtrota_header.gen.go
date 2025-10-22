@@ -31,6 +31,26 @@ type _MTROTAHeaderClass struct {
 // An interface definition for the [MTROTAHeader] class.
 type IMTROTAHeader interface {
 	objectivec.IObject
+	ImageDigest() foundation.Data
+	SetImageDigest(value foundation.IData)
+	ImageDigestType() MTROTAImageDigestType
+	SetImageDigestType(value MTROTAImageDigestType)
+	MaxApplicableVersion() foundation.Number
+	SetMaxApplicableVersion(value foundation.INumber)
+	MinApplicableVersion() foundation.Number
+	SetMinApplicableVersion(value foundation.INumber)
+	PayloadSize() foundation.Number
+	SetPayloadSize(value foundation.INumber)
+	ProductID() foundation.Number
+	SetProductID(value foundation.INumber)
+	ReleaseNotesURL() string
+	SetReleaseNotesURL(value string)
+	SoftwareVersion() foundation.Number
+	SetSoftwareVersion(value foundation.INumber)
+	SoftwareVersionString() string
+	SetSoftwareVersionString(value string)
+	VendorID() foundation.Number
+	SetVendorID(value foundation.INumber)
 }
 
 //
@@ -168,8 +188,8 @@ func (m_ MTROTAHeader) SetProductID(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) ReleaseNotesURL() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("releaseNotesURL"))
+func (m_ MTROTAHeader) ReleaseNotesURL() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("releaseNotesURL"))
 	return rv
 }
 
@@ -177,8 +197,8 @@ func (m_ MTROTAHeader) ReleaseNotesURL() appkit.string {
 // SetReleaseNotesURL sets the value of the releaseNotesURL property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) SetReleaseNotesURL(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), value)
+func (m_ MTROTAHeader) SetReleaseNotesURL(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), objc.String(value))
 }
 
 //
@@ -198,8 +218,8 @@ func (m_ MTROTAHeader) SetSoftwareVersion(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SoftwareVersionString() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("softwareVersionString"))
+func (m_ MTROTAHeader) SoftwareVersionString() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
 	return rv
 }
 
@@ -207,8 +227,8 @@ func (m_ MTROTAHeader) SoftwareVersionString() appkit.string {
 // SetSoftwareVersionString sets the value of the softwareVersionString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SetSoftwareVersionString(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), value)
+func (m_ MTROTAHeader) SetSoftwareVersionString(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
 }
 
 //

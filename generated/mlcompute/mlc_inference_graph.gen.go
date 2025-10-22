@@ -29,6 +29,8 @@ type _CInferenceGraphClass struct {
 // An interface definition for the [CInferenceGraph] class.
 type ICInferenceGraph interface {
 	ICGraph
+	DeviceMemorySize() int
+	SetDeviceMemorySize(value int)
 }
 
 // An inference graph created from one or more MLCGraph instances plus additional layers added directly to the inference graph.

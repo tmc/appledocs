@@ -30,6 +30,8 @@ type _GCDeviceLightClass struct {
 // An interface definition for the [GCDeviceLight] class.
 type IGCDeviceLight interface {
 	objectivec.IObject
+	Color() GCColor
+	SetColor(value IGCColor)
 }
 
 // The colored light on a device.

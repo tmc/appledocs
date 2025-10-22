@@ -31,6 +31,32 @@ type _NEProxySettingsClass struct {
 // An interface definition for the [NEProxySettings] class.
 type INEProxySettings interface {
 	objectivec.IObject
+	AutoProxyConfigurationEnabled() bool
+	SetAutoProxyConfigurationEnabled(value bool)
+	ExceptionList() string
+	SetExceptionList(value string)
+	ExcludeSimpleHostnames() bool
+	SetExcludeSimpleHostnames(value bool)
+	HttpEnabled() bool
+	SetHttpEnabled(value bool)
+	HttpServer() unsafe.Pointer
+	SetHttpServer(value unsafe.Pointer)
+	HttpsEnabled() bool
+	SetHttpsEnabled(value bool)
+	HttpsServer() unsafe.Pointer
+	SetHttpsServer(value unsafe.Pointer)
+	MatchDomains() string
+	SetMatchDomains(value string)
+	ProxyAutoConfigurationJavaScript() string
+	SetProxyAutoConfigurationJavaScript(value string)
+	ProxyAutoConfigurationURL() foundation.URL
+	SetProxyAutoConfigurationURL(value foundation.IURL)
+	DnsSettings() NEDNSSettings
+	SetDnsSettings(value INEDNSSettings)
+	ProxySettings() NEProxySettings
+	SetProxySettings(value INEProxySettings)
+	TunnelRemoteAddress() string
+	SetTunnelRemoteAddress(value string)
 }
 
 // contains HTTP proxy settings.
@@ -102,8 +128,8 @@ func (n_ NEProxySettings) SetAutoProxyConfigurationEnabled(value bool) {
 // An array of domain name patterns. If the destination host name of an HTTP connection matches one of these patterns then the proxy settings will not be used for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neproxysettings/exceptionlist
-func (n_ NEProxySettings) ExceptionList() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("exceptionList"))
+func (n_ NEProxySettings) ExceptionList() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("exceptionList"))
 	return rv
 }
 
@@ -113,8 +139,8 @@ func (n_ NEProxySettings) ExceptionList() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neproxysettings/exceptionlist
-func (n_ NEProxySettings) SetExceptionList(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setExceptionList:"), value)
+func (n_ NEProxySettings) SetExceptionList(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setExceptionList:"), objc.String(value))
 }
 
 // A Boolean indicating if HTTP requests using single-label host names should be excluded from using the proxy settings.
@@ -210,8 +236,8 @@ func (n_ NEProxySettings) SetHttpsServer(value unsafe.Pointer) {
 // An array of domain strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neproxysettings/matchdomains
-func (n_ NEProxySettings) MatchDomains() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchDomains"))
+func (n_ NEProxySettings) MatchDomains() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("matchDomains"))
 	return rv
 }
 
@@ -221,15 +247,15 @@ func (n_ NEProxySettings) MatchDomains() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neproxysettings/matchdomains
-func (n_ NEProxySettings) SetMatchDomains(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
+func (n_ NEProxySettings) SetMatchDomains(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), objc.String(value))
 }
 
 // A string containing the Proxy Auto Configuration (PAC) JavaScript source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neproxysettings/proxyautoconfigurationjavascript
-func (n_ NEProxySettings) ProxyAutoConfigurationJavaScript() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("proxyAutoConfigurationJavaScript"))
+func (n_ NEProxySettings) ProxyAutoConfigurationJavaScript() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("proxyAutoConfigurationJavaScript"))
 	return rv
 }
 
@@ -239,8 +265,8 @@ func (n_ NEProxySettings) ProxyAutoConfigurationJavaScript() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neproxysettings/proxyautoconfigurationjavascript
-func (n_ NEProxySettings) SetProxyAutoConfigurationJavaScript(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProxyAutoConfigurationJavaScript:"), value)
+func (n_ NEProxySettings) SetProxyAutoConfigurationJavaScript(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProxyAutoConfigurationJavaScript:"), objc.String(value))
 }
 
 // A URL specifying the location from where the Proxy Auto Configuration (PAC) script should be downloaded.
@@ -300,8 +326,8 @@ func (n_ NEProxySettings) SetProxySettings(value INEProxySettings) {
 // The IP address of the tunnel server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/tunnelremoteaddress
-func (n_ NEProxySettings) TunnelRemoteAddress() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("tunnelRemoteAddress"))
+func (n_ NEProxySettings) TunnelRemoteAddress() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("tunnelRemoteAddress"))
 	return rv
 }
 
@@ -311,8 +337,8 @@ func (n_ NEProxySettings) TunnelRemoteAddress() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/tunnelremoteaddress
-func (n_ NEProxySettings) SetTunnelRemoteAddress(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelRemoteAddress:"), value)
+func (n_ NEProxySettings) SetTunnelRemoteAddress(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelRemoteAddress:"), objc.String(value))
 }
 
 

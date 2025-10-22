@@ -29,6 +29,16 @@ type _AudioCompressedBufferClass struct {
 // An interface definition for the [AudioCompressedBuffer] class.
 type IAudioCompressedBuffer interface {
 	IAudioBuffer
+	ByteCapacity() uint32
+	ByteLength() uint32
+	SetByteLength(value Iuint32)
+	Data() unsafe.Pointer
+	MaximumPacketSize() int
+	PacketCapacity() AudioPacketCount
+	PacketCount() AudioPacketCount
+	SetPacketCount(value IAudioPacketCount)
+	PacketDependencies() unsafe.Pointer
+	PacketDescriptions() unsafe.Pointer
 }
 
 // An object that represents an audio buffer that you use for compressed audio formats.
@@ -107,16 +117,16 @@ func NewAudioCompressedBufferWithFormatPacketCapacityMaximumPacketSize(format AV
 // The number of packets the buffer contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCompressedBuffer/byteCapacity
-func (a_ AudioCompressedBuffer) ByteCapacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("byteCapacity"))
+func (a_ AudioCompressedBuffer) ByteCapacity() uint32 {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("byteCapacity"))
 	return rv
 }
 
 // The number of valid bytes in the buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCompressedBuffer/byteLength
-func (a_ AudioCompressedBuffer) ByteLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("byteLength"))
+func (a_ AudioCompressedBuffer) ByteLength() uint32 {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("byteLength"))
 	return rv
 }
 
@@ -126,7 +136,7 @@ func (a_ AudioCompressedBuffer) ByteLength() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioCompressedBuffer/byteLength
-func (a_ AudioCompressedBuffer) SetByteLength(value unsafe.Pointer) {
+func (a_ AudioCompressedBuffer) SetByteLength(value Iuint32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setByteLength:"), value)
 }
 

@@ -32,6 +32,9 @@ type _VZMacOSInstallerClass struct {
 type IVZMacOSInstaller interface {
 	objectivec.IObject
 	InstallWithCompletionHandler(completionHandler unsafe.Pointer)
+	Progress() foundation.Progress
+	RestoreImageURL() foundation.URL
+	VirtualMachine() VZVirtualMachine
 }
 
 // An object you use to install macOS on the specified virtual machine.

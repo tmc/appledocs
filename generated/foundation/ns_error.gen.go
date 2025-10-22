@@ -30,6 +30,24 @@ type _ErrorClass struct {
 // An interface definition for the [Error] class.
 type IError interface {
 	objectivec.IObject
+	Code() int
+	Domain() ErrorDomain
+	HelpAnchor() string
+	LocalizedDescription() string
+	LocalizedFailureReason() string
+	LocalizedRecoveryOptions() []string
+	LocalizedRecoverySuggestion() string
+	RecoveryAttempter() objc.ID
+	UnderlyingErrors() []Error
+	UserInfo() unsafe.Pointer
+	NSCocoaErrorDomain() string
+	NSMachErrorDomain() string
+	NSOSStatusErrorDomain() string
+	NSPOSIXErrorDomain() string
+	NSRecoveryAttempterErrorKey() string
+	NSStreamSOCKSErrorDomain() string
+	NSStreamSocketSSLErrorDomain() string
+	NSURLErrorDomain() string
 }
 
 // Information about an error condition including a domain, a domain-specific error code, and application-specific information.

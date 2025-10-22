@@ -29,6 +29,8 @@ type _MXAppExitMetricClass struct {
 // An interface definition for the [MXAppExitMetric] class.
 type IMXAppExitMetric interface {
 	IMXMetric
+	BackgroundExitData() MXBackgroundExitData
+	ForegroundExitData() MXForegroundExitData
 }
 
 // An object representing metrics about the types of foreground and background app exits.

@@ -32,6 +32,42 @@ type IFXTemporalScalerDescriptor interface {
 	objectivec.IObject
 	NewTemporalScalerWithDevice(device objectivec.IObject) objc.ID
 	NewTemporalScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
+	ColorTextureFormat() unsafe.Pointer
+	SetColorTextureFormat(value unsafe.Pointer)
+	DepthTextureFormat() unsafe.Pointer
+	SetDepthTextureFormat(value unsafe.Pointer)
+	InputContentMaxScale() float32
+	SetInputContentMaxScale(value float32)
+	InputContentMinScale() float32
+	SetInputContentMinScale(value float32)
+	InputHeight() uint
+	SetInputHeight(value uint)
+	InputWidth() uint
+	SetInputWidth(value uint)
+	AutoExposureEnabled() bool
+	SetAutoExposureEnabled(value bool)
+	InputContentPropertiesEnabled() bool
+	SetInputContentPropertiesEnabled(value bool)
+	ReactiveMaskTextureEnabled() bool
+	SetReactiveMaskTextureEnabled(value bool)
+	MotionTextureFormat() unsafe.Pointer
+	SetMotionTextureFormat(value unsafe.Pointer)
+	OutputHeight() uint
+	SetOutputHeight(value uint)
+	OutputTextureFormat() unsafe.Pointer
+	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputWidth() uint
+	SetOutputWidth(value uint)
+	ReactiveMaskTextureFormat() unsafe.Pointer
+	SetReactiveMaskTextureFormat(value unsafe.Pointer)
+	RequiresSynchronousInitialization() bool
+	SetRequiresSynchronousInitialization(value bool)
+	IsAutoExposureEnabled() bool
+	SetIsAutoExposureEnabled(value bool)
+	IsInputContentPropertiesEnabled() bool
+	SetIsInputContentPropertiesEnabled(value bool)
+	IsReactiveMaskTextureEnabled() bool
+	SetIsReactiveMaskTextureEnabled(value bool)
 }
 
 // A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.
@@ -83,16 +119,16 @@ func NewFXTemporalScalerDescriptor() FXTemporalScalerDescriptor {
 // Returns the largest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportedInputContentMaxScale(device:)
-func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
+func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) float32 {
+	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
 	return rv
 }
 
 // Returns the smallest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportedInputContentMinScale(device:)
-func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
+func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) float32 {
+	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
 	return rv
 }
 
@@ -167,8 +203,8 @@ func (f_ FXTemporalScalerDescriptor) SetDepthTextureFormat(value unsafe.Pointer)
 // The largest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMaxScale
-func (f_ FXTemporalScalerDescriptor) InputContentMaxScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("inputContentMaxScale"))
+func (f_ FXTemporalScalerDescriptor) InputContentMaxScale() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("inputContentMaxScale"))
 	return rv
 }
 
@@ -178,15 +214,15 @@ func (f_ FXTemporalScalerDescriptor) InputContentMaxScale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMaxScale
-func (f_ FXTemporalScalerDescriptor) SetInputContentMaxScale(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetInputContentMaxScale(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputContentMaxScale:"), value)
 }
 
 // The smallest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMinScale
-func (f_ FXTemporalScalerDescriptor) InputContentMinScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("inputContentMinScale"))
+func (f_ FXTemporalScalerDescriptor) InputContentMinScale() float32 {
+	rv := objc.Send[float32](f_.ID, objc.Sel("inputContentMinScale"))
 	return rv
 }
 
@@ -196,7 +232,7 @@ func (f_ FXTemporalScalerDescriptor) InputContentMinScale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMinScale
-func (f_ FXTemporalScalerDescriptor) SetInputContentMinScale(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetInputContentMinScale(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputContentMinScale:"), value)
 }
 

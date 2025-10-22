@@ -29,6 +29,8 @@ type _SetCommandClass struct {
 // An interface definition for the [SetCommand] class.
 type ISetCommand interface {
 	IScriptCommand
+	KeySpecifier() NSScriptObjectSpecifier
+	SetKeySpecifier(value IScriptObjectSpecifier)
 }
 
 // A command that sets one or more attributes or relationships to one or more values.

@@ -33,6 +33,28 @@ type ILocation interface {
 	objectivec.IObject
 	Distance()
 	GetDistanceFrom()
+	Altitude() unsafe.Pointer
+	SetAltitude(value unsafe.Pointer)
+	Coordinate() unsafe.Pointer
+	SetCoordinate(value unsafe.Pointer)
+	Course() unsafe.Pointer
+	SetCourse(value unsafe.Pointer)
+	CourseAccuracy() unsafe.Pointer
+	SetCourseAccuracy(value unsafe.Pointer)
+	EllipsoidalAltitude() unsafe.Pointer
+	SetEllipsoidalAltitude(value unsafe.Pointer)
+	HorizontalAccuracy() unsafe.Pointer
+	SetHorizontalAccuracy(value unsafe.Pointer)
+	SourceInformation() CLLocationSourceInformation
+	SetSourceInformation(value ICLLocationSourceInformation)
+	Speed() unsafe.Pointer
+	SetSpeed(value unsafe.Pointer)
+	SpeedAccuracy() unsafe.Pointer
+	SetSpeedAccuracy(value unsafe.Pointer)
+	Timestamp() foundation.Date
+	SetTimestamp(value foundation.IDate)
+	VerticalAccuracy() unsafe.Pointer
+	SetVerticalAccuracy(value unsafe.Pointer)
 }
 
 // The latitude, longitude, and course information reported by the system.

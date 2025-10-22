@@ -29,6 +29,9 @@ type _GeneratePersonInstanceMaskRequestClass struct {
 // An interface definition for the [GeneratePersonInstanceMaskRequest] class.
 type IGeneratePersonInstanceMaskRequest interface {
 	IImageBasedRequest
+	Results() VNInstanceMaskObservation
+	SetResults(value IVNInstanceMaskObservation)
+	VNGeneratePersonInstanceMaskRequestRevision1() int
 }
 
 // An object that produces a mask of individual people it finds in the input image.

@@ -34,6 +34,8 @@ type ICKSyncEngineState interface {
 	AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
 	RemovePendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange)
 	RemovePendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
+	UserRecordID() CKRecordID
+	SetUserRecordID(value ICKRecordID)
 }
 
 // An object that manages the sync engine’s state.

@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -34,6 +33,22 @@ type _PHContentEditingInputClass struct {
 // An interface definition for the [PHContentEditingInput] class.
 type IPHContentEditingInput interface {
 	objectivec.IObject
+	AdjustmentData() PHAdjustmentData
+	AudiovisualAsset() Asset
+	AvAsset() Asset
+	ContentType() unsafe.Pointer
+	CreationDate() foundation.NSDate
+	DisplaySizeImage() appkit.Image
+	FullSizeImageOrientation() int
+	FullSizeImageURL() foundation.URL
+	LivePhoto() PHLivePhoto
+	Location() corelocation.Location
+	MediaSubtypes() PHAssetMediaSubtype
+	MediaType() PHAssetMediaType
+	PlaybackStyle() PHAssetPlaybackStyle
+	UniformTypeIdentifier() string
+	ContentEditingOutput() PHContentEditingOutput
+	SetContentEditingOutput(value IPHContentEditingOutput)
 }
 
 // A container that provides information about and access to the image, video, or Live Photo content of an asset to be edited.
@@ -95,16 +110,16 @@ func (p_ PHContentEditingInput) AdjustmentData() PHAdjustmentData {
 // The video asset, as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/audiovisualAsset
-func (p_ PHContentEditingInput) AudiovisualAsset() avfoundation.Asset {
-	rv := objc.Send[avfoundation.Asset](p_.ID, objc.Sel("audiovisualAsset"))
+func (p_ PHContentEditingInput) AudiovisualAsset() Asset {
+	rv := objc.Send[Asset](p_.ID, objc.Sel("audiovisualAsset"))
 	return rv
 }
 
 // The video asset, as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/avAsset
-func (p_ PHContentEditingInput) AvAsset() avfoundation.Asset {
-	rv := objc.Send[avfoundation.Asset](p_.ID, objc.Sel("avAsset"))
+func (p_ PHContentEditingInput) AvAsset() Asset {
+	rv := objc.Send[Asset](p_.ID, objc.Sel("avAsset"))
 	return rv
 }
 
@@ -135,8 +150,8 @@ func (p_ PHContentEditingInput) DisplaySizeImage() appkit.Image {
 // The Exif display orientation of the full-size image file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/fullSizeImageOrientation
-func (p_ PHContentEditingInput) FullSizeImageOrientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fullSizeImageOrientation"))
+func (p_ PHContentEditingInput) FullSizeImageOrientation() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("fullSizeImageOrientation"))
 	return rv
 }
 
@@ -191,8 +206,8 @@ func (p_ PHContentEditingInput) PlaybackStyle() PHAssetPlaybackStyle {
 // The uniform type identifier for the asset’s image or video data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/uniformTypeIdentifier
-func (p_ PHContentEditingInput) UniformTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHContentEditingInput) UniformTypeIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 

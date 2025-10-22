@@ -31,6 +31,21 @@ type _MTL4TileRenderPipelineDescriptorClass struct {
 type IMTL4TileRenderPipelineDescriptor interface {
 	IMTL4PipelineDescriptor
 	Reset()
+	ColorAttachments() MTLTileRenderPipelineColorAttachmentDescriptorArray
+	MaxTotalThreadsPerThreadgroup() uint
+	SetMaxTotalThreadsPerThreadgroup(value uint)
+	RasterSampleCount() uint
+	SetRasterSampleCount(value uint)
+	RequiredThreadsPerThreadgroup() coregraphics.Size
+	SetRequiredThreadsPerThreadgroup(value coregraphics.ISize)
+	StaticLinkingDescriptor() unsafe.Pointer
+	SetStaticLinkingDescriptor(value unsafe.Pointer)
+	SupportBinaryLinking() bool
+	SetSupportBinaryLinking(value bool)
+	ThreadgroupSizeMatchesTileSize() bool
+	SetThreadgroupSizeMatchesTileSize(value bool)
+	TileFunctionDescriptor() unsafe.Pointer
+	SetTileFunctionDescriptor(value unsafe.Pointer)
 }
 
 // Groups together properties you use to create a tile render pipeline state object.

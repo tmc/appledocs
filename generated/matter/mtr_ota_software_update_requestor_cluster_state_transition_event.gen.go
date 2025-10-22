@@ -30,6 +30,14 @@ type _MTROtaSoftwareUpdateRequestorClusterStateTransitionEventClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent] class.
 type IMTROtaSoftwareUpdateRequestorClusterStateTransitionEvent interface {
 	IMTROTASoftwareUpdateRequestorClusterStateTransitionEvent
+	NewState() foundation.Number
+	SetNewState(value foundation.INumber)
+	PreviousState() foundation.Number
+	SetPreviousState(value foundation.INumber)
+	Reason() foundation.Number
+	SetReason(value foundation.INumber)
+	TargetSoftwareVersion() foundation.Number
+	SetTargetSoftwareVersion(value foundation.INumber)
 }
 
 //

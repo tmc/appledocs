@@ -43,6 +43,41 @@ type IAssetTrack interface {
 	MetadataForFormat(format MetadataFormat) []MetadataItem
 	SamplePresentationTimeForTrackTime(trackTime unsafe.Pointer) unsafe.Pointer
 	SegmentForTrackTime(trackTime unsafe.Pointer) AssetTrackSegment
+	Asset() AVAsset
+	AvailableMetadataFormats() []string
+	AvailableTrackAssociationTypes() []string
+	CanProvideSampleCursors() bool
+	CommonMetadata() []MetadataItem
+	EstimatedDataRate() float32
+	ExtendedLanguageTag() string
+	FormatDescriptions() objc.ID
+	HasAudioSampleDependencies() bool
+	Decodable() bool
+	Enabled() bool
+	Playable() bool
+	SelfContained() bool
+	LanguageCode() string
+	MediaType() MediaType
+	Metadata() []MetadataItem
+	MinFrameDuration() unsafe.Pointer
+	NaturalSize() coregraphics.CGSize
+	NaturalTimeScale() unsafe.Pointer
+	NominalFrameRate() float32
+	PreferredTransform() coregraphics.CGAffineTransform
+	PreferredVolume() float32
+	RequiresFrameReordering() bool
+	Segments() []AssetTrackSegment
+	TimeRange() unsafe.Pointer
+	TotalSampleDataLength() unsafe.Pointer
+	TrackID() unsafe.Pointer
+	IsDecodable() bool
+	SetIsDecodable(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
+	IsSelfContained() bool
+	SetIsSelfContained(value bool)
 }
 
 // An object that models a track of media that an asset contains.

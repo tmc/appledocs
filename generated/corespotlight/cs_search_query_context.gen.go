@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,14 @@ type _CSSearchQueryContextClass struct {
 // An interface definition for the [CSSearchQueryContext] class.
 type ICSSearchQueryContext interface {
 	objectivec.IObject
+	FetchAttributes() []string
+	SetFetchAttributes(value []string)
+	FilterQueries() []string
+	SetFilterQueries(value []string)
+	KeyboardLanguage() string
+	SetKeyboardLanguage(value string)
+	SourceOptions() CSSearchQuerySourceOptions
+	SetSourceOptions(value CSSearchQuerySourceOptions)
 }
 
 // The behavior configuration to use for a search query.
@@ -138,8 +145,8 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 // The language used for the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) KeyboardLanguage() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("keyboardLanguage"))
+func (c_ CSSearchQueryContext) KeyboardLanguage() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keyboardLanguage"))
 	return rv
 }
 
@@ -149,8 +156,8 @@ func (c_ CSSearchQueryContext) KeyboardLanguage() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) SetKeyboardLanguage(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), value)
+func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
 }
 
 // The query source options to allow or deny Mail messages in the search.

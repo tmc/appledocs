@@ -30,6 +30,10 @@ type _AudioUnitViewConfigurationClass struct {
 // An interface definition for the [AudioUnitViewConfiguration] class.
 type IAudioUnitViewConfiguration interface {
 	objectivec.IObject
+	Height() float64
+	Width() float64
+	HostHasController() bool
+	SetHostHasController(value bool)
 }
 
 // A configuration object that describes how to present the audio unit’s user interface.

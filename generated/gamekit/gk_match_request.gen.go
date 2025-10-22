@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,34 @@ type _MatchRequestClass struct {
 // An interface definition for the [MatchRequest] class.
 type IMatchRequest interface {
 	objectivec.IObject
+	DefaultNumberOfPlayers() uint
+	SetDefaultNumberOfPlayers(value uint)
+	InviteMessage() string
+	SetInviteMessage(value string)
+	MaxPlayers() uint
+	SetMaxPlayers(value uint)
+	MinPlayers() uint
+	SetMinPlayers(value uint)
+	RecipientProperties() unsafe.Pointer
+	SetRecipientProperties(value unsafe.Pointer)
+	RecipientResponseHandler() unsafe.Pointer
+	SetRecipientResponseHandler(value unsafe.Pointer)
+	InviteeResponseHandler() unsafe.Pointer
+	SetInviteeResponseHandler(value unsafe.Pointer)
+	PlayerAttributes() unsafe.Pointer
+	SetPlayerAttributes(value unsafe.Pointer)
+	PlayerGroup() int
+	SetPlayerGroup(value int)
+	PlayersToInvite() string
+	SetPlayersToInvite(value string)
+	Properties() string
+	SetProperties(value string)
+	QueueName() string
+	SetQueueName(value string)
+	Recipients() GKPlayer
+	SetRecipients(value IGKPlayer)
+	RestrictToAutomatch() bool
+	SetRestrictToAutomatch(value bool)
 }
 
 // An object that encapsulates the parameters to create a real-time or turn-based match.
@@ -110,8 +137,8 @@ func (m_ MatchRequest) SetDefaultNumberOfPlayers(value uint) {
 // The message sent to other players when the local player invites them to join a match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-func (m_ MatchRequest) InviteMessage() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("inviteMessage"))
+func (m_ MatchRequest) InviteMessage() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("inviteMessage"))
 	return rv
 }
 
@@ -121,8 +148,8 @@ func (m_ MatchRequest) InviteMessage() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-func (m_ MatchRequest) SetInviteMessage(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), value)
+func (m_ MatchRequest) SetInviteMessage(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), objc.String(value))
 }
 
 // The maximum number of players that can join the match.
@@ -254,8 +281,8 @@ func (m_ MatchRequest) SetPlayerGroup(value int) {
 // A list of player identifiers for players to invite to the match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerstoinvite
-func (m_ MatchRequest) PlayersToInvite() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("playersToInvite"))
+func (m_ MatchRequest) PlayersToInvite() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("playersToInvite"))
 	return rv
 }
 
@@ -265,15 +292,15 @@ func (m_ MatchRequest) PlayersToInvite() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerstoinvite
-func (m_ MatchRequest) SetPlayersToInvite(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayersToInvite:"), value)
+func (m_ MatchRequest) SetPlayersToInvite(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayersToInvite:"), objc.String(value))
 }
 
 // The criteria for the local player that Game Center uses to find other players when using matchmaking rules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties
-func (m_ MatchRequest) Properties() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("properties"))
+func (m_ MatchRequest) Properties() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -283,15 +310,15 @@ func (m_ MatchRequest) Properties() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties
-func (m_ MatchRequest) SetProperties(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
+func (m_ MatchRequest) SetProperties(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
 }
 
 // The name of the queue that Game Center places the match request in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename
-func (m_ MatchRequest) QueueName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("queueName"))
+func (m_ MatchRequest) QueueName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("queueName"))
 	return rv
 }
 
@@ -301,8 +328,8 @@ func (m_ MatchRequest) QueueName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename
-func (m_ MatchRequest) SetQueueName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueName:"), value)
+func (m_ MatchRequest) SetQueueName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueName:"), objc.String(value))
 }
 
 // The players to invite to the match.

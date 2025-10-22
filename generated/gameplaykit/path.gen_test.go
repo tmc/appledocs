@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewPath
 
+// ExampleNewPathWithGraphNodesRadius demonstrates how to create a Path instance using NewPathWithGraphNodesRadius.
+// Initializes a path using the positions of the specified graph nodes.
+func ExampleNewPathWithGraphNodesRadius() {
+	_ = gameplaykit.NewPathWithGraphNodesRadius(
+		[]gameplaykit.GraphNode{}, // graphNodes []GraphNode
+		0.0, // radius float32
+	)
+	// Output:
+}

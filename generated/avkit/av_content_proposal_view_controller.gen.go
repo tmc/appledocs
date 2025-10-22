@@ -33,6 +33,12 @@ type _ContentProposalViewControllerClass struct {
 type IContentProposalViewController interface {
 	appkit.IViewController
 	DismissContentProposalForActionAnimatedCompletion(action IContentProposalAction, animated bool, block unsafe.Pointer)
+	ContentProposal() AVContentProposal
+	DateOfAutomaticAcceptance() foundation.NSDate
+	SetDateOfAutomaticAcceptance(value foundation.IDate)
+	PlayerLayoutGuide() appkit.LayoutGuide
+	PlayerViewController() AVPlayerViewController
+	PreferredPlayerViewFrame() coregraphics.CGRect
 }
 
 // A view controller that proposes content to watch next.

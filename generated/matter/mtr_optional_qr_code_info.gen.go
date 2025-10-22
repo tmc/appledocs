@@ -31,6 +31,16 @@ type _MTROptionalQRCodeInfoClass struct {
 // An interface definition for the [MTROptionalQRCodeInfo] class.
 type IMTROptionalQRCodeInfo interface {
 	objectivec.IObject
+	InfoType() foundation.Number
+	SetInfoType(value foundation.INumber)
+	IntegerValue() foundation.Number
+	SetIntegerValue(value foundation.INumber)
+	StringValue() string
+	SetStringValue(value string)
+	Tag() foundation.Number
+	SetTag(value foundation.INumber)
+	Type() MTROptionalQRCodeInfoType
+	SetType(value MTROptionalQRCodeInfoType)
 }
 
 //
@@ -108,8 +118,8 @@ func (m_ MTROptionalQRCodeInfo) SetIntegerValue(value foundation.INumber) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/stringvalue
-func (m_ MTROptionalQRCodeInfo) StringValue() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("stringValue"))
+func (m_ MTROptionalQRCodeInfo) StringValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -117,8 +127,8 @@ func (m_ MTROptionalQRCodeInfo) StringValue() appkit.string {
 // SetStringValue sets the value of the stringValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/stringvalue
-func (m_ MTROptionalQRCodeInfo) SetStringValue(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
+func (m_ MTROptionalQRCodeInfo) SetStringValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 //

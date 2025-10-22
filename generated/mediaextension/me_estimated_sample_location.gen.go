@@ -30,6 +30,10 @@ type _MEEstimatedSampleLocationClass struct {
 // An interface definition for the [MEEstimatedSampleLocation] class.
 type IMEEstimatedSampleLocation interface {
 	objectivec.IObject
+	ByteSource() MEByteSource
+	EstimatedSampleLocation() unsafe.Pointer
+	RefinementDataLocation() unsafe.Pointer
+	SetRefinementDataLocation(value unsafe.Pointer)
 }
 
 // An object that provides information about the estimated sample location with the media.

@@ -29,6 +29,18 @@ type _CPaddingLayerClass struct {
 // An interface definition for the [CPaddingLayer] class.
 type ICPaddingLayer interface {
 	ICLayer
+	ConstantValue() float32
+	SetConstantValue(value float32)
+	PaddingBottom() int
+	SetPaddingBottom(value int)
+	PaddingLeft() int
+	SetPaddingLeft(value int)
+	PaddingRight() int
+	SetPaddingRight(value int)
+	PaddingTop() int
+	SetPaddingTop(value int)
+	PaddingType() CPaddingType
+	SetPaddingType(value CPaddingType)
 }
 
 // A layer that pads a tensor with the padding sizes you specify.
@@ -82,8 +94,8 @@ func NewCPaddingLayer() CPaddingLayer {
 // The constant value you use if padding type is constant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
-func (c_ CPaddingLayer) ConstantValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("constantValue"))
+func (c_ CPaddingLayer) ConstantValue() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("constantValue"))
 	return rv
 }
 
@@ -93,7 +105,7 @@ func (c_ CPaddingLayer) ConstantValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
-func (c_ CPaddingLayer) SetConstantValue(value unsafe.Pointer) {
+func (c_ CPaddingLayer) SetConstantValue(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantValue:"), value)
 }
 

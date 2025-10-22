@@ -31,6 +31,16 @@ type _MTRNetworkCommissioningClusterReorderNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterReorderNetworkParams] class.
 type IMTRNetworkCommissioningClusterReorderNetworkParams interface {
 	objectivec.IObject
+	Breadcrumb() foundation.Number
+	SetBreadcrumb(value foundation.INumber)
+	NetworkID() foundation.Data
+	SetNetworkID(value foundation.IData)
+	NetworkIndex() foundation.Number
+	SetNetworkIndex(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

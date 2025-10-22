@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,9 @@ type _OSLogEntryClass struct {
 // An interface definition for the [OSLogEntry] class.
 type IOSLogEntry interface {
 	objectivec.IObject
+	ComposedMessage() string
+	Date() foundation.NSDate
+	StoreCategory() OSLogEntryStoreCategory
 }
 
 // A single entry from the unified logging system.
@@ -83,8 +85,8 @@ func NewOSLogEntry() OSLogEntry {
 // The fully formatted message for the entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/composedMessage
-func (o_ OSLogEntry) ComposedMessage() appkit.string {
-	rv := objc.Send[appkit.string](o_.ID, objc.Sel("composedMessage"))
+func (o_ OSLogEntry) ComposedMessage() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("composedMessage"))
 	return rv
 }
 

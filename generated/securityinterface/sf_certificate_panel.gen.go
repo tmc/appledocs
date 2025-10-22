@@ -39,9 +39,9 @@ type ISFCertificatePanel interface {
 	Policies() foundation.Array
 	RunModalForTrustShowGroup(trust unsafe.Pointer, showGroup bool) int
 	RunModalForCertificatesShowGroup(certificates objectivec.IObject, showGroup bool) int
-	SetAlternateButtonTitle(title appkit.string)
-	SetDefaultButtonTitle(title appkit.string)
-	SetHelpAnchor(anchor appkit.string)
+	SetAlternateButtonTitle(title string)
+	SetDefaultButtonTitle(title string)
+	SetHelpAnchor(anchor string)
 	SetPolicies(policies objectivec.IObject)
 	SetShowsHelp(showsHelp bool)
 	ShowsHelp() bool
@@ -162,22 +162,22 @@ func (s_ SFCertificatePanel) RunModalForCertificatesShowGroup(certificates objec
 // Customizes the title of the alternate button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setAlternateButtonTitle(_:)
-func (s_ SFCertificatePanel) SetAlternateButtonTitle(title appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), title)
+func (s_ SFCertificatePanel) SetAlternateButtonTitle(title string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), objc.String(title))
 }
 
 // Customizes the title of the default button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setDefaultButtonTitle(_:)
-func (s_ SFCertificatePanel) SetDefaultButtonTitle(title appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), title)
+func (s_ SFCertificatePanel) SetDefaultButtonTitle(title string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), objc.String(title))
 }
 
 // Sets the help anchor string for the sheet or modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setHelpAnchor(_:)
-func (s_ SFCertificatePanel) SetHelpAnchor(anchor appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), anchor)
+func (s_ SFCertificatePanel) SetHelpAnchor(anchor string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), objc.String(anchor))
 }
 
 // Specifies one or more policies that apply to the displayed certificates.

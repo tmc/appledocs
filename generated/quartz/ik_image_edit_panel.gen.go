@@ -30,6 +30,10 @@ type _IKImageEditPanelClass struct {
 // An interface definition for the [IKImageEditPanel] class.
 type IIKImageEditPanel interface {
 	appkit.IPanel
+	DataSource() unsafe.Pointer
+	SetDataSource(value unsafe.Pointer)
+	FilterArray() unsafe.Pointer
+	SetFilterArray(value unsafe.Pointer)
 }
 
 // The class provides a panel, that is, a utility window that floats on top of document windows, optimized for image editing.

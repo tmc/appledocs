@@ -31,6 +31,16 @@ type _WebExtensionControllerClass struct {
 type IWebExtensionController interface {
 	objectivec.IObject
 	UnloadExtensionContextError(extensionContext IWKWebExtensionContext, error_ unsafe.Pointer) bool
+	Configuration() unsafe.Pointer
+	SetConfiguration(value unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ExtensionContexts() WKWebExtensionContext
+	SetExtensionContexts(value IWKWebExtensionContext)
+	Extensions() WKWebExtension
+	SetExtensions(value IWKWebExtension)
+	WebExtensionController() WKWebExtensionController
+	SetWebExtensionController(value IWKWebExtensionController)
 }
 
 // An object that manages a set of loaded extension contexts.

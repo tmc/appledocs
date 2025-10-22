@@ -34,13 +34,13 @@ type _GLKTextureLoaderClass struct {
 type IGLKTextureLoader interface {
 	objectivec.IObject
 	CubeMapWithContentsOfURLOptionsQueueCompletionHandler(url foundation.IURL, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
-	CubeMapWithContentsOfFileOptionsQueueCompletionHandler(path appkit.string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
+	CubeMapWithContentsOfFileOptionsQueueCompletionHandler(path string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	CubeMapWithContentsOfFilesOptionsQueueCompletionHandler(paths []objc.ID, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithCGImageOptionsQueueCompletionHandler(cgImage coregraphics.CGImageRef, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithContentsOfURLOptionsQueueCompletionHandler(url foundation.IURL, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 	TextureWithContentsOfDataOptionsQueueCompletionHandler(data foundation.IData, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
-	TextureWithContentsOfFileOptionsQueueCompletionHandler(path appkit.string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
-	TextureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
+	TextureWithContentsOfFileOptionsQueueCompletionHandler(path string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
+	TextureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer)
 }
 
 // A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
@@ -127,8 +127,8 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url founda
 // Loads a cube map texture image from a single file and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOfFile:options:)
-func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path appkit.string, options unsafe.Pointer, outError unsafe.Pointer) GLKTextureInfo {
-	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFile:options:error:"), path, options, outError)
+func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path string, options unsafe.Pointer, outError unsafe.Pointer) GLKTextureInfo {
+	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFile:options:error:"), objc.String(path), options, outError)
 	return rv
 }
 
@@ -167,15 +167,15 @@ func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url founda
 // Loads a 2D texture image from a file and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOfFile:options:)
-func (gc _GLKTextureLoaderClass) TextureWithContentsOfFileOptionsError(path appkit.string, options unsafe.Pointer, outError unsafe.Pointer) GLKTextureInfo {
-	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfFile:options:error:"), path, options, outError)
+func (gc _GLKTextureLoaderClass) TextureWithContentsOfFileOptionsError(path string, options unsafe.Pointer, outError unsafe.Pointer) GLKTextureInfo {
+	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfFile:options:error:"), objc.String(path), options, outError)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withName:scaleFactor:bundle:options:)
-func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, outError unsafe.Pointer) GLKTextureInfo {
-	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithName:scaleFactor:bundle:options:error:"), name, scaleFactor, bundle, options, outError)
+func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, outError unsafe.Pointer) GLKTextureInfo {
+	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithName:scaleFactor:bundle:options:error:"), objc.String(name), scaleFactor, bundle, options, outError)
 	return rv
 }
 
@@ -189,8 +189,8 @@ func (g_ GLKTextureLoader) CubeMapWithContentsOfURLOptionsQueueCompletionHandler
 // Asynchronously loads a cube map texture image from a single file and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOfFile:options:queue:completionHandler:)
-func (g_ GLKTextureLoader) CubeMapWithContentsOfFileOptionsQueueCompletionHandler(path appkit.string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("cubeMapWithContentsOfFile:options:queue:completionHandler:"), path, options, queue, block)
+func (g_ GLKTextureLoader) CubeMapWithContentsOfFileOptionsQueueCompletionHandler(path string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("cubeMapWithContentsOfFile:options:queue:completionHandler:"), objc.String(path), options, queue, block)
 }
 
 // Asynchronously loads a cube map texture image from a series of files and creates a new texture from the data.
@@ -224,14 +224,14 @@ func (g_ GLKTextureLoader) TextureWithContentsOfDataOptionsQueueCompletionHandle
 // Asynchronously loads a 2D texture image from a file and creates a new texture from the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOfFile:options:queue:completionHandler:)
-func (g_ GLKTextureLoader) TextureWithContentsOfFileOptionsQueueCompletionHandler(path appkit.string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("textureWithContentsOfFile:options:queue:completionHandler:"), path, options, queue, block)
+func (g_ GLKTextureLoader) TextureWithContentsOfFileOptionsQueueCompletionHandler(path string, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("textureWithContentsOfFile:options:queue:completionHandler:"), objc.String(path), options, queue, block)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withName:scaleFactor:bundle:options:queue:completionHandler:)
-func (g_ GLKTextureLoader) TextureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name appkit.string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("textureWithName:scaleFactor:bundle:options:queue:completionHandler:"), name, scaleFactor, bundle, options, queue, block)
+func (g_ GLKTextureLoader) TextureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name string, scaleFactor float64, bundle foundation.IBundle, options unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("textureWithName:scaleFactor:bundle:options:queue:completionHandler:"), objc.String(name), scaleFactor, bundle, options, queue, block)
 }
 
 

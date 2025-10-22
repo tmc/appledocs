@@ -31,6 +31,14 @@ type _MTRGroupKeyManagementClusterGroupInfoMapStructClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterGroupInfoMapStruct] class.
 type IMTRGroupKeyManagementClusterGroupInfoMapStruct interface {
 	objectivec.IObject
+	Endpoints() unsafe.Pointer
+	SetEndpoints(value unsafe.Pointer)
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	GroupId() foundation.Number
+	SetGroupId(value foundation.INumber)
+	GroupName() string
+	SetGroupName(value string)
 }
 
 //
@@ -123,8 +131,8 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupId(value founda
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("groupName"))
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -132,8 +140,8 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() appkit.stri
 // SetGroupName sets the value of the groupName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), value)
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
 }
 
 

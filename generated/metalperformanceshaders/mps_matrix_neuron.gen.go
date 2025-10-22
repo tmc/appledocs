@@ -30,6 +30,12 @@ type _MatrixNeuronClass struct {
 // An interface definition for the [MatrixNeuron] class.
 type IMatrixNeuron interface {
 	objectivec.IObject
+	Alpha() float64
+	SetAlpha(value float64)
+	SourceInputFeatureChannels() int
+	SetSourceInputFeatureChannels(value int)
+	SourceNumberOfFeatureVectors() int
+	SetSourceNumberOfFeatureVectors(value int)
 }
 
 // A neuron activation kernel that operates on matrices.
@@ -80,8 +86,8 @@ func NewMatrixNeuron() MatrixNeuron {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
-func (m_ MatrixNeuron) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alpha"))
+func (m_ MatrixNeuron) Alpha() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("alpha"))
 	return rv
 }
 
@@ -89,7 +95,7 @@ func (m_ MatrixNeuron) Alpha() unsafe.Pointer {
 // SetAlpha sets the value of the alpha property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
-func (m_ MatrixNeuron) SetAlpha(value unsafe.Pointer) {
+func (m_ MatrixNeuron) SetAlpha(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlpha:"), value)
 }
 

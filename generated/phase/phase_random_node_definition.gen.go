@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,6 +31,8 @@ type _PHASERandomNodeDefinitionClass struct {
 type IPHASERandomNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
 	AddSubtreeWeight(subtree IPHASESoundEventNodeDefinition, weight foundation.INumber)
+	UniqueSelectionQueueLength() int
+	SetUniqueSelectionQueueLength(value int)
 }
 
 // A sound event node that invokes one of its child nodes at random.
@@ -89,9 +90,9 @@ func NewPHASERandomNodeDefinition() PHASERandomNodeDefinition {
 // Creates a random node with the name you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/init(identifier:)
-func NewPHASERandomNodeDefinitionWithIdentifier(identifier appkit.string) PHASERandomNodeDefinition {
+func NewPHASERandomNodeDefinitionWithIdentifier(identifier string) PHASERandomNodeDefinition {
 	instance := getPHASERandomNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASERandomNodeDefinition](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv := objc.Send[PHASERandomNodeDefinition](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
 	rv.Autorelease()
 	return rv
 }

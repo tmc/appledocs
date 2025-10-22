@@ -31,6 +31,8 @@ type _LPLinkViewClass struct {
 // An interface definition for the [LPLinkView] class.
 type ILPLinkView interface {
 	appkit.IView
+	Metadata() LPLinkMetadata
+	SetMetadata(value ILPLinkMetadata)
 }
 
 // A rich visual representation of a link.

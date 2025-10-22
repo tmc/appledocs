@@ -31,6 +31,10 @@ type _FSEntityIdentifierClass struct {
 // An interface definition for the [FSEntityIdentifier] class.
 type IFSEntityIdentifier interface {
 	objectivec.IObject
+	Qualifier() foundation.NSData
+	SetQualifier(value foundation.IData)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.IUUID)
 }
 
 // A base type that identifies containers and volumes.

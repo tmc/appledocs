@@ -29,6 +29,22 @@ type _CaptureDepthDataOutputClass struct {
 // An interface definition for the [CaptureDepthDataOutput] class.
 type ICaptureDepthDataOutput interface {
 	ICaptureOutput
+	AlwaysDiscardsLateDepthData() bool
+	SetAlwaysDiscardsLateDepthData(value bool)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	DelegateCallbackQueue() unsafe.Pointer
+	SetDelegateCallbackQueue(value unsafe.Pointer)
+	IsFilteringEnabled() bool
+	SetIsFilteringEnabled(value bool)
+	SupportedDepthDataFormats() unsafe.Pointer
+	SetSupportedDepthDataFormats(value unsafe.Pointer)
+	ActiveDepthDataFormat() unsafe.Pointer
+	SetActiveDepthDataFormat(value unsafe.Pointer)
+	ActiveFormat() unsafe.Pointer
+	SetActiveFormat(value unsafe.Pointer)
+	IsDepthDataDeliveryEnabled() bool
+	SetIsDepthDataDeliveryEnabled(value bool)
 }
 
 // A capture output that records scene depth information on compatible camera devices.

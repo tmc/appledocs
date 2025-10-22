@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,10 +31,11 @@ type _ModelClass struct {
 // An interface definition for the [Model] class.
 type IModel interface {
 	objectivec.IObject
-	PredictedLabelForString(string_ appkit.string) foundation.String
-	PredictedLabelHypothesesForStringMaximumCount(string_ appkit.string, maximumCount uint) unsafe.Pointer
+	PredictedLabelForString(string_ string) foundation.String
+	PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer
 	PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) []foundation.Dictionary
 	PredictedLabelsForTokens(tokens []string) []string
+	Configuration() NLModelConfiguration
 }
 
 // A custom model trained to classify or tag natural language text.
@@ -126,16 +126,16 @@ func (mc _ModelClass) ModelWithMLModelError(mlModel IModel, error_ unsafe.Pointe
 // Predicts a label for the given input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabel(for:)
-func (m_ Model) PredictedLabelForString(string_ appkit.string) foundation.String {
-	rv := objc.Send[foundation.String](m_.ID, objc.Sel("predictedLabelForString:"), string_)
+func (m_ Model) PredictedLabelForString(string_ string) foundation.String {
+	rv := objc.Send[foundation.String](m_.ID, objc.Sel("predictedLabelForString:"), objc.String(string_))
 	return rv
 }
 
 // Predicts multiple possible labels for the given input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForString:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ appkit.string, maximumCount uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForString:maximumCount:"), string_, maximumCount)
+func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForString:maximumCount:"), objc.String(string_), maximumCount)
 	return rv
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _MTRChannelClusterSeriesInfoStructClass struct {
 // An interface definition for the [MTRChannelClusterSeriesInfoStruct] class.
 type IMTRChannelClusterSeriesInfoStruct interface {
 	objectivec.IObject
+	Episode() string
+	SetEpisode(value string)
+	Season() string
+	SetSeason(value string)
 }
 
 //
@@ -78,8 +81,8 @@ func NewMTRChannelClusterSeriesInfoStruct() MTRChannelClusterSeriesInfoStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/episode
-func (m_ MTRChannelClusterSeriesInfoStruct) Episode() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("episode"))
+func (m_ MTRChannelClusterSeriesInfoStruct) Episode() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("episode"))
 	return rv
 }
 
@@ -87,14 +90,14 @@ func (m_ MTRChannelClusterSeriesInfoStruct) Episode() appkit.string {
 // SetEpisode sets the value of the episode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/episode
-func (m_ MTRChannelClusterSeriesInfoStruct) SetEpisode(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEpisode:"), value)
+func (m_ MTRChannelClusterSeriesInfoStruct) SetEpisode(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEpisode:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/season
-func (m_ MTRChannelClusterSeriesInfoStruct) Season() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("season"))
+func (m_ MTRChannelClusterSeriesInfoStruct) Season() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("season"))
 	return rv
 }
 
@@ -102,8 +105,8 @@ func (m_ MTRChannelClusterSeriesInfoStruct) Season() appkit.string {
 // SetSeason sets the value of the season property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/season
-func (m_ MTRChannelClusterSeriesInfoStruct) SetSeason(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSeason:"), value)
+func (m_ MTRChannelClusterSeriesInfoStruct) SetSeason(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSeason:"), objc.String(value))
 }
 
 

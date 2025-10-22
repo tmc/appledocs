@@ -30,6 +30,7 @@ type _NullClass struct {
 // An interface definition for the [Null] class.
 type INull interface {
 	objectivec.IObject
+	NSNotFound() int
 }
 
 // A singleton object used to represent null values in collection objects that don’t allow values.

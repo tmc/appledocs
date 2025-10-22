@@ -31,6 +31,14 @@ type _MTRNetworkCommissioningClusterConnectNetworkResponseParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterConnectNetworkResponseParams] class.
 type IMTRNetworkCommissioningClusterConnectNetworkResponseParams interface {
 	objectivec.IObject
+	DebugText() string
+	SetDebugText(value string)
+	ErrorValue() foundation.Number
+	SetErrorValue(value foundation.INumber)
+	NetworkingStatus() foundation.Number
+	SetNetworkingStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //
@@ -78,8 +86,8 @@ func NewMTRNetworkCommissioningClusterConnectNetworkResponseParams() MTRNetworkC
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +95,8 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText()
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetDebugText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
+func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetDebugText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
 }
 
 //

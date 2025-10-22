@@ -29,6 +29,10 @@ type _INSearchForBillsIntentResponseClass struct {
 // An interface definition for the [INSearchForBillsIntentResponse] class.
 type IINSearchForBillsIntentResponse interface {
 	IINIntentResponse
+	Bills() unsafe.Pointer
+	SetBills(value unsafe.Pointer)
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // Your app’s response to a request to a search for bills.

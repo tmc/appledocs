@@ -45,6 +45,9 @@ type IBluetoothSDPServiceRecord interface {
 	MatchesUUID16(uuid16 IBluetoothSDPUUID16) bool
 	MatchesUUIDArray(uuidArray objectivec.IObject) bool
 	RemoveServiceRecord() unsafe.Pointer
+	Attributes() objc.ID
+	Device() IOBluetoothDevice
+	SortedAttributes() objc.ID
 }
 
 // An instance of this class represents a single SDP service record.

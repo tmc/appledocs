@@ -29,6 +29,8 @@ type _NDArrayStridedSliceClass struct {
 // An interface definition for the [NDArrayStridedSlice] class.
 type INDArrayStridedSlice interface {
 	INDArrayUnaryKernel
+	Strides() unsafe.Pointer
+	SetStrides(value unsafe.Pointer)
 }
 
 //

@@ -30,6 +30,12 @@ type _TurnBasedMatchmakerViewControllerClass struct {
 // An interface definition for the [TurnBasedMatchmakerViewController] class.
 type ITurnBasedMatchmakerViewController interface {
 	appkit.IViewController
+	ShowExistingMatches() bool
+	SetShowExistingMatches(value bool)
+	TurnBasedMatchmakerDelegate() objc.ID
+	SetTurnBasedMatchmakerDelegate(value objc.ID)
+	MatchmakingMode() unsafe.Pointer
+	SetMatchmakingMode(value unsafe.Pointer)
 }
 
 // An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.

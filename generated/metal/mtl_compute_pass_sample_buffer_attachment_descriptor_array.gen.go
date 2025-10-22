@@ -31,6 +31,8 @@ type _ComputePassSampleBufferAttachmentDescriptorArrayClass struct {
 type IComputePassSampleBufferAttachmentDescriptorArray interface {
 	objectivec.IObject
 	ObjectAtIndexedSubscript(attachmentIndex uint) ComputePassSampleBufferAttachmentDescriptor
+	CounterSets() unsafe.Pointer
+	SetCounterSets(value unsafe.Pointer)
 }
 
 // A container that stores an array of sample buffer attachments for a compute pass.

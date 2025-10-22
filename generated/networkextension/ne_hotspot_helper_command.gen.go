@@ -30,6 +30,14 @@ type _NEHotspotHelperCommandClass struct {
 // An interface definition for the [NEHotspotHelperCommand] class.
 type INEHotspotHelperCommand interface {
 	objectivec.IObject
+	CommandType() unsafe.Pointer
+	SetCommandType(value unsafe.Pointer)
+	Interface() unsafe.Pointer
+	SetInterface(value unsafe.Pointer)
+	Network() NEHotspotNetwork
+	SetNetwork(value INEHotspotNetwork)
+	NetworkList() NEHotspotNetwork
+	SetNetworkList(value INEHotspotNetwork)
 }
 
 // A command for the hotspot helper to handle.

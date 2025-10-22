@@ -30,6 +30,12 @@ type _PDFAnnotationMarkupClass struct {
 // An interface definition for the [PDFAnnotationMarkup] class.
 type IPDFAnnotationMarkup interface {
 	IPDFAnnotation
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	LineWidth() float64
+	SetLineWidth(value float64)
+	Style() PDFBorderStyle
+	SetStyle(value PDFBorderStyle)
 }
 
 // A object appears as highlighting, underlining, or a strikethrough style applied to the text of a document.

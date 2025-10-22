@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,27 @@ type _TurnBasedExchangeClass struct {
 // An interface definition for the [TurnBasedExchange] class.
 type ITurnBasedExchange interface {
 	objectivec.IObject
+	ExchangeID() string
+	CompletionDate() foundation.Date
+	SetCompletionDate(value foundation.IDate)
+	Data() foundation.Data
+	SetData(value foundation.IData)
+	Message() string
+	SetMessage(value string)
+	Recipients() GKTurnBasedParticipant
+	SetRecipients(value IGKTurnBasedParticipant)
+	Replies() GKTurnBasedExchangeReply
+	SetReplies(value IGKTurnBasedExchangeReply)
+	SendDate() foundation.Date
+	SetSendDate(value foundation.IDate)
+	Sender() GKTurnBasedParticipant
+	SetSender(value IGKTurnBasedParticipant)
+	Status() TurnBasedExchangeStatus
+	SetStatus(value TurnBasedExchangeStatus)
+	TimeoutDate() foundation.Date
+	SetTimeoutDate(value foundation.IDate)
+	CompletedExchanges() GKTurnBasedExchange
+	SetCompletedExchanges(value IGKTurnBasedExchange)
 }
 
 // Exchange request information that participants send in a turn-based match.
@@ -85,8 +105,8 @@ func NewTurnBasedExchange() TurnBasedExchange {
 // The identifier for the exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange/exchangeID
-func (t_ TurnBasedExchange) ExchangeID() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("exchangeID"))
+func (t_ TurnBasedExchange) ExchangeID() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("exchangeID"))
 	return rv
 }
 
@@ -129,8 +149,8 @@ func (t_ TurnBasedExchange) SetData(value foundation.IData) {
 // A localized message from the sender to the recipients of an exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
-func (t_ TurnBasedExchange) Message() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("message"))
+func (t_ TurnBasedExchange) Message() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -140,8 +160,8 @@ func (t_ TurnBasedExchange) Message() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
-func (t_ TurnBasedExchange) SetMessage(value appkit.string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), value)
+func (t_ TurnBasedExchange) SetMessage(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 
 // The participants who receives the exchange request.

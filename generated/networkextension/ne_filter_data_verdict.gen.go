@@ -29,6 +29,8 @@ type _NEFilterDataVerdictClass struct {
 // An interface definition for the [NEFilterDataVerdict] class.
 type INEFilterDataVerdict interface {
 	INEFilterVerdict
+	StatisticsReportFrequency() unsafe.Pointer
+	SetStatisticsReportFrequency(value unsafe.Pointer)
 }
 
 // The result from a filter data provder for subsequent chunks of data on a flow.

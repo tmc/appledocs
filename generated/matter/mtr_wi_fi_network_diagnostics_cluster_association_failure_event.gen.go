@@ -31,6 +31,12 @@ type _MTRWiFiNetworkDiagnosticsClusterAssociationFailureEventClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent] class.
 type IMTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent interface {
 	objectivec.IObject
+	AssociationFailure() foundation.Number
+	SetAssociationFailure(value foundation.INumber)
+	AssociationFailureCause() foundation.Number
+	SetAssociationFailureCause(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,8 @@ type _MKUserTrackingButtonClass struct {
 // An interface definition for the [MKUserTrackingButton] class.
 type IMKUserTrackingButton interface {
 	appkit.IView
+	MapView() MKMapView
+	SetMapView(value IMKMapView)
 }
 
 // A specialized button that allows the user to toggle whether the map tracks to the heading the user is facing.

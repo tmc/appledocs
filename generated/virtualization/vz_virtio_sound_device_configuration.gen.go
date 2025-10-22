@@ -29,6 +29,10 @@ type _VZVirtioSoundDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceConfiguration] class.
 type IVZVirtioSoundDeviceConfiguration interface {
 	IVZAudioDeviceConfiguration
+	Streams() []VZVirtioSoundDeviceStreamConfiguration
+	SetStreams(value []VZVirtioSoundDeviceStreamConfiguration)
+	AudioDevices() VZAudioDeviceConfiguration
+	SetAudioDevices(value IVZAudioDeviceConfiguration)
 }
 
 // An object that defines a Virtio sound device configuration.

@@ -30,6 +30,8 @@ type _CaptureAutoExposureBracketedStillImageSettingsClass struct {
 // An interface definition for the [CaptureAutoExposureBracketedStillImageSettings] class.
 type ICaptureAutoExposureBracketedStillImageSettings interface {
 	objectivec.IObject
+	ExposureTargetBias() float32
+	SetExposureTargetBias(value float32)
 }
 
 // A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.

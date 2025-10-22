@@ -31,6 +31,8 @@ type _InvocationClass struct {
 type IInvocation interface {
 	objectivec.IObject
 	RetainArguments()
+	Target() objc.ID
+	SetTarget(value objc.ID)
 }
 
 // An Objective-C message rendered as an object.

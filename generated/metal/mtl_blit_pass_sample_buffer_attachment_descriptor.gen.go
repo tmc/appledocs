@@ -30,6 +30,12 @@ type _BlitPassSampleBufferAttachmentDescriptorClass struct {
 // An interface definition for the [BlitPassSampleBufferAttachmentDescriptor] class.
 type IBlitPassSampleBufferAttachmentDescriptor interface {
 	objectivec.IObject
+	StartOfEncoderSampleIndex() uint
+	SetStartOfEncoderSampleIndex(value uint)
+	EndOfEncoderSampleIndex() int
+	SetEndOfEncoderSampleIndex(value int)
+	SampleBuffer() unsafe.Pointer
+	SetSampleBuffer(value unsafe.Pointer)
 }
 
 // A configuration that instructs the GPU where to store counter data from the beginning and end of a blit pass.

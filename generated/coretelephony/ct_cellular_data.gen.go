@@ -30,6 +30,10 @@ type _CellularDataClass struct {
 // An interface definition for the [CellularData] class.
 type ICellularData interface {
 	objectivec.IObject
+	CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer
+	SetCellularDataRestrictionDidUpdateNotifier(value unsafe.Pointer)
+	RestrictedState() CellularDataRestrictedState
+	SetRestrictedState(value CellularDataRestrictedState)
 }
 
 // An object indicating whether the app can access cellular data.

@@ -32,18 +32,18 @@ type _SFChooseIdentityPanelClass struct {
 // An interface definition for the [SFChooseIdentityPanel] class.
 type ISFChooseIdentityPanel interface {
 	appkit.IPanel
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objectivec.IObject, message appkit.string)
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objectivec.IObject, message string)
 	Domain() foundation.String
 	HelpAnchor() foundation.String
 	Identity() unsafe.Pointer
 	InformativeText() foundation.String
 	Policies() foundation.Array
-	RunModalForIdentitiesMessage(identities objectivec.IObject, message appkit.string) int
-	SetAlternateButtonTitle(title appkit.string)
-	SetDefaultButtonTitle(title appkit.string)
-	SetDomain(domainString appkit.string)
-	SetHelpAnchor(anchor appkit.string)
-	SetInformativeText(informativeText appkit.string)
+	RunModalForIdentitiesMessage(identities objectivec.IObject, message string) int
+	SetAlternateButtonTitle(title string)
+	SetDefaultButtonTitle(title string)
+	SetDomain(domainString string)
+	SetHelpAnchor(anchor string)
+	SetInformativeText(informativeText string)
 	SetPolicies(policies objectivec.IObject)
 	SetShowsHelp(showsHelp bool)
 	ShowsHelp() bool
@@ -110,8 +110,8 @@ func (sc _SFChooseIdentityPanelClass) SharedChooseIdentityPanel() SFChooseIdenti
 // Displays a list of identities in a modal sheet from which the user can select an identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/beginSheet(for:modalDelegate:didEnd:contextInfo:identities:message:)
-func (s_ SFChooseIdentityPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objectivec.IObject, message appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:identities:message:"), docWindow, delegate, didEndSelector, contextInfo, identities, message)
+func (s_ SFChooseIdentityPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objectivec.IObject, message string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:identities:message:"), docWindow, delegate, didEndSelector, contextInfo, identities, objc.String(message))
 }
 
 // Returns the domain that will be associated with the chosen identity.
@@ -157,44 +157,44 @@ func (s_ SFChooseIdentityPanel) Policies() foundation.Array {
 // Displays a list of identities in a modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/runModal(forIdentities:message:)
-func (s_ SFChooseIdentityPanel) RunModalForIdentitiesMessage(identities objectivec.IObject, message appkit.string) int {
-	rv := objc.Send[int](s_.ID, objc.Sel("runModalForIdentities:message:"), identities, message)
+func (s_ SFChooseIdentityPanel) RunModalForIdentitiesMessage(identities objectivec.IObject, message string) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("runModalForIdentities:message:"), identities, objc.String(message))
 	return rv
 }
 
 // Customizes the title of the alternate button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setAlternateButtonTitle(_:)
-func (s_ SFChooseIdentityPanel) SetAlternateButtonTitle(title appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), title)
+func (s_ SFChooseIdentityPanel) SetAlternateButtonTitle(title string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), objc.String(title))
 }
 
 // Customizes the title of the default button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setDefaultButtonTitle(_:)
-func (s_ SFChooseIdentityPanel) SetDefaultButtonTitle(title appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), title)
+func (s_ SFChooseIdentityPanel) SetDefaultButtonTitle(title string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), objc.String(title))
 }
 
 // Sets an optional domain in which the identity is to be used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setDomain(_:)
-func (s_ SFChooseIdentityPanel) SetDomain(domainString appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDomain:"), domainString)
+func (s_ SFChooseIdentityPanel) SetDomain(domainString string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDomain:"), objc.String(domainString))
 }
 
 // Sets the help anchor string for the sheet or modal panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setHelpAnchor(_:)
-func (s_ SFChooseIdentityPanel) SetHelpAnchor(anchor appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), anchor)
+func (s_ SFChooseIdentityPanel) SetHelpAnchor(anchor string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), objc.String(anchor))
 }
 
 // Sets the optional informative text displayed in the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setInformativeText(_:)
-func (s_ SFChooseIdentityPanel) SetInformativeText(informativeText appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInformativeText:"), informativeText)
+func (s_ SFChooseIdentityPanel) SetInformativeText(informativeText string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInformativeText:"), objc.String(informativeText))
 }
 
 // Specifies one or more policies that apply to the displayed certificates.

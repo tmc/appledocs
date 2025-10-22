@@ -30,6 +30,26 @@ type _RemoteCommandCenterClass struct {
 // An interface definition for the [RemoteCommandCenter] class.
 type IRemoteCommandCenter interface {
 	objectivec.IObject
+	BookmarkCommand() MPFeedbackCommand
+	ChangePlaybackPositionCommand() MPChangePlaybackPositionCommand
+	ChangePlaybackRateCommand() MPChangePlaybackRateCommand
+	ChangeRepeatModeCommand() MPChangeRepeatModeCommand
+	ChangeShuffleModeCommand() MPChangeShuffleModeCommand
+	DisableLanguageOptionCommand() MPRemoteCommand
+	DislikeCommand() MPFeedbackCommand
+	EnableLanguageOptionCommand() MPRemoteCommand
+	LikeCommand() MPFeedbackCommand
+	NextTrackCommand() MPRemoteCommand
+	PauseCommand() MPRemoteCommand
+	PlayCommand() MPRemoteCommand
+	PreviousTrackCommand() MPRemoteCommand
+	RatingCommand() MPRatingCommand
+	SeekBackwardCommand() MPRemoteCommand
+	SeekForwardCommand() MPRemoteCommand
+	SkipBackwardCommand() MPSkipIntervalCommand
+	SkipForwardCommand() MPSkipIntervalCommand
+	StopCommand() MPRemoteCommand
+	TogglePlayPauseCommand() MPRemoteCommand
 }
 
 // An object that responds to remote control events sent by external accessories and system controls.

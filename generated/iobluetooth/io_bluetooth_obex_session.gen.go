@@ -38,7 +38,7 @@ type IBluetoothOBEXSession interface {
 	OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
 	RestartTransmission()
 	SendBufferTroughChannel() unsafe.Pointer
-	SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength unsafe.Pointer) OBEXError
+	SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength Iuintptr) OBEXError
 	SetOBEXSessionOpenConnectionCallbackRefCon(inCallback IBluetoothOBEXSessionOpenConnectionCallback, inUserRefCon unsafe.Pointer)
 	SetOpenTransportConnectionAsyncSelectorTargetRefCon(inSelector objc.SEL, inSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer)
 }
@@ -218,7 +218,7 @@ func (b_ BluetoothOBEXSession) SendBufferTroughChannel() unsafe.Pointer {
 // An OBEXSession override. When this is called by the session baseclass, we will send the data we are given over our transport connection. If none is open, we could try to open it, or just return an error. In our case, it will be sent over the RFCOMM channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/sendData(toTransport:dataLength:)
-func (b_ BluetoothOBEXSession) SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength unsafe.Pointer) OBEXError {
+func (b_ BluetoothOBEXSession) SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength Iuintptr) OBEXError {
 	rv := objc.Send[OBEXError](b_.ID, objc.Sel("sendDataToTransport:dataLength:"), inDataToSend, inDataLength)
 	return rv
 }

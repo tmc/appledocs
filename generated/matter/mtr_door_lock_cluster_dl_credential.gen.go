@@ -30,6 +30,10 @@ type _MTRDoorLockClusterDlCredentialClass struct {
 // An interface definition for the [MTRDoorLockClusterDlCredential] class.
 type IMTRDoorLockClusterDlCredential interface {
 	IMTRDoorLockClusterCredentialStruct
+	CredentialIndex() foundation.Number
+	SetCredentialIndex(value foundation.INumber)
+	CredentialType() foundation.Number
+	SetCredentialType(value foundation.INumber)
 }
 
 //

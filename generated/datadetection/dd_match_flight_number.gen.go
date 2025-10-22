@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DDMatchFlightNumber] class.
@@ -30,6 +29,8 @@ type _DDMatchFlightNumberClass struct {
 // An interface definition for the [DDMatchFlightNumber] class.
 type IDDMatchFlightNumber interface {
 	IDDMatch
+	Airline() string
+	FlightNumber() string
 }
 
 // An object that contains a flight number that the data detection system matches.
@@ -85,16 +86,16 @@ func NewDDMatchFlightNumber() DDMatchFlightNumber {
 // The name of an airline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/airline
-func (d_ DDMatchFlightNumber) Airline() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("airline"))
+func (d_ DDMatchFlightNumber) Airline() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("airline"))
 	return rv
 }
 
 // A string that represents a flight number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/flightNumber
-func (d_ DDMatchFlightNumber) FlightNumber() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("flightNumber"))
+func (d_ DDMatchFlightNumber) FlightNumber() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("flightNumber"))
 	return rv
 }
 

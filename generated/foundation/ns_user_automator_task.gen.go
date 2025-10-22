@@ -31,6 +31,8 @@ type _UserAutomatorTaskClass struct {
 type IUserAutomatorTask interface {
 	IUserScriptTask
 	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler unsafe.Pointer)
+	Variables() string
+	SetVariables(value string)
 }
 
 // An object that executes Automator workflows.

@@ -41,7 +41,19 @@ type IVolumeView interface {
 	SetVolumeThumbImageForState(image appkit.IImage, state unsafe.Pointer)
 	VolumeSliderRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect
 	VolumeThumbImageForState(state unsafe.Pointer) appkit.Image
-	VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value unsafe.Pointer) coregraphics.CGRect
+	VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value float32) coregraphics.CGRect
+	WirelessRoutesAvailable() bool
+	WirelessRouteActive() bool
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
+	ShowsVolumeSlider() bool
+	SetShowsVolumeSlider(value bool)
+	VolumeWarningSliderImage() appkit.Image
+	SetVolumeWarningSliderImage(value appkit.IImage)
+	AreWirelessRoutesAvailable() bool
+	SetAreWirelessRoutesAvailable(value bool)
+	IsWirelessRouteActive() bool
+	SetIsWirelessRouteActive(value bool)
 }
 
 // A slider control for setting the system audio output volume, and a button for choosing the audio output route.
@@ -173,7 +185,7 @@ func (v_ VolumeView) VolumeThumbImageForState(state unsafe.Pointer) appkit.Image
 // Returns the drawing rectangle for the volume slider’s thumb image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeThumbRect(forBounds:volumeSliderRect:value:)
-func (v_ VolumeView) VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value unsafe.Pointer) coregraphics.CGRect {
+func (v_ VolumeView) VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value float32) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("volumeThumbRectForBounds:volumeSliderRect:value:"), bounds, rect, value)
 	return rv
 }

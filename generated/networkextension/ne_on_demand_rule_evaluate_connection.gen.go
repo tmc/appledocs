@@ -29,6 +29,8 @@ type _NEOnDemandRuleEvaluateConnectionClass struct {
 // An interface definition for the [NEOnDemandRuleEvaluateConnection] class.
 type INEOnDemandRuleEvaluateConnection interface {
 	INEOnDemandRule
+	ConnectionRules() unsafe.Pointer
+	SetConnectionRules(value unsafe.Pointer)
 }
 
 // A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.

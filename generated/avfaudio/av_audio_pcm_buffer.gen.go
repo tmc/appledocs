@@ -29,6 +29,13 @@ type _AudioPCMBufferClass struct {
 // An interface definition for the [AudioPCMBuffer] class.
 type IAudioPCMBuffer interface {
 	IAudioBuffer
+	FloatChannelData() unsafe.Pointer
+	FrameCapacity() AudioFrameCount
+	FrameLength() AudioFrameCount
+	SetFrameLength(value IAudioFrameCount)
+	Int16ChannelData() unsafe.Pointer
+	Int32ChannelData() unsafe.Pointer
+	Stride() uint
 }
 
 // An object that represents an audio buffer you use with PCM audio formats.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -33,7 +32,7 @@ type _FileProviderExtensionClass struct {
 // An interface definition for the [FileProviderExtension] class.
 type IFileProviderExtension interface {
 	objectivec.IObject
-	CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName appkit.string, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName string, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	DeleteItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	EnumeratorForContainerItemIdentifierError(containerItemIdentifier IFileProviderItemIdentifier, error_ unsafe.Pointer) objc.ID
 	FetchThumbnailsForItemIdentifiersRequestedSizePerThumbnailCompletionHandlerCompletionHandler(itemIdentifiers []string, size coregraphics.CGSize, perThumbnailCompletionHandler unsafe.Pointer, completionHandler unsafe.Pointer) foundation.Progress
@@ -42,8 +41,8 @@ type IFileProviderExtension interface {
 	ItemChangedAtURL(url foundation.IURL)
 	PersistentIdentifierForItemAtURL(url foundation.IURL) FileProviderItemIdentifier
 	ProvidePlaceholderAtURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer)
-	RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, itemName appkit.string, completionHandler unsafe.Pointer)
-	ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, newName appkit.string, completionHandler unsafe.Pointer)
+	RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, itemName string, completionHandler unsafe.Pointer)
+	ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, newName string, completionHandler unsafe.Pointer)
 	SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.INumber, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	SetLastUsedDateForItemIdentifierCompletionHandler(lastUsedDate foundation.IDate, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	SetTagDataForItemIdentifierCompletionHandler(tagData foundation.IData, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
@@ -53,6 +52,9 @@ type IFileProviderExtension interface {
 	TrashItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	UntrashItemWithIdentifierToParentItemIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	URLForItemWithPersistentIdentifier(identifier IFileProviderItemIdentifier) foundation.URL
+	DocumentStorageURL() foundation.URL
+	Domain() NSFileProviderDomain
+	ProviderIdentifier() string
 }
 
 // The principal class for the nonreplicated File Provider extension.
@@ -122,8 +124,8 @@ func (fc _FileProviderExtensionClass) WritePlaceholderAtURLWithMetadataError(pla
 // Creates a directory with the given name inside the given parent directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/createDirectory(withName:inParentItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName appkit.string, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("createDirectoryWithName:inParentItemIdentifier:completionHandler:"), directoryName, parentItemIdentifier, completionHandler)
+func (f_ FileProviderExtension) CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName string, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("createDirectoryWithName:inParentItemIdentifier:completionHandler:"), objc.String(directoryName), parentItemIdentifier, completionHandler)
 }
 
 // Permanently deletes an item from the trash.
@@ -189,15 +191,15 @@ func (f_ FileProviderExtension) ProvidePlaceholderAtURLCompletionHandler(url fou
 // Renames a document or directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/renameItem(withIdentifier:toName:completionHandler:)
-func (f_ FileProviderExtension) RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, itemName appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("renameItemWithIdentifier:toName:completionHandler:"), itemIdentifier, itemName, completionHandler)
+func (f_ FileProviderExtension) RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, itemName string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("renameItemWithIdentifier:toName:completionHandler:"), itemIdentifier, objc.String(itemName), completionHandler)
 }
 
 // Moves the specified item into the given parent directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/reparentItem(withIdentifier:toParentItemWithIdentifier:newName:completionHandler:)
-func (f_ FileProviderExtension) ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, newName appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:"), itemIdentifier, parentItemIdentifier, newName, completionHandler)
+func (f_ FileProviderExtension) ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, newName string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:"), itemIdentifier, parentItemIdentifier, objc.String(newName), completionHandler)
 }
 
 // Marks a directory as a favorite and sets its relative order in the Favorites list.
@@ -284,8 +286,8 @@ func (f_ FileProviderExtension) Domain() NSFileProviderDomain {
 // A purpose identifier for coordinated reads and writes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/providerIdentifier
-func (f_ FileProviderExtension) ProviderIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("providerIdentifier"))
+func (f_ FileProviderExtension) ProviderIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 

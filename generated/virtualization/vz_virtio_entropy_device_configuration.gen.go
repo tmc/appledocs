@@ -29,6 +29,8 @@ type _VZVirtioEntropyDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioEntropyDeviceConfiguration] class.
 type IVZVirtioEntropyDeviceConfiguration interface {
 	IVZEntropyDeviceConfiguration
+	EntropyDevices() VZEntropyDeviceConfiguration
+	SetEntropyDevices(value IVZEntropyDeviceConfiguration)
 }
 
 // A source of entropy for the guest’s random number generator.

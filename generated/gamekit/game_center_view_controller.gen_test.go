@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = gamekit.NewGameCenterViewController
 
+// ExampleNewGameCenterViewControllerWithLeaderboardSetID demonstrates how to create a GameCenterViewController instance using NewGameCenterViewControllerWithLeaderboardSetID.
+// Creates a view controller that presents a leaderboard set.
+func ExampleNewGameCenterViewControllerWithLeaderboardSetID() {
+	_ = gamekit.NewGameCenterViewControllerWithLeaderboardSetID(
+		"leaderboardSetID", // leaderboardSetID string
+	)
+	// Output:
+}
 // ExampleNewGameCenterViewControllerWithPlayer demonstrates how to create a GameCenterViewController instance using NewGameCenterViewControllerWithPlayer.
 // Creates a view controller that presents a player’s Game Center profile.
 func ExampleNewGameCenterViewControllerWithPlayer() {

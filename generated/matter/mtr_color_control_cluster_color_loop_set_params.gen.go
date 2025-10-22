@@ -31,6 +31,24 @@ type _MTRColorControlClusterColorLoopSetParamsClass struct {
 // An interface definition for the [MTRColorControlClusterColorLoopSetParams] class.
 type IMTRColorControlClusterColorLoopSetParams interface {
 	objectivec.IObject
+	Action() foundation.Number
+	SetAction(value foundation.INumber)
+	Direction() foundation.Number
+	SetDirection(value foundation.INumber)
+	OptionsMask() foundation.Number
+	SetOptionsMask(value foundation.INumber)
+	OptionsOverride() foundation.Number
+	SetOptionsOverride(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	StartHue() foundation.Number
+	SetStartHue(value foundation.INumber)
+	Time() foundation.Number
+	SetTime(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UpdateFlags() foundation.Number
+	SetUpdateFlags(value foundation.INumber)
 }
 
 //

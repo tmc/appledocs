@@ -29,6 +29,14 @@ type _VZMacPlatformConfigurationClass struct {
 // An interface definition for the [VZMacPlatformConfiguration] class.
 type IVZMacPlatformConfiguration interface {
 	IVZPlatformConfiguration
+	AuxiliaryStorage() VZMacAuxiliaryStorage
+	SetAuxiliaryStorage(value IVZMacAuxiliaryStorage)
+	HardwareModel() VZMacHardwareModel
+	SetHardwareModel(value IVZMacHardwareModel)
+	MachineIdentifier() VZMacMachineIdentifier
+	SetMachineIdentifier(value IVZMacMachineIdentifier)
+	MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements
+	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
 }
 
 // The platform configuration for booting macOS on Apple silicon.

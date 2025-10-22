@@ -31,6 +31,12 @@ type _MTRDishwasherAlarmClusterModifyEnabledAlarmsParamsClass struct {
 // An interface definition for the [MTRDishwasherAlarmClusterModifyEnabledAlarmsParams] class.
 type IMTRDishwasherAlarmClusterModifyEnabledAlarmsParams interface {
 	objectivec.IObject
+	Mask() foundation.Number
+	SetMask(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

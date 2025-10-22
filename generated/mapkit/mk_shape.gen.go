@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,10 @@ type _MKShapeClass struct {
 // An interface definition for the [MKShape] class.
 type IMKShape interface {
 	objectivec.IObject
+	Subtitle() string
+	SetSubtitle(value string)
+	Title() string
+	SetTitle(value string)
 }
 
 // An abstract class that defines the basic properties for all shape-based overlay objects.
@@ -84,8 +87,8 @@ func NewMKShape() MKShape {
 // The subtitle of the shape annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/subtitle
-func (m_ MKShape) Subtitle() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subtitle"))
+func (m_ MKShape) Subtitle() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -95,15 +98,15 @@ func (m_ MKShape) Subtitle() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/subtitle
-func (m_ MKShape) SetSubtitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
+func (m_ MKShape) SetSubtitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
 // The title of the shape annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/title
-func (m_ MKShape) Title() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
+func (m_ MKShape) Title() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -113,8 +116,8 @@ func (m_ MKShape) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKShape/title
-func (m_ MKShape) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+func (m_ MKShape) SetTitle(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

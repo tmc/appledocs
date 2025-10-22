@@ -30,6 +30,39 @@ type _MTL4RenderPipelineDescriptorClass struct {
 type IMTL4RenderPipelineDescriptor interface {
 	IMTL4PipelineDescriptor
 	Reset()
+	AlphaToCoverageState() unsafe.Pointer
+	SetAlphaToCoverageState(value unsafe.Pointer)
+	AlphaToOneState() MTL4AlphaToOneState
+	SetAlphaToOneState(value MTL4AlphaToOneState)
+	ColorAttachmentMappingState() unsafe.Pointer
+	SetColorAttachmentMappingState(value unsafe.Pointer)
+	ColorAttachments() MTL4RenderPipelineColorAttachmentDescriptorArray
+	FragmentFunctionDescriptor() unsafe.Pointer
+	SetFragmentFunctionDescriptor(value unsafe.Pointer)
+	FragmentStaticLinkingDescriptor() unsafe.Pointer
+	SetFragmentStaticLinkingDescriptor(value unsafe.Pointer)
+	InputPrimitiveTopology() PrimitiveTopologyClass
+	SetInputPrimitiveTopology(value IPrimitiveTopologyClass)
+	RasterizationEnabled() bool
+	SetRasterizationEnabled(value bool)
+	MaxVertexAmplificationCount() uint
+	SetMaxVertexAmplificationCount(value uint)
+	RasterSampleCount() uint
+	SetRasterSampleCount(value uint)
+	SupportFragmentBinaryLinking() bool
+	SetSupportFragmentBinaryLinking(value bool)
+	SupportIndirectCommandBuffers() unsafe.Pointer
+	SetSupportIndirectCommandBuffers(value unsafe.Pointer)
+	SupportVertexBinaryLinking() bool
+	SetSupportVertexBinaryLinking(value bool)
+	VertexDescriptor() MTLVertexDescriptor
+	SetVertexDescriptor(value IMTLVertexDescriptor)
+	VertexFunctionDescriptor() unsafe.Pointer
+	SetVertexFunctionDescriptor(value unsafe.Pointer)
+	VertexStaticLinkingDescriptor() unsafe.Pointer
+	SetVertexStaticLinkingDescriptor(value unsafe.Pointer)
+	IsRasterizationEnabled() bool
+	SetIsRasterizationEnabled(value bool)
 }
 
 // Groups together properties to create a render pipeline state object.

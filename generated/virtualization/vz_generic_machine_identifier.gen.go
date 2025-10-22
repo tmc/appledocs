@@ -31,6 +31,11 @@ type _VZGenericMachineIdentifierClass struct {
 // An interface definition for the [VZGenericMachineIdentifier] class.
 type IVZGenericMachineIdentifier interface {
 	objectivec.IObject
+	DataRepresentation() foundation.NSData
+	IsNestedVirtualizationEnabled() bool
+	SetIsNestedVirtualizationEnabled(value bool)
+	MachineIdentifier() VZGenericMachineIdentifier
+	SetMachineIdentifier(value IVZGenericMachineIdentifier)
 }
 
 // An object that represents a unique identifier for a virtual machine.

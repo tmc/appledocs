@@ -30,6 +30,22 @@ type _RecognizeTextRequestClass struct {
 type IRecognizeTextRequest interface {
 	IImageBasedRequest
 	SupportedRecognitionLanguagesAndReturnError(error_ unsafe.Pointer) []string
+	AutomaticallyDetectsLanguage() bool
+	SetAutomaticallyDetectsLanguage(value bool)
+	CustomWords() []string
+	SetCustomWords(value []string)
+	RecognitionLanguages() []string
+	SetRecognitionLanguages(value []string)
+	RecognitionLevel() RequestTextRecognitionLevel
+	SetRecognitionLevel(value RequestTextRecognitionLevel)
+	Results() []RecognizedTextObservation
+	UsesLanguageCorrection() bool
+	SetUsesLanguageCorrection(value bool)
+	MinimumTextHeight() float32
+	SetMinimumTextHeight(value float32)
+	VNRecognizeTextRequestRevision1() int
+	VNRecognizeTextRequestRevision2() int
+	VNRecognizeTextRequestRevision3() int
 }
 
 // An image-analysis request that finds and recognizes text in an image.
@@ -219,8 +235,8 @@ func (r_ RecognizeTextRequest) SetUsesLanguageCorrection(value bool) {
 // The minimum height, relative to the image height, of the text to recognize.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequest/minimumtextheight
-func (r_ RecognizeTextRequest) MinimumTextHeight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("minimumTextHeight"))
+func (r_ RecognizeTextRequest) MinimumTextHeight() float32 {
+	rv := objc.Send[float32](r_.ID, objc.Sel("minimumTextHeight"))
 	return rv
 }
 
@@ -230,7 +246,7 @@ func (r_ RecognizeTextRequest) MinimumTextHeight() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizetextrequest/minimumtextheight
-func (r_ RecognizeTextRequest) SetMinimumTextHeight(value unsafe.Pointer) {
+func (r_ RecognizeTextRequest) SetMinimumTextHeight(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinimumTextHeight:"), value)
 }
 

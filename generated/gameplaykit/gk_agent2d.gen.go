@@ -31,6 +31,11 @@ type _Agent2DClass struct {
 type IAgent2D interface {
 	IAgent
 	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
+	Position() unsafe.Pointer
+	SetPosition(value unsafe.Pointer)
+	Rotation() float32
+	SetRotation(value float32)
+	Velocity() unsafe.Pointer
 }
 
 // An agent that operates in a two-dimensional space.
@@ -111,8 +116,8 @@ func (a_ Agent2D) SetPosition(value unsafe.Pointer) {
 // The rotation of the agent around the z-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
-func (a_ Agent2D) Rotation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rotation"))
+func (a_ Agent2D) Rotation() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("rotation"))
 	return rv
 }
 
@@ -122,7 +127,7 @@ func (a_ Agent2D) Rotation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
-func (a_ Agent2D) SetRotation(value unsafe.Pointer) {
+func (a_ Agent2D) SetRotation(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
 

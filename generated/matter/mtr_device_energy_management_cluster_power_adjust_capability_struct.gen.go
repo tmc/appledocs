@@ -31,6 +31,10 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct interface {
 	objectivec.IObject
+	Cause() foundation.Number
+	SetCause(value foundation.INumber)
+	PowerAdjustCapability() objc.ID
+	SetPowerAdjustCapability(value objc.ID)
 }
 
 //

@@ -29,6 +29,12 @@ type _EnergyFormatterClass struct {
 // An interface definition for the [EnergyFormatter] class.
 type IEnergyFormatter interface {
 	IFormatter
+	IsForFoodEnergyUse() bool
+	SetIsForFoodEnergyUse(value bool)
+	NumberFormatter() NSNumberFormatter
+	SetNumberFormatter(value INumberFormatter)
+	UnitStyle() unsafe.Pointer
+	SetUnitStyle(value unsafe.Pointer)
 }
 
 // A formatter that provides localized descriptions of energy values.

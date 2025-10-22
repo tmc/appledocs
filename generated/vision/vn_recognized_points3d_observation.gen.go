@@ -30,6 +30,10 @@ type _RecognizedPoints3DObservationClass struct {
 type IRecognizedPoints3DObservation interface {
 	IObservation
 	RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer
+	AvailableGroupKeys() RecognizedPointGroupKey
+	SetAvailableGroupKeys(value IRecognizedPointGroupKey)
+	AvailableKeys() RecognizedPointKey
+	SetAvailableKeys(value IRecognizedPointKey)
 }
 
 // An observation that provides the 3D points for a request.

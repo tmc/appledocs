@@ -29,6 +29,8 @@ type _MXMemoryMetricClass struct {
 // An interface definition for the [MXMemoryMetric] class.
 type IMXMemoryMetric interface {
 	IMXMetric
+	AverageSuspendedMemory() unsafe.Pointer
+	PeakMemoryUsage() unsafe.Pointer
 }
 
 // An object representing metrics about the app’s memory use.

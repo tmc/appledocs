@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,6 +32,10 @@ type _ModelCollectionEntryClass struct {
 type IModelCollectionEntry interface {
 	objectivec.IObject
 	IsEqualToModelCollectionEntry(entry IMLModelCollectionEntry) bool
+	ModelIdentifier() string
+	ModelURL() foundation.URL
+	Entries() MLModelCollectionEntry
+	SetEntries(value IMLModelCollectionEntry)
 }
 
 // A model and its identifier within a model collection.
@@ -92,8 +95,8 @@ func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry IMLModelColle
 // The name of the model, which is unique to the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("modelIdentifier"))
+func (m_ ModelCollectionEntry) ModelIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
 

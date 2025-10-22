@@ -31,6 +31,12 @@ type _MTRServiceAreaClusterSkipAreaParamsClass struct {
 // An interface definition for the [MTRServiceAreaClusterSkipAreaParams] class.
 type IMTRServiceAreaClusterSkipAreaParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	SkippedArea() foundation.Number
+	SetSkippedArea(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

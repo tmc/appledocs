@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,13 @@ type _PHAssetResourceClass struct {
 // An interface definition for the [PHAssetResource] class.
 type IPHAssetResource interface {
 	objectivec.IObject
+	AssetLocalIdentifier() string
+	ContentType() unsafe.Pointer
+	OriginalFilename() string
+	PixelHeight() int
+	PixelWidth() int
+	Type() PHAssetResourceType
+	UniformTypeIdentifier() string
 }
 
 // An underlying data resource associated with a photo, video, or Live Photo asset in the Photos library.
@@ -100,8 +106,8 @@ func (pc _PHAssetResourceClass) AssetResourcesForLivePhoto(livePhoto IPHLivePhot
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/assetLocalIdentifier
-func (p_ PHAssetResource) AssetLocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetLocalIdentifier"))
+func (p_ PHAssetResource) AssetLocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetLocalIdentifier"))
 	return rv
 }
 
@@ -116,8 +122,8 @@ func (p_ PHAssetResource) ContentType() unsafe.Pointer {
 // The original filename of the asset resource from when it was created or imported.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/originalFilename
-func (p_ PHAssetResource) OriginalFilename() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("originalFilename"))
+func (p_ PHAssetResource) OriginalFilename() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("originalFilename"))
 	return rv
 }
 
@@ -148,8 +154,8 @@ func (p_ PHAssetResource) Type() PHAssetResourceType {
 // The uniform type identifier for the asset resource’s image or video data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/uniformTypeIdentifier
-func (p_ PHAssetResource) UniformTypeIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHAssetResource) UniformTypeIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 

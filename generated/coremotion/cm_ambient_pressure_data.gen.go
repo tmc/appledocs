@@ -29,6 +29,8 @@ type _AmbientPressureDataClass struct {
 // An interface definition for the [AmbientPressureData] class.
 type IAmbientPressureData interface {
 	ILogItem
+	Pressure() unsafe.Pointer
+	Temperature() unsafe.Pointer
 }
 
 // A measurement of the ambient pressure and temperature.

@@ -30,6 +30,20 @@ type _NEVPNIKEv2SecurityAssociationParametersClass struct {
 // An interface definition for the [NEVPNIKEv2SecurityAssociationParameters] class.
 type INEVPNIKEv2SecurityAssociationParameters interface {
 	objectivec.IObject
+	DiffieHellmanGroup() unsafe.Pointer
+	SetDiffieHellmanGroup(value unsafe.Pointer)
+	EncryptionAlgorithm() unsafe.Pointer
+	SetEncryptionAlgorithm(value unsafe.Pointer)
+	IntegrityAlgorithm() unsafe.Pointer
+	SetIntegrityAlgorithm(value unsafe.Pointer)
+	LifetimeMinutes() unsafe.Pointer
+	SetLifetimeMinutes(value unsafe.Pointer)
+	PostQuantumKeyExchangeMethods() unsafe.Pointer
+	SetPostQuantumKeyExchangeMethods(value unsafe.Pointer)
+	ChildSecurityAssociationParameters() NEVPNIKEv2SecurityAssociationParameters
+	SetChildSecurityAssociationParameters(value INEVPNIKEv2SecurityAssociationParameters)
+	IkeSecurityAssociationParameters() NEVPNIKEv2SecurityAssociationParameters
+	SetIkeSecurityAssociationParameters(value INEVPNIKEv2SecurityAssociationParameters)
 }
 
 // Parameters for an IKEv2 Security Association.

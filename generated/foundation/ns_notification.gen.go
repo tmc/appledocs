@@ -30,6 +30,9 @@ type _NotificationClass struct {
 // An interface definition for the [Notification] class.
 type INotification interface {
 	objectivec.IObject
+	Name() NotificationName
+	GetObject() objc.ID
+	UserInfo() objc.ID
 }
 
 // A container for information broadcast through a notification center to all registered observers.

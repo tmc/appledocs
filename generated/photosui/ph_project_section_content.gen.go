@@ -32,6 +32,15 @@ type _PHProjectSectionContentClass struct {
 // An interface definition for the [PHProjectSectionContent] class.
 type IPHProjectSectionContent interface {
 	objectivec.IObject
+	AspectRatio() float64
+	BackgroundColor() appkit.Color
+	CloudAssetIdentifiers() []photos.PHCloudIdentifier
+	Elements() []PHProjectElement
+	NumberOfColumns() int
+	SectionContents() PHProjectSectionContent
+	SetSectionContents(value IPHProjectSectionContent)
+	Title() string
+	SetTitle(value string)
 }
 
 // An object containing section elements and layout information for a single level of curation.
@@ -85,8 +94,8 @@ func NewPHProjectSectionContent() PHProjectSectionContent {
 // The aspect ratio of the full content layout, defined as width over height.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSectionContent/aspectRatio
-func (p_ PHProjectSectionContent) AspectRatio() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("aspectRatio"))
+func (p_ PHProjectSectionContent) AspectRatio() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("aspectRatio"))
 	return rv
 }
 
@@ -143,8 +152,8 @@ func (p_ PHProjectSectionContent) SetSectionContents(value IPHProjectSectionCont
 // The optional section title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
-func (p_ PHProjectSectionContent) Title() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
+func (p_ PHProjectSectionContent) Title() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -154,8 +163,8 @@ func (p_ PHProjectSectionContent) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
-func (p_ PHProjectSectionContent) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+func (p_ PHProjectSectionContent) SetTitle(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

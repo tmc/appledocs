@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -42,6 +41,42 @@ type ISContext interface {
 	RemoveNavigationChildContext(child ICLSContext)
 	ResetProgressReportingCapabilities()
 	ResignActive()
+	CurrentActivity() CLSActivity
+	CustomTypeName() string
+	SetCustomTypeName(value string)
+	DisplayOrder() int
+	SetDisplayOrder(value int)
+	Identifier() string
+	IdentifierPath() []string
+	Active() bool
+	Assignable() bool
+	SetAssignable(value bool)
+	NavigationChildContexts() []SContext
+	Parent() CLSContext
+	ProgressReportingCapabilities() unsafe.Pointer
+	SuggestedAge() foundation.Range
+	SetSuggestedAge(value foundation.IRange)
+	SuggestedCompletionTime() foundation.Range
+	SetSuggestedCompletionTime(value foundation.IRange)
+	Summary() string
+	SetSummary(value string)
+	Thumbnail() coregraphics.CGImageRef
+	SetThumbnail(value coregraphics.CGImageRef)
+	Title() string
+	SetTitle(value string)
+	Topic() SContextTopic
+	SetTopic(value ISContextTopic)
+	Type() SContextType
+	UniversalLinkURL() foundation.URL
+	SetUniversalLinkURL(value foundation.IURL)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsAssignable() bool
+	SetIsAssignable(value bool)
+	ContextIdentifierPath() string
+	SetContextIdentifierPath(value string)
+	IsClassKitDeepLink() bool
+	SetIsClassKitDeepLink(value bool)
 }
 
 // An area of your app that represents an assignable task, like a quiz or a chapter.
@@ -99,9 +134,9 @@ func NewSContext() SContext {
 // Initializes a new context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/init(type:identifier:title:)
-func NewSContextWithTypeIdentifierTitle(type_ SContextType, identifier appkit.string, title appkit.string) SContext {
+func NewSContextWithTypeIdentifierTitle(type_ SContextType, identifier string, title string) SContext {
 	instance := getSContextClass().Alloc()
-	rv := objc.Send[SContext](instance.ID, objc.Sel("initWithType:identifier:title:"), type_, identifier, title)
+	rv := objc.Send[SContext](instance.ID, objc.Sel("initWithType:identifier:title:"), type_, objc.String(identifier), objc.String(title))
 	rv.Autorelease()
 	return rv
 }
@@ -189,8 +224,8 @@ func (s_ SContext) CurrentActivity() CLSActivity {
 // An optional name that the system presents to the user if you choose the custom context type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/customTypeName
-func (s_ SContext) CustomTypeName() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("customTypeName"))
+func (s_ SContext) CustomTypeName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("customTypeName"))
 	return rv
 }
 
@@ -200,8 +235,8 @@ func (s_ SContext) CustomTypeName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/customTypeName
-func (s_ SContext) SetCustomTypeName(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomTypeName:"), value)
+func (s_ SContext) SetCustomTypeName(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomTypeName:"), objc.String(value))
 }
 
 // The position of a context relative to its siblings.
@@ -225,8 +260,8 @@ func (s_ SContext) SetDisplayOrder(value int) {
 // A string that uniquely identifies a context among its siblings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/identifier
-func (s_ SContext) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
+func (s_ SContext) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -327,8 +362,8 @@ func (s_ SContext) SetSuggestedCompletionTime(value foundation.IRange) {
 // An optional, user-visible description of the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
-func (s_ SContext) Summary() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("summary"))
+func (s_ SContext) Summary() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("summary"))
 	return rv
 }
 
@@ -338,8 +373,8 @@ func (s_ SContext) Summary() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
-func (s_ SContext) SetSummary(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSummary:"), value)
+func (s_ SContext) SetSummary(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSummary:"), objc.String(value))
 }
 
 // An optional thumbnail image associated with the context.
@@ -363,8 +398,8 @@ func (s_ SContext) SetThumbnail(value coregraphics.CGImageRef) {
 // The name of the context as it appears to users.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
-func (s_ SContext) Title() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("title"))
+func (s_ SContext) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -374,8 +409,8 @@ func (s_ SContext) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
-func (s_ SContext) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
+func (s_ SContext) SetTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The area of study to which a context relates.
@@ -461,8 +496,8 @@ func (s_ SContext) SetIsAssignable(value bool) {
 // The identifier path associated with a user activity generated by an app that adopts ClassKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
-func (s_ SContext) ContextIdentifierPath() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("contextIdentifierPath"))
+func (s_ SContext) ContextIdentifierPath() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("contextIdentifierPath"))
 	return rv
 }
 
@@ -472,8 +507,8 @@ func (s_ SContext) ContextIdentifierPath() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
-func (s_ SContext) SetContextIdentifierPath(value appkit.string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContextIdentifierPath:"), value)
+func (s_ SContext) SetContextIdentifierPath(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContextIdentifierPath:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether a user activity represents a ClassKit context.

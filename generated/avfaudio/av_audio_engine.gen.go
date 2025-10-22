@@ -33,6 +33,29 @@ type IAudioEngine interface {
 	Prepare()
 	StartAndReturnError(outError unsafe.Pointer) bool
 	Stop()
+	InputNode() AVAudioInputNode
+	MainMixerNode() AVAudioMixerNode
+	MusicSequence() unsafe.Pointer
+	SetMusicSequence(value unsafe.Pointer)
+	OutputNode() AVAudioOutputNode
+	AttachedNodes() AVAudioNode
+	SetAttachedNodes(value IAVAudioNode)
+	IsAutoShutdownEnabled() bool
+	SetIsAutoShutdownEnabled(value bool)
+	IsInManualRenderingMode() bool
+	SetIsInManualRenderingMode(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
+	ManualRenderingBlock() unsafe.Pointer
+	SetManualRenderingBlock(value unsafe.Pointer)
+	ManualRenderingFormat() AVAudioFormat
+	SetManualRenderingFormat(value AVAudioFormat)
+	ManualRenderingMaximumFrameCount() AudioFrameCount
+	SetManualRenderingMaximumFrameCount(value IAudioFrameCount)
+	ManualRenderingMode() unsafe.Pointer
+	SetManualRenderingMode(value unsafe.Pointer)
+	ManualRenderingSampleTime() AudioFramePosition
+	SetManualRenderingSampleTime(value AudioFramePosition)
 }
 
 // An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.

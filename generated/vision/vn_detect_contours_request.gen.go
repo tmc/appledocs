@@ -30,6 +30,18 @@ type _DetectContoursRequestClass struct {
 // An interface definition for the [DetectContoursRequest] class.
 type IDetectContoursRequest interface {
 	IImageBasedRequest
+	Results() []ContoursObservation
+	VNDetectContourRequestRevision1() int
+	ContrastAdjustment() float32
+	SetContrastAdjustment(value float32)
+	ContrastPivot() foundation.Number
+	SetContrastPivot(value foundation.INumber)
+	DetectDarkOnLight() bool
+	SetDetectDarkOnLight(value bool)
+	DetectsDarkOnLight() bool
+	SetDetectsDarkOnLight(value bool)
+	MaximumImageDimension() int
+	SetMaximumImageDimension(value int)
 }
 
 // A request that detects the contours of the edges of an image.
@@ -99,8 +111,8 @@ func (d_ DetectContoursRequest) VNDetectContourRequestRevision1() int {
 // The amount by which to adjust the image contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastadjustment
-func (d_ DetectContoursRequest) ContrastAdjustment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contrastAdjustment"))
+func (d_ DetectContoursRequest) ContrastAdjustment() float32 {
+	rv := objc.Send[float32](d_.ID, objc.Sel("contrastAdjustment"))
 	return rv
 }
 
@@ -110,7 +122,7 @@ func (d_ DetectContoursRequest) ContrastAdjustment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastadjustment
-func (d_ DetectContoursRequest) SetContrastAdjustment(value unsafe.Pointer) {
+func (d_ DetectContoursRequest) SetContrastAdjustment(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastAdjustment:"), value)
 }
 

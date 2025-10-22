@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,19 @@ type _PasskeyAssertionCredentialClass struct {
 // An interface definition for the [PasskeyAssertionCredential] class.
 type IPasskeyAssertionCredential interface {
 	objectivec.IObject
+	Signature() foundation.NSData
+	AuthenticatorData() foundation.Data
+	SetAuthenticatorData(value foundation.IData)
+	ClientDataHash() foundation.Data
+	SetClientDataHash(value foundation.IData)
+	CredentialID() foundation.Data
+	SetCredentialID(value foundation.IData)
+	ExtensionOutput() PasskeyAssertionCredentialExtensionOutput
+	SetExtensionOutput(value IPasskeyAssertionCredentialExtensionOutput)
+	RelyingParty() string
+	SetRelyingParty(value string)
+	UserHandle() foundation.Data
+	SetUserHandle(value foundation.IData)
 }
 
 // A passkey assertion credential.
@@ -84,9 +96,9 @@ func NewPasskeyAssertionCredential() PasskeyAssertionCredential {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredential/initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:
-func NewPasskeyAssertionCredentialWithUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle foundation.IData, relyingParty appkit.string, signature foundation.IData, clientDataHash foundation.IData, authenticatorData foundation.IData, credentialID foundation.IData, extensionOutput IASPasskeyAssertionCredentialExtensionOutput) PasskeyAssertionCredential {
+func NewPasskeyAssertionCredentialWithUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle foundation.IData, relyingParty string, signature foundation.IData, clientDataHash foundation.IData, authenticatorData foundation.IData, credentialID foundation.IData, extensionOutput IASPasskeyAssertionCredentialExtensionOutput) PasskeyAssertionCredential {
 	instance := getPasskeyAssertionCredentialClass().Alloc()
-	rv := objc.Send[PasskeyAssertionCredential](instance.ID, objc.Sel("initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:"), userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID, extensionOutput)
+	rv := objc.Send[PasskeyAssertionCredential](instance.ID, objc.Sel("initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:"), userHandle, objc.String(relyingParty), signature, clientDataHash, authenticatorData, credentialID, extensionOutput)
 	rv.Autorelease()
 	return rv
 }
@@ -172,8 +184,8 @@ func (p_ PasskeyAssertionCredential) SetExtensionOutput(value IPasskeyAssertionC
 // The relying party associated with this passkey.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-func (p_ PasskeyAssertionCredential) RelyingParty() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("relyingParty"))
+func (p_ PasskeyAssertionCredential) RelyingParty() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
 	return rv
 }
 
@@ -183,8 +195,8 @@ func (p_ PasskeyAssertionCredential) RelyingParty() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-func (p_ PasskeyAssertionCredential) SetRelyingParty(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), value)
+func (p_ PasskeyAssertionCredential) SetRelyingParty(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }
 
 // The user handle of this passkey.

@@ -30,6 +30,22 @@ type _FetchRequestExpressionClass struct {
 // An interface definition for the [FetchRequestExpression] class.
 type IFetchRequestExpression interface {
 	IExpression
+	ContextExpression() FetchRequestExpression
+	CountOnlyRequest() bool
+	RequestExpression() FetchRequestExpression
+	AffectedStores() NSPersistentStore
+	SetAffectedStores(value IPersistentStore)
+	FetchBatchSize() int
+	SetFetchBatchSize(value int)
+	FetchLimit() int
+	SetFetchLimit(value int)
+	FetchOffset() int
+	SetFetchOffset(value int)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	IsCountOnlyRequest() bool
+	SetIsCountOnlyRequest(value bool)
+	NSFetchRequestExpressionType() unsafe.Pointer
 }
 
 // An expression that evaluates the result of a fetch request on a managed object context.
@@ -85,16 +101,16 @@ func NewFetchRequestExpression() FetchRequestExpression {
 // Returns an expression which will evaluate to the result of executing a fetch request on a context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/expression(forFetch:context:countOnly:)
-func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch IExpression, context IExpression, countFlag bool) Expression {
-	rv := objc.Send[Expression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
+func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch IFetchRequestExpression, context IFetchRequestExpression, countFlag bool) FetchRequestExpression {
+	rv := objc.Send[FetchRequestExpression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
 	return rv
 }
 
 // The expression for the receiver’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/contextExpression
-func (f_ FetchRequestExpression) ContextExpression() Expression {
-	rv := objc.Send[Expression](f_.ID, objc.Sel("contextExpression"))
+func (f_ FetchRequestExpression) ContextExpression() FetchRequestExpression {
+	rv := objc.Send[FetchRequestExpression](f_.ID, objc.Sel("contextExpression"))
 	return rv
 }
 
@@ -109,8 +125,8 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 // The expression for the receiver’s fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/requestExpression
-func (f_ FetchRequestExpression) RequestExpression() Expression {
-	rv := objc.Send[Expression](f_.ID, objc.Sel("requestExpression"))
+func (f_ FetchRequestExpression) RequestExpression() FetchRequestExpression {
+	rv := objc.Send[FetchRequestExpression](f_.ID, objc.Sel("requestExpression"))
 	return rv
 }
 

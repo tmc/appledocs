@@ -29,6 +29,7 @@ type _MXAppResponsivenessMetricClass struct {
 // An interface definition for the [MXAppResponsivenessMetric] class.
 type IMXAppResponsivenessMetric interface {
 	IMXMetric
+	HistogrammedApplicationHangTime() unsafe.Pointer
 }
 
 // An object representing metrics about the responsiveness of the app to user interaction.

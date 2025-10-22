@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,9 @@ type _PHASEMixerClass struct {
 // An interface definition for the [PHASEMixer] class.
 type IPHASEMixer interface {
 	objectivec.IObject
+	Gain() float64
+	GainMetaParameter() PHASEMetaParameter
+	Identifier() string
 }
 
 // An object that combines multiple audio signals into a single signal.
@@ -84,8 +86,8 @@ func NewPHASEMixer() PHASEMixer {
 // The mixer’s volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/gain
-func (p_ PHASEMixer) Gain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gain"))
+func (p_ PHASEMixer) Gain() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
@@ -100,8 +102,8 @@ func (p_ PHASEMixer) GainMetaParameter() PHASEMetaParameter {
 // A unique name for the mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/identifier
-func (p_ PHASEMixer) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEMixer) Identifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

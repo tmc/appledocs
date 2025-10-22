@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,16 @@ type _MIDINetworkHostClass struct {
 // An interface definition for the [MIDINetworkHost] class.
 type IMIDINetworkHost interface {
 	objectivec.IObject
+	Port() uint
+	MIDINetworkBonjourServiceType() string
+	Address() string
+	SetAddress(value string)
+	Name() string
+	SetName(value string)
+	NetServiceDomain() string
+	SetNetServiceDomain(value string)
+	NetServiceName() string
+	SetNetServiceName(value string)
 }
 
 // An object that represents the host’s network address.
@@ -84,8 +93,8 @@ func NewMIDINetworkHost() MIDINetworkHost {
 // Creates a host with the specified name, net service name, and domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netServiceName:netServiceDomain:)
-func NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(name appkit.string, netServiceName appkit.string, netServiceDomain appkit.string) MIDINetworkHost {
-	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), name, netServiceName, netServiceDomain)
+func NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(name string, netServiceName string, netServiceDomain string) MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), objc.String(name), objc.String(netServiceName), objc.String(netServiceDomain))
 	return rv
 }
 
@@ -93,8 +102,8 @@ func NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(name appkit.string
 // Creates a host with the specified name, net service name, and domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netServiceName:netServiceDomain:)
-func (mc _MIDINetworkHostClass) HostWithNameNetServiceNameNetServiceDomain(name appkit.string, netServiceName appkit.string, netServiceDomain appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), name, netServiceName, netServiceDomain)
+func (mc _MIDINetworkHostClass) HostWithNameNetServiceNameNetServiceDomain(name string, netServiceName string, netServiceDomain string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), objc.String(name), objc.String(netServiceName), objc.String(netServiceDomain))
 	return rv
 }
 
@@ -109,16 +118,16 @@ func (m_ MIDINetworkHost) Port() uint {
 // The Bonjour service type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkbonjourservicetype
-func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MIDINetworkBonjourServiceType"))
+func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkBonjourServiceType"))
 	return rv
 }
 
 // The host address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/address
-func (m_ MIDINetworkHost) Address() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("address"))
+func (m_ MIDINetworkHost) Address() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("address"))
 	return rv
 }
 
@@ -128,15 +137,15 @@ func (m_ MIDINetworkHost) Address() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/address
-func (m_ MIDINetworkHost) SetAddress(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAddress:"), value)
+func (m_ MIDINetworkHost) SetAddress(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAddress:"), objc.String(value))
 }
 
 // The host name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/name
-func (m_ MIDINetworkHost) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MIDINetworkHost) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -146,15 +155,15 @@ func (m_ MIDINetworkHost) Name() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/name
-func (m_ MIDINetworkHost) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MIDINetworkHost) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 // The net service domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicedomain
-func (m_ MIDINetworkHost) NetServiceDomain() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("netServiceDomain"))
+func (m_ MIDINetworkHost) NetServiceDomain() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("netServiceDomain"))
 	return rv
 }
 
@@ -164,15 +173,15 @@ func (m_ MIDINetworkHost) NetServiceDomain() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicedomain
-func (m_ MIDINetworkHost) SetNetServiceDomain(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceDomain:"), value)
+func (m_ MIDINetworkHost) SetNetServiceDomain(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceDomain:"), objc.String(value))
 }
 
 // The net service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicename
-func (m_ MIDINetworkHost) NetServiceName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("netServiceName"))
+func (m_ MIDINetworkHost) NetServiceName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("netServiceName"))
 	return rv
 }
 
@@ -182,8 +191,8 @@ func (m_ MIDINetworkHost) NetServiceName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/netservicename
-func (m_ MIDINetworkHost) SetNetServiceName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceName:"), value)
+func (m_ MIDINetworkHost) SetNetServiceName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceName:"), objc.String(value))
 }
 
 

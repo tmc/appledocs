@@ -31,6 +31,10 @@ type _MTREthernetNetworkDiagnosticsClusterResetCountsParamsClass struct {
 // An interface definition for the [MTREthernetNetworkDiagnosticsClusterResetCountsParams] class.
 type IMTREthernetNetworkDiagnosticsClusterResetCountsParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

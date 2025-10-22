@@ -32,6 +32,15 @@ type _DownloadClass struct {
 type IDownload interface {
 	objectivec.IObject
 	Cancel(completionHandler unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	WebView() WKWebView
+	IsUserInitiated() bool
+	SetIsUserInitiated(value bool)
+	OriginalRequest() foundation.URLRequest
+	SetOriginalRequest(value foundation.IURLRequest)
+	OriginatingFrame() WKFrameInfo
+	SetOriginatingFrame(value IWKFrameInfo)
 }
 
 // An object that represents the download of a web resource.

@@ -33,6 +33,8 @@ type _MediaItemArtworkClass struct {
 type IMediaItemArtwork interface {
 	objectivec.IObject
 	ImageWithSize(size coregraphics.CGSize) appkit.Image
+	Bounds() coregraphics.CGRect
+	ImageCropRect() coregraphics.CGRect
 }
 
 // A graphical image, such as music album cover art, associated with a media item.

@@ -31,6 +31,8 @@ type _CKShareBlockedIdentityClass struct {
 // An interface definition for the [CKShareBlockedIdentity] class.
 type ICKShareBlockedIdentity interface {
 	objectivec.IObject
+	Contact() contacts.CNContact
+	UserIdentity() CKUserIdentity
 }
 
 //

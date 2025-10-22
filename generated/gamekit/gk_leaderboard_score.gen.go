@@ -30,6 +30,14 @@ type _LeaderboardScoreClass struct {
 // An interface definition for the [LeaderboardScore] class.
 type ILeaderboardScore interface {
 	objectivec.IObject
+	Context() int
+	SetContext(value int)
+	LeaderboardID() string
+	SetLeaderboardID(value string)
+	Player() GKPlayer
+	SetPlayer(value IGKPlayer)
+	Value() int
+	SetValue(value int)
 }
 
 // Information about a player’s score on a leaderboard.
@@ -101,8 +109,8 @@ func (l_ LeaderboardScore) SetContext(value int) {
 // The ID that Game Center uses for the leaderboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) LeaderboardID() appkit.string {
-	rv := objc.Send[appkit.string](l_.ID, objc.Sel("leaderboardID"))
+func (l_ LeaderboardScore) LeaderboardID() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardID"))
 	return rv
 }
 
@@ -112,8 +120,8 @@ func (l_ LeaderboardScore) LeaderboardID() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) SetLeaderboardID(value appkit.string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), value)
+func (l_ LeaderboardScore) SetLeaderboardID(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), objc.String(value))
 }
 
 // The player who earns the score.

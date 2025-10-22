@@ -30,6 +30,8 @@ type _MESampleLocationClass struct {
 // An interface definition for the [MESampleLocation] class.
 type IMESampleLocation interface {
 	objectivec.IObject
+	ByteSource() MEByteSource
+	SampleLocation() unsafe.Pointer
 }
 
 // An object that provides information about the sample location with the media.

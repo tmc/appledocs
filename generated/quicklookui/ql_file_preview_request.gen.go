@@ -31,6 +31,7 @@ type _FilePreviewRequestClass struct {
 // An interface definition for the [FilePreviewRequest] class.
 type IFilePreviewRequest interface {
 	objectivec.IObject
+	FileURL() foundation.URL
 }
 
 // A Quick Look preview request that indicates the content to preview.

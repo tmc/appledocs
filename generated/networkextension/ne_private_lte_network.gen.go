@@ -30,6 +30,16 @@ type _NEPrivateLTENetworkClass struct {
 // An interface definition for the [NEPrivateLTENetwork] class.
 type INEPrivateLTENetwork interface {
 	objectivec.IObject
+	MatchPrivateLTENetworks() NEPrivateLTENetwork
+	SetMatchPrivateLTENetworks(value INEPrivateLTENetwork)
+	MatchSSIDs() string
+	SetMatchSSIDs(value string)
+	MobileCountryCode() string
+	SetMobileCountryCode(value string)
+	MobileNetworkCode() string
+	SetMobileNetworkCode(value string)
+	TrackingAreaCode() string
+	SetTrackingAreaCode(value string)
 }
 
 // The parameters of a private LTE network.
@@ -101,8 +111,8 @@ func (n_ NEPrivateLTENetwork) SetMatchPrivateLTENetworks(value INEPrivateLTENetw
 // An array of Wi-Fi SSID strings that the system matches for local push activation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchssids
-func (n_ NEPrivateLTENetwork) MatchSSIDs() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchSSIDs"))
+func (n_ NEPrivateLTENetwork) MatchSSIDs() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("matchSSIDs"))
 	return rv
 }
 
@@ -112,15 +122,15 @@ func (n_ NEPrivateLTENetwork) MatchSSIDs() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchssids
-func (n_ NEPrivateLTENetwork) SetMatchSSIDs(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchSSIDs:"), value)
+func (n_ NEPrivateLTENetwork) SetMatchSSIDs(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchSSIDs:"), objc.String(value))
 }
 
 // The Mobile Country Code (MCC) of the private LTE network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neprivateltenetwork/mobilecountrycode
-func (n_ NEPrivateLTENetwork) MobileCountryCode() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("mobileCountryCode"))
+func (n_ NEPrivateLTENetwork) MobileCountryCode() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("mobileCountryCode"))
 	return rv
 }
 
@@ -130,15 +140,15 @@ func (n_ NEPrivateLTENetwork) MobileCountryCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neprivateltenetwork/mobilecountrycode
-func (n_ NEPrivateLTENetwork) SetMobileCountryCode(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMobileCountryCode:"), value)
+func (n_ NEPrivateLTENetwork) SetMobileCountryCode(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMobileCountryCode:"), objc.String(value))
 }
 
 // The Mobile Network Code (MNC) of the private LTE network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neprivateltenetwork/mobilenetworkcode
-func (n_ NEPrivateLTENetwork) MobileNetworkCode() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("mobileNetworkCode"))
+func (n_ NEPrivateLTENetwork) MobileNetworkCode() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("mobileNetworkCode"))
 	return rv
 }
 
@@ -148,15 +158,15 @@ func (n_ NEPrivateLTENetwork) MobileNetworkCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neprivateltenetwork/mobilenetworkcode
-func (n_ NEPrivateLTENetwork) SetMobileNetworkCode(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMobileNetworkCode:"), value)
+func (n_ NEPrivateLTENetwork) SetMobileNetworkCode(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMobileNetworkCode:"), objc.String(value))
 }
 
 // The Tracking Area Code of the private LTE network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neprivateltenetwork/trackingareacode
-func (n_ NEPrivateLTENetwork) TrackingAreaCode() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("trackingAreaCode"))
+func (n_ NEPrivateLTENetwork) TrackingAreaCode() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("trackingAreaCode"))
 	return rv
 }
 
@@ -166,8 +176,8 @@ func (n_ NEPrivateLTENetwork) TrackingAreaCode() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neprivateltenetwork/trackingareacode
-func (n_ NEPrivateLTENetwork) SetTrackingAreaCode(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTrackingAreaCode:"), value)
+func (n_ NEPrivateLTENetwork) SetTrackingAreaCode(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTrackingAreaCode:"), objc.String(value))
 }
 
 

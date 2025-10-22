@@ -31,6 +31,20 @@ type _MTRChannelClusterChannelInfoStructClass struct {
 // An interface definition for the [MTRChannelClusterChannelInfoStruct] class.
 type IMTRChannelClusterChannelInfoStruct interface {
 	objectivec.IObject
+	AffiliateCallSign() string
+	SetAffiliateCallSign(value string)
+	CallSign() string
+	SetCallSign(value string)
+	Identifier() string
+	SetIdentifier(value string)
+	MajorNumber() foundation.Number
+	SetMajorNumber(value foundation.INumber)
+	MinorNumber() foundation.Number
+	SetMinorNumber(value foundation.INumber)
+	Name() string
+	SetName(value string)
+	Type() foundation.Number
+	SetType(value foundation.INumber)
 }
 
 //
@@ -78,8 +92,8 @@ func NewMTRChannelClusterChannelInfoStruct() MTRChannelClusterChannelInfoStruct 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("affiliateCallSign"))
+func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
 	return rv
 }
 
@@ -87,14 +101,14 @@ func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() appkit.string {
 // SetAffiliateCallSign sets the value of the affiliateCallSign property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfoStruct) SetAffiliateCallSign(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), value)
+func (m_ MTRChannelClusterChannelInfoStruct) SetAffiliateCallSign(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
-func (m_ MTRChannelClusterChannelInfoStruct) CallSign() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("callSign"))
+func (m_ MTRChannelClusterChannelInfoStruct) CallSign() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
 	return rv
 }
 
@@ -102,14 +116,14 @@ func (m_ MTRChannelClusterChannelInfoStruct) CallSign() appkit.string {
 // SetCallSign sets the value of the callSign property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
-func (m_ MTRChannelClusterChannelInfoStruct) SetCallSign(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), value)
+func (m_ MTRChannelClusterChannelInfoStruct) SetCallSign(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/identifier
-func (m_ MTRChannelClusterChannelInfoStruct) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
+func (m_ MTRChannelClusterChannelInfoStruct) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -117,8 +131,8 @@ func (m_ MTRChannelClusterChannelInfoStruct) Identifier() appkit.string {
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/identifier
-func (m_ MTRChannelClusterChannelInfoStruct) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
+func (m_ MTRChannelClusterChannelInfoStruct) SetIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 //
@@ -153,8 +167,8 @@ func (m_ MTRChannelClusterChannelInfoStruct) SetMinorNumber(value foundation.INu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/name
-func (m_ MTRChannelClusterChannelInfoStruct) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRChannelClusterChannelInfoStruct) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -162,8 +176,8 @@ func (m_ MTRChannelClusterChannelInfoStruct) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/name
-func (m_ MTRChannelClusterChannelInfoStruct) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRChannelClusterChannelInfoStruct) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

@@ -29,6 +29,16 @@ type _CKFetchWebAuthTokenOperationClass struct {
 // An interface definition for the [CKFetchWebAuthTokenOperation] class.
 type ICKFetchWebAuthTokenOperation interface {
 	ICKDatabaseOperation
+	APIToken() string
+	SetAPIToken(value string)
+	FetchWebAuthTokenCompletionBlock() unsafe.Pointer
+	SetFetchWebAuthTokenCompletionBlock(value unsafe.Pointer)
+	FetchWebAuthTokenResultBlock() unsafe.Pointer
+	SetFetchWebAuthTokenResultBlock(value unsafe.Pointer)
+	CompletionBlock() unsafe.Pointer
+	SetCompletionBlock(value unsafe.Pointer)
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
 }
 
 // An operation that creates an authentication token for use with CloudKit web services.

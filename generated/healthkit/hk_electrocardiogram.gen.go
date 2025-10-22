@@ -29,6 +29,18 @@ type _HKElectrocardiogramClass struct {
 // An interface definition for the [HKElectrocardiogram] class.
 type IHKElectrocardiogram interface {
 	IHKSample
+	AverageHeartRate() HKQuantity
+	NumberOfVoltageMeasurements() int
+	Classification() unsafe.Pointer
+	SetClassification(value unsafe.Pointer)
+	SamplingFrequency() HKQuantity
+	SetSamplingFrequency(value IHKQuantity)
+	SymptomsStatus() unsafe.Pointer
+	SetSymptomsStatus(value unsafe.Pointer)
+	HKMetadataKeyAppleECGAlgorithmVersion() string
+	HKPredicateKeyPathAverageHeartRate() string
+	HKPredicateKeyPathECGClassification() string
+	HKPredicateKeyPathECGSymptomsStatus() string
 }
 
 // A sample for electrocardiogram data.
@@ -154,32 +166,32 @@ func (h_ HKElectrocardiogram) SetSymptomsStatus(value unsafe.Pointer) {
 // A key for metadata indicating the version number of the algorithm Apple Watch uses to generate an ECG reading.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion
-func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKMetadataKeyAppleECGAlgorithmVersion"))
+func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAppleECGAlgorithmVersion"))
 	return rv
 }
 
 // The key path for the sample’s average heart rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverageheartrate
-func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathAverageHeartRate"))
+func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverageHeartRate"))
 	return rv
 }
 
 // The key path for the sample’s classification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgclassification
-func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathECGClassification"))
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGClassification"))
 	return rv
 }
 
 // The key path for the sample’s symptom status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgsymptomsstatus
-func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathECGSymptomsStatus"))
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGSymptomsStatus"))
 	return rv
 }
 

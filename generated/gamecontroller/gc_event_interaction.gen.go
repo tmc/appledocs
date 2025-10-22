@@ -30,6 +30,12 @@ type _GCEventInteractionClass struct {
 // An interface definition for the [GCEventInteraction] class.
 type IGCEventInteraction interface {
 	objectivec.IObject
+	HandledEventTypes() unsafe.Pointer
+	SetHandledEventTypes(value unsafe.Pointer)
+	ControllerPausedHandler() unsafe.Pointer
+	SetControllerPausedHandler(value unsafe.Pointer)
+	ReceivesEventsInView() bool
+	SetReceivesEventsInView(value bool)
 }
 
 // An interaction that indicates the view’s intent to receive game controller events through the Game Controller framework.

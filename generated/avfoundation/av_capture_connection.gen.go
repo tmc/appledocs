@@ -31,6 +31,60 @@ type _CaptureConnectionClass struct {
 // An interface definition for the [CaptureConnection] class.
 type ICaptureConnection interface {
 	objectivec.IObject
+	VideoMinFrameDuration() unsafe.Pointer
+	SetVideoMinFrameDuration(value unsafe.Pointer)
+	VideoOrientation() unsafe.Pointer
+	SetVideoOrientation(value unsafe.Pointer)
+	ActiveVideoStabilizationMode() unsafe.Pointer
+	SetActiveVideoStabilizationMode(value unsafe.Pointer)
+	AudioChannels() AVCaptureAudioChannel
+	SetAudioChannels(value IAVCaptureAudioChannel)
+	AutomaticallyAdjustsVideoMirroring() bool
+	SetAutomaticallyAdjustsVideoMirroring(value bool)
+	EnablesVideoStabilizationWhenAvailable() bool
+	SetEnablesVideoStabilizationWhenAvailable(value bool)
+	InputPorts() AVCaptureInputPort
+	SetInputPorts(value IAVCaptureInputPort)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsCameraIntrinsicMatrixDeliveryEnabled() bool
+	SetIsCameraIntrinsicMatrixDeliveryEnabled(value bool)
+	IsCameraIntrinsicMatrixDeliverySupported() bool
+	SetIsCameraIntrinsicMatrixDeliverySupported(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsVideoFieldModeSupported() bool
+	SetIsVideoFieldModeSupported(value bool)
+	IsVideoMaxFrameDurationSupported() bool
+	SetIsVideoMaxFrameDurationSupported(value bool)
+	IsVideoMinFrameDurationSupported() bool
+	SetIsVideoMinFrameDurationSupported(value bool)
+	IsVideoMirrored() bool
+	SetIsVideoMirrored(value bool)
+	IsVideoMirroringSupported() bool
+	SetIsVideoMirroringSupported(value bool)
+	IsVideoOrientationSupported() bool
+	SetIsVideoOrientationSupported(value bool)
+	IsVideoStabilizationEnabled() bool
+	SetIsVideoStabilizationEnabled(value bool)
+	IsVideoStabilizationSupported() bool
+	SetIsVideoStabilizationSupported(value bool)
+	Output() AVCaptureOutput
+	SetOutput(value IAVCaptureOutput)
+	PreferredVideoStabilizationMode() unsafe.Pointer
+	SetPreferredVideoStabilizationMode(value unsafe.Pointer)
+	VideoFieldMode() unsafe.Pointer
+	SetVideoFieldMode(value unsafe.Pointer)
+	VideoMaxFrameDuration() unsafe.Pointer
+	SetVideoMaxFrameDuration(value unsafe.Pointer)
+	VideoMaxScaleAndCropFactor() float64
+	SetVideoMaxScaleAndCropFactor(value float64)
+	VideoPreviewLayer() AVCaptureVideoPreviewLayer
+	SetVideoPreviewLayer(value IAVCaptureVideoPreviewLayer)
+	VideoRotationAngle() float64
+	SetVideoRotationAngle(value float64)
+	VideoScaleAndCropFactor() float64
+	SetVideoScaleAndCropFactor(value float64)
 }
 
 // An object that represents a connection from a capture input to a capture output.

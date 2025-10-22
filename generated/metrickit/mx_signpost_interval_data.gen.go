@@ -31,6 +31,18 @@ type _MXSignpostIntervalDataClass struct {
 // An interface definition for the [MXSignpostIntervalData] class.
 type IMXSignpostIntervalData interface {
 	objectivec.IObject
+	AverageMemory() foundation.UnitInformationStorage
+	SetAverageMemory(value foundation.IUnitInformationStorage)
+	CumulativeCPUTime() foundation.UnitDuration
+	SetCumulativeCPUTime(value foundation.IUnitDuration)
+	CumulativeHitchTimeRatio() foundation.Unit
+	SetCumulativeHitchTimeRatio(value foundation.IUnit)
+	CumulativeLogicalWrites() foundation.UnitInformationStorage
+	SetCumulativeLogicalWrites(value foundation.IUnitInformationStorage)
+	HistogrammedSignpostDuration() foundation.UnitDuration
+	SetHistogrammedSignpostDuration(value foundation.IUnitDuration)
+	SignpostIntervalData() MXSignpostIntervalData
+	SetSignpostIntervalData(value IMXSignpostIntervalData)
 }
 
 // A data object representing the captured data for a custom metric.

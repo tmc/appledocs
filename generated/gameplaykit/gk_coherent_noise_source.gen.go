@@ -29,6 +29,14 @@ type _CoherentNoiseSourceClass struct {
 // An interface definition for the [CoherentNoiseSource] class.
 type ICoherentNoiseSource interface {
 	INoiseSource
+	Frequency() float64
+	SetFrequency(value float64)
+	Lacunarity() float64
+	SetLacunarity(value float64)
+	OctaveCount() int
+	SetOctaveCount(value int)
+	Seed() unsafe.Pointer
+	SetSeed(value unsafe.Pointer)
 }
 
 // The abstract superclass for procedural noise generators that create coherent noise.
@@ -84,8 +92,8 @@ func NewCoherentNoiseSource() CoherentNoiseSource {
 // A value that determines the size and spacing of features in generated noise.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/frequency
-func (c_ CoherentNoiseSource) Frequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("frequency"))
+func (c_ CoherentNoiseSource) Frequency() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("frequency"))
 	return rv
 }
 
@@ -95,15 +103,15 @@ func (c_ CoherentNoiseSource) Frequency() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/frequency
-func (c_ CoherentNoiseSource) SetFrequency(value unsafe.Pointer) {
+func (c_ CoherentNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }
 
 // The rate at which successive octaves of the noise function increase in frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
-func (c_ CoherentNoiseSource) Lacunarity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lacunarity"))
+func (c_ CoherentNoiseSource) Lacunarity() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("lacunarity"))
 	return rv
 }
 
@@ -113,7 +121,7 @@ func (c_ CoherentNoiseSource) Lacunarity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
-func (c_ CoherentNoiseSource) SetLacunarity(value unsafe.Pointer) {
+func (c_ CoherentNoiseSource) SetLacunarity(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLacunarity:"), value)
 }
 

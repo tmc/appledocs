@@ -29,6 +29,9 @@ type _GenerateAttentionBasedSaliencyImageRequestClass struct {
 // An interface definition for the [GenerateAttentionBasedSaliencyImageRequest] class.
 type IGenerateAttentionBasedSaliencyImageRequest interface {
 	IImageBasedRequest
+	Results() VNSaliencyImageObservation
+	SetResults(value IVNSaliencyImageObservation)
+	VNGenerateAttentionBasedSaliencyImageRequestRevision1() int
 }
 
 // An object that produces a heat map that identifies the parts of an image most likely to draw attention.

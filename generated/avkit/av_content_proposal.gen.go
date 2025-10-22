@@ -34,6 +34,25 @@ type _ContentProposalClass struct {
 // An interface definition for the [ContentProposal] class.
 type IContentProposal interface {
 	objectivec.IObject
+	ContentTimeForTransition() unsafe.Pointer
+	AutomaticAcceptanceInterval() unsafe.Pointer
+	SetAutomaticAcceptanceInterval(value unsafe.Pointer)
+	Metadata() avfoundation.MetadataItem
+	SetMetadata(value avfoundation.IMetadataItem)
+	PreviewImage() appkit.Image
+	SetPreviewImage(value appkit.IImage)
+	Title() string
+	SetTitle(value string)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
+	ContentProposal() AVContentProposal
+	SetContentProposal(value IAVContentProposal)
+	DateOfAutomaticAcceptance() foundation.Date
+	SetDateOfAutomaticAcceptance(value foundation.IDate)
+	PlayerLayoutGuide() appkit.LayoutGuide
+	SetPlayerLayoutGuide(value appkit.ILayoutGuide)
+	PreferredPlayerViewFrame() coregraphics.CGRect
+	SetPreferredPlayerViewFrame(value coregraphics.CGRect)
 }
 
 // An object that describes the content to propose playing after the current item finishes.
@@ -149,8 +168,8 @@ func (c_ ContentProposal) SetPreviewImage(value appkit.IImage) {
 // The title of the proposed content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
-func (c_ ContentProposal) Title() appkit.string {
-	rv := objc.Send[appkit.string](c_.ID, objc.Sel("title"))
+func (c_ ContentProposal) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -160,8 +179,8 @@ func (c_ ContentProposal) Title() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
-func (c_ ContentProposal) SetTitle(value appkit.string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ ContentProposal) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 // The URL of the proposed content.

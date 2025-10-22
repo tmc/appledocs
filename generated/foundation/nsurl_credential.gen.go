@@ -30,6 +30,12 @@ type _URLCredentialClass struct {
 // An interface definition for the [URLCredential] class.
 type IURLCredential interface {
 	objectivec.IObject
+	Certificates() objc.ID
+	HasPassword() bool
+	Identity() unsafe.Pointer
+	Password() string
+	Persistence() URLCredentialPersistence
+	User() string
 }
 
 // n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.

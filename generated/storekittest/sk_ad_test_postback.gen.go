@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,24 @@ type _AdTestPostbackClass struct {
 // An interface definition for the [AdTestPostback] class.
 type IAdTestPostback interface {
 	objectivec.IObject
+	AdCampaignIdentifier() int
+	AdNetworkIdentifier() string
+	AppStoreItemIdentifier() int
+	CoarseConversionValue() unsafe.Pointer
+	ConversionValue() int
+	DidWin() bool
+	FidelityType() int
+	SetFidelityType(value int)
+	FineConversionValue() int
+	IsRedownload() bool
+	IsRegistered() bool
+	PostbackSequenceIndex() int
+	PostbackURL() string
+	SourceAppStoreItemIdentifier() int
+	SourceDomain() string
+	SourceIdentifier() string
+	TransactionIdentifier() string
+	Version() AdTestPostbackVersion
 }
 
 // A test postback that contains ad conversion information in the testing environment.
@@ -86,9 +103,9 @@ func NewAdTestPostback() AdTestPostback {
 // Creates a test postback for an in-app ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/init(version:adNetworkIdentifier:adCampaignIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:conversionValue:fidelityType:isRedownload:didWin:postbackURL:)
-func NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierConversionValueFidelityTypeIsRedownloadDidWinPostbackURL(version IAdTestPostbackVersion, adNetworkIdentifier appkit.string, adCampaignIdentifier int, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, conversionValue int, fidelityType int, isRedownload bool, didWin bool, postbackURL appkit.string) AdTestPostback {
+func NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierConversionValueFidelityTypeIsRedownloadDidWinPostbackURL(version IAdTestPostbackVersion, adNetworkIdentifier string, adCampaignIdentifier int, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, conversionValue int, fidelityType int, isRedownload bool, didWin bool, postbackURL string) AdTestPostback {
 	instance := getAdTestPostbackClass().Alloc()
-	rv := objc.Send[AdTestPostback](instance.ID, objc.Sel("initWithVersion:adNetworkIdentifier:adCampaignIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:conversionValue:fidelityType:isRedownload:didWin:postbackURL:"), version, adNetworkIdentifier, adCampaignIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, conversionValue, fidelityType, isRedownload, didWin, postbackURL)
+	rv := objc.Send[AdTestPostback](instance.ID, objc.Sel("initWithVersion:adNetworkIdentifier:adCampaignIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:conversionValue:fidelityType:isRedownload:didWin:postbackURL:"), version, objc.String(adNetworkIdentifier), adCampaignIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, conversionValue, fidelityType, isRedownload, didWin, objc.String(postbackURL))
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +115,9 @@ func NewAdTestPostbackWithVersionAdNetworkIdentifierAdCampaignIdentifierAppStore
 // Creates a test postback for a web ad or an in-app ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/init(version:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:didWin:postbackURL:)
-func NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadDidWinPostbackURL(version IAdTestPostbackVersion, adNetworkIdentifier appkit.string, sourceIdentifier appkit.string, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, sourceDomain appkit.string, fidelityType int, isRedownload bool, didWin bool, postbackURL appkit.string) AdTestPostback {
+func NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadDidWinPostbackURL(version IAdTestPostbackVersion, adNetworkIdentifier string, sourceIdentifier string, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, sourceDomain string, fidelityType int, isRedownload bool, didWin bool, postbackURL string) AdTestPostback {
 	instance := getAdTestPostbackClass().Alloc()
-	rv := objc.Send[AdTestPostback](instance.ID, objc.Sel("initWithVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:didWin:postbackURL:"), version, adNetworkIdentifier, sourceIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, sourceDomain, fidelityType, isRedownload, didWin, postbackURL)
+	rv := objc.Send[AdTestPostback](instance.ID, objc.Sel("initWithVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:didWin:postbackURL:"), version, objc.String(adNetworkIdentifier), objc.String(sourceIdentifier), appStoreItemIdentifier, sourceAppStoreItemIdentifier, objc.String(sourceDomain), fidelityType, isRedownload, didWin, objc.String(postbackURL))
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +126,8 @@ func NewAdTestPostbackWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItem
 // Creates a sequence of test postbacks for an in-app or web ad impression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/winningPostbacks(withVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:postbackURL:)
-func (ac _AdTestPostbackClass) WinningPostbacksWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadPostbackURL(version IAdTestPostbackVersion, adNetworkIdentifier appkit.string, sourceIdentifier appkit.string, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, sourceDomain appkit.string, fidelityType int, isRedownload bool, postbackURL appkit.string) []AdTestPostback {
-	rv := objc.Send[[]AdTestPostback](objc.ID(ac.class), objc.Sel("winningPostbacksWithVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:postbackURL:"), version, adNetworkIdentifier, sourceIdentifier, appStoreItemIdentifier, sourceAppStoreItemIdentifier, sourceDomain, fidelityType, isRedownload, postbackURL)
+func (ac _AdTestPostbackClass) WinningPostbacksWithVersionAdNetworkIdentifierSourceIdentifierAppStoreItemIdentifierSourceAppStoreItemIdentifierSourceDomainFidelityTypeIsRedownloadPostbackURL(version IAdTestPostbackVersion, adNetworkIdentifier string, sourceIdentifier string, appStoreItemIdentifier int, sourceAppStoreItemIdentifier int, sourceDomain string, fidelityType int, isRedownload bool, postbackURL string) []AdTestPostback {
+	rv := objc.Send[[]AdTestPostback](objc.ID(ac.class), objc.Sel("winningPostbacksWithVersion:adNetworkIdentifier:sourceIdentifier:appStoreItemIdentifier:sourceAppStoreItemIdentifier:sourceDomain:fidelityType:isRedownload:postbackURL:"), version, objc.String(adNetworkIdentifier), objc.String(sourceIdentifier), appStoreItemIdentifier, sourceAppStoreItemIdentifier, objc.String(sourceDomain), fidelityType, isRedownload, objc.String(postbackURL))
 	return rv
 }
 
@@ -125,8 +142,8 @@ func (a_ AdTestPostback) AdCampaignIdentifier() int {
 // A string that represents the advertising network’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/adNetworkIdentifier
-func (a_ AdTestPostback) AdNetworkIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("adNetworkIdentifier"))
+func (a_ AdTestPostback) AdNetworkIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("adNetworkIdentifier"))
 	return rv
 }
 
@@ -215,8 +232,8 @@ func (a_ AdTestPostback) PostbackSequenceIndex() int {
 // A URL on your server where the testing environment sends test postbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/postbackURL
-func (a_ AdTestPostback) PostbackURL() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("postbackURL"))
+func (a_ AdTestPostback) PostbackURL() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("postbackURL"))
 	return rv
 }
 
@@ -231,24 +248,24 @@ func (a_ AdTestPostback) SourceAppStoreItemIdentifier() int {
 // The source of a web ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/sourceDomain
-func (a_ AdTestPostback) SourceDomain() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("sourceDomain"))
+func (a_ AdTestPostback) SourceDomain() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("sourceDomain"))
 	return rv
 }
 
 // A string that identifies an ad campaign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/sourceIdentifier
-func (a_ AdTestPostback) SourceIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("sourceIdentifier"))
+func (a_ AdTestPostback) SourceIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
 // A unique transaction identifier that the system generates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/transactionIdentifier
-func (a_ AdTestPostback) TransactionIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("transactionIdentifier"))
+func (a_ AdTestPostback) TransactionIdentifier() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("transactionIdentifier"))
 	return rv
 }
 

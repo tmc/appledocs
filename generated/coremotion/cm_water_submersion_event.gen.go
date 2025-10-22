@@ -31,6 +31,8 @@ type _WaterSubmersionEventClass struct {
 // An interface definition for the [WaterSubmersionEvent] class.
 type IWaterSubmersionEvent interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	State() WaterSubmersionState
 }
 
 // An event indicating that the device’s submersion state has changed.

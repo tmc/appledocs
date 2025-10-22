@@ -30,6 +30,8 @@ type _HKActivitySummaryQueryClass struct {
 // An interface definition for the [HKActivitySummaryQuery] class.
 type IHKActivitySummaryQuery interface {
 	IHKQuery
+	UpdateHandler() unsafe.Pointer
+	SetUpdateHandler(value unsafe.Pointer)
 }
 
 // A query for reading activity summary objects from the HealthKit store.

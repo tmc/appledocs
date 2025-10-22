@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/photos"
 )
@@ -32,6 +31,16 @@ type _PHProjectAssetElementClass struct {
 // An interface definition for the [PHProjectAssetElement] class.
 type IPHProjectAssetElement interface {
 	IPHProjectElement
+	Annotation() string
+	CloudAssetIdentifier() photos.PHCloudIdentifier
+	CropRect() coregraphics.CGRect
+	HorizontallyFlipped() bool
+	RegionsOfInterest() []PHProjectRegionOfInterest
+	VerticallyFlipped() bool
+	AssetLocalIdentifier() string
+	SetAssetLocalIdentifier(value string)
+	CloudAssetIdentifiers() photos.PHCloudIdentifier
+	SetCloudAssetIdentifiers(value photos.IPHCloudIdentifier)
 }
 
 // An element that represents a media asset within project section content.
@@ -87,8 +96,8 @@ func NewPHProjectAssetElement() PHProjectAssetElement {
 // A string annotation attached to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectAssetElement/annotation
-func (p_ PHProjectAssetElement) Annotation() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("annotation"))
+func (p_ PHProjectAssetElement) Annotation() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("annotation"))
 	return rv
 }
 
@@ -135,8 +144,8 @@ func (p_ PHProjectAssetElement) VerticallyFlipped() bool {
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier
-func (p_ PHProjectAssetElement) AssetLocalIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetLocalIdentifier"))
+func (p_ PHProjectAssetElement) AssetLocalIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("assetLocalIdentifier"))
 	return rv
 }
 
@@ -146,8 +155,8 @@ func (p_ PHProjectAssetElement) AssetLocalIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier
-func (p_ PHProjectAssetElement) SetAssetLocalIdentifier(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetLocalIdentifier:"), value)
+func (p_ PHProjectAssetElement) SetAssetLocalIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetLocalIdentifier:"), objc.String(value))
 }
 
 // An array containing all cloud asset identifiers referenced in the content.

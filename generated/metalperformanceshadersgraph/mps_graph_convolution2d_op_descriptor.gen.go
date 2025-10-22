@@ -29,6 +29,30 @@ type _GraphConvolution2DOpDescriptorClass struct {
 // An interface definition for the [GraphConvolution2DOpDescriptor] class.
 type IGraphConvolution2DOpDescriptor interface {
 	IGraphObject
+	DilationRateInY() uint
+	SetDilationRateInY(value uint)
+	DataLayout() GraphTensorNamedDataLayout
+	SetDataLayout(value IGraphTensorNamedDataLayout)
+	DilationRateInX() int
+	SetDilationRateInX(value int)
+	Groups() int
+	SetGroups(value int)
+	PaddingBottom() int
+	SetPaddingBottom(value int)
+	PaddingLeft() int
+	SetPaddingLeft(value int)
+	PaddingRight() int
+	SetPaddingRight(value int)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	PaddingTop() int
+	SetPaddingTop(value int)
+	StrideInX() int
+	SetStrideInX(value int)
+	StrideInY() int
+	SetStrideInY(value int)
+	WeightsLayout() GraphTensorNamedDataLayout
+	SetWeightsLayout(value IGraphTensorNamedDataLayout)
 }
 
 // A class that describes the properties of a 2D-convolution operator.

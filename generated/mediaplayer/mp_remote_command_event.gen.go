@@ -31,6 +31,8 @@ type _RemoteCommandEventClass struct {
 // An interface definition for the [RemoteCommandEvent] class.
 type IRemoteCommandEvent interface {
 	objectivec.IObject
+	Command() MPRemoteCommand
+	Timestamp() foundation.TimeInterval
 }
 
 // A description of a command sent by an external media player.

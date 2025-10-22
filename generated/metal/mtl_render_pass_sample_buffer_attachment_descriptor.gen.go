@@ -30,6 +30,16 @@ type _RenderPassSampleBufferAttachmentDescriptorClass struct {
 // An interface definition for the [RenderPassSampleBufferAttachmentDescriptor] class.
 type IRenderPassSampleBufferAttachmentDescriptor interface {
 	objectivec.IObject
+	EndOfFragmentSampleIndex() uint
+	SetEndOfFragmentSampleIndex(value uint)
+	EndOfVertexSampleIndex() uint
+	SetEndOfVertexSampleIndex(value uint)
+	SampleBuffer() objc.ID
+	SetSampleBuffer(value objc.ID)
+	StartOfFragmentSampleIndex() uint
+	SetStartOfFragmentSampleIndex(value uint)
+	StartOfVertexSampleIndex() uint
+	SetStartOfVertexSampleIndex(value uint)
 }
 
 // A description of where to store GPU counter information at the start and end of a render pass.

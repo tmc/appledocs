@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,6 +34,10 @@ type IMCNearbyServiceBrowser interface {
 	InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context foundation.IData, timeout foundation.ITimeInterval)
 	StartBrowsingForPeers()
 	StopBrowsingForPeers()
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	MyPeerID() MCPeerID
+	ServiceType() string
 }
 
 // Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session ( ).
@@ -88,9 +91,9 @@ func NewMCNearbyServiceBrowser() MCNearbyServiceBrowser {
 // Initializes the nearby service browser object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/init(peer:serviceType:)
-func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID IMCPeerID, serviceType appkit.string) MCNearbyServiceBrowser {
+func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID IMCPeerID, serviceType string) MCNearbyServiceBrowser {
 	instance := getMCNearbyServiceBrowserClass().Alloc()
-	rv := objc.Send[MCNearbyServiceBrowser](instance.ID, objc.Sel("initWithPeer:serviceType:"), myPeerID, serviceType)
+	rv := objc.Send[MCNearbyServiceBrowser](instance.ID, objc.Sel("initWithPeer:serviceType:"), myPeerID, objc.String(serviceType))
 	rv.Autorelease()
 	return rv
 }
@@ -146,8 +149,8 @@ func (m_ MCNearbyServiceBrowser) MyPeerID() MCPeerID {
 // The service type to browse for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/serviceType
-func (m_ MCNearbyServiceBrowser) ServiceType() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceBrowser) ServiceType() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

@@ -29,6 +29,7 @@ type _ImageHomographicAlignmentObservationClass struct {
 // An interface definition for the [ImageHomographicAlignmentObservation] class.
 type IImageHomographicAlignmentObservation interface {
 	IImageAlignmentObservation
+	WarpTransform() unsafe.Pointer
 }
 
 // An object that represents a perspective warp transformation.

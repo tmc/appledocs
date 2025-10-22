@@ -30,6 +30,12 @@ type _RenderPipelineFunctionsDescriptorClass struct {
 // An interface definition for the [RenderPipelineFunctionsDescriptor] class.
 type IRenderPipelineFunctionsDescriptor interface {
 	objectivec.IObject
+	FragmentAdditionalBinaryFunctions() []objc.ID
+	SetFragmentAdditionalBinaryFunctions(value []objc.ID)
+	TileAdditionalBinaryFunctions() []objc.ID
+	SetTileAdditionalBinaryFunctions(value []objc.ID)
+	VertexAdditionalBinaryFunctions() []objc.ID
+	SetVertexAdditionalBinaryFunctions(value []objc.ID)
 }
 
 // A collection of functions for updating a render pipeline.

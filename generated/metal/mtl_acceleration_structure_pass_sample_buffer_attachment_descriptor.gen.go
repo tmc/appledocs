@@ -30,6 +30,12 @@ type _AccelerationStructurePassSampleBufferAttachmentDescriptorClass struct {
 // An interface definition for the [AccelerationStructurePassSampleBufferAttachmentDescriptor] class.
 type IAccelerationStructurePassSampleBufferAttachmentDescriptor interface {
 	objectivec.IObject
+	EndOfEncoderSampleIndex() int
+	SetEndOfEncoderSampleIndex(value int)
+	SampleBuffer() unsafe.Pointer
+	SetSampleBuffer(value unsafe.Pointer)
+	StartOfEncoderSampleIndex() int
+	SetStartOfEncoderSampleIndex(value int)
 }
 
 //

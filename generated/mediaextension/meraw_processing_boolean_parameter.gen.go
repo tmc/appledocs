@@ -29,6 +29,14 @@ type _MERAWProcessingBooleanParameterClass struct {
 // An interface definition for the [MERAWProcessingBooleanParameter] class.
 type IMERAWProcessingBooleanParameter interface {
 	IMERAWProcessingParameter
+	CameraValue() bool
+	SetCameraValue(value bool)
+	CurrentValue() bool
+	SetCurrentValue(value bool)
+	InitialValue() bool
+	SetInitialValue(value bool)
+	NeutralValue() bool
+	SetNeutralValue(value bool)
 }
 
 // An object that describes a Boolean parameter of a RAW processor.

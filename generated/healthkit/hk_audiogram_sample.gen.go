@@ -29,6 +29,8 @@ type _HKAudiogramSampleClass struct {
 // An interface definition for the [HKAudiogramSample] class.
 type IHKAudiogramSample interface {
 	IHKSample
+	SensitivityPoints() HKAudiogramSensitivityPoint
+	SetSensitivityPoints(value IHKAudiogramSensitivityPoint)
 }
 
 // A sample that stores an audiogram.

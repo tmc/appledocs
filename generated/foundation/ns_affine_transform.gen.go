@@ -32,6 +32,8 @@ type IAffineTransform interface {
 	objectivec.IObject
 	TransformPoint(aPoint IPoint) Point
 	TranslateXByYBy(deltaX float64, deltaY float64)
+	TransformStruct() unsafe.Pointer
+	SetTransformStruct(value unsafe.Pointer)
 }
 
 // A graphics coordinate transformation.

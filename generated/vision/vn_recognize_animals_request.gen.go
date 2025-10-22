@@ -29,6 +29,10 @@ type _RecognizeAnimalsRequestClass struct {
 // An interface definition for the [RecognizeAnimalsRequest] class.
 type IRecognizeAnimalsRequest interface {
 	IImageBasedRequest
+	Results() VNRecognizedObjectObservation
+	SetResults(value IVNRecognizedObjectObservation)
+	VNRecognizeAnimalsRequestRevision1() int
+	VNRecognizeAnimalsRequestRevision2() int
 }
 
 // A request that recognizes animals in an image.

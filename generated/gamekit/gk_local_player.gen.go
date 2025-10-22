@@ -29,6 +29,21 @@ type _LocalPlayerClass struct {
 // An interface definition for the [LocalPlayer] class.
 type ILocalPlayer interface {
 	IPlayer
+	AuthenticateHandler() unsafe.Pointer
+	SetAuthenticateHandler(value unsafe.Pointer)
+	Authenticated() bool
+	MultiplayerGamingRestricted() bool
+	PersonalizedCommunicationRestricted() bool
+	IsAuthenticated() bool
+	SetIsAuthenticated(value bool)
+	IsMultiplayerGamingRestricted() bool
+	SetIsMultiplayerGamingRestricted(value bool)
+	IsPersonalizedCommunicationRestricted() bool
+	SetIsPersonalizedCommunicationRestricted(value bool)
+	IsPresentingFriendRequestViewController() bool
+	SetIsPresentingFriendRequestViewController(value bool)
+	IsUnderage() bool
+	SetIsUnderage(value bool)
 }
 
 // The local player who signs in to Game Center on the device running the game.

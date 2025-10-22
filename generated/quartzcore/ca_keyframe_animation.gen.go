@@ -31,6 +31,24 @@ type _KeyframeAnimationClass struct {
 // An interface definition for the [KeyframeAnimation] class.
 type IKeyframeAnimation interface {
 	IPropertyAnimation
+	BiasValues() []foundation.Number
+	SetBiasValues(value []foundation.INumber)
+	CalculationMode() AnimationCalculationMode
+	SetCalculationMode(value AnimationCalculationMode)
+	ContinuityValues() []foundation.Number
+	SetContinuityValues(value []foundation.INumber)
+	KeyTimes() []foundation.Number
+	SetKeyTimes(value []foundation.INumber)
+	Path() coregraphics.CGPathRef
+	SetPath(value coregraphics.CGPathRef)
+	RotationMode() AnimationRotationMode
+	SetRotationMode(value AnimationRotationMode)
+	TensionValues() []foundation.Number
+	SetTensionValues(value []foundation.INumber)
+	TimingFunctions() []MediaTimingFunction
+	SetTimingFunctions(value []MediaTimingFunction)
+	Values() objc.ID
+	SetValues(value objc.ID)
 }
 
 // An object that provides keyframe animation capabilities for a layer object.

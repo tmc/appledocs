@@ -30,6 +30,11 @@ type _MTL4RenderPipelineDynamicLinkingDescriptorClass struct {
 // An interface definition for the [MTL4RenderPipelineDynamicLinkingDescriptor] class.
 type IMTL4RenderPipelineDynamicLinkingDescriptor interface {
 	objectivec.IObject
+	FragmentLinkingDescriptor() unsafe.Pointer
+	MeshLinkingDescriptor() unsafe.Pointer
+	ObjectLinkingDescriptor() unsafe.Pointer
+	TileLinkingDescriptor() unsafe.Pointer
+	VertexLinkingDescriptor() unsafe.Pointer
 }
 
 // Groups together properties that provide linking properties for render pipelines.

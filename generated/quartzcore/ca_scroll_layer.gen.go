@@ -32,6 +32,8 @@ type IScrollLayer interface {
 	ILayer
 	ScrollToPoint(p coregraphics.CGPoint)
 	ScrollToRect(r coregraphics.CGRect)
+	ScrollMode() ScrollLayerScrollMode
+	SetScrollMode(value ScrollLayerScrollMode)
 }
 
 // A layer that displays scrollable content larger than its own bounds.

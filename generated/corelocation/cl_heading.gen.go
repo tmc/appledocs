@@ -31,6 +31,13 @@ type _HeadingClass struct {
 // An interface definition for the [Heading] class.
 type IHeading interface {
 	objectivec.IObject
+	HeadingAccuracy() unsafe.Pointer
+	MagneticHeading() unsafe.Pointer
+	Timestamp() foundation.NSDate
+	TrueHeading() unsafe.Pointer
+	X() HeadingComponentValue
+	Y() HeadingComponentValue
+	Z() HeadingComponentValue
 }
 
 // The orientation of the user’s device, relative to true or magnetic north.

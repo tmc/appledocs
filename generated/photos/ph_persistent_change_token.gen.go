@@ -30,6 +30,8 @@ type _PHPersistentChangeTokenClass struct {
 // An interface definition for the [PHPersistentChangeToken] class.
 type IPHPersistentChangeToken interface {
 	objectivec.IObject
+	CurrentChangeToken() PHPersistentChangeToken
+	SetCurrentChangeToken(value IPHPersistentChangeToken)
 }
 
 // An opaque object that tracks the state of the Photos library between runs, and that you can copy and serialize for future use.

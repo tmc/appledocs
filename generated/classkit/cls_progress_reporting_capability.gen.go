@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SProgressReportingCapability] class.
@@ -30,6 +29,10 @@ type _SProgressReportingCapabilityClass struct {
 // An interface definition for the [SProgressReportingCapability] class.
 type ISProgressReportingCapability interface {
 	ISObject
+	Details() string
+	Kind() SProgressReportingCapabilityKind
+	ProgressReportingCapabilities() CLSProgressReportingCapability
+	SetProgressReportingCapabilities(value ICLSProgressReportingCapability)
 }
 
 // A progress reporting capability supported by a context.
@@ -87,9 +90,9 @@ func NewSProgressReportingCapability() SProgressReportingCapability {
 // Creates a new progress reporting capability of the given type with a descriptive string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/init(kind:details:)
-func NewSProgressReportingCapabilityWithKindDetails(kind SProgressReportingCapabilityKind, details appkit.string) SProgressReportingCapability {
+func NewSProgressReportingCapabilityWithKindDetails(kind SProgressReportingCapabilityKind, details string) SProgressReportingCapability {
 	instance := getSProgressReportingCapabilityClass().Alloc()
-	rv := objc.Send[SProgressReportingCapability](instance.ID, objc.Sel("initWithKind:details:"), kind, details)
+	rv := objc.Send[SProgressReportingCapability](instance.ID, objc.Sel("initWithKind:details:"), kind, objc.String(details))
 	rv.Autorelease()
 	return rv
 }
@@ -98,8 +101,8 @@ func NewSProgressReportingCapabilityWithKindDetails(kind SProgressReportingCapab
 // A description of the capability presented to teachers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSProgressReportingCapability/details
-func (s_ SProgressReportingCapability) Details() appkit.string {
-	rv := objc.Send[appkit.string](s_.ID, objc.Sel("details"))
+func (s_ SProgressReportingCapability) Details() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("details"))
 	return rv
 }
 

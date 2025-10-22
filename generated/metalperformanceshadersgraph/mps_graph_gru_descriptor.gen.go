@@ -29,6 +29,24 @@ type _GraphGRUDescriptorClass struct {
 // An interface definition for the [GraphGRUDescriptor] class.
 type IGraphGRUDescriptor interface {
 	IGraphObject
+	FlipZ() bool
+	SetFlipZ(value bool)
+	Training() bool
+	SetTraining(value bool)
+	UpdateGateActivation() GraphRNNActivation
+	SetUpdateGateActivation(value IGraphRNNActivation)
+	Bidirectional() bool
+	SetBidirectional(value bool)
+	OutputGateActivation() GraphRNNActivation
+	SetOutputGateActivation(value IGraphRNNActivation)
+	ResetAfter() bool
+	SetResetAfter(value bool)
+	ResetGateActivation() GraphRNNActivation
+	SetResetGateActivation(value IGraphRNNActivation)
+	ResetGateFirst() bool
+	SetResetGateFirst(value bool)
+	Reverse() bool
+	SetReverse(value bool)
 }
 
 // The class that defines the parameters for a gated recurrent unit (GRU) operation.

@@ -30,6 +30,21 @@ type _URLProtectionSpaceClass struct {
 // An interface definition for the [URLProtectionSpace] class.
 type IURLProtectionSpace interface {
 	objectivec.IObject
+	AuthenticationMethod() string
+	DistinguishedNames() []Data
+	ProxyType() string
+	Host() string
+	SetHost(value string)
+	Port() int
+	SetPort(value int)
+	Protocol() string
+	SetProtocol(value string)
+	Realm() string
+	SetRealm(value string)
+	ReceivesCredentialSecurely() bool
+	SetReceivesCredentialSecurely(value bool)
+	ServerTrust() unsafe.Pointer
+	SetServerTrust(value unsafe.Pointer)
 }
 
 // A server or an area on a server, commonly referred to as a realm, that requires authentication.

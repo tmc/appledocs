@@ -29,6 +29,8 @@ type _ComparisonNodeClass struct {
 // An interface definition for the [ComparisonNode] class.
 type IComparisonNode interface {
 	IBinaryArithmeticNode
+	ComparisonType() ComparisonType
+	SetComparisonType(value ComparisonType)
 }
 
 //

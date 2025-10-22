@@ -31,6 +31,42 @@ type _MetadataItemClass struct {
 // An interface definition for the [MetadataItem] class.
 type IMetadataItem interface {
 	objectivec.IObject
+	CommonMetadata() AVMetadataItem
+	SetCommonMetadata(value IAVMetadataItem)
+	Metadata() AVMetadataItem
+	SetMetadata(value IAVMetadataItem)
+	CommonKey() MetadataKey
+	SetCommonKey(value IMetadataKey)
+	DataType() string
+	SetDataType(value string)
+	DataValue() foundation.Data
+	SetDataValue(value foundation.IData)
+	DateValue() foundation.Date
+	SetDateValue(value foundation.IDate)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
+	ExtendedLanguageTag() string
+	SetExtendedLanguageTag(value string)
+	ExtraAttributes() unsafe.Pointer
+	SetExtraAttributes(value unsafe.Pointer)
+	Identifier() MetadataIdentifier
+	SetIdentifier(value IMetadataIdentifier)
+	Key() unsafe.Pointer
+	SetKey(value unsafe.Pointer)
+	KeySpace() unsafe.Pointer
+	SetKeySpace(value unsafe.Pointer)
+	Locale() foundation.Locale
+	SetLocale(value foundation.ILocale)
+	NumberValue() foundation.Number
+	SetNumberValue(value foundation.INumber)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
+	StringValue() string
+	SetStringValue(value string)
+	Time() unsafe.Pointer
+	SetTime(value unsafe.Pointer)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
 }
 
 // A metadata item for an audiovisual asset or one of its tracks.

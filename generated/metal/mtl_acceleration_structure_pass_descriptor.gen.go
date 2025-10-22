@@ -30,6 +30,8 @@ type _AccelerationStructurePassDescriptorClass struct {
 // An interface definition for the [AccelerationStructurePassDescriptor] class.
 type IAccelerationStructurePassDescriptor interface {
 	objectivec.IObject
+	SampleBufferAttachments() MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray
+	SetSampleBufferAttachments(value IMTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray)
 }
 
 //

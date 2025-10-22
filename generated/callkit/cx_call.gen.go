@@ -32,6 +32,17 @@ type _CXCallClass struct {
 type ICXCall interface {
 	objectivec.IObject
 	IsEqualToCall(call ICXCall) bool
+	HasConnected() bool
+	HasEnded() bool
+	OnHold() bool
+	Outgoing() bool
+	UUID() foundation.UUID
+	IsOnHold() bool
+	SetIsOnHold(value bool)
+	IsOutgoing() bool
+	SetIsOutgoing(value bool)
+	Calls() CXCall
+	SetCalls(value ICXCall)
 }
 
 // A telephony call.

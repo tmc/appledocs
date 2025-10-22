@@ -32,6 +32,16 @@ type _MovieErrorLogClass struct {
 // An interface definition for the [MovieErrorLog] class.
 type IMovieErrorLog interface {
 	objectivec.IObject
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	Events() unsafe.Pointer
+	SetEvents(value unsafe.Pointer)
+	ExtendedLogData() foundation.Data
+	SetExtendedLogData(value foundation.IData)
+	ExtendedLogDataStringEncoding() uint
+	SetExtendedLogDataStringEncoding(value uint)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // Data describing network resource playback failures for the associated movie player, including timestamps indicating when each failure occurred.

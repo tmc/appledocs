@@ -29,6 +29,9 @@ type _VZVirtioConsoleDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioConsoleDeviceConfiguration] class.
 type IVZVirtioConsoleDeviceConfiguration interface {
 	IVZConsoleDeviceConfiguration
+	Ports() VZVirtioConsolePortConfigurationArray
+	ConsoleDevices() VZConsoleDeviceConfiguration
+	SetConsoleDevices(value IVZConsoleDeviceConfiguration)
 }
 
 // A console device that enables communication between the host and the guest using console ports through a Virtio interface.

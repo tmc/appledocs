@@ -30,6 +30,14 @@ type _HKLensSpecificationClass struct {
 // An interface definition for the [HKLensSpecification] class.
 type IHKLensSpecification interface {
 	objectivec.IObject
+	AddPower() HKQuantity
+	SetAddPower(value IHKQuantity)
+	Axis() HKQuantity
+	SetAxis(value IHKQuantity)
+	Cylinder() HKQuantity
+	SetCylinder(value IHKQuantity)
+	Sphere() HKQuantity
+	SetSphere(value IHKQuantity)
 }
 
 // An abstract superclass for lens specifications.

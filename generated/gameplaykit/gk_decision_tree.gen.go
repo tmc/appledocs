@@ -33,6 +33,11 @@ type IDecisionTree interface {
 	objectivec.IObject
 	ExportToURLError(url foundation.IURL, error_ foundation.IError) bool
 	FindActionForAnswers(answers unsafe.Pointer) objc.ID
+	RandomSource() GKRandomSource
+	SetRandomSource(value IGKRandomSource)
+	RootNode() GKDecisionNode
+	Description() string
+	SetDescription(value string)
 }
 
 // A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
@@ -161,8 +166,8 @@ func (d_ DecisionTree) RootNode() GKDecisionNode {
 // A textual representation of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) Description() appkit.string {
-	rv := objc.Send[appkit.string](d_.ID, objc.Sel("description"))
+func (d_ DecisionTree) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -172,8 +177,8 @@ func (d_ DecisionTree) Description() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) SetDescription(value appkit.string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), value)
+func (d_ DecisionTree) SetDescription(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
 

@@ -30,6 +30,12 @@ type _CompositionTrackSegmentClass struct {
 // An interface definition for the [CompositionTrackSegment] class.
 type ICompositionTrackSegment interface {
 	IAssetTrackSegment
+	IsEmpty() bool
+	SetIsEmpty(value bool)
+	SourceTrackID() unsafe.Pointer
+	SetSourceTrackID(value unsafe.Pointer)
+	SourceURL() foundation.URL
+	SetSourceURL(value foundation.IURL)
 }
 
 // A track segment that maps a time from the source media track to the composition track.

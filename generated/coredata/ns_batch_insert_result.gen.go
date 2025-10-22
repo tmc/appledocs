@@ -29,6 +29,8 @@ type _BatchInsertResultClass struct {
 // An interface definition for the [BatchInsertResult] class.
 type IBatchInsertResult interface {
 	IPersistentStoreResult
+	Result() objc.ID
+	ResultType() BatchInsertRequestResultType
 }
 
 // The result that Core Data returns when executing a batch-insertion request.

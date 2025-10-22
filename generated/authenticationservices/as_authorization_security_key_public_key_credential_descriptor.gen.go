@@ -31,6 +31,8 @@ type _AuthorizationSecurityKeyPublicKeyCredentialDescriptorClass struct {
 // An interface definition for the [AuthorizationSecurityKeyPublicKeyCredentialDescriptor] class.
 type IAuthorizationSecurityKeyPublicKeyCredentialDescriptor interface {
 	objectivec.IObject
+	Transports() []string
+	SetTransports(value []string)
 }
 
 // An object that holds public key credential transport information.

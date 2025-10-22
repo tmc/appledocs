@@ -31,6 +31,10 @@ type _MTRElectricalMeasurementClusterGetProfileInfoCommandParamsClass struct {
 // An interface definition for the [MTRElectricalMeasurementClusterGetProfileInfoCommandParams] class.
 type IMTRElectricalMeasurementClusterGetProfileInfoCommandParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

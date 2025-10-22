@@ -35,6 +35,8 @@ type IImageAccumulator interface {
 	Image() Image
 	SetImage(image ICIImage)
 	SetImageDirtyRect(image ICIImage, dirtyRect coregraphics.CGRect)
+	Extent() coregraphics.CGRect
+	Format() Format
 }
 
 // An object that manages feedback-based image processing for tasks such as painting or fluid simulation.

@@ -30,6 +30,13 @@ type _StageInputOutputDescriptorClass struct {
 // An interface definition for the [StageInputOutputDescriptor] class.
 type IStageInputOutputDescriptor interface {
 	objectivec.IObject
+	Attributes() unsafe.Pointer
+	IndexBufferIndex() int
+	SetIndexBufferIndex(value int)
+	IndexType() IndexType
+	SetIndexType(value IndexType)
+	Layouts() unsafe.Pointer
+	SetLayouts(value unsafe.Pointer)
 }
 
 // A description of the input and output data of a function.

@@ -29,6 +29,8 @@ type _PersistentHistoryResultClass struct {
 // An interface definition for the [PersistentHistoryResult] class.
 type IPersistentHistoryResult interface {
 	IPersistentStoreResult
+	Result() objc.ID
+	ResultType() PersistentHistoryResultType
 }
 
 // The result of a request to fetch persistent history.

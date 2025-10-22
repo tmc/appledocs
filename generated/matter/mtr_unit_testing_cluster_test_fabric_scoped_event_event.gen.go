@@ -31,6 +31,8 @@ type _MTRUnitTestingClusterTestFabricScopedEventEventClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestFabricScopedEventEvent] class.
 type IMTRUnitTestingClusterTestFabricScopedEventEvent interface {
 	objectivec.IObject
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
 }
 
 //

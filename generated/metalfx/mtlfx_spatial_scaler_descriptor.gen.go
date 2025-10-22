@@ -32,6 +32,20 @@ type IFXSpatialScalerDescriptor interface {
 	objectivec.IObject
 	NewSpatialScalerWithDevice(device objectivec.IObject) objc.ID
 	NewSpatialScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
+	ColorProcessingMode() FXSpatialScalerColorProcessingMode
+	SetColorProcessingMode(value FXSpatialScalerColorProcessingMode)
+	ColorTextureFormat() unsafe.Pointer
+	SetColorTextureFormat(value unsafe.Pointer)
+	InputHeight() uint
+	SetInputHeight(value uint)
+	InputWidth() uint
+	SetInputWidth(value uint)
+	OutputHeight() uint
+	SetOutputHeight(value uint)
+	OutputTextureFormat() unsafe.Pointer
+	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputWidth() uint
+	SetOutputWidth(value uint)
 }
 
 // A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.

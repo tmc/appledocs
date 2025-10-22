@@ -30,6 +30,8 @@ type _SkipIntervalCommandClass struct {
 // An interface definition for the [SkipIntervalCommand] class.
 type ISkipIntervalCommand interface {
 	IRemoteCommand
+	PreferredIntervals() foundation.Number
+	SetPreferredIntervals(value foundation.INumber)
 }
 
 // An object that defines the skip intervals for the player.

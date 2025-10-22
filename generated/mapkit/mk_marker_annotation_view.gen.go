@@ -30,6 +30,24 @@ type _MKMarkerAnnotationViewClass struct {
 // An interface definition for the [MKMarkerAnnotationView] class.
 type IMKMarkerAnnotationView interface {
 	IMKAnnotationView
+	GlyphImage() appkit.Image
+	SetGlyphImage(value appkit.IImage)
+	GlyphTintColor() appkit.Color
+	SetGlyphTintColor(value appkit.IColor)
+	MarkerTintColor() appkit.Color
+	SetMarkerTintColor(value appkit.IColor)
+	DisplayPriority() unsafe.Pointer
+	SetDisplayPriority(value unsafe.Pointer)
+	AnimatesWhenAdded() bool
+	SetAnimatesWhenAdded(value bool)
+	GlyphText() string
+	SetGlyphText(value string)
+	SelectedGlyphImage() appkit.Image
+	SetSelectedGlyphImage(value appkit.IImage)
+	SubtitleVisibility() unsafe.Pointer
+	SetSubtitleVisibility(value unsafe.Pointer)
+	TitleVisibility() unsafe.Pointer
+	SetTitleVisibility(value unsafe.Pointer)
 }
 
 // An annotation view that displays a balloon-shaped marker at the designated location.
@@ -175,8 +193,8 @@ func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
 // The text to display in the marker balloon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) GlyphText() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("glyphText"))
+func (m_ MKMarkerAnnotationView) GlyphText() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("glyphText"))
 	return rv
 }
 
@@ -186,8 +204,8 @@ func (m_ MKMarkerAnnotationView) GlyphText() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) SetGlyphText(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), value)
+func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), objc.String(value))
 }
 
 // An image to display when the user selects the marker.

@@ -29,6 +29,14 @@ type _GLKEffectPropertyTextureClass struct {
 // An interface definition for the [GLKEffectPropertyTexture] class.
 type IGLKEffectPropertyTexture interface {
 	IGLKEffectProperty
+	Enabled() unsafe.Pointer
+	SetEnabled(value unsafe.Pointer)
+	EnvMode() GLKTextureEnvMode
+	SetEnvMode(value GLKTextureEnvMode)
+	Name() unsafe.Pointer
+	SetName(value unsafe.Pointer)
+	Target() GLKTextureTarget
+	SetTarget(value IGLKTextureTarget)
 }
 
 // Texture drawing parameters for use in GLKit rendering effects.

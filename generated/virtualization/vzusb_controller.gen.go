@@ -30,6 +30,10 @@ type _VZUSBControllerClass struct {
 // An interface definition for the [VZUSBController] class.
 type IVZUSBController interface {
 	objectivec.IObject
+	UsbDevices() unsafe.Pointer
+	SetUsbDevices(value unsafe.Pointer)
+	UsbControllers() VZUSBController
+	SetUsbControllers(value IVZUSBController)
 }
 
 // A class that represents a USB controller in a VM.

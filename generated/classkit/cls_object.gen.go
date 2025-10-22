@@ -31,6 +31,8 @@ type _SObjectClass struct {
 // An interface definition for the [SObject] class.
 type ISObject interface {
 	objectivec.IObject
+	DateCreated() foundation.NSDate
+	DateLastModified() foundation.NSDate
 }
 
 // The abstract base class for objects managed by ClassKit.

@@ -29,6 +29,18 @@ type _PrimitiveAccelerationStructureDescriptorClass struct {
 // An interface definition for the [PrimitiveAccelerationStructureDescriptor] class.
 type IPrimitiveAccelerationStructureDescriptor interface {
 	IAccelerationStructureDescriptor
+	GeometryDescriptors() MTLAccelerationStructureGeometryDescriptor
+	SetGeometryDescriptors(value IMTLAccelerationStructureGeometryDescriptor)
+	MotionEndBorderMode() unsafe.Pointer
+	SetMotionEndBorderMode(value unsafe.Pointer)
+	MotionEndTime() float32
+	SetMotionEndTime(value float32)
+	MotionKeyframeCount() int
+	SetMotionKeyframeCount(value int)
+	MotionStartBorderMode() unsafe.Pointer
+	SetMotionStartBorderMode(value unsafe.Pointer)
+	MotionStartTime() float32
+	SetMotionStartTime(value float32)
 }
 
 // A description of an acceleration structure that contains geometry primitives.
@@ -120,8 +132,8 @@ func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndBorderMode(value 
 // The end time for the range of motion that the keyframe data describes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionEndTime"))
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndTime() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("motionEndTime"))
 	return rv
 }
 
@@ -131,7 +143,7 @@ func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndTime() unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value unsafe.Pointer) {
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionEndTime:"), value)
 }
 
@@ -174,8 +186,8 @@ func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartBorderMode(valu
 // The start time for the range of motion that the keyframe data describes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionStartTime"))
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartTime() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("motionStartTime"))
 	return rv
 }
 
@@ -185,7 +197,7 @@ func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartTime() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value unsafe.Pointer) {
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionStartTime:"), value)
 }
 

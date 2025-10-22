@@ -62,6 +62,47 @@ type IBundle interface {
 	LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool
 	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) AttributedString
 	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) String
+	AppStoreReceiptURL() URL
+	BuiltInPlugInsPath() string
+	BuiltInPlugInsURL() URL
+	BundleIdentifier() string
+	BundlePath() string
+	BundleURL() URL
+	DevelopmentLocalization() string
+	ExecutableArchitectures() []Number
+	ExecutablePath() string
+	ExecutableURL() URL
+	InfoDictionary() unsafe.Pointer
+	Loaded() bool
+	Localizations() []string
+	LocalizedInfoDictionary() unsafe.Pointer
+	PreferredLocalizations() []string
+	PrincipalClass() objc.Class
+	PrivateFrameworksPath() string
+	PrivateFrameworksURL() URL
+	ResourcePath() string
+	ResourceURL() URL
+	SharedFrameworksPath() string
+	SharedFrameworksURL() URL
+	SharedSupportPath() string
+	SharedSupportURL() URL
+	IsLoaded() bool
+	SetIsLoaded(value bool)
+	NSExecutableArchitectureMismatchError() int
+	SetNSExecutableArchitectureMismatchError(value int)
+	NSExecutableErrorMaximum() int
+	SetNSExecutableErrorMaximum(value int)
+	NSExecutableErrorMinimum() int
+	SetNSExecutableErrorMinimum(value int)
+	NSExecutableLinkError() int
+	SetNSExecutableLinkError(value int)
+	NSExecutableLoadError() int
+	SetNSExecutableLoadError(value int)
+	NSExecutableNotLoadableError() int
+	SetNSExecutableNotLoadableError(value int)
+	NSExecutableRuntimeMismatchError() int
+	SetNSExecutableRuntimeMismatchError(value int)
+	NSLoadedClasses() string
 }
 
 // A representation of the code and resources stored in a bundle directory on disk.

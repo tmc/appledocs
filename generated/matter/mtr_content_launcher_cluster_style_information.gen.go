@@ -29,6 +29,10 @@ type _MTRContentLauncherClusterStyleInformationClass struct {
 // An interface definition for the [MTRContentLauncherClusterStyleInformation] class.
 type IMTRContentLauncherClusterStyleInformation interface {
 	IMTRContentLauncherClusterStyleInformationStruct
+	Color() string
+	SetColor(value string)
+	Size() MTRContentLauncherClusterDimensionStruct
+	SetSize(value IMTRContentLauncherClusterDimensionStruct)
 }
 
 //
@@ -78,8 +82,8 @@ func NewMTRContentLauncherClusterStyleInformation() MTRContentLauncherClusterSty
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
-func (m_ MTRContentLauncherClusterStyleInformation) Color() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("color"))
+func (m_ MTRContentLauncherClusterStyleInformation) Color() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -87,8 +91,8 @@ func (m_ MTRContentLauncherClusterStyleInformation) Color() appkit.string {
 // SetColor sets the value of the color property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
-func (m_ MTRContentLauncherClusterStyleInformation) SetColor(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), value)
+func (m_ MTRContentLauncherClusterStyleInformation) SetColor(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), objc.String(value))
 }
 
 //

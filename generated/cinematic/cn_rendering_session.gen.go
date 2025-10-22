@@ -32,6 +32,9 @@ type _CNRenderingSessionClass struct {
 type ICNRenderingSession interface {
 	objectivec.IObject
 	EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool
+	CommandQueue() objc.ID
+	PreferredTransform() coregraphics.CGAffineTransform
+	SessionAttributes() CNRenderingSessionAttributes
 }
 
 // An object representing the context in which rendering occurs.

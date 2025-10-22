@@ -31,6 +31,11 @@ type _CBATTRequestClass struct {
 // An interface definition for the [CBATTRequest] class.
 type ICBATTRequest interface {
 	objectivec.IObject
+	Central() CBCentral
+	Characteristic() CBCharacteristic
+	Offset() uint
+	Value() foundation.NSData
+	SetValue(value foundation.IData)
 }
 
 // A request that uses the Attribute Protocol (ATT).

@@ -78,7 +78,7 @@ var (
 	_CTFontDescriptorCreateWithAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CTFontDescriptorCreateWithNameAndSize func(unsafe.Pointer, float64) unsafe.Pointer
 	_CTFontDescriptorGetTypeID func() unsafe.Pointer
-	_CTFontDescriptorMatchFontDescriptorsWithProgressHandler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontDescriptorMatchFontDescriptorsWithProgressHandler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CTFontDrawGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, coregraphics.CGContextRef) unsafe.Pointer
 	_CTFontDrawImageFromAdaptiveImageProviderAtPoint func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGPoint, coregraphics.CGContextRef) unsafe.Pointer
 	_CTFontGetAdvancesForGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize, unsafe.Pointer) unsafe.Pointer
@@ -89,7 +89,7 @@ var (
 	_CTFontGetDescent func(unsafe.Pointer) float64
 	_CTFontGetGlyphCount func(unsafe.Pointer) unsafe.Pointer
 	_CTFontGetGlyphWithName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontGetGlyphsForCharacters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontGetGlyphsForCharacters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CTFontGetLeading func(unsafe.Pointer) float64
 	_CTFontGetLigatureCaretPositions func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
 	_CTFontGetMatrix func(unsafe.Pointer) coregraphics.CGAffineTransform
@@ -106,33 +106,33 @@ var (
 	_CTFontGetUnitsPerEm func(unsafe.Pointer) unsafe.Pointer
 	_CTFontGetVerticalTranslationsForGlyphs func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize, unsafe.Pointer) unsafe.Pointer
 	_CTFontGetXHeight func(unsafe.Pointer) float64
-	_CTFontHasTable func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontHasTable func(unsafe.Pointer, unsafe.Pointer) bool
 	_CTFontManagerCompareFontFamilyNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCopyAvailableFontFamilyNames func() unsafe.Pointer
 	_CTFontManagerCopyAvailableFontURLs func() unsafe.Pointer
 	_CTFontManagerCopyAvailablePostScriptNames func() unsafe.Pointer
-	_CTFontManagerCopyRegisteredFontDescriptors func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontManagerCopyRegisteredFontDescriptors func(unsafe.Pointer, bool) unsafe.Pointer
 	_CTFontManagerCreateFontDescriptorFromData func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCreateFontDescriptorsFromData func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCreateFontDescriptorsFromURL func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCreateFontRequestRunLoopSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerEnableFontDescriptors func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontManagerEnableFontDescriptors func(unsafe.Pointer, bool) unsafe.Pointer
 	_CTFontManagerGetAutoActivationSetting func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerGetScopeForURL func(unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerIsSupportedFont func(unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerRegisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerRegisterFontURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerRegisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerRegisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerRegisterFontsWithAssetNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerRegisterGraphicsFont func(coregraphics.CGFontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontManagerIsSupportedFont func(unsafe.Pointer) bool
+	_CTFontManagerRegisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, bool, bool) unsafe.Pointer
+	_CTFontManagerRegisterFontURLs func(unsafe.Pointer, unsafe.Pointer, bool, bool) unsafe.Pointer
+	_CTFontManagerRegisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontManagerRegisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontManagerRegisterFontsWithAssetNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, bool) unsafe.Pointer
+	_CTFontManagerRegisterGraphicsFont func(coregraphics.CGFontRef, unsafe.Pointer) bool
 	_CTFontManagerRequestFonts func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerSetAutoActivationSetting func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerUnregisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerUnregisterFontURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerUnregisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerUnregisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerUnregisterGraphicsFont func(coregraphics.CGFontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontManagerUnregisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_CTFontManagerUnregisterFontURLs func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_CTFontManagerUnregisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontManagerUnregisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontManagerUnregisterGraphicsFont func(coregraphics.CGFontRef, unsafe.Pointer) bool
 	_CTFrameDraw func(unsafe.Pointer, coregraphics.CGContextRef) unsafe.Pointer
 	_CTFrameGetFrameAttributes func(unsafe.Pointer) unsafe.Pointer
 	_CTFrameGetLineOrigins func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGPoint) unsafe.Pointer
@@ -175,7 +175,7 @@ var (
 	_CTParagraphStyleCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CTParagraphStyleCreateCopy func(unsafe.Pointer) unsafe.Pointer
 	_CTParagraphStyleGetTypeID func() unsafe.Pointer
-	_CTParagraphStyleGetValueForSpecifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTParagraphStyleGetValueForSpecifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CTRubyAnnotationCreate func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CTRubyAnnotationCreateCopy func(unsafe.Pointer) unsafe.Pointer
 	_CTRubyAnnotationCreateWithAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -1074,7 +1074,7 @@ func CTFontDescriptorGetTypeID() unsafe.Pointer {
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorMatchFontDescriptorsWithProgressHandler(_:_:_:)
-func CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors unsafe.Pointer, mandatoryAttributes unsafe.Pointer, progressBlock unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors unsafe.Pointer, mandatoryAttributes unsafe.Pointer, progressBlock unsafe.Pointer) bool {
 	return _CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors, mandatoryAttributes, progressBlock)
 	}
 
@@ -1184,7 +1184,7 @@ func CTFontGetGlyphWithName(font unsafe.Pointer, glyphName unsafe.Pointer) unsaf
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphsForCharacters(_:_:_:_:)
-func CTFontGetGlyphsForCharacters(font unsafe.Pointer, characters unsafe.Pointer, glyphs unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func CTFontGetGlyphsForCharacters(font unsafe.Pointer, characters unsafe.Pointer, glyphs unsafe.Pointer, count unsafe.Pointer) bool {
 	return _CTFontGetGlyphsForCharacters(font, characters, glyphs, count)
 	}
 
@@ -1356,7 +1356,7 @@ func CTFontGetXHeight(font unsafe.Pointer) float64 {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontHasTable(_:_:)
-func CTFontHasTable(font unsafe.Pointer, tag unsafe.Pointer) unsafe.Pointer {
+func CTFontHasTable(font unsafe.Pointer, tag unsafe.Pointer) bool {
 	return _CTFontHasTable(font, tag)
 	}
 
@@ -1404,7 +1404,7 @@ func CTFontManagerCopyAvailablePostScriptNames() unsafe.Pointer {
 // Retrieves the font descriptors that were registered with the font manager. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCopyRegisteredFontDescriptors(_:_:)
-func CTFontManagerCopyRegisteredFontDescriptors(scope unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerCopyRegisteredFontDescriptors(scope unsafe.Pointer, enabled bool) unsafe.Pointer {
 	return _CTFontManagerCopyRegisteredFontDescriptors(scope, enabled)
 	}
 
@@ -1456,7 +1456,7 @@ func CTFontManagerCreateFontRequestRunLoopSource(sourceOrder unsafe.Pointer, cre
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerEnableFontDescriptors(_:_:)
-func CTFontManagerEnableFontDescriptors(descriptors unsafe.Pointer, enable unsafe.Pointer) {
+func CTFontManagerEnableFontDescriptors(descriptors unsafe.Pointer, enable bool) {
 	_CTFontManagerEnableFontDescriptors(descriptors, enable)
 	}
 
@@ -1486,7 +1486,7 @@ func CTFontManagerGetScopeForURL(fontURL unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerIsSupportedFont(_:)
-func CTFontManagerIsSupportedFont(fontURL unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerIsSupportedFont(fontURL unsafe.Pointer) bool {
 	return _CTFontManagerIsSupportedFont(fontURL)
 	}
 
@@ -1496,7 +1496,7 @@ func CTFontManagerIsSupportedFont(fontURL unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontDescriptors(_:_:_:_:)
-func CTFontManagerRegisterFontDescriptors(fontDescriptors unsafe.Pointer, scope unsafe.Pointer, enabled unsafe.Pointer, registrationHandler unsafe.Pointer) {
+func CTFontManagerRegisterFontDescriptors(fontDescriptors unsafe.Pointer, scope unsafe.Pointer, enabled bool, registrationHandler bool) {
 	_CTFontManagerRegisterFontDescriptors(fontDescriptors, scope, enabled, registrationHandler)
 	}
 
@@ -1506,7 +1506,7 @@ func CTFontManagerRegisterFontDescriptors(fontDescriptors unsafe.Pointer, scope 
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)
-func CTFontManagerRegisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, enabled unsafe.Pointer, registrationHandler unsafe.Pointer) {
+func CTFontManagerRegisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, enabled bool, registrationHandler bool) {
 	_CTFontManagerRegisterFontURLs(fontURLs, scope, enabled, registrationHandler)
 	}
 
@@ -1516,7 +1516,7 @@ func CTFontManagerRegisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontsForURL(_:_:_:)
-func CTFontManagerRegisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerRegisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _CTFontManagerRegisterFontsForURL(fontURL, scope, error_)
 	}
 
@@ -1528,7 +1528,7 @@ func CTFontManagerRegisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Point
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontsForURLs(_:_:_:)
-func CTFontManagerRegisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, errors unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerRegisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, errors unsafe.Pointer) bool {
 	return _CTFontManagerRegisterFontsForURLs(fontURLs, scope, errors)
 	}
 
@@ -1536,7 +1536,7 @@ func CTFontManagerRegisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Poi
 // Registers named font assets in the specified bundle with the font manager. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)
-func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames unsafe.Pointer, bundle unsafe.Pointer, scope unsafe.Pointer, enabled unsafe.Pointer, registrationHandler unsafe.Pointer) {
+func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames unsafe.Pointer, bundle unsafe.Pointer, scope unsafe.Pointer, enabled bool, registrationHandler bool) {
 	_CTFontManagerRegisterFontsWithAssetNames(fontAssetNames, bundle, scope, enabled, registrationHandler)
 	}
 
@@ -1548,7 +1548,7 @@ func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames unsafe.Pointer, bun
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterGraphicsFont(_:_:)
-func CTFontManagerRegisterGraphicsFont(font coregraphics.CGFontRef, error_ unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerRegisterGraphicsFont(font coregraphics.CGFontRef, error_ unsafe.Pointer) bool {
 	return _CTFontManagerRegisterGraphicsFont(font, error_)
 	}
 
@@ -1576,7 +1576,7 @@ func CTFontManagerSetAutoActivationSetting(bundleIdentifier unsafe.Pointer, sett
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontDescriptors(_:_:_:)
-func CTFontManagerUnregisterFontDescriptors(fontDescriptors unsafe.Pointer, scope unsafe.Pointer, registrationHandler unsafe.Pointer) {
+func CTFontManagerUnregisterFontDescriptors(fontDescriptors unsafe.Pointer, scope unsafe.Pointer, registrationHandler bool) {
 	_CTFontManagerUnregisterFontDescriptors(fontDescriptors, scope, registrationHandler)
 	}
 
@@ -1586,7 +1586,7 @@ func CTFontManagerUnregisterFontDescriptors(fontDescriptors unsafe.Pointer, scop
 // Added in macOS 10.15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)
-func CTFontManagerUnregisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, registrationHandler unsafe.Pointer) {
+func CTFontManagerUnregisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, registrationHandler bool) {
 	_CTFontManagerUnregisterFontURLs(fontURLs, scope, registrationHandler)
 	}
 
@@ -1596,7 +1596,7 @@ func CTFontManagerUnregisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Point
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontsForURL(_:_:_:)
-func CTFontManagerUnregisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerUnregisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterFontsForURL(fontURL, scope, error_)
 	}
 
@@ -1608,7 +1608,7 @@ func CTFontManagerUnregisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Poi
 // Added in macOS 10.6.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontsForURLs(_:_:_:)
-func CTFontManagerUnregisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, errors unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerUnregisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, errors unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterFontsForURLs(fontURLs, scope, errors)
 	}
 
@@ -1620,7 +1620,7 @@ func CTFontManagerUnregisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.P
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterGraphicsFont(_:_:)
-func CTFontManagerUnregisterGraphicsFont(font coregraphics.CGFontRef, error_ unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerUnregisterGraphicsFont(font coregraphics.CGFontRef, error_ unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterGraphicsFont(font, error_)
 	}
 
@@ -2052,7 +2052,7 @@ func CTParagraphStyleGetTypeID() unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleGetValueForSpecifier(_:_:_:_:)
-func CTParagraphStyleGetValueForSpecifier(paragraphStyle unsafe.Pointer, spec unsafe.Pointer, valueBufferSize unsafe.Pointer, valueBuffer unsafe.Pointer) unsafe.Pointer {
+func CTParagraphStyleGetValueForSpecifier(paragraphStyle unsafe.Pointer, spec unsafe.Pointer, valueBufferSize unsafe.Pointer, valueBuffer unsafe.Pointer) bool {
 	return _CTParagraphStyleGetValueForSpecifier(paragraphStyle, spec, valueBufferSize, valueBuffer)
 	}
 

@@ -30,6 +30,10 @@ type _WebAuthenticationSessionWebBrowserSessionManagerClass struct {
 // An interface definition for the [WebAuthenticationSessionWebBrowserSessionManager] class.
 type IWebAuthenticationSessionWebBrowserSessionManager interface {
 	objectivec.IObject
+	SessionHandler() unsafe.Pointer
+	SetSessionHandler(value unsafe.Pointer)
+	WasLaunchedByAuthenticationServices() bool
+	SetWasLaunchedByAuthenticationServices(value bool)
 }
 
 // A session manager that mediates sharing data between an app and a web browser.

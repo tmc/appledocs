@@ -31,6 +31,10 @@ type _MTRUnitTestingClusterTestNotHandledParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestNotHandledParams] class.
 type IMTRUnitTestingClusterTestNotHandledParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

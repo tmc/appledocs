@@ -31,6 +31,29 @@ type _ScriptCommandClass struct {
 type IScriptCommand interface {
 	objectivec.IObject
 	PerformDefaultImplementation() objc.ID
+	EvaluatedReceivers() objc.ID
+	ReceiversSpecifier() NSScriptObjectSpecifier
+	SetReceiversSpecifier(value IScriptObjectSpecifier)
+	AppleEvent() NSAppleEventDescriptor
+	SetAppleEvent(value IAppleEventDescriptor)
+	Arguments() string
+	SetArguments(value string)
+	CommandDescription() NSScriptCommandDescription
+	SetCommandDescription(value IScriptCommandDescription)
+	DirectParameter() unsafe.Pointer
+	SetDirectParameter(value unsafe.Pointer)
+	EvaluatedArguments() string
+	SetEvaluatedArguments(value string)
+	IsWellFormed() bool
+	SetIsWellFormed(value bool)
+	ScriptErrorExpectedTypeDescriptor() NSAppleEventDescriptor
+	SetScriptErrorExpectedTypeDescriptor(value IAppleEventDescriptor)
+	ScriptErrorNumber() int
+	SetScriptErrorNumber(value int)
+	ScriptErrorOffendingObjectDescriptor() NSAppleEventDescriptor
+	SetScriptErrorOffendingObjectDescriptor(value IAppleEventDescriptor)
+	ScriptErrorString() string
+	SetScriptErrorString(value string)
 }
 
 // A self-contained scripting statement.

@@ -32,6 +32,15 @@ type _ThumbnailRepresentationClass struct {
 // An interface definition for the [ThumbnailRepresentation] class.
 type IThumbnailRepresentation interface {
 	objectivec.IObject
+	CGImage() coregraphics.CGImageRef
+	ContentRect() coregraphics.CGRect
+	SetContentRect(value coregraphics.CGRect)
+	NsImage() appkit.Image
+	SetNsImage(value appkit.IImage)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
+	UiImage() appkit.Image
+	SetUiImage(value appkit.IImage)
 }
 
 // Information about the thumbnail that the thumbnail generator returns.

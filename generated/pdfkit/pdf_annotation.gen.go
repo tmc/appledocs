@@ -42,6 +42,117 @@ type IPDFAnnotation interface {
 	SetRectForAnnotationKey(value foundation.IRect, key IPDFAnnotationKey) bool
 	SetValueForAnnotationKey(value objectivec.IObject, key IPDFAnnotationKey) bool
 	ValueForAnnotationKey(key IPDFAnnotationKey) objc.ID
+	Action() PDFAction
+	SetAction(value IPDFAction)
+	Alignment() unsafe.Pointer
+	SetAlignment(value unsafe.Pointer)
+	AllowsToggleToOff() bool
+	SetAllowsToggleToOff(value bool)
+	AnnotationKeyValues() objc.ID
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.IColor)
+	Border() PDFBorder
+	SetBorder(value IPDFBorder)
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	ButtonWidgetState() PDFWidgetCellState
+	SetButtonWidgetState(value PDFWidgetCellState)
+	ButtonWidgetStateString() string
+	SetButtonWidgetStateString(value string)
+	Caption() string
+	SetCaption(value string)
+	Choices() []string
+	SetChoices(value []string)
+	Color() appkit.Color
+	SetColor(value appkit.IColor)
+	Contents() string
+	SetContents(value string)
+	Destination() PDFDestination
+	SetDestination(value IPDFDestination)
+	EndLineStyle() unsafe.Pointer
+	SetEndLineStyle(value unsafe.Pointer)
+	EndPoint() foundation.Point
+	SetEndPoint(value foundation.IPoint)
+	FieldName() string
+	SetFieldName(value string)
+	Font() appkit.Font
+	SetFont(value appkit.IFont)
+	FontColor() appkit.Color
+	SetFontColor(value appkit.IColor)
+	HasAppearanceStream() bool
+	Comb() bool
+	SetComb(value bool)
+	IconType() PDFTextAnnotationIconType
+	SetIconType(value PDFTextAnnotationIconType)
+	InteriorColor() appkit.Color
+	SetInteriorColor(value appkit.IColor)
+	ActivatableTextField() bool
+	Highlighted() bool
+	SetHighlighted(value bool)
+	ListChoice() bool
+	SetListChoice(value bool)
+	Multiline() bool
+	SetMultiline(value bool)
+	Open() bool
+	SetOpen(value bool)
+	IsPasswordField() bool
+	ReadOnly() bool
+	SetReadOnly(value bool)
+	MarkupType() PDFMarkupType
+	SetMarkupType(value PDFMarkupType)
+	MaximumLength() int
+	SetMaximumLength(value int)
+	ModificationDate() foundation.NSDate
+	SetModificationDate(value foundation.IDate)
+	Page() PDFPage
+	SetPage(value IPDFPage)
+	Paths() []appkit.BezierPath
+	Popup() PDFAnnotation
+	SetPopup(value IPDFAnnotation)
+	QuadrilateralPoints() []foundation.Value
+	SetQuadrilateralPoints(value []foundation.IValue)
+	RadiosInUnison() bool
+	SetRadiosInUnison(value bool)
+	ShouldDisplay() bool
+	SetShouldDisplay(value bool)
+	ShouldPrint() bool
+	SetShouldPrint(value bool)
+	StampName() string
+	SetStampName(value string)
+	StartLineStyle() unsafe.Pointer
+	SetStartLineStyle(value unsafe.Pointer)
+	StartPoint() foundation.Point
+	SetStartPoint(value foundation.IPoint)
+	Type() string
+	SetType(value string)
+	URL() foundation.URL
+	SetURL(value foundation.IURL)
+	UserName() string
+	SetUserName(value string)
+	Values() []string
+	SetValues(value []string)
+	WidgetControlType() PDFWidgetControlType
+	SetWidgetControlType(value PDFWidgetControlType)
+	WidgetDefaultStringValue() string
+	SetWidgetDefaultStringValue(value string)
+	WidgetFieldType() PDFAnnotationWidgetSubtype
+	SetWidgetFieldType(value IPDFAnnotationWidgetSubtype)
+	WidgetStringValue() string
+	SetWidgetStringValue(value string)
+	HasComb() bool
+	SetHasComb(value bool)
+	IsActivatableTextField() bool
+	SetIsActivatableTextField(value bool)
+	IsHighlighted() bool
+	SetIsHighlighted(value bool)
+	IsListChoice() bool
+	SetIsListChoice(value bool)
+	IsMultiline() bool
+	SetIsMultiline(value bool)
+	IsOpen() bool
+	SetIsOpen(value bool)
+	IsReadOnly() bool
+	SetIsReadOnly(value bool)
 }
 
 // An annotation in a PDF document.
@@ -108,8 +219,8 @@ func NewPDFAnnotationWithBoundsForTypeWithProperties(bounds foundation.IRect, an
 // Returns a line style that corresponds to the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/lineStyle(fromName:)
-func (pc _PDFAnnotationClass) LineStyleFromName(name appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("lineStyleFromName:"), name)
+func (pc _PDFAnnotationClass) LineStyleFromName(name string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("lineStyleFromName:"), objc.String(name))
 	return rv
 }
 
@@ -325,8 +436,8 @@ func (p_ PDFAnnotation) SetButtonWidgetState(value PDFWidgetCellState) {
 // A string value that differentiates button widgets in the same group, such as to identify mutually exclusive radio buttons from each other.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString
-func (p_ PDFAnnotation) ButtonWidgetStateString() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("buttonWidgetStateString"))
+func (p_ PDFAnnotation) ButtonWidgetStateString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("buttonWidgetStateString"))
 	return rv
 }
 
@@ -336,15 +447,15 @@ func (p_ PDFAnnotation) ButtonWidgetStateString() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString
-func (p_ PDFAnnotation) SetButtonWidgetStateString(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonWidgetStateString:"), value)
+func (p_ PDFAnnotation) SetButtonWidgetStateString(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonWidgetStateString:"), objc.String(value))
 }
 
 // The title of push button widget annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/caption
-func (p_ PDFAnnotation) Caption() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("caption"))
+func (p_ PDFAnnotation) Caption() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("caption"))
 	return rv
 }
 
@@ -354,8 +465,8 @@ func (p_ PDFAnnotation) Caption() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/caption
-func (p_ PDFAnnotation) SetCaption(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCaption:"), value)
+func (p_ PDFAnnotation) SetCaption(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCaption:"), objc.String(value))
 }
 
 // An array of strings that specifies the options in either a list or a pop-up menu.
@@ -407,8 +518,8 @@ func (p_ PDFAnnotation) SetColor(value appkit.IColor) {
 // Returns the textual content (if any) associated with the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/contents
-func (p_ PDFAnnotation) Contents() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("contents"))
+func (p_ PDFAnnotation) Contents() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -418,8 +529,8 @@ func (p_ PDFAnnotation) Contents() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/contents
-func (p_ PDFAnnotation) SetContents(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
+func (p_ PDFAnnotation) SetContents(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
 }
 
 // The destination for a link annotation.
@@ -479,8 +590,8 @@ func (p_ PDFAnnotation) SetEndPoint(value foundation.IPoint) {
 // The widget identifier for form annotation actions and behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/fieldName
-func (p_ PDFAnnotation) FieldName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("fieldName"))
+func (p_ PDFAnnotation) FieldName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("fieldName"))
 	return rv
 }
 
@@ -490,8 +601,8 @@ func (p_ PDFAnnotation) FieldName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/fieldName
-func (p_ PDFAnnotation) SetFieldName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldName:"), value)
+func (p_ PDFAnnotation) SetFieldName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldName:"), objc.String(value))
 }
 
 // The font the annotation uses to display text.
@@ -880,8 +991,8 @@ func (p_ PDFAnnotation) SetShouldPrint(value bool) {
 // The name of the stamp, a text or graphics annotation that emulates a rubber stamp effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/stampName
-func (p_ PDFAnnotation) StampName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("stampName"))
+func (p_ PDFAnnotation) StampName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("stampName"))
 	return rv
 }
 
@@ -891,8 +1002,8 @@ func (p_ PDFAnnotation) StampName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/stampName
-func (p_ PDFAnnotation) SetStampName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStampName:"), value)
+func (p_ PDFAnnotation) SetStampName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStampName:"), objc.String(value))
 }
 
 // The style of the line annotation’s starting point, such as square or filled arrowhead.
@@ -934,8 +1045,8 @@ func (p_ PDFAnnotation) SetStartPoint(value foundation.IPoint) {
 // Returns the type of the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/type
-func (p_ PDFAnnotation) Type() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("type"))
+func (p_ PDFAnnotation) Type() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -945,8 +1056,8 @@ func (p_ PDFAnnotation) Type() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/type
-func (p_ PDFAnnotation) SetType(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+func (p_ PDFAnnotation) SetType(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
 }
 
 // A URL for a link annotation.
@@ -970,8 +1081,8 @@ func (p_ PDFAnnotation) SetURL(value foundation.IURL) {
 // Returns the name of the user who created the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/userName
-func (p_ PDFAnnotation) UserName() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("userName"))
+func (p_ PDFAnnotation) UserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -981,8 +1092,8 @@ func (p_ PDFAnnotation) UserName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/userName
-func (p_ PDFAnnotation) SetUserName(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
+func (p_ PDFAnnotation) SetUserName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 // An array of strings that specifies the export values for items in a list or a pop-up menu.
@@ -1034,8 +1145,8 @@ func (p_ PDFAnnotation) SetWidgetControlType(value PDFWidgetControlType) {
 // The string value that the widget reverts to when performing a reset form action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetDefaultStringValue
-func (p_ PDFAnnotation) WidgetDefaultStringValue() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("widgetDefaultStringValue"))
+func (p_ PDFAnnotation) WidgetDefaultStringValue() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("widgetDefaultStringValue"))
 	return rv
 }
 
@@ -1045,8 +1156,8 @@ func (p_ PDFAnnotation) WidgetDefaultStringValue() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetDefaultStringValue
-func (p_ PDFAnnotation) SetWidgetDefaultStringValue(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetDefaultStringValue:"), value)
+func (p_ PDFAnnotation) SetWidgetDefaultStringValue(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetDefaultStringValue:"), objc.String(value))
 }
 
 // The type of widget annotation, such as button, choice, or text.
@@ -1070,8 +1181,8 @@ func (p_ PDFAnnotation) SetWidgetFieldType(value IPDFAnnotationWidgetSubtype) {
 // The string value of the widget annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetStringValue
-func (p_ PDFAnnotation) WidgetStringValue() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("widgetStringValue"))
+func (p_ PDFAnnotation) WidgetStringValue() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("widgetStringValue"))
 	return rv
 }
 
@@ -1081,8 +1192,8 @@ func (p_ PDFAnnotation) WidgetStringValue() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/widgetStringValue
-func (p_ PDFAnnotation) SetWidgetStringValue(value appkit.string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), value)
+func (p_ PDFAnnotation) SetWidgetStringValue(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWidgetStringValue:"), objc.String(value))
 }
 
 // A Boolean value that indicates whether the annotation divides the text widget’s bounds into equally spaced segments, such as in a form entry field.

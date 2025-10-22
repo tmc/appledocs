@@ -29,6 +29,8 @@ type _NEDNSProxyProviderClass struct {
 // An interface definition for the [NEDNSProxyProvider] class.
 type INEDNSProxyProvider interface {
 	INEProvider
+	SystemDNSSettings() NEDNSSettings
+	SetSystemDNSSettings(value INEDNSSettings)
 }
 
 // The principal class for a DNS proxy provider app extension.

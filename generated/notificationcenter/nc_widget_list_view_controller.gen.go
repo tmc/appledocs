@@ -32,6 +32,18 @@ type INCWidgetListViewController interface {
 	appkit.IViewController
 	RowForViewController(viewController appkit.IViewController) uint
 	ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) appkit.ViewController
+	Contents() []objc.ID
+	SetContents(value []objc.ID)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Editing() bool
+	SetEditing(value bool)
+	HasDividerLines() bool
+	SetHasDividerLines(value bool)
+	MinimumVisibleRowCount() uint
+	SetMinimumVisibleRowCount(value uint)
+	ShowsAddButtonWhenEditing() bool
+	SetShowsAddButtonWhenEditing(value bool)
 }
 
 // An object that provides a list view for displaying content in a macOS Today widget.

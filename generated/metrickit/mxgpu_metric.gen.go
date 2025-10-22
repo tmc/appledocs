@@ -29,6 +29,7 @@ type _MXGPUMetricClass struct {
 // An interface definition for the [MXGPUMetric] class.
 type IMXGPUMetric interface {
 	IMXMetric
+	CumulativeGPUTime() unsafe.Pointer
 }
 
 // An object representing metrics about the use of the GPU.

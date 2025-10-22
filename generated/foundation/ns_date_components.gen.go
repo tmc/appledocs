@@ -35,6 +35,54 @@ type IDateComponents interface {
 	SetWeek(v int)
 	ValueForComponent(unit ICalendarUnit) int
 	Week() int
+	Calendar() NSCalendar
+	SetCalendar(value ICalendar)
+	Date() NSDate
+	Day() int
+	SetDay(value int)
+	DayOfYear() int
+	SetDayOfYear(value int)
+	Era() int
+	SetEra(value int)
+	Hour() int
+	SetHour(value int)
+	LeapMonth() bool
+	SetLeapMonth(value bool)
+	RepeatedDay() bool
+	SetRepeatedDay(value bool)
+	ValidDate() bool
+	Minute() int
+	SetMinute(value int)
+	Month() int
+	SetMonth(value int)
+	Nanosecond() int
+	SetNanosecond(value int)
+	Quarter() int
+	SetQuarter(value int)
+	Second() int
+	SetSecond(value int)
+	TimeZone() NSTimeZone
+	SetTimeZone(value ITimeZone)
+	WeekOfMonth() int
+	SetWeekOfMonth(value int)
+	WeekOfYear() int
+	SetWeekOfYear(value int)
+	Weekday() int
+	SetWeekday(value int)
+	WeekdayOrdinal() int
+	SetWeekdayOrdinal(value int)
+	Year() int
+	SetYear(value int)
+	YearForWeekOfYear() int
+	SetYearForWeekOfYear(value int)
+	NSDateComponentUndefined() int
+	SetNSDateComponentUndefined(value int)
+	IsLeapMonth() bool
+	SetIsLeapMonth(value bool)
+	IsRepeatedDay() bool
+	SetIsRepeatedDay(value bool)
+	IsValidDate() bool
+	SetIsValidDate(value bool)
 }
 
 // An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.

@@ -31,6 +31,10 @@ type _MTRGeneralCommissioningClusterBasicCommissioningInfoClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterBasicCommissioningInfo] class.
 type IMTRGeneralCommissioningClusterBasicCommissioningInfo interface {
 	objectivec.IObject
+	FailSafeExpiryLengthSeconds() foundation.Number
+	SetFailSafeExpiryLengthSeconds(value foundation.INumber)
+	MaxCumulativeFailsafeSeconds() foundation.Number
+	SetMaxCumulativeFailsafeSeconds(value foundation.INumber)
 }
 
 //

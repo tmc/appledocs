@@ -31,6 +31,18 @@ type _SortDescriptorClass struct {
 type ISortDescriptor interface {
 	objectivec.IObject
 	CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) ComparisonResult
+	Key() string
+	Selector() objc.SEL
+	SortDescriptors() NSSortDescriptor
+	SetSortDescriptors(value ISortDescriptor)
+	Ascending() bool
+	SetAscending(value bool)
+	Comparator() unsafe.Pointer
+	SetComparator(value unsafe.Pointer)
+	KeyPath() unsafe.Pointer
+	SetKeyPath(value unsafe.Pointer)
+	ReversedSortDescriptor() unsafe.Pointer
+	SetReversedSortDescriptor(value unsafe.Pointer)
 }
 
 // An immutable description of how to order a collection of objects according to a property common to all the objects.

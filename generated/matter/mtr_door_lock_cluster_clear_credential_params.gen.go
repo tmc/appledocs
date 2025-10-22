@@ -31,6 +31,12 @@ type _MTRDoorLockClusterClearCredentialParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterClearCredentialParams] class.
 type IMTRDoorLockClusterClearCredentialParams interface {
 	objectivec.IObject
+	Credential() MTRDoorLockClusterCredentialStruct
+	SetCredential(value IMTRDoorLockClusterCredentialStruct)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

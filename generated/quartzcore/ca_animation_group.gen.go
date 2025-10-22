@@ -29,6 +29,12 @@ type _AnimationGroupClass struct {
 // An interface definition for the [AnimationGroup] class.
 type IAnimationGroup interface {
 	IAnimation
+	Animations() []Animation
+	SetAnimations(value []Animation)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IsRemovedOnCompletion() bool
+	SetIsRemovedOnCompletion(value bool)
 }
 
 // An object that allows multiple animations to be grouped and run concurrently.

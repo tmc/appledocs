@@ -32,6 +32,38 @@ type IRenderPassDescriptor interface {
 	objectivec.IObject
 	GetSamplePositionsCount(positions unsafe.Pointer, count uint) uint
 	SetSamplePositionsCount(positions unsafe.Pointer, count uint)
+	ColorAttachments() MTLRenderPassColorAttachmentDescriptorArray
+	DefaultRasterSampleCount() uint
+	SetDefaultRasterSampleCount(value uint)
+	DepthAttachment() MTLRenderPassDepthAttachmentDescriptor
+	SetDepthAttachment(value IMTLRenderPassDepthAttachmentDescriptor)
+	ImageblockSampleLength() uint
+	SetImageblockSampleLength(value uint)
+	RasterizationRateMap() objc.ID
+	SetRasterizationRateMap(value objc.ID)
+	RenderTargetArrayLength() uint
+	SetRenderTargetArrayLength(value uint)
+	RenderTargetHeight() uint
+	SetRenderTargetHeight(value uint)
+	RenderTargetWidth() uint
+	SetRenderTargetWidth(value uint)
+	SampleBufferAttachments() MTLRenderPassSampleBufferAttachmentDescriptorArray
+	StencilAttachment() MTLRenderPassStencilAttachmentDescriptor
+	SetStencilAttachment(value IMTLRenderPassStencilAttachmentDescriptor)
+	SupportColorAttachmentMapping() bool
+	SetSupportColorAttachmentMapping(value bool)
+	ThreadgroupMemoryLength() uint
+	SetThreadgroupMemoryLength(value uint)
+	TileHeight() uint
+	SetTileHeight(value uint)
+	TileWidth() uint
+	SetTileWidth(value uint)
+	VisibilityResultBuffer() objc.ID
+	SetVisibilityResultBuffer(value objc.ID)
+	VisibilityResultType() VisibilityResultType
+	SetVisibilityResultType(value VisibilityResultType)
+	Usage() TextureUsage
+	SetUsage(value ITextureUsage)
 }
 
 // A group of render targets that hold the results of a render pass.

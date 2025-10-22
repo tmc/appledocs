@@ -33,6 +33,12 @@ type ITKSmartCardUserInteraction interface {
 	objectivec.IObject
 	Cancel() bool
 	RunWithReply(reply unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	InitialTimeout() foundation.TimeInterval
+	SetInitialTimeout(value foundation.ITimeInterval)
+	InteractionTimeout() foundation.TimeInterval
+	SetInteractionTimeout(value foundation.ITimeInterval)
 }
 
 // The base class for encapsulating user interaction with a Smart Card reader.

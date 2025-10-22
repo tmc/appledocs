@@ -30,6 +30,8 @@ type _MTRBridgedDeviceBasicClusterReachableChangedEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicClusterReachableChangedEvent] class.
 type IMTRBridgedDeviceBasicClusterReachableChangedEvent interface {
 	IMTRBridgedDeviceBasicInformationClusterReachableChangedEvent
+	ReachableNewValue() foundation.Number
+	SetReachableNewValue(value foundation.INumber)
 }
 
 //

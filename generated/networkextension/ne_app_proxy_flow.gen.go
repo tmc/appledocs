@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -37,6 +36,14 @@ type INEAppProxyFlow interface {
 	OpenWithLocalEndpointCompletionHandler(localEndpoint INWHostEndpoint, completionHandler unsafe.Pointer)
 	OpenWithLocalFlowEndpointCompletionHandler(localEndpoint unsafe.Pointer, completionHandler unsafe.Pointer)
 	SetMetadata(parameters unsafe.Pointer)
+	IsBound() bool
+	MetaData() NEFlowMetaData
+	NetworkInterface() unsafe.Pointer
+	SetNetworkInterface(value unsafe.Pointer)
+	RemoteHostname() string
+	NEAppProxyErrorDomain() string
+	Interface() unsafe.Pointer
+	SetInterface(value unsafe.Pointer)
 }
 
 // An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.
@@ -158,16 +165,16 @@ func (n_ NEAppProxyFlow) SetNetworkInterface(value unsafe.Pointer) {
 // The remote host name for flows created from a hostname.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/remoteHostname
-func (n_ NEAppProxyFlow) RemoteHostname() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("remoteHostname"))
+func (n_ NEAppProxyFlow) RemoteHostname() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
 	return rv
 }
 
 // The domain used for app proxy errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyerrordomain
-func (n_ NEAppProxyFlow) NEAppProxyErrorDomain() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEAppProxyErrorDomain"))
+func (n_ NEAppProxyFlow) NEAppProxyErrorDomain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("NEAppProxyErrorDomain"))
 	return rv
 }
 

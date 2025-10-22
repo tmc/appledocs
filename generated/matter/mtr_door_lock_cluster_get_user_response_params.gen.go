@@ -31,6 +31,30 @@ type _MTRDoorLockClusterGetUserResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetUserResponseParams] class.
 type IMTRDoorLockClusterGetUserResponseParams interface {
 	objectivec.IObject
+	CreatorFabricIndex() foundation.Number
+	SetCreatorFabricIndex(value foundation.INumber)
+	CredentialRule() foundation.Number
+	SetCredentialRule(value foundation.INumber)
+	Credentials() unsafe.Pointer
+	SetCredentials(value unsafe.Pointer)
+	LastModifiedFabricIndex() foundation.Number
+	SetLastModifiedFabricIndex(value foundation.INumber)
+	NextUserIndex() foundation.Number
+	SetNextUserIndex(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
+	UserName() string
+	SetUserName(value string)
+	UserStatus() foundation.Number
+	SetUserStatus(value foundation.INumber)
+	UserType() foundation.Number
+	SetUserType(value foundation.INumber)
+	UserUniqueID() foundation.Number
+	SetUserUniqueID(value foundation.INumber)
+	UserUniqueId() foundation.Number
+	SetUserUniqueId(value foundation.INumber)
 }
 
 //
@@ -183,8 +207,8 @@ func (m_ MTRDoorLockClusterGetUserResponseParams) SetUserIndex(value foundation.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserresponseparams/username
-func (m_ MTRDoorLockClusterGetUserResponseParams) UserName() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("userName"))
+func (m_ MTRDoorLockClusterGetUserResponseParams) UserName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -192,8 +216,8 @@ func (m_ MTRDoorLockClusterGetUserResponseParams) UserName() appkit.string {
 // SetUserName sets the value of the userName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserresponseparams/username
-func (m_ MTRDoorLockClusterGetUserResponseParams) SetUserName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserName:"), value)
+func (m_ MTRDoorLockClusterGetUserResponseParams) SetUserName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserName:"), objc.String(value))
 }
 
 //

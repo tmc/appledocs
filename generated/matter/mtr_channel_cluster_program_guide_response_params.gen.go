@@ -30,6 +30,10 @@ type _MTRChannelClusterProgramGuideResponseParamsClass struct {
 // An interface definition for the [MTRChannelClusterProgramGuideResponseParams] class.
 type IMTRChannelClusterProgramGuideResponseParams interface {
 	objectivec.IObject
+	Paging() MTRChannelClusterChannelPagingStruct
+	SetPaging(value IMTRChannelClusterChannelPagingStruct)
+	ProgramList() objc.ID
+	SetProgramList(value objc.ID)
 }
 
 //

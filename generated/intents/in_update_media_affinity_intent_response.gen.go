@@ -29,6 +29,8 @@ type _INUpdateMediaAffinityIntentResponseClass struct {
 // An interface definition for the [INUpdateMediaAffinityIntentResponse] class.
 type IINUpdateMediaAffinityIntentResponse interface {
 	IINIntentResponse
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
 }
 
 // An intents handler’s response to an update media affinity intent.

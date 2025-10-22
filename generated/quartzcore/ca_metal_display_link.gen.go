@@ -34,6 +34,16 @@ type IMetalDisplayLink interface {
 	AddToRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
 	Invalidate()
 	RemoveFromRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Paused() bool
+	SetPaused(value bool)
+	PreferredFrameLatency() float32
+	SetPreferredFrameLatency(value float32)
+	PreferredFrameRateRange() unsafe.Pointer
+	SetPreferredFrameRateRange(value unsafe.Pointer)
+	IsPaused() bool
+	SetIsPaused(value bool)
 }
 
 // A class your Metal app uses to register for callbacks to synchronize its animations for a display.
@@ -157,8 +167,8 @@ func (m_ MetalDisplayLink) SetPaused(value bool) {
 // The amount of time, in frames, your app requests to render a frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameLatency
-func (m_ MetalDisplayLink) PreferredFrameLatency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredFrameLatency"))
+func (m_ MetalDisplayLink) PreferredFrameLatency() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("preferredFrameLatency"))
 	return rv
 }
 
@@ -168,7 +178,7 @@ func (m_ MetalDisplayLink) PreferredFrameLatency() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/preferredFrameLatency
-func (m_ MetalDisplayLink) SetPreferredFrameLatency(value unsafe.Pointer) {
+func (m_ MetalDisplayLink) SetPreferredFrameLatency(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredFrameLatency:"), value)
 }
 

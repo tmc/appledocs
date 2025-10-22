@@ -32,6 +32,8 @@ type _DialogControllerClass struct {
 type IDialogController interface {
 	appkit.IResponder
 	Dismiss(sender objectivec.IObject)
+	ParentWindow() appkit.Window
+	SetParentWindow(value appkit.IWindow)
 }
 
 // An object that provides the ability to present the dashboard in macOS games.

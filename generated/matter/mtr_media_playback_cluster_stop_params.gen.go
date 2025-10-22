@@ -31,6 +31,10 @@ type _MTRMediaPlaybackClusterStopParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterStopParams] class.
 type IMTRMediaPlaybackClusterStopParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

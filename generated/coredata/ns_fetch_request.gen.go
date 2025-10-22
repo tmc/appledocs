@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,6 +31,43 @@ type _FetchRequestClass struct {
 type IFetchRequest interface {
 	IPersistentStoreRequest
 	Execute(error_ unsafe.Pointer) []objc.ID
+	AffectedStores() []PersistentStore
+	SetAffectedStores(value []PersistentStore)
+	Entity() NSEntityDescription
+	SetEntity(value IEntityDescription)
+	EntityName() string
+	FetchBatchSize() uint
+	SetFetchBatchSize(value uint)
+	FetchLimit() uint
+	SetFetchLimit(value uint)
+	FetchOffset() uint
+	SetFetchOffset(value uint)
+	HavingPredicate() foundation.Predicate
+	SetHavingPredicate(value foundation.IPredicate)
+	IncludesPendingChanges() bool
+	SetIncludesPendingChanges(value bool)
+	IncludesPropertyValues() bool
+	SetIncludesPropertyValues(value bool)
+	IncludesSubentities() bool
+	SetIncludesSubentities(value bool)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	PropertiesToFetch() objc.ID
+	SetPropertiesToFetch(value objc.ID)
+	PropertiesToGroupBy() objc.ID
+	SetPropertiesToGroupBy(value objc.ID)
+	RelationshipKeyPathsForPrefetching() []string
+	SetRelationshipKeyPathsForPrefetching(value []string)
+	ResultType() FetchRequestResultType
+	SetResultType(value FetchRequestResultType)
+	ReturnsDistinctResults() bool
+	SetReturnsDistinctResults(value bool)
+	ReturnsObjectsAsFaults() bool
+	SetReturnsObjectsAsFaults(value bool)
+	ShouldRefreshRefetchedObjects() bool
+	SetShouldRefreshRefetchedObjects(value bool)
+	SortDescriptors() []foundation.SortDescriptor
+	SetSortDescriptors(value []foundation.ISortDescriptor)
 }
 
 // A description of search criteria used to retrieve data from a persistent store.
@@ -89,9 +125,9 @@ func NewFetchRequest() FetchRequest {
 // Initializes a fetch request configured with a given entity name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
-func NewFetchRequestWithEntityName(entityName appkit.string) FetchRequest {
+func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 	instance := getFetchRequestClass().Alloc()
-	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), entityName)
+	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
 	return rv
 }
@@ -100,8 +136,8 @@ func NewFetchRequestWithEntityName(entityName appkit.string) FetchRequest {
 // Returns a fetch request configured with a given entity name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchRequestWithEntityName:
-func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), entityName)
+func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
 
@@ -162,8 +198,8 @@ func (f_ FetchRequest) SetEntity(value IEntityDescription) {
 // The name of the entity the request is configured to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entityName
-func (f_ FetchRequest) EntityName() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("entityName"))
+func (f_ FetchRequest) EntityName() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("entityName"))
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _PHProjectClass struct {
 // An interface definition for the [PHProject] class.
 type IPHProject interface {
 	IPHAssetCollection
+	HasProjectPreview() bool
+	ProjectExtensionData() foundation.NSData
 }
 
 // A representation of a Photos app project extension.

@@ -31,6 +31,8 @@ type _UNNotificationClass struct {
 // An interface definition for the [UNNotification] class.
 type IUNNotification interface {
 	objectivec.IObject
+	Date() foundation.NSDate
+	Request() UNNotificationRequest
 }
 
 // The data for a local or remote notification the system delivers to your app.

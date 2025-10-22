@@ -30,6 +30,10 @@ type _VZBridgedNetworkInterfaceClass struct {
 // An interface definition for the [VZBridgedNetworkInterface] class.
 type IVZBridgedNetworkInterface interface {
 	objectivec.IObject
+	Identifier() string
+	SetIdentifier(value string)
+	LocalizedDisplayName() string
+	SetLocalizedDisplayName(value string)
 }
 
 // An object that identifies the supported network interfaces of the host computer.
@@ -83,8 +87,8 @@ func NewVZBridgedNetworkInterface() VZBridgedNetworkInterface {
 // The unique BSD name of this network interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/identifier
-func (v_ VZBridgedNetworkInterface) Identifier() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("identifier"))
+func (v_ VZBridgedNetworkInterface) Identifier() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -94,15 +98,15 @@ func (v_ VZBridgedNetworkInterface) Identifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/identifier
-func (v_ VZBridgedNetworkInterface) SetIdentifier(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setIdentifier:"), value)
+func (v_ VZBridgedNetworkInterface) SetIdentifier(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
 // A user-visible name for the network interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/localizeddisplayname
-func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() appkit.string {
-	rv := objc.Send[appkit.string](v_.ID, objc.Sel("localizedDisplayName"))
+func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("localizedDisplayName"))
 	return rv
 }
 
@@ -112,8 +116,8 @@ func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/localizeddisplayname
-func (v_ VZBridgedNetworkInterface) SetLocalizedDisplayName(value appkit.string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setLocalizedDisplayName:"), value)
+func (v_ VZBridgedNetworkInterface) SetLocalizedDisplayName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setLocalizedDisplayName:"), objc.String(value))
 }
 
 

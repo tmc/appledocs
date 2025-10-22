@@ -29,6 +29,13 @@ type _MatrixRandomClass struct {
 // An interface definition for the [MatrixRandom] class.
 type IMatrixRandom interface {
 	IKernel
+	DestinationDataType() unsafe.Pointer
+	BatchSize() int
+	SetBatchSize(value int)
+	BatchStart() int
+	SetBatchStart(value int)
+	DistributionType() unsafe.Pointer
+	SetDistributionType(value unsafe.Pointer)
 }
 
 //

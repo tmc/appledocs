@@ -29,6 +29,12 @@ type _MediaItemCollectionClass struct {
 // An interface definition for the [MediaItemCollection] class.
 type IMediaItemCollection interface {
 	IMediaEntity
+	Count() uint
+	Items() []MediaItem
+	MediaTypes() MediaType
+	RepresentativeItem() MPMediaItem
+	Collections() MPMediaItemCollection
+	SetCollections(value IMPMediaItemCollection)
 }
 
 // A sorted set of media items from the media library.

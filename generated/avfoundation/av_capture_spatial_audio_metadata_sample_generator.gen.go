@@ -32,6 +32,8 @@ type ICaptureSpatialAudioMetadataSampleGenerator interface {
 	objectivec.IObject
 	AnalyzeAudioSample(sbuf unsafe.Pointer) unsafe.Pointer
 	NewTimedMetadataSampleBufferAndResetAnalyzer() unsafe.Pointer
+	TimedMetadataSampleBufferFormatDescription() unsafe.Pointer
+	SetTimedMetadataSampleBufferFormatDescription(value unsafe.Pointer)
 }
 
 // An interface for generating a spatial audio timed metadata sample.

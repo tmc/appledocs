@@ -30,6 +30,10 @@ type _MTRNetworkCommissioningClusterNetworkInfoClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterNetworkInfo] class.
 type IMTRNetworkCommissioningClusterNetworkInfo interface {
 	IMTRNetworkCommissioningClusterNetworkInfoStruct
+	Connected() foundation.Number
+	SetConnected(value foundation.INumber)
+	NetworkID() foundation.Data
+	SetNetworkID(value foundation.IData)
 }
 
 //

@@ -29,6 +29,10 @@ type _AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass struct {
 // An interface definition for the [AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest] class.
 type IAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest interface {
 	IAuthorizationRequest
+	AllowedCredentials() ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
+	SetAllowedCredentials(value IASAuthorizationSecurityKeyPublicKeyCredentialDescriptor)
+	AppID() string
+	SetAppID(value string)
 }
 
 // A class that defines the assertion request type for security key credentials.
@@ -101,8 +105,8 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAllowed
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() appkit.string {
-	rv := objc.Send[appkit.string](a_.ID, objc.Sel("appID"))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("appID"))
 	return rv
 }
 
@@ -110,8 +114,8 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() ap
 // SetAppID sets the value of the appID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value appkit.string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), value)
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), objc.String(value))
 }
 
 

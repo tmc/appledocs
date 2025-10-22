@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,19 @@ type _TestTransactionClass struct {
 // An interface definition for the [TestTransaction] class.
 type ITestTransaction interface {
 	objectivec.IObject
+	AutoRenewingEnabled() bool
+	CancelDate() foundation.NSDate
+	ExpirationDate() foundation.NSDate
+	HasPurchaseIssue() bool
+	Identifier() uint
+	PendingPriceIncreaseConsent() bool
+	OriginalTransactionIdentifier() uint
+	PendingAskToBuyConfirmation() bool
+	ProductIdentifier() string
+	PurchaseDate() foundation.NSDate
+	State() unsafe.Pointer
+	IsPendingPriceIncreaseConsent() bool
+	SetIsPendingPriceIncreaseConsent(value bool)
 }
 
 // A transaction that occurs in the testing environment.
@@ -149,8 +161,8 @@ func (t_ TestTransaction) PendingAskToBuyConfirmation() bool {
 // An identifier that uniquely represents a product, which you provide in the StoreKit configuration file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/productIdentifier
-func (t_ TestTransaction) ProductIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](t_.ID, objc.Sel("productIdentifier"))
+func (t_ TestTransaction) ProductIdentifier() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 

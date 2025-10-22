@@ -31,6 +31,10 @@ type _HKQueryDescriptorClass struct {
 // An interface definition for the [HKQueryDescriptor] class.
 type IHKQueryDescriptor interface {
 	objectivec.IObject
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.IPredicate)
+	SampleType() HKSampleType
+	SetSampleType(value HKSampleType)
 }
 
 // A descriptor that specifies a set of samples based on the data type and a predicate.

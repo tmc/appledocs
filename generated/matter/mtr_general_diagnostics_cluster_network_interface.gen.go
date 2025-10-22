@@ -31,6 +31,22 @@ type _MTRGeneralDiagnosticsClusterNetworkInterfaceClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterNetworkInterface] class.
 type IMTRGeneralDiagnosticsClusterNetworkInterface interface {
 	objectivec.IObject
+	HardwareAddress() foundation.Data
+	SetHardwareAddress(value foundation.IData)
+	IPv4Addresses() unsafe.Pointer
+	SetIPv4Addresses(value unsafe.Pointer)
+	IPv6Addresses() unsafe.Pointer
+	SetIPv6Addresses(value unsafe.Pointer)
+	IsOperational() foundation.Number
+	SetIsOperational(value foundation.INumber)
+	Name() string
+	SetName(value string)
+	OffPremiseServicesReachableIPv4() foundation.Number
+	SetOffPremiseServicesReachableIPv4(value foundation.INumber)
+	OffPremiseServicesReachableIPv6() foundation.Number
+	SetOffPremiseServicesReachableIPv6(value foundation.INumber)
+	Type() foundation.Number
+	SetType(value foundation.INumber)
 }
 
 //
@@ -138,8 +154,8 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetIsOperational(value fo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/name
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -147,8 +163,8 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/name
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

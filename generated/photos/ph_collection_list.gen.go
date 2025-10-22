@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,11 @@ type _PHCollectionListClass struct {
 // An interface definition for the [PHCollectionList] class.
 type IPHCollectionList interface {
 	IPHCollection
+	CollectionListSubtype() PHCollectionListSubtype
+	CollectionListType() PHCollectionListType
+	EndDate() foundation.NSDate
+	LocalizedLocationNames() []string
+	StartDate() foundation.NSDate
 }
 
 // A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.
@@ -126,16 +130,16 @@ func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeOptions(momentListSu
 // Creates a temporary collection list that contains the specified asset collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)
-func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsTitle(collections []PHCollection, title appkit.string) PHCollectionList {
-	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollections:title:"), collections, title)
+func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsTitle(collections []PHCollection, title string) PHCollectionList {
+	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollections:title:"), collections, objc.String(title))
 	return rv
 }
 
 // Creates a temporary collection list containing the asset collections in the specified fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)
-func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsFetchResultTitle(fetchResult unsafe.Pointer, title appkit.string) PHCollectionList {
-	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollectionsFetchResult:title:"), fetchResult, title)
+func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsFetchResultTitle(fetchResult unsafe.Pointer, title string) PHCollectionList {
+	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollectionsFetchResult:title:"), fetchResult, objc.String(title))
 	return rv
 }
 

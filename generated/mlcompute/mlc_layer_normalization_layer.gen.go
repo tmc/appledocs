@@ -29,6 +29,18 @@ type _CLayerNormalizationLayerClass struct {
 // An interface definition for the [CLayerNormalizationLayer] class.
 type ICLayerNormalizationLayer interface {
 	ICLayer
+	Beta() MLCTensor
+	SetBeta(value IMLCTensor)
+	BetaParameter() MLCTensorParameter
+	SetBetaParameter(value IMLCTensorParameter)
+	Gamma() MLCTensor
+	SetGamma(value IMLCTensor)
+	GammaParameter() MLCTensorParameter
+	SetGammaParameter(value IMLCTensorParameter)
+	NormalizedShape() int
+	SetNormalizedShape(value int)
+	VarianceEpsilon() float32
+	SetVarianceEpsilon(value float32)
 }
 
 // A layer that applies layer normalization over inputs.
@@ -172,8 +184,8 @@ func (c_ CLayerNormalizationLayer) SetNormalizedShape(value int) {
 // The variance epsilon you use for numerical stability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/varianceepsilon
-func (c_ CLayerNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("varianceEpsilon"))
+func (c_ CLayerNormalizationLayer) VarianceEpsilon() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("varianceEpsilon"))
 	return rv
 }
 
@@ -183,7 +195,7 @@ func (c_ CLayerNormalizationLayer) VarianceEpsilon() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/varianceepsilon
-func (c_ CLayerNormalizationLayer) SetVarianceEpsilon(value unsafe.Pointer) {
+func (c_ CLayerNormalizationLayer) SetVarianceEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
 }
 

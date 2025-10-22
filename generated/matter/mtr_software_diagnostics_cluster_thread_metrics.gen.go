@@ -30,6 +30,16 @@ type _MTRSoftwareDiagnosticsClusterThreadMetricsClass struct {
 // An interface definition for the [MTRSoftwareDiagnosticsClusterThreadMetrics] class.
 type IMTRSoftwareDiagnosticsClusterThreadMetrics interface {
 	IMTRSoftwareDiagnosticsClusterThreadMetricsStruct
+	Id() foundation.Number
+	SetId(value foundation.INumber)
+	Name() string
+	SetName(value string)
+	StackFreeCurrent() foundation.Number
+	SetStackFreeCurrent(value foundation.INumber)
+	StackFreeMinimum() foundation.Number
+	SetStackFreeMinimum(value foundation.INumber)
+	StackSize() foundation.Number
+	SetStackSize(value foundation.INumber)
 }
 
 //
@@ -94,8 +104,8 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetId(value foundation.INum
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/name
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -103,8 +113,8 @@ func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Name() appkit.string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/name
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetName(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 //

@@ -31,6 +31,14 @@ type _MTRDoorLockClusterClearWeekDayScheduleParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterClearWeekDayScheduleParams] class.
 type IMTRDoorLockClusterClearWeekDayScheduleParams interface {
 	objectivec.IObject
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	UserIndex() foundation.Number
+	SetUserIndex(value foundation.INumber)
+	WeekDayIndex() foundation.Number
+	SetWeekDayIndex(value foundation.INumber)
 }
 
 //

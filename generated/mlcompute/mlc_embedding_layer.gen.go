@@ -29,6 +29,12 @@ type _CEmbeddingLayerClass struct {
 // An interface definition for the [CEmbeddingLayer] class.
 type ICEmbeddingLayer interface {
 	ICLayer
+	Descriptor() unsafe.Pointer
+	SetDescriptor(value unsafe.Pointer)
+	Weights() MLCTensor
+	SetWeights(value IMLCTensor)
+	WeightsParameter() MLCTensorParameter
+	SetWeightsParameter(value IMLCTensorParameter)
 }
 
 // A layer that stores a word embedding.

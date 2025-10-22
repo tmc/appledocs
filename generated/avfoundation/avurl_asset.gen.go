@@ -30,6 +30,19 @@ type _URLAssetClass struct {
 // An interface definition for the [URLAsset] class.
 type IURLAsset interface {
 	IAsset
+	MediaExtensionProperties() unsafe.Pointer
+	AssetCache() unsafe.Pointer
+	SetAssetCache(value unsafe.Pointer)
+	HttpSessionIdentifier() foundation.UUID
+	SetHttpSessionIdentifier(value foundation.IUUID)
+	MayRequireContentKeysForMediaDataProcessing() bool
+	SetMayRequireContentKeysForMediaDataProcessing(value bool)
+	ResourceLoader() AVAssetResourceLoader
+	SetResourceLoader(value IAVAssetResourceLoader)
+	Url() foundation.URL
+	SetUrl(value foundation.IURL)
+	Variants() unsafe.Pointer
+	SetVariants(value unsafe.Pointer)
 }
 
 // An asset that represents media at a local or remote URL.

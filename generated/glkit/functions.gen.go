@@ -44,7 +44,7 @@ var (
 	_GLKMatrixStackScale func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_GLKMatrixStackScaleWithVector3 func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_GLKMatrixStackScaleWithVector4 func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackSize func(unsafe.Pointer) unsafe.Pointer
+	_GLKMatrixStackSize func(unsafe.Pointer) int
 	_GLKMatrixStackTranslate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_GLKMatrixStackTranslateWithVector3 func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_GLKMatrixStackTranslateWithVector4 func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -429,7 +429,7 @@ func GLKMatrixStackScaleWithVector4(stack unsafe.Pointer, scaleVector unsafe.Poi
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackSize(_:)
-func GLKMatrixStackSize(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackSize(stack unsafe.Pointer) int {
 	return _GLKMatrixStackSize(stack)
 	}
 

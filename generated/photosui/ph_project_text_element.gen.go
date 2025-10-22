@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,6 +30,9 @@ type _PHProjectTextElementClass struct {
 // An interface definition for the [PHProjectTextElement] class.
 type IPHProjectTextElement interface {
 	IPHProjectElement
+	AttributedText() foundation.AttributedString
+	Text() string
+	TextElementType() PHProjectTextElementType
 }
 
 // An element that represents text within project section content.
@@ -92,8 +94,8 @@ func (p_ PHProjectTextElement) AttributedText() foundation.AttributedString {
 // The raw unformatted string for the text element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/text
-func (p_ PHProjectTextElement) Text() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("text"))
+func (p_ PHProjectTextElement) Text() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("text"))
 	return rv
 }
 

@@ -29,6 +29,7 @@ type _GramMatrixCalculationGradientNodeClass struct {
 // An interface definition for the [GramMatrixCalculationGradientNode] class.
 type IGramMatrixCalculationGradientNode interface {
 	IGradientFilterNode
+	Alpha() float32
 }
 
 //
@@ -78,8 +79,8 @@ func NewGramMatrixCalculationGradientNode() GramMatrixCalculationGradientNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradientNode/alpha
-func (g_ GramMatrixCalculationGradientNode) Alpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alpha"))
+func (g_ GramMatrixCalculationGradientNode) Alpha() float32 {
+	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
 	return rv
 }
 

@@ -29,6 +29,10 @@ type _NEDNSProxyProviderProtocolClass struct {
 // An interface definition for the [NEDNSProxyProviderProtocol] class.
 type INEDNSProxyProviderProtocol interface {
 	INEVPNProtocol
+	ProviderBundleIdentifier() string
+	SetProviderBundleIdentifier(value string)
+	ProviderConfiguration() string
+	SetProviderConfiguration(value string)
 }
 
 // Configuration parameters for a DNS proxy.
@@ -82,8 +86,8 @@ func NewNEDNSProxyProviderProtocol() NEDNSProxyProviderProtocol {
 // A string containing the bundle identifier of the proxy provider to be used by this configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerbundleidentifier
-func (n_ NEDNSProxyProviderProtocol) ProviderBundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEDNSProxyProviderProtocol) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
@@ -93,15 +97,15 @@ func (n_ NEDNSProxyProviderProtocol) ProviderBundleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerbundleidentifier
-func (n_ NEDNSProxyProviderProtocol) SetProviderBundleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
+func (n_ NEDNSProxyProviderProtocol) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
 }
 
 // A dictionary containing vendor-specific configuration parameters for a proxy provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerconfiguration
-func (n_ NEDNSProxyProviderProtocol) ProviderConfiguration() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerConfiguration"))
+func (n_ NEDNSProxyProviderProtocol) ProviderConfiguration() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
@@ -111,8 +115,8 @@ func (n_ NEDNSProxyProviderProtocol) ProviderConfiguration() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerconfiguration
-func (n_ NEDNSProxyProviderProtocol) SetProviderConfiguration(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
+func (n_ NEDNSProxyProviderProtocol) SetProviderConfiguration(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
 }
 
 

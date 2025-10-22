@@ -16,18 +16,18 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_AXAnimatedImagesEnabled func() unsafe.Pointer
+	_AXAnimatedImagesEnabled func() bool
 	_AXMFiHearingDevicePairedUUIDs func() unsafe.Pointer
 	_AXMFiHearingDeviceStreamingEar func() unsafe.Pointer
-	_AXSupportsBidirectionalAXMFiHearingDeviceStreaming func() unsafe.Pointer
+	_AXSupportsBidirectionalAXMFiHearingDeviceStreaming func() bool
 	_AXNameFromColor func(coregraphics.CGColorRef) unsafe.Pointer
 	_AXOpenSettingsFeature func(unsafe.Pointer) unsafe.Pointer
-	_AXPrefersActionSliderAlternative func() unsafe.Pointer
-	_AXPrefersHeadAnchorAlternative func() unsafe.Pointer
-	_AXPrefersHorizontalTextLayout func() unsafe.Pointer
-	_AXPrefersNonBlinkingTextInsertionIndicator func() unsafe.Pointer
-	_AXShowBordersEnabled func() unsafe.Pointer
-	_AXAssistiveAccessEnabled func() unsafe.Pointer
+	_AXPrefersActionSliderAlternative func() bool
+	_AXPrefersHeadAnchorAlternative func() bool
+	_AXPrefersHorizontalTextLayout func() bool
+	_AXPrefersNonBlinkingTextInsertionIndicator func() bool
+	_AXShowBordersEnabled func() bool
+	_AXAssistiveAccessEnabled func() bool
 )
 
 func init() {
@@ -68,7 +68,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Added in macOS 14.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXAnimatedImagesEnabled
-func AXAnimatedImagesEnabled() unsafe.Pointer {
+func AXAnimatedImagesEnabled() bool {
 	return _AXAnimatedImagesEnabled()
 	}
 
@@ -92,7 +92,7 @@ func AXMFiHearingDeviceStreamingEar() unsafe.Pointer {
 // Returns a Boolean value that indicates whether the iOS device supports bidirectional streaming. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMFiHearingDevice/supportsBidirectionalStreaming()
-func AXSupportsBidirectionalAXMFiHearingDeviceStreaming() unsafe.Pointer {
+func AXSupportsBidirectionalAXMFiHearingDeviceStreaming() bool {
 	return _AXSupportsBidirectionalAXMFiHearingDeviceStreaming()
 	}
 
@@ -122,7 +122,7 @@ func AXOpenSettingsFeature(feature unsafe.Pointer) {
 // Added in macOS 26.1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersActionSliderAlternative
-func AXPrefersActionSliderAlternative() unsafe.Pointer {
+func AXPrefersActionSliderAlternative() bool {
 	return _AXPrefersActionSliderAlternative()
 	}
 
@@ -130,7 +130,7 @@ func AXPrefersActionSliderAlternative() unsafe.Pointer {
 // AXPrefersHeadAnchorAlternative is a Accessibility function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersHeadAnchorAlternative
-func AXPrefersHeadAnchorAlternative() unsafe.Pointer {
+func AXPrefersHeadAnchorAlternative() bool {
 	return _AXPrefersHeadAnchorAlternative()
 	}
 
@@ -140,7 +140,7 @@ func AXPrefersHeadAnchorAlternative() unsafe.Pointer {
 // Added in macOS 14.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersHorizontalTextLayout
-func AXPrefersHorizontalTextLayout() unsafe.Pointer {
+func AXPrefersHorizontalTextLayout() bool {
 	return _AXPrefersHorizontalTextLayout()
 	}
 
@@ -150,7 +150,7 @@ func AXPrefersHorizontalTextLayout() unsafe.Pointer {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXPrefersNonBlinkingTextInsertionIndicator
-func AXPrefersNonBlinkingTextInsertionIndicator() unsafe.Pointer {
+func AXPrefersNonBlinkingTextInsertionIndicator() bool {
 	return _AXPrefersNonBlinkingTextInsertionIndicator()
 	}
 
@@ -160,7 +160,7 @@ func AXPrefersNonBlinkingTextInsertionIndicator() unsafe.Pointer {
 // Added in macOS 26.1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXShowBordersEnabled
-func AXShowBordersEnabled() unsafe.Pointer {
+func AXShowBordersEnabled() bool {
 	return _AXShowBordersEnabled()
 	}
 
@@ -170,7 +170,7 @@ func AXShowBordersEnabled() unsafe.Pointer {
 // Added in macOS 15.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled
-func AXAssistiveAccessEnabled() unsafe.Pointer {
+func AXAssistiveAccessEnabled() bool {
 	return _AXAssistiveAccessEnabled()
 	}
 

@@ -31,6 +31,12 @@ type _MTRAccessGrantClass struct {
 // An interface definition for the [MTRAccessGrant] class.
 type IMTRAccessGrant interface {
 	objectivec.IObject
+	AuthenticationMode() MTRAccessControlEntryAuthMode
+	SetAuthenticationMode(value MTRAccessControlEntryAuthMode)
+	GrantedPrivilege() MTRAccessControlEntryPrivilege
+	SetGrantedPrivilege(value IMTRAccessControlEntryPrivilege)
+	SubjectID() foundation.Number
+	SetSubjectID(value foundation.INumber)
 }
 
 //

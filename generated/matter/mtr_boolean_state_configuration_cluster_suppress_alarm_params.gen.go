@@ -31,6 +31,12 @@ type _MTRBooleanStateConfigurationClusterSuppressAlarmParamsClass struct {
 // An interface definition for the [MTRBooleanStateConfigurationClusterSuppressAlarmParams] class.
 type IMTRBooleanStateConfigurationClusterSuppressAlarmParams interface {
 	objectivec.IObject
+	AlarmsToSuppress() foundation.Number
+	SetAlarmsToSuppress(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

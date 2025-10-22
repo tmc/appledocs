@@ -30,6 +30,9 @@ type _MKMapFeatureAnnotationClass struct {
 // An interface definition for the [MKMapFeatureAnnotation] class.
 type IMKMapFeatureAnnotation interface {
 	objectivec.IObject
+	FeatureType() MKMapFeatureType
+	IconStyle() unsafe.Pointer
+	PointOfInterestCategory() MKPointOfInterestCategory
 }
 
 // A class that describes an annotation element on the map’s display such as a point of interest, territorial boundary, or physical feature.

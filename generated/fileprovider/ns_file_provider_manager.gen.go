@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,8 +31,8 @@ type _FileProviderManagerClass struct {
 // An interface definition for the [FileProviderManager] class.
 type IFileProviderManager interface {
 	objectivec.IObject
-	ClaimKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolderLocations, localizedReason appkit.string, completionHandler unsafe.Pointer)
-	DisconnectWithReasonOptionsCompletionHandler(localizedReason appkit.string, options FileProviderManagerDisconnectionOptions, completionHandler unsafe.Pointer)
+	ClaimKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolderLocations, localizedReason string, completionHandler unsafe.Pointer)
+	DisconnectWithReasonOptionsCompletionHandler(localizedReason string, options FileProviderManagerDisconnectionOptions, completionHandler unsafe.Pointer)
 	EnumeratorForMaterializedItems() objc.ID
 	EnumeratorForPendingItems() objc.ID
 	EvictItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
@@ -44,7 +43,7 @@ type IFileProviderManager interface {
 	ReconnectWithCompletionHandler(completionHandler unsafe.Pointer)
 	RegisterURLSessionTaskForItemWithIdentifierCompletionHandler(task foundation.IURLSessionTask, identifier IFileProviderItemIdentifier, completion unsafe.Pointer)
 	ReimportItemsBelowItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	ReleaseKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolders, localizedReason appkit.string, completionHandler unsafe.Pointer)
+	ReleaseKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolders, localizedReason string, completionHandler unsafe.Pointer)
 	RequestDiagnosticCollectionForItemWithIdentifierErrorReasonCompletionHandler(itemIdentifier IFileProviderItemIdentifier, errorReason foundation.IError, completionHandler unsafe.Pointer)
 	RequestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier IFileProviderItemIdentifier, rangeToMaterialize foundation.IRange, completionHandler unsafe.Pointer)
 	RequestModificationOfFieldsForItemWithIdentifierOptionsCompletionHandler(fields IFileProviderItemFields, itemIdentifier IFileProviderItemIdentifier, options FileProviderModifyItemOptions, completionHandler unsafe.Pointer)
@@ -55,6 +54,8 @@ type IFileProviderManager interface {
 	TemporaryDirectoryURLWithError(error_ unsafe.Pointer) foundation.URL
 	WaitForChangesOnItemsBelowItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
 	WaitForStabilizationWithCompletionHandler(completionHandler unsafe.Pointer)
+	DocumentStorageURL() foundation.URL
+	ProviderIdentifier() string
 }
 
 // A manager object that you use to communicate with the file provider from either your app or your File Provider extension.
@@ -205,15 +206,15 @@ func (fc _FileProviderManagerClass) DefaultManager() FileProviderManager {
 // Asks the domain to sync the specified known folders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/claimKnownFolders(_:localizedReason:completionHandler:)
-func (f_ FileProviderManager) ClaimKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolderLocations, localizedReason appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("claimKnownFolders:localizedReason:completionHandler:"), knownFolders, localizedReason, completionHandler)
+func (f_ FileProviderManager) ClaimKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolderLocations, localizedReason string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("claimKnownFolders:localizedReason:completionHandler:"), knownFolders, objc.String(localizedReason), completionHandler)
 }
 
 // Disconnects the domain from the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/disconnect(reason:options:completionHandler:)
-func (f_ FileProviderManager) DisconnectWithReasonOptionsCompletionHandler(localizedReason appkit.string, options FileProviderManagerDisconnectionOptions, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectWithReason:options:completionHandler:"), localizedReason, options, completionHandler)
+func (f_ FileProviderManager) DisconnectWithReasonOptionsCompletionHandler(localizedReason string, options FileProviderManagerDisconnectionOptions, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectWithReason:options:completionHandler:"), objc.String(localizedReason), options, completionHandler)
 }
 
 // Returns an enumerator for all the items the system currently stores on disk.
@@ -292,8 +293,8 @@ func (f_ FileProviderManager) ReimportItemsBelowItemWithIdentifierCompletionHand
 // Asks the system to stop replicating the specified known folders in the domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/releaseKnownFolders(_:localizedReason:completionHandler:)
-func (f_ FileProviderManager) ReleaseKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolders, localizedReason appkit.string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("releaseKnownFolders:localizedReason:completionHandler:"), knownFolders, localizedReason, completionHandler)
+func (f_ FileProviderManager) ReleaseKnownFoldersLocalizedReasonCompletionHandler(knownFolders IFileProviderKnownFolders, localizedReason string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("releaseKnownFolders:localizedReason:completionHandler:"), knownFolders, objc.String(localizedReason), completionHandler)
 }
 
 // Requests a diagnostics collection for use when working directly with Apple to improve sync behavior.
@@ -386,8 +387,8 @@ func (f_ FileProviderManager) DocumentStorageURL() foundation.URL {
 // A purpose identifier for coordinated reads and writes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/providerIdentifier
-func (f_ FileProviderManager) ProviderIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](f_.ID, objc.Sel("providerIdentifier"))
+func (f_ FileProviderManager) ProviderIdentifier() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 

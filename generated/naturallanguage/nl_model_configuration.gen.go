@@ -31,6 +31,11 @@ type _ModelConfigurationClass struct {
 // An interface definition for the [ModelConfiguration] class.
 type IModelConfiguration interface {
 	objectivec.IObject
+	Language() Language
+	Revision() uint
+	Type() ModelType
+	Configuration() NLModelConfiguration
+	SetConfiguration(value INLModelConfiguration)
 }
 
 // The configuration parameters of a natural language model.

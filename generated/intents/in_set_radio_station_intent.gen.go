@@ -29,6 +29,16 @@ type _INSetRadioStationIntentClass struct {
 // An interface definition for the [INSetRadioStationIntent] class.
 type IINSetRadioStationIntent interface {
 	IINIntent
+	Channel() string
+	SetChannel(value string)
+	Frequency() float64
+	SetFrequency(value float64)
+	PresetNumber() int
+	SetPresetNumber(value int)
+	RadioType() unsafe.Pointer
+	SetRadioType(value unsafe.Pointer)
+	StationName() string
+	SetStationName(value string)
 }
 
 // A request to change the current radio station.
@@ -84,8 +94,8 @@ func NewINSetRadioStationIntent() INSetRadioStationIntent {
 // The channel number of the station.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
-func (i_ INSetRadioStationIntent) Channel() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("channel"))
+func (i_ INSetRadioStationIntent) Channel() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("channel"))
 	return rv
 }
 
@@ -95,15 +105,15 @@ func (i_ INSetRadioStationIntent) Channel() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
-func (i_ INSetRadioStationIntent) SetChannel(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), value)
+func (i_ INSetRadioStationIntent) SetChannel(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), objc.String(value))
 }
 
 // The broadcast frequency of the radio station.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/frequency-2ctw6
-func (i_ INSetRadioStationIntent) Frequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("frequency"))
+func (i_ INSetRadioStationIntent) Frequency() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("frequency"))
 	return rv
 }
 
@@ -113,7 +123,7 @@ func (i_ INSetRadioStationIntent) Frequency() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/frequency-2ctw6
-func (i_ INSetRadioStationIntent) SetFrequency(value unsafe.Pointer) {
+func (i_ INSetRadioStationIntent) SetFrequency(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFrequency:"), value)
 }
 
@@ -156,8 +166,8 @@ func (i_ INSetRadioStationIntent) SetRadioType(value unsafe.Pointer) {
 // The name associated with the radio station.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
-func (i_ INSetRadioStationIntent) StationName() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("stationName"))
+func (i_ INSetRadioStationIntent) StationName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("stationName"))
 	return rv
 }
 
@@ -167,8 +177,8 @@ func (i_ INSetRadioStationIntent) StationName() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
-func (i_ INSetRadioStationIntent) SetStationName(value appkit.string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), value)
+func (i_ INSetRadioStationIntent) SetStationName(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), objc.String(value))
 }
 
 

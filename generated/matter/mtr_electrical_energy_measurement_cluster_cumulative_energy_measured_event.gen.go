@@ -30,6 +30,10 @@ type _MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEventClass st
 // An interface definition for the [MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent] class.
 type IMTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent interface {
 	objectivec.IObject
+	EnergyExported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
+	SetEnergyExported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct)
+	EnergyImported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
+	SetEnergyImported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct)
 }
 
 //

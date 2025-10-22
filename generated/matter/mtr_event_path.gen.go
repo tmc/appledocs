@@ -30,6 +30,8 @@ type _MTREventPathClass struct {
 // An interface definition for the [MTREventPath] class.
 type IMTREventPath interface {
 	IMTRClusterPath
+	Event() foundation.Number
+	SetEvent(value foundation.INumber)
 }
 
 //

@@ -33,6 +33,9 @@ type IInstanceMaskObservation interface {
 	GenerateMaskForInstancesError(instances foundation.IIndexSet, error_ unsafe.Pointer) unsafe.Pointer
 	GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer
 	GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, error_ unsafe.Pointer) unsafe.Pointer
+	AllInstances() foundation.IndexSet
+	InstanceMask() unsafe.Pointer
+	VNGenerateForegroundInstanceMaskRequestRevision1() int
 }
 
 // An observation that contains an instance mask that labels instances in the mask.

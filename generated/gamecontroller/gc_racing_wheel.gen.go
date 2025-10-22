@@ -32,6 +32,14 @@ type IGCRacingWheel interface {
 	objectivec.IObject
 	Capture() GCRacingWheel
 	RelinquishDevice()
+	Acquired() bool
+	Snapshot() bool
+	IsAcquired() bool
+	SetIsAcquired(value bool)
+	IsSnapshot() bool
+	SetIsSnapshot(value bool)
+	WheelInput() unsafe.Pointer
+	SetWheelInput(value unsafe.Pointer)
 }
 
 // An object that represents a physical racing wheel controller connected to a device.

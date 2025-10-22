@@ -31,6 +31,14 @@ type _AssetDownloadConfigurationClass struct {
 // An interface definition for the [AssetDownloadConfiguration] class.
 type IAssetDownloadConfiguration interface {
 	objectivec.IObject
+	ArtworkData() foundation.Data
+	SetArtworkData(value foundation.IData)
+	AuxiliaryContentConfigurations() unsafe.Pointer
+	SetAuxiliaryContentConfigurations(value unsafe.Pointer)
+	OptimizesAuxiliaryContentConfigurations() bool
+	SetOptimizesAuxiliaryContentConfigurations(value bool)
+	PrimaryContentConfiguration() unsafe.Pointer
+	SetPrimaryContentConfiguration(value unsafe.Pointer)
 }
 
 // An object that provides the configuration for a download task.

@@ -30,7 +30,9 @@ type _HorizonObservationClass struct {
 // An interface definition for the [HorizonObservation] class.
 type IHorizonObservation interface {
 	IObservation
-	TransformForImageWidthHeight(width unsafe.Pointer, height unsafe.Pointer) coregraphics.CGAffineTransform
+	TransformForImageWidthHeight(width Iuintptr, height Iuintptr) coregraphics.CGAffineTransform
+	Angle() float64
+	Transform() coregraphics.CGAffineTransform
 }
 
 // The horizon angle information that an image-analysis request detects.
@@ -86,7 +88,7 @@ func NewHorizonObservation() HorizonObservation {
 // Creates an affine transform for the specified image width and height.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHorizonObservation/transform(forImageWidth:height:)
-func (h_ HorizonObservation) TransformForImageWidthHeight(width unsafe.Pointer, height unsafe.Pointer) coregraphics.CGAffineTransform {
+func (h_ HorizonObservation) TransformForImageWidthHeight(width Iuintptr, height Iuintptr) coregraphics.CGAffineTransform {
 	rv := objc.Send[coregraphics.CGAffineTransform](h_.ID, objc.Sel("transformForImageWidth:height:"), width, height)
 	return rv
 }

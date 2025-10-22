@@ -32,6 +32,12 @@ type INEAppPushProvider interface {
 	INEProvider
 	ReportIncomingCallWithUserInfo(userInfo objectivec.IObject)
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ProviderBundleIdentifier() string
+	SetProviderBundleIdentifier(value string)
+	ProviderConfiguration() string
+	SetProviderConfiguration(value string)
 }
 
 // An object that creates and maintains a persistent network connection to a local push server.
@@ -119,8 +125,8 @@ func (n_ NEAppPushProvider) SetDelegate(value unsafe.Pointer) {
 // A string that contains the bundle identifier of the push provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
-func (n_ NEAppPushProvider) ProviderBundleIdentifier() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEAppPushProvider) ProviderBundleIdentifier() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
@@ -130,15 +136,15 @@ func (n_ NEAppPushProvider) ProviderBundleIdentifier() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
-func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
+func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
 }
 
 // A dictionary that contains current vendor-specific configuration parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
-func (n_ NEAppPushProvider) ProviderConfiguration() appkit.string {
-	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerConfiguration"))
+func (n_ NEAppPushProvider) ProviderConfiguration() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
@@ -148,8 +154,8 @@ func (n_ NEAppPushProvider) ProviderConfiguration() appkit.string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
-func (n_ NEAppPushProvider) SetProviderConfiguration(value appkit.string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
+func (n_ NEAppPushProvider) SetProviderConfiguration(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
 }
 
 

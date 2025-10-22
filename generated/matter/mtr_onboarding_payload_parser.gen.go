@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,8 +77,8 @@ func NewMTROnboardingPayloadParser() MTROnboardingPayloadParser {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROnboardingPayloadParser/setupPayload(forOnboardingPayload:)
-func (mc _MTROnboardingPayloadParserClass) SetupPayloadForOnboardingPayloadError(onboardingPayload appkit.string, error_ unsafe.Pointer) MTRSetupPayload {
-	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadForOnboardingPayload:error:"), onboardingPayload, error_)
+func (mc _MTROnboardingPayloadParserClass) SetupPayloadForOnboardingPayloadError(onboardingPayload string, error_ unsafe.Pointer) MTRSetupPayload {
+	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadForOnboardingPayload:error:"), objc.String(onboardingPayload), error_)
 	return rv
 }
 

@@ -35,6 +35,9 @@ type IBluetoothHostController interface {
 	ClassOfDevice() BluetoothClassOfDevice
 	NameAsString() foundation.String
 	SetClassOfDeviceForTimeInterval(classOfDevice IBluetoothClassOfDevice, seconds foundation.ITimeInterval) unsafe.Pointer
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	PowerState() unsafe.Pointer
 }
 
 // This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).

@@ -29,6 +29,12 @@ type _GraphFFTDescriptorClass struct {
 // An interface definition for the [GraphFFTDescriptor] class.
 type IGraphFFTDescriptor interface {
 	IGraphObject
+	ScalingMode() GraphFFTScalingMode
+	SetScalingMode(value GraphFFTScalingMode)
+	Inverse() bool
+	SetInverse(value bool)
+	RoundToOddHermitean() bool
+	SetRoundToOddHermitean(value bool)
 }
 
 // The class that defines the parameters for a fast Fourier transform (FFT) operation.

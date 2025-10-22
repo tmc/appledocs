@@ -31,6 +31,24 @@ type _NWTCPConnectionClass struct {
 // An interface definition for the [NWTCPConnection] class.
 type INWTCPConnection interface {
 	objectivec.IObject
+	ConnectedPath() NWPath
+	SetConnectedPath(value INWPath)
+	Endpoint() NWEndpoint
+	SetEndpoint(value INWEndpoint)
+	Error() foundation.Error
+	SetError(value foundation.IError)
+	HasBetterPath() bool
+	SetHasBetterPath(value bool)
+	IsViable() bool
+	SetIsViable(value bool)
+	LocalAddress() NWEndpoint
+	SetLocalAddress(value INWEndpoint)
+	RemoteAddress() NWEndpoint
+	SetRemoteAddress(value INWEndpoint)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
+	TxtRecord() foundation.Data
+	SetTxtRecord(value foundation.IData)
 }
 
 // An object to manage a TCP connection, with or without TLS.

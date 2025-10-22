@@ -31,6 +31,8 @@ type _SamplerClass struct {
 // An interface definition for the [Sampler] class.
 type ISampler interface {
 	objectivec.IObject
+	Definition() CIFilterShape
+	Extent() coregraphics.CGRect
 }
 
 // An object that retrieves pixel samples for processing by a filter kernel.

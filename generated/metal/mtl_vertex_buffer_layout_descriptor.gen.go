@@ -30,6 +30,13 @@ type _VertexBufferLayoutDescriptorClass struct {
 // An interface definition for the [VertexBufferLayoutDescriptor] class.
 type IVertexBufferLayoutDescriptor interface {
 	objectivec.IObject
+	StepFunction() VertexStepFunction
+	SetStepFunction(value IVertexStepFunction)
+	StepRate() uint
+	SetStepRate(value uint)
+	Stride() uint
+	SetStride(value uint)
+	MTLBufferLayoutStrideDynamic() int
 }
 
 // An object that configures how a render pipeline fetches data to send to the vertex function.

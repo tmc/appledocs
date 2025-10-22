@@ -30,6 +30,7 @@ type _ModelStructureNeuralNetworkClass struct {
 // An interface definition for the [ModelStructureNeuralNetwork] class.
 type IModelStructureNeuralNetwork interface {
 	objectivec.IObject
+	Layers() []ModelStructureNeuralNetworkLayer
 }
 
 // A class representing the structure of a NeuralNetwork model.

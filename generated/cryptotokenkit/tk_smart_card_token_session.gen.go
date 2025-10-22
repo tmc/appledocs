@@ -30,6 +30,7 @@ type _TKSmartCardTokenSessionClass struct {
 type ITKSmartCardTokenSession interface {
 	ITKTokenSession
 	GetSmartCardWithError(error_ unsafe.Pointer) TKSmartCard
+	SmartCard() TKSmartCard
 }
 
 // A token session that is based on a smart card token.

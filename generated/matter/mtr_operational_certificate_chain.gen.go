@@ -31,6 +31,14 @@ type _MTROperationalCertificateChainClass struct {
 // An interface definition for the [MTROperationalCertificateChain] class.
 type IMTROperationalCertificateChain interface {
 	objectivec.IObject
+	AdminSubject() foundation.Number
+	SetAdminSubject(value foundation.INumber)
+	IntermediateCertificate() foundation.Data
+	SetIntermediateCertificate(value foundation.IData)
+	OperationalCertificate() foundation.Data
+	SetOperationalCertificate(value foundation.IData)
+	RootCertificate() foundation.Data
+	SetRootCertificate(value foundation.IData)
 }
 
 //

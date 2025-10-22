@@ -29,6 +29,8 @@ type _HTTPURLResponseClass struct {
 // An interface definition for the [HTTPURLResponse] class.
 type IHTTPURLResponse interface {
 	IURLResponse
+	AllHeaderFields() objc.ID
+	StatusCode() int
 }
 
 // The metadata associated with the response to an HTTP protocol URL load request.

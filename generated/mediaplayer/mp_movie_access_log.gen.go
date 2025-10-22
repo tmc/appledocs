@@ -32,6 +32,18 @@ type _MovieAccessLogClass struct {
 // An interface definition for the [MovieAccessLog] class.
 type IMovieAccessLog interface {
 	objectivec.IObject
+	ImageCropRect() coregraphics.CGRect
+	SetImageCropRect(value coregraphics.CGRect)
+	Events() unsafe.Pointer
+	SetEvents(value unsafe.Pointer)
+	ExtendedLogData() foundation.Data
+	SetExtendedLogData(value foundation.IData)
+	ExtendedLogDataStringEncoding() uint
+	SetExtendedLogDataStringEncoding(value uint)
+	AccessLog() MPMovieAccessLog
+	SetAccessLog(value IMPMovieAccessLog)
+	ShowsRouteButton() bool
+	SetShowsRouteButton(value bool)
 }
 
 // Key metrics about network playback for an associated movie player that’s playing streamed content.

@@ -29,6 +29,8 @@ type _AsynchronousFetchResultClass struct {
 // An interface definition for the [AsynchronousFetchResult] class.
 type IAsynchronousFetchResult interface {
 	IPersistentStoreAsynchronousResult
+	FetchRequest() unsafe.Pointer
+	FinalResult() []objc.ID
 }
 
 // A fetch result object that encompasses the response from an executed asynchronous fetch request.

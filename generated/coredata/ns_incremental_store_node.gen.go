@@ -30,6 +30,9 @@ type _IncrementalStoreNodeClass struct {
 // An interface definition for the [IncrementalStoreNode] class.
 type IIncrementalStoreNode interface {
 	objectivec.IObject
+	ObjectID() NSManagedObjectID
+	Version() uint64
+	SetVersion(value uint64)
 }
 
 // A concrete class used to represent basic nodes in a Core Data incremental store.

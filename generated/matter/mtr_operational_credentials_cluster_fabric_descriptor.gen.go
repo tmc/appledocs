@@ -30,6 +30,12 @@ type _MTROperationalCredentialsClusterFabricDescriptorClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterFabricDescriptor] class.
 type IMTROperationalCredentialsClusterFabricDescriptor interface {
 	IMTROperationalCredentialsClusterFabricDescriptorStruct
+	FabricIndex() foundation.Number
+	SetFabricIndex(value foundation.INumber)
+	Label() string
+	SetLabel(value string)
+	RootPublicKey() foundation.Data
+	SetRootPublicKey(value foundation.IData)
 }
 
 //
@@ -94,8 +100,8 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetFabricIndex(value 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -103,8 +109,8 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() appkit.string
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value appkit.string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
 //

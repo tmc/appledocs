@@ -30,6 +30,8 @@ type _AuthorizationPublicKeyCredentialLargeBlobRegistrationInputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobRegistrationInput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobRegistrationInput interface {
 	objectivec.IObject
+	SupportRequirement() AuthorizationPublicKeyCredentialLargeBlobSupportRequirement
+	SetSupportRequirement(value IAuthorizationPublicKeyCredentialLargeBlobSupportRequirement)
 }
 
 //

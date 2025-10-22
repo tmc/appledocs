@@ -33,6 +33,12 @@ type IUnaryImageKernel interface {
 	IKernel
 	Encode()
 	SourceRegionForDestinationSize(destinationSize coregraphics.ISize) corelocation.Region
+	ClipRect() corelocation.Region
+	SetClipRect(value corelocation.IRegion)
+	EdgeMode() unsafe.Pointer
+	SetEdgeMode(value unsafe.Pointer)
+	Offset() unsafe.Pointer
+	SetOffset(value unsafe.Pointer)
 }
 
 // A kernel that consumes one texture and produces one texture.

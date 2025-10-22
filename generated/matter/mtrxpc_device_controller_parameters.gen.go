@@ -30,6 +30,8 @@ type _MTRXPCDeviceControllerParametersClass struct {
 // An interface definition for the [MTRXPCDeviceControllerParameters] class.
 type IMTRXPCDeviceControllerParameters interface {
 	IMTRDeviceControllerAbstractParameters
+	UniqueIdentifier() foundation.UUID
+	XpcConnectionBlock() unsafe.Pointer
 }
 
 //

@@ -30,6 +30,8 @@ type _PGDisplayModeClass struct {
 // An interface definition for the [PGDisplayMode] class.
 type IPGDisplayMode interface {
 	objectivec.IObject
+	RefreshRate() float64
+	SizeInPixels() unsafe.Pointer
 }
 
 // A description of a supported display mode.
@@ -83,7 +85,7 @@ func NewPGDisplayMode() PGDisplayMode {
 // Creates a new display mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode/init(sizeInPixels:refreshRateInHz:)
-func NewPGDisplayModeWithSizeInPixelsRefreshRateInHz(sizeInPixels unsafe.Pointer, refreshRateInHz unsafe.Pointer) PGDisplayMode {
+func NewPGDisplayModeWithSizeInPixelsRefreshRateInHz(sizeInPixels unsafe.Pointer, refreshRateInHz float64) PGDisplayMode {
 	instance := getPGDisplayModeClass().Alloc()
 	rv := objc.Send[PGDisplayMode](instance.ID, objc.Sel("initWithSizeInPixels:refreshRateInHz:"), sizeInPixels, refreshRateInHz)
 	rv.Autorelease()
@@ -94,8 +96,8 @@ func NewPGDisplayModeWithSizeInPixelsRefreshRateInHz(sizeInPixels unsafe.Pointer
 // The mode’s refresh rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode/refreshRate
-func (p_ PGDisplayMode) RefreshRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("refreshRate"))
+func (p_ PGDisplayMode) RefreshRate() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("refreshRate"))
 	return rv
 }
 

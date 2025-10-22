@@ -30,6 +30,8 @@ type _TileRenderPipelineColorAttachmentDescriptorClass struct {
 // An interface definition for the [TileRenderPipelineColorAttachmentDescriptor] class.
 type ITileRenderPipelineColorAttachmentDescriptor interface {
 	objectivec.IObject
+	PixelFormat() PixelFormat
+	SetPixelFormat(value PixelFormat)
 }
 
 // A description of a tile-shading render pipeline’s color render target.

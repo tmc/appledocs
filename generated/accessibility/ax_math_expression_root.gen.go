@@ -29,6 +29,8 @@ type _AXMathExpressionRootClass struct {
 // An interface definition for the [AXMathExpressionRoot] class.
 type IAXMathExpressionRoot interface {
 	IAXMathExpression
+	RadicandExpressions() []AXMathExpression
+	RootIndexExpression() AXMathExpression
 }
 
 //

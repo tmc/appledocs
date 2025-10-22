@@ -29,6 +29,36 @@ type _SVGFClass struct {
 // An interface definition for the [SVGF] class.
 type ISVGF interface {
 	IKernel
+	VariancePrefilterRadius() uint
+	SetVariancePrefilterRadius(value uint)
+	BilateralFilterRadius() int
+	SetBilateralFilterRadius(value int)
+	BilateralFilterSigma() float32
+	SetBilateralFilterSigma(value float32)
+	ChannelCount() int
+	SetChannelCount(value int)
+	ChannelCount2() int
+	SetChannelCount2(value int)
+	DepthWeight() float32
+	SetDepthWeight(value float32)
+	LuminanceWeight() float32
+	SetLuminanceWeight(value float32)
+	MinimumFramesForVarianceEstimation() int
+	SetMinimumFramesForVarianceEstimation(value int)
+	NormalWeight() float32
+	SetNormalWeight(value float32)
+	ReprojectionThreshold() float32
+	SetReprojectionThreshold(value float32)
+	TemporalReprojectionBlendFactor() float32
+	SetTemporalReprojectionBlendFactor(value float32)
+	TemporalWeighting() unsafe.Pointer
+	SetTemporalWeighting(value unsafe.Pointer)
+	VarianceEstimationRadius() int
+	SetVarianceEstimationRadius(value int)
+	VarianceEstimationSigma() float32
+	SetVarianceEstimationSigma(value float32)
+	VariancePrefilterSigma() float32
+	SetVariancePrefilterSigma(value float32)
 }
 
 //
@@ -108,8 +138,8 @@ func (s_ SVGF) SetBilateralFilterRadius(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/bilateralfiltersigma
-func (s_ SVGF) BilateralFilterSigma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("bilateralFilterSigma"))
+func (s_ SVGF) BilateralFilterSigma() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("bilateralFilterSigma"))
 	return rv
 }
 
@@ -117,7 +147,7 @@ func (s_ SVGF) BilateralFilterSigma() unsafe.Pointer {
 // SetBilateralFilterSigma sets the value of the bilateralFilterSigma property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/bilateralfiltersigma
-func (s_ SVGF) SetBilateralFilterSigma(value unsafe.Pointer) {
+func (s_ SVGF) SetBilateralFilterSigma(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBilateralFilterSigma:"), value)
 }
 
@@ -153,8 +183,8 @@ func (s_ SVGF) SetChannelCount2(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/depthweight
-func (s_ SVGF) DepthWeight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("depthWeight"))
+func (s_ SVGF) DepthWeight() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("depthWeight"))
 	return rv
 }
 
@@ -162,14 +192,14 @@ func (s_ SVGF) DepthWeight() unsafe.Pointer {
 // SetDepthWeight sets the value of the depthWeight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/depthweight
-func (s_ SVGF) SetDepthWeight(value unsafe.Pointer) {
+func (s_ SVGF) SetDepthWeight(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDepthWeight:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/luminanceweight
-func (s_ SVGF) LuminanceWeight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("luminanceWeight"))
+func (s_ SVGF) LuminanceWeight() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("luminanceWeight"))
 	return rv
 }
 
@@ -177,7 +207,7 @@ func (s_ SVGF) LuminanceWeight() unsafe.Pointer {
 // SetLuminanceWeight sets the value of the luminanceWeight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/luminanceweight
-func (s_ SVGF) SetLuminanceWeight(value unsafe.Pointer) {
+func (s_ SVGF) SetLuminanceWeight(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLuminanceWeight:"), value)
 }
 
@@ -198,8 +228,8 @@ func (s_ SVGF) SetMinimumFramesForVarianceEstimation(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/normalweight
-func (s_ SVGF) NormalWeight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("normalWeight"))
+func (s_ SVGF) NormalWeight() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("normalWeight"))
 	return rv
 }
 
@@ -207,14 +237,14 @@ func (s_ SVGF) NormalWeight() unsafe.Pointer {
 // SetNormalWeight sets the value of the normalWeight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/normalweight
-func (s_ SVGF) SetNormalWeight(value unsafe.Pointer) {
+func (s_ SVGF) SetNormalWeight(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNormalWeight:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/reprojectionthreshold
-func (s_ SVGF) ReprojectionThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("reprojectionThreshold"))
+func (s_ SVGF) ReprojectionThreshold() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("reprojectionThreshold"))
 	return rv
 }
 
@@ -222,14 +252,14 @@ func (s_ SVGF) ReprojectionThreshold() unsafe.Pointer {
 // SetReprojectionThreshold sets the value of the reprojectionThreshold property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/reprojectionthreshold
-func (s_ SVGF) SetReprojectionThreshold(value unsafe.Pointer) {
+func (s_ SVGF) SetReprojectionThreshold(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReprojectionThreshold:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/temporalreprojectionblendfactor
-func (s_ SVGF) TemporalReprojectionBlendFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("temporalReprojectionBlendFactor"))
+func (s_ SVGF) TemporalReprojectionBlendFactor() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("temporalReprojectionBlendFactor"))
 	return rv
 }
 
@@ -237,7 +267,7 @@ func (s_ SVGF) TemporalReprojectionBlendFactor() unsafe.Pointer {
 // SetTemporalReprojectionBlendFactor sets the value of the temporalReprojectionBlendFactor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/temporalreprojectionblendfactor
-func (s_ SVGF) SetTemporalReprojectionBlendFactor(value unsafe.Pointer) {
+func (s_ SVGF) SetTemporalReprojectionBlendFactor(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTemporalReprojectionBlendFactor:"), value)
 }
 
@@ -273,8 +303,8 @@ func (s_ SVGF) SetVarianceEstimationRadius(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/varianceestimationsigma
-func (s_ SVGF) VarianceEstimationSigma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("varianceEstimationSigma"))
+func (s_ SVGF) VarianceEstimationSigma() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("varianceEstimationSigma"))
 	return rv
 }
 
@@ -282,14 +312,14 @@ func (s_ SVGF) VarianceEstimationSigma() unsafe.Pointer {
 // SetVarianceEstimationSigma sets the value of the varianceEstimationSigma property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/varianceestimationsigma
-func (s_ SVGF) SetVarianceEstimationSigma(value unsafe.Pointer) {
+func (s_ SVGF) SetVarianceEstimationSigma(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVarianceEstimationSigma:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/varianceprefiltersigma
-func (s_ SVGF) VariancePrefilterSigma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("variancePrefilterSigma"))
+func (s_ SVGF) VariancePrefilterSigma() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("variancePrefilterSigma"))
 	return rv
 }
 
@@ -297,7 +327,7 @@ func (s_ SVGF) VariancePrefilterSigma() unsafe.Pointer {
 // SetVariancePrefilterSigma sets the value of the variancePrefilterSigma property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf/varianceprefiltersigma
-func (s_ SVGF) SetVariancePrefilterSigma(value unsafe.Pointer) {
+func (s_ SVGF) SetVariancePrefilterSigma(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVariancePrefilterSigma:"), value)
 }
 

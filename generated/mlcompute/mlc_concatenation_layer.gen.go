@@ -29,6 +29,8 @@ type _CConcatenationLayerClass struct {
 // An interface definition for the [CConcatenationLayer] class.
 type ICConcatenationLayer interface {
 	ICLayer
+	Dimension() int
+	SetDimension(value int)
 }
 
 // A layer that combines tensors into a single tensor.

@@ -30,6 +30,7 @@ type _OutputStreamClass struct {
 type IOutputStream interface {
 	IStream
 	WriteMaxLength(buffer unsafe.Pointer, len_ uint) int
+	HasSpaceAvailable() bool
 }
 
 // A stream that provides write-only stream functionality.

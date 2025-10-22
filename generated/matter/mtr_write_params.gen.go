@@ -31,6 +31,10 @@ type _MTRWriteParamsClass struct {
 // An interface definition for the [MTRWriteParams] class.
 type IMTRWriteParams interface {
 	objectivec.IObject
+	DataVersion() foundation.Number
+	SetDataVersion(value foundation.INumber)
+	TimedWriteTimeout() foundation.Number
+	SetTimedWriteTimeout(value foundation.INumber)
 }
 
 //

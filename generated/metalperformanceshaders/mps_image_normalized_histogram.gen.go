@@ -32,6 +32,12 @@ type _ImageNormalizedHistogramClass struct {
 // An interface definition for the [ImageNormalizedHistogram] class.
 type IImageNormalizedHistogram interface {
 	IKernel
+	ClipRectSource() corelocation.Region
+	SetClipRectSource(value corelocation.IRegion)
+	HistogramInfo() unsafe.Pointer
+	SetHistogramInfo(value unsafe.Pointer)
+	ZeroHistogram() bool
+	SetZeroHistogram(value bool)
 }
 
 // A filter that computes the normalized histogram of an image.

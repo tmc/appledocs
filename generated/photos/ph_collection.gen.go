@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHCollection] class.
@@ -31,6 +30,9 @@ type _PHCollectionClass struct {
 type IPHCollection interface {
 	IPHObject
 	CanPerformEditOperation(anOperation IPHCollectionEditOperation) bool
+	CanContainAssets() bool
+	CanContainCollections() bool
+	LocalizedTitle() string
 }
 
 // The abstract superclass for Photos asset collections and collection lists.
@@ -126,8 +128,8 @@ func (p_ PHCollection) CanContainCollections() bool {
 // The localized name of the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/localizedTitle
-func (p_ PHCollection) LocalizedTitle() appkit.string {
-	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedTitle"))
+func (p_ PHCollection) LocalizedTitle() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 

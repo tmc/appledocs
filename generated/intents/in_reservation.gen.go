@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,6 +31,13 @@ type _INReservationClass struct {
 // An interface definition for the [INReservation] class.
 type IINReservation interface {
 	objectivec.IObject
+	Actions() []INReservationAction
+	BookingTime() foundation.NSDate
+	ItemReference() INSpeakableString
+	ReservationHolderName() string
+	ReservationNumber() string
+	ReservationStatus() INReservationStatus
+	URL() foundation.URL
 }
 
 // An object that describes a reservation.
@@ -109,16 +115,16 @@ func (i_ INReservation) ItemReference() INSpeakableString {
 // The reservation holder’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationHolderName
-func (i_ INReservation) ReservationHolderName() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("reservationHolderName"))
+func (i_ INReservation) ReservationHolderName() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("reservationHolderName"))
 	return rv
 }
 
 // The reservation number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationNumber
-func (i_ INReservation) ReservationNumber() appkit.string {
-	rv := objc.Send[appkit.string](i_.ID, objc.Sel("reservationNumber"))
+func (i_ INReservation) ReservationNumber() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("reservationNumber"))
 	return rv
 }
 

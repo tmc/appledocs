@@ -31,6 +31,10 @@ type _RenderInfoClass struct {
 // An interface definition for the [RenderInfo] class.
 type IRenderInfo interface {
 	objectivec.IObject
+	KernelCompileTime() foundation.TimeInterval
+	KernelExecutionTime() foundation.TimeInterval
+	PassCount() int
+	PixelsProcessed() int
 }
 
 // An encapsulation of a render task’s timing, passes, and pixels processed.

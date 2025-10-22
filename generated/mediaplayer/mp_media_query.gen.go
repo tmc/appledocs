@@ -32,6 +32,15 @@ type IMediaQuery interface {
 	objectivec.IObject
 	AddFilterPredicate(predicate IMPMediaPredicate)
 	RemoveFilterPredicate(predicate IMPMediaPredicate)
+	CollectionSections() []MediaQuerySection
+	Collections() []MediaItemCollection
+	FilterPredicates() unsafe.Pointer
+	SetFilterPredicates(value unsafe.Pointer)
+	GroupingType() MediaGrouping
+	SetGroupingType(value IMediaGrouping)
+	ItemSections() []MediaQuerySection
+	Items() []MediaItem
+	MPMediaItemPropertyIsCompilation() string
 }
 
 // A query that specifies a set of media items from the device’s media library using a filter and a grouping type.
@@ -252,8 +261,8 @@ func (m_ MediaQuery) Items() []MediaItem {
 // A Boolean value that indicates whether the media item is part of a compilation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyiscompilation
-func (m_ MediaQuery) MPMediaItemPropertyIsCompilation() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MPMediaItemPropertyIsCompilation"))
+func (m_ MediaQuery) MPMediaItemPropertyIsCompilation() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyIsCompilation"))
 	return rv
 }
 

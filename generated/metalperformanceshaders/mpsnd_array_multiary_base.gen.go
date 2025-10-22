@@ -31,6 +31,8 @@ type _NDArrayMultiaryBaseClass struct {
 type INDArrayMultiaryBase interface {
 	IKernel
 	CopyWithZoneDevice(zone unsafe.Pointer, device objectivec.IObject) unsafe.Pointer
+	DestinationArrayAllocator() unsafe.Pointer
+	SetDestinationArrayAllocator(value unsafe.Pointer)
 }
 
 //

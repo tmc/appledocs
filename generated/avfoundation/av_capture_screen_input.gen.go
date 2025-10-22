@@ -30,6 +30,18 @@ type _CaptureScreenInputClass struct {
 // An interface definition for the [CaptureScreenInput] class.
 type ICaptureScreenInput interface {
 	ICaptureInput
+	CapturesCursor() bool
+	SetCapturesCursor(value bool)
+	CapturesMouseClicks() bool
+	SetCapturesMouseClicks(value bool)
+	CropRect() coregraphics.CGRect
+	SetCropRect(value coregraphics.CGRect)
+	MinFrameDuration() unsafe.Pointer
+	SetMinFrameDuration(value unsafe.Pointer)
+	RemovesDuplicateFrames() bool
+	SetRemovesDuplicateFrames(value bool)
+	ScaleFactor() float64
+	SetScaleFactor(value float64)
 }
 
 // A capture input for recording from a screen in macOS.

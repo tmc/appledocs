@@ -30,6 +30,8 @@ type _PHASEMediumClass struct {
 // An interface definition for the [PHASEMedium] class.
 type IPHASEMedium interface {
 	objectivec.IObject
+	DefaultMedium() PHASEMedium
+	SetDefaultMedium(value IPHASEMedium)
 }
 
 // A property or quality of the environment that affects how sound travels.

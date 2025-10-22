@@ -31,6 +31,10 @@ type _MTRBooleanStateConfigurationClusterAlarmsStateChangedEventClass struct {
 // An interface definition for the [MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent] class.
 type IMTRBooleanStateConfigurationClusterAlarmsStateChangedEvent interface {
 	objectivec.IObject
+	AlarmsActive() foundation.Number
+	SetAlarmsActive(value foundation.INumber)
+	AlarmsSuppressed() foundation.Number
+	SetAlarmsSuppressed(value foundation.INumber)
 }
 
 //

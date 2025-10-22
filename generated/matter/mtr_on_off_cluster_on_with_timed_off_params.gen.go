@@ -31,6 +31,16 @@ type _MTROnOffClusterOnWithTimedOffParamsClass struct {
 // An interface definition for the [MTROnOffClusterOnWithTimedOffParams] class.
 type IMTROnOffClusterOnWithTimedOffParams interface {
 	objectivec.IObject
+	OffWaitTime() foundation.Number
+	SetOffWaitTime(value foundation.INumber)
+	OnOffControl() foundation.Number
+	SetOnOffControl(value foundation.INumber)
+	OnTime() foundation.Number
+	SetOnTime(value foundation.INumber)
+	ServerSideProcessingTimeout() foundation.Number
+	SetServerSideProcessingTimeout(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

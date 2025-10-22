@@ -29,6 +29,8 @@ type _MXCPUMetricClass struct {
 // An interface definition for the [MXCPUMetric] class.
 type IMXCPUMetric interface {
 	IMXMetric
+	CumulativeCPUInstructions() unsafe.Pointer
+	CumulativeCPUTime() unsafe.Pointer
 }
 
 // An object representing metrics about the use of the CPU.

@@ -88,9 +88,9 @@ func NewQCPlugInViewController() QCPlugInViewController {
 // Creates and initializes a controller for the specified object and nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPlugInViewController/init(plugIn:viewNibName:)
-func NewQCPlugInViewControllerWithPlugInViewNibName(plugIn IQCPlugIn, name appkit.string) QCPlugInViewController {
+func NewQCPlugInViewControllerWithPlugInViewNibName(plugIn IQCPlugIn, name string) QCPlugInViewController {
 	instance := getQCPlugInViewControllerClass().Alloc()
-	rv := objc.Send[QCPlugInViewController](instance.ID, objc.Sel("initWithPlugIn:viewNibName:"), plugIn, name)
+	rv := objc.Send[QCPlugInViewController](instance.ID, objc.Sel("initWithPlugIn:viewNibName:"), plugIn, objc.String(name))
 	rv.Autorelease()
 	return rv
 }

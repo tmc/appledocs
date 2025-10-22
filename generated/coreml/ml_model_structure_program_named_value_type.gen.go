@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _ModelStructureProgramNamedValueTypeClass struct {
 // An interface definition for the [ModelStructureProgramNamedValueType] class.
 type IModelStructureProgramNamedValueType interface {
 	objectivec.IObject
+	Name() string
+	Type() MLModelStructureProgramValueType
 }
 
 // A class representing a named value type in a Program.
@@ -82,8 +83,8 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 // The name of the parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
-func (m_ ModelStructureProgramNamedValueType) Name() appkit.string {
-	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramNamedValueType) Name() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

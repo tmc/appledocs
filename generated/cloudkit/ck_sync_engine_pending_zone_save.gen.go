@@ -29,6 +29,7 @@ type _CKSyncEnginePendingZoneSaveClass struct {
 // An interface definition for the [CKSyncEnginePendingZoneSave] class.
 type ICKSyncEnginePendingZoneSave interface {
 	ICKSyncEnginePendingDatabaseChange
+	Zone() CKRecordZone
 }
 
 // An object that describes an unsent record zone modification.

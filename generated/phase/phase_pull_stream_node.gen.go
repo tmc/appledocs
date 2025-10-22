@@ -29,6 +29,10 @@ type _PHASEPullStreamNodeClass struct {
 // An interface definition for the [PHASEPullStreamNode] class.
 type IPHASEPullStreamNode interface {
 	IPHASEStreamNode
+	RenderBlock() unsafe.Pointer
+	SetRenderBlock(value unsafe.Pointer)
+	RenderHandler() unsafe.Pointer
+	SetRenderHandler(value unsafe.Pointer)
 }
 
 //

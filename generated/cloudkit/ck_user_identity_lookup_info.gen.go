@@ -30,6 +30,9 @@ type _CKUserIdentityLookupInfoClass struct {
 // An interface definition for the [CKUserIdentityLookupInfo] class.
 type ICKUserIdentityLookupInfo interface {
 	objectivec.IObject
+	EmailAddress() string
+	PhoneNumber() string
+	UserRecordID() CKRecordID
 }
 
 // The criteria to use when searching for discoverable iCloud users.

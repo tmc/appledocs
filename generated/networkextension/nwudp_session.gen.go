@@ -30,6 +30,20 @@ type _NWUDPSessionClass struct {
 // An interface definition for the [NWUDPSession] class.
 type INWUDPSession interface {
 	objectivec.IObject
+	CurrentPath() NWPath
+	SetCurrentPath(value INWPath)
+	Endpoint() NWEndpoint
+	SetEndpoint(value INWEndpoint)
+	HasBetterPath() bool
+	SetHasBetterPath(value bool)
+	IsViable() bool
+	SetIsViable(value bool)
+	MaximumDatagramLength() int
+	SetMaximumDatagramLength(value int)
+	ResolvedEndpoint() NWEndpoint
+	SetResolvedEndpoint(value INWEndpoint)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
 }
 
 // An object to manage a UDP session to a network endpoint.

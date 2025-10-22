@@ -30,6 +30,8 @@ type _MKLookAroundSnapshotterClass struct {
 // An interface definition for the [MKLookAroundSnapshotter] class.
 type IMKLookAroundSnapshotter interface {
 	objectivec.IObject
+	IsLoading() bool
+	SetIsLoading(value bool)
 }
 
 // A utility class that you use to create a static image from a LookAround scene.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -80,15 +79,15 @@ func NewWebAuthenticationSessionCallback() WebAuthenticationSessionCallback {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/customScheme(_:)
-func (wc _WebAuthenticationSessionCallbackClass) CallbackWithCustomScheme(customScheme appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithCustomScheme:"), customScheme)
+func (wc _WebAuthenticationSessionCallbackClass) CallbackWithCustomScheme(customScheme string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithCustomScheme:"), objc.String(customScheme))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/https(host:path:)
-func (wc _WebAuthenticationSessionCallbackClass) CallbackWithHTTPSHostPath(host appkit.string, path appkit.string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithHTTPSHost:path:"), host, path)
+func (wc _WebAuthenticationSessionCallbackClass) CallbackWithHTTPSHostPath(host string, path string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithHTTPSHost:path:"), objc.String(host), objc.String(path))
 	return rv
 }
 

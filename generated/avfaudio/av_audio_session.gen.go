@@ -52,6 +52,39 @@ type IAudioSession interface {
 	SetPrefersEchoCancelledInputError(value bool, error_ unsafe.Pointer) bool
 	SetPrefersInterruptionOnRouteDisconnectError(inValue bool, outError unsafe.Pointer) bool
 	SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool, outError unsafe.Pointer) bool
+	AllowHapticsAndSystemSoundsDuringRecording() bool
+	AvailableCategories() []string
+	AvailableInputs() []AudioSessionPortDescription
+	AvailableModes() []string
+	Category() AudioSessionCategory
+	CategoryOptions() AudioSessionCategoryOptions
+	CurrentRoute() AVAudioSessionRouteDescription
+	InputDataSource() AVAudioSessionDataSourceDescription
+	InputOrientation() AudioStereoOrientation
+	IntendedSpatialExperience() AudioSessionSpatialExperience
+	IntendedSpatialExperienceOptions() unsafe.Pointer
+	IsEchoCancelledInputAvailable() bool
+	IsEchoCancelledInputEnabled() bool
+	InputAvailable() bool
+	IsMicrophoneInjectionAvailable() bool
+	IsNowPlayingCandidate() bool
+	OtherAudioPlaying() bool
+	OutputMuted() bool
+	Mode() AudioSessionMode
+	PreferredInputOrientation() AudioStereoOrientation
+	PreferredMicrophoneInjectionMode() AudioSessionMicrophoneInjectionMode
+	PrefersEchoCancelledInput() bool
+	PrefersInterruptionOnRouteDisconnect() bool
+	PrefersNoInterruptionsFromSystemAlerts() bool
+	PromptStyle() AudioSessionPromptStyle
+	RenderingMode() AudioSessionRenderingMode
+	RouteSharingPolicy() AudioSessionRouteSharingPolicy
+	SecondaryAudioShouldBeSilencedHint() bool
+	SupportedOutputChannelLayouts() []AudioChannelLayout
+	IsOtherAudioPlaying() bool
+	SetIsOtherAudioPlaying(value bool)
+	IsOutputMuted() bool
+	SetIsOutputMuted(value bool)
 }
 
 // An object that communicates to the system how you intend to use audio in your app.

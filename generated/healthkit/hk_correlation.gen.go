@@ -29,6 +29,11 @@ type _HKCorrelationClass struct {
 // An interface definition for the [HKCorrelation] class.
 type IHKCorrelation interface {
 	IHKSample
+	CorrelationType() HKCorrelationType
+	Objects() HKSample
+	SetObjects(value IHKSample)
+	HKMetadataKeyFoodType() string
+	HKPredicateKeyPathCorrelation() string
 }
 
 // A sample that groups multiple related samples into a single entry.
@@ -110,16 +115,16 @@ func (h_ HKCorrelation) SetObjects(value IHKSample) {
 // The type of food that the HealthKit object represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
-func (h_ HKCorrelation) HKMetadataKeyFoodType() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
+func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
 	return rv
 }
 
 // The key path for accessing the object’s correlation inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation
-func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() appkit.string {
-	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
+func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
 	return rv
 }
 

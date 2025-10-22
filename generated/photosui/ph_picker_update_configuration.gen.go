@@ -30,6 +30,10 @@ type _PHPickerUpdateConfigurationClass struct {
 // An interface definition for the [PHPickerUpdateConfiguration] class.
 type IPHPickerUpdateConfiguration interface {
 	objectivec.IObject
+	EdgesWithoutContentMargins() unsafe.Pointer
+	SetEdgesWithoutContentMargins(value unsafe.Pointer)
+	SelectionLimit() int
+	SetSelectionLimit(value int)
 }
 
 // An object that defines the aspects of a photo picker’s appearance that can change while it’s presented.

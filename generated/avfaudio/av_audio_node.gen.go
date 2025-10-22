@@ -38,6 +38,13 @@ type IAudioNode interface {
 	OutputFormatForBus(bus IAudioNodeBus) AudioFormat
 	RemoveTapOnBus(bus IAudioNodeBus)
 	Reset()
+	AUAudioUnit() AudioUnit
+	Engine() AVAudioEngine
+	LastRenderTime() AVAudioTime
+	Latency() foundation.TimeInterval
+	NumberOfInputs() uint
+	NumberOfOutputs() uint
+	OutputPresentationLatency() foundation.TimeInterval
 }
 
 // An object you use for audio generation, processing, or an I/O block.

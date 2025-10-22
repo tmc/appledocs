@@ -31,6 +31,18 @@ type _MTRDoorLockClusterGetHolidayScheduleResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetHolidayScheduleResponseParams] class.
 type IMTRDoorLockClusterGetHolidayScheduleResponseParams interface {
 	objectivec.IObject
+	HolidayIndex() foundation.Number
+	SetHolidayIndex(value foundation.INumber)
+	LocalEndTime() foundation.Number
+	SetLocalEndTime(value foundation.INumber)
+	LocalStartTime() foundation.Number
+	SetLocalStartTime(value foundation.INumber)
+	OperatingMode() foundation.Number
+	SetOperatingMode(value foundation.INumber)
+	Status() foundation.Number
+	SetStatus(value foundation.INumber)
+	TimedInvokeTimeoutMs() foundation.Number
+	SetTimedInvokeTimeoutMs(value foundation.INumber)
 }
 
 //

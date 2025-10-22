@@ -31,6 +31,14 @@ type _HKStatisticsClass struct {
 // An interface definition for the [HKStatistics] class.
 type IHKStatistics interface {
 	objectivec.IObject
+	EndDate() foundation.Date
+	SetEndDate(value foundation.IDate)
+	QuantityType() HKQuantityType
+	SetQuantityType(value HKQuantityType)
+	Sources() HKSource
+	SetSources(value IHKSource)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.IDate)
 }
 
 // An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.

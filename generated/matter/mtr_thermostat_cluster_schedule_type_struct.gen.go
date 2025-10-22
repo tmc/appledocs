@@ -31,6 +31,12 @@ type _MTRThermostatClusterScheduleTypeStructClass struct {
 // An interface definition for the [MTRThermostatClusterScheduleTypeStruct] class.
 type IMTRThermostatClusterScheduleTypeStruct interface {
 	objectivec.IObject
+	NumberOfSchedules() foundation.Number
+	SetNumberOfSchedules(value foundation.INumber)
+	ScheduleTypeFeatures() foundation.Number
+	SetScheduleTypeFeatures(value foundation.INumber)
+	SystemMode() foundation.Number
+	SetSystemMode(value foundation.INumber)
 }
 
 //

@@ -30,6 +30,12 @@ type _MTRAccessControlClusterTargetClass struct {
 // An interface definition for the [MTRAccessControlClusterTarget] class.
 type IMTRAccessControlClusterTarget interface {
 	IMTRAccessControlClusterAccessControlTargetStruct
+	Cluster() foundation.Number
+	SetCluster(value foundation.INumber)
+	DeviceType() foundation.Number
+	SetDeviceType(value foundation.INumber)
+	Endpoint() foundation.Number
+	SetEndpoint(value foundation.INumber)
 }
 
 //

@@ -33,6 +33,30 @@ type _RenderDestinationClass struct {
 // An interface definition for the [RenderDestination] class.
 type IRenderDestination interface {
 	objectivec.IObject
+	AlphaMode() RenderDestinationAlphaMode
+	SetAlphaMode(value RenderDestinationAlphaMode)
+	BlendKernel() CIBlendKernel
+	SetBlendKernel(value ICIBlendKernel)
+	BlendsInDestinationColorSpace() bool
+	SetBlendsInDestinationColorSpace(value bool)
+	CaptureTraceURL() foundation.URL
+	SetCaptureTraceURL(value foundation.IURL)
+	ColorSpace() coregraphics.CGColorSpaceRef
+	SetColorSpace(value coregraphics.CGColorSpaceRef)
+	Height() uint
+	Clamped() bool
+	SetClamped(value bool)
+	Dithered() bool
+	SetDithered(value bool)
+	Flipped() bool
+	SetFlipped(value bool)
+	Width() uint
+	IsClamped() bool
+	SetIsClamped(value bool)
+	IsDithered() bool
+	SetIsDithered(value bool)
+	IsFlipped() bool
+	SetIsFlipped(value bool)
 }
 
 // A specification for configuring all attributes of a render task’s destination and issuing asynchronous render tasks.

@@ -29,6 +29,15 @@ type _DetectBarcodesRequestClass struct {
 // An interface definition for the [DetectBarcodesRequest] class.
 type IDetectBarcodesRequest interface {
 	IImageBasedRequest
+	CoalesceCompositeSymbologies() bool
+	SetCoalesceCompositeSymbologies(value bool)
+	Results() VNBarcodeObservation
+	SetResults(value IVNBarcodeObservation)
+	Symbologies() unsafe.Pointer
+	SetSymbologies(value unsafe.Pointer)
+	VNDetectBarcodesRequestRevision1() int
+	VNDetectBarcodesRequestRevision2() int
+	VNDetectBarcodesRequestRevision3() int
 }
 
 // A request that detects barcodes in an image.
