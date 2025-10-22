@@ -76,7 +76,6 @@ type IURLRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest
-
 type URLRequest struct {
 	objectivec.Object
 }
@@ -125,7 +124,6 @@ func NewURLRequest() URLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsConstrainedNetworkAccess
-
 func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
 	return rv
@@ -134,7 +132,6 @@ func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsPersistentDNS
-
 func (u_ URLRequest) AllowsPersistentDNS() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsPersistentDNS"))
 	return rv
@@ -143,7 +140,6 @@ func (u_ URLRequest) AllowsPersistentDNS() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/cookiePartitionIdentifier
-
 func (u_ URLRequest) CookiePartitionIdentifier() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
 	return rv
@@ -154,7 +150,6 @@ func (u_ URLRequest) CookiePartitionIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/httpShouldHandleCookies
-
 func (u_ URLRequest) HTTPShouldHandleCookies() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("HTTPShouldHandleCookies"))
 	return rv
@@ -165,7 +160,6 @@ func (u_ URLRequest) HTTPShouldHandleCookies() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/networkServiceType-swift.property
-
 func (u_ URLRequest) NetworkServiceType() URLRequestNetworkServiceType {
 	rv := objc.Send[URLRequestNetworkServiceType](u_.ID, objc.Sel("networkServiceType"))
 	return rv
@@ -176,7 +170,6 @@ func (u_ URLRequest) NetworkServiceType() URLRequestNetworkServiceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-
 func (u_ URLRequest) AllHTTPHeaderFields() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("allHTTPHeaderFields"))
 	return rv
@@ -187,7 +180,6 @@ func (u_ URLRequest) AllHTTPHeaderFields() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-
 func (u_ URLRequest) SetAllHTTPHeaderFields(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), objc.String(value))
 }
@@ -197,7 +189,6 @@ func (u_ URLRequest) SetAllHTTPHeaderFields(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
-
 func (u_ URLRequest) AllowsCellularAccess() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
@@ -208,7 +199,6 @@ func (u_ URLRequest) AllowsCellularAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
-
 func (u_ URLRequest) SetAllowsCellularAccess(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
@@ -218,7 +208,6 @@ func (u_ URLRequest) SetAllowsCellularAccess(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsexpensivenetworkaccess
-
 func (u_ URLRequest) AllowsExpensiveNetworkAccess() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
 	return rv
@@ -229,7 +218,6 @@ func (u_ URLRequest) AllowsExpensiveNetworkAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsexpensivenetworkaccess
-
 func (u_ URLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
 }
@@ -237,7 +225,6 @@ func (u_ URLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
-
 func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
 	return rv
@@ -246,7 +233,6 @@ func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
-
 func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
 }
@@ -254,7 +240,6 @@ func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
-
 func (u_ URLRequest) AssumesHTTP3Capable() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("assumesHTTP3Capable"))
 	return rv
@@ -263,7 +248,6 @@ func (u_ URLRequest) AssumesHTTP3Capable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
-
 func (u_ URLRequest) SetAssumesHTTP3Capable(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAssumesHTTP3Capable:"), value)
 }
@@ -273,7 +257,6 @@ func (u_ URLRequest) SetAssumesHTTP3Capable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
-
 func (u_ URLRequest) Attribution() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("attribution"))
 	return rv
@@ -284,7 +267,6 @@ func (u_ URLRequest) Attribution() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.property
-
 func (u_ URLRequest) SetAttribution(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAttribution:"), value)
 }
@@ -294,7 +276,6 @@ func (u_ URLRequest) SetAttribution(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.property
-
 func (u_ URLRequest) CachePolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("cachePolicy"))
 	return rv
@@ -305,7 +286,6 @@ func (u_ URLRequest) CachePolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.property
-
 func (u_ URLRequest) SetCachePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCachePolicy:"), value)
 }
@@ -315,7 +295,6 @@ func (u_ URLRequest) SetCachePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbody
-
 func (u_ URLRequest) HttpBody() Data {
 	rv := objc.Send[Data](u_.ID, objc.Sel("httpBody"))
 	return rv
@@ -326,7 +305,6 @@ func (u_ URLRequest) HttpBody() Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbody
-
 func (u_ URLRequest) SetHttpBody(value IData) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBody:"), value)
 }
@@ -336,7 +314,6 @@ func (u_ URLRequest) SetHttpBody(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-
 func (u_ URLRequest) HttpBodyStream() NSInputStream {
 	rv := objc.Send[NSInputStream](u_.ID, objc.Sel("httpBodyStream"))
 	return rv
@@ -347,7 +324,6 @@ func (u_ URLRequest) HttpBodyStream() NSInputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-
 func (u_ URLRequest) SetHttpBodyStream(value IInputStream) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBodyStream:"), value)
 }
@@ -357,7 +333,6 @@ func (u_ URLRequest) SetHttpBodyStream(value IInputStream) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-
 func (u_ URLRequest) HttpMethod() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("httpMethod"))
 	return rv
@@ -368,7 +343,6 @@ func (u_ URLRequest) HttpMethod() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-
 func (u_ URLRequest) SetHttpMethod(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
 }
@@ -378,7 +352,6 @@ func (u_ URLRequest) SetHttpMethod(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
-
 func (u_ URLRequest) HttpShouldUsePipelining() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
 	return rv
@@ -389,7 +362,6 @@ func (u_ URLRequest) HttpShouldUsePipelining() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
-
 func (u_ URLRequest) SetHttpShouldUsePipelining(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
 }
@@ -399,7 +371,6 @@ func (u_ URLRequest) SetHttpShouldUsePipelining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
-
 func (u_ URLRequest) MainDocumentURL() URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("mainDocumentURL"))
 	return rv
@@ -410,7 +381,6 @@ func (u_ URLRequest) MainDocumentURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
-
 func (u_ URLRequest) SetMainDocumentURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMainDocumentURL:"), value)
 }
@@ -418,7 +388,6 @@ func (u_ URLRequest) SetMainDocumentURL(value IURL) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
-
 func (u_ URLRequest) RequiresDNSSECValidation() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("requiresDNSSECValidation"))
 	return rv
@@ -427,7 +396,6 @@ func (u_ URLRequest) RequiresDNSSECValidation() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
-
 func (u_ URLRequest) SetRequiresDNSSECValidation(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
 }
@@ -437,7 +405,6 @@ func (u_ URLRequest) SetRequiresDNSSECValidation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-
 func (u_ URLRequest) TimeoutInterval() TimeInterval {
 	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutInterval"))
 	return rv
@@ -448,7 +415,6 @@ func (u_ URLRequest) TimeoutInterval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-
 func (u_ URLRequest) SetTimeoutInterval(value ITimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutInterval:"), value)
 }
@@ -458,7 +424,6 @@ func (u_ URLRequest) SetTimeoutInterval(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
-
 func (u_ URLRequest) Url() URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("url"))
 	return rv
@@ -469,7 +434,6 @@ func (u_ URLRequest) Url() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
-
 func (u_ URLRequest) SetUrl(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
 }

@@ -31,8 +31,8 @@ type _IndexSetClass struct {
 type IIndexSet interface {
 	objectivec.IObject
 	EnumerateIndexesUsingBlock(block unsafe.Pointer)
-	EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts EnumerationOptions, block unsafe.Pointer)
-	EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts NSEnumerationOptions, block unsafe.Pointer)
+	EnumerateIndexesWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
 	Count() int
 	SetCount(value int)
 	FirstIndex() int
@@ -50,7 +50,6 @@ type IIndexSet interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
-
 type IndexSet struct {
 	objectivec.Object
 }
@@ -95,12 +94,10 @@ func NewIndexSet() IndexSet {
 
 
 
-
 // Initializes an allocated object with an index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/init(index:)
-
 func NewIndexSetWithIndex(value uint) IndexSet {
 	instance := getIndexSetClass().Alloc()
 	rv := objc.Send[IndexSet](instance.ID, objc.Sel("initWithIndex:"), value)
@@ -110,35 +107,29 @@ func NewIndexSetWithIndex(value uint) IndexSet {
 
 
 
-
 // Executes a given Block using each object in the index set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(_:)
-
 func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesUsingBlock:"), block)
 }
-
 
 
 // Executes a given Block using the indexes in the specified range, using the specified enumeration options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(in:options:using:)
-
-func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts EnumerationOptions, block unsafe.Pointer) {
+func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts NSEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesInRange:options:usingBlock:"), range_, opts, block)
 }
-
 
 
 // Executes a given Block over the index set’s indexes, using the specified enumeration options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(options:using:)
-
-func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
+func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesWithOptions:usingBlock:"), opts, block)
 }
 
@@ -147,7 +138,6 @@ func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
-
 func (i_ IndexSet) Count() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("count"))
 	return rv
@@ -158,7 +148,6 @@ func (i_ IndexSet) Count() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/count
-
 func (i_ IndexSet) SetCount(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCount:"), value)
 }
@@ -168,7 +157,6 @@ func (i_ IndexSet) SetCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
-
 func (i_ IndexSet) FirstIndex() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("firstIndex"))
 	return rv
@@ -179,7 +167,6 @@ func (i_ IndexSet) FirstIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/firstindex
-
 func (i_ IndexSet) SetFirstIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstIndex:"), value)
 }
@@ -189,7 +176,6 @@ func (i_ IndexSet) SetFirstIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/lastindex
-
 func (i_ IndexSet) LastIndex() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("lastIndex"))
 	return rv
@@ -200,7 +186,6 @@ func (i_ IndexSet) LastIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexset/lastindex
-
 func (i_ IndexSet) SetLastIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLastIndex:"), value)
 }

@@ -44,7 +44,6 @@ type IRecursiveLock interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock
-
 type RecursiveLock struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewRecursiveLock() RecursiveLock {
 
 
 
-
 // Attempts to acquire a lock, and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/try()
-
 func (r_ RecursiveLock) TryLock() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("tryLock"))
 	return rv
@@ -105,7 +102,6 @@ func (r_ RecursiveLock) TryLock() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-
 func (r_ RecursiveLock) Name() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("name"))
 	return rv
@@ -116,7 +112,6 @@ func (r_ RecursiveLock) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-
 func (r_ RecursiveLock) SetName(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), objc.String(value))
 }

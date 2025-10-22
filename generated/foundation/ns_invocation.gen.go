@@ -44,7 +44,6 @@ type IInvocation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation
-
 type Invocation struct {
 	objectivec.Object
 }
@@ -93,19 +92,16 @@ func NewInvocation() Invocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/invocationWithMethodSignature:
-
 func (ic _InvocationClass) InvocationWithMethodSignature(sig IMethodSignature) Invocation {
 	rv := objc.Send[Invocation](objc.ID(ic.class), objc.Sel("invocationWithMethodSignature:"), sig)
 	return rv
 }
 
 
-
 // If the receiver hasn’t already done so, retains the target and all object arguments of the receiver and copies all of its C-string arguments and blocks. If a returnvalue has been set, this is also retained or copied.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/retainArguments
-
 func (i_ Invocation) RetainArguments() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("retainArguments"))
 }
@@ -115,7 +111,6 @@ func (i_ Invocation) RetainArguments() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/target
-
 func (i_ Invocation) Target() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("target"))
 	return rv
@@ -126,7 +121,6 @@ func (i_ Invocation) Target() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/target
-
 func (i_ Invocation) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTarget:"), value)
 }

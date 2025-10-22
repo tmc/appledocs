@@ -44,7 +44,6 @@ type IEnergyFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter
-
 type EnergyFormatter struct {
 	Formatter
 }
@@ -95,7 +94,6 @@ func NewEnergyFormatter() EnergyFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
-
 func (e_ EnergyFormatter) IsForFoodEnergyUse() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isForFoodEnergyUse"))
 	return rv
@@ -106,7 +104,6 @@ func (e_ EnergyFormatter) IsForFoodEnergyUse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
-
 func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsForFoodEnergyUse:"), value)
 }
@@ -116,7 +113,6 @@ func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
-
 func (e_ EnergyFormatter) NumberFormatter() NSNumberFormatter {
 	rv := objc.Send[NSNumberFormatter](e_.ID, objc.Sel("numberFormatter"))
 	return rv
@@ -127,7 +123,6 @@ func (e_ EnergyFormatter) NumberFormatter() NSNumberFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
-
 func (e_ EnergyFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setNumberFormatter:"), value)
 }
@@ -137,7 +132,6 @@ func (e_ EnergyFormatter) SetNumberFormatter(value INumberFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/unitstyle
-
 func (e_ EnergyFormatter) UnitStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("unitStyle"))
 	return rv
@@ -148,7 +142,6 @@ func (e_ EnergyFormatter) UnitStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/unitstyle
-
 func (e_ EnergyFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUnitStyle:"), value)
 }

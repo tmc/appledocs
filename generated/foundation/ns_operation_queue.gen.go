@@ -62,7 +62,6 @@ type IOperationQueue interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue
-
 type OperationQueue struct {
 	objectivec.Object
 }
@@ -107,34 +106,28 @@ func NewOperationQueue() OperationQueue {
 
 
 
-
 // Invokes a block when the queue finishes all enqueued operations, and prevents subsequent operations from starting until the block has completed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addBarrierBlock(_:)
-
 func (o_ OperationQueue) AddBarrierBlock(barrier unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addBarrierBlock:"), barrier)
 }
-
 
 
 // Adds the specified operation to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperation(_:)-64o8a
-
 func (o_ OperationQueue) AddOperation(op IOperation) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addOperation:"), op)
 }
-
 
 
 // Cancels all queued and executing operations.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/cancelAllOperations()
-
 func (o_ OperationQueue) CancelAllOperations() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
 }
@@ -144,7 +137,6 @@ func (o_ OperationQueue) CancelAllOperations() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operationCount
-
 func (o_ OperationQueue) OperationCount() uint {
 	rv := objc.Send[uint](o_.ID, objc.Sel("operationCount"))
 	return rv
@@ -155,7 +147,6 @@ func (o_ OperationQueue) OperationCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
-
 func (o_ OperationQueue) Operations() []Operation {
 	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
 	return rv
@@ -166,7 +157,6 @@ func (o_ OperationQueue) Operations() []Operation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-
 func (o_ OperationQueue) IsReady() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isReady"))
 	return rv
@@ -177,7 +167,6 @@ func (o_ OperationQueue) IsReady() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-
 func (o_ OperationQueue) SetIsReady(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
 }
@@ -187,7 +176,6 @@ func (o_ OperationQueue) SetIsReady(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
-
 func (o_ OperationQueue) QueuePriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
 	return rv
@@ -198,7 +186,6 @@ func (o_ OperationQueue) QueuePriority() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
-
 func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
@@ -208,7 +195,6 @@ func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
-
 func (o_ OperationQueue) IsSuspended() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isSuspended"))
 	return rv
@@ -219,7 +205,6 @@ func (o_ OperationQueue) IsSuspended() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
-
 func (o_ OperationQueue) SetIsSuspended(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSuspended:"), value)
 }
@@ -229,7 +214,6 @@ func (o_ OperationQueue) SetIsSuspended(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/maxconcurrentoperationcount
-
 func (o_ OperationQueue) MaxConcurrentOperationCount() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("maxConcurrentOperationCount"))
 	return rv
@@ -240,7 +224,6 @@ func (o_ OperationQueue) MaxConcurrentOperationCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/maxconcurrentoperationcount
-
 func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setMaxConcurrentOperationCount:"), value)
 }
@@ -250,7 +233,6 @@ func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-
 func (o_ OperationQueue) Name() string {
 	rv := objc.Send[string](o_.ID, objc.Sel("name"))
 	return rv
@@ -261,7 +243,6 @@ func (o_ OperationQueue) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-
 func (o_ OperationQueue) SetName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -271,7 +252,6 @@ func (o_ OperationQueue) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-
 func (o_ OperationQueue) Progress() NSProgress {
 	rv := objc.Send[NSProgress](o_.ID, objc.Sel("progress"))
 	return rv
@@ -282,7 +262,6 @@ func (o_ OperationQueue) Progress() NSProgress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-
 func (o_ OperationQueue) SetProgress(value IProgress) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
 }
@@ -292,7 +271,6 @@ func (o_ OperationQueue) SetProgress(value IProgress) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
-
 func (o_ OperationQueue) QualityOfService() QualityOfService {
 	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
 	return rv
@@ -303,7 +281,6 @@ func (o_ OperationQueue) QualityOfService() QualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
-
 func (o_ OperationQueue) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
@@ -313,7 +290,6 @@ func (o_ OperationQueue) SetQualityOfService(value IQualityOfService) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
-
 func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("underlyingQueue"))
 	return rv
@@ -324,7 +300,6 @@ func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
-
 func (o_ OperationQueue) SetUnderlyingQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUnderlyingQueue:"), value)
 }

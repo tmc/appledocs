@@ -31,7 +31,7 @@ type IXPCCoder interface {
 	ICoder
 	DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer
 	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string)
-	Connection() NSXPCConnection
+	Connection() XPCConnection
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
 }
@@ -45,7 +45,6 @@ type IXPCCoder interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder
-
 type XPCCoder struct {
 	Coder
 }
@@ -92,24 +91,20 @@ func NewXPCCoder() XPCCoder {
 
 
 
-
 // Decodes an object and validates that its type matches the type a service provides over XPC.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/decodeXPCObject(ofType:forKey:)
-
 func (x_ XPCCoder) DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("decodeXPCObjectOfType:forKey:"), type_, objc.String(key))
 	return rv
 }
 
 
-
 // Encodes an object to send over an XPC connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/encodeXPCObject(_:forKey:)
-
 func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("encodeXPCObject:forKey:"), xpcObject, objc.String(key))
 }
@@ -119,9 +114,8 @@ func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/connection
-
-func (x_ XPCCoder) Connection() NSXPCConnection {
-	rv := objc.Send[NSXPCConnection](x_.ID, objc.Sel("connection"))
+func (x_ XPCCoder) Connection() XPCConnection {
+	rv := objc.Send[XPCConnection](x_.ID, objc.Sel("connection"))
 	return rv
 }
 
@@ -130,7 +124,6 @@ func (x_ XPCCoder) Connection() NSXPCConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/userInfo
-
 func (x_ XPCCoder) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("userInfo"))
 	return rv
@@ -141,7 +134,6 @@ func (x_ XPCCoder) UserInfo() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/userInfo
-
 func (x_ XPCCoder) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setUserInfo:"), value)
 }

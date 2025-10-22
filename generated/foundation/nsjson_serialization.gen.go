@@ -41,7 +41,6 @@ type IJSONSerialization interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization
-
 type JSONSerialization struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewJSONSerialization() JSONSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/isValidJSONObject(_:)
-
 func (jc _JSONSerializationClass) IsValidJSONObject(obj objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(jc.class), objc.Sel("isValidJSONObject:"), obj)
 	return rv

@@ -42,7 +42,6 @@ type IBlockOperation interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation
-
 type BlockOperation struct {
 	Operation
 }
@@ -89,12 +88,10 @@ func NewBlockOperation() BlockOperation {
 
 
 
-
 // Creates and returns an object and adds the specified block to it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/init(block:)
-
 func NewBlockOperationWithBlock(block unsafe.Pointer) BlockOperation {
 	rv := objc.Send[BlockOperation](objc.ID(getBlockOperationClass().class), objc.Sel("blockOperationWithBlock:"), block)
 	return rv
@@ -106,19 +103,16 @@ func NewBlockOperationWithBlock(block unsafe.Pointer) BlockOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/init(block:)
-
 func (bc _BlockOperationClass) BlockOperationWithBlock(block unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("blockOperationWithBlock:"), block)
 	return rv
 }
 
 
-
 // Adds the specified block to the receiver’s list of blocks to perform.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/addExecutionBlock(_:)
-
 func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("addExecutionBlock:"), block)
 }
@@ -128,7 +122,6 @@ func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/executionBlocks
-
 func (b_ BlockOperation) ExecutionBlocks() []func() {
 	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
 	return rv

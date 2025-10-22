@@ -43,7 +43,6 @@ type IInputStream interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream
-
 type InputStream struct {
 	Stream
 }
@@ -90,13 +89,11 @@ func NewInputStream() InputStream {
 
 
 
-
 // Initializes and returns an object for reading from a given object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
-
-func NewInputStreamWithData(data IData) InputStream {
+func NewInputStreamWithData(data NSData) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -104,12 +101,10 @@ func NewInputStreamWithData(data IData) InputStream {
 }
 
 
-
 // Initializes and returns an object that reads data from the file at a given path.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(fileAtPath:)
-
 func NewInputStreamWithFileAtPath(path string) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), objc.String(path))
@@ -118,13 +113,11 @@ func NewInputStreamWithFileAtPath(path string) InputStream {
 }
 
 
-
 // Initializes and returns an object that reads data from the file at a given URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
-
-func NewInputStreamWithURL(url IURL) InputStream {
+func NewInputStreamWithURL(url URL) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -137,8 +130,7 @@ func NewInputStreamWithURL(url IURL) InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(URL:)-y5k
-
-func (ic _InputStreamClass) InputStreamWithURL(url IURL) unsafe.Pointer {
+func (ic _InputStreamClass) InputStreamWithURL(url URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithURL:"), url)
 	return rv
 }
@@ -148,8 +140,7 @@ func (ic _InputStreamClass) InputStreamWithURL(url IURL) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithData:
-
-func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
+func (ic _InputStreamClass) InputStreamWithData(data NSData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithData:"), data)
 	return rv
 }
@@ -159,31 +150,26 @@ func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithFileAtPath:
-
 func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithFileAtPath:"), objc.String(path))
 	return rv
 }
 
 
-
 // Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/getBuffer(_:length:)
-
 func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len_)
 	return rv
 }
 
 
-
 // Reads up to a given number of bytes into a given buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/read(_:maxLength:)
-
 func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("read:maxLength:"), buffer, len_)
 	return rv
@@ -194,7 +180,6 @@ func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/hasBytesAvailable
-
 func (i_ InputStream) HasBytesAvailable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
 	return rv

@@ -36,7 +36,6 @@ type Istatistics interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/statistics-c.ivar
-
 type statistics struct {
 	objectivec.Object
 }

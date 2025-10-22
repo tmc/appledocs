@@ -44,7 +44,6 @@ type IUUID interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID
-
 type UUID struct {
 	objectivec.Object
 }
@@ -90,10 +89,8 @@ func NewUUID() UUID {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
-
 func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
 	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
 	return rv
@@ -104,7 +101,6 @@ func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-
 func (u_ UUID) UuidString() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("uuidString"))
 	return rv
@@ -115,7 +111,6 @@ func (u_ UUID) UuidString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-
 func (u_ UUID) SetUuidString(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }

@@ -30,7 +30,7 @@ type _LinguisticTaggerClass struct {
 // An interface definition for the [LinguisticTagger] class.
 type ILinguisticTagger interface {
 	objectivec.IObject
-	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme ILinguisticTagScheme, opts LinguisticTaggerOptions, block unsafe.Pointer)
+	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme LinguisticTagScheme, opts NSLinguisticTaggerOptions, block unsafe.Pointer)
 	DominantLanguage() string
 	SetDominantLanguage(value string)
 	String() string
@@ -48,7 +48,6 @@ type ILinguisticTagger interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger
-
 type LinguisticTagger struct {
 	objectivec.Object
 }
@@ -93,13 +92,11 @@ func NewLinguisticTagger() LinguisticTagger {
 
 
 
-
 // Enumerates over a given range of the string and calls the specified block for each tag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
-
-func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme ILinguisticTagScheme, opts LinguisticTaggerOptions, block unsafe.Pointer) {
+func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme LinguisticTagScheme, opts NSLinguisticTaggerOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("enumerateTagsInRange:scheme:options:usingBlock:"), range_, tagScheme, opts, block)
 }
 
@@ -108,7 +105,6 @@ func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Ra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
-
 func (l_ LinguisticTagger) DominantLanguage() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("dominantLanguage"))
 	return rv
@@ -119,7 +115,6 @@ func (l_ LinguisticTagger) DominantLanguage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
-
 func (l_ LinguisticTagger) SetDominantLanguage(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDominantLanguage:"), objc.String(value))
 }
@@ -129,7 +124,6 @@ func (l_ LinguisticTagger) SetDominantLanguage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
-
 func (l_ LinguisticTagger) String() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("string"))
 	return rv
@@ -140,7 +134,6 @@ func (l_ LinguisticTagger) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
-
 func (l_ LinguisticTagger) SetString(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setString:"), objc.String(value))
 }
@@ -150,7 +143,6 @@ func (l_ LinguisticTagger) SetString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
-
 func (l_ LinguisticTagger) TagSchemes() LinguisticTagScheme {
 	rv := objc.Send[LinguisticTagScheme](l_.ID, objc.Sel("tagSchemes"))
 	return rv
@@ -161,7 +153,6 @@ func (l_ LinguisticTagger) TagSchemes() LinguisticTagScheme {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
-
 func (l_ LinguisticTagger) SetTagSchemes(value ILinguisticTagScheme) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTagSchemes:"), value)
 }

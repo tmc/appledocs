@@ -36,7 +36,6 @@ type IisValid interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/isValid
-
 type isValid struct {
 	objectivec.Object
 }

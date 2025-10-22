@@ -47,7 +47,6 @@ type IScriptExecutionContext interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptExecutionContext
-
 type ScriptExecutionContext struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewScriptExecutionContext() ScriptExecutionContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/objectbeingtested
-
 func (s_ ScriptExecutionContext) ObjectBeingTested() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectBeingTested"))
 	return rv
@@ -107,7 +105,6 @@ func (s_ ScriptExecutionContext) ObjectBeingTested() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/objectbeingtested
-
 func (s_ ScriptExecutionContext) SetObjectBeingTested(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setObjectBeingTested:"), value)
 }
@@ -117,7 +114,6 @@ func (s_ ScriptExecutionContext) SetObjectBeingTested(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/rangecontainerobject
-
 func (s_ ScriptExecutionContext) RangeContainerObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rangeContainerObject"))
 	return rv
@@ -128,7 +124,6 @@ func (s_ ScriptExecutionContext) RangeContainerObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/rangecontainerobject
-
 func (s_ ScriptExecutionContext) SetRangeContainerObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRangeContainerObject:"), value)
 }
@@ -138,7 +133,6 @@ func (s_ ScriptExecutionContext) SetRangeContainerObject(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
-
 func (s_ ScriptExecutionContext) TopLevelObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("topLevelObject"))
 	return rv
@@ -149,7 +143,6 @@ func (s_ ScriptExecutionContext) TopLevelObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
-
 func (s_ ScriptExecutionContext) SetTopLevelObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopLevelObject:"), value)
 }

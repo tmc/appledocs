@@ -44,7 +44,6 @@ type IUnarchiver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver
-
 type Unarchiver struct {
 	Coder
 }
@@ -91,12 +90,10 @@ func NewUnarchiver() Unarchiver {
 
 
 
-
 // Returns an object initialized to read an archive from a given data object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/init(forReadingWith:)
-
 func NewUnarchiverForReadingWithData(data IData) Unarchiver {
 	instance := getUnarchiverClass().Alloc()
 	rv := objc.Send[Unarchiver](instance.ID, objc.Sel("initForReadingWithData:"), data)
@@ -110,7 +107,6 @@ func NewUnarchiverForReadingWithData(data IData) Unarchiver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/decodeClassName(_:asClassName:)-swift.type.method
-
 func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName string, trueName string) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("decodeClassName:asClassName:"), objc.String(inArchiveName), objc.String(trueName))
 }
@@ -120,7 +116,6 @@ func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName string, true
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(with:)
-
 func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithData:"), data)
 	return rv
@@ -131,7 +126,6 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(withFile:)
-
 func (uc _UnarchiverClass) UnarchiveObjectWithFile(path string) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithFile:"), objc.String(path))
 	return rv
@@ -142,7 +136,6 @@ func (uc _UnarchiverClass) UnarchiveObjectWithFile(path string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-
 func (u_ Unarchiver) IsAtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isAtEnd"))
 	return rv
@@ -153,7 +146,6 @@ func (u_ Unarchiver) IsAtEnd() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-
 func (u_ Unarchiver) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
 }
@@ -163,7 +155,6 @@ func (u_ Unarchiver) SetIsAtEnd(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
-
 func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("systemVersion"))
 	return rv
@@ -174,7 +165,6 @@ func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
-
 func (u_ Unarchiver) SetSystemVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSystemVersion:"), value)
 }

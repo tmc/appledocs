@@ -40,7 +40,6 @@ type IUnitFrequency interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency
-
 type UnitFrequency struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitFrequency() UnitFrequency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/hertz
-
 func (uc _UnitFrequencyClass) Hertz() UnitFrequency {
 	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("hertz"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitFrequencyClass) Hertz() UnitFrequency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/hertz
-
 func (u_ UnitFrequency) Hertz() NSUnitFrequency {
 	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("hertz"))
 	return rv

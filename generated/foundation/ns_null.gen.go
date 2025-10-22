@@ -42,7 +42,6 @@ type INull interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull
-
 type Null struct {
 	objectivec.Object
 }
@@ -91,7 +90,6 @@ func NewNull() Null {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull/null
-
 func (nc _NullClass) Null() Null {
 	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("null"))
 	return rv
@@ -102,7 +100,6 @@ func (nc _NullClass) Null() Null {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-
 func (n_ Null) NSNotFound() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("NSNotFound"))
 	return rv

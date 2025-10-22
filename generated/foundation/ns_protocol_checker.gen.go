@@ -43,7 +43,6 @@ type IProtocolChecker interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker
-
 type ProtocolChecker struct {
 	Proxy
 }
@@ -90,12 +89,10 @@ func NewProtocolChecker() ProtocolChecker {
 
 
 
-
 // Initializes a newly allocated instance that will forward any messages in to , the protocol checker’s target.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/init(target:protocol:)
-
 func NewProtocolCheckerWithTargetProtocol(anObject objectivec.IObject, aProtocol objectivec.Protocol) ProtocolChecker {
 	instance := getProtocolCheckerClass().Alloc()
 	rv := objc.Send[ProtocolChecker](instance.ID, objc.Sel("initWithTarget:protocol:"), anObject, aProtocol)
@@ -109,7 +106,6 @@ func NewProtocolCheckerWithTargetProtocol(anObject objectivec.IObject, aProtocol
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/protocolCheckerWithTarget:protocol:
-
 func (pc _ProtocolCheckerClass) ProtocolCheckerWithTargetProtocol(anObject objectivec.IObject, aProtocol objectivec.Protocol) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("protocolCheckerWithTarget:protocol:"), anObject, aProtocol)
 	return rv
@@ -120,7 +116,6 @@ func (pc _ProtocolCheckerClass) ProtocolCheckerWithTargetProtocol(anObject objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/protocol
-
 func (p_ ProtocolChecker) Protocol() objectivec.Protocol {
 	rv := objc.Send[objectivec.Protocol](p_.ID, objc.Sel("protocol"))
 	return rv
@@ -131,7 +126,6 @@ func (p_ ProtocolChecker) Protocol() objectivec.Protocol {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolChecker/target
-
 func (p_ ProtocolChecker) Target() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](p_.ID, objc.Sel("target"))
 	return rv

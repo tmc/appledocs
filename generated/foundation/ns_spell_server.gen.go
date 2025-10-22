@@ -45,7 +45,6 @@ type ISpellServer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
-
 type SpellServer struct {
 	objectivec.Object
 }
@@ -90,24 +89,20 @@ func NewSpellServer() SpellServer {
 
 
 
-
 // Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
-
 func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
 	return rv
 }
 
 
-
 // Causes the receiver to start listening for spell-checking requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/run()
-
 func (s_ SpellServer) Run() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
 }
@@ -117,7 +112,6 @@ func (s_ SpellServer) Run() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
-
 func (s_ SpellServer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
@@ -128,7 +122,6 @@ func (s_ SpellServer) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
-
 func (s_ SpellServer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }

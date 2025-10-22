@@ -52,7 +52,6 @@ type ICache interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache
-
 type Cache struct {
 	objectivec.Object
 }
@@ -97,12 +96,10 @@ func NewCache() Cache {
 
 
 
-
 // Sets the value of the specified key in the cache, and associates the key-value pair with the specified cost.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/setObject(_:forKey:cost:)
-
 func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
@@ -112,7 +109,6 @@ func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g ui
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-
 func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
 	return rv
@@ -123,7 +119,6 @@ func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-
 func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
 }
@@ -133,7 +128,6 @@ func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
-
 func (c_ Cache) CountLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("countLimit"))
 	return rv
@@ -144,7 +138,6 @@ func (c_ Cache) CountLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/countlimit
-
 func (c_ Cache) SetCountLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
 }
@@ -154,7 +147,6 @@ func (c_ Cache) SetCountLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
-
 func (c_ Cache) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -165,7 +157,6 @@ func (c_ Cache) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
-
 func (c_ Cache) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -175,7 +166,6 @@ func (c_ Cache) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
-
 func (c_ Cache) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
@@ -186,7 +176,6 @@ func (c_ Cache) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/name
-
 func (c_ Cache) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -196,7 +185,6 @@ func (c_ Cache) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/totalcostlimit
-
 func (c_ Cache) TotalCostLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("totalCostLimit"))
 	return rv
@@ -207,7 +195,6 @@ func (c_ Cache) TotalCostLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/totalcostlimit
-
 func (c_ Cache) SetTotalCostLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalCostLimit:"), value)
 }

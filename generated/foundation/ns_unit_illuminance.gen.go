@@ -40,7 +40,6 @@ type IUnitIlluminance interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance
-
 type UnitIlluminance struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitIlluminance() UnitIlluminance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
-
 func (uc _UnitIlluminanceClass) Lux() UnitIlluminance {
 	rv := objc.Send[NSUnitIlluminance](objc.ID(uc.class), objc.Sel("lux"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitIlluminanceClass) Lux() UnitIlluminance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
-
 func (u_ UnitIlluminance) Lux() NSUnitIlluminance {
 	rv := objc.Send[NSUnitIlluminance](u_.ID, objc.Sel("lux"))
 	return rv

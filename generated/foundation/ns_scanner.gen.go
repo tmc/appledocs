@@ -59,7 +59,6 @@ type IScanner interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner
-
 type Scanner struct {
 	objectivec.Object
 }
@@ -108,43 +107,36 @@ func NewScanner() Scanner {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
-
 func (sc _ScannerClass) LocalizedScannerWithString(string_ string) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string_))
 	return rv
 }
 
 
-
 // Scans for a double value, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanDouble(_:)
-
 func (s_ Scanner) ScanDouble(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanDouble:"), result)
 	return rv
 }
 
 
-
 // Scans for a float value, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanFloat(_:)
-
 func (s_ Scanner) ScanFloat(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanFloat:"), result)
 	return rv
 }
 
 
-
 // Scans for an int value from a decimal representation, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt32(_:)
-
 func (s_ Scanner) ScanInt(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInt:"), result)
 	return rv
@@ -155,7 +147,6 @@ func (s_ Scanner) ScanInt(result unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-
 func (s_ Scanner) NSNotFound() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
 	return rv
@@ -166,7 +157,6 @@ func (s_ Scanner) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
-
 func (s_ Scanner) CaseSensitive() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("caseSensitive"))
 	return rv
@@ -177,7 +167,6 @@ func (s_ Scanner) CaseSensitive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
-
 func (s_ Scanner) SetCaseSensitive(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCaseSensitive:"), value)
 }
@@ -187,7 +176,6 @@ func (s_ Scanner) SetCaseSensitive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
-
 func (s_ Scanner) CharactersToBeSkipped() CharacterSet {
 	rv := objc.Send[CharacterSet](s_.ID, objc.Sel("charactersToBeSkipped"))
 	return rv
@@ -198,7 +186,6 @@ func (s_ Scanner) CharactersToBeSkipped() CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
-
 func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCharactersToBeSkipped:"), value)
 }
@@ -206,7 +193,6 @@ func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-
 func (s_ Scanner) CurrentIndex() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentIndex"))
 	return rv
@@ -215,7 +201,6 @@ func (s_ Scanner) CurrentIndex() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-
 func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
 }
@@ -225,7 +210,6 @@ func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
-
 func (s_ Scanner) IsAtEnd() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAtEnd"))
 	return rv
@@ -236,7 +220,6 @@ func (s_ Scanner) IsAtEnd() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
-
 func (s_ Scanner) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAtEnd:"), value)
 }
@@ -246,7 +229,6 @@ func (s_ Scanner) SetIsAtEnd(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/locale
-
 func (s_ Scanner) Locale() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("locale"))
 	return rv
@@ -257,7 +239,6 @@ func (s_ Scanner) Locale() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/locale
-
 func (s_ Scanner) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
 }
@@ -267,7 +248,6 @@ func (s_ Scanner) SetLocale(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
-
 func (s_ Scanner) ScanLocation() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("scanLocation"))
 	return rv
@@ -278,7 +258,6 @@ func (s_ Scanner) ScanLocation() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
-
 func (s_ Scanner) SetScanLocation(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
 }
@@ -288,7 +267,6 @@ func (s_ Scanner) SetScanLocation(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-
 func (s_ Scanner) String() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("string"))
 	return rv
@@ -299,7 +277,6 @@ func (s_ Scanner) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-
 func (s_ Scanner) SetString(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setString:"), objc.String(value))
 }

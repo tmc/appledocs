@@ -41,7 +41,6 @@ type IMorphology interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology
-
 type Morphology struct {
 	objectivec.Object
 }

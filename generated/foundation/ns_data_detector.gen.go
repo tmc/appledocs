@@ -51,7 +51,6 @@ type IDataDetector interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector
-
 type DataDetector struct {
 	RegularExpression
 }
@@ -102,7 +101,6 @@ func NewDataDetector() DataDetector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
-
 func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("checkingTypes"))
 	return rv
@@ -113,7 +111,6 @@ func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
-
 func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCheckingTypes:"), value)
 }
@@ -123,7 +120,6 @@ func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-
 func (d_ DataDetector) NSNotFound() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
 	return rv
@@ -134,7 +130,6 @@ func (d_ DataDetector) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
-
 func (d_ DataDetector) Date() Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("date"))
 	return rv
@@ -145,7 +140,6 @@ func (d_ DataDetector) Date() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/date
-
 func (d_ DataDetector) SetDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDate:"), value)
 }
@@ -155,7 +149,6 @@ func (d_ DataDetector) SetDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-
 func (d_ DataDetector) Duration() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
@@ -166,7 +159,6 @@ func (d_ DataDetector) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-
 func (d_ DataDetector) SetDuration(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
@@ -176,7 +168,6 @@ func (d_ DataDetector) SetDuration(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-
 func (d_ DataDetector) TimeZone() TimeZone {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
@@ -187,7 +178,6 @@ func (d_ DataDetector) TimeZone() TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-
 func (d_ DataDetector) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
@@ -197,7 +187,6 @@ func (d_ DataDetector) SetTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-
 func (d_ DataDetector) Url() URL {
 	rv := objc.Send[URL](d_.ID, objc.Sel("url"))
 	return rv
@@ -208,7 +197,6 @@ func (d_ DataDetector) Url() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-
 func (d_ DataDetector) SetUrl(value IURL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }

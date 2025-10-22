@@ -41,7 +41,6 @@ type ITermOfAddress interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress
-
 type TermOfAddress struct {
 	objectivec.Object
 }
@@ -88,7 +87,6 @@ func NewTermOfAddress() TermOfAddress {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/masculine
-
 func (tc _TermOfAddressClass) Masculine() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("masculine"))
 	return rv

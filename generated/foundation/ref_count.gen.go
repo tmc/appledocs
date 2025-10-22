@@ -36,7 +36,6 @@ type IrefCount interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/refCount
-
 type refCount struct {
 	objectivec.Object
 }

@@ -42,7 +42,6 @@ type IFileAccessIntent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent
-
 type FileAccessIntent struct {
 	objectivec.Object
 }
@@ -91,8 +90,7 @@ func NewFileAccessIntent() FileAccessIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/readingIntent(with:options:)
-
-func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options FileCoordinatorReadingOptions) unsafe.Pointer {
+func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options NSFileCoordinatorReadingOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("readingIntentWithURL:options:"), url, options)
 	return rv
 }
@@ -102,7 +100,6 @@ func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options F
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/url
-
 func (f_ FileAccessIntent) URL() URL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
 	return rv

@@ -40,7 +40,6 @@ type IUnitArea interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea
-
 type UnitArea struct {
 	Dimension
 }

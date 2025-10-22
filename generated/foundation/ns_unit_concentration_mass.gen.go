@@ -40,7 +40,6 @@ type IUnitConcentrationMass interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass
-
 type UnitConcentrationMass struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitConcentrationMass() UnitConcentrationMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
-
 func (uc _UnitConcentrationMassClass) GramsPerLiter() UnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](objc.ID(uc.class), objc.Sel("gramsPerLiter"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitConcentrationMassClass) GramsPerLiter() UnitConcentrationMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
-
 func (u_ UnitConcentrationMass) GramsPerLiter() NSUnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](u_.ID, objc.Sel("gramsPerLiter"))
 	return rv

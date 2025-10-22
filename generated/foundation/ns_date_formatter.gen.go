@@ -110,7 +110,6 @@ type IDateFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter
-
 type DateFormatter struct {
 	Formatter
 }
@@ -157,12 +156,10 @@ func NewDateFormatter() DateFormatter {
 
 
 
-
 // Initializes and returns an instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/initWithDateFormat:allowNaturalLanguage:
-
 func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string, flag bool) DateFormatter {
 	instance := getDateFormatterClass().Alloc()
 	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), objc.String(format), flag)
@@ -176,30 +173,25 @@ func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string, flag bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/defaultFormatterBehavior
-
 func (dc _DateFormatterClass) DefaultFormatterBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("defaultFormatterBehavior"))
 	return rv
 }
 
-
 // Returns a date representation of a specified string that the system interprets using the receiver’s current settings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/date(from:)
-
 func (d_ DateFormatter) DateFromString(string_ string) Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
 
 
-
 // Sets the date format from a template using the specified locale for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/setLocalizedDateFormatFromTemplate(_:)
-
 func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedDateFormatFromTemplate:"), objc.String(dateFormatTemplate))
 }
@@ -209,7 +201,6 @@ func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/calendar
-
 func (d_ DateFormatter) Calendar() NSCalendar {
 	rv := objc.Send[NSCalendar](d_.ID, objc.Sel("calendar"))
 	return rv
@@ -220,7 +211,6 @@ func (d_ DateFormatter) Calendar() NSCalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/calendar
-
 func (d_ DateFormatter) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
@@ -230,7 +220,6 @@ func (d_ DateFormatter) SetCalendar(value ICalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-
 func (d_ DateFormatter) DateFormat() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("dateFormat"))
 	return rv
@@ -241,7 +230,6 @@ func (d_ DateFormatter) DateFormat() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-
 func (d_ DateFormatter) SetDateFormat(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), objc.String(value))
 }
@@ -251,7 +239,6 @@ func (d_ DateFormatter) SetDateFormat(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateStyle
-
 func (d_ DateFormatter) DateStyle() DateFormatterStyle {
 	rv := objc.Send[DateFormatterStyle](d_.ID, objc.Sel("dateStyle"))
 	return rv
@@ -262,7 +249,6 @@ func (d_ DateFormatter) DateStyle() DateFormatterStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateStyle
-
 func (d_ DateFormatter) SetDateStyle(value DateFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
 }
@@ -272,7 +258,6 @@ func (d_ DateFormatter) SetDateStyle(value DateFormatterStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/defaultFormatterBehavior
-
 func (d_ DateFormatter) DefaultFormatterBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("defaultFormatterBehavior"))
 	return rv
@@ -283,7 +268,6 @@ func (d_ DateFormatter) DefaultFormatterBehavior() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/defaultFormatterBehavior
-
 func (d_ DateFormatter) SetDefaultFormatterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultFormatterBehavior:"), value)
 }
@@ -293,7 +277,6 @@ func (d_ DateFormatter) SetDefaultFormatterBehavior(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/eraSymbols
-
 func (d_ DateFormatter) EraSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("eraSymbols"))
 	return rv
@@ -304,7 +287,6 @@ func (d_ DateFormatter) EraSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/eraSymbols
-
 func (d_ DateFormatter) SetEraSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -324,7 +306,6 @@ func (d_ DateFormatter) SetEraSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formatterBehavior
-
 func (d_ DateFormatter) FormatterBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("formatterBehavior"))
 	return rv
@@ -335,7 +316,6 @@ func (d_ DateFormatter) FormatterBehavior() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formatterBehavior
-
 func (d_ DateFormatter) SetFormatterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormatterBehavior:"), value)
 }
@@ -345,7 +325,6 @@ func (d_ DateFormatter) SetFormatterBehavior(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
-
 func (d_ DateFormatter) FormattingContext() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("formattingContext"))
 	return rv
@@ -356,7 +335,6 @@ func (d_ DateFormatter) FormattingContext() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
-
 func (d_ DateFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
@@ -366,7 +344,6 @@ func (d_ DateFormatter) SetFormattingContext(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/gregorianStartDate
-
 func (d_ DateFormatter) GregorianStartDate() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("gregorianStartDate"))
 	return rv
@@ -377,7 +354,6 @@ func (d_ DateFormatter) GregorianStartDate() NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/gregorianStartDate
-
 func (d_ DateFormatter) SetGregorianStartDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setGregorianStartDate:"), value)
 }
@@ -387,7 +363,6 @@ func (d_ DateFormatter) SetGregorianStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/locale
-
 func (d_ DateFormatter) Locale() NSLocale {
 	rv := objc.Send[NSLocale](d_.ID, objc.Sel("locale"))
 	return rv
@@ -398,7 +373,6 @@ func (d_ DateFormatter) Locale() NSLocale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/locale
-
 func (d_ DateFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
 }
@@ -408,7 +382,6 @@ func (d_ DateFormatter) SetLocale(value ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/monthSymbols
-
 func (d_ DateFormatter) MonthSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("monthSymbols"))
 	return rv
@@ -419,7 +392,6 @@ func (d_ DateFormatter) MonthSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/monthSymbols
-
 func (d_ DateFormatter) SetMonthSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -439,7 +411,6 @@ func (d_ DateFormatter) SetMonthSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/quarterSymbols
-
 func (d_ DateFormatter) QuarterSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("quarterSymbols"))
 	return rv
@@ -450,7 +421,6 @@ func (d_ DateFormatter) QuarterSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/quarterSymbols
-
 func (d_ DateFormatter) SetQuarterSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -470,7 +440,6 @@ func (d_ DateFormatter) SetQuarterSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortMonthSymbols
-
 func (d_ DateFormatter) ShortMonthSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortMonthSymbols"))
 	return rv
@@ -481,7 +450,6 @@ func (d_ DateFormatter) ShortMonthSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortMonthSymbols
-
 func (d_ DateFormatter) SetShortMonthSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -501,7 +469,6 @@ func (d_ DateFormatter) SetShortMonthSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneMonthSymbols
-
 func (d_ DateFormatter) ShortStandaloneMonthSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
 	return rv
@@ -512,7 +479,6 @@ func (d_ DateFormatter) ShortStandaloneMonthSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneMonthSymbols
-
 func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -532,7 +498,6 @@ func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneWeekdaySymbols
-
 func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
 	return rv
@@ -543,7 +508,6 @@ func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneWeekdaySymbols
-
 func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -563,7 +527,6 @@ func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortWeekdaySymbols
-
 func (d_ DateFormatter) ShortWeekdaySymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortWeekdaySymbols"))
 	return rv
@@ -574,7 +537,6 @@ func (d_ DateFormatter) ShortWeekdaySymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortWeekdaySymbols
-
 func (d_ DateFormatter) SetShortWeekdaySymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -594,7 +556,6 @@ func (d_ DateFormatter) SetShortWeekdaySymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneMonthSymbols
-
 func (d_ DateFormatter) StandaloneMonthSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("standaloneMonthSymbols"))
 	return rv
@@ -605,7 +566,6 @@ func (d_ DateFormatter) StandaloneMonthSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneMonthSymbols
-
 func (d_ DateFormatter) SetStandaloneMonthSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -625,7 +585,6 @@ func (d_ DateFormatter) SetStandaloneMonthSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneWeekdaySymbols
-
 func (d_ DateFormatter) StandaloneWeekdaySymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("standaloneWeekdaySymbols"))
 	return rv
@@ -636,7 +595,6 @@ func (d_ DateFormatter) StandaloneWeekdaySymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneWeekdaySymbols
-
 func (d_ DateFormatter) SetStandaloneWeekdaySymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -656,7 +614,6 @@ func (d_ DateFormatter) SetStandaloneWeekdaySymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeStyle
-
 func (d_ DateFormatter) TimeStyle() DateFormatterStyle {
 	rv := objc.Send[DateFormatterStyle](d_.ID, objc.Sel("timeStyle"))
 	return rv
@@ -667,7 +624,6 @@ func (d_ DateFormatter) TimeStyle() DateFormatterStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeStyle
-
 func (d_ DateFormatter) SetTimeStyle(value DateFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
 }
@@ -677,7 +633,6 @@ func (d_ DateFormatter) SetTimeStyle(value DateFormatterStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeZone
-
 func (d_ DateFormatter) TimeZone() NSTimeZone {
 	rv := objc.Send[NSTimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
@@ -688,7 +643,6 @@ func (d_ DateFormatter) TimeZone() NSTimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeZone
-
 func (d_ DateFormatter) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
@@ -698,7 +652,6 @@ func (d_ DateFormatter) SetTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortMonthSymbols
-
 func (d_ DateFormatter) VeryShortMonthSymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("veryShortMonthSymbols"))
 	return rv
@@ -709,7 +662,6 @@ func (d_ DateFormatter) VeryShortMonthSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortMonthSymbols
-
 func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -729,7 +681,6 @@ func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/weekdaySymbols
-
 func (d_ DateFormatter) WeekdaySymbols() []string {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("weekdaySymbols"))
 	return rv
@@ -740,7 +691,6 @@ func (d_ DateFormatter) WeekdaySymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/weekdaySymbols
-
 func (d_ DateFormatter) SetWeekdaySymbols(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -760,7 +710,6 @@ func (d_ DateFormatter) SetWeekdaySymbols(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/amsymbol
-
 func (d_ DateFormatter) AmSymbol() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("amSymbol"))
 	return rv
@@ -771,7 +720,6 @@ func (d_ DateFormatter) AmSymbol() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/amsymbol
-
 func (d_ DateFormatter) SetAmSymbol(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAmSymbol:"), objc.String(value))
 }
@@ -781,7 +729,6 @@ func (d_ DateFormatter) SetAmSymbol(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/defaultdate
-
 func (d_ DateFormatter) DefaultDate() Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("defaultDate"))
 	return rv
@@ -792,7 +739,6 @@ func (d_ DateFormatter) DefaultDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/defaultdate
-
 func (d_ DateFormatter) SetDefaultDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultDate:"), value)
 }
@@ -802,7 +748,6 @@ func (d_ DateFormatter) SetDefaultDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/doesrelativedateformatting
-
 func (d_ DateFormatter) DoesRelativeDateFormatting() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("doesRelativeDateFormatting"))
 	return rv
@@ -813,7 +758,6 @@ func (d_ DateFormatter) DoesRelativeDateFormatting() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/doesrelativedateformatting
-
 func (d_ DateFormatter) SetDoesRelativeDateFormatting(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDoesRelativeDateFormatting:"), value)
 }
@@ -823,7 +767,6 @@ func (d_ DateFormatter) SetDoesRelativeDateFormatting(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/generatescalendardates
-
 func (d_ DateFormatter) GeneratesCalendarDates() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("generatesCalendarDates"))
 	return rv
@@ -834,7 +777,6 @@ func (d_ DateFormatter) GeneratesCalendarDates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/generatescalendardates
-
 func (d_ DateFormatter) SetGeneratesCalendarDates(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setGeneratesCalendarDates:"), value)
 }
@@ -844,7 +786,6 @@ func (d_ DateFormatter) SetGeneratesCalendarDates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/islenient
-
 func (d_ DateFormatter) IsLenient() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isLenient"))
 	return rv
@@ -855,7 +796,6 @@ func (d_ DateFormatter) IsLenient() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/islenient
-
 func (d_ DateFormatter) SetIsLenient(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLenient:"), value)
 }
@@ -865,7 +805,6 @@ func (d_ DateFormatter) SetIsLenient(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/longerasymbols
-
 func (d_ DateFormatter) LongEraSymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("longEraSymbols"))
 	return rv
@@ -876,7 +815,6 @@ func (d_ DateFormatter) LongEraSymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/longerasymbols
-
 func (d_ DateFormatter) SetLongEraSymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLongEraSymbols:"), objc.String(value))
 }
@@ -886,7 +824,6 @@ func (d_ DateFormatter) SetLongEraSymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/pmsymbol
-
 func (d_ DateFormatter) PmSymbol() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("pmSymbol"))
 	return rv
@@ -897,7 +834,6 @@ func (d_ DateFormatter) PmSymbol() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/pmsymbol
-
 func (d_ DateFormatter) SetPmSymbol(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPmSymbol:"), objc.String(value))
 }
@@ -907,7 +843,6 @@ func (d_ DateFormatter) SetPmSymbol(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortquartersymbols
-
 func (d_ DateFormatter) ShortQuarterSymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("shortQuarterSymbols"))
 	return rv
@@ -918,7 +853,6 @@ func (d_ DateFormatter) ShortQuarterSymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortquartersymbols
-
 func (d_ DateFormatter) SetShortQuarterSymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShortQuarterSymbols:"), objc.String(value))
 }
@@ -928,7 +862,6 @@ func (d_ DateFormatter) SetShortQuarterSymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonequartersymbols
-
 func (d_ DateFormatter) ShortStandaloneQuarterSymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
 	return rv
@@ -939,7 +872,6 @@ func (d_ DateFormatter) ShortStandaloneQuarterSymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/shortstandalonequartersymbols
-
 func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShortStandaloneQuarterSymbols:"), objc.String(value))
 }
@@ -949,7 +881,6 @@ func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonequartersymbols
-
 func (d_ DateFormatter) StandaloneQuarterSymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("standaloneQuarterSymbols"))
 	return rv
@@ -960,7 +891,6 @@ func (d_ DateFormatter) StandaloneQuarterSymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/standalonequartersymbols
-
 func (d_ DateFormatter) SetStandaloneQuarterSymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStandaloneQuarterSymbols:"), objc.String(value))
 }
@@ -970,7 +900,6 @@ func (d_ DateFormatter) SetStandaloneQuarterSymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/twodigitstartdate
-
 func (d_ DateFormatter) TwoDigitStartDate() Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("twoDigitStartDate"))
 	return rv
@@ -981,7 +910,6 @@ func (d_ DateFormatter) TwoDigitStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/twodigitstartdate
-
 func (d_ DateFormatter) SetTwoDigitStartDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTwoDigitStartDate:"), value)
 }
@@ -991,7 +919,6 @@ func (d_ DateFormatter) SetTwoDigitStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandalonemonthsymbols
-
 func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
 	return rv
@@ -1002,7 +929,6 @@ func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandalonemonthsymbols
-
 func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneMonthSymbols:"), objc.String(value))
 }
@@ -1012,7 +938,6 @@ func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandaloneweekdaysymbols
-
 func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
 	return rv
@@ -1023,7 +948,6 @@ func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortstandaloneweekdaysymbols
-
 func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortStandaloneWeekdaySymbols:"), objc.String(value))
 }
@@ -1033,7 +957,6 @@ func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortweekdaysymbols
-
 func (d_ DateFormatter) VeryShortWeekdaySymbols() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("veryShortWeekdaySymbols"))
 	return rv
@@ -1044,7 +967,6 @@ func (d_ DateFormatter) VeryShortWeekdaySymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/veryshortweekdaysymbols
-
 func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setVeryShortWeekdaySymbols:"), objc.String(value))
 }

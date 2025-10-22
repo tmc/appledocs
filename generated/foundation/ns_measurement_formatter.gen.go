@@ -48,7 +48,6 @@ type IMeasurementFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter
-
 type MeasurementFormatter struct {
 	Formatter
 }
@@ -99,7 +98,6 @@ func NewMeasurementFormatter() MeasurementFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
-
 func (m_ MeasurementFormatter) Locale() Locale {
 	rv := objc.Send[Locale](m_.ID, objc.Sel("locale"))
 	return rv
@@ -110,7 +108,6 @@ func (m_ MeasurementFormatter) Locale() Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
-
 func (m_ MeasurementFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
@@ -120,7 +117,6 @@ func (m_ MeasurementFormatter) SetLocale(value ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
-
 func (m_ MeasurementFormatter) NumberFormatter() NSNumberFormatter {
 	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
@@ -131,7 +127,6 @@ func (m_ MeasurementFormatter) NumberFormatter() NSNumberFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
-
 func (m_ MeasurementFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
@@ -141,7 +136,6 @@ func (m_ MeasurementFormatter) SetNumberFormatter(value INumberFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
-
 func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitOptions"))
 	return rv
@@ -152,7 +146,6 @@ func (m_ MeasurementFormatter) UnitOptions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property
-
 func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
 }
@@ -162,7 +155,6 @@ func (m_ MeasurementFormatter) SetUnitOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
-
 func (m_ MeasurementFormatter) UnitStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
 	return rv
@@ -173,7 +165,6 @@ func (m_ MeasurementFormatter) UnitStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle
-
 func (m_ MeasurementFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }

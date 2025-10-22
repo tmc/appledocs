@@ -45,7 +45,6 @@ type ISocketPort interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort
-
 type SocketPort struct {
 	Port
 }
@@ -92,13 +91,11 @@ func NewSocketPort() SocketPort {
 
 
 
-
 // Initializes the receiver as a remote socket with the provided arguments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(remoteWithProtocolFamily:socketType:protocol:address:)
-
-func NewSocketPortRemoteWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address IData) SocketPort {
+func NewSocketPortRemoteWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address NSData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initRemoteWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)
 	rv.Autorelease()
@@ -106,12 +103,10 @@ func NewSocketPortRemoteWithProtocolFamilySocketTypeProtocolAddress(family int, 
 }
 
 
-
 // Initializes the receiver as a TCP/IP socket of type that can connect to a remote host on a specified port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(remoteWithTCPPort:host:)
-
 func NewSocketPortRemoteWithTCPPortHost(port unsafe.Pointer, hostName string) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initRemoteWithTCPPort:host:"), port, objc.String(hostName))
@@ -120,13 +115,11 @@ func NewSocketPortRemoteWithTCPPortHost(port unsafe.Pointer, hostName string) So
 }
 
 
-
 // Initializes the receiver as a local socket with the provided arguments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:address:)
-
-func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address IData) SocketPort {
+func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address NSData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)
 	rv.Autorelease()
@@ -134,13 +127,11 @@ func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ 
 }
 
 
-
 // Initializes the receiver with a previously created local socket.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:socket:)
-
-func NewSocketPortWithProtocolFamilySocketTypeProtocolSocket(family int, type_ int, protocol_ int, sock ISocketNativeHandle) SocketPort {
+func NewSocketPortWithProtocolFamilySocketTypeProtocolSocket(family int, type_ int, protocol_ int, sock SocketNativeHandle) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithProtocolFamily:socketType:protocol:socket:"), family, type_, protocol_, sock)
 	rv.Autorelease()
@@ -148,12 +139,10 @@ func NewSocketPortWithProtocolFamilySocketTypeProtocolSocket(family int, type_ i
 }
 
 
-
 // Initializes the receiver as a local TCP/IP socket of type , listening on a specified port number.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(tcpPort:)
-
 func NewSocketPortWithTCPPort(port unsafe.Pointer) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithTCPPort:"), port)
@@ -167,7 +156,6 @@ func NewSocketPortWithTCPPort(port unsafe.Pointer) SocketPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/address
-
 func (s_ SocketPort) Address() NSData {
 	rv := objc.Send[NSData](s_.ID, objc.Sel("address"))
 	return rv
@@ -178,7 +166,6 @@ func (s_ SocketPort) Address() NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/protocol
-
 func (s_ SocketPort) Protocol() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("protocol"))
 	return rv
@@ -189,7 +176,6 @@ func (s_ SocketPort) Protocol() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/protocolFamily
-
 func (s_ SocketPort) ProtocolFamily() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("protocolFamily"))
 	return rv
@@ -200,7 +186,6 @@ func (s_ SocketPort) ProtocolFamily() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/socket
-
 func (s_ SocketPort) Socket() SocketNativeHandle {
 	rv := objc.Send[SocketNativeHandle](s_.ID, objc.Sel("socket"))
 	return rv
@@ -211,7 +196,6 @@ func (s_ SocketPort) Socket() SocketNativeHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/socketType
-
 func (s_ SocketPort) SocketType() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("socketType"))
 	return rv

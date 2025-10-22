@@ -36,7 +36,6 @@ type Ireserved interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/reserved
-
 type reserved struct {
 	objectivec.Object
 }

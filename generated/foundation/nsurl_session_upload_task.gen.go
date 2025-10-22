@@ -41,7 +41,6 @@ type IURLSessionUploadTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionUploadTask
-
 type URLSessionUploadTask struct {
 	URLSessionDataTask
 }
@@ -89,10 +88,8 @@ func NewURLSessionUploadTask() URLSessionUploadTask {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionUploadTask/cancel(byProducingResumeData:)
-
 func (u_ URLSessionUploadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
 }

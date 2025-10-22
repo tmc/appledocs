@@ -36,7 +36,6 @@ type IreleasedProxies interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/releasedProxies
-
 type releasedProxies struct {
 	objectivec.Object
 }

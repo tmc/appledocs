@@ -56,7 +56,6 @@ type IURLProtectionSpace interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace
-
 type URLProtectionSpace struct {
 	objectivec.Object
 }
@@ -105,7 +104,6 @@ func NewURLProtectionSpace() URLProtectionSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
-
 func (u_ URLProtectionSpace) AuthenticationMethod() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
 	return rv
@@ -116,7 +114,6 @@ func (u_ URLProtectionSpace) AuthenticationMethod() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/distinguishedNames
-
 func (u_ URLProtectionSpace) DistinguishedNames() []Data {
 	rv := objc.Send[[]Data](u_.ID, objc.Sel("distinguishedNames"))
 	return rv
@@ -127,7 +124,6 @@ func (u_ URLProtectionSpace) DistinguishedNames() []Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
-
 func (u_ URLProtectionSpace) ProxyType() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
 	return rv
@@ -138,7 +134,6 @@ func (u_ URLProtectionSpace) ProxyType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-
 func (u_ URLProtectionSpace) Host() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
@@ -149,7 +144,6 @@ func (u_ URLProtectionSpace) Host() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-
 func (u_ URLProtectionSpace) SetHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
@@ -159,7 +153,6 @@ func (u_ URLProtectionSpace) SetHost(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
-
 func (u_ URLProtectionSpace) Port() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("port"))
 	return rv
@@ -170,7 +163,6 @@ func (u_ URLProtectionSpace) Port() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
-
 func (u_ URLProtectionSpace) SetPort(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
@@ -180,7 +172,6 @@ func (u_ URLProtectionSpace) SetPort(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-
 func (u_ URLProtectionSpace) Protocol() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("protocol"))
 	return rv
@@ -191,7 +182,6 @@ func (u_ URLProtectionSpace) Protocol() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-
 func (u_ URLProtectionSpace) SetProtocol(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), objc.String(value))
 }
@@ -201,7 +191,6 @@ func (u_ URLProtectionSpace) SetProtocol(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
-
 func (u_ URLProtectionSpace) Realm() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("realm"))
 	return rv
@@ -212,7 +201,6 @@ func (u_ URLProtectionSpace) Realm() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
-
 func (u_ URLProtectionSpace) SetRealm(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRealm:"), objc.String(value))
 }
@@ -222,7 +210,6 @@ func (u_ URLProtectionSpace) SetRealm(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
-
 func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("receivesCredentialSecurely"))
 	return rv
@@ -233,7 +220,6 @@ func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
-
 func (u_ URLProtectionSpace) SetReceivesCredentialSecurely(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReceivesCredentialSecurely:"), value)
 }
@@ -243,7 +229,6 @@ func (u_ URLProtectionSpace) SetReceivesCredentialSecurely(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/servertrust
-
 func (u_ URLProtectionSpace) ServerTrust() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("serverTrust"))
 	return rv
@@ -254,7 +239,6 @@ func (u_ URLProtectionSpace) ServerTrust() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/servertrust
-
 func (u_ URLProtectionSpace) SetServerTrust(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setServerTrust:"), value)
 }

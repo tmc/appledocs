@@ -50,7 +50,6 @@ type IKeyedArchiver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver
-
 type KeyedArchiver struct {
 	Coder
 }
@@ -101,7 +100,6 @@ func NewKeyedArchiver() KeyedArchiver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archiveRootObject(_:toFile:)
-
 func (kc _KeyedArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path string) bool {
 	rv := objc.Send[bool](objc.ID(kc.class), objc.Sel("archiveRootObject:toFile:"), rootObject, objc.String(path))
 	return rv
@@ -112,7 +110,6 @@ func (kc _KeyedArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:)
-
 func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.IObject) Data {
 	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:"), rootObject)
 	return rv
@@ -123,30 +120,25 @@ func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:requiringSecureCoding:)
-
 func (kc _KeyedArchiverClass) ArchivedDataWithRootObjectRequiringSecureCodingError(object objectivec.IObject, requiresSecureCoding bool, error_ IError) Data {
 	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:requiringSecureCoding:error:"), object, requiresSecureCoding, error_)
 	return rv
 }
 
 
-
 // Encodes a given value and associates it with a key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
-
 func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key string) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
 }
-
 
 
 // Instructs the receiver to construct the final data stream.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/finishEncoding()
-
 func (k_ KeyedArchiver) FinishEncoding() {
 	objc.Send[objc.ID](k_.ID, objc.Sel("finishEncoding"))
 }
@@ -156,7 +148,6 @@ func (k_ KeyedArchiver) FinishEncoding() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encodedData
-
 func (k_ KeyedArchiver) EncodedData() NSData {
 	rv := objc.Send[NSData](k_.ID, objc.Sel("encodedData"))
 	return rv
@@ -167,7 +158,6 @@ func (k_ KeyedArchiver) EncodedData() NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/outputFormat
-
 func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("outputFormat"))
 	return rv
@@ -178,7 +168,6 @@ func (k_ KeyedArchiver) OutputFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/outputFormat
-
 func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setOutputFormat:"), value)
 }
@@ -188,7 +177,6 @@ func (k_ KeyedArchiver) SetOutputFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/requiresSecureCoding
-
 func (k_ KeyedArchiver) RequiresSecureCoding() bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
@@ -199,7 +187,6 @@ func (k_ KeyedArchiver) RequiresSecureCoding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/requiresSecureCoding
-
 func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
@@ -209,7 +196,6 @@ func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/delegate
-
 func (k_ KeyedArchiver) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
 	return rv
@@ -220,7 +206,6 @@ func (k_ KeyedArchiver) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/delegate
-
 func (k_ KeyedArchiver) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
 }

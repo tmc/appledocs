@@ -43,7 +43,6 @@ type ISpecifierTest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest
-
 type SpecifierTest struct {
 	ScriptWhoseTest
 }
@@ -90,12 +89,10 @@ func NewSpecifierTest() SpecifierTest {
 
 
 
-
 // Returns a specifier test initialized to evaluate a test object against an object specified by an object specifier using a given comparison operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(objectSpecifier:comparisonOperator:test:)
-
 func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp unsafe.Pointer, obj2 objectivec.IObject) SpecifierTest {
 	instance := getSpecifierTestClass().Alloc()
 	rv := objc.Send[SpecifierTest](instance.ID, objc.Sel("initWithObjectSpecifier:comparisonOperator:testObject:"), obj1, compOp, obj2)
@@ -109,7 +106,6 @@ func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
-
 func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
 	return rv
@@ -120,7 +116,6 @@ func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
-
 func (s_ SpecifierTest) SetContainerIsObjectBeingTested(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
 }

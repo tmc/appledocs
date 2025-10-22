@@ -36,7 +36,6 @@ type IwantsInvalid interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/wantsInvalid
-
 type wantsInvalid struct {
 	objectivec.Object
 }

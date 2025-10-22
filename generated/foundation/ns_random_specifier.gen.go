@@ -38,7 +38,6 @@ type IRandomSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRandomSpecifier
-
 type RandomSpecifier struct {
 	ScriptObjectSpecifier
 }

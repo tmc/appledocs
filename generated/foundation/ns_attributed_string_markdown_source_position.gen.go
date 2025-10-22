@@ -44,7 +44,6 @@ type IAttributedStringMarkdownSourcePosition interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition
-
 type AttributedStringMarkdownSourcePosition struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourceP
 
 
 
-
 // Creates a Markdown source position instance from its start and end line and column.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/initWithStartLine:startColumn:endLine:endColumn:
-
 func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn(startLine int, startColumn int, endLine int, endColumn int) AttributedStringMarkdownSourcePosition {
 	instance := getAttributedStringMarkdownSourcePositionClass().Alloc()
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](instance.ID, objc.Sel("initWithStartLine:startColumn:endLine:endColumn:"), startLine, startColumn, endLine, endColumn)
@@ -104,12 +101,10 @@ func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEnd
 
 
 
-
 // Returns a range indicating the source portion within a Markdown string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/rangeInString:
-
 func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string) Range {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeInString:"), objc.String(string_))
 	return rv
@@ -120,7 +115,6 @@ func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string) R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/endColumn
-
 func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("endColumn"))
 	return rv
@@ -131,7 +125,6 @@ func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/endLine
-
 func (a_ AttributedStringMarkdownSourcePosition) EndLine() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("endLine"))
 	return rv
@@ -142,7 +135,6 @@ func (a_ AttributedStringMarkdownSourcePosition) EndLine() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/startColumn
-
 func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("startColumn"))
 	return rv
@@ -153,7 +145,6 @@ func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/startLine
-
 func (a_ AttributedStringMarkdownSourcePosition) StartLine() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("startLine"))
 	return rv

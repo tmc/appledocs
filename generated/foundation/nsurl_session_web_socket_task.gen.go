@@ -29,18 +29,15 @@ type _URLSessionWebSocketTaskClass struct {
 // An interface definition for the [URLSessionWebSocketTask] class.
 type IURLSessionWebSocketTask interface {
 	IURLSessionTask
-	ReceiveMessageWithCompletionHandler(completionHandler unsafe.Pointer)
-	SendMessageCompletionHandler(message IURLSessionWebSocketMessage, completionHandler unsafe.Pointer)
-	CancelWithCloseCodeReason(closeCode IURLSessionWebSocketCloseCode, reason IData)
-	SendPingWithPongReceiveHandler(pongReceiveHandler unsafe.Pointer)
-	CloseCode() URLSessionWebSocketCloseCode
 	CloseReason() NSData
-	MaximumMessageSize() int
-	SetMaximumMessageSize(value int)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	HttpCookieStorage() NSHTTPCookieStorage
+	HttpCookieStorage() HTTPCookieStorage
 	SetHttpCookieStorage(value IHTTPCookieStorage)
+	CloseCode() unsafe.Pointer
+	SetCloseCode(value unsafe.Pointer)
+	MaximumMessageSize() int
+	SetMaximumMessageSize(value int)
 }
 
 // A URL session task that communicates over the WebSockets protocol standard.
@@ -52,7 +49,6 @@ type IURLSessionWebSocketTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask
-
 type URLSessionWebSocketTask struct {
 	URLSessionTask
 }
@@ -99,90 +95,13 @@ func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
 
 
 
-
-// Reads a WebSocket message once all the frames of the message are available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketTask/receiveMessageWithCompletionHandler:
-
-func (u_ URLSessionWebSocketTask) ReceiveMessageWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("receiveMessageWithCompletionHandler:"), completionHandler)
-}
-
-
-
-// Sends a WebSocket message, receiving the result in a completion handler.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketTask/sendMessage:completionHandler:
-
-func (u_ URLSessionWebSocketTask) SendMessageCompletionHandler(message IURLSessionWebSocketMessage, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("sendMessage:completionHandler:"), message, completionHandler)
-}
-
-
-
-// Sends a close frame with the given close code and optional close reason.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/cancel(with:reason:)
-
-func (u_ URLSessionWebSocketTask) CancelWithCloseCodeReason(closeCode IURLSessionWebSocketCloseCode, reason IData) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("cancelWithCloseCode:reason:"), closeCode, reason)
-}
-
-
-
-// Sends a ping frame from the client side, with a closure to receive the pong from the server endpoint.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/sendPing(pongReceiveHandler:)
-
-func (u_ URLSessionWebSocketTask) SendPingWithPongReceiveHandler(pongReceiveHandler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("sendPingWithPongReceiveHandler:"), pongReceiveHandler)
-}
-
-
-// A code that indicates the reason a connection closed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeCode-swift.property
-
-func (u_ URLSessionWebSocketTask) CloseCode() URLSessionWebSocketCloseCode {
-	rv := objc.Send[URLSessionWebSocketCloseCode](u_.ID, objc.Sel("closeCode"))
-	return rv
-}
-
-
 // A block of data that provides further information about why a connection closed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeReason
-
 func (u_ URLSessionWebSocketTask) CloseReason() NSData {
 	rv := objc.Send[NSData](u_.ID, objc.Sel("closeReason"))
 	return rv
-}
-
-
-// The maximum number of bytes to buffer before the receive call fails with an error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/maximumMessageSize
-
-func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("maximumMessageSize"))
-	return rv
-}
-
-
-// The maximum number of bytes to buffer before the receive call fails with an error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/maximumMessageSize
-
-func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
 }
 
 
@@ -190,7 +109,6 @@ func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
-
 func (u_ URLSessionWebSocketTask) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
 	return rv
@@ -201,7 +119,6 @@ func (u_ URLSessionWebSocketTask) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
-
 func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -211,9 +128,8 @@ func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-
-func (u_ URLSessionWebSocketTask) HttpCookieStorage() NSHTTPCookieStorage {
-	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
+func (u_ URLSessionWebSocketTask) HttpCookieStorage() HTTPCookieStorage {
+	rv := objc.Send[HTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
 	return rv
 }
 
@@ -222,9 +138,46 @@ func (u_ URLSessionWebSocketTask) HttpCookieStorage() NSHTTPCookieStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-
 func (u_ URLSessionWebSocketTask) SetHttpCookieStorage(value IHTTPCookieStorage) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpCookieStorage:"), value)
+}
+
+
+// A code that indicates the reason a connection closed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.property
+func (u_ URLSessionWebSocketTask) CloseCode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeCode"))
+	return rv
+}
+
+
+// A code that indicates the reason a connection closed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.property
+func (u_ URLSessionWebSocketTask) SetCloseCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCloseCode:"), value)
+}
+
+
+// The maximum number of bytes to buffer before the receive call fails with an error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/maximummessagesize
+func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("maximumMessageSize"))
+	return rv
+}
+
+
+// The maximum number of bytes to buffer before the receive call fails with an error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/maximummessagesize
+func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
 }
 
 

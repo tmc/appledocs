@@ -36,7 +36,6 @@ type IauthGen interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/authGen
-
 type authGen struct {
 	objectivec.Object
 }

@@ -36,7 +36,6 @@ type IrootObject interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootObject-c.ivar
-
 type rootObject struct {
 	objectivec.Object
 }

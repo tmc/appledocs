@@ -94,7 +94,6 @@ type IURLComponents interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents
-
 type URLComponents struct {
 	objectivec.Object
 }
@@ -139,12 +138,10 @@ func NewURLComponents() URLComponents {
 
 
 
-
 // Creates a URL components object by parsing a URL in string form.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
-
 func NewURLComponentsWithString(URLString string) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
@@ -153,12 +150,10 @@ func NewURLComponentsWithString(URLString string) URLComponents {
 }
 
 
-
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:encodingInvalidCharacters:)
-
 func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
@@ -167,12 +162,10 @@ func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encod
 }
 
 
-
 // Creates a URL components object by parsing the URL from an object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(url:resolvingAgainstBaseURL:)
-
 func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) URLComponents {
 	instance := getURLComponentsClass().Alloc()
 	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithURL:resolvingAgainstBaseURL:"), url, resolve)
@@ -186,7 +179,6 @@ func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) URLC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:
-
 func (uc _URLComponentsClass) ComponentsWithString(URLString string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:"), objc.String(URLString))
 	return rv
@@ -197,7 +189,6 @@ func (uc _URLComponentsClass) ComponentsWithString(URLString string) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:encodingInvalidCharacters:
-
 func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
 	return rv
@@ -208,19 +199,16 @@ func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithURL:resolvingAgainstBaseURL:
-
 func (uc _URLComponentsClass) ComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithURL:resolvingAgainstBaseURL:"), url, resolve)
 	return rv
 }
 
 
-
 // Returns a URL object derived from the components object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/url(relativeTo:)
-
 func (u_ URLComponents) URLRelativeToURL(baseURL IURL) URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLRelativeToURL:"), baseURL)
 	return rv
@@ -231,7 +219,6 @@ func (u_ URLComponents) URLRelativeToURL(baseURL IURL) URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-
 func (u_ URLComponents) PercentEncodedHost() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
 	return rv
@@ -242,7 +229,6 @@ func (u_ URLComponents) PercentEncodedHost() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-
 func (u_ URLComponents) SetPercentEncodedHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
 }
@@ -252,7 +238,6 @@ func (u_ URLComponents) SetPercentEncodedHost(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
-
 func (u_ URLComponents) String() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("string"))
 	return rv
@@ -263,7 +248,6 @@ func (u_ URLComponents) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/url
-
 func (u_ URLComponents) URL() URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
 	return rv
@@ -274,7 +258,6 @@ func (u_ URLComponents) URL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
-
 func (u_ URLComponents) EncodedHost() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("encodedHost"))
 	return rv
@@ -285,7 +268,6 @@ func (u_ URLComponents) EncodedHost() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/encodedhost
-
 func (u_ URLComponents) SetEncodedHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEncodedHost:"), objc.String(value))
 }
@@ -295,7 +277,6 @@ func (u_ URLComponents) SetEncodedHost(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/fragment
-
 func (u_ URLComponents) Fragment() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("fragment"))
 	return rv
@@ -306,7 +287,6 @@ func (u_ URLComponents) Fragment() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/fragment
-
 func (u_ URLComponents) SetFragment(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setFragment:"), objc.String(value))
 }
@@ -316,7 +296,6 @@ func (u_ URLComponents) SetFragment(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
-
 func (u_ URLComponents) Host() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
@@ -327,7 +306,6 @@ func (u_ URLComponents) Host() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/host
-
 func (u_ URLComponents) SetHost(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
@@ -337,7 +315,6 @@ func (u_ URLComponents) SetHost(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
-
 func (u_ URLComponents) Password() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
@@ -348,7 +325,6 @@ func (u_ URLComponents) Password() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/password
-
 func (u_ URLComponents) SetPassword(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPassword:"), objc.String(value))
 }
@@ -358,7 +334,6 @@ func (u_ URLComponents) SetPassword(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
-
 func (u_ URLComponents) Path() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("path"))
 	return rv
@@ -369,7 +344,6 @@ func (u_ URLComponents) Path() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/path
-
 func (u_ URLComponents) SetPath(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPath:"), objc.String(value))
 }
@@ -379,7 +353,6 @@ func (u_ URLComponents) SetPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedfragment
-
 func (u_ URLComponents) PercentEncodedFragment() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedFragment"))
 	return rv
@@ -390,7 +363,6 @@ func (u_ URLComponents) PercentEncodedFragment() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedfragment
-
 func (u_ URLComponents) SetPercentEncodedFragment(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedFragment:"), objc.String(value))
 }
@@ -400,7 +372,6 @@ func (u_ URLComponents) SetPercentEncodedFragment(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
-
 func (u_ URLComponents) PercentEncodedPassword() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPassword"))
 	return rv
@@ -411,7 +382,6 @@ func (u_ URLComponents) PercentEncodedPassword() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpassword
-
 func (u_ URLComponents) SetPercentEncodedPassword(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPassword:"), objc.String(value))
 }
@@ -421,7 +391,6 @@ func (u_ URLComponents) SetPercentEncodedPassword(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
-
 func (u_ URLComponents) PercentEncodedPath() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedPath"))
 	return rv
@@ -432,7 +401,6 @@ func (u_ URLComponents) PercentEncodedPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedpath
-
 func (u_ URLComponents) SetPercentEncodedPath(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedPath:"), objc.String(value))
 }
@@ -442,7 +410,6 @@ func (u_ URLComponents) SetPercentEncodedPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedquery
-
 func (u_ URLComponents) PercentEncodedQuery() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedQuery"))
 	return rv
@@ -453,7 +420,6 @@ func (u_ URLComponents) PercentEncodedQuery() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedquery
-
 func (u_ URLComponents) SetPercentEncodedQuery(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQuery:"), objc.String(value))
 }
@@ -461,7 +427,6 @@ func (u_ URLComponents) SetPercentEncodedQuery(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
-
 func (u_ URLComponents) PercentEncodedQueryItems() URLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("percentEncodedQueryItems"))
 	return rv
@@ -470,7 +435,6 @@ func (u_ URLComponents) PercentEncodedQueryItems() URLQueryItem {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
-
 func (u_ URLComponents) SetPercentEncodedQueryItems(value IURLQueryItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedQueryItems:"), value)
 }
@@ -480,7 +444,6 @@ func (u_ URLComponents) SetPercentEncodedQueryItems(value IURLQueryItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
-
 func (u_ URLComponents) PercentEncodedUser() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedUser"))
 	return rv
@@ -491,7 +454,6 @@ func (u_ URLComponents) PercentEncodedUser() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodeduser
-
 func (u_ URLComponents) SetPercentEncodedUser(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedUser:"), objc.String(value))
 }
@@ -501,7 +463,6 @@ func (u_ URLComponents) SetPercentEncodedUser(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
-
 func (u_ URLComponents) Port() Number {
 	rv := objc.Send[Number](u_.ID, objc.Sel("port"))
 	return rv
@@ -512,7 +473,6 @@ func (u_ URLComponents) Port() Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/port
-
 func (u_ URLComponents) SetPort(value INumber) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
@@ -522,7 +482,6 @@ func (u_ URLComponents) SetPort(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
-
 func (u_ URLComponents) Query() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("query"))
 	return rv
@@ -533,7 +492,6 @@ func (u_ URLComponents) Query() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/query
-
 func (u_ URLComponents) SetQuery(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setQuery:"), objc.String(value))
 }
@@ -543,7 +501,6 @@ func (u_ URLComponents) SetQuery(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-
 func (u_ URLComponents) QueryItems() URLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
@@ -554,7 +511,6 @@ func (u_ URLComponents) QueryItems() URLQueryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-
 func (u_ URLComponents) SetQueryItems(value IURLQueryItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
 }
@@ -564,7 +520,6 @@ func (u_ URLComponents) SetQueryItems(value IURLQueryItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
-
 func (u_ URLComponents) RangeOfFragment() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfFragment"))
 	return rv
@@ -575,7 +530,6 @@ func (u_ URLComponents) RangeOfFragment() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
-
 func (u_ URLComponents) SetRangeOfFragment(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfFragment:"), value)
 }
@@ -585,7 +539,6 @@ func (u_ URLComponents) SetRangeOfFragment(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofhost
-
 func (u_ URLComponents) RangeOfHost() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfHost"))
 	return rv
@@ -596,7 +549,6 @@ func (u_ URLComponents) RangeOfHost() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofhost
-
 func (u_ URLComponents) SetRangeOfHost(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfHost:"), value)
 }
@@ -606,7 +558,6 @@ func (u_ URLComponents) SetRangeOfHost(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
-
 func (u_ URLComponents) RangeOfPassword() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPassword"))
 	return rv
@@ -617,7 +568,6 @@ func (u_ URLComponents) RangeOfPassword() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
-
 func (u_ URLComponents) SetRangeOfPassword(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPassword:"), value)
 }
@@ -627,7 +577,6 @@ func (u_ URLComponents) SetRangeOfPassword(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpath
-
 func (u_ URLComponents) RangeOfPath() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPath"))
 	return rv
@@ -638,7 +587,6 @@ func (u_ URLComponents) RangeOfPath() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpath
-
 func (u_ URLComponents) SetRangeOfPath(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPath:"), value)
 }
@@ -648,7 +596,6 @@ func (u_ URLComponents) SetRangeOfPath(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
-
 func (u_ URLComponents) RangeOfPort() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPort"))
 	return rv
@@ -659,7 +606,6 @@ func (u_ URLComponents) RangeOfPort() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
-
 func (u_ URLComponents) SetRangeOfPort(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPort:"), value)
 }
@@ -669,7 +615,6 @@ func (u_ URLComponents) SetRangeOfPort(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
-
 func (u_ URLComponents) RangeOfQuery() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfQuery"))
 	return rv
@@ -680,7 +625,6 @@ func (u_ URLComponents) RangeOfQuery() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
-
 func (u_ URLComponents) SetRangeOfQuery(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfQuery:"), value)
 }
@@ -690,7 +634,6 @@ func (u_ URLComponents) SetRangeOfQuery(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
-
 func (u_ URLComponents) RangeOfScheme() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfScheme"))
 	return rv
@@ -701,7 +644,6 @@ func (u_ URLComponents) RangeOfScheme() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
-
 func (u_ URLComponents) SetRangeOfScheme(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfScheme:"), value)
 }
@@ -711,7 +653,6 @@ func (u_ URLComponents) SetRangeOfScheme(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofuser
-
 func (u_ URLComponents) RangeOfUser() Range {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfUser"))
 	return rv
@@ -722,7 +663,6 @@ func (u_ URLComponents) RangeOfUser() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofuser
-
 func (u_ URLComponents) SetRangeOfUser(value Range) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfUser:"), value)
 }
@@ -732,7 +672,6 @@ func (u_ URLComponents) SetRangeOfUser(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/scheme
-
 func (u_ URLComponents) Scheme() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("scheme"))
 	return rv
@@ -743,7 +682,6 @@ func (u_ URLComponents) Scheme() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/scheme
-
 func (u_ URLComponents) SetScheme(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setScheme:"), objc.String(value))
 }
@@ -753,7 +691,6 @@ func (u_ URLComponents) SetScheme(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/user
-
 func (u_ URLComponents) User() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
@@ -764,7 +701,6 @@ func (u_ URLComponents) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/user
-
 func (u_ URLComponents) SetUser(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), objc.String(value))
 }

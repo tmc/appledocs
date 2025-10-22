@@ -40,7 +40,6 @@ type IUnitEnergy interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy
-
 type UnitEnergy struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitEnergy() UnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
-
 func (uc _UnitEnergyClass) Kilocalories() UnitEnergy {
 	rv := objc.Send[NSUnitEnergy](objc.ID(uc.class), objc.Sel("kilocalories"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitEnergyClass) Kilocalories() UnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilowattHours
-
 func (uc _UnitEnergyClass) KilowattHours() UnitEnergy {
 	rv := objc.Send[NSUnitEnergy](objc.ID(uc.class), objc.Sel("kilowattHours"))
 	return rv
@@ -111,7 +108,6 @@ func (uc _UnitEnergyClass) KilowattHours() UnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
-
 func (u_ UnitEnergy) Kilocalories() NSUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilocalories"))
 	return rv
@@ -122,7 +118,6 @@ func (u_ UnitEnergy) Kilocalories() NSUnitEnergy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilowattHours
-
 func (u_ UnitEnergy) KilowattHours() NSUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilowattHours"))
 	return rv

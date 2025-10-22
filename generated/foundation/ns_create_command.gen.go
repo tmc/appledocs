@@ -30,7 +30,7 @@ type _CreateCommandClass struct {
 type ICreateCommand interface {
 	IScriptCommand
 	CreateClassDescription() NSScriptClassDescription
-	ResolvedKeyDictionary() unsafe.Pointer
+	ResolvedKeyDictionary() IDictionary
 }
 
 // A command that creates a scriptable object.
@@ -42,7 +42,6 @@ type ICreateCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand
-
 type CreateCommand struct {
 	ScriptCommand
 }
@@ -93,7 +92,6 @@ func NewCreateCommand() CreateCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/createClassDescription
-
 func (c_ CreateCommand) CreateClassDescription() NSScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](c_.ID, objc.Sel("createClassDescription"))
 	return rv
@@ -104,9 +102,8 @@ func (c_ CreateCommand) CreateClassDescription() NSScriptClassDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/resolvedKeyDictionary
-
-func (c_ CreateCommand) ResolvedKeyDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("resolvedKeyDictionary"))
+func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary {
+	rv := objc.Send[IDictionary](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv
 }
 

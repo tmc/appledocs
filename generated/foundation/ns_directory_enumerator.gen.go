@@ -31,8 +31,8 @@ type IDirectoryEnumerator interface {
 	IEnumerator
 	SkipDescendants()
 	SkipDescendents()
-	DirectoryAttributes() unsafe.Pointer
-	FileAttributes() unsafe.Pointer
+	DirectoryAttributes() IDictionary
+	FileAttributes() IDictionary
 	IsEnumeratingDirectoryPostOrder() bool
 	Level() uint
 }
@@ -46,7 +46,6 @@ type IDirectoryEnumerator interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator
-
 type DirectoryEnumerator struct {
 	Enumerator
 }
@@ -93,23 +92,19 @@ func NewDirectoryEnumerator() DirectoryEnumerator {
 
 
 
-
 // Causes the receiver to skip recursion into the most recently obtained subdirectory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/skipDescendants()
-
 func (d_ DirectoryEnumerator) SkipDescendants() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("skipDescendants"))
 }
-
 
 
 // Causes the receiver to skip recursion into the most recently obtained subdirectory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/skipDescendents()
-
 func (d_ DirectoryEnumerator) SkipDescendents() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("skipDescendents"))
 }
@@ -119,9 +114,8 @@ func (d_ DirectoryEnumerator) SkipDescendents() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/directoryAttributes
-
-func (d_ DirectoryEnumerator) DirectoryAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("directoryAttributes"))
+func (d_ DirectoryEnumerator) DirectoryAttributes() IDictionary {
+	rv := objc.Send[IDictionary](d_.ID, objc.Sel("directoryAttributes"))
 	return rv
 }
 
@@ -130,16 +124,14 @@ func (d_ DirectoryEnumerator) DirectoryAttributes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/fileAttributes
-
-func (d_ DirectoryEnumerator) FileAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileAttributes"))
+func (d_ DirectoryEnumerator) FileAttributes() IDictionary {
+	rv := objc.Send[IDictionary](d_.ID, objc.Sel("fileAttributes"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/isEnumeratingDirectoryPostOrder
-
 func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEnumeratingDirectoryPostOrder"))
 	return rv
@@ -150,7 +142,6 @@ func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/level
-
 func (d_ DirectoryEnumerator) Level() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("level"))
 	return rv

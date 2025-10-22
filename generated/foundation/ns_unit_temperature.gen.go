@@ -40,7 +40,6 @@ type IUnitTemperature interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature
-
 type UnitTemperature struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitTemperature() UnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
-
 func (uc _UnitTemperatureClass) Celsius() UnitTemperature {
 	rv := objc.Send[NSUnitTemperature](objc.ID(uc.class), objc.Sel("celsius"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitTemperatureClass) Celsius() UnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
-
 func (uc _UnitTemperatureClass) Fahrenheit() UnitTemperature {
 	rv := objc.Send[NSUnitTemperature](objc.ID(uc.class), objc.Sel("fahrenheit"))
 	return rv
@@ -111,7 +108,6 @@ func (uc _UnitTemperatureClass) Fahrenheit() UnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
-
 func (uc _UnitTemperatureClass) Kelvin() UnitTemperature {
 	rv := objc.Send[NSUnitTemperature](objc.ID(uc.class), objc.Sel("kelvin"))
 	return rv
@@ -121,7 +117,6 @@ func (uc _UnitTemperatureClass) Kelvin() UnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
-
 func (u_ UnitTemperature) Celsius() NSUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("celsius"))
 	return rv
@@ -132,7 +127,6 @@ func (u_ UnitTemperature) Celsius() NSUnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
-
 func (u_ UnitTemperature) Fahrenheit() NSUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("fahrenheit"))
 	return rv
@@ -143,7 +137,6 @@ func (u_ UnitTemperature) Fahrenheit() NSUnitTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
-
 func (u_ UnitTemperature) Kelvin() NSUnitTemperature {
 	rv := objc.Send[NSUnitTemperature](u_.ID, objc.Sel("kelvin"))
 	return rv

@@ -12,7 +12,7 @@ var _ = foundation.NewDistantObject
 // ExampleNewDistantObjectWithCoder demonstrates how to create a DistantObject instance using NewDistantObjectWithCoder.
 func ExampleNewDistantObjectWithCoder() {
 	_ = foundation.NewDistantObjectWithCoder(
-		foundation.NSCoder{}, // inCoder NSCoder
+		foundation.Coder{}, // inCoder Coder
 	)
 	// Output:
 }

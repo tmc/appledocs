@@ -48,7 +48,6 @@ type IMapTable interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable
-
 type MapTable struct {
 	objectivec.Object
 }
@@ -93,12 +92,10 @@ func NewMapTable() MapTable {
 
 
 
-
 // Adds a given key-value pair to the map table.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/setObject(_:forKey:)
-
 func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
@@ -108,7 +105,6 @@ func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
-
 func (m_ MapTable) Count() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("count"))
 	return rv
@@ -119,7 +115,6 @@ func (m_ MapTable) Count() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
-
 func (m_ MapTable) SetCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
@@ -129,7 +124,6 @@ func (m_ MapTable) SetCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
-
 func (m_ MapTable) KeyPointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("keyPointerFunctions"))
 	return rv
@@ -140,7 +134,6 @@ func (m_ MapTable) KeyPointerFunctions() NSPointerFunctions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
-
 func (m_ MapTable) SetKeyPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyPointerFunctions:"), value)
 }
@@ -150,7 +143,6 @@ func (m_ MapTable) SetKeyPointerFunctions(value IPointerFunctions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-
 func (m_ MapTable) ValuePointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("valuePointerFunctions"))
 	return rv
@@ -161,7 +153,6 @@ func (m_ MapTable) ValuePointerFunctions() NSPointerFunctions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-
 func (m_ MapTable) SetValuePointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
 }

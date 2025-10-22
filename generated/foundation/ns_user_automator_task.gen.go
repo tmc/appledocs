@@ -31,8 +31,8 @@ type _UserAutomatorTaskClass struct {
 type IUserAutomatorTask interface {
 	IUserScriptTask
 	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler unsafe.Pointer)
-	Variables() unsafe.Pointer
-	SetVariables(value unsafe.Pointer)
+	Variables() IDictionary
+	SetVariables(value IDictionary)
 }
 
 // An object that executes Automator workflows.
@@ -44,7 +44,6 @@ type IUserAutomatorTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask
-
 type UserAutomatorTask struct {
 	UserScriptTask
 }
@@ -91,12 +90,10 @@ func NewUserAutomatorTask() UserAutomatorTask {
 
 
 
-
 // Execute the Automator workflow by providing it as securely coded input.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
-
 func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
 }
@@ -106,9 +103,8 @@ func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
-
-func (u_ UserAutomatorTask) Variables() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("variables"))
+func (u_ UserAutomatorTask) Variables() IDictionary {
+	rv := objc.Send[IDictionary](u_.ID, objc.Sel("variables"))
 	return rv
 }
 
@@ -117,8 +113,7 @@ func (u_ UserAutomatorTask) Variables() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
-
-func (u_ UserAutomatorTask) SetVariables(value unsafe.Pointer) {
+func (u_ UserAutomatorTask) SetVariables(value IDictionary) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), value)
 }
 

@@ -36,7 +36,6 @@ type IdoRequest interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/doRequest
-
 type doRequest struct {
 	objectivec.Object
 }

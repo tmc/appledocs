@@ -51,7 +51,6 @@ type INetServiceBrowser interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser
-
 type NetServiceBrowser struct {
 	objectivec.Object
 }
@@ -97,67 +96,55 @@ func NewNetServiceBrowser() NetServiceBrowser {
 
 
 
-
 // Removes the receiver from the specified run loop.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/remove(from:forMode:)
-
 func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
-
 
 
 // Adds the receiver to the specified run loop.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/schedule(in:forMode:)
-
 func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
-
 
 
 // Initiates a search for domains visible to the host. This method returns immediately.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForBrowsableDomains()
-
 func (n_ NetServiceBrowser) SearchForBrowsableDomains() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("searchForBrowsableDomains"))
 }
-
 
 
 // Initiates a search for domains in which the host may register services.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForRegistrationDomains()
-
 func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("searchForRegistrationDomains"))
 }
-
 
 
 // Starts a search for services of a particular type within a specific domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForServices(ofType:inDomain:)
-
 func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ string, domainString string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), objc.String(type_), objc.String(domainString))
 }
-
 
 
 // Halts a currently running search or resolution.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/stop()
-
 func (n_ NetServiceBrowser) Stop() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stop"))
 }
@@ -167,7 +154,6 @@ func (n_ NetServiceBrowser) Stop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/delegate
-
 func (n_ NetServiceBrowser) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
 	return rv
@@ -178,7 +164,6 @@ func (n_ NetServiceBrowser) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/delegate
-
 func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -188,7 +173,6 @@ func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-
 func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
@@ -199,7 +183,6 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-
 func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }

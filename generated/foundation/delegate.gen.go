@@ -36,7 +36,6 @@ type Idelegate interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.ivar
-
 type delegate struct {
 	objectivec.Object
 }

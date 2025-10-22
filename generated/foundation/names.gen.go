@@ -36,7 +36,6 @@ type Inames interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/names-c.ivar
-
 type names struct {
 	objectivec.Object
 }

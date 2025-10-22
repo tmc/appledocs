@@ -47,7 +47,6 @@ type IIndexPath interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath
-
 type IndexPath struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewIndexPath() IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/row
-
 func (i_ IndexPath) Row() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("row"))
 	return rv
@@ -107,7 +105,6 @@ func (i_ IndexPath) Row() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/section
-
 func (i_ IndexPath) Section() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("section"))
 	return rv
@@ -118,7 +115,6 @@ func (i_ IndexPath) Section() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-
 func (i_ IndexPath) Item() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("item"))
 	return rv
@@ -129,7 +125,6 @@ func (i_ IndexPath) Item() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-
 func (i_ IndexPath) SetItem(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setItem:"), value)
 }
@@ -139,7 +134,6 @@ func (i_ IndexPath) SetItem(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
-
 func (i_ IndexPath) Length() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("length"))
 	return rv
@@ -150,7 +144,6 @@ func (i_ IndexPath) Length() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
-
 func (i_ IndexPath) SetLength(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLength:"), value)
 }

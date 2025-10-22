@@ -44,7 +44,6 @@ type IRangeSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier
-
 type RangeSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -95,7 +94,6 @@ func NewRangeSpecifier() RangeSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
-
 func (r_ RangeSpecifier) StartSpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("startSpecifier"))
 	return rv
@@ -106,7 +104,6 @@ func (r_ RangeSpecifier) StartSpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
-
 func (r_ RangeSpecifier) SetStartSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartSpecifier:"), value)
 }
@@ -116,7 +113,6 @@ func (r_ RangeSpecifier) SetStartSpecifier(value IScriptObjectSpecifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
-
 func (r_ RangeSpecifier) EndSpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("endSpecifier"))
 	return rv
@@ -127,7 +123,6 @@ func (r_ RangeSpecifier) EndSpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
-
 func (r_ RangeSpecifier) SetEndSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setEndSpecifier:"), value)
 }

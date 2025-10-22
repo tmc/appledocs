@@ -43,7 +43,6 @@ type IValueTransformer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer
-
 type ValueTransformer struct {
 	objectivec.Object
 }
@@ -88,13 +87,11 @@ func NewValueTransformer() ValueTransformer {
 
 
 
-
 // Returns the value transformer identified by a given identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/init(forName:)
-
-func NewValueTransformerForName(name IValueTransformerName) ValueTransformer {
+func NewValueTransformerForName(name ValueTransformerName) ValueTransformer {
 	rv := objc.Send[ValueTransformer](objc.ID(getValueTransformerClass().class), objc.Sel("valueTransformerForName:"), name)
 	return rv
 }
@@ -105,7 +102,6 @@ func NewValueTransformerForName(name IValueTransformerName) ValueTransformer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/allowsReverseTransformation()
-
 func (vc _ValueTransformerClass) AllowsReverseTransformation() bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("allowsReverseTransformation"))
 	return rv
@@ -116,8 +112,7 @@ func (vc _ValueTransformerClass) AllowsReverseTransformation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/init(forName:)
-
-func (vc _ValueTransformerClass) ValueTransformerForName(name IValueTransformerName) ValueTransformer {
+func (vc _ValueTransformerClass) ValueTransformerForName(name ValueTransformerName) ValueTransformer {
 	rv := objc.Send[ValueTransformer](objc.ID(vc.class), objc.Sel("valueTransformerForName:"), name)
 	return rv
 }
@@ -127,8 +122,7 @@ func (vc _ValueTransformerClass) ValueTransformerForName(name IValueTransformerN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/setValueTransformer(_:forName:)
-
-func (vc _ValueTransformerClass) SetValueTransformerForName(transformer IValueTransformer, name IValueTransformerName) {
+func (vc _ValueTransformerClass) SetValueTransformerForName(transformer IValueTransformer, name ValueTransformerName) {
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("setValueTransformer:forName:"), transformer, name)
 }
 
@@ -137,7 +131,6 @@ func (vc _ValueTransformerClass) SetValueTransformerForName(transformer IValueTr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/transformedValueClass()
-
 func (vc _ValueTransformerClass) TransformedValueClass() objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(vc.class), objc.Sel("transformedValueClass"))
 	return rv
@@ -148,31 +141,26 @@ func (vc _ValueTransformerClass) TransformedValueClass() objc.Class {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/valueTransformerNames()
-
 func (vc _ValueTransformerClass) ValueTransformerNames() []string {
 	rv := objc.Send[[]string](objc.ID(vc.class), objc.Sel("valueTransformerNames"))
 	return rv
 }
 
 
-
 // Returns the result of the reverse transformation of a given value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/reverseTransformedValue(_:)
-
 func (v_ ValueTransformer) ReverseTransformedValue(value objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("reverseTransformedValue:"), value)
 	return rv
 }
 
 
-
 // Returns the result of transforming a given value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/transformedValue(_:)
-
 func (v_ ValueTransformer) TransformedValue(value objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("transformedValue:"), value)
 	return rv

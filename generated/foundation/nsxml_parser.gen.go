@@ -30,22 +30,24 @@ type _XMLParserClass struct {
 // An interface definition for the [XMLParser] class.
 type IXMLParser interface {
 	objectivec.IObject
-	Parse() bool
-	AllowedExternalEntityURLs() unsafe.Pointer
-	SetAllowedExternalEntityURLs(value unsafe.Pointer)
-	LineNumber() int
-	ParserError() NSError
-	PublicID() string
-	ShouldReportNamespacePrefixes() bool
-	SetShouldReportNamespacePrefixes(value bool)
+	AllowedExternalEntityURLs() URL
+	SetAllowedExternalEntityURLs(value IURL)
 	ColumnNumber() int
 	SetColumnNumber(value int)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	ExternalEntityResolvingPolicy() unsafe.Pointer
 	SetExternalEntityResolvingPolicy(value unsafe.Pointer)
+	LineNumber() int
+	SetLineNumber(value int)
+	ParserError() Error
+	SetParserError(value IError)
+	PublicID() string
+	SetPublicID(value string)
 	ShouldProcessNamespaces() bool
 	SetShouldProcessNamespaces(value bool)
+	ShouldReportNamespacePrefixes() bool
+	SetShouldReportNamespacePrefixes(value bool)
 	ShouldResolveExternalEntities() bool
 	SetShouldResolveExternalEntities(value bool)
 	SystemID() string
@@ -61,7 +63,6 @@ type IXMLParser interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser
-
 type XMLParser struct {
 	objectivec.Object
 }
@@ -106,13 +107,11 @@ func NewXMLParser() XMLParser {
 
 
 
-
 // Initializes a parser with the XML content referenced by the given URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(contentsOf:)
-
-func NewXMLParserWithContentsOfURL(url IURL) XMLParser {
+func NewXMLParserWithContentsOfURL(url URL) XMLParser {
 	instance := getXMLParserClass().Alloc()
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -121,114 +120,18 @@ func NewXMLParserWithContentsOfURL(url IURL) XMLParser {
 
 
 
-// Initializes a parser with the XML contents encapsulated in a given data object.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(data:)
-
-func NewXMLParserWithData(data IData) XMLParser {
-	instance := getXMLParserClass().Alloc()
-	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithData:"), data)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Initializes a parser with the XML contents from the specified stream and parses it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(stream:)
-
-func NewXMLParserWithStream(stream IInputStream) XMLParser {
-	instance := getXMLParserClass().Alloc()
-	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithStream:"), stream)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-
-// Starts the event-driven parsing operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parse()
-
-func (x_ XMLParser) Parse() bool {
-	rv := objc.Send[bool](x_.ID, objc.Sel("parse"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/allowedexternalentityurls
+func (x_ XMLParser) AllowedExternalEntityURLs() URL {
+	rv := objc.Send[URL](x_.ID, objc.Sel("allowedExternalEntityURLs"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
-
-func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("allowedExternalEntityURLs"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
-
-func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/allowedexternalentityurls
+func (x_ XMLParser) SetAllowedExternalEntityURLs(value IURL) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAllowedExternalEntityURLs:"), value)
-}
-
-
-// The line number of the XML document being processed by the parser.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/lineNumber
-
-func (x_ XMLParser) LineNumber() int {
-	rv := objc.Send[int](x_.ID, objc.Sel("lineNumber"))
-	return rv
-}
-
-
-// An object from which you can obtain information about a parsing error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parserError
-
-func (x_ XMLParser) ParserError() NSError {
-	rv := objc.Send[NSError](x_.ID, objc.Sel("parserError"))
-	return rv
-}
-
-
-// The public identifier of the external entity referenced in the XML document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/publicID
-
-func (x_ XMLParser) PublicID() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
-
-func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
-	rv := objc.Send[bool](x_.ID, objc.Sel("shouldReportNamespacePrefixes"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/shouldReportNamespacePrefixes
-
-func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
 }
 
 
@@ -236,7 +139,6 @@ func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
-
 func (x_ XMLParser) ColumnNumber() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
 	return rv
@@ -247,7 +149,6 @@ func (x_ XMLParser) ColumnNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
-
 func (x_ XMLParser) SetColumnNumber(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setColumnNumber:"), value)
 }
@@ -257,7 +158,6 @@ func (x_ XMLParser) SetColumnNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
-
 func (x_ XMLParser) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
 	return rv
@@ -268,7 +168,6 @@ func (x_ XMLParser) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/delegate
-
 func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -276,7 +175,6 @@ func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
-
 func (x_ XMLParser) ExternalEntityResolvingPolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("externalEntityResolvingPolicy"))
 	return rv
@@ -285,9 +183,65 @@ func (x_ XMLParser) ExternalEntityResolvingPolicy() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
-
 func (x_ XMLParser) SetExternalEntityResolvingPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExternalEntityResolvingPolicy:"), value)
+}
+
+
+// The line number of the XML document being processed by the parser.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/linenumber
+func (x_ XMLParser) LineNumber() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("lineNumber"))
+	return rv
+}
+
+
+// The line number of the XML document being processed by the parser.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/linenumber
+func (x_ XMLParser) SetLineNumber(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setLineNumber:"), value)
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
+func (x_ XMLParser) ParserError() Error {
+	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
+	return rv
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
+func (x_ XMLParser) SetParserError(value IError) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setParserError:"), value)
+}
+
+
+// The public identifier of the external entity referenced in the XML document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/publicid
+func (x_ XMLParser) PublicID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
+	return rv
+}
+
+
+// The public identifier of the external entity referenced in the XML document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/publicid
+func (x_ XMLParser) SetPublicID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), objc.String(value))
 }
 
 
@@ -295,7 +249,6 @@ func (x_ XMLParser) SetExternalEntityResolvingPolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
-
 func (x_ XMLParser) ShouldProcessNamespaces() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldProcessNamespaces"))
 	return rv
@@ -306,9 +259,27 @@ func (x_ XMLParser) ShouldProcessNamespaces() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
-
 func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldProcessNamespaces:"), value)
+}
+
+
+// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldreportnamespaceprefixes
+func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("shouldReportNamespacePrefixes"))
+	return rv
+}
+
+
+// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldreportnamespaceprefixes
+func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
 }
 
 
@@ -316,7 +287,6 @@ func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
-
 func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldResolveExternalEntities"))
 	return rv
@@ -327,7 +297,6 @@ func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
-
 func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldResolveExternalEntities:"), value)
 }
@@ -337,7 +306,6 @@ func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-
 func (x_ XMLParser) SystemID() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
 	return rv
@@ -348,7 +316,6 @@ func (x_ XMLParser) SystemID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-
 func (x_ XMLParser) SetSystemID(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }

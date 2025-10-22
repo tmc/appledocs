@@ -38,7 +38,6 @@ type IInflectionRuleExplicit interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit
-
 type InflectionRuleExplicit struct {
 	InflectionRule
 }

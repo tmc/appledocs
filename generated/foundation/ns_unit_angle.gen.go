@@ -40,7 +40,6 @@ type IUnitAngle interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle
-
 type UnitAngle struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitAngle() UnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
-
 func (uc _UnitAngleClass) ArcSeconds() UnitAngle {
 	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("arcSeconds"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitAngleClass) ArcSeconds() UnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
-
 func (uc _UnitAngleClass) Degrees() UnitAngle {
 	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("degrees"))
 	return rv
@@ -111,7 +108,6 @@ func (uc _UnitAngleClass) Degrees() UnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
-
 func (u_ UnitAngle) ArcSeconds() NSUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("arcSeconds"))
 	return rv
@@ -122,7 +118,6 @@ func (u_ UnitAngle) ArcSeconds() NSUnitAngle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
-
 func (u_ UnitAngle) Degrees() NSUnitAngle {
 	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("degrees"))
 	return rv

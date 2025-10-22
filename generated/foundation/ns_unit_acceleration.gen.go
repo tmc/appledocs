@@ -40,7 +40,6 @@ type IUnitAcceleration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration
-
 type UnitAcceleration struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitAcceleration() UnitAcceleration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
-
 func (uc _UnitAccelerationClass) MetersPerSecondSquared() UnitAcceleration {
 	rv := objc.Send[NSUnitAcceleration](objc.ID(uc.class), objc.Sel("metersPerSecondSquared"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitAccelerationClass) MetersPerSecondSquared() UnitAcceleration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
-
 func (u_ UnitAcceleration) MetersPerSecondSquared() NSUnitAcceleration {
 	rv := objc.Send[NSUnitAcceleration](u_.ID, objc.Sel("metersPerSecondSquared"))
 	return rv

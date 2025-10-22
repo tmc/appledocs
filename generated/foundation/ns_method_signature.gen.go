@@ -41,7 +41,6 @@ type IMethodSignature interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature
-
 type MethodSignature struct {
 	objectivec.Object
 }

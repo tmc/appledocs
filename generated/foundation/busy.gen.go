@@ -36,7 +36,6 @@ type Ibusy interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/busy
-
 type busy struct {
 	objectivec.Object
 }

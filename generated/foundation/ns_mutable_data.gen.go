@@ -52,7 +52,6 @@ type IMutableData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData
-
 type MutableData struct {
 	Data
 }
@@ -103,7 +102,6 @@ func NewMutableData() MutableData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-
 func (m_ MutableData) NSCompressionErrorMaximum() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMaximum"))
 	return rv
@@ -114,7 +112,6 @@ func (m_ MutableData) NSCompressionErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-
 func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
@@ -124,7 +121,6 @@ func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-
 func (m_ MutableData) NSCompressionErrorMinimum() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
 	return rv
@@ -135,7 +131,6 @@ func (m_ MutableData) NSCompressionErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-
 func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
@@ -145,7 +140,6 @@ func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-
 func (m_ MutableData) NSCompressionFailedError() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionFailedError"))
 	return rv
@@ -156,7 +150,6 @@ func (m_ MutableData) NSCompressionFailedError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-
 func (m_ MutableData) SetNSCompressionFailedError(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionFailedError:"), value)
 }
@@ -166,7 +159,6 @@ func (m_ MutableData) SetNSCompressionFailedError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-
 func (m_ MutableData) NSDecompressionFailedError() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSDecompressionFailedError"))
 	return rv
@@ -177,7 +169,6 @@ func (m_ MutableData) NSDecompressionFailedError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-
 func (m_ MutableData) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
@@ -187,7 +178,6 @@ func (m_ MutableData) SetNSDecompressionFailedError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-
 func (m_ MutableData) Length() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("length"))
 	return rv
@@ -198,7 +188,6 @@ func (m_ MutableData) Length() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-
 func (m_ MutableData) SetLength(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
 }
@@ -208,7 +197,6 @@ func (m_ MutableData) SetLength(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
-
 func (m_ MutableData) MutableBytes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableBytes"))
 	return rv
@@ -219,7 +207,6 @@ func (m_ MutableData) MutableBytes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
-
 func (m_ MutableData) SetMutableBytes(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableBytes:"), value)
 }

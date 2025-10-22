@@ -30,11 +30,11 @@ type _UserNotificationCenterClass struct {
 // An interface definition for the [UserNotificationCenter] class.
 type IUserNotificationCenter interface {
 	objectivec.IObject
-	DeliverNotification(notification IUserNotification)
+	DeliverNotification(notification UserNotification)
 	RemoveAllDeliveredNotifications()
-	RemoveDeliveredNotification(notification IUserNotification)
-	RemoveScheduledNotification(notification IUserNotification)
-	ScheduleNotification(notification IUserNotification)
+	RemoveDeliveredNotification(notification UserNotification)
+	RemoveScheduledNotification(notification UserNotification)
+	ScheduleNotification(notification UserNotification)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DeliveredNotifications() []UserNotification
@@ -57,7 +57,6 @@ type IUserNotificationCenter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter
-
 type UserNotificationCenter struct {
 	objectivec.Object
 }
@@ -106,63 +105,52 @@ func NewUserNotificationCenter() UserNotificationCenter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
-
 func (uc _UserNotificationCenterClass) DefaultUserNotificationCenter() UserNotificationCenter {
 	rv := objc.Send[NSUserNotificationCenter](objc.ID(uc.class), objc.Sel("defaultUserNotificationCenter"))
 	return rv
 }
 
-
 // Deliver the specified user notification.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliver(_:)
-
-func (u_ UserNotificationCenter) DeliverNotification(notification IUserNotification) {
+func (u_ UserNotificationCenter) DeliverNotification(notification UserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("deliverNotification:"), notification)
 }
-
 
 
 // Remove all delivered user notifications from the user notification center.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeAllDeliveredNotifications()
-
 func (u_ UserNotificationCenter) RemoveAllDeliveredNotifications() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllDeliveredNotifications"))
 }
-
 
 
 // Remove a delivered user notification from the user notification center.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeDeliveredNotification(_:)
-
-func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification IUserNotification) {
+func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification UserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
 }
-
 
 
 // Removes the specified user notification for the scheduled notifications.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeScheduledNotification(_:)
-
-func (u_ UserNotificationCenter) RemoveScheduledNotification(notification IUserNotification) {
+func (u_ UserNotificationCenter) RemoveScheduledNotification(notification UserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeScheduledNotification:"), notification)
 }
-
 
 
 // Schedules the specified user notification.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduleNotification(_:)
-
-func (u_ UserNotificationCenter) ScheduleNotification(notification IUserNotification) {
+func (u_ UserNotificationCenter) ScheduleNotification(notification UserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleNotification:"), notification)
 }
 
@@ -171,7 +159,6 @@ func (u_ UserNotificationCenter) ScheduleNotification(notification IUserNotifica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
-
 func (u_ UserNotificationCenter) DefaultUserNotificationCenter() NSUserNotificationCenter {
 	rv := objc.Send[NSUserNotificationCenter](u_.ID, objc.Sel("defaultUserNotificationCenter"))
 	return rv
@@ -182,7 +169,6 @@ func (u_ UserNotificationCenter) DefaultUserNotificationCenter() NSUserNotificat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate
-
 func (u_ UserNotificationCenter) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
 	return rv
@@ -193,7 +179,6 @@ func (u_ UserNotificationCenter) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/delegate
-
 func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -203,7 +188,6 @@ func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliveredNotifications
-
 func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification {
 	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("deliveredNotifications"))
 	return rv
@@ -214,7 +198,6 @@ func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduledNotifications
-
 func (u_ UserNotificationCenter) ScheduledNotifications() []UserNotification {
 	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("scheduledNotifications"))
 	return rv
@@ -225,7 +208,6 @@ func (u_ UserNotificationCenter) ScheduledNotifications() []UserNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduledNotifications
-
 func (u_ UserNotificationCenter) SetScheduledNotifications(value []UserNotification) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
@@ -245,7 +227,6 @@ func (u_ UserNotificationCenter) SetScheduledNotifications(value []UserNotificat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-
 func (u_ UserNotificationCenter) ActualDeliveryDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
@@ -256,7 +237,6 @@ func (u_ UserNotificationCenter) ActualDeliveryDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-
 func (u_ UserNotificationCenter) SetActualDeliveryDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActualDeliveryDate:"), value)
 }
@@ -266,7 +246,6 @@ func (u_ UserNotificationCenter) SetActualDeliveryDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-
 func (u_ UserNotificationCenter) DeliveryDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("deliveryDate"))
 	return rv
@@ -277,7 +256,6 @@ func (u_ UserNotificationCenter) DeliveryDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-
 func (u_ UserNotificationCenter) SetDeliveryDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
 }
@@ -287,7 +265,6 @@ func (u_ UserNotificationCenter) SetDeliveryDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
-
 func (u_ UserNotificationCenter) IsPresented() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isPresented"))
 	return rv
@@ -298,7 +275,6 @@ func (u_ UserNotificationCenter) IsPresented() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
-
 func (u_ UserNotificationCenter) SetIsPresented(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
 }

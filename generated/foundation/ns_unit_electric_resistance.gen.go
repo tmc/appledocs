@@ -40,7 +40,6 @@ type IUnitElectricResistance interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance
-
 type UnitElectricResistance struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitElectricResistance() UnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
-
 func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
-
 func (u_ UnitElectricResistance) Ohms() NSUnitElectricResistance {
 	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("ohms"))
 	return rv

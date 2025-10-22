@@ -43,7 +43,6 @@ type IAssertionHandler interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler
-
 type AssertionHandler struct {
 	objectivec.Object
 }
@@ -92,25 +91,20 @@ func NewAssertionHandler() AssertionHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
-
 func (ac _AssertionHandlerClass) CurrentHandler() AssertionHandler {
 	rv := objc.Send[NSAssertionHandler](objc.ID(ac.class), objc.Sel("currentHandler"))
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
-
 func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName string, fileName string, line int, format string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInFunction:file:lineNumber:description:"), objc.String(functionName), objc.String(fileName), line, objc.String(format))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
-
 func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName string, line int, format string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, objc.String(fileName), line, objc.String(format))
 }
@@ -120,7 +114,6 @@ func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
-
 func (a_ AssertionHandler) CurrentHandler() NSAssertionHandler {
 	rv := objc.Send[NSAssertionHandler](a_.ID, objc.Sel("currentHandler"))
 	return rv

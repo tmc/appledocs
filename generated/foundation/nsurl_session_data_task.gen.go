@@ -40,7 +40,6 @@ type IURLSessionDataTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDataTask
-
 type URLSessionDataTask struct {
 	URLSessionTask
 }

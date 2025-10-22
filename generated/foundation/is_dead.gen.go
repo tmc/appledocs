@@ -36,7 +36,6 @@ type IisDead interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/isDead
-
 type isDead struct {
 	objectivec.Object
 }

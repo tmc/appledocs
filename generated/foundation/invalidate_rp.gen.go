@@ -36,7 +36,6 @@ type IinvalidateRP interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/invalidateRP
-
 type invalidateRP struct {
 	objectivec.Object
 }

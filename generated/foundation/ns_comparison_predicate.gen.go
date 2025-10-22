@@ -51,7 +51,6 @@ type IComparisonPredicate interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate
-
 type ComparisonPredicate struct {
 	Predicate
 }
@@ -102,7 +101,6 @@ func NewComparisonPredicate() ComparisonPredicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
-
 func (c_ ComparisonPredicate) RightExpression() NSExpression {
 	rv := objc.Send[NSExpression](c_.ID, objc.Sel("rightExpression"))
 	return rv
@@ -113,7 +111,6 @@ func (c_ ComparisonPredicate) RightExpression() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
-
 func (c_ ComparisonPredicate) ComparisonPredicateModifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("comparisonPredicateModifier"))
 	return rv
@@ -124,7 +121,6 @@ func (c_ ComparisonPredicate) ComparisonPredicateModifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
-
 func (c_ ComparisonPredicate) SetComparisonPredicateModifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonPredicateModifier:"), value)
 }
@@ -134,7 +130,6 @@ func (c_ ComparisonPredicate) SetComparisonPredicateModifier(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/customselector
-
 func (c_ ComparisonPredicate) CustomSelector() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("customSelector"))
 	return rv
@@ -145,7 +140,6 @@ func (c_ ComparisonPredicate) CustomSelector() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/customselector
-
 func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomSelector:"), value)
 }
@@ -155,7 +149,6 @@ func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-
 func (c_ ComparisonPredicate) LeftExpression() NSExpression {
 	rv := objc.Send[NSExpression](c_.ID, objc.Sel("leftExpression"))
 	return rv
@@ -166,7 +159,6 @@ func (c_ ComparisonPredicate) LeftExpression() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-
 func (c_ ComparisonPredicate) SetLeftExpression(value IExpression) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
 }
@@ -176,7 +168,6 @@ func (c_ ComparisonPredicate) SetLeftExpression(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
-
 func (c_ ComparisonPredicate) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
 	return rv
@@ -187,7 +178,6 @@ func (c_ ComparisonPredicate) Options() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
-
 func (c_ ComparisonPredicate) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
 }
@@ -197,7 +187,6 @@ func (c_ ComparisonPredicate) SetOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
-
 func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateOperatorType"))
 	return rv
@@ -208,7 +197,6 @@ func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
-
 func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateOperatorType:"), value)
 }

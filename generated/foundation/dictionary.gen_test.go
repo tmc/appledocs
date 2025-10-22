@@ -48,3 +48,20 @@ func ExampleNewDictionaryWithContentsOfURLError() {
 	)
 	// Output:
 }
+// ExampleNewDictionaryWithDictionary demonstrates how to create a Dictionary instance using NewDictionaryWithDictionary.
+// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
+func ExampleNewDictionaryWithDictionary() {
+	_ = foundation.NewDictionaryWithDictionary(
+		foundation.IDictionary{}, // otherDictionary IDictionary
+	)
+	// Output:
+}
+// ExampleNewDictionaryWithDictionaryCopyItems demonstrates how to create a Dictionary instance using NewDictionaryWithDictionaryCopyItems.
+// Initializes a newly allocated dictionary using the objects contained in another given dictionary.
+func ExampleNewDictionaryWithDictionaryCopyItems() {
+	_ = foundation.NewDictionaryWithDictionaryCopyItems(
+		foundation.IDictionary{}, // otherDictionary IDictionary
+		false, // flag bool
+	)
+	// Output:
+}

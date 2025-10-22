@@ -1,10 +1,6 @@
 // Code generated from Apple documentation for Foundation. DO NOT EDIT.
 
 package foundation
-import (
-	"unsafe"
-)
-
 
 // Type alias for NSTimeInterval
 type TimeInterval = float64  // NSTimeInterval
@@ -41,108 +37,5 @@ const (
 	RectEdgeMaxX RectEdge = 2
 	RectEdgeMaxY RectEdge = 3
 )
-
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFRunLoopRef unsafe.Pointer
-
-type Class unsafe.Pointer
-
-type NSAffineTransformStruct unsafe.Pointer
-
-type NSCacheDelegate unsafe.Pointer
-
-type NSCalculationError unsafe.Pointer
-
-type NSComparator unsafe.Pointer
-
-type NSDateComponentsFormatterZeroFormattingBehavior unsafe.Pointer
-
-type NSDateFormatterBehavior unsafe.Pointer
-
-type NSDecimal unsafe.Pointer
-
-type NSDecodingFailurePolicy unsafe.Pointer
-
-type NSDeviceCertification unsafe.Pointer
-
-type NSDirectionalEdgeInsets unsafe.Pointer
-
-type NSEdgeInsets unsafe.Pointer
-
-type NSFastEnumerationState unsafe.Pointer
-
-type NSFileProviderItem unsafe.Pointer
-
-type NSFileProviderItemIdentifier unsafe.Pointer
-
-type NSFormattingContext unsafe.Pointer
-
-type NSHTTPCookieAcceptPolicy unsafe.Pointer
-
-type NSHelpManagerContextHelpKey unsafe.Pointer
-
-type NSISO8601DateFormatOptions unsafe.Pointer
-
-type NSImageName unsafe.Pointer
-
-type NSInsertionPosition unsafe.Pointer
-
-type NSItemProviderCompletionHandler unsafe.Pointer
-
-type NSItemProviderLoadHandler unsafe.Pointer
-
-type NSLengthFormatterUnit unsafe.Pointer
-
-type NSLocaleKey unsafe.Pointer
-
-type NSLocaleLanguageDirection unsafe.Pointer
-
-type NSNibName unsafe.Pointer
-
-type NSObject unsafe.Pointer
-
-type NSOperatingSystemVersion unsafe.Pointer
-
-type NSOrderedCollectionChange unsafe.Pointer
-
-type NSProgressKind unsafe.Pointer
-
-type NSPropertyListFormat unsafe.Pointer
-
-type NSRange unsafe.Pointer
-
-type NSRoundingMode unsafe.Pointer
-
-type NSSoundName unsafe.Pointer
-
-type NSStreamPropertyKey unsafe.Pointer
-
-type NSStringEncoding unsafe.Pointer
-
-type NSTestComparisonOperation unsafe.Pointer
-
-type NSTextCheckingTypes unsafe.Pointer
-
-type NSURLHandle unsafe.Pointer
-
-type NSUndoManagerUserInfoKey unsafe.Pointer
-
-type NSUserAppleScriptTaskCompletionHandler unsafe.Pointer
-
-type NSUserAutomatorTaskCompletionHandler unsafe.Pointer
-
-type NSUserScriptTaskCompletionHandler unsafe.Pointer
-
-type NSUserUnixTaskCompletionHandler unsafe.Pointer
-
-type NSWorkspaceAuthorization unsafe.Pointer
-
-type NSXMLDocumentContentKind unsafe.Pointer
-
-type NSZone unsafe.Pointer
-
 
 

@@ -64,7 +64,6 @@ type IFileWrapper interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper
-
 type FileWrapper struct {
 	objectivec.Object
 }
@@ -109,48 +108,40 @@ func NewFileWrapper() FileWrapper {
 
 
 
-
 // Indicates whether the contents of a file wrapper matches a directory, regular file, or symbolic link on disk.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/matchesContents(of:)
-
 func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("matchesContentsOfURL:"), url)
 	return rv
 }
 
 
-
 // Indicates whether the file wrapper needs to be updated to match a given file-system node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/needsToBeUpdated(fromPath:)
-
 func (f_ FileWrapper) NeedsToBeUpdatedFromPath(path string) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("needsToBeUpdatedFromPath:"), objc.String(path))
 	return rv
 }
 
 
-
 // Provides the pathname referenced by the file wrapper object, which must be a symbolic-link file wrapper.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/symbolicLinkDestination()
-
 func (f_ FileWrapper) SymbolicLinkDestination() String {
 	rv := objc.Send[String](f_.ID, objc.Sel("symbolicLinkDestination"))
 	return rv
 }
 
 
-
 // Writes a file wrapper’s contents to a given file-system node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/write(toFile:atomically:updateFilenames:)
-
 func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeToFile:atomically:updateFilenames:"), objc.String(path), atomicFlag, updateFilenamesFlag)
 	return rv
@@ -161,7 +152,6 @@ func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path string, atomicFl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-
 func (f_ FileWrapper) Filename() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
 	return rv
@@ -172,7 +162,6 @@ func (f_ FileWrapper) Filename() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-
 func (f_ FileWrapper) SetFilename(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
@@ -182,7 +171,6 @@ func (f_ FileWrapper) SetFilename(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation
-
 func (f_ FileWrapper) SerializedRepresentation() NSData {
 	rv := objc.Send[NSData](f_.ID, objc.Sel("serializedRepresentation"))
 	return rv
@@ -193,7 +181,6 @@ func (f_ FileWrapper) SerializedRepresentation() NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
-
 func (f_ FileWrapper) FileAttributes() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("fileAttributes"))
 	return rv
@@ -204,7 +191,6 @@ func (f_ FileWrapper) FileAttributes() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
-
 func (f_ FileWrapper) SetFileAttributes(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileAttributes:"), objc.String(value))
 }
@@ -214,7 +200,6 @@ func (f_ FileWrapper) SetFileAttributes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
-
 func (f_ FileWrapper) FileWrappers() NSFileWrapper {
 	rv := objc.Send[NSFileWrapper](f_.ID, objc.Sel("fileWrappers"))
 	return rv
@@ -225,7 +210,6 @@ func (f_ FileWrapper) FileWrappers() NSFileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
-
 func (f_ FileWrapper) SetFileWrappers(value IFileWrapper) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileWrappers:"), value)
 }
@@ -235,7 +219,6 @@ func (f_ FileWrapper) SetFileWrappers(value IFileWrapper) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isdirectory
-
 func (f_ FileWrapper) IsDirectory() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDirectory"))
 	return rv
@@ -246,7 +229,6 @@ func (f_ FileWrapper) IsDirectory() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isdirectory
-
 func (f_ FileWrapper) SetIsDirectory(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDirectory:"), value)
 }
@@ -256,7 +238,6 @@ func (f_ FileWrapper) SetIsDirectory(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isregularfile
-
 func (f_ FileWrapper) IsRegularFile() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRegularFile"))
 	return rv
@@ -267,7 +248,6 @@ func (f_ FileWrapper) IsRegularFile() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isregularfile
-
 func (f_ FileWrapper) SetIsRegularFile(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRegularFile:"), value)
 }
@@ -277,7 +257,6 @@ func (f_ FileWrapper) SetIsRegularFile(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/issymboliclink
-
 func (f_ FileWrapper) IsSymbolicLink() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSymbolicLink"))
 	return rv
@@ -288,7 +267,6 @@ func (f_ FileWrapper) IsSymbolicLink() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/issymboliclink
-
 func (f_ FileWrapper) SetIsSymbolicLink(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSymbolicLink:"), value)
 }
@@ -298,7 +276,6 @@ func (f_ FileWrapper) SetIsSymbolicLink(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/preferredfilename
-
 func (f_ FileWrapper) PreferredFilename() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("preferredFilename"))
 	return rv
@@ -309,7 +286,6 @@ func (f_ FileWrapper) PreferredFilename() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/preferredfilename
-
 func (f_ FileWrapper) SetPreferredFilename(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredFilename:"), objc.String(value))
 }
@@ -319,7 +295,6 @@ func (f_ FileWrapper) SetPreferredFilename(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents
-
 func (f_ FileWrapper) RegularFileContents() Data {
 	rv := objc.Send[Data](f_.ID, objc.Sel("regularFileContents"))
 	return rv
@@ -330,7 +305,6 @@ func (f_ FileWrapper) RegularFileContents() Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents
-
 func (f_ FileWrapper) SetRegularFileContents(value IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRegularFileContents:"), value)
 }
@@ -340,7 +314,6 @@ func (f_ FileWrapper) SetRegularFileContents(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl
-
 func (f_ FileWrapper) SymbolicLinkDestinationURL() URL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("symbolicLinkDestinationURL"))
 	return rv
@@ -351,7 +324,6 @@ func (f_ FileWrapper) SymbolicLinkDestinationURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl
-
 func (f_ FileWrapper) SetSymbolicLinkDestinationURL(value IURL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSymbolicLinkDestinationURL:"), value)
 }

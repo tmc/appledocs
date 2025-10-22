@@ -52,7 +52,6 @@ type IPositionalSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier
-
 type PositionalSpecifier struct {
 	objectivec.Object
 }
@@ -97,12 +96,10 @@ func NewPositionalSpecifier() PositionalSpecifier {
 
 
 
-
 // Sets the class description for the object or objects to be inserted.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/setInsertionClassDescription(_:)
-
 func (p_ PositionalSpecifier) SetInsertionClassDescription(classDescription IScriptClassDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionClassDescription:"), classDescription)
 }
@@ -112,7 +109,6 @@ func (p_ PositionalSpecifier) SetInsertionClassDescription(classDescription IScr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/objectSpecifier
-
 func (p_ PositionalSpecifier) ObjectSpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](p_.ID, objc.Sel("objectSpecifier"))
 	return rv
@@ -123,7 +119,6 @@ func (p_ PositionalSpecifier) ObjectSpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/position
-
 func (p_ PositionalSpecifier) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("position"))
 	return rv
@@ -134,7 +129,6 @@ func (p_ PositionalSpecifier) Position() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
-
 func (p_ PositionalSpecifier) InsertionContainer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertionContainer"))
 	return rv
@@ -145,7 +139,6 @@ func (p_ PositionalSpecifier) InsertionContainer() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
-
 func (p_ PositionalSpecifier) SetInsertionContainer(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionContainer:"), value)
 }
@@ -155,7 +148,6 @@ func (p_ PositionalSpecifier) SetInsertionContainer(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionindex
-
 func (p_ PositionalSpecifier) InsertionIndex() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("insertionIndex"))
 	return rv
@@ -166,7 +158,6 @@ func (p_ PositionalSpecifier) InsertionIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionindex
-
 func (p_ PositionalSpecifier) SetInsertionIndex(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionIndex:"), value)
 }
@@ -176,7 +167,6 @@ func (p_ PositionalSpecifier) SetInsertionIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionkey
-
 func (p_ PositionalSpecifier) InsertionKey() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("insertionKey"))
 	return rv
@@ -187,7 +177,6 @@ func (p_ PositionalSpecifier) InsertionKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionkey
-
 func (p_ PositionalSpecifier) SetInsertionKey(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionKey:"), objc.String(value))
 }
@@ -197,7 +186,6 @@ func (p_ PositionalSpecifier) SetInsertionKey(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
-
 func (p_ PositionalSpecifier) InsertionReplaces() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("insertionReplaces"))
 	return rv
@@ -208,7 +196,6 @@ func (p_ PositionalSpecifier) InsertionReplaces() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionreplaces
-
 func (p_ PositionalSpecifier) SetInsertionReplaces(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionReplaces:"), value)
 }

@@ -30,18 +30,8 @@ type _XMLNodeClass struct {
 // An interface definition for the [XMLNode] class.
 type IXMLNode interface {
 	objectivec.IObject
-	ChildAtIndex(index uint) XMLNode
-	SetStringValueResolvingEntities(string_ string, resolve bool)
-	XMLStringWithOptions(options XMLNodeOptions) String
 	Kind() XMLNodeKind
-	Level() uint
-	Name() string
-	SetName(value string)
-	ObjectValue() objc.ID
-	SetObjectValue(value objc.ID)
 	Parent() NSXMLNode
-	StringValue() string
-	SetStringValue(value string)
 	URI() string
 	SetURI(value string)
 	ChildCount() int
@@ -52,20 +42,28 @@ type IXMLNode interface {
 	SetDescription(value string)
 	Index() int
 	SetIndex(value int)
+	Level() int
+	SetLevel(value int)
 	LocalName() string
 	SetLocalName(value string)
+	Name() string
+	SetName(value string)
 	Next() NSXMLNode
 	SetNext(value IXMLNode)
 	NextSibling() NSXMLNode
 	SetNextSibling(value IXMLNode)
+	ObjectValue() unsafe.Pointer
+	SetObjectValue(value unsafe.Pointer)
 	Prefix() string
 	SetPrefix(value string)
 	Previous() NSXMLNode
 	SetPrevious(value IXMLNode)
 	PreviousSibling() NSXMLNode
 	SetPreviousSibling(value IXMLNode)
-	RootDocument() NSXMLDocument
+	RootDocument() XMLDocument
 	SetRootDocument(value IXMLDocument)
+	StringValue() string
+	SetStringValue(value string)
 	XPath() string
 	SetXPath(value string)
 	XmlString() string
@@ -81,7 +79,6 @@ type IXMLNode interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode
-
 type XMLNode struct {
 	objectivec.Object
 }
@@ -126,13 +123,11 @@ func NewXMLNode() XMLNode {
 
 
 
-
 // Returns an instance initialized with the constant indicating node kind.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:)
-
-func NewXMLNodeWithKind(kind XMLNodeKind) XMLNode {
+func NewXMLNodeWithKind(kind NSXMLNodeKind) XMLNode {
 	instance := getXMLNodeClass().Alloc()
 	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:"), kind)
 	rv.Autorelease()
@@ -140,13 +135,11 @@ func NewXMLNodeWithKind(kind XMLNodeKind) XMLNode {
 }
 
 
-
 // Returns an instance initialized with the constant indicating node kind and one or more initialization options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:options:)
-
-func NewXMLNodeWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLNode {
+func NewXMLNodeWithKindOptions(kind NSXMLNodeKind, options NSXMLNodeOptions) XMLNode {
 	instance := getXMLNodeClass().Alloc()
 	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()
@@ -155,256 +148,13 @@ func NewXMLNodeWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLNode
 
 
 
-// Returns an object representing an attribute node with a given name and string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/attribute(withName:stringValue:)
-
-func (xc _XMLNodeClass) AttributeWithNameStringValue(name string, stringValue string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("attributeWithName:stringValue:"), objc.String(name), objc.String(stringValue))
-	return rv
-}
-
-
-// Returns an object representing an attribute node with a given qualified name and string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/attribute(withName:uri:stringValue:)
-
-func (xc _XMLNodeClass) AttributeWithNameURIStringValue(name string, URI string, stringValue string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("attributeWithName:URI:stringValue:"), objc.String(name), objc.String(URI), objc.String(stringValue))
-	return rv
-}
-
-
-// Returns an object representing a comment node containing given text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/comment(withStringValue:)
-
-func (xc _XMLNodeClass) CommentWithStringValue(stringValue string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("commentWithStringValue:"), objc.String(stringValue))
-	return rv
-}
-
-
-// Returns an empty document node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/document()
-
-func (xc _XMLNodeClass) Document() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("document"))
-	return rv
-}
-
-
-// Returns an object initialized with a given root element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/document(withRootElement:)
-
-func (xc _XMLNodeClass) DocumentWithRootElement(element IXMLElement) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("documentWithRootElement:"), element)
-	return rv
-}
-
-
-// Returns a object representing the DTD declaration for an element, attribute, entity, or notation based on a given string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/dtdNode(withXMLString:)
-
-func (xc _XMLNodeClass) DTDNodeWithXMLString(string_ string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("DTDNodeWithXMLString:"), objc.String(string_))
-	return rv
-}
-
-
-// Returns an object with a given tag identifier, or name
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/element(withName:)
-
-func (xc _XMLNodeClass) ElementWithName(name string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:"), objc.String(name))
-	return rv
-}
-
-
-// Returns an object with the given tag (name), attributes, and children.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/element(withName:children:attributes:)
-
-func (xc _XMLNodeClass) ElementWithNameChildrenAttributes(name string, children []XMLNode, attributes []XMLNode) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:children:attributes:"), objc.String(name), children, attributes)
-	return rv
-}
-
-
-// Returns an object with a single text-node child containing the specified text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/element(withName:stringValue:)
-
-func (xc _XMLNodeClass) ElementWithNameStringValue(name string, string_ string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:stringValue:"), objc.String(name), objc.String(string_))
-	return rv
-}
-
-
-// Returns an element whose fully qualified name is specified.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/element(withName:uri:)
-
-func (xc _XMLNodeClass) ElementWithNameURI(name string, URI string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:URI:"), objc.String(name), objc.String(URI))
-	return rv
-}
-
-
-// Returns an object representing a namespace with a specified name and URI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/namespace(withName:stringValue:)
-
-func (xc _XMLNodeClass) NamespaceWithNameStringValue(name string, stringValue string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("namespaceWithName:stringValue:"), objc.String(name), objc.String(stringValue))
-	return rv
-}
-
-
-// Returns an object representing one of the predefined namespaces with the specified prefix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/predefinedNamespace(forPrefix:)
-
-func (xc _XMLNodeClass) PredefinedNamespaceForPrefix(name string) XMLNode {
-	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("predefinedNamespaceForPrefix:"), objc.String(name))
-	return rv
-}
-
-
-// Returns an object representing a processing instruction with a specified name and value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/processingInstruction(withName:stringValue:)
-
-func (xc _XMLNodeClass) ProcessingInstructionWithNameStringValue(name string, stringValue string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("processingInstructionWithName:stringValue:"), objc.String(name), objc.String(stringValue))
-	return rv
-}
-
-
-// Returns an object representing a text node with specified content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/text(withStringValue:)
-
-func (xc _XMLNodeClass) TextWithStringValue(stringValue string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("textWithStringValue:"), objc.String(stringValue))
-	return rv
-}
-
-
-
-// Returns the child node of the receiver at the specified location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/child(at:)
-
-func (x_ XMLNode) ChildAtIndex(index uint) XMLNode {
-	rv := objc.Send[XMLNode](x_.ID, objc.Sel("childAtIndex:"), index)
-	return rv
-}
-
-
-
-// Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/setStringValue(_:resolvingEntities:)
-
-func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:resolvingEntities:"), objc.String(string_), resolve)
-}
-
-
-
-// Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/xmlString(options:)
-
-func (x_ XMLNode) XMLStringWithOptions(options XMLNodeOptions) String {
-	rv := objc.Send[String](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
-	return rv
-}
-
-
 // Returns the kind of node the receiver is as a constant of type .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/kind-swift.property
-
 func (x_ XMLNode) Kind() XMLNodeKind {
 	rv := objc.Send[XMLNodeKind](x_.ID, objc.Sel("kind"))
 	return rv
-}
-
-
-// Returns the nesting level of the receiver within the tree hierarchy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/level
-
-func (x_ XMLNode) Level() uint {
-	rv := objc.Send[uint](x_.ID, objc.Sel("level"))
-	return rv
-}
-
-
-// Returns the name of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
-
-func (x_ XMLNode) Name() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// Returns the name of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
-
-func (x_ XMLNode) SetName(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-
-// Returns the object value of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
-
-func (x_ XMLNode) ObjectValue() objc.ID {
-	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectValue"))
-	return rv
-}
-
-
-// Returns the object value of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
-
-func (x_ XMLNode) SetObjectValue(value objc.ID) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
 }
 
 
@@ -412,31 +162,9 @@ func (x_ XMLNode) SetObjectValue(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/parent
-
 func (x_ XMLNode) Parent() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("parent"))
 	return rv
-}
-
-
-// Returns the content of the receiver as a string value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
-
-func (x_ XMLNode) StringValue() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// Returns the content of the receiver as a string value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
-
-func (x_ XMLNode) SetStringValue(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 
@@ -444,7 +172,6 @@ func (x_ XMLNode) SetStringValue(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
-
 func (x_ XMLNode) URI() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("URI"))
 	return rv
@@ -455,7 +182,6 @@ func (x_ XMLNode) URI() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
-
 func (x_ XMLNode) SetURI(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
 }
@@ -465,7 +191,6 @@ func (x_ XMLNode) SetURI(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
-
 func (x_ XMLNode) ChildCount() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("childCount"))
 	return rv
@@ -476,7 +201,6 @@ func (x_ XMLNode) ChildCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/childcount
-
 func (x_ XMLNode) SetChildCount(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildCount:"), value)
 }
@@ -486,7 +210,6 @@ func (x_ XMLNode) SetChildCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
-
 func (x_ XMLNode) Children() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("children"))
 	return rv
@@ -497,7 +220,6 @@ func (x_ XMLNode) Children() NSXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/children
-
 func (x_ XMLNode) SetChildren(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), value)
 }
@@ -505,7 +227,6 @@ func (x_ XMLNode) SetChildren(value IXMLNode) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
-
 func (x_ XMLNode) Description() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("description"))
 	return rv
@@ -514,7 +235,6 @@ func (x_ XMLNode) Description() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
-
 func (x_ XMLNode) SetDescription(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
@@ -524,7 +244,6 @@ func (x_ XMLNode) SetDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/index
-
 func (x_ XMLNode) Index() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("index"))
 	return rv
@@ -535,9 +254,27 @@ func (x_ XMLNode) Index() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/index
-
 func (x_ XMLNode) SetIndex(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIndex:"), value)
+}
+
+
+// Returns the nesting level of the receiver within the tree hierarchy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/level
+func (x_ XMLNode) Level() int {
+	rv := objc.Send[int](x_.ID, objc.Sel("level"))
+	return rv
+}
+
+
+// Returns the nesting level of the receiver within the tree hierarchy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/level
+func (x_ XMLNode) SetLevel(value int) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setLevel:"), value)
 }
 
 
@@ -545,7 +282,6 @@ func (x_ XMLNode) SetIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/localname
-
 func (x_ XMLNode) LocalName() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("localName"))
 	return rv
@@ -556,9 +292,27 @@ func (x_ XMLNode) LocalName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/localname
-
 func (x_ XMLNode) SetLocalName(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setLocalName:"), objc.String(value))
+}
+
+
+// Returns the name of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/name
+func (x_ XMLNode) Name() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// Returns the name of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/name
+func (x_ XMLNode) SetName(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 
@@ -566,7 +320,6 @@ func (x_ XMLNode) SetLocalName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
-
 func (x_ XMLNode) Next() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("next"))
 	return rv
@@ -577,7 +330,6 @@ func (x_ XMLNode) Next() NSXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
-
 func (x_ XMLNode) SetNext(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNext:"), value)
 }
@@ -587,7 +339,6 @@ func (x_ XMLNode) SetNext(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/nextsibling
-
 func (x_ XMLNode) NextSibling() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("nextSibling"))
 	return rv
@@ -598,9 +349,27 @@ func (x_ XMLNode) NextSibling() NSXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/nextsibling
-
 func (x_ XMLNode) SetNextSibling(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNextSibling:"), value)
+}
+
+
+// Returns the object value of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/objectvalue
+func (x_ XMLNode) ObjectValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("objectValue"))
+	return rv
+}
+
+
+// Returns the object value of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/objectvalue
+func (x_ XMLNode) SetObjectValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
 }
 
 
@@ -608,7 +377,6 @@ func (x_ XMLNode) SetNextSibling(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
-
 func (x_ XMLNode) Prefix() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("prefix"))
 	return rv
@@ -619,7 +387,6 @@ func (x_ XMLNode) Prefix() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/prefix
-
 func (x_ XMLNode) SetPrefix(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPrefix:"), objc.String(value))
 }
@@ -629,7 +396,6 @@ func (x_ XMLNode) SetPrefix(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
-
 func (x_ XMLNode) Previous() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("previous"))
 	return rv
@@ -640,7 +406,6 @@ func (x_ XMLNode) Previous() NSXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
-
 func (x_ XMLNode) SetPrevious(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPrevious:"), value)
 }
@@ -650,7 +415,6 @@ func (x_ XMLNode) SetPrevious(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
-
 func (x_ XMLNode) PreviousSibling() NSXMLNode {
 	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("previousSibling"))
 	return rv
@@ -661,7 +425,6 @@ func (x_ XMLNode) PreviousSibling() NSXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previoussibling
-
 func (x_ XMLNode) SetPreviousSibling(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPreviousSibling:"), value)
 }
@@ -671,9 +434,8 @@ func (x_ XMLNode) SetPreviousSibling(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
-
-func (x_ XMLNode) RootDocument() NSXMLDocument {
-	rv := objc.Send[NSXMLDocument](x_.ID, objc.Sel("rootDocument"))
+func (x_ XMLNode) RootDocument() XMLDocument {
+	rv := objc.Send[XMLDocument](x_.ID, objc.Sel("rootDocument"))
 	return rv
 }
 
@@ -682,9 +444,27 @@ func (x_ XMLNode) RootDocument() NSXMLDocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
-
 func (x_ XMLNode) SetRootDocument(value IXMLDocument) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRootDocument:"), value)
+}
+
+
+// Returns the content of the receiver as a string value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/stringvalue
+func (x_ XMLNode) StringValue() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// Returns the content of the receiver as a string value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/stringvalue
+func (x_ XMLNode) SetStringValue(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
 
@@ -692,7 +472,6 @@ func (x_ XMLNode) SetRootDocument(value IXMLDocument) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
-
 func (x_ XMLNode) XPath() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("xPath"))
 	return rv
@@ -703,7 +482,6 @@ func (x_ XMLNode) XPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xpath
-
 func (x_ XMLNode) SetXPath(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXPath:"), objc.String(value))
 }
@@ -713,7 +491,6 @@ func (x_ XMLNode) SetXPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xmlstring
-
 func (x_ XMLNode) XmlString() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("xmlString"))
 	return rv
@@ -724,7 +501,6 @@ func (x_ XMLNode) XmlString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/xmlstring
-
 func (x_ XMLNode) SetXmlString(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXmlString:"), objc.String(value))
 }

@@ -40,7 +40,6 @@ type IUnitInformationStorage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage
-
 type UnitInformationStorage struct {
 	Dimension
 }

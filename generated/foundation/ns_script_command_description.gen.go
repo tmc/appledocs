@@ -57,7 +57,6 @@ type IScriptCommandDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription
-
 type ScriptCommandDescription struct {
 	objectivec.Object
 }
@@ -106,7 +105,6 @@ func NewScriptCommandDescription() ScriptCommandDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventclasscode
-
 func (s_ ScriptCommandDescription) AppleEventClassCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventClassCode"))
 	return rv
@@ -117,7 +115,6 @@ func (s_ ScriptCommandDescription) AppleEventClassCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventclasscode
-
 func (s_ ScriptCommandDescription) SetAppleEventClassCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventClassCode:"), value)
 }
@@ -127,7 +124,6 @@ func (s_ ScriptCommandDescription) SetAppleEventClassCode(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcode
-
 func (s_ ScriptCommandDescription) AppleEventCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
 	return rv
@@ -138,7 +134,6 @@ func (s_ ScriptCommandDescription) AppleEventCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcode
-
 func (s_ ScriptCommandDescription) SetAppleEventCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
 }
@@ -148,7 +143,6 @@ func (s_ ScriptCommandDescription) SetAppleEventCode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcodeforreturntype
-
 func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForReturnType"))
 	return rv
@@ -159,7 +153,6 @@ func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcodeforreturntype
-
 func (s_ ScriptCommandDescription) SetAppleEventCodeForReturnType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCodeForReturnType:"), value)
 }
@@ -169,7 +162,6 @@ func (s_ ScriptCommandDescription) SetAppleEventCodeForReturnType(value unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
-
 func (s_ ScriptCommandDescription) ArgumentNames() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("argumentNames"))
 	return rv
@@ -180,7 +172,6 @@ func (s_ ScriptCommandDescription) ArgumentNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
-
 func (s_ ScriptCommandDescription) SetArgumentNames(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArgumentNames:"), objc.String(value))
 }
@@ -190,7 +181,6 @@ func (s_ ScriptCommandDescription) SetArgumentNames(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
-
 func (s_ ScriptCommandDescription) CommandClassName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("commandClassName"))
 	return rv
@@ -201,7 +191,6 @@ func (s_ ScriptCommandDescription) CommandClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
-
 func (s_ ScriptCommandDescription) SetCommandClassName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandClassName:"), objc.String(value))
 }
@@ -211,7 +200,6 @@ func (s_ ScriptCommandDescription) SetCommandClassName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
-
 func (s_ ScriptCommandDescription) CommandName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("commandName"))
 	return rv
@@ -222,7 +210,6 @@ func (s_ ScriptCommandDescription) CommandName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
-
 func (s_ ScriptCommandDescription) SetCommandName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandName:"), objc.String(value))
 }
@@ -232,7 +219,6 @@ func (s_ ScriptCommandDescription) SetCommandName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
-
 func (s_ ScriptCommandDescription) ReturnType() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("returnType"))
 	return rv
@@ -243,7 +229,6 @@ func (s_ ScriptCommandDescription) ReturnType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
-
 func (s_ ScriptCommandDescription) SetReturnType(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReturnType:"), objc.String(value))
 }
@@ -253,7 +238,6 @@ func (s_ ScriptCommandDescription) SetReturnType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
-
 func (s_ ScriptCommandDescription) SuiteName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
 	return rv
@@ -264,7 +248,6 @@ func (s_ ScriptCommandDescription) SuiteName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
-
 func (s_ ScriptCommandDescription) SetSuiteName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
 }

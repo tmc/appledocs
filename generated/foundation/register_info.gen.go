@@ -36,7 +36,6 @@ type IregisterInfo interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerInfo
-
 type registerInfo struct {
 	objectivec.Object
 }

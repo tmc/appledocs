@@ -36,7 +36,6 @@ type IreplMode interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replMode
-
 type replMode struct {
 	objectivec.Object
 }

@@ -36,7 +36,6 @@ type Ireserved2 interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortMessage/reserved2
-
 type reserved2 struct {
 	objectivec.Object
 }

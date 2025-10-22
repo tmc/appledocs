@@ -47,7 +47,6 @@ type IClassDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription
-
 type ClassDescription struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewClassDescription() ClassDescription {
 
 
 
-
 // Returns the class description for a given class.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
-
 func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(getClassDescriptionClass().class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
@@ -109,7 +106,6 @@ func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
-
 func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) ClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
@@ -120,7 +116,6 @@ func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) Cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
-
 func (c_ ClassDescription) AttributeKeys() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("attributeKeys"))
 	return rv
@@ -131,7 +126,6 @@ func (c_ ClassDescription) AttributeKeys() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
-
 func (c_ ClassDescription) SetAttributeKeys(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributeKeys:"), objc.String(value))
 }
@@ -141,7 +135,6 @@ func (c_ ClassDescription) SetAttributeKeys(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
-
 func (c_ ClassDescription) ToManyRelationshipKeys() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("toManyRelationshipKeys"))
 	return rv
@@ -152,7 +145,6 @@ func (c_ ClassDescription) ToManyRelationshipKeys() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
-
 func (c_ ClassDescription) SetToManyRelationshipKeys(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setToManyRelationshipKeys:"), objc.String(value))
 }
@@ -162,7 +154,6 @@ func (c_ ClassDescription) SetToManyRelationshipKeys(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
-
 func (c_ ClassDescription) ToOneRelationshipKeys() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("toOneRelationshipKeys"))
 	return rv
@@ -173,7 +164,6 @@ func (c_ ClassDescription) ToOneRelationshipKeys() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
-
 func (c_ ClassDescription) SetToOneRelationshipKeys(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setToOneRelationshipKeys:"), objc.String(value))
 }

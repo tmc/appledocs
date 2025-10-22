@@ -46,7 +46,6 @@ type IOrderedCollectionDifference interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference
-
 type OrderedCollectionDifference struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewOrderedCollectionDifference() OrderedCollectionDifference {
 
 
 
-
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:)
-
 func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjects(inserts IIndexSet, insertedObjects []objc.ID, removes IIndexSet, removedObjects []objc.ID) OrderedCollectionDifference {
 	instance := getOrderedCollectionDifferenceClass().Alloc()
 	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:"), inserts, insertedObjects, removes, removedObjects)
@@ -105,13 +102,11 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 }
 
 
-
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:additionalChanges:)
-
-func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjectsAdditionalChanges(inserts IIndexSet, insertedObjects []objc.ID, removes IIndexSet, removedObjects []objc.ID, changes []unsafe.IPointer) OrderedCollectionDifference {
+func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjectsAdditionalChanges(inserts IIndexSet, insertedObjects []objc.ID, removes IIndexSet, removedObjects []objc.ID, changes []unsafe.Pointer) OrderedCollectionDifference {
 	instance := getOrderedCollectionDifferenceClass().Alloc()
 	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:"), inserts, insertedObjects, removes, removedObjects, changes)
 	rv.Autorelease()
@@ -120,12 +115,10 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 
 
 
-
 // Calculate the difference between two objects in the reverse direction of comparison.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/inverse()
-
 func (o_ OrderedCollectionDifference) InverseDifference() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("inverseDifference"))
 	return rv
@@ -136,7 +129,6 @@ func (o_ OrderedCollectionDifference) InverseDifference() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/hasChanges
-
 func (o_ OrderedCollectionDifference) HasChanges() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasChanges"))
 	return rv
@@ -147,7 +139,6 @@ func (o_ OrderedCollectionDifference) HasChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/removals
-
 func (o_ OrderedCollectionDifference) Removals() []unsafe.Pointer {
 	rv := objc.Send[[]unsafe.Pointer](o_.ID, objc.Sel("removals"))
 	return rv
@@ -158,7 +149,6 @@ func (o_ OrderedCollectionDifference) Removals() []unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference/insertions
-
 func (o_ OrderedCollectionDifference) Insertions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("insertions"))
 	return rv
@@ -169,7 +159,6 @@ func (o_ OrderedCollectionDifference) Insertions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference/insertions
-
 func (o_ OrderedCollectionDifference) SetInsertions(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setInsertions:"), value)
 }

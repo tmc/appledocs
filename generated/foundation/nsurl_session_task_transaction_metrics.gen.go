@@ -94,7 +94,7 @@ type IURLSessionTaskTransactionMetrics interface {
 	SetRequestStartDate(value IDate)
 	ResourceFetchType() unsafe.Pointer
 	SetResourceFetchType(value unsafe.Pointer)
-	Response() NSURLResponse
+	Response() URLResponse
 	SetResponse(value IURLResponse)
 	ResponseEndDate() Date
 	SetResponseEndDate(value IDate)
@@ -115,7 +115,6 @@ type IURLSessionTaskTransactionMetrics interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskTransactionMetrics
-
 type URLSessionTaskTransactionMetrics struct {
 	objectivec.Object
 }
@@ -164,7 +163,6 @@ func NewURLSessionTaskTransactionMetrics() URLSessionTaskTransactionMetrics {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/redirectcount
-
 func (u_ URLSessionTaskTransactionMetrics) RedirectCount() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("redirectCount"))
 	return rv
@@ -175,7 +173,6 @@ func (u_ URLSessionTaskTransactionMetrics) RedirectCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/redirectcount
-
 func (u_ URLSessionTaskTransactionMetrics) SetRedirectCount(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRedirectCount:"), value)
 }
@@ -185,7 +182,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetRedirectCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/taskinterval
-
 func (u_ URLSessionTaskTransactionMetrics) TaskInterval() DateInterval {
 	rv := objc.Send[DateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
@@ -196,7 +192,6 @@ func (u_ URLSessionTaskTransactionMetrics) TaskInterval() DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/taskinterval
-
 func (u_ URLSessionTaskTransactionMetrics) SetTaskInterval(value IDateInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskInterval:"), value)
 }
@@ -206,7 +201,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetTaskInterval(value IDateInterval) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/transactionmetrics
-
 func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() NSURLSessionTaskTransactionMetrics {
 	rv := objc.Send[NSURLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
@@ -217,7 +211,6 @@ func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() NSURLSessionTask
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/transactionmetrics
-
 func (u_ URLSessionTaskTransactionMetrics) SetTransactionMetrics(value IURLSessionTaskTransactionMetrics) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTransactionMetrics:"), value)
 }
@@ -227,7 +220,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetTransactionMetrics(value IURLSessi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectenddate
-
 func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("connectEndDate"))
 	return rv
@@ -238,7 +230,6 @@ func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectenddate
-
 func (u_ URLSessionTaskTransactionMetrics) SetConnectEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnectEndDate:"), value)
 }
@@ -248,7 +239,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetConnectEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("connectStartDate"))
 	return rv
@@ -259,7 +249,6 @@ func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SetConnectStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnectStartDate:"), value)
 }
@@ -269,7 +258,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetConnectStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofrequestbodybytesbeforeencoding
-
 func (u_ URLSessionTaskTransactionMetrics) CountOfRequestBodyBytesBeforeEncoding() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfRequestBodyBytesBeforeEncoding"))
 	return rv
@@ -280,7 +268,6 @@ func (u_ URLSessionTaskTransactionMetrics) CountOfRequestBodyBytesBeforeEncoding
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofrequestbodybytesbeforeencoding
-
 func (u_ URLSessionTaskTransactionMetrics) SetCountOfRequestBodyBytesBeforeEncoding(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfRequestBodyBytesBeforeEncoding:"), value)
 }
@@ -290,7 +277,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfRequestBodyBytesBeforeEncod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofrequestbodybytessent
-
 func (u_ URLSessionTaskTransactionMetrics) CountOfRequestBodyBytesSent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfRequestBodyBytesSent"))
 	return rv
@@ -301,7 +287,6 @@ func (u_ URLSessionTaskTransactionMetrics) CountOfRequestBodyBytesSent() unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofrequestbodybytessent
-
 func (u_ URLSessionTaskTransactionMetrics) SetCountOfRequestBodyBytesSent(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfRequestBodyBytesSent:"), value)
 }
@@ -311,7 +296,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfRequestBodyBytesSent(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofrequestheaderbytessent
-
 func (u_ URLSessionTaskTransactionMetrics) CountOfRequestHeaderBytesSent() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfRequestHeaderBytesSent"))
 	return rv
@@ -322,7 +306,6 @@ func (u_ URLSessionTaskTransactionMetrics) CountOfRequestHeaderBytesSent() unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofrequestheaderbytessent
-
 func (u_ URLSessionTaskTransactionMetrics) SetCountOfRequestHeaderBytesSent(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfRequestHeaderBytesSent:"), value)
 }
@@ -332,7 +315,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfRequestHeaderBytesSent(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofresponsebodybytesafterdecoding
-
 func (u_ URLSessionTaskTransactionMetrics) CountOfResponseBodyBytesAfterDecoding() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfResponseBodyBytesAfterDecoding"))
 	return rv
@@ -343,7 +325,6 @@ func (u_ URLSessionTaskTransactionMetrics) CountOfResponseBodyBytesAfterDecoding
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofresponsebodybytesafterdecoding
-
 func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseBodyBytesAfterDecoding(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfResponseBodyBytesAfterDecoding:"), value)
 }
@@ -353,7 +334,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseBodyBytesAfterDecod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofresponsebodybytesreceived
-
 func (u_ URLSessionTaskTransactionMetrics) CountOfResponseBodyBytesReceived() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfResponseBodyBytesReceived"))
 	return rv
@@ -364,7 +344,6 @@ func (u_ URLSessionTaskTransactionMetrics) CountOfResponseBodyBytesReceived() un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofresponsebodybytesreceived
-
 func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseBodyBytesReceived(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfResponseBodyBytesReceived:"), value)
 }
@@ -374,7 +353,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseBodyBytesReceived(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofresponseheaderbytesreceived
-
 func (u_ URLSessionTaskTransactionMetrics) CountOfResponseHeaderBytesReceived() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfResponseHeaderBytesReceived"))
 	return rv
@@ -385,7 +363,6 @@ func (u_ URLSessionTaskTransactionMetrics) CountOfResponseHeaderBytesReceived() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/countofresponseheaderbytesreceived
-
 func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseHeaderBytesReceived(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfResponseHeaderBytesReceived:"), value)
 }
@@ -395,7 +372,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseHeaderBytesReceived
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupenddate
-
 func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("domainLookupEndDate"))
 	return rv
@@ -406,7 +382,6 @@ func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupenddate
-
 func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDomainLookupEndDate:"), value)
 }
@@ -416,7 +391,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("domainLookupStartDate"))
 	return rv
@@ -427,7 +401,6 @@ func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDomainLookupStartDate:"), value)
 }
@@ -435,7 +408,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupStartDate(value IDate)
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainresolutionprotocol
-
 func (u_ URLSessionTaskTransactionMetrics) DomainResolutionProtocol() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("domainResolutionProtocol"))
 	return rv
@@ -444,7 +416,6 @@ func (u_ URLSessionTaskTransactionMetrics) DomainResolutionProtocol() unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainresolutionprotocol
-
 func (u_ URLSessionTaskTransactionMetrics) SetDomainResolutionProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDomainResolutionProtocol:"), value)
 }
@@ -454,7 +425,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainResolutionProtocol(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/fetchstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("fetchStartDate"))
 	return rv
@@ -465,7 +435,6 @@ func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/fetchstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SetFetchStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setFetchStartDate:"), value)
 }
@@ -475,7 +444,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetFetchStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/iscellular
-
 func (u_ URLSessionTaskTransactionMetrics) IsCellular() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isCellular"))
 	return rv
@@ -486,7 +454,6 @@ func (u_ URLSessionTaskTransactionMetrics) IsCellular() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/iscellular
-
 func (u_ URLSessionTaskTransactionMetrics) SetIsCellular(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsCellular:"), value)
 }
@@ -496,7 +463,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsCellular(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isconstrained
-
 func (u_ URLSessionTaskTransactionMetrics) IsConstrained() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isConstrained"))
 	return rv
@@ -507,7 +473,6 @@ func (u_ URLSessionTaskTransactionMetrics) IsConstrained() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isconstrained
-
 func (u_ URLSessionTaskTransactionMetrics) SetIsConstrained(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsConstrained:"), value)
 }
@@ -517,7 +482,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsConstrained(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isexpensive
-
 func (u_ URLSessionTaskTransactionMetrics) IsExpensive() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isExpensive"))
 	return rv
@@ -528,7 +492,6 @@ func (u_ URLSessionTaskTransactionMetrics) IsExpensive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isexpensive
-
 func (u_ URLSessionTaskTransactionMetrics) SetIsExpensive(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsExpensive:"), value)
 }
@@ -538,7 +501,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsExpensive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/ismultipath
-
 func (u_ URLSessionTaskTransactionMetrics) IsMultipath() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isMultipath"))
 	return rv
@@ -549,7 +511,6 @@ func (u_ URLSessionTaskTransactionMetrics) IsMultipath() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/ismultipath
-
 func (u_ URLSessionTaskTransactionMetrics) SetIsMultipath(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsMultipath:"), value)
 }
@@ -559,7 +520,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsMultipath(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isproxyconnection
-
 func (u_ URLSessionTaskTransactionMetrics) IsProxyConnection() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isProxyConnection"))
 	return rv
@@ -570,7 +530,6 @@ func (u_ URLSessionTaskTransactionMetrics) IsProxyConnection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isproxyconnection
-
 func (u_ URLSessionTaskTransactionMetrics) SetIsProxyConnection(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsProxyConnection:"), value)
 }
@@ -580,7 +539,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsProxyConnection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isreusedconnection
-
 func (u_ URLSessionTaskTransactionMetrics) IsReusedConnection() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isReusedConnection"))
 	return rv
@@ -591,7 +549,6 @@ func (u_ URLSessionTaskTransactionMetrics) IsReusedConnection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isreusedconnection
-
 func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsReusedConnection:"), value)
 }
@@ -601,7 +558,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-
 func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("localAddress"))
 	return rv
@@ -612,7 +568,6 @@ func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-
 func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalAddress:"), objc.String(value))
 }
@@ -622,7 +577,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localport
-
 func (u_ URLSessionTaskTransactionMetrics) LocalPort() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("localPort"))
 	return rv
@@ -633,7 +587,6 @@ func (u_ URLSessionTaskTransactionMetrics) LocalPort() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localport
-
 func (u_ URLSessionTaskTransactionMetrics) SetLocalPort(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalPort:"), value)
 }
@@ -643,7 +596,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetLocalPort(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/negotiatedtlsciphersuite
-
 func (u_ URLSessionTaskTransactionMetrics) NegotiatedTLSCipherSuite() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("negotiatedTLSCipherSuite"))
 	return rv
@@ -654,7 +606,6 @@ func (u_ URLSessionTaskTransactionMetrics) NegotiatedTLSCipherSuite() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/negotiatedtlsciphersuite
-
 func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSCipherSuite(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNegotiatedTLSCipherSuite:"), value)
 }
@@ -664,7 +615,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSCipherSuite(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/negotiatedtlsprotocolversion
-
 func (u_ URLSessionTaskTransactionMetrics) NegotiatedTLSProtocolVersion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("negotiatedTLSProtocolVersion"))
 	return rv
@@ -675,7 +625,6 @@ func (u_ URLSessionTaskTransactionMetrics) NegotiatedTLSProtocolVersion() unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/negotiatedtlsprotocolversion
-
 func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSProtocolVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNegotiatedTLSProtocolVersion:"), value)
 }
@@ -685,7 +634,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSProtocolVersion(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-
 func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("networkProtocolName"))
 	return rv
@@ -696,7 +644,6 @@ func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-
 func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkProtocolName:"), objc.String(value))
 }
@@ -706,7 +653,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-
 func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("remoteAddress"))
 	return rv
@@ -717,7 +663,6 @@ func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-
 func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRemoteAddress:"), objc.String(value))
 }
@@ -727,7 +672,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteport
-
 func (u_ URLSessionTaskTransactionMetrics) RemotePort() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("remotePort"))
 	return rv
@@ -738,7 +682,6 @@ func (u_ URLSessionTaskTransactionMetrics) RemotePort() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteport
-
 func (u_ URLSessionTaskTransactionMetrics) SetRemotePort(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRemotePort:"), value)
 }
@@ -748,7 +691,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetRemotePort(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/request
-
 func (u_ URLSessionTaskTransactionMetrics) Request() URLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
@@ -759,7 +701,6 @@ func (u_ URLSessionTaskTransactionMetrics) Request() URLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/request
-
 func (u_ URLSessionTaskTransactionMetrics) SetRequest(value IURLRequest) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
@@ -769,7 +710,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetRequest(value IURLRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requestenddate
-
 func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("requestEndDate"))
 	return rv
@@ -780,7 +720,6 @@ func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requestenddate
-
 func (u_ URLSessionTaskTransactionMetrics) SetRequestEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequestEndDate:"), value)
 }
@@ -790,7 +729,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetRequestEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requeststartdate
-
 func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("requestStartDate"))
 	return rv
@@ -801,7 +739,6 @@ func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requeststartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SetRequestStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequestStartDate:"), value)
 }
@@ -811,7 +748,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetRequestStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/resourcefetchtype
-
 func (u_ URLSessionTaskTransactionMetrics) ResourceFetchType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("resourceFetchType"))
 	return rv
@@ -822,7 +758,6 @@ func (u_ URLSessionTaskTransactionMetrics) ResourceFetchType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/resourcefetchtype
-
 func (u_ URLSessionTaskTransactionMetrics) SetResourceFetchType(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResourceFetchType:"), value)
 }
@@ -832,9 +767,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetResourceFetchType(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
-
-func (u_ URLSessionTaskTransactionMetrics) Response() NSURLResponse {
-	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
+func (u_ URLSessionTaskTransactionMetrics) Response() URLResponse {
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -843,7 +777,6 @@ func (u_ URLSessionTaskTransactionMetrics) Response() NSURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
-
 func (u_ URLSessionTaskTransactionMetrics) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }
@@ -853,7 +786,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetResponse(value IURLResponse) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responseenddate
-
 func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("responseEndDate"))
 	return rv
@@ -864,7 +796,6 @@ func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responseenddate
-
 func (u_ URLSessionTaskTransactionMetrics) SetResponseEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponseEndDate:"), value)
 }
@@ -874,7 +805,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetResponseEndDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responsestartdate
-
 func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("responseStartDate"))
 	return rv
@@ -885,7 +815,6 @@ func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responsestartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SetResponseStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponseStartDate:"), value)
 }
@@ -895,7 +824,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetResponseStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionenddate
-
 func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("secureConnectionEndDate"))
 	return rv
@@ -906,7 +834,6 @@ func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionenddate
-
 func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSecureConnectionEndDate:"), value)
 }
@@ -916,7 +843,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionEndDate(value IDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() Date {
 	rv := objc.Send[Date](u_.ID, objc.Sel("secureConnectionStartDate"))
 	return rv
@@ -927,7 +853,6 @@ func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionstartdate
-
 func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSecureConnectionStartDate:"), value)
 }

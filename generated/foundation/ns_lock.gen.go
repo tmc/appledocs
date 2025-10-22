@@ -45,7 +45,6 @@ type ILock interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock
-
 type Lock struct {
 	objectivec.Object
 }
@@ -90,24 +89,20 @@ func NewLock() Lock {
 
 
 
-
 // Attempts to acquire a lock before a given time and returns a Boolean value indicating whether the attempt was successful.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/lock(before:)
-
 func (l_ Lock) LockBeforeDate(limit IDate) bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
 
 
-
 // Attempts to acquire a lock and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/try()
-
 func (l_ Lock) TryLock() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("tryLock"))
 	return rv
@@ -118,7 +113,6 @@ func (l_ Lock) TryLock() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-
 func (l_ Lock) Name() string {
 	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
@@ -129,7 +123,6 @@ func (l_ Lock) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-
 func (l_ Lock) SetName(value string) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }

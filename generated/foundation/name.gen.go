@@ -36,7 +36,6 @@ type Iname interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/name-c.ivar
-
 type name struct {
 	objectivec.Object
 }

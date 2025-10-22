@@ -30,7 +30,7 @@ type _HTTPCookieClass struct {
 // An interface definition for the [HTTPCookie] class.
 type IHTTPCookie interface {
 	objectivec.IObject
-	Properties() unsafe.Pointer
+	Properties() IDictionary
 	Comment() string
 	SetComment(value string)
 	CommentURL() URL
@@ -68,7 +68,6 @@ type IHTTPCookie interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie
-
 type HTTPCookie struct {
 	objectivec.Object
 }
@@ -117,9 +116,8 @@ func NewHTTPCookie() HTTPCookie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/properties
-
-func (h_ HTTPCookie) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
+func (h_ HTTPCookie) Properties() IDictionary {
+	rv := objc.Send[IDictionary](h_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -128,7 +126,6 @@ func (h_ HTTPCookie) Properties() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
-
 func (h_ HTTPCookie) Comment() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("comment"))
 	return rv
@@ -139,7 +136,6 @@ func (h_ HTTPCookie) Comment() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
-
 func (h_ HTTPCookie) SetComment(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setComment:"), objc.String(value))
 }
@@ -149,7 +145,6 @@ func (h_ HTTPCookie) SetComment(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/commenturl
-
 func (h_ HTTPCookie) CommentURL() URL {
 	rv := objc.Send[URL](h_.ID, objc.Sel("commentURL"))
 	return rv
@@ -160,7 +155,6 @@ func (h_ HTTPCookie) CommentURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/commenturl
-
 func (h_ HTTPCookie) SetCommentURL(value IURL) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCommentURL:"), value)
 }
@@ -170,7 +164,6 @@ func (h_ HTTPCookie) SetCommentURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
-
 func (h_ HTTPCookie) Domain() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("domain"))
 	return rv
@@ -181,7 +174,6 @@ func (h_ HTTPCookie) Domain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
-
 func (h_ HTTPCookie) SetDomain(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), objc.String(value))
 }
@@ -191,7 +183,6 @@ func (h_ HTTPCookie) SetDomain(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/expiresdate
-
 func (h_ HTTPCookie) ExpiresDate() Date {
 	rv := objc.Send[Date](h_.ID, objc.Sel("expiresDate"))
 	return rv
@@ -202,7 +193,6 @@ func (h_ HTTPCookie) ExpiresDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/expiresdate
-
 func (h_ HTTPCookie) SetExpiresDate(value IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpiresDate:"), value)
 }
@@ -212,7 +202,6 @@ func (h_ HTTPCookie) SetExpiresDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/ishttponly
-
 func (h_ HTTPCookie) IsHTTPOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isHTTPOnly"))
 	return rv
@@ -223,7 +212,6 @@ func (h_ HTTPCookie) IsHTTPOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/ishttponly
-
 func (h_ HTTPCookie) SetIsHTTPOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsHTTPOnly:"), value)
 }
@@ -233,7 +221,6 @@ func (h_ HTTPCookie) SetIsHTTPOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issecure
-
 func (h_ HTTPCookie) IsSecure() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSecure"))
 	return rv
@@ -244,7 +231,6 @@ func (h_ HTTPCookie) IsSecure() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issecure
-
 func (h_ HTTPCookie) SetIsSecure(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSecure:"), value)
 }
@@ -254,7 +240,6 @@ func (h_ HTTPCookie) SetIsSecure(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-
 func (h_ HTTPCookie) IsSessionOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
 	return rv
@@ -265,7 +250,6 @@ func (h_ HTTPCookie) IsSessionOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-
 func (h_ HTTPCookie) SetIsSessionOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
 }
@@ -275,7 +259,6 @@ func (h_ HTTPCookie) SetIsSessionOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
-
 func (h_ HTTPCookie) Name() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
@@ -286,7 +269,6 @@ func (h_ HTTPCookie) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
-
 func (h_ HTTPCookie) SetName(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -296,7 +278,6 @@ func (h_ HTTPCookie) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
-
 func (h_ HTTPCookie) Path() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("path"))
 	return rv
@@ -307,7 +288,6 @@ func (h_ HTTPCookie) Path() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
-
 func (h_ HTTPCookie) SetPath(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPath:"), objc.String(value))
 }
@@ -317,7 +297,6 @@ func (h_ HTTPCookie) SetPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
-
 func (h_ HTTPCookie) PortList() Number {
 	rv := objc.Send[Number](h_.ID, objc.Sel("portList"))
 	return rv
@@ -328,7 +307,6 @@ func (h_ HTTPCookie) PortList() Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
-
 func (h_ HTTPCookie) SetPortList(value INumber) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPortList:"), value)
 }
@@ -338,7 +316,6 @@ func (h_ HTTPCookie) SetPortList(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/samesitepolicy
-
 func (h_ HTTPCookie) SameSitePolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sameSitePolicy"))
 	return rv
@@ -349,7 +326,6 @@ func (h_ HTTPCookie) SameSitePolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/samesitepolicy
-
 func (h_ HTTPCookie) SetSameSitePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSameSitePolicy:"), value)
 }
@@ -359,7 +335,6 @@ func (h_ HTTPCookie) SetSameSitePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
-
 func (h_ HTTPCookie) Value() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("value"))
 	return rv
@@ -370,7 +345,6 @@ func (h_ HTTPCookie) Value() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
-
 func (h_ HTTPCookie) SetValue(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), objc.String(value))
 }
@@ -380,7 +354,6 @@ func (h_ HTTPCookie) SetValue(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/version
-
 func (h_ HTTPCookie) Version() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("version"))
 	return rv
@@ -391,7 +364,6 @@ func (h_ HTTPCookie) Version() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/version
-
 func (h_ HTTPCookie) SetVersion(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), value)
 }

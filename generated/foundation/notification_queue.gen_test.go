@@ -13,7 +13,7 @@ var _ = foundation.NewNotificationQueue
 // Initializes and returns a notification queue for the specified notification center.
 func ExampleNewNotificationQueueWithNotificationCenter() {
 	_ = foundation.NewNotificationQueueWithNotificationCenter(
-		foundation.NSNotificationCenter{}, // notificationCenter NSNotificationCenter
+		foundation.NotificationCenter{}, // notificationCenter NotificationCenter
 	)
 	// Output:
 }

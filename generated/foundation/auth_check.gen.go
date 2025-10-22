@@ -36,7 +36,6 @@ type IauthCheck interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/authCheck
-
 type authCheck struct {
 	objectivec.Object
 }

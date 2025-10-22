@@ -49,7 +49,6 @@ type IScriptSuiteRegistry interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry
-
 type ScriptSuiteRegistry struct {
 	objectivec.Object
 }
@@ -94,68 +93,56 @@ func NewScriptSuiteRegistry() ScriptSuiteRegistry {
 
 
 
-
 // Returns the command description identified by a suite’s four-character Apple event code of the class ( ) and the four-character Apple event code of the command ( ).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/commandDescription(withAppleEventClass:andAppleEventCode:)
-
 func (s_ ScriptSuiteRegistry) CommandDescriptionWithAppleEventClassAndAppleEventCode(appleEventClassCode unsafe.Pointer, appleEventIDCode unsafe.Pointer) ScriptCommandDescription {
 	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("commandDescriptionWithAppleEventClass:andAppleEventCode:"), appleEventClassCode, appleEventIDCode)
 	return rv
 }
 
 
-
 // Loads the suite definition encapsulated in ; previously, this suite definition was parsed from a property list contained in a framework or in .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/loadSuite(with:from:)
-
 func (s_ ScriptSuiteRegistry) LoadSuiteWithDictionaryFromBundle(suiteDeclaration objectivec.IObject, bundle IBundle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("loadSuiteWithDictionary:fromBundle:"), suiteDeclaration, bundle)
 }
-
 
 
 // Loads the suite definitions in bundle , invoking for each suite found.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/loadSuites(from:)
-
 func (s_ ScriptSuiteRegistry) LoadSuitesFromBundle(bundle IBundle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("loadSuitesFromBundle:"), bundle)
 }
-
 
 
 // Registers command description for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the command name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/register(_:)-5mq91
-
 func (s_ ScriptSuiteRegistry) RegisterCommandDescription(commandDescription IScriptCommandDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerCommandDescription:"), commandDescription)
 }
-
 
 
 // Registers class description for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the class name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/register(_:)-9aplw
-
 func (s_ ScriptSuiteRegistry) RegisterClassDescription(classDescription IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerClassDescription:"), classDescription)
 }
-
 
 
 // Returns the name of the suite definition associated with the given four-character Apple event code, .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/suite(forAppleEventCode:)
-
 func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Pointer) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("suiteForAppleEventCode:"), appleEventCode)
 	return rv
@@ -166,7 +153,6 @@ func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry/suitenames
-
 func (s_ ScriptSuiteRegistry) SuiteNames() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("suiteNames"))
 	return rv
@@ -177,7 +163,6 @@ func (s_ ScriptSuiteRegistry) SuiteNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry/suitenames
-
 func (s_ ScriptSuiteRegistry) SetSuiteNames(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteNames:"), objc.String(value))
 }

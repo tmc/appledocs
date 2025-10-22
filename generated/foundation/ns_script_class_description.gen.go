@@ -53,7 +53,6 @@ type IScriptClassDescription interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription
-
 type ScriptClassDescription struct {
 	ClassDescription
 }
@@ -100,12 +99,10 @@ func NewScriptClassDescription() ScriptClassDescription {
 
 
 
-
 // Returns the name of the declared type of the attribute or relationship identified by the passed key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
-
 func (s_ ScriptClassDescription) TypeForKey(key string) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
 	return rv
@@ -116,7 +113,6 @@ func (s_ ScriptClassDescription) TypeForKey(key string) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
-
 func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
 	return rv
@@ -127,7 +123,6 @@ func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
-
 func (s_ ScriptClassDescription) SetAppleEventCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
 }
@@ -137,7 +132,6 @@ func (s_ ScriptClassDescription) SetAppleEventCode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
-
 func (s_ ScriptClassDescription) ClassName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("className"))
 	return rv
@@ -148,7 +142,6 @@ func (s_ ScriptClassDescription) ClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
-
 func (s_ ScriptClassDescription) SetClassName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), objc.String(value))
 }
@@ -158,7 +151,6 @@ func (s_ ScriptClassDescription) SetClassName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
-
 func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
 	return rv
@@ -169,7 +161,6 @@ func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
-
 func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), objc.String(value))
 }
@@ -179,7 +170,6 @@ func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
-
 func (s_ ScriptClassDescription) ImplementationClassName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("implementationClassName"))
 	return rv
@@ -190,7 +180,6 @@ func (s_ ScriptClassDescription) ImplementationClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
-
 func (s_ ScriptClassDescription) SetImplementationClassName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), objc.String(value))
 }
@@ -200,7 +189,6 @@ func (s_ ScriptClassDescription) SetImplementationClassName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
-
 func (s_ ScriptClassDescription) SuiteName() string {
 	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
 	return rv
@@ -211,7 +199,6 @@ func (s_ ScriptClassDescription) SuiteName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
-
 func (s_ ScriptClassDescription) SetSuiteName(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
 }
@@ -221,7 +208,6 @@ func (s_ ScriptClassDescription) SetSuiteName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-
 func (s_ ScriptClassDescription) Superclass() NSScriptClassDescription {
 	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("superclass"))
 	return rv
@@ -232,7 +218,6 @@ func (s_ ScriptClassDescription) Superclass() NSScriptClassDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-
 func (s_ ScriptClassDescription) SetSuperclass(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }

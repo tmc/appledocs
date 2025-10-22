@@ -32,8 +32,8 @@ type ITask interface {
 	objectivec.IObject
 	LaunchAndReturnError(error_ IError) bool
 	Terminate()
-	Environment() unsafe.Pointer
-	SetEnvironment(value unsafe.Pointer)
+	Environment() IDictionary
+	SetEnvironment(value IDictionary)
 	ExecutableURL() URL
 	SetExecutableURL(value IURL)
 	LaunchRequirementData() NSData
@@ -76,7 +76,6 @@ type ITask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process
-
 type Task struct {
 	objectivec.Object
 }
@@ -122,24 +121,20 @@ func NewTask() Task {
 
 
 
-
 // Runs the process with the current environment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run()
-
 func (t_ Task) LaunchAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error_)
 	return rv
 }
 
 
-
 // Sends a terminate signal to the receiver and all of its subtasks.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminate()
-
 func (t_ Task) Terminate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("terminate"))
 }
@@ -149,9 +144,8 @@ func (t_ Task) Terminate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
-
-func (t_ Task) Environment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("environment"))
+func (t_ Task) Environment() IDictionary {
+	rv := objc.Send[IDictionary](t_.ID, objc.Sel("environment"))
 	return rv
 }
 
@@ -160,8 +154,7 @@ func (t_ Task) Environment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
-
-func (t_ Task) SetEnvironment(value unsafe.Pointer) {
+func (t_ Task) SetEnvironment(value IDictionary) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEnvironment:"), value)
 }
 
@@ -170,7 +163,6 @@ func (t_ Task) SetEnvironment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
-
 func (t_ Task) ExecutableURL() URL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("executableURL"))
 	return rv
@@ -181,7 +173,6 @@ func (t_ Task) ExecutableURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
-
 func (t_ Task) SetExecutableURL(value IURL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExecutableURL:"), value)
 }
@@ -189,7 +180,6 @@ func (t_ Task) SetExecutableURL(value IURL) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-
 func (t_ Task) LaunchRequirementData() NSData {
 	rv := objc.Send[NSData](t_.ID, objc.Sel("launchRequirementData"))
 	return rv
@@ -198,7 +188,6 @@ func (t_ Task) LaunchRequirementData() NSData {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-
 func (t_ Task) SetLaunchRequirementData(value IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirementData:"), value)
 }
@@ -208,7 +197,6 @@ func (t_ Task) SetLaunchRequirementData(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/processIdentifier
-
 func (t_ Task) ProcessIdentifier() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("processIdentifier"))
 	return rv
@@ -219,7 +207,6 @@ func (t_ Task) ProcessIdentifier() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-
 func (t_ Task) Arguments() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("arguments"))
 	return rv
@@ -230,7 +217,6 @@ func (t_ Task) Arguments() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-
 func (t_ Task) SetArguments(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), objc.String(value))
 }
@@ -240,7 +226,6 @@ func (t_ Task) SetArguments(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-
 func (t_ Task) CurrentDirectoryPath() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("currentDirectoryPath"))
 	return rv
@@ -251,7 +236,6 @@ func (t_ Task) CurrentDirectoryPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-
 func (t_ Task) SetCurrentDirectoryPath(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), objc.String(value))
 }
@@ -261,7 +245,6 @@ func (t_ Task) SetCurrentDirectoryPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectoryurl
-
 func (t_ Task) CurrentDirectoryURL() URL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("currentDirectoryURL"))
 	return rv
@@ -272,7 +255,6 @@ func (t_ Task) CurrentDirectoryURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectoryurl
-
 func (t_ Task) SetCurrentDirectoryURL(value IURL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryURL:"), value)
 }
@@ -282,7 +264,6 @@ func (t_ Task) SetCurrentDirectoryURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/isrunning
-
 func (t_ Task) IsRunning() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRunning"))
 	return rv
@@ -293,7 +274,6 @@ func (t_ Task) IsRunning() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/isrunning
-
 func (t_ Task) SetIsRunning(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRunning:"), value)
 }
@@ -303,7 +283,6 @@ func (t_ Task) SetIsRunning(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-
 func (t_ Task) LaunchPath() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("launchPath"))
 	return rv
@@ -314,7 +293,6 @@ func (t_ Task) LaunchPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-
 func (t_ Task) SetLaunchPath(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), objc.String(value))
 }
@@ -322,7 +300,6 @@ func (t_ Task) SetLaunchPath(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchrequirement
-
 func (t_ Task) LaunchRequirement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("launchRequirement"))
 	return rv
@@ -331,7 +308,6 @@ func (t_ Task) LaunchRequirement() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchrequirement
-
 func (t_ Task) SetLaunchRequirement(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirement:"), value)
 }
@@ -341,7 +317,6 @@ func (t_ Task) SetLaunchRequirement(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/qualityofservice
-
 func (t_ Task) QualityOfService() QualityOfService {
 	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
@@ -352,7 +327,6 @@ func (t_ Task) QualityOfService() QualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/qualityofservice
-
 func (t_ Task) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
@@ -362,7 +336,6 @@ func (t_ Task) SetQualityOfService(value IQualityOfService) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/standarderror
-
 func (t_ Task) StandardError() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("standardError"))
 	return rv
@@ -373,7 +346,6 @@ func (t_ Task) StandardError() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/standarderror
-
 func (t_ Task) SetStandardError(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardError:"), value)
 }
@@ -383,7 +355,6 @@ func (t_ Task) SetStandardError(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardinput
-
 func (t_ Task) StandardInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("standardInput"))
 	return rv
@@ -394,7 +365,6 @@ func (t_ Task) StandardInput() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardinput
-
 func (t_ Task) SetStandardInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardInput:"), value)
 }
@@ -404,7 +374,6 @@ func (t_ Task) SetStandardInput(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardoutput
-
 func (t_ Task) StandardOutput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("standardOutput"))
 	return rv
@@ -415,7 +384,6 @@ func (t_ Task) StandardOutput() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardoutput
-
 func (t_ Task) SetStandardOutput(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardOutput:"), value)
 }
@@ -425,7 +393,6 @@ func (t_ Task) SetStandardOutput(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationhandler
-
 func (t_ Task) TerminationHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationHandler"))
 	return rv
@@ -436,7 +403,6 @@ func (t_ Task) TerminationHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationhandler
-
 func (t_ Task) SetTerminationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationHandler:"), value)
 }
@@ -446,7 +412,6 @@ func (t_ Task) SetTerminationHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationreason-swift.property
-
 func (t_ Task) TerminationReason() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationReason"))
 	return rv
@@ -457,7 +422,6 @@ func (t_ Task) TerminationReason() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationreason-swift.property
-
 func (t_ Task) SetTerminationReason(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationReason:"), value)
 }
@@ -467,7 +431,6 @@ func (t_ Task) SetTerminationReason(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationstatus
-
 func (t_ Task) TerminationStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationStatus"))
 	return rv
@@ -478,7 +441,6 @@ func (t_ Task) TerminationStatus() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationstatus
-
 func (t_ Task) SetTerminationStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationStatus:"), value)
 }

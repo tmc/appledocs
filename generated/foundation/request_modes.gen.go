@@ -36,7 +36,6 @@ type IrequestModes interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestModes-c.ivar
-
 type requestModes struct {
 	objectivec.Object
 }

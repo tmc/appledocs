@@ -30,10 +30,10 @@ type _AppleScriptClass struct {
 // An interface definition for the [AppleScript] class.
 type IAppleScript interface {
 	objectivec.IObject
-	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo unsafe.Pointer) AppleEventDescriptor
+	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) AppleEventDescriptor
 	IsCompiled() bool
 	SetIsCompiled(value bool)
-	RichTextSource() NSAttributedString
+	RichTextSource() AttributedString
 	SetRichTextSource(value IAttributedString)
 	Source() string
 	SetSource(value string)
@@ -48,7 +48,6 @@ type IAppleScript interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript
-
 type AppleScript struct {
 	objectivec.Object
 }
@@ -93,13 +92,11 @@ func NewAppleScript() AppleScript {
 
 
 
-
 // Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
-
-func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo unsafe.Pointer) AppleEventDescriptor {
+func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
 	return rv
 }
@@ -109,7 +106,6 @@ func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
-
 func (a_ AppleScript) IsCompiled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompiled"))
 	return rv
@@ -120,7 +116,6 @@ func (a_ AppleScript) IsCompiled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
-
 func (a_ AppleScript) SetIsCompiled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompiled:"), value)
 }
@@ -130,9 +125,8 @@ func (a_ AppleScript) SetIsCompiled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
-
-func (a_ AppleScript) RichTextSource() NSAttributedString {
-	rv := objc.Send[NSAttributedString](a_.ID, objc.Sel("richTextSource"))
+func (a_ AppleScript) RichTextSource() AttributedString {
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("richTextSource"))
 	return rv
 }
 
@@ -141,7 +135,6 @@ func (a_ AppleScript) RichTextSource() NSAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
-
 func (a_ AppleScript) SetRichTextSource(value IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRichTextSource:"), value)
 }
@@ -151,7 +144,6 @@ func (a_ AppleScript) SetRichTextSource(value IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-
 func (a_ AppleScript) Source() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("source"))
 	return rv
@@ -162,7 +154,6 @@ func (a_ AppleScript) Source() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-
 func (a_ AppleScript) SetSource(value string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), objc.String(value))
 }

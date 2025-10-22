@@ -50,7 +50,6 @@ type IHashTable interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable
-
 type HashTable struct {
 	objectivec.Object
 }
@@ -95,13 +94,11 @@ func NewHashTable() HashTable {
 
 
 
-
 // Returns a hash table with given pointer functions options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
-
-func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
+func NewHashTableWithOptions(options NSPointerFunctionsOptions) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
@@ -112,7 +109,6 @@ func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/hashTableWithWeakObjects
-
 func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("hashTableWithWeakObjects"))
 	return rv
@@ -123,19 +119,16 @@ func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
-
-func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) unsafe.Pointer {
+func (hc _HashTableClass) HashTableWithOptions(options NSPointerFunctionsOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
-
 
 
 // Adds a given object to the hash table.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/add(_:)
-
 func (h_ HashTable) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
 }
@@ -145,7 +138,6 @@ func (h_ HashTable) AddObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
-
 func (h_ HashTable) Count() uint {
 	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
 	return rv
@@ -156,7 +148,6 @@ func (h_ HashTable) Count() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/pointerFunctions
-
 func (h_ HashTable) PointerFunctions() NSPointerFunctions {
 	rv := objc.Send[NSPointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
 	return rv
@@ -167,7 +158,6 @@ func (h_ HashTable) PointerFunctions() NSPointerFunctions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
-
 func (h_ HashTable) AllObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allObjects"))
 	return rv
@@ -178,7 +168,6 @@ func (h_ HashTable) AllObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/allobjects
-
 func (h_ HashTable) SetAllObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAllObjects:"), value)
 }
@@ -188,7 +177,6 @@ func (h_ HashTable) SetAllObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
-
 func (h_ HashTable) AnyObject() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anyObject"))
 	return rv
@@ -199,7 +187,6 @@ func (h_ HashTable) AnyObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/anyobject
-
 func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnyObject:"), value)
 }
@@ -209,7 +196,6 @@ func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
-
 func (h_ HashTable) SetRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("setRepresentation"))
 	return rv
@@ -220,7 +206,6 @@ func (h_ HashTable) SetRepresentation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/setrepresentation
-
 func (h_ HashTable) SetSetRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSetRepresentation:"), value)
 }

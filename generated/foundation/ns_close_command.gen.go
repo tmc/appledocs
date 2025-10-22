@@ -41,7 +41,6 @@ type ICloseCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand
-
 type CloseCommand struct {
 	ScriptCommand
 }
@@ -92,7 +91,6 @@ func NewCloseCommand() CloseCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand/saveOptions
-
 func (c_ CloseCommand) SaveOptions() SaveOptions {
 	rv := objc.Send[SaveOptions](c_.ID, objc.Sel("saveOptions"))
 	return rv

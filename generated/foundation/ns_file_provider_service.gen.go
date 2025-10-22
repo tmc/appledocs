@@ -43,7 +43,6 @@ type IFileProviderService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService
-
 type FileProviderService struct {
 	objectivec.Object
 }
@@ -88,12 +87,10 @@ func NewFileProviderService() FileProviderService {
 
 
 
-
 // Asynchronously returns the service’s connection object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService/getFileProviderConnection(completionHandler:)
-
 func (f_ FileProviderService) GetFileProviderConnectionWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("getFileProviderConnectionWithCompletionHandler:"), completionHandler)
 }
@@ -103,7 +100,6 @@ func (f_ FileProviderService) GetFileProviderConnectionWithCompletionHandler(com
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService/name
-
 func (f_ FileProviderService) Name() FileProviderServiceName {
 	rv := objc.Send[FileProviderServiceName](f_.ID, objc.Sel("name"))
 	return rv

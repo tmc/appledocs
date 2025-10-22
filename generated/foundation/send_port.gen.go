@@ -36,7 +36,6 @@ type IsendPort interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/sendPort-c.ivar
-
 type sendPort struct {
 	objectivec.Object
 }

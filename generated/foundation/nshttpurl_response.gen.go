@@ -42,7 +42,6 @@ type IHTTPURLResponse interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse
-
 type HTTPURLResponse struct {
 	URLResponse
 }
@@ -93,7 +92,6 @@ func NewHTTPURLResponse() HTTPURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
-
 func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) String {
 	rv := objc.Send[String](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
 	return rv
@@ -104,7 +102,6 @@ func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) Str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/allHeaderFields
-
 func (h_ HTTPURLResponse) AllHeaderFields() objc.ID {
 	rv := objc.Send[objc.ID](h_.ID, objc.Sel("allHeaderFields"))
 	return rv
@@ -115,7 +112,6 @@ func (h_ HTTPURLResponse) AllHeaderFields() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/statusCode
-
 func (h_ HTTPURLResponse) StatusCode() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
 	return rv

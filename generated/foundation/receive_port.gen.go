@@ -36,7 +36,6 @@ type IreceivePort interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/receivePort-c.ivar
-
 type receivePort struct {
 	objectivec.Object
 }

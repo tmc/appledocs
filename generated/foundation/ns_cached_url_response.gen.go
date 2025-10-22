@@ -49,7 +49,6 @@ type ICachedURLResponse interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse
-
 type CachedURLResponse struct {
 	objectivec.Object
 }
@@ -98,7 +97,6 @@ func NewCachedURLResponse() CachedURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
-
 func (c_ CachedURLResponse) Data() Data {
 	rv := objc.Send[Data](c_.ID, objc.Sel("data"))
 	return rv
@@ -109,7 +107,6 @@ func (c_ CachedURLResponse) Data() Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
-
 func (c_ CachedURLResponse) SetData(value IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setData:"), value)
 }
@@ -119,7 +116,6 @@ func (c_ CachedURLResponse) SetData(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
-
 func (c_ CachedURLResponse) Response() NSURLResponse {
 	rv := objc.Send[NSURLResponse](c_.ID, objc.Sel("response"))
 	return rv
@@ -130,7 +126,6 @@ func (c_ CachedURLResponse) Response() NSURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
-
 func (c_ CachedURLResponse) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResponse:"), value)
 }
@@ -140,7 +135,6 @@ func (c_ CachedURLResponse) SetResponse(value IURLResponse) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/storagepolicy
-
 func (c_ CachedURLResponse) StoragePolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("storagePolicy"))
 	return rv
@@ -151,7 +145,6 @@ func (c_ CachedURLResponse) StoragePolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/storagepolicy
-
 func (c_ CachedURLResponse) SetStoragePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStoragePolicy:"), value)
 }
@@ -161,7 +154,6 @@ func (c_ CachedURLResponse) SetStoragePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/userinfo
-
 func (c_ CachedURLResponse) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userInfo"))
 	return rv
@@ -172,7 +164,6 @@ func (c_ CachedURLResponse) UserInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/userinfo
-
 func (c_ CachedURLResponse) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), value)
 }

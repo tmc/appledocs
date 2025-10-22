@@ -43,7 +43,6 @@ type IGarbageCollector interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGarbageCollector
-
 type GarbageCollector struct {
 	objectivec.Object
 }
@@ -88,23 +87,19 @@ func NewGarbageCollector() GarbageCollector {
 
 
 
-
 // Specifies that a given pointer will not be collected.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGarbageCollector/disableCollectorForPointer:
-
 func (g_ GarbageCollector) DisableCollectorForPointer(ptr unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("disableCollectorForPointer:"), ptr)
 }
-
 
 
 // Specifies that a given pointer may be collected.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGarbageCollector/enableCollectorForPointer:
-
 func (g_ GarbageCollector) EnableCollectorForPointer(ptr unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("enableCollectorForPointer:"), ptr)
 }

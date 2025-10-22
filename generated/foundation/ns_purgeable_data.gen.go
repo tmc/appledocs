@@ -40,7 +40,6 @@ type IPurgeableData interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPurgeableData
-
 type PurgeableData struct {
 	MutableData
 }

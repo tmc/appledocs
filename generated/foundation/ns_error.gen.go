@@ -39,7 +39,7 @@ type IError interface {
 	LocalizedRecoverySuggestion() string
 	RecoveryAttempter() objc.ID
 	UnderlyingErrors() []Error
-	UserInfo() unsafe.Pointer
+	UserInfo() IDictionary
 	NSCocoaErrorDomain() string
 	NSMachErrorDomain() string
 	NSOSStatusErrorDomain() string
@@ -59,7 +59,6 @@ type IError interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError
-
 type Error struct {
 	objectivec.Object
 }
@@ -104,13 +103,11 @@ func NewError() Error {
 
 
 
-
 // Returns an object initialized for a given domain and code with a given dictionary.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
-
-func NewErrorWithDomainCodeUserInfo(domain IErrorDomain, code int, dict unsafe.Pointer) Error {
+func NewErrorWithDomainCodeUserInfo(domain ErrorDomain, code int, dict IDictionary) Error {
 	instance := getErrorClass().Alloc()
 	rv := objc.Send[Error](instance.ID, objc.Sel("initWithDomain:code:userInfo:"), domain, code, dict)
 	rv.Autorelease()
@@ -123,8 +120,7 @@ func NewErrorWithDomainCodeUserInfo(domain IErrorDomain, code int, dict unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
-
-func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain IErrorDomain, code int, dict unsafe.Pointer) unsafe.Pointer {
+func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain ErrorDomain, code int, dict IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("errorWithDomain:code:userInfo:"), domain, code, dict)
 	return rv
 }
@@ -134,7 +130,6 @@ func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain IErrorDomain, code int,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForCollision(with:)
-
 func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForCollisionWithItem:"), existingItem)
 	return rv
@@ -143,7 +138,6 @@ func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForNonExistentItem(withIdentifier:)
-
 func (ec _ErrorClass) FileProviderErrorForNonExistentItemWithIdentifier(itemIdentifier unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForNonExistentItemWithIdentifier:"), itemIdentifier)
 	return rv
@@ -152,7 +146,6 @@ func (ec _ErrorClass) FileProviderErrorForNonExistentItemWithIdentifier(itemIden
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForRejectedDeletion(of:)
-
 func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForRejectedDeletionOfItem:"), updatedVersion)
 	return rv
@@ -163,8 +156,7 @@ func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
-
-func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain IErrorDomain, provider unsafe.Pointer) {
+func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain ErrorDomain, provider unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("setUserInfoValueProviderForDomain:provider:"), errorDomain, provider)
 }
 
@@ -173,8 +165,7 @@ func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain IErr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
-
-func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain IErrorDomain) {
+func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain ErrorDomain) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
 }
 
@@ -183,7 +174,6 @@ func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain IErrorDomain) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/code
-
 func (e_ Error) Code() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("code"))
 	return rv
@@ -194,7 +184,6 @@ func (e_ Error) Code() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/domain
-
 func (e_ Error) Domain() ErrorDomain {
 	rv := objc.Send[ErrorDomain](e_.ID, objc.Sel("domain"))
 	return rv
@@ -205,7 +194,6 @@ func (e_ Error) Domain() ErrorDomain {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/helpAnchor
-
 func (e_ Error) HelpAnchor() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("helpAnchor"))
 	return rv
@@ -216,7 +204,6 @@ func (e_ Error) HelpAnchor() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedDescription
-
 func (e_ Error) LocalizedDescription() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedDescription"))
 	return rv
@@ -227,7 +214,6 @@ func (e_ Error) LocalizedDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedFailureReason
-
 func (e_ Error) LocalizedFailureReason() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedFailureReason"))
 	return rv
@@ -238,7 +224,6 @@ func (e_ Error) LocalizedFailureReason() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoveryOptions
-
 func (e_ Error) LocalizedRecoveryOptions() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("localizedRecoveryOptions"))
 	return rv
@@ -249,7 +234,6 @@ func (e_ Error) LocalizedRecoveryOptions() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoverySuggestion
-
 func (e_ Error) LocalizedRecoverySuggestion() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedRecoverySuggestion"))
 	return rv
@@ -260,7 +244,6 @@ func (e_ Error) LocalizedRecoverySuggestion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/recoveryAttempter
-
 func (e_ Error) RecoveryAttempter() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("recoveryAttempter"))
 	return rv
@@ -269,7 +252,6 @@ func (e_ Error) RecoveryAttempter() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/underlyingErrors
-
 func (e_ Error) UnderlyingErrors() []Error {
 	rv := objc.Send[[]Error](e_.ID, objc.Sel("underlyingErrors"))
 	return rv
@@ -280,9 +262,8 @@ func (e_ Error) UnderlyingErrors() []Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-
-func (e_ Error) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
+func (e_ Error) UserInfo() IDictionary {
+	rv := objc.Send[IDictionary](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -291,7 +272,6 @@ func (e_ Error) UserInfo() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
-
 func (e_ Error) NSCocoaErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
 	return rv
@@ -302,7 +282,6 @@ func (e_ Error) NSCocoaErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmacherrordomain
-
 func (e_ Error) NSMachErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMachErrorDomain"))
 	return rv
@@ -313,7 +292,6 @@ func (e_ Error) NSMachErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsosstatuserrordomain
-
 func (e_ Error) NSOSStatusErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSOSStatusErrorDomain"))
 	return rv
@@ -324,7 +302,6 @@ func (e_ Error) NSOSStatusErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsposixerrordomain
-
 func (e_ Error) NSPOSIXErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSPOSIXErrorDomain"))
 	return rv
@@ -335,7 +312,6 @@ func (e_ Error) NSPOSIXErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey
-
 func (e_ Error) NSRecoveryAttempterErrorKey() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSRecoveryAttempterErrorKey"))
 	return rv
@@ -346,7 +322,6 @@ func (e_ Error) NSRecoveryAttempterErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-
 func (e_ Error) NSStreamSOCKSErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
@@ -357,7 +332,6 @@ func (e_ Error) NSStreamSOCKSErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-
 func (e_ Error) NSStreamSocketSSLErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
@@ -368,7 +342,6 @@ func (e_ Error) NSStreamSocketSSLErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlerrordomain
-
 func (e_ Error) NSURLErrorDomain() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSURLErrorDomain"))
 	return rv

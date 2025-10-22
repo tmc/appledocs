@@ -30,27 +30,19 @@ type _UserScriptTaskClass struct {
 // An interface definition for the [UserScriptTask] class.
 type IUserScriptTask interface {
 	objectivec.IObject
-	ExecuteWithCompletionHandler(handler unsafe.Pointer)
-	ScriptURL() URL
 }
 
-// An object that executes scripts.
-//
-// The class is able to run all the scripts normally run by the one of its subclasses, however it ignores the results. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any. If you need to execute scripts and get the input and output information use the , , and sub classes.
+// A parent class referenced by other Foundation classes.
 
 
-// An object that executes scripts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask
-
+// A parent class referenced by other Foundation classes. [Full Topic]
 type UserScriptTask struct {
 	objectivec.Object
 }
 
 // UserScriptTaskFrom constructs a [UserScriptTask] from an unsafe.Pointer.
 //
-// An object that executes scripts.
+// A parent class referenced by other Foundation classes.
 func UserScriptTaskFrom(ptr unsafe.Pointer) UserScriptTask {
 	return UserScriptTask{objectivec.Object{objc.ID(ptr)}}
 }
@@ -87,41 +79,5 @@ func NewUserScriptTask() UserScriptTask {
 }
 
 
-
-
-// Return a user script task instance given a URL for a script file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/init(url:)
-
-func NewUserScriptTaskWithURLError(url IURL, error_ IError) UserScriptTask {
-	instance := getUserScriptTaskClass().Alloc()
-	rv := objc.Send[UserScriptTask](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-
-// Executes the script with no input and ignoring any result.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/execute(completionHandler:)
-
-func (u_ UserScriptTask) ExecuteWithCompletionHandler(handler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithCompletionHandler:"), handler)
-}
-
-
-// The URL of the script file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/scriptURL
-
-func (u_ UserScriptTask) ScriptURL() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("scriptURL"))
-	return rv
-}
 
 

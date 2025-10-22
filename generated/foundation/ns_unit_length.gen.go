@@ -40,7 +40,6 @@ type IUnitLength interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength
-
 type UnitLength struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitLength() UnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
-
 func (uc _UnitLengthClass) Hectometers() UnitLength {
 	rv := objc.Send[NSUnitLength](objc.ID(uc.class), objc.Sel("hectometers"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitLengthClass) Hectometers() UnitLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
-
 func (u_ UnitLength) Hectometers() NSUnitLength {
 	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("hectometers"))
 	return rv

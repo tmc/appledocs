@@ -41,7 +41,6 @@ type IQuitCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand
-
 type QuitCommand struct {
 	ScriptCommand
 }
@@ -92,7 +91,6 @@ func NewQuitCommand() QuitCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand/saveOptions
-
 func (q_ QuitCommand) SaveOptions() SaveOptions {
 	rv := objc.Send[SaveOptions](q_.ID, objc.Sel("saveOptions"))
 	return rv

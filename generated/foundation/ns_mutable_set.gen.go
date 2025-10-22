@@ -49,7 +49,6 @@ type IMutableSet interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet
-
 type MutableSet struct {
 	Set
 }
@@ -96,12 +95,10 @@ func NewMutableSet() MutableSet {
 
 
 
-
 // Returns an initialized mutable set with a given initial capacity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(capacity:)
-
 func NewMutableSetWithCapacity(numItems uint) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
@@ -110,10 +107,8 @@ func NewMutableSetWithCapacity(numItems uint) MutableSet {
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(coder:)
-
 func NewMutableSetWithCoder(coder ICoder) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -127,107 +122,88 @@ func NewMutableSetWithCoder(coder ICoder) MutableSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/setWithCapacity:
-
 func (mc _MutableSetClass) SetWithCapacity(numItems uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("setWithCapacity:"), numItems)
 	return rv
 }
 
 
-
 // Adds a given object to the set, if it is not already a member.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/add(_:)
-
 func (m_ MutableSet) AddObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObject:"), object)
 }
-
 
 
 // Adds to the set each object contained in a given array that is not already a member.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/addObjects(from:)
-
 func (m_ MutableSet) AddObjectsFromArray(array []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), array)
 }
-
 
 
 // Evaluates a given predicate against the set’s content and removes from the set those objects for which the predicate returns false.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/filter(using:)
-
 func (m_ MutableSet) FilterUsingPredicate(predicate IPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("filterUsingPredicate:"), predicate)
 }
-
 
 
 // Removes from the receiving set each object that isn’t a member of another given set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/intersect(_:)
-
 func (m_ MutableSet) IntersectSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("intersectSet:"), otherSet)
 }
-
 
 
 // Removes each object in another given set from the receiving set, if present.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/minus(_:)
-
 func (m_ MutableSet) MinusSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("minusSet:"), otherSet)
 }
-
 
 
 // Removes a given object from the set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/remove(_:)
-
 func (m_ MutableSet) RemoveObject(object unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObject:"), object)
 }
-
 
 
 // Empties the set of all of its members.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/removeAllObjects()
-
 func (m_ MutableSet) RemoveAllObjects() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllObjects"))
 }
-
 
 
 // Empties the receiving set, then adds each object contained in another given set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/setSet(_:)
-
 func (m_ MutableSet) SetSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSet:"), otherSet)
 }
-
 
 
 // Adds each object in another given set to the receiving set, if not present.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/union(_:)
-
 func (m_ MutableSet) UnionSet(otherSet unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("unionSet:"), otherSet)
 }

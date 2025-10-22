@@ -46,7 +46,6 @@ type IURLQueryItem interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem
-
 type URLQueryItem struct {
 	objectivec.Object
 }
@@ -95,7 +94,6 @@ func NewURLQueryItem() URLQueryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
-
 func (u_ URLQueryItem) Value() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("value"))
 	return rv
@@ -106,7 +104,6 @@ func (u_ URLQueryItem) Value() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-
 func (u_ URLQueryItem) QueryItems() URLQueryItem {
 	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
@@ -117,7 +114,6 @@ func (u_ URLQueryItem) QueryItems() URLQueryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-
 func (u_ URLQueryItem) SetQueryItems(value IURLQueryItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
 }
@@ -127,7 +123,6 @@ func (u_ URLQueryItem) SetQueryItems(value IURLQueryItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-
 func (u_ URLQueryItem) Name() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("name"))
 	return rv
@@ -138,7 +133,6 @@ func (u_ URLQueryItem) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-
 func (u_ URLQueryItem) SetName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
 }

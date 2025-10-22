@@ -40,7 +40,6 @@ type IMessagePort interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MessagePort
-
 type MessagePort struct {
 	Port
 }

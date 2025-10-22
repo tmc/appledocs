@@ -40,7 +40,6 @@ type IGetCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetCommand
-
 type GetCommand struct {
 	ScriptCommand
 }

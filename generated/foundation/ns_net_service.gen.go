@@ -30,14 +30,14 @@ type _NetServiceClass struct {
 // An interface definition for the [NetService] class.
 type INetService interface {
 	objectivec.IObject
-	GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool
+	GetInputStreamOutputStream(inputStream IInputStream, outputStream unsafe.Pointer) bool
 	Publish()
-	PublishWithOptions(options NetServiceOptions)
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	PublishWithOptions(options NSNetServiceOptions)
+	RemoveFromRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode)
 	Resolve()
-	ResolveWithTimeout(timeout ITimeInterval)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	SetTXTRecordData(recordData IData) bool
+	ResolveWithTimeout(timeout TimeInterval)
+	ScheduleInRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode)
+	SetTXTRecordData(recordData NSData) bool
 	StartMonitoring()
 	Stop()
 	StopMonitoring()
@@ -63,7 +63,6 @@ type INetService interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService
-
 type NetService struct {
 	objectivec.Object
 }
@@ -108,12 +107,10 @@ func NewNetService() NetService {
 
 
 
-
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
-
 func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
 	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), objc.String(domain), objc.String(type_), objc.String(name))
@@ -122,12 +119,10 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 }
 
 
-
 // Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
-
 func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port int) NetService {
 	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
@@ -141,8 +136,7 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
-
-func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) Data {
+func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary) Data {
 	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
 }
@@ -152,142 +146,117 @@ func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
-
-func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
+func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData NSData) IDictionary {
+	rv := objc.Send[IDictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
 }
-
 
 
 // Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/getInputStream(_:outputStream:)
-
-func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool {
+func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, outputStream unsafe.Pointer) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
 	return rv
 }
-
 
 
 // Attempts to advertise the receiver’s on the network.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish()
-
 func (n_ NetService) Publish() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publish"))
 }
-
 
 
 // Attempts to advertise the receiver on the network, with the given options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish(options:)
-
-func (n_ NetService) PublishWithOptions(options NetServiceOptions) {
+func (n_ NetService) PublishWithOptions(options NSNetServiceOptions) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
 }
-
 
 
 // Removes the service from the given run loop for a given mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
-
-func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
+func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
-
 
 
 // Starts a resolve process for the service.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve()
-
 func (n_ NetService) Resolve() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resolve"))
 }
-
 
 
 // Starts a resolve process of a finite duration for the service.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve(withTimeout:)
-
-func (n_ NetService) ResolveWithTimeout(timeout ITimeInterval) {
+func (n_ NetService) ResolveWithTimeout(timeout TimeInterval) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resolveWithTimeout:"), timeout)
 }
-
 
 
 // Adds the service to the specified run loop.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
-
-func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
+func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
-
 
 
 // Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/setTXTRecord(_:)
-
-func (n_ NetService) SetTXTRecordData(recordData IData) bool {
+func (n_ NetService) SetTXTRecordData(recordData NSData) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("setTXTRecordData:"), recordData)
 	return rv
 }
-
 
 
 // Starts the monitoring of TXT-record updates for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/startMonitoring()
-
 func (n_ NetService) StartMonitoring() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("startMonitoring"))
 }
-
 
 
 // Halts a currently running attempt to publish or resolve a service.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stop()
-
 func (n_ NetService) Stop() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stop"))
 }
-
 
 
 // Stops the monitoring of TXT-record updates for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stopMonitoring()
-
 func (n_ NetService) StopMonitoring() {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stopMonitoring"))
 }
-
 
 
 // Returns the TXT record for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/txtRecordData()
-
 func (n_ NetService) TXTRecordData() Data {
 	rv := objc.Send[Data](n_.ID, objc.Sel("TXTRecordData"))
 	return rv
@@ -298,7 +267,6 @@ func (n_ NetService) TXTRecordData() Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/addresses
-
 func (n_ NetService) Addresses() []Data {
 	rv := objc.Send[[]Data](n_.ID, objc.Sel("addresses"))
 	return rv
@@ -309,7 +277,6 @@ func (n_ NetService) Addresses() []Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
-
 func (n_ NetService) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
 	return rv
@@ -320,7 +287,6 @@ func (n_ NetService) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
-
 func (n_ NetService) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -330,7 +296,6 @@ func (n_ NetService) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
-
 func (n_ NetService) Domain() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
 	return rv
@@ -341,7 +306,6 @@ func (n_ NetService) Domain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/hostName
-
 func (n_ NetService) HostName() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("hostName"))
 	return rv
@@ -352,7 +316,6 @@ func (n_ NetService) HostName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
-
 func (n_ NetService) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
@@ -363,7 +326,6 @@ func (n_ NetService) IncludesPeerToPeer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
-
 func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
@@ -373,7 +335,6 @@ func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name
-
 func (n_ NetService) Name() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
@@ -384,7 +345,6 @@ func (n_ NetService) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/port
-
 func (n_ NetService) Port() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("port"))
 	return rv
@@ -395,7 +355,6 @@ func (n_ NetService) Port() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
-
 func (n_ NetService) Type() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv

@@ -41,7 +41,6 @@ type IAttributedStringMarkdownParsingOptions interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions
-
 type AttributedStringMarkdownParsingOptions struct {
 	objectivec.Object
 }
@@ -90,7 +89,6 @@ func NewAttributedStringMarkdownParsingOptions() AttributedStringMarkdownParsing
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/appliesSourcePositionAttributes
-
 func (a_ AttributedStringMarkdownParsingOptions) AppliesSourcePositionAttributes() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("appliesSourcePositionAttributes"))
 	return rv
@@ -101,7 +99,6 @@ func (a_ AttributedStringMarkdownParsingOptions) AppliesSourcePositionAttributes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/appliesSourcePositionAttributes
-
 func (a_ AttributedStringMarkdownParsingOptions) SetAppliesSourcePositionAttributes(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAppliesSourcePositionAttributes:"), value)
 }

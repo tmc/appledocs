@@ -40,7 +40,6 @@ type IUnitFuelEfficiency interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency
-
 type UnitFuelEfficiency struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitFuelEfficiency() UnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
-
 func (uc _UnitFuelEfficiencyClass) MilesPerGallon() UnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](objc.ID(uc.class), objc.Sel("milesPerGallon"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitFuelEfficiencyClass) MilesPerGallon() UnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
-
 func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() UnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](objc.ID(uc.class), objc.Sel("milesPerImperialGallon"))
 	return rv
@@ -111,7 +108,6 @@ func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() UnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerGallon
-
 func (u_ UnitFuelEfficiency) MilesPerGallon() NSUnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerGallon"))
 	return rv
@@ -122,7 +118,6 @@ func (u_ UnitFuelEfficiency) MilesPerGallon() NSUnitFuelEfficiency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
-
 func (u_ UnitFuelEfficiency) MilesPerImperialGallon() NSUnitFuelEfficiency {
 	rv := objc.Send[NSUnitFuelEfficiency](u_.ID, objc.Sel("milesPerImperialGallon"))
 	return rv

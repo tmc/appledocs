@@ -42,7 +42,6 @@ type ISetCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand
-
 type SetCommand struct {
 	ScriptCommand
 }
@@ -93,7 +92,6 @@ func NewSetCommand() SetCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
-
 func (s_ SetCommand) KeySpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
 	return rv
@@ -104,7 +102,6 @@ func (s_ SetCommand) KeySpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
-
 func (s_ SetCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeySpecifier:"), value)
 }

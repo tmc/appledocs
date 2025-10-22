@@ -40,7 +40,6 @@ type IMiddleSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMiddleSpecifier
-
 type MiddleSpecifier struct {
 	ScriptObjectSpecifier
 }

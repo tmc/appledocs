@@ -42,7 +42,6 @@ type IScriptWhoseTest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest
-
 type ScriptWhoseTest struct {
 	objectivec.Object
 }
@@ -87,10 +86,8 @@ func NewScriptWhoseTest() ScriptWhoseTest {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/init(coder:)
-
 func NewScriptWhoseTestWithCoder(inCoder ICoder) ScriptWhoseTest {
 	instance := getScriptWhoseTestClass().Alloc()
 	rv := objc.Send[ScriptWhoseTest](instance.ID, objc.Sel("initWithCoder:"), inCoder)
@@ -100,12 +97,10 @@ func NewScriptWhoseTestWithCoder(inCoder ICoder) ScriptWhoseTest {
 
 
 
-
 // Returns a Boolean value that indicates whether the test represented by the receiver evaluates to true.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/isTrue()
-
 func (s_ ScriptWhoseTest) IsTrue() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isTrue"))
 	return rv

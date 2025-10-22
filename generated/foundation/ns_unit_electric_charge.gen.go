@@ -40,7 +40,6 @@ type IUnitElectricCharge interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge
-
 type UnitElectricCharge struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitElectricCharge() UnitElectricCharge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
-
 func (uc _UnitElectricChargeClass) Coulombs() UnitElectricCharge {
 	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("coulombs"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitElectricChargeClass) Coulombs() UnitElectricCharge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
-
 func (u_ UnitElectricCharge) Coulombs() NSUnitElectricCharge {
 	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("coulombs"))
 	return rv

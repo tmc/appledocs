@@ -115,7 +115,6 @@ type IUserActivity interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity
-
 type UserActivity struct {
 	objectivec.Object
 }
@@ -160,12 +159,10 @@ func NewUserActivity() UserActivity {
 
 
 
-
 // Creates a user activity object with the specified type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
-
 func NewUserActivityWithActivityType(activityType string) UserActivity {
 	instance := getUserActivityClass().Alloc()
 	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), objc.String(activityType))
@@ -179,7 +176,6 @@ func NewUserActivityWithActivityType(activityType string) UserActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteAllSavedUserActivities(completionHandler:)
-
 func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteAllSavedUserActivitiesWithCompletionHandler:"), handler)
 }
@@ -189,62 +185,51 @@ func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(h
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
-
 func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers []string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), persistentIdentifiers, handler)
 }
-
 
 
 // Adds the contents of the specified dictionary to the user info dictionary.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/addUserInfoEntries(from:)
-
 func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addUserInfoEntriesFromDictionary:"), otherDictionary)
 }
-
 
 
 // Marks the activity as currently in use by the user.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/becomeCurrent()
-
 func (u_ UserActivity) BecomeCurrent() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("becomeCurrent"))
 }
-
 
 
 // Requests streams back to the originating app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/getContinuationStreams(completionHandler:)
-
 func (u_ UserActivity) GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getContinuationStreamsWithCompletionHandler:"), completionHandler)
 }
-
 
 
 // Invalidates an activity and marks it as no longer eligible for continuation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/invalidate()
-
 func (u_ UserActivity) Invalidate() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("invalidate"))
 }
-
 
 
 // Marks this activity object as inactive without invalidating it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/resignCurrent()
-
 func (u_ UserActivity) ResignCurrent() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resignCurrent"))
 }
@@ -254,7 +239,6 @@ func (u_ UserActivity) ResignCurrent() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/activityType
-
 func (u_ UserActivity) ActivityType() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("activityType"))
 	return rv
@@ -265,7 +249,6 @@ func (u_ UserActivity) ActivityType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/appClipActivationPayload
-
 func (u_ UserActivity) AppClipActivationPayload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("appClipActivationPayload"))
 	return rv
@@ -276,7 +259,6 @@ func (u_ UserActivity) AppClipActivationPayload() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
-
 func (u_ UserActivity) ContextIdentifierPath() []string {
 	rv := objc.Send[[]string](u_.ID, objc.Sel("contextIdentifierPath"))
 	return rv
@@ -287,7 +269,6 @@ func (u_ UserActivity) ContextIdentifierPath() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/delegate
-
 func (u_ UserActivity) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
 	return rv
@@ -298,7 +279,6 @@ func (u_ UserActivity) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/delegate
-
 func (u_ UserActivity) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -308,7 +288,6 @@ func (u_ UserActivity) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
-
 func (u_ UserActivity) ExpirationDate() NSDate {
 	rv := objc.Send[NSDate](u_.ID, objc.Sel("expirationDate"))
 	return rv
@@ -319,7 +298,6 @@ func (u_ UserActivity) ExpirationDate() NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
-
 func (u_ UserActivity) SetExpirationDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setExpirationDate:"), value)
 }
@@ -329,7 +307,6 @@ func (u_ UserActivity) SetExpirationDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-
 func (u_ UserActivity) ExternalMediaContentIdentifier() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("externalMediaContentIdentifier"))
 	return rv
@@ -340,7 +317,6 @@ func (u_ UserActivity) ExternalMediaContentIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-
 func (u_ UserActivity) SetExternalMediaContentIdentifier(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), objc.String(value))
 }
@@ -350,7 +326,6 @@ func (u_ UserActivity) SetExternalMediaContentIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isClassKitDeepLink
-
 func (u_ UserActivity) IsClassKitDeepLink() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isClassKitDeepLink"))
 	return rv
@@ -361,7 +336,6 @@ func (u_ UserActivity) IsClassKitDeepLink() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
-
 func (u_ UserActivity) EligibleForHandoff() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForHandoff"))
 	return rv
@@ -372,7 +346,6 @@ func (u_ UserActivity) EligibleForHandoff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
-
 func (u_ UserActivity) SetEligibleForHandoff(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForHandoff:"), value)
 }
@@ -382,7 +355,6 @@ func (u_ UserActivity) SetEligibleForHandoff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPrediction
-
 func (u_ UserActivity) EligibleForPrediction() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPrediction"))
 	return rv
@@ -393,7 +365,6 @@ func (u_ UserActivity) EligibleForPrediction() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPrediction
-
 func (u_ UserActivity) SetEligibleForPrediction(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForPrediction:"), value)
 }
@@ -403,7 +374,6 @@ func (u_ UserActivity) SetEligibleForPrediction(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPublicIndexing
-
 func (u_ UserActivity) EligibleForPublicIndexing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPublicIndexing"))
 	return rv
@@ -414,7 +384,6 @@ func (u_ UserActivity) EligibleForPublicIndexing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPublicIndexing
-
 func (u_ UserActivity) SetEligibleForPublicIndexing(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForPublicIndexing:"), value)
 }
@@ -424,7 +393,6 @@ func (u_ UserActivity) SetEligibleForPublicIndexing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-
 func (u_ UserActivity) EligibleForSearch() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForSearch"))
 	return rv
@@ -435,7 +403,6 @@ func (u_ UserActivity) EligibleForSearch() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-
 func (u_ UserActivity) SetEligibleForSearch(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForSearch:"), value)
 }
@@ -445,7 +412,6 @@ func (u_ UserActivity) SetEligibleForSearch(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/keywords
-
 func (u_ UserActivity) Keywords() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("keywords"))
 	return rv
@@ -456,7 +422,6 @@ func (u_ UserActivity) Keywords() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/keywords
-
 func (u_ UserActivity) SetKeywords(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setKeywords:"), value)
 }
@@ -466,7 +431,6 @@ func (u_ UserActivity) SetKeywords(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/ndefMessagePayload
-
 func (u_ UserActivity) NdefMessagePayload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ndefMessagePayload"))
 	return rv
@@ -477,7 +441,6 @@ func (u_ UserActivity) NdefMessagePayload() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
-
 func (u_ UserActivity) NeedsSave() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("needsSave"))
 	return rv
@@ -488,7 +451,6 @@ func (u_ UserActivity) NeedsSave() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
-
 func (u_ UserActivity) SetNeedsSave(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNeedsSave:"), value)
 }
@@ -498,7 +460,6 @@ func (u_ UserActivity) SetNeedsSave(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-
 func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier {
 	rv := objc.Send[UserActivityPersistentIdentifier](u_.ID, objc.Sel("persistentIdentifier"))
 	return rv
@@ -509,7 +470,6 @@ func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-
 func (u_ UserActivity) SetPersistentIdentifier(value IUserActivityPersistentIdentifier) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPersistentIdentifier:"), value)
 }
@@ -519,7 +479,6 @@ func (u_ UserActivity) SetPersistentIdentifier(value IUserActivityPersistentIden
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
-
 func (u_ UserActivity) ReferrerURL() URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("referrerURL"))
 	return rv
@@ -530,7 +489,6 @@ func (u_ UserActivity) ReferrerURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
-
 func (u_ UserActivity) SetReferrerURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReferrerURL:"), value)
 }
@@ -540,7 +498,6 @@ func (u_ UserActivity) SetReferrerURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/requiredUserInfoKeys
-
 func (u_ UserActivity) RequiredUserInfoKeys() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("requiredUserInfoKeys"))
 	return rv
@@ -551,7 +508,6 @@ func (u_ UserActivity) RequiredUserInfoKeys() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/requiredUserInfoKeys
-
 func (u_ UserActivity) SetRequiredUserInfoKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiredUserInfoKeys:"), value)
 }
@@ -561,7 +517,6 @@ func (u_ UserActivity) SetRequiredUserInfoKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/shortcutAvailability
-
 func (u_ UserActivity) ShortcutAvailability() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("shortcutAvailability"))
 	return rv
@@ -572,7 +527,6 @@ func (u_ UserActivity) ShortcutAvailability() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/shortcutAvailability
-
 func (u_ UserActivity) SetShortcutAvailability(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setShortcutAvailability:"), value)
 }
@@ -582,7 +536,6 @@ func (u_ UserActivity) SetShortcutAvailability(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-
 func (u_ UserActivity) SuggestedInvocationPhrase() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("suggestedInvocationPhrase"))
 	return rv
@@ -593,7 +546,6 @@ func (u_ UserActivity) SuggestedInvocationPhrase() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-
 func (u_ UserActivity) SetSuggestedInvocationPhrase(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
 }
@@ -603,7 +555,6 @@ func (u_ UserActivity) SetSuggestedInvocationPhrase(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/supportsContinuationStreams
-
 func (u_ UserActivity) SupportsContinuationStreams() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContinuationStreams"))
 	return rv
@@ -614,7 +565,6 @@ func (u_ UserActivity) SupportsContinuationStreams() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/supportsContinuationStreams
-
 func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSupportsContinuationStreams:"), value)
 }
@@ -624,7 +574,6 @@ func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-
 func (u_ UserActivity) TargetContentIdentifier() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
@@ -635,7 +584,6 @@ func (u_ UserActivity) TargetContentIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-
 func (u_ UserActivity) SetTargetContentIdentifier(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), objc.String(value))
 }
@@ -645,7 +593,6 @@ func (u_ UserActivity) SetTargetContentIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-
 func (u_ UserActivity) Title() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
@@ -656,7 +603,6 @@ func (u_ UserActivity) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-
 func (u_ UserActivity) SetTitle(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
@@ -666,7 +612,6 @@ func (u_ UserActivity) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/userInfo
-
 func (u_ UserActivity) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("userInfo"))
 	return rv
@@ -677,7 +622,6 @@ func (u_ UserActivity) UserInfo() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/userInfo
-
 func (u_ UserActivity) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
 }
@@ -687,7 +631,6 @@ func (u_ UserActivity) SetUserInfo(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
-
 func (u_ UserActivity) WebpageURL() URL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("webpageURL"))
 	return rv
@@ -698,7 +641,6 @@ func (u_ UserActivity) WebpageURL() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
-
 func (u_ UserActivity) SetWebpageURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setWebpageURL:"), value)
 }
@@ -708,7 +650,6 @@ func (u_ UserActivity) SetWebpageURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide
-
 func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("TVUserActivityTypeBrowsingChannelGuide"))
 	return rv
@@ -719,7 +660,6 @@ func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIActivityItemsConfigurationProviding/activityItemsConfiguration
-
 func (u_ UserActivity) ActivityItemsConfiguration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
@@ -730,7 +670,6 @@ func (u_ UserActivity) ActivityItemsConfiguration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIActivityItemsConfigurationProviding/activityItemsConfiguration
-
 func (u_ UserActivity) SetActivityItemsConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
@@ -740,7 +679,6 @@ func (u_ UserActivity) SetActivityItemsConfiguration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/appentityidentifier
-
 func (u_ UserActivity) AppEntityIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("appEntityIdentifier"))
 	return rv
@@ -751,7 +689,6 @@ func (u_ UserActivity) AppEntityIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/appentityidentifier
-
 func (u_ UserActivity) SetAppEntityIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAppEntityIdentifier:"), value)
 }
@@ -761,7 +698,6 @@ func (u_ UserActivity) SetAppEntityIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforhandoff
-
 func (u_ UserActivity) IsEligibleForHandoff() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForHandoff"))
 	return rv
@@ -772,7 +708,6 @@ func (u_ UserActivity) IsEligibleForHandoff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforhandoff
-
 func (u_ UserActivity) SetIsEligibleForHandoff(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForHandoff:"), value)
 }
@@ -782,7 +717,6 @@ func (u_ UserActivity) SetIsEligibleForHandoff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforprediction
-
 func (u_ UserActivity) IsEligibleForPrediction() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForPrediction"))
 	return rv
@@ -793,7 +727,6 @@ func (u_ UserActivity) IsEligibleForPrediction() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforprediction
-
 func (u_ UserActivity) SetIsEligibleForPrediction(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForPrediction:"), value)
 }
@@ -803,7 +736,6 @@ func (u_ UserActivity) SetIsEligibleForPrediction(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing
-
 func (u_ UserActivity) IsEligibleForPublicIndexing() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForPublicIndexing"))
 	return rv
@@ -814,7 +746,6 @@ func (u_ UserActivity) IsEligibleForPublicIndexing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing
-
 func (u_ UserActivity) SetIsEligibleForPublicIndexing(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForPublicIndexing:"), value)
 }
@@ -824,7 +755,6 @@ func (u_ UserActivity) SetIsEligibleForPublicIndexing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch
-
 func (u_ UserActivity) IsEligibleForSearch() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForSearch"))
 	return rv
@@ -835,7 +765,6 @@ func (u_ UserActivity) IsEligibleForSearch() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch
-
 func (u_ UserActivity) SetIsEligibleForSearch(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForSearch:"), value)
 }
@@ -845,7 +774,6 @@ func (u_ UserActivity) SetIsEligibleForSearch(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-swift.var
-
 func (u_ UserActivity) NSUserActivityConnectionUnavailableError() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityConnectionUnavailableError"))
 	return rv
@@ -856,7 +784,6 @@ func (u_ UserActivity) NSUserActivityConnectionUnavailableError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-swift.var
-
 func (u_ UserActivity) SetNSUserActivityConnectionUnavailableError(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityConnectionUnavailableError:"), value)
 }
@@ -866,7 +793,6 @@ func (u_ UserActivity) SetNSUserActivityConnectionUnavailableError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-swift.var
-
 func (u_ UserActivity) NSUserActivityErrorMaximum() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityErrorMaximum"))
 	return rv
@@ -877,7 +803,6 @@ func (u_ UserActivity) NSUserActivityErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-swift.var
-
 func (u_ UserActivity) SetNSUserActivityErrorMaximum(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityErrorMaximum:"), value)
 }
@@ -887,7 +812,6 @@ func (u_ UserActivity) SetNSUserActivityErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-swift.var
-
 func (u_ UserActivity) NSUserActivityErrorMinimum() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityErrorMinimum"))
 	return rv
@@ -898,7 +822,6 @@ func (u_ UserActivity) NSUserActivityErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-swift.var
-
 func (u_ UserActivity) SetNSUserActivityErrorMinimum(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityErrorMinimum:"), value)
 }
@@ -908,7 +831,6 @@ func (u_ UserActivity) SetNSUserActivityErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-swift.var
-
 func (u_ UserActivity) NSUserActivityHandoffFailedError() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityHandoffFailedError"))
 	return rv
@@ -919,7 +841,6 @@ func (u_ UserActivity) NSUserActivityHandoffFailedError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-swift.var
-
 func (u_ UserActivity) SetNSUserActivityHandoffFailedError(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityHandoffFailedError:"), value)
 }
@@ -929,7 +850,6 @@ func (u_ UserActivity) SetNSUserActivityHandoffFailedError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-swift.var
-
 func (u_ UserActivity) NSUserActivityHandoffUserInfoTooLargeError() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityHandoffUserInfoTooLargeError"))
 	return rv
@@ -940,7 +860,6 @@ func (u_ UserActivity) NSUserActivityHandoffUserInfoTooLargeError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-swift.var
-
 func (u_ UserActivity) SetNSUserActivityHandoffUserInfoTooLargeError(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityHandoffUserInfoTooLargeError:"), value)
 }
@@ -950,7 +869,6 @@ func (u_ UserActivity) SetNSUserActivityHandoffUserInfoTooLargeError(value int) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-swift.var
-
 func (u_ UserActivity) NSUserActivityRemoteApplicationTimedOutError() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityRemoteApplicationTimedOutError"))
 	return rv
@@ -961,7 +879,6 @@ func (u_ UserActivity) NSUserActivityRemoteApplicationTimedOutError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-swift.var
-
 func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityRemoteApplicationTimedOutError:"), value)
 }
@@ -971,7 +888,6 @@ func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb
-
 func (u_ UserActivity) NSUserActivityTypeBrowsingWeb() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("NSUserActivityTypeBrowsingWeb"))
 	return rv

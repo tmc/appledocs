@@ -57,7 +57,6 @@ type ITimeZone interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone
-
 type TimeZone struct {
 	objectivec.Object
 }
@@ -102,36 +101,30 @@ func NewTimeZone() TimeZone {
 
 
 
-
 // Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(forSecondsFromGMT:)
-
 func NewTimeZoneForSecondsFromGMT(seconds int) TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneForSecondsFromGMT:"), seconds)
 	return rv
 }
 
 
-
 // Returns the time zone object identified by a given abbreviation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
-
 func NewTimeZoneWithAbbreviation(abbreviation string) TimeZone {
 	rv := objc.Send[TimeZone](objc.ID(getTimeZoneClass().class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
 }
 
 
-
 // Returns a time zone initialized with a given identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(name:)
-
 func NewTimeZoneWithName(tzName string) TimeZone {
 	instance := getTimeZoneClass().Alloc()
 	rv := objc.Send[TimeZone](instance.ID, objc.Sel("initWithName:"), objc.String(tzName))
@@ -145,7 +138,6 @@ func NewTimeZoneWithName(tzName string) TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(abbreviation:)
-
 func (tc _TimeZoneClass) TimeZoneWithAbbreviation(abbreviation string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithAbbreviation:"), objc.String(abbreviation))
 	return rv
@@ -156,7 +148,6 @@ func (tc _TimeZoneClass) TimeZoneWithAbbreviation(abbreviation string) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/init(forSecondsFromGMT:)
-
 func (tc _TimeZoneClass) TimeZoneForSecondsFromGMT(seconds int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneForSecondsFromGMT:"), seconds)
 	return rv
@@ -167,7 +158,6 @@ func (tc _TimeZoneClass) TimeZoneForSecondsFromGMT(seconds int) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/resetSystemTimeZone()
-
 func (tc _TimeZoneClass) ResetSystemTimeZone() {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("resetSystemTimeZone"))
 }
@@ -177,7 +167,6 @@ func (tc _TimeZoneClass) ResetSystemTimeZone() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneWithName:
-
 func (tc _TimeZoneClass) TimeZoneWithName(tzName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithName:"), objc.String(tzName))
 	return rv
@@ -188,9 +177,8 @@ func (tc _TimeZoneClass) TimeZoneWithName(tzName string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
-
-func (tc _TimeZoneClass) AbbreviationDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("abbreviationDictionary"))
+func (tc _TimeZoneClass) AbbreviationDictionary() IDictionary {
+	rv := objc.Send[IDictionary](objc.ID(tc.class), objc.Sel("abbreviationDictionary"))
 	return rv
 }
 
@@ -198,7 +186,6 @@ func (tc _TimeZoneClass) AbbreviationDictionary() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
-
 func (tc _TimeZoneClass) DefaultTimeZone() TimeZone {
 	rv := objc.Send[NSTimeZone](objc.ID(tc.class), objc.Sel("defaultTimeZone"))
 	return rv
@@ -208,7 +195,6 @@ func (tc _TimeZoneClass) DefaultTimeZone() TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/local
-
 func (tc _TimeZoneClass) LocalTimeZone() TimeZone {
 	rv := objc.Send[NSTimeZone](objc.ID(tc.class), objc.Sel("localTimeZone"))
 	return rv
@@ -218,7 +204,6 @@ func (tc _TimeZoneClass) LocalTimeZone() TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/system
-
 func (tc _TimeZoneClass) SystemTimeZone() TimeZone {
 	rv := objc.Send[NSTimeZone](objc.ID(tc.class), objc.Sel("systemTimeZone"))
 	return rv
@@ -228,66 +213,55 @@ func (tc _TimeZoneClass) SystemTimeZone() TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneDataVersion
-
 func (tc _TimeZoneClass) TimeZoneDataVersion() string {
 	rv := objc.Send[string](objc.ID(tc.class), objc.Sel("timeZoneDataVersion"))
 	return rv
 }
 
-
 // Returns the abbreviation for the receiver at a given date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviation(for:)
-
 func (t_ TimeZone) AbbreviationForDate(aDate IDate) String {
 	rv := objc.Send[String](t_.ID, objc.Sel("abbreviationForDate:"), aDate)
 	return rv
 }
 
 
-
 // Indicates whether the receiver uses daylight saving time on a given date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/isDaylightSavingTime(for:)
-
 func (t_ TimeZone) IsDaylightSavingTimeForDate(aDate IDate) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isDaylightSavingTimeForDate:"), aDate)
 	return rv
 }
 
 
-
 // Indicates whether the receiver has the same name and data as the specified time zone.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/isEqual(to:)
-
 func (t_ TimeZone) IsEqualToTimeZone(aTimeZone ITimeZone) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEqualToTimeZone:"), aTimeZone)
 	return rv
 }
 
 
-
 // Returns the next daylight saving time transition after a given date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/nextDaylightSavingTimeTransition(after:)
-
 func (t_ TimeZone) NextDaylightSavingTimeTransitionAfterDate(aDate IDate) Date {
 	rv := objc.Send[Date](t_.ID, objc.Sel("nextDaylightSavingTimeTransitionAfterDate:"), aDate)
 	return rv
 }
 
 
-
 // Returns the difference in seconds between the receiver and Greenwich Mean Time at a given date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/secondsFromGMT(for:)
-
 func (t_ TimeZone) SecondsFromGMTForDate(aDate IDate) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMTForDate:"), aDate)
 	return rv
@@ -298,7 +272,6 @@ func (t_ TimeZone) SecondsFromGMTForDate(aDate IDate) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviation
-
 func (t_ TimeZone) Abbreviation() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("abbreviation"))
 	return rv
@@ -309,9 +282,8 @@ func (t_ TimeZone) Abbreviation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
-
-func (t_ TimeZone) AbbreviationDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("abbreviationDictionary"))
+func (t_ TimeZone) AbbreviationDictionary() IDictionary {
+	rv := objc.Send[IDictionary](t_.ID, objc.Sel("abbreviationDictionary"))
 	return rv
 }
 
@@ -320,8 +292,7 @@ func (t_ TimeZone) AbbreviationDictionary() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/abbreviationDictionary
-
-func (t_ TimeZone) SetAbbreviationDictionary(value unsafe.Pointer) {
+func (t_ TimeZone) SetAbbreviationDictionary(value IDictionary) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAbbreviationDictionary:"), value)
 }
 
@@ -330,7 +301,6 @@ func (t_ TimeZone) SetAbbreviationDictionary(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/data
-
 func (t_ TimeZone) Data() NSData {
 	rv := objc.Send[NSData](t_.ID, objc.Sel("data"))
 	return rv
@@ -341,7 +311,6 @@ func (t_ TimeZone) Data() NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
-
 func (t_ TimeZone) DefaultTimeZone() NSTimeZone {
 	rv := objc.Send[NSTimeZone](t_.ID, objc.Sel("defaultTimeZone"))
 	return rv
@@ -352,7 +321,6 @@ func (t_ TimeZone) DefaultTimeZone() NSTimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/default
-
 func (t_ TimeZone) SetDefaultTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultTimeZone:"), value)
 }
@@ -362,7 +330,6 @@ func (t_ TimeZone) SetDefaultTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/description
-
 func (t_ TimeZone) Description() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("description"))
 	return rv
@@ -373,7 +340,6 @@ func (t_ TimeZone) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/local
-
 func (t_ TimeZone) LocalTimeZone() NSTimeZone {
 	rv := objc.Send[NSTimeZone](t_.ID, objc.Sel("localTimeZone"))
 	return rv
@@ -384,7 +350,6 @@ func (t_ TimeZone) LocalTimeZone() NSTimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/name
-
 func (t_ TimeZone) Name() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
@@ -395,7 +360,6 @@ func (t_ TimeZone) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/secondsFromGMT
-
 func (t_ TimeZone) SecondsFromGMT() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("secondsFromGMT"))
 	return rv
@@ -406,7 +370,6 @@ func (t_ TimeZone) SecondsFromGMT() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/system
-
 func (t_ TimeZone) SystemTimeZone() NSTimeZone {
 	rv := objc.Send[NSTimeZone](t_.ID, objc.Sel("systemTimeZone"))
 	return rv
@@ -417,7 +380,6 @@ func (t_ TimeZone) SystemTimeZone() NSTimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneDataVersion
-
 func (t_ TimeZone) TimeZoneDataVersion() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("timeZoneDataVersion"))
 	return rv
@@ -428,7 +390,6 @@ func (t_ TimeZone) TimeZoneDataVersion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
-
 func (t_ TimeZone) DaylightSavingTimeOffset() TimeInterval {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("daylightSavingTimeOffset"))
 	return rv
@@ -439,7 +400,6 @@ func (t_ TimeZone) DaylightSavingTimeOffset() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/daylightsavingtimeoffset
-
 func (t_ TimeZone) SetDaylightSavingTimeOffset(value ITimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDaylightSavingTimeOffset:"), value)
 }
@@ -449,7 +409,6 @@ func (t_ TimeZone) SetDaylightSavingTimeOffset(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/isdaylightsavingtime
-
 func (t_ TimeZone) IsDaylightSavingTime() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isDaylightSavingTime"))
 	return rv
@@ -460,7 +419,6 @@ func (t_ TimeZone) IsDaylightSavingTime() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/isdaylightsavingtime
-
 func (t_ TimeZone) SetIsDaylightSavingTime(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsDaylightSavingTime:"), value)
 }
@@ -470,7 +428,6 @@ func (t_ TimeZone) SetIsDaylightSavingTime(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/nextdaylightsavingtimetransition
-
 func (t_ TimeZone) NextDaylightSavingTimeTransition() Date {
 	rv := objc.Send[Date](t_.ID, objc.Sel("nextDaylightSavingTimeTransition"))
 	return rv
@@ -481,7 +438,6 @@ func (t_ TimeZone) NextDaylightSavingTimeTransition() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimezone/nextdaylightsavingtimetransition
-
 func (t_ TimeZone) SetNextDaylightSavingTimeTransition(value IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNextDaylightSavingTimeTransition:"), value)
 }

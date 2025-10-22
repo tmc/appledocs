@@ -66,7 +66,6 @@ type ITextCheckingResult interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
-
 type TextCheckingResult struct {
 	objectivec.Object
 }
@@ -115,8 +114,7 @@ func NewTextCheckingResult() TextCheckingResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
-
-func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range, components unsafe.Pointer) TextCheckingResult {
+func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range, components IDictionary) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
@@ -126,7 +124,6 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumberCheckingResult(range:phoneNumber:)
-
 func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ Range, phoneNumber string) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, objc.String(phoneNumber))
 	return rv
@@ -137,8 +134,7 @@ func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpressionCheckingResult(ranges:count:regularExpression:)
-
-func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges IRangePointer, count uint, regularExpression IRegularExpression) TextCheckingResult {
+func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges RangePointer, count uint, regularExpression IRegularExpression) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("regularExpressionCheckingResultWithRanges:count:regularExpression:"), ranges, count, regularExpression)
 	return rv
 }
@@ -148,7 +144,6 @@ func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCoun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/spellCheckingResult(range:)
-
 func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range) TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("spellCheckingResultWithRange:"), range_)
 	return rv
@@ -159,7 +154,6 @@ func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range) Te
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/date
-
 func (t_ TextCheckingResult) Date() NSDate {
 	rv := objc.Send[NSDate](t_.ID, objc.Sel("date"))
 	return rv
@@ -170,7 +164,6 @@ func (t_ TextCheckingResult) Date() NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/duration
-
 func (t_ TextCheckingResult) Duration() TimeInterval {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
 	return rv
@@ -181,7 +174,6 @@ func (t_ TextCheckingResult) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
-
 func (t_ TextCheckingResult) PhoneNumber() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
 	return rv
@@ -192,7 +184,6 @@ func (t_ TextCheckingResult) PhoneNumber() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range
-
 func (t_ TextCheckingResult) Range() Range {
 	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
 	return rv
@@ -203,7 +194,6 @@ func (t_ TextCheckingResult) Range() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpression
-
 func (t_ TextCheckingResult) RegularExpression() NSRegularExpression {
 	rv := objc.Send[NSRegularExpression](t_.ID, objc.Sel("regularExpression"))
 	return rv
@@ -214,7 +204,6 @@ func (t_ TextCheckingResult) RegularExpression() NSRegularExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/resultType
-
 func (t_ TextCheckingResult) ResultType() TextCheckingType {
 	rv := objc.Send[TextCheckingType](t_.ID, objc.Sel("resultType"))
 	return rv
@@ -225,7 +214,6 @@ func (t_ TextCheckingResult) ResultType() TextCheckingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-
 func (t_ TextCheckingResult) NSNotFound() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("NSNotFound"))
 	return rv
@@ -236,7 +224,6 @@ func (t_ TextCheckingResult) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-
 func (t_ TextCheckingResult) AddressComponents() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("addressComponents"))
 	return rv
@@ -247,7 +234,6 @@ func (t_ TextCheckingResult) AddressComponents() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-
 func (t_ TextCheckingResult) SetAddressComponents(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAddressComponents:"), objc.String(value))
 }
@@ -255,7 +241,6 @@ func (t_ TextCheckingResult) SetAddressComponents(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-
 func (t_ TextCheckingResult) AlternativeStrings() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
@@ -264,7 +249,6 @@ func (t_ TextCheckingResult) AlternativeStrings() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-
 func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
 }
@@ -274,7 +258,6 @@ func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
-
 func (t_ TextCheckingResult) Components() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("components"))
 	return rv
@@ -285,7 +268,6 @@ func (t_ TextCheckingResult) Components() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
-
 func (t_ TextCheckingResult) SetComponents(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setComponents:"), objc.String(value))
 }
@@ -295,7 +277,6 @@ func (t_ TextCheckingResult) SetComponents(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/grammardetails
-
 func (t_ TextCheckingResult) GrammarDetails() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("grammarDetails"))
 	return rv
@@ -306,7 +287,6 @@ func (t_ TextCheckingResult) GrammarDetails() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/grammardetails
-
 func (t_ TextCheckingResult) SetGrammarDetails(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGrammarDetails:"), objc.String(value))
 }
@@ -316,7 +296,6 @@ func (t_ TextCheckingResult) SetGrammarDetails(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
-
 func (t_ TextCheckingResult) NumberOfRanges() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfRanges"))
 	return rv
@@ -327,7 +306,6 @@ func (t_ TextCheckingResult) NumberOfRanges() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
-
 func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfRanges:"), value)
 }
@@ -337,7 +315,6 @@ func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/orthography
-
 func (t_ TextCheckingResult) Orthography() NSOrthography {
 	rv := objc.Send[NSOrthography](t_.ID, objc.Sel("orthography"))
 	return rv
@@ -348,7 +325,6 @@ func (t_ TextCheckingResult) Orthography() NSOrthography {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/orthography
-
 func (t_ TextCheckingResult) SetOrthography(value IOrthography) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setOrthography:"), value)
 }
@@ -358,7 +334,6 @@ func (t_ TextCheckingResult) SetOrthography(value IOrthography) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-
 func (t_ TextCheckingResult) ReplacementString() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("replacementString"))
 	return rv
@@ -369,7 +344,6 @@ func (t_ TextCheckingResult) ReplacementString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-
 func (t_ TextCheckingResult) SetReplacementString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), objc.String(value))
 }
@@ -379,7 +353,6 @@ func (t_ TextCheckingResult) SetReplacementString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-
 func (t_ TextCheckingResult) TimeZone() TimeZone {
 	rv := objc.Send[TimeZone](t_.ID, objc.Sel("timeZone"))
 	return rv
@@ -390,7 +363,6 @@ func (t_ TextCheckingResult) TimeZone() TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone
-
 func (t_ TextCheckingResult) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeZone:"), value)
 }
@@ -400,7 +372,6 @@ func (t_ TextCheckingResult) SetTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-
 func (t_ TextCheckingResult) Url() URL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("url"))
 	return rv
@@ -411,7 +382,6 @@ func (t_ TextCheckingResult) Url() URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/url
-
 func (t_ TextCheckingResult) SetUrl(value IURL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUrl:"), value)
 }

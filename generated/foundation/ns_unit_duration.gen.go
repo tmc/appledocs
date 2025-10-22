@@ -40,7 +40,6 @@ type IUnitDuration interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration
-
 type UnitDuration struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitDuration() UnitDuration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
-
 func (uc _UnitDurationClass) Seconds() UnitDuration {
 	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("seconds"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitDurationClass) Seconds() UnitDuration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
-
 func (u_ UnitDuration) Seconds() NSUnitDuration {
 	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("seconds"))
 	return rv

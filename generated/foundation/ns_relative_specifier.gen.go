@@ -44,7 +44,6 @@ type IRelativeSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier
-
 type RelativeSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -95,7 +94,6 @@ func NewRelativeSpecifier() RelativeSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
-
 func (r_ RelativeSpecifier) BaseSpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("baseSpecifier"))
 	return rv
@@ -106,7 +104,6 @@ func (r_ RelativeSpecifier) BaseSpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
-
 func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaseSpecifier:"), value)
 }
@@ -116,7 +113,6 @@ func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
-
 func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("relativePosition"))
 	return rv
@@ -127,7 +123,6 @@ func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
-
 func (r_ RelativeSpecifier) SetRelativePosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRelativePosition:"), value)
 }

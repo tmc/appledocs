@@ -36,7 +36,6 @@ type IisMulti interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/isMulti
-
 type isMulti struct {
 	objectivec.Object
 }

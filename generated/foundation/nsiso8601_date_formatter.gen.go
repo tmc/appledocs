@@ -44,7 +44,6 @@ type IISO8601DateFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter
-
 type ISO8601DateFormatter struct {
 	Formatter
 }
@@ -96,7 +95,6 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-
 func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions unsafe.Pointer) String {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
@@ -107,7 +105,6 @@ func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
-
 func (i_ ISO8601DateFormatter) FormatOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("formatOptions"))
 	return rv
@@ -118,7 +115,6 @@ func (i_ ISO8601DateFormatter) FormatOptions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
-
 func (i_ ISO8601DateFormatter) SetFormatOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFormatOptions:"), value)
 }
@@ -128,7 +124,6 @@ func (i_ ISO8601DateFormatter) SetFormatOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/iso8601dateformatter/timezone
-
 func (i_ ISO8601DateFormatter) TimeZone() TimeZone {
 	rv := objc.Send[TimeZone](i_.ID, objc.Sel("timeZone"))
 	return rv
@@ -139,7 +134,6 @@ func (i_ ISO8601DateFormatter) TimeZone() TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/iso8601dateformatter/timezone
-
 func (i_ ISO8601DateFormatter) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeZone:"), value)
 }

@@ -210,6 +210,22 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		}
 	}
 
+	// Also try stripping prefix for NON-pointer types (handles docs that omit the *)
+	// This is especially common for return types and property types
+	if !isPointer && objcType != "" {
+		strippedType := stripObjCPrefix(objcType)
+		if strippedType != objcType {
+			// Successfully stripped a prefix - check if this is a known type
+			// in the current framework or type registry
+			if mappedGoType, found := lookupTypeMapping(strippedType, framework); found {
+				return mappedGoType
+			}
+			// Let it fall through to use strippedType and then resolve it
+			resolvedType := resolveType(framework, strippedType)
+			return resolvedType
+		}
+	}
+
 	//  For pointer types to ObjC classes, try stripping prefix BEFORE falling back to MapCTypeToGo
 	// This allows cross-framework type resolution to work properly
 	goType := ""

@@ -47,7 +47,6 @@ type IException interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException
-
 type Exception struct {
 	objectivec.Object
 }
@@ -92,13 +91,11 @@ func NewException() Exception {
 
 
 
-
 // Initializes and returns a newly allocated exception object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)
-
-func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason string, aUserInfo objectivec.IObject) Exception {
+func NewExceptionWithNameReasonUserInfo(aName ExceptionName, aReason string, aUserInfo objectivec.IObject) Exception {
 	instance := getExceptionClass().Alloc()
 	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, objc.String(aReason), aUserInfo)
 	rv.Autorelease()
@@ -111,8 +108,7 @@ func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason string, aU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/exceptionWithName:reason:userInfo:
-
-func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name IExceptionName, reason string, userInfo objectivec.IObject) Exception {
+func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name ExceptionName, reason string, userInfo objectivec.IObject) Exception {
 	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, objc.String(reason), userInfo)
 	return rv
 }
@@ -122,8 +118,7 @@ func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name IExceptionName, r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise(_:format:arguments:)
-
-func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format string, argList unsafe.Pointer) {
+func (ec _ExceptionClass) RaiseFormatArguments(name ExceptionName, format string, argList unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, objc.String(format), argList)
 }
 
@@ -132,18 +127,15 @@ func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise:format:
-
-func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format string) {
+func (ec _ExceptionClass) RaiseFormat(name ExceptionName, format string) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
 }
-
 
 
 // Raises the receiver, causing program flow to jump to the local exception handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise()
-
 func (e_ Exception) Raise() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("raise"))
 }
@@ -153,7 +145,6 @@ func (e_ Exception) Raise() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/callStackReturnAddresses
-
 func (e_ Exception) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](e_.ID, objc.Sel("callStackReturnAddresses"))
 	return rv
@@ -164,7 +155,6 @@ func (e_ Exception) CallStackReturnAddresses() []Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/callStackSymbols
-
 func (e_ Exception) CallStackSymbols() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("callStackSymbols"))
 	return rv
@@ -175,7 +165,6 @@ func (e_ Exception) CallStackSymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/name-swift.property
-
 func (e_ Exception) Name() ExceptionName {
 	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
 	return rv
@@ -186,7 +175,6 @@ func (e_ Exception) Name() ExceptionName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-swift.property
-
 func (e_ Exception) Reason() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
 	return rv
@@ -197,7 +185,6 @@ func (e_ Exception) Reason() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
-
 func (e_ Exception) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("userInfo"))
 	return rv

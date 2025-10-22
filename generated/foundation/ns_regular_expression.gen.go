@@ -50,7 +50,6 @@ type IRegularExpression interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression
-
 type RegularExpression struct {
 	objectivec.Object
 }
@@ -99,7 +98,6 @@ func NewRegularExpression() RegularExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-
 func (r_ RegularExpression) NSNotFound() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
 	return rv
@@ -110,7 +108,6 @@ func (r_ RegularExpression) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
-
 func (r_ RegularExpression) NumberOfCaptureGroups() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("numberOfCaptureGroups"))
 	return rv
@@ -121,7 +118,6 @@ func (r_ RegularExpression) NumberOfCaptureGroups() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
-
 func (r_ RegularExpression) SetNumberOfCaptureGroups(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfCaptureGroups:"), value)
 }
@@ -131,7 +127,6 @@ func (r_ RegularExpression) SetNumberOfCaptureGroups(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
-
 func (r_ RegularExpression) Options() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("options"))
 	return rv
@@ -142,7 +137,6 @@ func (r_ RegularExpression) Options() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
-
 func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOptions:"), value)
 }
@@ -152,7 +146,6 @@ func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-
 func (r_ RegularExpression) Pattern() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
 	return rv
@@ -163,7 +156,6 @@ func (r_ RegularExpression) Pattern() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-
 func (r_ RegularExpression) SetPattern(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), objc.String(value))
 }
@@ -173,7 +165,6 @@ func (r_ RegularExpression) SetPattern(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-
 func (r_ RegularExpression) Range() Range {
 	rv := objc.Send[Range](r_.ID, objc.Sel("range"))
 	return rv
@@ -184,7 +175,6 @@ func (r_ RegularExpression) Range() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-
 func (r_ RegularExpression) SetRange(value Range) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }

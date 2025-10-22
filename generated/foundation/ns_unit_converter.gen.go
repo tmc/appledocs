@@ -42,7 +42,6 @@ type IUnitConverter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter
-
 type UnitConverter struct {
 	objectivec.Object
 }
@@ -87,12 +86,10 @@ func NewUnitConverter() UnitConverter {
 
 
 
-
 // For a given unit, returns the specified value of that unit in terms of the base unit of its dimension.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter/baseUnitValue(fromValue:)
-
 func (u_ UnitConverter) BaseUnitValueFromValue(value float64) float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("baseUnitValueFromValue:"), value)
 	return rv

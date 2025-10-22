@@ -40,7 +40,6 @@ type ICountCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountCommand
-
 type CountCommand struct {
 	ScriptCommand
 }

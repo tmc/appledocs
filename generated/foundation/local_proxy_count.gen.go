@@ -36,7 +36,6 @@ type IlocalProxyCount interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/localProxyCount
-
 type localProxyCount struct {
 	objectivec.Object
 }

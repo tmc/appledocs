@@ -44,7 +44,6 @@ type IUnitConverterLinear interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear
-
 type UnitConverterLinear struct {
 	UnitConverter
 }
@@ -91,12 +90,10 @@ func NewUnitConverterLinear() UnitConverterLinear {
 
 
 
-
 // Initializes the unit converter with the coefficient you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:)
-
 func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLinear {
 	instance := getUnitConverterLinearClass().Alloc()
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:"), coefficient)
@@ -105,12 +102,10 @@ func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLin
 }
 
 
-
 // Creates a unit converter with the coefficient and constant you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:constant:)
-
 func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant float64) UnitConverterLinear {
 	instance := getUnitConverterLinearClass().Alloc()
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:constant:"), coefficient, constant)
@@ -124,7 +119,6 @@ func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-
 func (u_ UnitConverterLinear) Coefficient() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("coefficient"))
 	return rv
@@ -135,7 +129,6 @@ func (u_ UnitConverterLinear) Coefficient() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-
 func (u_ UnitConverterLinear) SetCoefficient(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCoefficient:"), value)
 }
@@ -145,7 +138,6 @@ func (u_ UnitConverterLinear) SetCoefficient(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-
 func (u_ UnitConverterLinear) Constant() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
 	return rv
@@ -156,7 +148,6 @@ func (u_ UnitConverterLinear) Constant() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-
 func (u_ UnitConverterLinear) SetConstant(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConstant:"), value)
 }

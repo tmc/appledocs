@@ -40,7 +40,6 @@ type ILogicalTest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest
-
 type LogicalTest struct {
 	ScriptWhoseTest
 }
@@ -87,12 +86,10 @@ func NewLogicalTest() LogicalTest {
 
 
 
-
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
-
 func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initAndTestWithTests:"), subTests)
@@ -101,12 +98,10 @@ func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
 }
 
 
-
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(orTestWith:)
-
 func NewLogicalTestOrTestWithTests(subTests []SpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initOrTestWithTests:"), subTests)

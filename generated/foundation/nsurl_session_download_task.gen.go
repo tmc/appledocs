@@ -29,8 +29,7 @@ type _URLSessionDownloadTaskClass struct {
 // An interface definition for the [URLSessionDownloadTask] class.
 type IURLSessionDownloadTask interface {
 	IURLSessionTask
-	CancelByProducingResumeData(completionHandler unsafe.Pointer)
-	Response() NSURLResponse
+	Response() URLResponse
 	SetResponse(value IURLResponse)
 }
 
@@ -43,7 +42,6 @@ type IURLSessionDownloadTask interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask
-
 type URLSessionDownloadTask struct {
 	URLSessionTask
 }
@@ -90,24 +88,12 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 
 
 
-
-// Cancels a download and calls a callback with resume data for later use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask/cancel(byProducingResumeData:)
-
-func (u_ URLSessionDownloadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
-}
-
-
 // The server’s response to the currently active request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
-
-func (u_ URLSessionDownloadTask) Response() NSURLResponse {
-	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
+func (u_ URLSessionDownloadTask) Response() URLResponse {
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -116,7 +102,6 @@ func (u_ URLSessionDownloadTask) Response() NSURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
-
 func (u_ URLSessionDownloadTask) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }

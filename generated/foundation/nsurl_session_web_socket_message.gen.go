@@ -39,7 +39,6 @@ type IURLSessionWebSocketMessage interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage
-
 type URLSessionWebSocketMessage struct {
 	objectivec.Object
 }
@@ -82,11 +81,9 @@ func NewURLSessionWebSocketMessage() URLSessionWebSocketMessage {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/initWithData:
-
-func NewURLSessionWebSocketMessageWithData(data IData) URLSessionWebSocketMessage {
+func NewURLSessionWebSocketMessageWithData(data NSData) URLSessionWebSocketMessage {
 	instance := getURLSessionWebSocketMessageClass().Alloc()
 	rv := objc.Send[URLSessionWebSocketMessage](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -94,10 +91,8 @@ func NewURLSessionWebSocketMessageWithData(data IData) URLSessionWebSocketMessag
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/initWithString:
-
 func NewURLSessionWebSocketMessageWithString(string_ string) URLSessionWebSocketMessage {
 	instance := getURLSessionWebSocketMessageClass().Alloc()
 	rv := objc.Send[URLSessionWebSocketMessage](instance.ID, objc.Sel("initWithString:"), objc.String(string_))
@@ -109,7 +104,6 @@ func NewURLSessionWebSocketMessageWithString(string_ string) URLSessionWebSocket
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/data
-
 func (u_ URLSessionWebSocketMessage) Data() NSData {
 	rv := objc.Send[NSData](u_.ID, objc.Sel("data"))
 	return rv
@@ -118,7 +112,6 @@ func (u_ URLSessionWebSocketMessage) Data() NSData {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/string
-
 func (u_ URLSessionWebSocketMessage) String() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("string"))
 	return rv
@@ -127,7 +120,6 @@ func (u_ URLSessionWebSocketMessage) String() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/type
-
 func (u_ URLSessionWebSocketMessage) Type() URLSessionWebSocketMessageType {
 	rv := objc.Send[URLSessionWebSocketMessageType](u_.ID, objc.Sel("type"))
 	return rv

@@ -45,7 +45,6 @@ type IDistributedLock interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
-
 type DistributedLock struct {
 	objectivec.Object
 }
@@ -90,35 +89,29 @@ func NewDistributedLock() DistributedLock {
 
 
 
-
 // Forces the lock to be relinquished.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/break()
-
 func (d_ DistributedLock) BreakLock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("breakLock"))
 }
-
 
 
 // Attempts to acquire the receiver and immediately returns a Boolean value that indicates whether the attempt was successful.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/try()
-
 func (d_ DistributedLock) TryLock() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("tryLock"))
 	return rv
 }
 
 
-
 // Relinquishes the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/unlock()
-
 func (d_ DistributedLock) Unlock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("unlock"))
 }
@@ -128,7 +121,6 @@ func (d_ DistributedLock) Unlock() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockDate
-
 func (d_ DistributedLock) LockDate() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("lockDate"))
 	return rv

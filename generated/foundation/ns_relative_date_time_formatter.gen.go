@@ -50,7 +50,6 @@ type IRelativeDateTimeFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter
-
 type RelativeDateTimeFormatter struct {
 	Formatter
 }
@@ -101,7 +100,6 @@ func NewRelativeDateTimeFormatter() RelativeDateTimeFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
-
 func (r_ RelativeDateTimeFormatter) Calendar() Calendar {
 	rv := objc.Send[Calendar](r_.ID, objc.Sel("calendar"))
 	return rv
@@ -112,7 +110,6 @@ func (r_ RelativeDateTimeFormatter) Calendar() Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
-
 func (r_ RelativeDateTimeFormatter) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCalendar:"), value)
 }
@@ -122,7 +119,6 @@ func (r_ RelativeDateTimeFormatter) SetCalendar(value ICalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.property
-
 func (r_ RelativeDateTimeFormatter) DateTimeStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("dateTimeStyle"))
 	return rv
@@ -133,7 +129,6 @@ func (r_ RelativeDateTimeFormatter) DateTimeStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.property
-
 func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDateTimeStyle:"), value)
 }
@@ -143,7 +138,6 @@ func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
-
 func (r_ RelativeDateTimeFormatter) FormattingContext() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("formattingContext"))
 	return rv
@@ -154,7 +148,6 @@ func (r_ RelativeDateTimeFormatter) FormattingContext() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
-
 func (r_ RelativeDateTimeFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingContext:"), value)
 }
@@ -164,7 +157,6 @@ func (r_ RelativeDateTimeFormatter) SetFormattingContext(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
-
 func (r_ RelativeDateTimeFormatter) Locale() Locale {
 	rv := objc.Send[Locale](r_.ID, objc.Sel("locale"))
 	return rv
@@ -175,7 +167,6 @@ func (r_ RelativeDateTimeFormatter) Locale() Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
-
 func (r_ RelativeDateTimeFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLocale:"), value)
 }
@@ -185,7 +176,6 @@ func (r_ RelativeDateTimeFormatter) SetLocale(value ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.property
-
 func (r_ RelativeDateTimeFormatter) UnitsStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("unitsStyle"))
 	return rv
@@ -196,7 +186,6 @@ func (r_ RelativeDateTimeFormatter) UnitsStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.property
-
 func (r_ RelativeDateTimeFormatter) SetUnitsStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUnitsStyle:"), value)
 }

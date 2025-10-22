@@ -31,7 +31,7 @@ type _FileVersionClass struct {
 type IFileVersion interface {
 	objectivec.IObject
 	RemoveAndReturnError(outError IError) bool
-	ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) URL
+	ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) URL
 	HasLocalContents() bool
 	PersistentIdentifier() objc.ID
 	URL() URL
@@ -62,7 +62,6 @@ type IFileVersion interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion
-
 type FileVersion struct {
 	objectivec.Object
 }
@@ -107,36 +106,41 @@ func NewFileVersion() FileVersion {
 
 
 
+// Returns the most recent version object for the file at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/currentVersionOfItem(at:)
+func (fc _FileVersionClass) CurrentVersionOfItemAtURL(url IURL) FileVersion {
+	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("currentVersionOfItemAtURL:"), url)
+	return rv
+}
+
+
 // Removes all versions of a file, except the current one, from the version store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/removeOtherVersionsOfItem(at:)
-
 func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outError IError) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("removeOtherVersionsOfItemAtURL:error:"), url, outError)
 	return rv
 }
 
 
-
 // Remove this version object and its associated file from the version store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/remove()
-
 func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("removeAndReturnError:"), outError)
 	return rv
 }
 
 
-
 // Replace the contents of the specified file with the contents of the current version’s file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/replaceItem(at:options:)
-
-func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) URL {
+func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) URL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("replaceItemAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -144,7 +148,6 @@ func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersion
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
-
 func (f_ FileVersion) HasLocalContents() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
 	return rv
@@ -155,7 +158,6 @@ func (f_ FileVersion) HasLocalContents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/persistentIdentifier
-
 func (f_ FileVersion) PersistentIdentifier() objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("persistentIdentifier"))
 	return rv
@@ -166,7 +168,6 @@ func (f_ FileVersion) PersistentIdentifier() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/url
-
 func (f_ FileVersion) URL() URL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
 	return rv
@@ -175,7 +176,6 @@ func (f_ FileVersion) URL() URL {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
-
 func (f_ FileVersion) HasThumbnail() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
 	return rv
@@ -184,7 +184,6 @@ func (f_ FileVersion) HasThumbnail() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
-
 func (f_ FileVersion) SetHasThumbnail(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHasThumbnail:"), value)
 }
@@ -194,7 +193,6 @@ func (f_ FileVersion) SetHasThumbnail(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
-
 func (f_ FileVersion) IsConflict() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isConflict"))
 	return rv
@@ -205,7 +203,6 @@ func (f_ FileVersion) IsConflict() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
-
 func (f_ FileVersion) SetIsConflict(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsConflict:"), value)
 }
@@ -215,7 +212,6 @@ func (f_ FileVersion) SetIsConflict(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-
 func (f_ FileVersion) IsDiscardable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDiscardable"))
 	return rv
@@ -226,7 +222,6 @@ func (f_ FileVersion) IsDiscardable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-
 func (f_ FileVersion) SetIsDiscardable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDiscardable:"), value)
 }
@@ -236,7 +231,6 @@ func (f_ FileVersion) SetIsDiscardable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
-
 func (f_ FileVersion) IsResolved() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isResolved"))
 	return rv
@@ -247,7 +241,6 @@ func (f_ FileVersion) IsResolved() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
-
 func (f_ FileVersion) SetIsResolved(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsResolved:"), value)
 }
@@ -257,7 +250,6 @@ func (f_ FileVersion) SetIsResolved(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-
 func (f_ FileVersion) LocalizedName() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("localizedName"))
 	return rv
@@ -268,7 +260,6 @@ func (f_ FileVersion) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-
 func (f_ FileVersion) SetLocalizedName(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
@@ -278,7 +269,6 @@ func (f_ FileVersion) SetLocalizedName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-
 func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
 	return rv
@@ -289,7 +279,6 @@ func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-
 func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), objc.String(value))
 }
@@ -299,7 +288,6 @@ func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
-
 func (f_ FileVersion) ModificationDate() Date {
 	rv := objc.Send[Date](f_.ID, objc.Sel("modificationDate"))
 	return rv
@@ -310,7 +298,6 @@ func (f_ FileVersion) ModificationDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
-
 func (f_ FileVersion) SetModificationDate(value IDate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setModificationDate:"), value)
 }
@@ -318,7 +305,6 @@ func (f_ FileVersion) SetModificationDate(value IDate) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-
 func (f_ FileVersion) OriginatorNameComponents() PersonNameComponents {
 	rv := objc.Send[PersonNameComponents](f_.ID, objc.Sel("originatorNameComponents"))
 	return rv
@@ -327,7 +313,6 @@ func (f_ FileVersion) OriginatorNameComponents() PersonNameComponents {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-
 func (f_ FileVersion) SetOriginatorNameComponents(value IPersonNameComponents) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
 }

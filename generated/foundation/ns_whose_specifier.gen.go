@@ -50,7 +50,6 @@ type IWhoseSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier
-
 type WhoseSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -101,7 +100,6 @@ func NewWhoseSpecifier() WhoseSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementidentifier
-
 func (w_ WhoseSpecifier) EndSubelementIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("endSubelementIdentifier"))
 	return rv
@@ -112,7 +110,6 @@ func (w_ WhoseSpecifier) EndSubelementIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementidentifier
-
 func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIdentifier:"), value)
 }
@@ -122,7 +119,6 @@ func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementindex
-
 func (w_ WhoseSpecifier) EndSubelementIndex() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("endSubelementIndex"))
 	return rv
@@ -133,7 +129,6 @@ func (w_ WhoseSpecifier) EndSubelementIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementindex
-
 func (w_ WhoseSpecifier) SetEndSubelementIndex(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIndex:"), value)
 }
@@ -143,7 +138,6 @@ func (w_ WhoseSpecifier) SetEndSubelementIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementidentifier
-
 func (w_ WhoseSpecifier) StartSubelementIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("startSubelementIdentifier"))
 	return rv
@@ -154,7 +148,6 @@ func (w_ WhoseSpecifier) StartSubelementIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementidentifier
-
 func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIdentifier:"), value)
 }
@@ -164,7 +157,6 @@ func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementindex
-
 func (w_ WhoseSpecifier) StartSubelementIndex() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("startSubelementIndex"))
 	return rv
@@ -175,7 +167,6 @@ func (w_ WhoseSpecifier) StartSubelementIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementindex
-
 func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIndex:"), value)
 }
@@ -185,7 +176,6 @@ func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/test
-
 func (w_ WhoseSpecifier) Test() NSScriptWhoseTest {
 	rv := objc.Send[NSScriptWhoseTest](w_.ID, objc.Sel("test"))
 	return rv
@@ -196,7 +186,6 @@ func (w_ WhoseSpecifier) Test() NSScriptWhoseTest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/test
-
 func (w_ WhoseSpecifier) SetTest(value IScriptWhoseTest) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTest:"), value)
 }

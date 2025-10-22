@@ -36,7 +36,6 @@ type IrunLoops interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/runLoops
-
 type runLoops struct {
 	objectivec.Object
 }

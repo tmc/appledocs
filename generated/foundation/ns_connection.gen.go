@@ -31,14 +31,14 @@ type _ConnectionClass struct {
 type IConnection interface {
 	objectivec.IObject
 	AddRequestMode(rmode string)
-	AddRunLoop(runloop IRunLoop)
+	AddRunLoop(runloop RunLoop)
 	DispatchWithComponents(components objectivec.IObject)
 	EnableMultipleThreads()
 	Invalidate()
 	RegisterName(name string) bool
 	RegisterNameWithNameServer(name string, server IPortNameServer) bool
 	RemoveRequestMode(rmode string)
-	RemoveRunLoop(runloop IRunLoop)
+	RemoveRunLoop(runloop RunLoop)
 	RunInNewThread()
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -46,7 +46,7 @@ type IConnection interface {
 	SetIndependentConversationQueueing(value bool)
 	LocalObjects() objc.ID
 	MultipleThreadsEnabled() bool
-	ReceivePort() NSPort
+	ReceivePort() Port
 	RemoteObjects() objc.ID
 	ReplyTimeout() TimeInterval
 	SetReplyTimeout(value ITimeInterval)
@@ -56,8 +56,8 @@ type IConnection interface {
 	RootObject() objc.ID
 	SetRootObject(value objc.ID)
 	RootProxy() NSDistantObject
-	SendPort() NSPort
-	Statistics() unsafe.Pointer
+	SendPort() Port
+	Statistics() IDictionary
 	Valid() bool
 }
 
@@ -70,7 +70,6 @@ type IConnection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection
-
 type Connection struct {
 	objectivec.Object
 }
@@ -115,13 +114,11 @@ func NewConnection() Connection {
 
 
 
-
 // Returns an object initialized with given send and receive ports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/initWithReceivePort:sendPort:
-
-func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Connection {
+func NewConnectionWithReceivePortSendPort(receivePort Port, sendPort Port) Connection {
 	instance := getConnectionClass().Alloc()
 	rv := objc.Send[Connection](instance.ID, objc.Sel("initWithReceivePort:sendPort:"), receivePort, sendPort)
 	rv.Autorelease()
@@ -134,7 +131,6 @@ func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Con
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/allConnections
-
 func (cc _ConnectionClass) AllConnections() []Connection {
 	rv := objc.Send[[]Connection](objc.ID(cc.class), objc.Sel("allConnections"))
 	return rv
@@ -145,8 +141,7 @@ func (cc _ConnectionClass) AllConnections() []Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithReceivePort:sendPort:
-
-func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) unsafe.Pointer {
+func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort Port, sendPort Port) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithReceivePort:sendPort:"), receivePort, sendPort)
 	return rv
 }
@@ -156,7 +151,6 @@ func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort IPort, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithRegisteredName:host:
-
 func (cc _ConnectionClass) ConnectionWithRegisteredNameHost(name string, hostName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
 	return rv
@@ -167,7 +161,6 @@ func (cc _ConnectionClass) ConnectionWithRegisteredNameHost(name string, hostNam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithRegisteredName:host:usingNameServer:
-
 func (cc _ConnectionClass) ConnectionWithRegisteredNameHostUsingNameServer(name string, hostName string, server IPortNameServer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithRegisteredName:host:usingNameServer:"), objc.String(name), objc.String(hostName), server)
 	return rv
@@ -178,7 +171,6 @@ func (cc _ConnectionClass) ConnectionWithRegisteredNameHostUsingNameServer(name 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/currentConversation
-
 func (cc _ConnectionClass) CurrentConversation() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("currentConversation"))
 	return rv
@@ -189,7 +181,6 @@ func (cc _ConnectionClass) CurrentConversation() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/defaultConnection
-
 func (cc _ConnectionClass) DefaultConnection() Connection {
 	rv := objc.Send[Connection](objc.ID(cc.class), objc.Sel("defaultConnection"))
 	return rv
@@ -200,7 +191,6 @@ func (cc _ConnectionClass) DefaultConnection() Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:
-
 func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name string, hostName string) DistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), objc.String(name), objc.String(hostName))
 	return rv
@@ -211,7 +201,6 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:usingNameServer:
-
 func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingNameServer(name string, hostName string, server IPortNameServer) DistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:usingNameServer:"), objc.String(name), objc.String(hostName), server)
 	return rv
@@ -222,7 +211,6 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/serviceConnectionWithName:rootObject:
-
 func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name string, root objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:"), objc.String(name), root)
 	return rv
@@ -233,120 +221,99 @@ func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name string, root
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/serviceConnectionWithName:rootObject:usingNameServer:
-
 func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(name string, root objectivec.IObject, server IPortNameServer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:usingNameServer:"), objc.String(name), root, server)
 	return rv
 }
 
 
-
 // Adds to the set of run-loop input modes that the receiver uses for connection requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRequestMode:
-
 func (c_ Connection) AddRequestMode(rmode string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addRequestMode:"), objc.String(rmode))
 }
-
 
 
 // Adds the specified run loop to the list of run loops the receiver monitors and from which it responds to requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRunLoop:
-
-func (c_ Connection) AddRunLoop(runloop IRunLoop) {
+func (c_ Connection) AddRunLoop(runloop RunLoop) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addRunLoop:"), runloop)
 }
-
 
 
 // Allows subclasses to ask a connection object to dispatch component data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/dispatchWithComponents:
-
 func (c_ Connection) DispatchWithComponents(components objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("dispatchWithComponents:"), components)
 }
-
 
 
 // Configures the receiver to allow requests from multiple threads to the remote object, without requiring each thread to each maintain its own connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/enableMultipleThreads
-
 func (c_ Connection) EnableMultipleThreads() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enableMultipleThreads"))
 }
-
 
 
 // Invalidates the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/invalidate
-
 func (c_ Connection) Invalidate() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidate"))
 }
-
 
 
 // Registers the specified service using with the default system port name server.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerName:
-
 func (c_ Connection) RegisterName(name string) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("registerName:"), objc.String(name))
 	return rv
 }
 
 
-
 // Registers a service with the specified port name server.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerName:withNameServer:
-
 func (c_ Connection) RegisterNameWithNameServer(name string, server IPortNameServer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("registerName:withNameServer:"), objc.String(name), server)
 	return rv
 }
 
 
-
 // Removes from the set of run-loop input modes the receiver uses for connection requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRequestMode:
-
 func (c_ Connection) RemoveRequestMode(rmode string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeRequestMode:"), objc.String(rmode))
 }
-
 
 
 // Removes a given object from the list of run loops the receiver monitors and from which it responds to requests.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRunLoop:
-
-func (c_ Connection) RemoveRunLoop(runloop IRunLoop) {
+func (c_ Connection) RemoveRunLoop(runloop RunLoop) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeRunLoop:"), runloop)
 }
-
 
 
 // Creates and starts a new object and then runs the receiving connection in the new thread.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/runInNewThread
-
 func (c_ Connection) RunInNewThread() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("runInNewThread"))
 }
@@ -356,7 +323,6 @@ func (c_ Connection) RunInNewThread() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.property
-
 func (c_ Connection) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
 	return rv
@@ -367,7 +333,6 @@ func (c_ Connection) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delegate-c.property
-
 func (c_ Connection) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -377,7 +342,6 @@ func (c_ Connection) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/independentConversationQueueing
-
 func (c_ Connection) IndependentConversationQueueing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("independentConversationQueueing"))
 	return rv
@@ -388,7 +352,6 @@ func (c_ Connection) IndependentConversationQueueing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/independentConversationQueueing
-
 func (c_ Connection) SetIndependentConversationQueueing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndependentConversationQueueing:"), value)
 }
@@ -398,7 +361,6 @@ func (c_ Connection) SetIndependentConversationQueueing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/localObjects
-
 func (c_ Connection) LocalObjects() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("localObjects"))
 	return rv
@@ -409,7 +371,6 @@ func (c_ Connection) LocalObjects() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/multipleThreadsEnabled
-
 func (c_ Connection) MultipleThreadsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multipleThreadsEnabled"))
 	return rv
@@ -420,9 +381,8 @@ func (c_ Connection) MultipleThreadsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/receivePort-c.property
-
-func (c_ Connection) ReceivePort() NSPort {
-	rv := objc.Send[NSPort](c_.ID, objc.Sel("receivePort"))
+func (c_ Connection) ReceivePort() Port {
+	rv := objc.Send[Port](c_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
@@ -431,7 +391,6 @@ func (c_ Connection) ReceivePort() NSPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/remoteObjects
-
 func (c_ Connection) RemoteObjects() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("remoteObjects"))
 	return rv
@@ -442,7 +401,6 @@ func (c_ Connection) RemoteObjects() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
-
 func (c_ Connection) ReplyTimeout() TimeInterval {
 	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("replyTimeout"))
 	return rv
@@ -453,7 +411,6 @@ func (c_ Connection) ReplyTimeout() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
-
 func (c_ Connection) SetReplyTimeout(value ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReplyTimeout:"), value)
 }
@@ -463,7 +420,6 @@ func (c_ Connection) SetReplyTimeout(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestModes-c.property
-
 func (c_ Connection) RequestModes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("requestModes"))
 	return rv
@@ -474,7 +430,6 @@ func (c_ Connection) RequestModes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
-
 func (c_ Connection) RequestTimeout() TimeInterval {
 	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("requestTimeout"))
 	return rv
@@ -485,7 +440,6 @@ func (c_ Connection) RequestTimeout() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
-
 func (c_ Connection) SetRequestTimeout(value ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequestTimeout:"), value)
 }
@@ -495,7 +449,6 @@ func (c_ Connection) SetRequestTimeout(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootObject-c.property
-
 func (c_ Connection) RootObject() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("rootObject"))
 	return rv
@@ -506,7 +459,6 @@ func (c_ Connection) RootObject() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootObject-c.property
-
 func (c_ Connection) SetRootObject(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRootObject:"), value)
 }
@@ -516,7 +468,6 @@ func (c_ Connection) SetRootObject(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxy
-
 func (c_ Connection) RootProxy() NSDistantObject {
 	rv := objc.Send[NSDistantObject](c_.ID, objc.Sel("rootProxy"))
 	return rv
@@ -527,9 +478,8 @@ func (c_ Connection) RootProxy() NSDistantObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/sendPort-c.property
-
-func (c_ Connection) SendPort() NSPort {
-	rv := objc.Send[NSPort](c_.ID, objc.Sel("sendPort"))
+func (c_ Connection) SendPort() Port {
+	rv := objc.Send[Port](c_.ID, objc.Sel("sendPort"))
 	return rv
 }
 
@@ -538,9 +488,8 @@ func (c_ Connection) SendPort() NSPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/statistics-c.property
-
-func (c_ Connection) Statistics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("statistics"))
+func (c_ Connection) Statistics() IDictionary {
+	rv := objc.Send[IDictionary](c_.ID, objc.Sel("statistics"))
 	return rv
 }
 
@@ -549,7 +498,6 @@ func (c_ Connection) Statistics() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/valid
-
 func (c_ Connection) Valid() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("valid"))
 	return rv

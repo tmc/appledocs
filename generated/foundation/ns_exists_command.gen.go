@@ -40,7 +40,6 @@ type IExistsCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExistsCommand
-
 type ExistsCommand struct {
 	ScriptCommand
 }

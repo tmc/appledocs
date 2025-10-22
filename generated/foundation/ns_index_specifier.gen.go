@@ -42,7 +42,6 @@ type IIndexSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier
-
 type IndexSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -89,12 +88,10 @@ func NewIndexSpecifier() IndexSpecifier {
 
 
 
-
 // Initializes an allocated object with a class description, container specifier, collection key, and object index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/init(containerClassDescription:containerSpecifier:key:index:)
-
 func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, index int) IndexSpecifier {
 	instance := getIndexSpecifierClass().Alloc()
 	rv := objc.Send[IndexSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:index:"), classDesc, container, objc.String(property), index)
@@ -108,7 +105,6 @@ func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
-
 func (i_ IndexSpecifier) Index() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("index"))
 	return rv
@@ -119,7 +115,6 @@ func (i_ IndexSpecifier) Index() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
-
 func (i_ IndexSpecifier) SetIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:"), value)
 }

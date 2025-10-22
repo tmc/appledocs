@@ -40,7 +40,6 @@ type IUnitPressure interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure
-
 type UnitPressure struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitPressure() UnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
-
 func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
 	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("newtonsPerMetersSquared"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
-
 func (u_ UnitPressure) NewtonsPerMetersSquared() NSUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
 	return rv

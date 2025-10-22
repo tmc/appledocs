@@ -38,7 +38,7 @@ type IMetadataQueryResultGroup interface {
 	Value() objc.ID
 	GroupedResults() NSMetadataQueryResultGroup
 	SetGroupedResults(value IMetadataQueryResultGroup)
-	OperationQueue() NSOperationQueue
+	OperationQueue() OperationQueue
 	SetOperationQueue(value IOperationQueue)
 	ValueLists() NSMetadataQueryAttributeValueTuple
 	SetValueLists(value IMetadataQueryAttributeValueTuple)
@@ -51,7 +51,6 @@ type IMetadataQueryResultGroup interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup
-
 type MetadataQueryResultGroup struct {
 	objectivec.Object
 }
@@ -96,12 +95,10 @@ func NewMetadataQueryResultGroup() MetadataQueryResultGroup {
 
 
 
-
 // Returns the query result at a specific index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/result(at:)
-
 func (m_ MetadataQueryResultGroup) ResultAtIndex(idx uint) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("resultAtIndex:"), idx)
 	return rv
@@ -112,7 +109,6 @@ func (m_ MetadataQueryResultGroup) ResultAtIndex(idx uint) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/attribute
-
 func (m_ MetadataQueryResultGroup) Attribute() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("attribute"))
 	return rv
@@ -123,7 +119,6 @@ func (m_ MetadataQueryResultGroup) Attribute() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/resultCount
-
 func (m_ MetadataQueryResultGroup) ResultCount() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("resultCount"))
 	return rv
@@ -134,7 +129,6 @@ func (m_ MetadataQueryResultGroup) ResultCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/results
-
 func (m_ MetadataQueryResultGroup) Results() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("results"))
 	return rv
@@ -145,7 +139,6 @@ func (m_ MetadataQueryResultGroup) Results() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/subgroups
-
 func (m_ MetadataQueryResultGroup) Subgroups() []MetadataQueryResultGroup {
 	rv := objc.Send[[]MetadataQueryResultGroup](m_.ID, objc.Sel("subgroups"))
 	return rv
@@ -156,7 +149,6 @@ func (m_ MetadataQueryResultGroup) Subgroups() []MetadataQueryResultGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/value
-
 func (m_ MetadataQueryResultGroup) Value() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("value"))
 	return rv
@@ -167,7 +159,6 @@ func (m_ MetadataQueryResultGroup) Value() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
-
 func (m_ MetadataQueryResultGroup) GroupedResults() NSMetadataQueryResultGroup {
 	rv := objc.Send[NSMetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
 	return rv
@@ -178,7 +169,6 @@ func (m_ MetadataQueryResultGroup) GroupedResults() NSMetadataQueryResultGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
-
 func (m_ MetadataQueryResultGroup) SetGroupedResults(value IMetadataQueryResultGroup) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupedResults:"), value)
 }
@@ -188,9 +178,8 @@ func (m_ MetadataQueryResultGroup) SetGroupedResults(value IMetadataQueryResultG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/operationqueue
-
-func (m_ MetadataQueryResultGroup) OperationQueue() NSOperationQueue {
-	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
+func (m_ MetadataQueryResultGroup) OperationQueue() OperationQueue {
+	rv := objc.Send[OperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -199,7 +188,6 @@ func (m_ MetadataQueryResultGroup) OperationQueue() NSOperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/operationqueue
-
 func (m_ MetadataQueryResultGroup) SetOperationQueue(value IOperationQueue) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationQueue:"), value)
 }
@@ -209,7 +197,6 @@ func (m_ MetadataQueryResultGroup) SetOperationQueue(value IOperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-
 func (m_ MetadataQueryResultGroup) ValueLists() NSMetadataQueryAttributeValueTuple {
 	rv := objc.Send[NSMetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
 	return rv
@@ -220,7 +207,6 @@ func (m_ MetadataQueryResultGroup) ValueLists() NSMetadataQueryAttributeValueTup
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-
 func (m_ MetadataQueryResultGroup) SetValueLists(value IMetadataQueryAttributeValueTuple) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValueLists:"), value)
 }

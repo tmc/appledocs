@@ -31,8 +31,8 @@ type IMutableCharacterSet interface {
 	ICharacterSet
 	AddCharactersInRange(aRange Range)
 	AddCharactersInString(aString string)
-	FormIntersectionWithCharacterSet(otherSet ICharacterSet)
-	FormUnionWithCharacterSet(otherSet ICharacterSet)
+	FormIntersectionWithCharacterSet(otherSet CharacterSet)
+	FormUnionWithCharacterSet(otherSet CharacterSet)
 	Invert()
 	RemoveCharactersInRange(aRange Range)
 	RemoveCharactersInString(aString string)
@@ -47,7 +47,6 @@ type IMutableCharacterSet interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet
-
 type MutableCharacterSet struct {
 	CharacterSet
 }
@@ -94,48 +93,40 @@ func NewMutableCharacterSet() MutableCharacterSet {
 
 
 
-
 // Returns a character set containing characters determined by a given bitmap representation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
-
-func NewMutableCharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
+func NewMutableCharacterSetWithBitmapRepresentation(data NSData) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
 	return rv
 }
-
 
 
 // Returns a character set containing the characters in a given string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
-
 func NewMutableCharacterSetWithCharactersInString(aString string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
 }
 
 
-
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-
 func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
 
 
-
 // Returns a character set containing characters with Unicode values in a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-
 func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
@@ -147,7 +138,6 @@ func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/alphanumeric()
-
 func (mc _MutableCharacterSetClass) AlphanumericCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("alphanumericCharacterSet"))
 	return rv
@@ -158,7 +148,6 @@ func (mc _MutableCharacterSetClass) AlphanumericCharacterSet() MutableCharacterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/capitalizedLetter()
-
 func (mc _MutableCharacterSetClass) CapitalizedLetterCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("capitalizedLetterCharacterSet"))
 	return rv
@@ -169,7 +158,6 @@ func (mc _MutableCharacterSetClass) CapitalizedLetterCharacterSet() MutableChara
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/control()
-
 func (mc _MutableCharacterSetClass) ControlCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("controlCharacterSet"))
 	return rv
@@ -180,7 +168,6 @@ func (mc _MutableCharacterSetClass) ControlCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/decimalDigit()
-
 func (mc _MutableCharacterSetClass) DecimalDigitCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("decimalDigitCharacterSet"))
 	return rv
@@ -191,7 +178,6 @@ func (mc _MutableCharacterSetClass) DecimalDigitCharacterSet() MutableCharacterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/decomposable()
-
 func (mc _MutableCharacterSetClass) DecomposableCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("decomposableCharacterSet"))
 	return rv
@@ -202,7 +188,6 @@ func (mc _MutableCharacterSetClass) DecomposableCharacterSet() MutableCharacterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/illegal()
-
 func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("illegalCharacterSet"))
 	return rv
@@ -213,8 +198,7 @@ func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
-
-func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data NSData) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
 	return rv
 }
@@ -224,7 +208,6 @@ func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
-
 func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
@@ -235,7 +218,6 @@ func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-
 func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
@@ -246,7 +228,6 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-
 func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
@@ -257,7 +238,6 @@ func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) MutableC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/letter()
-
 func (mc _MutableCharacterSetClass) LetterCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("letterCharacterSet"))
 	return rv
@@ -268,7 +248,6 @@ func (mc _MutableCharacterSetClass) LetterCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/lowercaseLetter()
-
 func (mc _MutableCharacterSetClass) LowercaseLetterCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("lowercaseLetterCharacterSet"))
 	return rv
@@ -279,7 +258,6 @@ func (mc _MutableCharacterSetClass) LowercaseLetterCharacterSet() MutableCharact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/newline()
-
 func (mc _MutableCharacterSetClass) NewlineCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("newlineCharacterSet"))
 	return rv
@@ -290,7 +268,6 @@ func (mc _MutableCharacterSetClass) NewlineCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/nonBase()
-
 func (mc _MutableCharacterSetClass) NonBaseCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("nonBaseCharacterSet"))
 	return rv
@@ -301,7 +278,6 @@ func (mc _MutableCharacterSetClass) NonBaseCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/punctuation()
-
 func (mc _MutableCharacterSetClass) PunctuationCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("punctuationCharacterSet"))
 	return rv
@@ -312,7 +288,6 @@ func (mc _MutableCharacterSetClass) PunctuationCharacterSet() MutableCharacterSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/symbol()
-
 func (mc _MutableCharacterSetClass) SymbolCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("symbolCharacterSet"))
 	return rv
@@ -323,7 +298,6 @@ func (mc _MutableCharacterSetClass) SymbolCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/uppercaseLetter()
-
 func (mc _MutableCharacterSetClass) UppercaseLetterCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("uppercaseLetterCharacterSet"))
 	return rv
@@ -334,7 +308,6 @@ func (mc _MutableCharacterSetClass) UppercaseLetterCharacterSet() MutableCharact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/whitespace()
-
 func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("whitespaceCharacterSet"))
 	return rv
@@ -345,85 +318,70 @@ func (mc _MutableCharacterSetClass) WhitespaceCharacterSet() MutableCharacterSet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/whitespaceAndNewline()
-
 func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("whitespaceAndNewlineCharacterSet"))
 	return rv
 }
 
 
-
 // Adds to the receiver the characters whose Unicode values are in a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
-
 func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
-
 
 
 // Adds to the receiver the characters in a given string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-7q02
-
 func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInString:"), objc.String(aString))
 }
-
 
 
 // Modifies the receiver so it contains only characters that exist in both the receiver and another set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/formIntersection(with:)
-
-func (m_ MutableCharacterSet) FormIntersectionWithCharacterSet(otherSet ICharacterSet) {
+func (m_ MutableCharacterSet) FormIntersectionWithCharacterSet(otherSet CharacterSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("formIntersectionWithCharacterSet:"), otherSet)
 }
-
 
 
 // Modifies the receiver so it contains all characters that exist in either the receiver or another set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/formUnion(with:)
-
-func (m_ MutableCharacterSet) FormUnionWithCharacterSet(otherSet ICharacterSet) {
+func (m_ MutableCharacterSet) FormUnionWithCharacterSet(otherSet CharacterSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("formUnionWithCharacterSet:"), otherSet)
 }
-
 
 
 // Replaces all the characters in the receiver with all the characters it didn’t previously contain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/invert()
-
 func (m_ MutableCharacterSet) Invert() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invert"))
 }
-
 
 
 // Removes from the receiver the characters whose Unicode values are in a given range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-70nqp
-
 func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange Range) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInRange:"), aRange)
 }
-
 
 
 // Removes from the receiver the characters in a given string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-762gt
-
 func (m_ MutableCharacterSet) RemoveCharactersInString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInString:"), objc.String(aString))
 }

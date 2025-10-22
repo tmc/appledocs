@@ -40,7 +40,6 @@ type IUnitMass interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass
-
 type UnitMass struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitMass() UnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
-
 func (uc _UnitMassClass) Kilograms() UnitMass {
 	rv := objc.Send[NSUnitMass](objc.ID(uc.class), objc.Sel("kilograms"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitMassClass) Kilograms() UnitMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
-
 func (u_ UnitMass) Kilograms() NSUnitMass {
 	rv := objc.Send[NSUnitMass](u_.ID, objc.Sel("kilograms"))
 	return rv

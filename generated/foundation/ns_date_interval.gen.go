@@ -47,7 +47,6 @@ type IDateInterval interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval
-
 type DateInterval struct {
 	objectivec.Object
 }
@@ -92,13 +91,11 @@ func NewDateInterval() DateInterval {
 
 
 
-
 // Initializes a date interval with a given start date and duration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
-
-func NewDateIntervalWithStartDateDuration(startDate IDate, duration ITimeInterval) DateInterval {
+func NewDateIntervalWithStartDateDuration(startDate IDate, duration TimeInterval) DateInterval {
 	instance := getDateIntervalClass().Alloc()
 	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:duration:"), startDate, duration)
 	rv.Autorelease()
@@ -107,12 +104,10 @@ func NewDateIntervalWithStartDateDuration(startDate IDate, duration ITimeInterva
 
 
 
-
 // Compares the receiver with the specified date interval.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/compare(_:)
-
 func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), dateInterval)
 	return rv
@@ -123,7 +118,6 @@ func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/startDate
-
 func (d_ DateInterval) StartDate() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
@@ -134,7 +128,6 @@ func (d_ DateInterval) StartDate() NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
-
 func (d_ DateInterval) Duration() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
@@ -145,7 +138,6 @@ func (d_ DateInterval) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
-
 func (d_ DateInterval) SetDuration(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
@@ -155,7 +147,6 @@ func (d_ DateInterval) SetDuration(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
-
 func (d_ DateInterval) EndDate() Date {
 	rv := objc.Send[Date](d_.ID, objc.Sel("endDate"))
 	return rv
@@ -166,7 +157,6 @@ func (d_ DateInterval) EndDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
-
 func (d_ DateInterval) SetEndDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
 }

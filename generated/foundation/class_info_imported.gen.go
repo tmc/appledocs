@@ -36,7 +36,6 @@ type IclassInfoImported interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/classInfoImported
-
 type classInfoImported struct {
 	objectivec.Object
 }

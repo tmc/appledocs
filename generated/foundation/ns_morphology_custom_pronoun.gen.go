@@ -43,7 +43,6 @@ type IMorphologyCustomPronoun interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun
-
 type MorphologyCustomPronoun struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewMorphologyCustomPronoun() MorphologyCustomPronoun {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-
 func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("reflexiveForm"))
 	return rv
@@ -103,7 +101,6 @@ func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-
 func (m_ MorphologyCustomPronoun) SetReflexiveForm(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), objc.String(value))
 }

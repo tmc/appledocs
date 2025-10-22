@@ -45,7 +45,6 @@ type IAffineTransform interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform
-
 type AffineTransform struct {
 	objectivec.Object
 }
@@ -90,24 +89,20 @@ func NewAffineTransform() AffineTransform {
 
 
 
-
 // Applies the receiver’s transform to the specified point and returns the result.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
-
 func (a_ AffineTransform) TransformPoint(aPoint Point) Point {
 	rv := objc.Send[Point](a_.ID, objc.Sel("transformPoint:"), aPoint)
 	return rv
 }
 
 
-
 // Applies the specified translation factors to the receiver’s transformation matrix.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/translateX(by:yBy:)
-
 func (a_ AffineTransform) TranslateXByYBy(deltaX float64, deltaY float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("translateXBy:yBy:"), deltaX, deltaY)
 }
@@ -117,7 +112,6 @@ func (a_ AffineTransform) TranslateXByYBy(deltaX float64, deltaY float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
-
 func (a_ AffineTransform) TransformStruct() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transformStruct"))
 	return rv
@@ -128,7 +122,6 @@ func (a_ AffineTransform) TransformStruct() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
-
 func (a_ AffineTransform) SetTransformStruct(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
 }

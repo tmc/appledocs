@@ -36,7 +36,6 @@ type IdelayedRL interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/delayedRL
-
 type delayedRL struct {
 	objectivec.Object
 }

@@ -42,7 +42,6 @@ type IDeleteCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand
-
 type DeleteCommand struct {
 	ScriptCommand
 }
@@ -89,12 +88,10 @@ func NewDeleteCommand() DeleteCommand {
 
 
 
-
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand/setReceiversSpecifier(_:)
-
 func (d_ DeleteCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
@@ -104,7 +101,6 @@ func (d_ DeleteCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand/keySpecifier
-
 func (d_ DeleteCommand) KeySpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](d_.ID, objc.Sel("keySpecifier"))
 	return rv

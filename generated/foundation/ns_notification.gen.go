@@ -44,7 +44,6 @@ type INotification interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification
-
 type Notification struct {
 	objectivec.Object
 }
@@ -89,12 +88,10 @@ func NewNotification() Notification {
 
 
 
-
 // Initializes a notification with the data from an unarchiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(coder:)
-
 func NewNotificationWithCoder(coder ICoder) Notification {
 	instance := getNotificationClass().Alloc()
 	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithCoder:"), coder)
@@ -103,25 +100,21 @@ func NewNotificationWithCoder(coder ICoder) Notification {
 }
 
 
-
 // Returns a new notification object with a specified name and object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
-
-func NewNotificationWithNameObject(aName INotificationName, anObject objectivec.IObject) Notification {
+func NewNotificationWithNameObject(aName NotificationName, anObject objectivec.IObject) Notification {
 	rv := objc.Send[Notification](objc.ID(getNotificationClass().class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
-
 
 
 // Initializes a notification with a specified name, object, and user information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:userInfo:)
-
-func NewNotificationWithNameObjectUserInfo(name INotificationName, object objectivec.IObject, userInfo objectivec.IObject) Notification {
+func NewNotificationWithNameObjectUserInfo(name NotificationName, object objectivec.IObject, userInfo objectivec.IObject) Notification {
 	instance := getNotificationClass().Alloc()
 	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithName:object:userInfo:"), name, object, userInfo)
 	rv.Autorelease()
@@ -134,8 +127,7 @@ func NewNotificationWithNameObjectUserInfo(name INotificationName, object object
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
-
-func (nc _NotificationClass) NotificationWithNameObject(aName INotificationName, anObject objectivec.IObject) unsafe.Pointer {
+func (nc _NotificationClass) NotificationWithNameObject(aName NotificationName, anObject objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
@@ -145,8 +137,7 @@ func (nc _NotificationClass) NotificationWithNameObject(aName INotificationName,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/notificationWithName:object:userInfo:
-
-func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName INotificationName, anObject objectivec.IObject, aUserInfo objectivec.IObject) unsafe.Pointer {
+func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName NotificationName, anObject objectivec.IObject, aUserInfo objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("notificationWithName:object:userInfo:"), aName, anObject, aUserInfo)
 	return rv
 }
@@ -156,7 +147,6 @@ func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName INotificat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/name-swift.property
-
 func (n_ Notification) Name() NotificationName {
 	rv := objc.Send[NotificationName](n_.ID, objc.Sel("name"))
 	return rv
@@ -167,7 +157,6 @@ func (n_ Notification) Name() NotificationName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/object
-
 func (n_ Notification) GetObject() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("object"))
 	return rv
@@ -178,7 +167,6 @@ func (n_ Notification) GetObject() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/userInfo
-
 func (n_ Notification) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("userInfo"))
 	return rv

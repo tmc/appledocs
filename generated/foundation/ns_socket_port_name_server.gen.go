@@ -32,8 +32,8 @@ type ISocketPortNameServer interface {
 	PortForName(name string) Port
 	PortForNameHost(name string, host string) Port
 	PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) Port
-	RegisterPortName(port IPort, name string) bool
-	RegisterPortNameNameServerPortNumber(port IPort, name string, portNumber unsafe.Pointer) bool
+	RegisterPortName(port Port, name string) bool
+	RegisterPortNameNameServerPortNumber(port Port, name string, portNumber unsafe.Pointer) bool
 	RemovePortForName(name string) bool
 	DefaultNameServerPortNumber() unsafe.Pointer
 	SetDefaultNameServerPortNumber(value unsafe.Pointer)
@@ -48,7 +48,6 @@ type ISocketPortNameServer interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer
-
 type SocketPortNameServer struct {
 	PortNameServer
 }
@@ -99,79 +98,66 @@ func NewSocketPortNameServer() SocketPortNameServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/sharedInstance
-
 func (sc _SocketPortNameServerClass) SharedInstance() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("sharedInstance"))
 	return rv
 }
 
 
-
 // Looks up and returns the port registered under the specified name on the local host.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/portForName:
-
 func (s_ SocketPortNameServer) PortForName(name string) Port {
 	rv := objc.Send[Port](s_.ID, objc.Sel("portForName:"), objc.String(name))
 	return rv
 }
 
 
-
 // Looks up and returns the port registered under the specified name on a specified host.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/portForName:host:
-
 func (s_ SocketPortNameServer) PortForNameHost(name string, host string) Port {
 	rv := objc.Send[Port](s_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }
 
 
-
 // Looks up and returns the port registered under the specified name on a specified host.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/portForName:host:nameServerPortNumber:
-
 func (s_ SocketPortNameServer) PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) Port {
 	rv := objc.Send[Port](s_.ID, objc.Sel("portForName:host:nameServerPortNumber:"), objc.String(name), objc.String(host), portNumber)
 	return rv
 }
 
 
-
 // Registers a given port as a network service with the specified name in the local domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/registerPort:name:
-
-func (s_ SocketPortNameServer) RegisterPortName(port IPort, name string) bool {
+func (s_ SocketPortNameServer) RegisterPortName(port Port, name string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv
 }
-
 
 
 // Registers a given port as a network service with the specified name in the local domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/registerPort:name:nameServerPortNumber:
-
-func (s_ SocketPortNameServer) RegisterPortNameNameServerPortNumber(port IPort, name string, portNumber unsafe.Pointer) bool {
+func (s_ SocketPortNameServer) RegisterPortNameNameServerPortNumber(port Port, name string, portNumber unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerPort:name:nameServerPortNumber:"), port, objc.String(name), portNumber)
 	return rv
 }
-
 
 
 // Unregisters the port for a given name on the local host.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/removePortForName:
-
 func (s_ SocketPortNameServer) RemovePortForName(name string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("removePortForName:"), objc.String(name))
 	return rv
@@ -182,7 +168,6 @@ func (s_ SocketPortNameServer) RemovePortForName(name string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/defaultNameServerPortNumber
-
 func (s_ SocketPortNameServer) DefaultNameServerPortNumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("defaultNameServerPortNumber"))
 	return rv
@@ -193,7 +178,6 @@ func (s_ SocketPortNameServer) DefaultNameServerPortNumber() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/defaultNameServerPortNumber
-
 func (s_ SocketPortNameServer) SetDefaultNameServerPortNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultNameServerPortNumber:"), value)
 }

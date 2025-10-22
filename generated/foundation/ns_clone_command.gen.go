@@ -43,7 +43,6 @@ type ICloneCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand
-
 type CloneCommand struct {
 	ScriptCommand
 }
@@ -90,12 +89,10 @@ func NewCloneCommand() CloneCommand {
 
 
 
-
 // Sets the receiver’s object specifier;.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand/setReceiversSpecifier(_:)
-
 func (c_ CloneCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
@@ -105,7 +102,6 @@ func (c_ CloneCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
-
 func (c_ CloneCommand) KeySpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](c_.ID, objc.Sel("keySpecifier"))
 	return rv
@@ -116,7 +112,6 @@ func (c_ CloneCommand) KeySpecifier() NSScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
-
 func (c_ CloneCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySpecifier:"), value)
 }

@@ -45,7 +45,6 @@ type IMeasurement interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement
-
 type Measurement struct {
 	objectivec.Object
 }
@@ -90,12 +89,10 @@ func NewMeasurement() Measurement {
 
 
 
-
 // Initializes a new measurement with a specified double-precision floating-point value and unit.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/init(doubleValue:unit:)
-
 func NewMeasurementWithDoubleValueUnit(doubleValue float64, unit unsafe.Pointer) Measurement {
 	instance := getMeasurementClass().Alloc()
 	rv := objc.Send[Measurement](instance.ID, objc.Sel("initWithDoubleValue:unit:"), doubleValue, unit)
@@ -105,12 +102,10 @@ func NewMeasurementWithDoubleValueUnit(doubleValue float64, unit unsafe.Pointer)
 
 
 
-
 // Indicates whether the measurement can be converted to the given unit.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/canBeConverted(to:)
-
 func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canBeConvertedToUnit:"), unit)
 	return rv
@@ -121,7 +116,6 @@ func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/unit
-
 func (m_ Measurement) Unit() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unit"))
 	return rv
@@ -132,7 +126,6 @@ func (m_ Measurement) Unit() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-
 func (m_ Measurement) DoubleValue() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("doubleValue"))
 	return rv
@@ -143,7 +136,6 @@ func (m_ Measurement) DoubleValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-
 func (m_ Measurement) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoubleValue:"), value)
 }

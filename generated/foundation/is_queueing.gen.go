@@ -36,7 +36,6 @@ type IisQueueing interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/isQueueing
-
 type isQueueing struct {
 	objectivec.Object
 }

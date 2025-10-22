@@ -41,7 +41,6 @@ type IXPCListenerEndpoint interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListenerEndpoint
-
 type XPCListenerEndpoint struct {
 	objectivec.Object
 }

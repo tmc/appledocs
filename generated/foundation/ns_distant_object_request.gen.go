@@ -30,10 +30,10 @@ type _DistantObjectRequestClass struct {
 // An interface definition for the [DistantObjectRequest] class.
 type IDistantObjectRequest interface {
 	objectivec.IObject
-	ReplyWithException(exception IException)
+	ReplyWithException(exception Exception)
 	Connection() NSConnection
 	Conversation() objc.ID
-	Invocation() NSInvocation
+	Invocation() Invocation
 }
 
 // An object used by the distributed objects system to help handle invocations between different processes.
@@ -45,7 +45,6 @@ type IDistantObjectRequest interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest
-
 type DistantObjectRequest struct {
 	objectivec.Object
 }
@@ -90,13 +89,11 @@ func NewDistantObjectRequest() DistantObjectRequest {
 
 
 
-
 // Sends a reply back to the remote object making the distant object request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/replyWithException:
-
-func (d_ DistantObjectRequest) ReplyWithException(exception IException) {
+func (d_ DistantObjectRequest) ReplyWithException(exception Exception) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("replyWithException:"), exception)
 }
 
@@ -105,7 +102,6 @@ func (d_ DistantObjectRequest) ReplyWithException(exception IException) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/connection
-
 func (d_ DistantObjectRequest) Connection() NSConnection {
 	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connection"))
 	return rv
@@ -116,7 +112,6 @@ func (d_ DistantObjectRequest) Connection() NSConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/conversation
-
 func (d_ DistantObjectRequest) Conversation() objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("conversation"))
 	return rv
@@ -127,9 +122,8 @@ func (d_ DistantObjectRequest) Conversation() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/invocation
-
-func (d_ DistantObjectRequest) Invocation() NSInvocation {
-	rv := objc.Send[NSInvocation](d_.ID, objc.Sel("invocation"))
+func (d_ DistantObjectRequest) Invocation() Invocation {
+	rv := objc.Send[Invocation](d_.ID, objc.Sel("invocation"))
 	return rv
 }
 

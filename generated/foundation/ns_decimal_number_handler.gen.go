@@ -47,7 +47,6 @@ type IDecimalNumberHandler interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler
-
 type DecimalNumberHandler struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
-
 func (d_ DecimalNumberHandler) RoundingBehavior() NSDecimalNumberHandler {
 	rv := objc.Send[NSDecimalNumberHandler](d_.ID, objc.Sel("roundingBehavior"))
 	return rv
@@ -107,7 +105,6 @@ func (d_ DecimalNumberHandler) RoundingBehavior() NSDecimalNumberHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
-
 func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingBehavior:"), value)
 }
@@ -117,7 +114,6 @@ func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-
 func (d_ DecimalNumberHandler) RoundingIncrement() Number {
 	rv := objc.Send[Number](d_.ID, objc.Sel("roundingIncrement"))
 	return rv
@@ -128,7 +124,6 @@ func (d_ DecimalNumberHandler) RoundingIncrement() Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-
 func (d_ DecimalNumberHandler) SetRoundingIncrement(value INumber) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
@@ -138,7 +133,6 @@ func (d_ DecimalNumberHandler) SetRoundingIncrement(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property
-
 func (d_ DecimalNumberHandler) RoundingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("roundingMode"))
 	return rv
@@ -149,7 +143,6 @@ func (d_ DecimalNumberHandler) RoundingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property
-
 func (d_ DecimalNumberHandler) SetRoundingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingMode:"), value)
 }

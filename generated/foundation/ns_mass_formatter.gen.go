@@ -44,7 +44,6 @@ type IMassFormatter interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter
-
 type MassFormatter struct {
 	Formatter
 }
@@ -95,7 +94,6 @@ func NewMassFormatter() MassFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-
 func (m_ MassFormatter) IsForPersonMassUse() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isForPersonMassUse"))
 	return rv
@@ -106,7 +104,6 @@ func (m_ MassFormatter) IsForPersonMassUse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-
 func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsForPersonMassUse:"), value)
 }
@@ -116,7 +113,6 @@ func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-
 func (m_ MassFormatter) NumberFormatter() NSNumberFormatter {
 	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
@@ -127,7 +123,6 @@ func (m_ MassFormatter) NumberFormatter() NSNumberFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-
 func (m_ MassFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
@@ -137,7 +132,6 @@ func (m_ MassFormatter) SetNumberFormatter(value INumberFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
-
 func (m_ MassFormatter) UnitStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
 	return rv
@@ -148,7 +142,6 @@ func (m_ MassFormatter) UnitStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
-
 func (m_ MassFormatter) SetUnitStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }

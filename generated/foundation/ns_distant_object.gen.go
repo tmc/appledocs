@@ -43,7 +43,6 @@ type IDistantObject interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject
-
 type DistantObject struct {
 	Proxy
 }
@@ -90,11 +89,9 @@ func NewDistantObject() DistantObject {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
-
-func NewDistantObjectWithCoder(inCoder ICoder) DistantObject {
+func NewDistantObjectWithCoder(inCoder Coder) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithCoder:"), inCoder)
 	rv.Autorelease()
@@ -102,12 +99,10 @@ func NewDistantObjectWithCoder(inCoder ICoder) DistantObject {
 }
 
 
-
 // Initializes an object as a local proxy for a given object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithLocal:connection:
-
 func NewDistantObjectWithLocalConnection(target objectivec.IObject, connection IConnection) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithLocal:connection:"), target, connection)
@@ -116,12 +111,10 @@ func NewDistantObjectWithLocalConnection(target objectivec.IObject, connection I
 }
 
 
-
 // Initializes a newly allocated NSDistantObject as a remote proxy for , which is an id in another thread or another application’s address space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithTarget:connection:
-
 func NewDistantObjectWithTargetConnection(target objectivec.IObject, connection IConnection) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithTarget:connection:"), target, connection)
@@ -135,7 +128,6 @@ func NewDistantObjectWithTargetConnection(target objectivec.IObject, connection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/proxyWithLocal:connection:
-
 func (dc _DistantObjectClass) ProxyWithLocalConnection(target objectivec.IObject, connection IConnection) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithLocal:connection:"), target, connection)
 	return rv
@@ -146,19 +138,16 @@ func (dc _DistantObjectClass) ProxyWithLocalConnection(target objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/proxyWithTarget:connection:
-
 func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObject, connection IConnection) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithTarget:connection:"), target, connection)
 	return rv
 }
 
 
-
 // Sets the methods known to be handled by the receiver to those in a given protocol.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/setProtocolForProxy:
-
 func (d_ DistantObject) SetProtocolForProxy(proto objectivec.Protocol) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setProtocolForProxy:"), proto)
 }
@@ -168,7 +157,6 @@ func (d_ DistantObject) SetProtocolForProxy(proto objectivec.Protocol) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/connectionForProxy
-
 func (d_ DistantObject) ConnectionForProxy() NSConnection {
 	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connectionForProxy"))
 	return rv

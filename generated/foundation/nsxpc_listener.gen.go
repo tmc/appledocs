@@ -46,7 +46,6 @@ type IXPCListener interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener
-
 type XPCListener struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewXPCListener() XPCListener {
 
 
 
-
 // Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/init(machServiceName:)
-
 func NewXPCListenerWithMachServiceName(name string) XPCListener {
 	instance := getXPCListenerClass().Alloc()
 	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), objc.String(name))
@@ -110,30 +107,25 @@ func NewXPCListenerWithMachServiceName(name string) XPCListener {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/anonymous()
-
 func (xc _XPCListenerClass) AnonymousListener() XPCListener {
 	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("anonymousListener"))
 	return rv
 }
 
 
-
 // Sets the code signing requirement for connections to this listener.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/setConnectionCodeSigningRequirement(_:)
-
 func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), objc.String(requirement))
 }
-
 
 
 // Suspends the listener.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/suspend()
-
 func (x_ XPCListener) Suspend() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("suspend"))
 }
@@ -143,7 +135,6 @@ func (x_ XPCListener) Suspend() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/endpoint
-
 func (x_ XPCListener) Endpoint() NSXPCListenerEndpoint {
 	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
@@ -154,7 +145,6 @@ func (x_ XPCListener) Endpoint() NSXPCListenerEndpoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/delegate
-
 func (x_ XPCListener) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
 	return rv
@@ -165,7 +155,6 @@ func (x_ XPCListener) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/delegate
-
 func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
 }

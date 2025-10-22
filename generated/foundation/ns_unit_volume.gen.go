@@ -40,7 +40,6 @@ type IUnitVolume interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume
-
 type UnitVolume struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitVolume() UnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialGallons
-
 func (uc _UnitVolumeClass) ImperialGallons() UnitVolume {
 	rv := objc.Send[NSUnitVolume](objc.ID(uc.class), objc.Sel("imperialGallons"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitVolumeClass) ImperialGallons() UnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
-
 func (uc _UnitVolumeClass) Liters() UnitVolume {
 	rv := objc.Send[NSUnitVolume](objc.ID(uc.class), objc.Sel("liters"))
 	return rv
@@ -111,7 +108,6 @@ func (uc _UnitVolumeClass) Liters() UnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialGallons
-
 func (u_ UnitVolume) ImperialGallons() NSUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("imperialGallons"))
 	return rv
@@ -122,7 +118,6 @@ func (u_ UnitVolume) ImperialGallons() NSUnitVolume {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
-
 func (u_ UnitVolume) Liters() NSUnitVolume {
 	rv := objc.Send[NSUnitVolume](u_.ID, objc.Sel("liters"))
 	return rv

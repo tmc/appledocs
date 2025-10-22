@@ -43,7 +43,6 @@ type IPipe interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe
-
 type Pipe struct {
 	objectivec.Object
 }
@@ -92,7 +91,6 @@ func NewPipe() Pipe {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPipe/pipe
-
 func (pc _PipeClass) Pipe() Pipe {
 	rv := objc.Send[Pipe](objc.ID(pc.class), objc.Sel("pipe"))
 	return rv
@@ -103,7 +101,6 @@ func (pc _PipeClass) Pipe() Pipe {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForReading
-
 func (p_ Pipe) FileHandleForReading() NSFileHandle {
 	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForReading"))
 	return rv
@@ -114,7 +111,6 @@ func (p_ Pipe) FileHandleForReading() NSFileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForWriting
-
 func (p_ Pipe) FileHandleForWriting() NSFileHandle {
 	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
 	return rv

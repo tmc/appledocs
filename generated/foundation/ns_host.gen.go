@@ -47,7 +47,6 @@ type IHost interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host
-
 type Host struct {
 	objectivec.Object
 }
@@ -92,24 +91,20 @@ func NewHost() Host {
 
 
 
-
 // Returns the with the Internet address .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-
 func NewHostWithAddress(address string) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
 }
 
 
-
 // Returns a host with a specific name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-
 func NewHostWithName(name string) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
@@ -121,7 +116,6 @@ func NewHostWithName(name string) Host {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/current()
-
 func (hc _HostClass) CurrentHost() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("currentHost"))
 	return rv
@@ -132,7 +126,6 @@ func (hc _HostClass) CurrentHost() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-
 func (hc _HostClass) HostWithAddress(address string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
@@ -143,7 +136,6 @@ func (hc _HostClass) HostWithAddress(address string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-
 func (hc _HostClass) HostWithName(name string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
@@ -154,7 +146,6 @@ func (hc _HostClass) HostWithName(name string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/flushHostCache
-
 func (hc _HostClass) FlushHostCache() {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("flushHostCache"))
 }
@@ -164,7 +155,6 @@ func (hc _HostClass) FlushHostCache() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/isHostCacheEnabled
-
 func (hc _HostClass) IsHostCacheEnabled() bool {
 	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("isHostCacheEnabled"))
 	return rv
@@ -175,18 +165,15 @@ func (hc _HostClass) IsHostCacheEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/setHostCacheEnabled:
-
 func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
 }
-
 
 
 // Indicates whether the receiver represents the same host as another object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/isEqual(to:)
-
 func (h_ Host) IsEqualToHost(aHost IHost) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isEqualToHost:"), aHost)
 	return rv
@@ -197,7 +184,6 @@ func (h_ Host) IsEqualToHost(aHost IHost) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/address
-
 func (h_ Host) Address() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("address"))
 	return rv
@@ -208,7 +194,6 @@ func (h_ Host) Address() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/addresses
-
 func (h_ Host) Addresses() []string {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("addresses"))
 	return rv
@@ -219,7 +204,6 @@ func (h_ Host) Addresses() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
-
 func (h_ Host) LocalizedName() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
 	return rv
@@ -230,7 +214,6 @@ func (h_ Host) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
-
 func (h_ Host) Name() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
@@ -241,7 +224,6 @@ func (h_ Host) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/names
-
 func (h_ Host) Names() []string {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("names"))
 	return rv

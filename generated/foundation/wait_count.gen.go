@@ -36,7 +36,6 @@ type IwaitCount interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/waitCount
-
 type waitCount struct {
 	objectivec.Object
 }

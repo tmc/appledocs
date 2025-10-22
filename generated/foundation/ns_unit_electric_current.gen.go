@@ -40,7 +40,6 @@ type IUnitElectricCurrent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent
-
 type UnitElectricCurrent struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitElectricCurrent() UnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
-
 func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("amperes"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
-
 func (u_ UnitElectricCurrent) Amperes() NSUnitElectricCurrent {
 	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("amperes"))
 	return rv

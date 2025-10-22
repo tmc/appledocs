@@ -72,7 +72,6 @@ type IExpression interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression
-
 type Expression struct {
 	objectivec.Object
 }
@@ -117,23 +116,19 @@ func NewExpression() Expression {
 
 
 
-
 // Forces a securely decoded expression to allow evaluation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/allowEvaluation()
-
 func (e_ Expression) AllowEvaluation() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("allowEvaluation"))
 }
-
 
 
 // Evaluates an expression using a specified object and context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionValue(with:context:)
-
 func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("expressionValueWithObject:context:"), object, context)
 	return rv
@@ -144,7 +139,6 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/false
-
 func (e_ Expression) FalseExpression() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("falseExpression"))
 	return rv
@@ -155,7 +149,6 @@ func (e_ Expression) FalseExpression() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/predicate
-
 func (e_ Expression) Predicate() NSPredicate {
 	rv := objc.Send[NSPredicate](e_.ID, objc.Sel("predicate"))
 	return rv
@@ -166,7 +159,6 @@ func (e_ Expression) Predicate() NSPredicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/true
-
 func (e_ Expression) TrueExpression() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("trueExpression"))
 	return rv
@@ -177,7 +169,6 @@ func (e_ Expression) TrueExpression() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-
 func (e_ Expression) Arguments() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("arguments"))
 	return rv
@@ -188,7 +179,6 @@ func (e_ Expression) Arguments() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-
 func (e_ Expression) SetArguments(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setArguments:"), value)
 }
@@ -198,7 +188,6 @@ func (e_ Expression) SetArguments(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
-
 func (e_ Expression) Collection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("collection"))
 	return rv
@@ -209,7 +198,6 @@ func (e_ Expression) Collection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
-
 func (e_ Expression) SetCollection(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCollection:"), value)
 }
@@ -219,7 +207,6 @@ func (e_ Expression) SetCollection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/constantvalue
-
 func (e_ Expression) ConstantValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("constantValue"))
 	return rv
@@ -230,7 +217,6 @@ func (e_ Expression) ConstantValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/constantvalue
-
 func (e_ Expression) SetConstantValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConstantValue:"), value)
 }
@@ -240,7 +226,6 @@ func (e_ Expression) SetConstantValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-
 func (e_ Expression) ExpressionBlock() NSMutableDictionary {
 	rv := objc.Send[NSMutableDictionary](e_.ID, objc.Sel("expressionBlock"))
 	return rv
@@ -251,7 +236,6 @@ func (e_ Expression) ExpressionBlock() NSMutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-
 func (e_ Expression) SetExpressionBlock(value IMutableDictionary) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionBlock:"), value)
 }
@@ -261,7 +245,6 @@ func (e_ Expression) SetExpressionBlock(value IMutableDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.property
-
 func (e_ Expression) ExpressionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionType"))
 	return rv
@@ -272,7 +255,6 @@ func (e_ Expression) ExpressionType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.property
-
 func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionType:"), value)
 }
@@ -282,7 +264,6 @@ func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-
 func (e_ Expression) False() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("false"))
 	return rv
@@ -293,7 +274,6 @@ func (e_ Expression) False() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-
 func (e_ Expression) SetFalse(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFalse:"), value)
 }
@@ -303,7 +283,6 @@ func (e_ Expression) SetFalse(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-
 func (e_ Expression) Function() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("function"))
 	return rv
@@ -314,7 +293,6 @@ func (e_ Expression) Function() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-
 func (e_ Expression) SetFunction(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), objc.String(value))
 }
@@ -324,7 +302,6 @@ func (e_ Expression) SetFunction(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-
 func (e_ Expression) KeyPath() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("keyPath"))
 	return rv
@@ -335,7 +312,6 @@ func (e_ Expression) KeyPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-
 func (e_ Expression) SetKeyPath(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), objc.String(value))
 }
@@ -345,7 +321,6 @@ func (e_ Expression) SetKeyPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-
 func (e_ Expression) Left() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("left"))
 	return rv
@@ -356,7 +331,6 @@ func (e_ Expression) Left() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-
 func (e_ Expression) SetLeft(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLeft:"), value)
 }
@@ -366,7 +340,6 @@ func (e_ Expression) SetLeft(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-
 func (e_ Expression) Operand() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("operand"))
 	return rv
@@ -377,7 +350,6 @@ func (e_ Expression) Operand() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-
 func (e_ Expression) SetOperand(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setOperand:"), value)
 }
@@ -387,7 +359,6 @@ func (e_ Expression) SetOperand(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-
 func (e_ Expression) Right() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("right"))
 	return rv
@@ -398,7 +369,6 @@ func (e_ Expression) Right() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-
 func (e_ Expression) SetRight(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRight:"), value)
 }
@@ -408,7 +378,6 @@ func (e_ Expression) SetRight(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-
 func (e_ Expression) True() NSExpression {
 	rv := objc.Send[NSExpression](e_.ID, objc.Sel("true"))
 	return rv
@@ -419,7 +388,6 @@ func (e_ Expression) True() NSExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-
 func (e_ Expression) SetTrue(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTrue:"), value)
 }
@@ -429,7 +397,6 @@ func (e_ Expression) SetTrue(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-
 func (e_ Expression) Variable() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("variable"))
 	return rv
@@ -440,7 +407,6 @@ func (e_ Expression) Variable() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-
 func (e_ Expression) SetVariable(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), objc.String(value))
 }

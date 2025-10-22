@@ -36,7 +36,6 @@ type Iaddresses interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/addresses-c.ivar
-
 type addresses struct {
 	objectivec.Object
 }

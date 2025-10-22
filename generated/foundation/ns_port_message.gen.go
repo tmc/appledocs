@@ -30,12 +30,12 @@ type _PortMessageClass struct {
 // An interface definition for the [PortMessage] class.
 type IPortMessage interface {
 	objectivec.IObject
-	SendBeforeDate(date IDate) bool
+	SendBeforeDate(date NSDate) bool
 	Components() objc.ID
 	Msgid() uint32
 	SetMsgid(value Iuint32)
-	ReceivePort() NSPort
-	SendPort() NSPort
+	ReceivePort() Port
+	SendPort() Port
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
@@ -47,7 +47,6 @@ type IPortMessage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage
-
 type PortMessage struct {
 	objectivec.Object
 }
@@ -92,13 +91,11 @@ func NewPortMessage() PortMessage {
 
 
 
-
 // Initializes a newly allocated object to send given data on a given port and to receiver replies on another given port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/init(send:receive:components:)
-
-func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort IPort, components objectivec.IObject) PortMessage {
+func NewPortMessageWithSendPortReceivePortComponents(sendPort Port, replyPort Port, components objectivec.IObject) PortMessage {
 	instance := getPortMessageClass().Alloc()
 	rv := objc.Send[PortMessage](instance.ID, objc.Sel("initWithSendPort:receivePort:components:"), sendPort, replyPort, components)
 	rv.Autorelease()
@@ -107,13 +104,11 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort I
 
 
 
-
 // Attempts to send the message before the specified date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/send(before:)
-
-func (p_ PortMessage) SendBeforeDate(date IDate) bool {
+func (p_ PortMessage) SendBeforeDate(date NSDate) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:"), date)
 	return rv
 }
@@ -123,7 +118,6 @@ func (p_ PortMessage) SendBeforeDate(date IDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/components
-
 func (p_ PortMessage) Components() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("components"))
 	return rv
@@ -134,7 +128,6 @@ func (p_ PortMessage) Components() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-
 func (p_ PortMessage) Msgid() uint32 {
 	rv := objc.Send[uint32](p_.ID, objc.Sel("msgid"))
 	return rv
@@ -145,7 +138,6 @@ func (p_ PortMessage) Msgid() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-
 func (p_ PortMessage) SetMsgid(value Iuint32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
@@ -155,9 +147,8 @@ func (p_ PortMessage) SetMsgid(value Iuint32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
-
-func (p_ PortMessage) ReceivePort() NSPort {
-	rv := objc.Send[NSPort](p_.ID, objc.Sel("receivePort"))
+func (p_ PortMessage) ReceivePort() Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
@@ -166,9 +157,8 @@ func (p_ PortMessage) ReceivePort() NSPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/sendPort
-
-func (p_ PortMessage) SendPort() NSPort {
-	rv := objc.Send[NSPort](p_.ID, objc.Sel("sendPort"))
+func (p_ PortMessage) SendPort() Port {
+	rv := objc.Send[Port](p_.ID, objc.Sel("sendPort"))
 	return rv
 }
 

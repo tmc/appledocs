@@ -40,7 +40,6 @@ type IUnitSpeed interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed
-
 type UnitSpeed struct {
 	Dimension
 }
@@ -91,7 +90,6 @@ func NewUnitSpeed() UnitSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
-
 func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("metersPerSecond"))
 	return rv
@@ -101,7 +99,6 @@ func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
-
 func (u_ UnitSpeed) MetersPerSecond() NSUnitSpeed {
 	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("metersPerSecond"))
 	return rv

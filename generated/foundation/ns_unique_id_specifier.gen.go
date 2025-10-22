@@ -43,7 +43,6 @@ type IUniqueIDSpecifier interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier
-
 type UniqueIDSpecifier struct {
 	ScriptObjectSpecifier
 }
@@ -90,12 +89,10 @@ func NewUniqueIDSpecifier() UniqueIDSpecifier {
 
 
 
-
 // Returns an object, initialized with the given arguments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(containerClassDescription:containerSpecifier:key:uniqueID:)
-
 func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, uniqueID objectivec.IObject) UniqueIDSpecifier {
 	instance := getUniqueIDSpecifierClass().Alloc()
 	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:uniqueID:"), classDesc, container, objc.String(property), uniqueID)
@@ -109,7 +106,6 @@ func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuniqueidspecifier/uniqueid
-
 func (u_ UniqueIDSpecifier) UniqueID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uniqueID"))
 	return rv
@@ -120,7 +116,6 @@ func (u_ UniqueIDSpecifier) UniqueID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuniqueidspecifier/uniqueid
-
 func (u_ UniqueIDSpecifier) SetUniqueID(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUniqueID:"), value)
 }

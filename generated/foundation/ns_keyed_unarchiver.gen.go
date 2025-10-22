@@ -49,7 +49,6 @@ type IKeyedUnarchiver interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver
-
 type KeyedUnarchiver struct {
 	Coder
 }
@@ -96,36 +95,30 @@ func NewKeyedUnarchiver() KeyedUnarchiver {
 
 
 
-
 // Decodes a Boolean value associated with a given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeBool(forKey:)
-
 func (k_ KeyedUnarchiver) DecodeBoolForKey(key string) bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("decodeBoolForKey:"), objc.String(key))
 	return rv
 }
 
 
-
 // Decodes an integer value associated with a given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeIntForKey:
-
 func (k_ KeyedUnarchiver) DecodeIntForKey(key string) int {
 	rv := objc.Send[int](k_.ID, objc.Sel("decodeIntForKey:"), objc.String(key))
 	return rv
 }
 
 
-
 // Decodes and returns an object associated with a given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeObject(forKey:)
-
 func (k_ KeyedUnarchiver) DecodeObjectForKey(key string) objc.ID {
 	rv := objc.Send[objc.ID](k_.ID, objc.Sel("decodeObjectForKey:"), objc.String(key))
 	return rv
@@ -136,7 +129,6 @@ func (k_ KeyedUnarchiver) DecodeObjectForKey(key string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
-
 func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodingFailurePolicy"))
 	return rv
@@ -147,7 +139,6 @@ func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
-
 func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
 }
@@ -157,7 +148,6 @@ func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
-
 func (k_ KeyedUnarchiver) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
 	return rv
@@ -168,7 +158,6 @@ func (k_ KeyedUnarchiver) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
-
 func (k_ KeyedUnarchiver) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
 }
@@ -178,7 +167,6 @@ func (k_ KeyedUnarchiver) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
-
 func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
@@ -189,7 +177,6 @@ func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
-
 func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }

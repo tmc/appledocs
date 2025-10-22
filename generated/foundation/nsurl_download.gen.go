@@ -47,7 +47,6 @@ type IURLDownload interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload
-
 type URLDownload struct {
 	objectivec.Object
 }
@@ -92,12 +91,10 @@ func NewURLDownload() URLDownload {
 
 
 
-
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
-
 func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
@@ -106,12 +103,10 @@ func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.
 }
 
 
-
 // Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
-
 func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path string) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
@@ -125,30 +120,25 @@ func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/canResumeDownloadDecoded(withEncodingMIMEType:)
-
 func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType string) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), objc.String(MIMEType))
 	return rv
 }
 
 
-
 // Cancels the receiver’s download and deletes the downloaded file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/cancel()
-
 func (u_ URLDownload) Cancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
 }
-
 
 
 // Sets the destination path of the downloaded file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/setDestination(_:allowOverwrite:)
-
 func (u_ URLDownload) SetDestinationAllowOverwrite(path string, allowOverwrite bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), objc.String(path), allowOverwrite)
 }
@@ -158,7 +148,6 @@ func (u_ URLDownload) SetDestinationAllowOverwrite(path string, allowOverwrite b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
-
 func (u_ URLDownload) DeletesFileUponFailure() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("deletesFileUponFailure"))
 	return rv
@@ -169,7 +158,6 @@ func (u_ URLDownload) DeletesFileUponFailure() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
-
 func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
@@ -179,7 +167,6 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
-
 func (u_ URLDownload) Request() NSURLRequest {
 	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("request"))
 	return rv
@@ -190,7 +177,6 @@ func (u_ URLDownload) Request() NSURLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/resumeData
-
 func (u_ URLDownload) ResumeData() NSData {
 	rv := objc.Send[NSData](u_.ID, objc.Sel("resumeData"))
 	return rv

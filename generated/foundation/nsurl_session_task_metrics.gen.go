@@ -31,7 +31,7 @@ type _URLSessionTaskMetricsClass struct {
 type IURLSessionTaskMetrics interface {
 	objectivec.IObject
 	RedirectCount() uint
-	TaskInterval() NSDateInterval
+	TaskInterval() DateInterval
 	TransactionMetrics() []URLSessionTaskTransactionMetrics
 }
 
@@ -44,7 +44,6 @@ type IURLSessionTaskMetrics interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics
-
 type URLSessionTaskMetrics struct {
 	objectivec.Object
 }
@@ -94,7 +93,6 @@ func NewURLSessionTaskMetrics() URLSessionTaskMetrics {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/redirectCount
-
 func (u_ URLSessionTaskMetrics) RedirectCount() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("redirectCount"))
 	return rv
@@ -105,9 +103,8 @@ func (u_ URLSessionTaskMetrics) RedirectCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/taskInterval
-
-func (u_ URLSessionTaskMetrics) TaskInterval() NSDateInterval {
-	rv := objc.Send[NSDateInterval](u_.ID, objc.Sel("taskInterval"))
+func (u_ URLSessionTaskMetrics) TaskInterval() DateInterval {
+	rv := objc.Send[DateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }
 
@@ -116,7 +113,6 @@ func (u_ URLSessionTaskMetrics) TaskInterval() NSDateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/transactionMetrics
-
 func (u_ URLSessionTaskMetrics) TransactionMetrics() []URLSessionTaskTransactionMetrics {
 	rv := objc.Send[[]URLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv

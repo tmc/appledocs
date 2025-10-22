@@ -41,7 +41,6 @@ type IPresentationIntent interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent
-
 type PresentationIntent struct {
 	objectivec.Object
 }

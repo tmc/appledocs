@@ -42,7 +42,6 @@ type IMorphologyPronoun interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun
-
 type MorphologyPronoun struct {
 	objectivec.Object
 }
@@ -87,10 +86,8 @@ func NewMorphologyPronoun() MorphologyPronoun {
 
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
-
 func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
 	instance := getMorphologyPronounClass().Alloc()
 	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), objc.String(pronoun), morphology, dependentMorphology)
@@ -102,7 +99,6 @@ func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
-
 func (m_ MorphologyPronoun) Morphology() NSMorphology {
 	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("morphology"))
 	return rv

@@ -37,9 +37,9 @@ type IDate interface {
 	SrAbsoluteTime() unsafe.Pointer
 	SetSrAbsoluteTime(value unsafe.Pointer)
 	TimeIntervalSince1970() TimeInterval
-	SetTimeIntervalSince1970(value ITimeInterval)
+	SetTimeIntervalSince1970(value TimeInterval)
 	TimeIntervalSinceNow() TimeInterval
-	SetTimeIntervalSinceNow(value ITimeInterval)
+	SetTimeIntervalSinceNow(value TimeInterval)
 	NSTimeIntervalSince1970() float64
 	SetNSTimeIntervalSince1970(value float64)
 }
@@ -53,7 +53,6 @@ type IDate interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
-
 type Date struct {
 	objectivec.Object
 }
@@ -102,7 +101,6 @@ func NewDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
-
 func (dc _DateClass) DistantFuture() Date {
 	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantFuture"))
 	return rv
@@ -112,7 +110,6 @@ func (dc _DateClass) DistantFuture() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-
 func (dc _DateClass) DistantPast() Date {
 	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantPast"))
 	return rv
@@ -122,7 +119,6 @@ func (dc _DateClass) DistantPast() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
-
 func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
 	rv := objc.Send[TimeInterval](objc.ID(dc.class), objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
@@ -132,7 +128,6 @@ func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
-
 func (d_ Date) DistantFuture() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantFuture"))
 	return rv
@@ -143,7 +138,6 @@ func (d_ Date) DistantFuture() NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-
 func (d_ Date) DistantPast() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantPast"))
 	return rv
@@ -154,7 +148,6 @@ func (d_ Date) DistantPast() NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
-
 func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
@@ -165,7 +158,6 @@ func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
-
 func (d_ Date) CustomPlaygroundQuickLook() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("customPlaygroundQuickLook"))
 	return rv
@@ -176,7 +168,6 @@ func (d_ Date) CustomPlaygroundQuickLook() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
-
 func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
 }
@@ -186,7 +177,6 @@ func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
-
 func (d_ Date) Description() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
@@ -197,7 +187,6 @@ func (d_ Date) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
-
 func (d_ Date) SetDescription(value string) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
@@ -205,7 +194,6 @@ func (d_ Date) SetDescription(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
-
 func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("srAbsoluteTime"))
 	return rv
@@ -214,7 +202,6 @@ func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
-
 func (d_ Date) SetSrAbsoluteTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSrAbsoluteTime:"), value)
 }
@@ -224,7 +211,6 @@ func (d_ Date) SetSrAbsoluteTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
-
 func (d_ Date) TimeIntervalSince1970() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
@@ -235,8 +221,7 @@ func (d_ Date) TimeIntervalSince1970() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
-
-func (d_ Date) SetTimeIntervalSince1970(value ITimeInterval) {
+func (d_ Date) SetTimeIntervalSince1970(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSince1970:"), value)
 }
 
@@ -245,7 +230,6 @@ func (d_ Date) SetTimeIntervalSince1970(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
-
 func (d_ Date) TimeIntervalSinceNow() TimeInterval {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
@@ -256,8 +240,7 @@ func (d_ Date) TimeIntervalSinceNow() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
-
-func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
+func (d_ Date) SetTimeIntervalSinceNow(value TimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceNow:"), value)
 }
 
@@ -266,7 +249,6 @@ func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-
 func (d_ Date) NSTimeIntervalSince1970() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
 	return rv
@@ -277,7 +259,6 @@ func (d_ Date) NSTimeIntervalSince1970() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-
 func (d_ Date) SetNSTimeIntervalSince1970(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
 }

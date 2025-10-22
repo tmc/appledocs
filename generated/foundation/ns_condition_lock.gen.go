@@ -46,7 +46,6 @@ type IConditionLock interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock
-
 type ConditionLock struct {
 	objectivec.Object
 }
@@ -91,12 +90,10 @@ func NewConditionLock() ConditionLock {
 
 
 
-
 // Attempts to acquire a lock.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(whenCondition:)
-
 func (c_ ConditionLock) LockWhenCondition(condition int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("lockWhenCondition:"), condition)
 }
@@ -106,7 +103,6 @@ func (c_ ConditionLock) LockWhenCondition(condition int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
-
 func (c_ ConditionLock) Condition() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("condition"))
 	return rv
@@ -117,7 +113,6 @@ func (c_ ConditionLock) Condition() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
-
 func (c_ ConditionLock) SetCondition(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCondition:"), value)
 }
@@ -127,7 +122,6 @@ func (c_ ConditionLock) SetCondition(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
-
 func (c_ ConditionLock) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
@@ -138,7 +132,6 @@ func (c_ ConditionLock) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/name
-
 func (c_ ConditionLock) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }

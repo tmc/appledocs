@@ -30,13 +30,13 @@ type _URLProtocolClass struct {
 // An interface definition for the [URLProtocol] class.
 type IURLProtocol interface {
 	objectivec.IObject
-	CachedResponse() NSCachedURLResponse
+	CachedResponse() CachedURLResponse
 	SetCachedResponse(value ICachedURLResponse)
 	Client() unsafe.Pointer
 	SetClient(value unsafe.Pointer)
 	Request() URLRequest
 	SetRequest(value IURLRequest)
-	Task() NSURLSessionTask
+	Task() URLSessionTask
 	SetTask(value IURLSessionTask)
 	ProtocolClasses() unsafe.Pointer
 	SetProtocolClasses(value unsafe.Pointer)
@@ -51,7 +51,6 @@ type IURLProtocol interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol
-
 type URLProtocol struct {
 	objectivec.Object
 }
@@ -96,34 +95,11 @@ func NewURLProtocol() URLProtocol {
 
 
 
-// Determines whether the protocol subclass can handle the specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canInit(with:)-76brg
-
-func (uc _URLProtocolClass) CanInitWithRequest(request IURLRequest) bool {
-	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canInitWithRequest:"), request)
-	return rv
-}
-
-
-// Returns a canonical version of the specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/canonicalRequest(for:)
-
-func (uc _URLProtocolClass) CanonicalRequestForRequest(request IURLRequest) URLRequest {
-	rv := objc.Send[URLRequest](objc.ID(uc.class), objc.Sel("canonicalRequestForRequest:"), request)
-	return rv
-}
-
-
 // Fetches the property associated with the specified key in the specified request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/property(forKey:in:)
-
-func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequest) objc.ID {
+func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request URLRequest) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), objc.String(key), request)
 	return rv
 }
@@ -133,30 +109,9 @@ func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/registerClass(_:)
-
 func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("registerClass:"), protocolClass)
 	return rv
-}
-
-
-// Removes the property associated with the specified key in the specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/removeProperty(forKey:in:)
-
-func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key string, request IMutableURLRequest) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("removePropertyForKey:inRequest:"), objc.String(key), request)
-}
-
-
-// Sets the property associated with the specified key in the specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/setProperty(_:forKey:in:)
-
-func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject, key string, request IMutableURLRequest) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("setProperty:forKey:inRequest:"), value, objc.String(key), request)
 }
 
 
@@ -164,7 +119,6 @@ func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/unregisterClass(_:)
-
 func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
 }
@@ -174,9 +128,8 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-
-func (u_ URLProtocol) CachedResponse() NSCachedURLResponse {
-	rv := objc.Send[NSCachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
+func (u_ URLProtocol) CachedResponse() CachedURLResponse {
+	rv := objc.Send[CachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
 
@@ -185,7 +138,6 @@ func (u_ URLProtocol) CachedResponse() NSCachedURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-
 func (u_ URLProtocol) SetCachedResponse(value ICachedURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCachedResponse:"), value)
 }
@@ -195,7 +147,6 @@ func (u_ URLProtocol) SetCachedResponse(value ICachedURLResponse) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/client
-
 func (u_ URLProtocol) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("client"))
 	return rv
@@ -206,7 +157,6 @@ func (u_ URLProtocol) Client() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/client
-
 func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setClient:"), value)
 }
@@ -216,7 +166,6 @@ func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-
 func (u_ URLProtocol) Request() URLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
@@ -227,7 +176,6 @@ func (u_ URLProtocol) Request() URLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-
 func (u_ URLProtocol) SetRequest(value IURLRequest) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
@@ -237,9 +185,8 @@ func (u_ URLProtocol) SetRequest(value IURLRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
-
-func (u_ URLProtocol) Task() NSURLSessionTask {
-	rv := objc.Send[NSURLSessionTask](u_.ID, objc.Sel("task"))
+func (u_ URLProtocol) Task() URLSessionTask {
+	rv := objc.Send[URLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
 }
 
@@ -248,7 +195,6 @@ func (u_ URLProtocol) Task() NSURLSessionTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
-
 func (u_ URLProtocol) SetTask(value IURLSessionTask) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTask:"), value)
 }
@@ -258,7 +204,6 @@ func (u_ URLProtocol) SetTask(value IURLSessionTask) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
-
 func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protocolClasses"))
 	return rv
@@ -269,7 +214,6 @@ func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
-
 func (u_ URLProtocol) SetProtocolClasses(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
 }

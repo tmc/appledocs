@@ -42,7 +42,6 @@ type IMoveCommand interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand
-
 type MoveCommand struct {
 	ScriptCommand
 }
@@ -89,12 +88,10 @@ func NewMoveCommand() MoveCommand {
 
 
 
-
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/setReceiversSpecifier(_:)
-
 func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
@@ -104,7 +101,6 @@ func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/keySpecifier
-
 func (m_ MoveCommand) KeySpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](m_.ID, objc.Sel("keySpecifier"))
 	return rv

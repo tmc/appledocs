@@ -47,7 +47,6 @@ type IHTTPCookieStorage interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage
-
 type HTTPCookieStorage struct {
 	objectivec.Object
 }
@@ -96,7 +95,6 @@ func NewHTTPCookieStorage() HTTPCookieStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
-
 func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() HTTPCookieStorage {
 	rv := objc.Send[NSHTTPCookieStorage](objc.ID(hc.class), objc.Sel("sharedHTTPCookieStorage"))
 	return rv
@@ -106,7 +104,6 @@ func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() HTTPCookieStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
-
 func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() NSHTTPCookieStorage {
 	rv := objc.Send[NSHTTPCookieStorage](h_.ID, objc.Sel("sharedHTTPCookieStorage"))
 	return rv
@@ -117,7 +114,6 @@ func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() NSHTTPCookieStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-
 func (h_ HTTPCookieStorage) IsSessionOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
 	return rv
@@ -128,7 +124,6 @@ func (h_ HTTPCookieStorage) IsSessionOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-
 func (h_ HTTPCookieStorage) SetIsSessionOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
 }
@@ -138,7 +133,6 @@ func (h_ HTTPCookieStorage) SetIsSessionOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookieacceptpolicy
-
 func (h_ HTTPCookieStorage) CookieAcceptPolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cookieAcceptPolicy"))
 	return rv
@@ -149,7 +143,6 @@ func (h_ HTTPCookieStorage) CookieAcceptPolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookieacceptpolicy
-
 func (h_ HTTPCookieStorage) SetCookieAcceptPolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCookieAcceptPolicy:"), value)
 }
@@ -159,7 +152,6 @@ func (h_ HTTPCookieStorage) SetCookieAcceptPolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies
-
 func (h_ HTTPCookieStorage) Cookies() NSHTTPCookie {
 	rv := objc.Send[NSHTTPCookie](h_.ID, objc.Sel("cookies"))
 	return rv
@@ -170,7 +162,6 @@ func (h_ HTTPCookieStorage) Cookies() NSHTTPCookie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies
-
 func (h_ HTTPCookieStorage) SetCookies(value IHTTPCookie) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCookies:"), value)
 }

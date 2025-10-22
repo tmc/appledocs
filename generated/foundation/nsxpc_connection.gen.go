@@ -78,7 +78,6 @@ type IXPCConnection interface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection
-
 type XPCConnection struct {
 	objectivec.Object
 }
@@ -123,12 +122,10 @@ func NewXPCConnection() XPCConnection {
 
 
 
-
 // Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
-
 func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithListenerEndpoint:"), endpoint)
@@ -137,13 +134,11 @@ func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConn
 }
 
 
-
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
-
-func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnectionOptions) XPCConnection {
+func NewXPCConnectionWithMachServiceNameOptions(name string, options NSXPCConnectionOptions) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
 	rv.Autorelease()
@@ -151,12 +146,10 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options XPCConnecti
 }
 
 
-
 // Initializes an object to connect to an object in an XPC service, identified by a service name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
-
 func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
@@ -170,95 +163,78 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/current()
-
 func (xc _XPCConnectionClass) CurrentConnection() XPCConnection {
 	rv := objc.Send[XPCConnection](objc.ID(xc.class), objc.Sel("currentConnection"))
 	return rv
 }
 
 
-
 // Activates the connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/activate()
-
 func (x_ XPCConnection) Activate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("activate"))
 }
-
 
 
 // Invalidates the connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidate()
-
 func (x_ XPCConnection) Invalidate() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("invalidate"))
 }
-
 
 
 // Returns a proxy for the remote object (that is, the object exported from the other side of this connection) with the specified error handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxyWithErrorHandler(_:)
-
 func (x_ XPCConnection) RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("remoteObjectProxyWithErrorHandler:"), handler)
 	return rv
 }
 
 
-
 // Starts or resumes handling of messages on a connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/resume()
-
 func (x_ XPCConnection) Resume() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("resume"))
 }
-
 
 
 // Add a barrier block to execute on the connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/scheduleSendBarrierBlock(_:)
-
 func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("scheduleSendBarrierBlock:"), block)
 }
-
 
 
 // Sets the code signing requirement for this connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/setCodeSigningRequirement(_:)
-
 func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), objc.String(requirement))
 }
-
 
 
 // Suspends the connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/suspend()
-
 func (x_ XPCConnection) Suspend() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("suspend"))
 }
 
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/synchronousRemoteObjectProxyWithErrorHandler(_:)
-
 func (x_ XPCConnection) SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("synchronousRemoteObjectProxyWithErrorHandler:"), handler)
 	return rv
@@ -269,7 +245,6 @@ func (x_ XPCConnection) SynchronousRemoteObjectProxyWithErrorHandler(handler uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/auditSessionIdentifier
-
 func (x_ XPCConnection) AuditSessionIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("auditSessionIdentifier"))
 	return rv
@@ -280,7 +255,6 @@ func (x_ XPCConnection) AuditSessionIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/effectiveGroupIdentifier
-
 func (x_ XPCConnection) EffectiveGroupIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("effectiveGroupIdentifier"))
 	return rv
@@ -291,7 +265,6 @@ func (x_ XPCConnection) EffectiveGroupIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/effectiveUserIdentifier
-
 func (x_ XPCConnection) EffectiveUserIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("effectiveUserIdentifier"))
 	return rv
@@ -302,7 +275,6 @@ func (x_ XPCConnection) EffectiveUserIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/endpoint
-
 func (x_ XPCConnection) Endpoint() NSXPCListenerEndpoint {
 	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
@@ -313,7 +285,6 @@ func (x_ XPCConnection) Endpoint() NSXPCListenerEndpoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
-
 func (x_ XPCConnection) ExportedInterface() NSXPCInterface {
 	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("exportedInterface"))
 	return rv
@@ -324,7 +295,6 @@ func (x_ XPCConnection) ExportedInterface() NSXPCInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
-
 func (x_ XPCConnection) SetExportedInterface(value IXPCInterface) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedInterface:"), value)
 }
@@ -334,7 +304,6 @@ func (x_ XPCConnection) SetExportedInterface(value IXPCInterface) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedObject
-
 func (x_ XPCConnection) ExportedObject() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("exportedObject"))
 	return rv
@@ -345,7 +314,6 @@ func (x_ XPCConnection) ExportedObject() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedObject
-
 func (x_ XPCConnection) SetExportedObject(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedObject:"), value)
 }
@@ -355,7 +323,6 @@ func (x_ XPCConnection) SetExportedObject(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/interruptionHandler
-
 func (x_ XPCConnection) InterruptionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("interruptionHandler"))
 	return rv
@@ -366,7 +333,6 @@ func (x_ XPCConnection) InterruptionHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/interruptionHandler
-
 func (x_ XPCConnection) SetInterruptionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setInterruptionHandler:"), value)
 }
@@ -376,7 +342,6 @@ func (x_ XPCConnection) SetInterruptionHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidationHandler
-
 func (x_ XPCConnection) InvalidationHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("invalidationHandler"))
 	return rv
@@ -387,7 +352,6 @@ func (x_ XPCConnection) InvalidationHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidationHandler
-
 func (x_ XPCConnection) SetInvalidationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setInvalidationHandler:"), value)
 }
@@ -397,7 +361,6 @@ func (x_ XPCConnection) SetInvalidationHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/processIdentifier
-
 func (x_ XPCConnection) ProcessIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("processIdentifier"))
 	return rv
@@ -408,7 +371,6 @@ func (x_ XPCConnection) ProcessIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
-
 func (x_ XPCConnection) RemoteObjectInterface() NSXPCInterface {
 	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("remoteObjectInterface"))
 	return rv
@@ -419,7 +381,6 @@ func (x_ XPCConnection) RemoteObjectInterface() NSXPCInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
-
 func (x_ XPCConnection) SetRemoteObjectInterface(value IXPCInterface) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRemoteObjectInterface:"), value)
 }
@@ -429,7 +390,6 @@ func (x_ XPCConnection) SetRemoteObjectInterface(value IXPCInterface) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectProxy
-
 func (x_ XPCConnection) RemoteObjectProxy() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("remoteObjectProxy"))
 	return rv
@@ -440,7 +400,6 @@ func (x_ XPCConnection) RemoteObjectProxy() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/serviceName
-
 func (x_ XPCConnection) ServiceName() string {
 	rv := objc.Send[string](x_.ID, objc.Sel("serviceName"))
 	return rv
@@ -451,7 +410,6 @@ func (x_ XPCConnection) ServiceName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
-
 func (x_ XPCConnection) NSXPCConnectionCodeSigningRequirementFailure() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionCodeSigningRequirementFailure"))
 	return rv
@@ -462,7 +420,6 @@ func (x_ XPCConnection) NSXPCConnectionCodeSigningRequirementFailure() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
-
 func (x_ XPCConnection) SetNSXPCConnectionCodeSigningRequirementFailure(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionCodeSigningRequirementFailure:"), value)
 }
@@ -472,7 +429,6 @@ func (x_ XPCConnection) SetNSXPCConnectionCodeSigningRequirementFailure(value in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
-
 func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMaximum"))
 	return rv
@@ -483,7 +439,6 @@ func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
-
 func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMaximum:"), value)
 }
@@ -493,7 +448,6 @@ func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
-
 func (x_ XPCConnection) NSXPCConnectionErrorMinimum() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMinimum"))
 	return rv
@@ -504,7 +458,6 @@ func (x_ XPCConnection) NSXPCConnectionErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
-
 func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMinimum:"), value)
 }
@@ -514,7 +467,6 @@ func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-swift.var
-
 func (x_ XPCConnection) NSXPCConnectionInterrupted() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionInterrupted"))
 	return rv
@@ -525,7 +477,6 @@ func (x_ XPCConnection) NSXPCConnectionInterrupted() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-swift.var
-
 func (x_ XPCConnection) SetNSXPCConnectionInterrupted(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInterrupted:"), value)
 }
@@ -535,7 +486,6 @@ func (x_ XPCConnection) SetNSXPCConnectionInterrupted(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-swift.var
-
 func (x_ XPCConnection) NSXPCConnectionInvalid() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionInvalid"))
 	return rv
@@ -546,7 +496,6 @@ func (x_ XPCConnection) NSXPCConnectionInvalid() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-swift.var
-
 func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInvalid:"), value)
 }
@@ -556,7 +505,6 @@ func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
-
 func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionReplyInvalid"))
 	return rv
@@ -567,7 +515,6 @@ func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
-
 func (x_ XPCConnection) SetNSXPCConnectionReplyInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionReplyInvalid:"), value)
 }
