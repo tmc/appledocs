@@ -224,6 +224,9 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 	embeddedField := getStructEmbeddedField(class, framework)
 	if importPath := GetImportPathFromType(embeddedField); importPath != "" {
 		if importPath != currentFrameworkImportPath {
+			if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
+				fmt.Fprintf(os.Stderr, ">>> CKQueryCursor embedded field %q -> import %q\n", embeddedField, importPath)
+			}
 			if os.Getenv("DEBUG_IMPORTS") == "1" && class.Name == "CKQueryCursor" {
 				fmt.Fprintf(os.Stderr, "DEBUG_IMPORTS: CKQueryCursor embedded field %q requires import %q\n", embeddedField, importPath)
 			}
@@ -238,6 +241,10 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 			goType := mapObjCTypeToGo(method.ReturnType, framework)
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
+					if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
+						fmt.Fprintf(os.Stderr, ">>> CKQueryCursor method %s return type %q -> go type %q -> import %q\n",
+							method.Name, method.ReturnType, goType, importPath)
+					}
 					if os.Getenv("DEBUG_IMPORTS") == "1" && class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
 						fmt.Fprintf(os.Stderr, "DEBUG_IMPORTS: CKQueryCursor method %s return type %q -> go type %q requires import %q\n",
 							method.Name, method.ReturnType, goType, importPath)
@@ -264,6 +271,10 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
+					if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
+						fmt.Fprintf(os.Stderr, ">>> CKQueryCursor method %s param %q type %q -> go type %q -> import %q\n",
+							method.Name, param.Name, param.Type, goType, importPath)
+					}
 					if os.Getenv("DEBUG_IMPORTS") == "1" && class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
 						fmt.Fprintf(os.Stderr, "DEBUG_IMPORTS: CKQueryCursor method %s param %q type %q -> go type %q requires import %q\n",
 							method.Name, param.Name, param.Type, goType, importPath)
@@ -276,12 +287,21 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 
 	// Check all properties
 	for _, prop := range class.Properties {
-		goType := mapObjCTypeToGo(prop.Type, framework)
+		// Use ObjCType instead of Type - Type contains Swift syntax, ObjCType is the proper Objective-C type
+		objcType := prop.Type
+		if prop.ObjCType != "" {
+			objcType = prop.ObjCType
+		}
+		goType := mapObjCTypeToGo(objcType, framework)
 		if importPath := GetImportPathFromType(goType); importPath != "" {
 			if importPath != currentFrameworkImportPath {
+				if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
+					fmt.Fprintf(os.Stderr, ">>> CKQueryCursor property %q objcType %q -> go type %q -> import %q\n",
+						prop.Name, objcType, goType, importPath)
+				}
 				if os.Getenv("DEBUG_IMPORTS") == "1" && class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
-					fmt.Fprintf(os.Stderr, "DEBUG_IMPORTS: CKQueryCursor property %q type %q -> go type %q requires import %q\n",
-						prop.Name, prop.Type, goType, importPath)
+					fmt.Fprintf(os.Stderr, "DEBUG_IMPORTS: CKQueryCursor property %q objcType %q -> go type %q requires import %q\n",
+						prop.Name, objcType, goType, importPath)
 				}
 				imports[importPath] = true
 			}

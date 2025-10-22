@@ -1021,12 +1021,21 @@ func parseSwiftPropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, e
 	var preciseID string
 	for i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "keyword") {
 		typeParts = append(typeParts, tokens[i].Text)
-		// Capture preciseIdentifier from first typeIdentifier token
-		if preciseID == "" && tokens[i].Kind == "typeIdentifier" && tokens[i].PreciseIdentifier != "" {
+		// Capture preciseIdentifier from LAST typeIdentifier token
+		// For nested types like "CKQueryOperation.Cursor", we want the last one (CKQueryCursor)
+		// not the first one (CKQueryOperation)
+		if tokens[i].Kind == "typeIdentifier" && tokens[i].PreciseIdentifier != "" {
 			preciseID = tokens[i].PreciseIdentifier
 		}
 		i++
-		// Skip whitespace between type parts
+		// Skip whitespace and dots between type parts
+		for i < len(tokens) && (tokens[i].Kind == "text" || tokens[i].Text == ".") && strings.TrimSpace(tokens[i].Text) != "" && tokens[i].Text != "{" {
+			if tokens[i].Text == "." {
+				typeParts = append(typeParts, tokens[i].Text)
+			}
+			i++
+		}
+		// Skip pure whitespace
 		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
 			i++
 		}
