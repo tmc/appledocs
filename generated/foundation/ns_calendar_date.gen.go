@@ -90,7 +90,6 @@ func NewCalendarDate() CalendarDate {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dateWithYear:month:day:hour:minute:second:timeZone:
 
@@ -100,7 +99,6 @@ func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year i
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/distantPast
 
@@ -110,7 +108,6 @@ func (cc _CalendarDateClass) DistantPast() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dayOfCommonEra
 
@@ -120,7 +117,6 @@ func (c_ CalendarDate) DayOfCommonEra() int {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:
 
@@ -130,7 +126,6 @@ func (c_ CalendarDate) DescriptionWithCalendarFormat(format string) String {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:locale:
 
@@ -140,7 +135,6 @@ func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format string, locale
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/hourOfDay
 

@@ -126,7 +126,6 @@ func NewSetWithArray(array []objc.ID) Set {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(coder:)
 
@@ -140,7 +139,6 @@ func NewSetWithCoder(coder ICoder) Set {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
 
@@ -152,7 +150,6 @@ func NewSetWithCollectionViewIndexPath(indexPath IIndexPath) Set {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
 
@@ -236,7 +233,6 @@ func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPath:)
 
@@ -246,7 +242,6 @@ func (sc _SetClass) SetWithCollectionViewIndexPath(indexPath IIndexPath) unsafe.
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
 
@@ -398,7 +393,6 @@ func (s_ Set) DescriptionWithLocale(locale objectivec.IObject) String {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/enumerateIndexPaths(options:using:)
 

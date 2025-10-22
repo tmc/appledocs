@@ -33,7 +33,6 @@ type IConstantString interface {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConstantString
 

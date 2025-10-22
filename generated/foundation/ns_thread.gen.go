@@ -126,7 +126,6 @@ func NewThreadWithTargetSelectorObject(target objectivec.IObject, selector objc.
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/detachNewThread(_:)
 
@@ -387,7 +386,6 @@ func (t_ Thread) SetName(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
 
@@ -397,7 +395,6 @@ func (t_ Thread) QualityOfService() QualityOfService {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
 

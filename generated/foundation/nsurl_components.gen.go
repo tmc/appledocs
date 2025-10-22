@@ -461,7 +461,6 @@ func (u_ URLComponents) SetPercentEncodedQuery(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
 
@@ -471,7 +470,6 @@ func (u_ URLComponents) PercentEncodedQueryItems() URLQueryItem {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedqueryitems
 

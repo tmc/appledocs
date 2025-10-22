@@ -126,7 +126,6 @@ func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/locale
 
@@ -136,7 +135,6 @@ func (p_ PersonNameComponentsFormatter) Locale() Locale {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/locale
 

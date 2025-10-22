@@ -174,7 +174,6 @@ func NewArrayWithArrayCopyItems(array []objc.ID, flag bool) Array {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
 
@@ -218,7 +217,6 @@ func NewArrayWithContentsOfURL(url IURL) Array {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:error:)
 
@@ -307,7 +305,6 @@ func (ac _ArrayClass) ArrayWithContentsOfFile(path string) []objc.ID {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfURL:error:
 
@@ -930,7 +927,6 @@ func (a_ Array) ValueForKey(key string) objc.ID {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(to:)
 

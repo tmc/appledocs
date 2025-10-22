@@ -274,7 +274,6 @@ func (m_ MutableURLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
 
@@ -284,7 +283,6 @@ func (m_ MutableURLRequest) AllowsPersistentDNS() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowspersistentdns
 
@@ -293,7 +291,6 @@ func (m_ MutableURLRequest) SetAllowsPersistentDNS(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsultraconstrainednetworkaccess
 
@@ -303,7 +300,6 @@ func (m_ MutableURLRequest) AllowsUltraConstrainedNetworkAccess() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/allowsultraconstrainednetworkaccess
 
@@ -312,7 +308,6 @@ func (m_ MutableURLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
 
@@ -322,7 +317,6 @@ func (m_ MutableURLRequest) AssumesHTTP3Capable() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/assumeshttp3capable
 
@@ -352,7 +346,6 @@ func (m_ MutableURLRequest) SetAttribution(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cookiepartitionidentifier
 
@@ -362,7 +355,6 @@ func (m_ MutableURLRequest) CookiePartitionIdentifier() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cookiepartitionidentifier
 
@@ -497,7 +489,6 @@ func (m_ MutableURLRequest) SetNetworkServiceType(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
 
@@ -507,7 +498,6 @@ func (m_ MutableURLRequest) RequiresDNSSECValidation() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/requiresdnssecvalidation
 

@@ -105,7 +105,6 @@ func NewFileVersion() FileVersion {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
 
@@ -137,7 +136,6 @@ func (f_ FileVersion) URL() URL {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
 
@@ -147,7 +145,6 @@ func (f_ FileVersion) HasThumbnail() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
 
@@ -282,7 +279,6 @@ func (f_ FileVersion) SetModificationDate(value IDate) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
 
@@ -292,7 +288,6 @@ func (f_ FileVersion) OriginatorNameComponents() PersonNameComponents {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
 

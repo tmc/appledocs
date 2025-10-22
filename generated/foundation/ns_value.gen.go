@@ -261,7 +261,6 @@ func NewValueWithCMTimeRange(timeRange unsafe.Pointer) Value {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(CMVideoDimensions:)
 
@@ -273,7 +272,6 @@ func NewValueWithCMVideoDimensions(dimensions unsafe.Pointer) Value {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(coder:)
 
@@ -287,7 +285,6 @@ func NewValueWithCoder(coder ICoder) Value {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(directionalEdgeInsets:)
 
@@ -299,7 +296,6 @@ func NewValueWithDirectionalEdgeInsets(insets unsafe.Pointer) Value {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(edgeInsets:)
 
@@ -311,7 +307,6 @@ func NewValueWithEdgeInsets(insets unsafe.Pointer) Value {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(GCPoint2:)
 
@@ -603,7 +598,6 @@ func (vc _ValueClass) ValueWithCMTimeRange(timeRange unsafe.Pointer) Value {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(CMVideoDimensions:)
 
@@ -613,7 +607,6 @@ func (vc _ValueClass) ValueWithCMVideoDimensions(dimensions unsafe.Pointer) Valu
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(GCPoint2:)
 
@@ -711,7 +704,6 @@ func (vc _ValueClass) ValueWithObjCType(value unsafe.Pointer, type_ unsafe.Point
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(directionalEdgeInsets:)
 
@@ -721,7 +713,6 @@ func (vc _ValueClass) ValueWithDirectionalEdgeInsets(insets unsafe.Pointer) Valu
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(edgeInsets:)
 
@@ -818,7 +809,6 @@ func (v_ Value) GetValue(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/getValue(_:size:)
 
@@ -904,7 +894,6 @@ func (v_ Value) CGVectorValue() coregraphics.CGVector {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/directionalEdgeInsetsValue
 
@@ -914,7 +903,6 @@ func (v_ Value) DirectionalEdgeInsetsValue() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/edgeInsetsValue
 
@@ -924,7 +912,6 @@ func (v_ Value) EdgeInsetsValue() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/gcPoint2Value
 
@@ -1121,7 +1108,6 @@ func (v_ Value) UIOffsetValue() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/videoDimensionsValue
 
@@ -1215,7 +1201,6 @@ func (v_ Value) SetTimeValue(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
 
@@ -1225,7 +1210,6 @@ func (v_ Value) VideoDimensionsValue() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
 

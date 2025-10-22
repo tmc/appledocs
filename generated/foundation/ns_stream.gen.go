@@ -108,7 +108,6 @@ func (sc _StreamClass) GetBoundStreamsWithBufferSizeInputStreamOutputStream(buff
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)
 

@@ -158,7 +158,6 @@ func NewURL() URL {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
 
@@ -245,7 +244,6 @@ func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
 
@@ -259,7 +257,6 @@ func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, base
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
 
@@ -273,7 +270,6 @@ func NewURLFileURLWithPathRelativeToURL(path string, baseURL IURL) URL {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(dataRepresentation:relativeTo:)
 
@@ -357,7 +353,6 @@ func (uc _URLClass) URLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIs
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLWithDataRepresentation:relativeToURL:
 
@@ -400,7 +395,6 @@ func (uc _URLClass) URLWithStringRelativeToURL(URLString string, baseURL IURL) u
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/absoluteURL(withDataRepresentation:relativeTo:)
 
@@ -454,7 +448,6 @@ func (uc _URLClass) FileURLWithPathIsDirectory(path string, isDir bool) URL {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:relativeTo:)
 
@@ -464,7 +457,6 @@ func (uc _URLClass) FileURLWithPathIsDirectoryRelativeToURL(path string, isDir b
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:relativeTo:)
 
@@ -854,7 +846,6 @@ func (u_ URL) BaseURL() URL {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/dataRepresentation
 
@@ -1128,7 +1119,6 @@ func (u_ URL) User() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
 
@@ -1138,7 +1128,6 @@ func (u_ URL) CustomPlaygroundQuickLook() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/customplaygroundquicklook
 

@@ -148,7 +148,6 @@ func (x_ XMLParser) Parse() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
 
@@ -158,7 +157,6 @@ func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
 
@@ -263,7 +261,6 @@ func (x_ XMLParser) SetDelegate(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
 
@@ -273,7 +270,6 @@ func (x_ XMLParser) ExternalEntityResolvingPolicy() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.property
 

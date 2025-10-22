@@ -132,7 +132,6 @@ func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsPersistentDNS
 
@@ -142,7 +141,6 @@ func (u_ URLRequest) AllowsPersistentDNS() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/cookiePartitionIdentifier
 
@@ -237,7 +235,6 @@ func (u_ URLRequest) SetAllowsExpensiveNetworkAccess(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
 
@@ -247,7 +244,6 @@ func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
 
@@ -256,7 +252,6 @@ func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
 
@@ -266,7 +261,6 @@ func (u_ URLRequest) AssumesHTTP3Capable() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
 
@@ -422,7 +416,6 @@ func (u_ URLRequest) SetMainDocumentURL(value IURL) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
 
@@ -432,7 +425,6 @@ func (u_ URLRequest) RequiresDNSSECValidation() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
 

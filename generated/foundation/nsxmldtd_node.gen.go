@@ -134,7 +134,6 @@ func (x_ XMLDTDNode) SetDtdKind(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
 
@@ -144,7 +143,6 @@ func (x_ XMLDTDNode) IsExternal() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
 

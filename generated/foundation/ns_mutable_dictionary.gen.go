@@ -133,7 +133,6 @@ func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
 
@@ -147,7 +146,6 @@ func NewMutableDictionaryWithCoder(coder ICoder) MutableDictionary {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfFile:
 
@@ -161,7 +159,6 @@ func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
 
@@ -175,7 +172,6 @@ func NewMutableDictionaryWithContentsOfURL(url IURL) MutableDictionary {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
 
@@ -187,7 +183,6 @@ func NewMutableDictionaryWithOBEXHeadersData(inHeadersData IData) MutableDiction
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
 
@@ -222,7 +217,6 @@ func (mc _MutableDictionaryClass) DictionaryWithCapacity(numItems uint) unsafe.P
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/dictionaryWithContentsOfFile:
 
@@ -232,7 +226,6 @@ func (mc _MutableDictionaryClass) DictionaryWithContentsOfFile(path string) unsa
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
 
@@ -242,7 +235,6 @@ func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersData(inHeadersData ID
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:headersDataSize:)
 
@@ -252,7 +244,6 @@ func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersDataHeadersDataSize(i
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(contentsOfURL:)
 
@@ -273,7 +264,6 @@ func (mc _MutableDictionaryClass) DictionaryWithSharedKeySet(keyset objectivec.I
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/withOBEXHeadersData:headersDataSize:
 
@@ -283,7 +273,6 @@ func (mc _MutableDictionaryClass) WithOBEXHeadersDataHeadersDataSize(inHeadersDa
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addApplicationParameterHeader(_:length:)
 
@@ -293,7 +282,6 @@ func (m_ MutableDictionary) AddApplicationParameterHeaderLength(inHeaderData uns
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addAuthorizationChallengeHeader(_:length:)
 
@@ -303,7 +291,6 @@ func (m_ MutableDictionary) AddAuthorizationChallengeHeaderLength(inHeaderData u
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addAuthorizationResponseHeader(_:length:)
 
@@ -313,7 +300,6 @@ func (m_ MutableDictionary) AddAuthorizationResponseHeaderLength(inHeaderData un
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addBodyHeader(_:length:endOfBody:)
 
@@ -323,7 +309,6 @@ func (m_ MutableDictionary) AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Poi
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addByteSequenceHeader(_:length:)
 
@@ -333,7 +318,6 @@ func (m_ MutableDictionary) AddByteSequenceHeaderLength(inHeaderData unsafe.Poin
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addConnectionIDHeader(_:length:)
 
@@ -343,7 +327,6 @@ func (m_ MutableDictionary) AddConnectionIDHeaderLength(inHeaderData unsafe.Poin
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addCountHeader(_:)
 
@@ -353,7 +336,6 @@ func (m_ MutableDictionary) AddCountHeader(inCount Iuint32) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addDescriptionHeader(_:)
 
@@ -373,7 +355,6 @@ func (m_ MutableDictionary) AddEntriesFromDictionary(otherDictionary unsafe.Poin
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addHTTPHeader(_:length:)
 
@@ -383,7 +364,6 @@ func (m_ MutableDictionary) AddHTTPHeaderLength(inHeaderData unsafe.Pointer, inH
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addImageDescriptorHeader(_:length:)
 
@@ -393,7 +373,6 @@ func (m_ MutableDictionary) AddImageDescriptorHeaderLength(inHeaderData unsafe.P
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addImageHandleHeader(_:)
 
@@ -403,7 +382,6 @@ func (m_ MutableDictionary) AddImageHandleHeader(type_ string) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addLengthHeader(_:)
 
@@ -413,7 +391,6 @@ func (m_ MutableDictionary) AddLengthHeader(length Iuint32) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addNameHeader(_:)
 
@@ -423,7 +400,6 @@ func (m_ MutableDictionary) AddNameHeader(inNameString string) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addObjectClassHeader(_:length:)
 
@@ -433,7 +409,6 @@ func (m_ MutableDictionary) AddObjectClassHeaderLength(inHeaderData unsafe.Point
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTargetHeader(_:length:)
 
@@ -443,7 +418,6 @@ func (m_ MutableDictionary) AddTargetHeaderLength(inHeaderData unsafe.Pointer, i
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTime4ByteHeader(_:)
 
@@ -453,7 +427,6 @@ func (m_ MutableDictionary) AddTime4ByteHeader(time4Byte Iuint32) unsafe.Pointer
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTimeISOHeader(_:length:)
 
@@ -463,7 +436,6 @@ func (m_ MutableDictionary) AddTimeISOHeaderLength(inHeaderData unsafe.Pointer, 
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTypeHeader(_:)
 
@@ -473,7 +445,6 @@ func (m_ MutableDictionary) AddTypeHeader(type_ string) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addUserDefinedHeader(_:length:)
 
@@ -483,7 +454,6 @@ func (m_ MutableDictionary) AddUserDefinedHeaderLength(inHeaderData unsafe.Point
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addWhoHeader(_:length:)
 
@@ -493,7 +463,6 @@ func (m_ MutableDictionary) AddWhoHeaderLength(inHeaderData unsafe.Pointer, inHe
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/getHeaderBytes()
 

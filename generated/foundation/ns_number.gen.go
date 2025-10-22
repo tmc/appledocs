@@ -160,7 +160,6 @@ func NewNumberWithChar(value unsafe.Pointer) Number {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
 

@@ -253,7 +253,6 @@ func (t_ TextCheckingResult) SetAddressComponents(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
 
@@ -263,7 +262,6 @@ func (t_ TextCheckingResult) AlternativeStrings() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
 

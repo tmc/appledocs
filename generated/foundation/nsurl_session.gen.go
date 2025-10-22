@@ -414,7 +414,6 @@ func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request IURL
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(withResumeData:)
 
@@ -424,7 +423,6 @@ func (u_ URLSession) UploadTaskWithResumeData(resumeData IData) URLSessionUpload
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(withResumeData:completionHandler:)
 

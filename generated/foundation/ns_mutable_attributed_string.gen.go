@@ -104,7 +104,6 @@ func (m_ MutableAttributedString) AppendAttributedString(attrString IAttributedS
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/appendLocalizedFormat:
 

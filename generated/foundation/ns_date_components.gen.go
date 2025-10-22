@@ -245,7 +245,6 @@ func (d_ DateComponents) SetDay(value int) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/dayOfYear
 
@@ -255,7 +254,6 @@ func (d_ DateComponents) DayOfYear() int {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/dayOfYear
 
@@ -327,7 +325,6 @@ func (d_ DateComponents) SetLeapMonth(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isRepeatedDay
 
@@ -337,7 +334,6 @@ func (d_ DateComponents) RepeatedDay() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isRepeatedDay
 
@@ -651,7 +647,6 @@ func (d_ DateComponents) SetIsLeapMonth(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isrepeatedday
 
@@ -661,7 +656,6 @@ func (d_ DateComponents) IsRepeatedDay() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatecomponents/isrepeatedday
 

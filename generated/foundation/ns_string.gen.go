@@ -258,7 +258,6 @@ func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding 
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
 
@@ -362,7 +361,6 @@ func NewStringWithCharactersLength(characters Iunichar, length uint) String {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
 
@@ -391,7 +389,6 @@ func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters Iunichar, length
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
 
@@ -600,7 +597,6 @@ func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
 
@@ -614,7 +610,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format stri
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
 
@@ -628,7 +623,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersError(format string, valid
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
 
@@ -642,7 +636,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(forma
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
 
@@ -655,7 +648,6 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format string,
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:
 
@@ -665,7 +657,6 @@ func (sc _StringClass) DeferredLocalizedIntentsStringWithFormat(format string) S
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:fromTable:
 
@@ -675,7 +666,6 @@ func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTable(format 
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:fromTable:arguments:
 
@@ -751,7 +741,6 @@ func (sc _StringClass) LocalizedStringWithFormat(format string) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStringWithValidatedFormat:validFormatSpecifiers:error:
 
@@ -904,7 +893,6 @@ func (sc _StringClass) StringWithString(string_ string) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithValidatedFormat:validFormatSpecifiers:error:
 
@@ -978,7 +966,6 @@ func (s_ String) StringByAppendingPathComponent(str string) String {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
 
@@ -999,7 +986,6 @@ func (s_ String) StringByAppendingPathExtension(str string) String {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(for:)
 
@@ -1766,7 +1752,6 @@ func (s_ String) SizeWithAttributes(attrs unsafe.Pointer) coregraphics.CGSize {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sr_sensorForDeletionRecordsFromSensor()
 
@@ -2007,7 +1992,6 @@ func (s_ String) StringByDeletingPathExtension() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/description
 
@@ -2345,7 +2329,6 @@ func (s_ String) SetCapitalized(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
 
@@ -2355,7 +2338,6 @@ func (s_ String) CustomPlaygroundQuickLook() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
 

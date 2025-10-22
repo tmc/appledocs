@@ -34,7 +34,6 @@ type Icomponents interface {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortMessage/components-c.ivar
 

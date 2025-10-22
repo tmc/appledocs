@@ -203,7 +203,6 @@ func (d_ Date) SetDescription(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
 
@@ -213,7 +212,6 @@ func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/srabsolutetime
 

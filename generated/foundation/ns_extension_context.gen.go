@@ -127,7 +127,6 @@ func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items 
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:setupInfo:)
 
@@ -136,7 +135,6 @@ func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/dismissNotificationContentExtension()
 
@@ -156,7 +154,6 @@ func (e_ ExtensionContext) InterfaceParametersDescription() String {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/loadBroadcastingApplicationInfo(completion:)
 
@@ -195,7 +192,6 @@ func (e_ ExtensionContext) OpenURLCompletionHandler(URL IURL, completionHandler 
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/performNotificationDefaultAction()
 
@@ -248,7 +244,6 @@ func (e_ ExtensionContext) InputItems() objc.ID {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
 
@@ -258,7 +253,6 @@ func (e_ ExtensionContext) NotificationActions() []objc.ID {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
 

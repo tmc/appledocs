@@ -98,7 +98,6 @@ func (ac _AssertionHandlerClass) CurrentHandler() AssertionHandler {
 	return rv
 }
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
 
@@ -107,7 +106,6 @@ func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(func
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
 

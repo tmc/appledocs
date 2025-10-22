@@ -137,7 +137,6 @@ func (d_ DirectoryEnumerator) SetFileAttributes(value IFileAttributeKey) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
 
@@ -147,7 +146,6 @@ func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
 

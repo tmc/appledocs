@@ -201,7 +201,6 @@ func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
 
@@ -211,7 +210,6 @@ func (s_ Scanner) CurrentIndex() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
 

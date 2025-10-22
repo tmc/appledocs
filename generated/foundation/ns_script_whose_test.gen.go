@@ -89,7 +89,6 @@ func NewScriptWhoseTest() ScriptWhoseTest {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/init(coder:)
 

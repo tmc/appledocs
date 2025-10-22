@@ -420,7 +420,6 @@ func (b_ Bundle) LoadAndReturnError(error_ IError) bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadAppleScriptObjectiveCScripts()
 
@@ -692,7 +691,6 @@ func (b_ Bundle) LoadNibFileExternalNameTableWithZone(fileName string, context o
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/localizedAttributedStringForKey:value:table:
 

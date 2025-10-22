@@ -90,7 +90,6 @@ func NewProxy() Proxy {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
 
@@ -100,7 +99,6 @@ func (p_ Proxy) DebugDescription() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
 

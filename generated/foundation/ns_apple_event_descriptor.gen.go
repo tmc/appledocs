@@ -224,7 +224,6 @@ func (a_ AppleEventDescriptor) AeDesc() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/doubleValue
 
@@ -276,7 +275,6 @@ func (a_ AppleEventDescriptor) SetData(value IData) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/datevalue
 
@@ -286,7 +284,6 @@ func (a_ AppleEventDescriptor) DateValue() Date {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/datevalue
 
@@ -379,7 +376,6 @@ func (a_ AppleEventDescriptor) SetEventID(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/fileurlvalue
 
@@ -389,7 +385,6 @@ func (a_ AppleEventDescriptor) FileURLValue() URL {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/fileurlvalue
 
@@ -419,7 +414,6 @@ func (a_ AppleEventDescriptor) SetInt32Value(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/isrecorddescriptor
 
@@ -429,7 +423,6 @@ func (a_ AppleEventDescriptor) IsRecordDescriptor() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/isrecorddescriptor
 

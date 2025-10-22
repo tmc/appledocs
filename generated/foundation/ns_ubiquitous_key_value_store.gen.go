@@ -329,7 +329,6 @@ func (u_ UbiquitousKeyValueStore) DictionaryRepresentation() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey
 
@@ -339,7 +338,6 @@ func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreChangeReasonKey() str
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
 
@@ -349,7 +347,6 @@ func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreQuotaViolationChange(
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
 

@@ -92,7 +92,6 @@ func NewDistantObject() DistantObject {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
 

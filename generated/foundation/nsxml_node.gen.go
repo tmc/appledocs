@@ -512,7 +512,6 @@ func (x_ XMLNode) SetChildren(value IXMLNode) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
 
@@ -522,7 +521,6 @@ func (x_ XMLNode) Description() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/description
 

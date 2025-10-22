@@ -34,7 +34,6 @@ type IuserInfo interface {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-c.ivar
 

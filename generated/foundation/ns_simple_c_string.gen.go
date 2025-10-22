@@ -33,7 +33,6 @@ type ISimpleCString interface {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSimpleCString
 

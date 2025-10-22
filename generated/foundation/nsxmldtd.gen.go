@@ -135,7 +135,6 @@ func NewXMLDTDWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IErro
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLDTD/initWithKind:options:
 

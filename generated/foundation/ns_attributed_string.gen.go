@@ -296,7 +296,6 @@ func (a_ AttributedString) FontAttributesInRange(range_ IRange) unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/inflecting()
 

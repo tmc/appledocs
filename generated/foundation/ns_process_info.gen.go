@@ -333,7 +333,6 @@ func (p_ ProcessInfo) IOSAppOnMac() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnVision
 
@@ -524,7 +523,6 @@ func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
 
@@ -534,7 +532,6 @@ func (p_ ProcessInfo) IsiOSAppOnVision() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
 

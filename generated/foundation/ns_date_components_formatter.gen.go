@@ -227,7 +227,6 @@ func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
 
@@ -237,7 +236,6 @@ func (d_ DateComponentsFormatter) FormattingContext() int {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/formattingcontext
 
@@ -309,7 +307,6 @@ func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/referencedate
 
@@ -319,7 +316,6 @@ func (d_ DateComponentsFormatter) ReferenceDate() Date {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/datecomponentsformatter/referencedate
 

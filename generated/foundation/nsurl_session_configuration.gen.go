@@ -661,7 +661,6 @@ func (u_ URLSessionConfiguration) SetTLSMaximumSupportedProtocol(value unsafe.Po
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/usesClassicLoadingMode
 
@@ -671,7 +670,6 @@ func (u_ URLSessionConfiguration) UsesClassicLoadingMode() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/usesClassicLoadingMode
 
@@ -722,7 +720,6 @@ func (u_ URLSessionConfiguration) SetConfiguration(value IURLSessionConfiguratio
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
 
@@ -732,7 +729,6 @@ func (u_ URLSessionConfiguration) AllowsUltraConstrainedNetworkAccess() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
 
@@ -741,7 +737,6 @@ func (u_ URLSessionConfiguration) SetAllowsUltraConstrainedNetworkAccess(value b
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/enablesearlydata
 
@@ -751,7 +746,6 @@ func (u_ URLSessionConfiguration) EnablesEarlyData() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/enablesearlydata
 
@@ -823,7 +817,6 @@ func (u_ URLSessionConfiguration) SetRequestCachePolicy(value unsafe.Pointer) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
 
@@ -833,7 +826,6 @@ func (u_ URLSessionConfiguration) RequiresDNSSECValidation() bool {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
 

@@ -34,7 +34,6 @@ type ILocalizedNumberFormatRule interface {
 
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocalizedNumberFormatRule
 

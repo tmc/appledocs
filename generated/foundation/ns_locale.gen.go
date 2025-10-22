@@ -432,7 +432,6 @@ func (l_ Locale) LanguageCode() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/languageIdentifier
 
@@ -475,7 +474,6 @@ func (l_ Locale) QuotationEndDelimiter() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/regionCode
 

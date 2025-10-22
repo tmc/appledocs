@@ -290,7 +290,6 @@ func (m_ MetadataItem) SetAttributes(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemacquisitionmakekey
 
@@ -300,7 +299,6 @@ func (m_ MetadataItem) NSMetadataItemAcquisitionMakeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemacquisitionmodelkey
 
@@ -310,7 +308,6 @@ func (m_ MetadataItem) NSMetadataItemAcquisitionModelKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemalbumkey
 
@@ -320,7 +317,6 @@ func (m_ MetadataItem) NSMetadataItemAlbumKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaltitudekey
 
@@ -330,7 +326,6 @@ func (m_ MetadataItem) NSMetadataItemAltitudeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaperturekey
 
@@ -340,7 +335,6 @@ func (m_ MetadataItem) NSMetadataItemApertureKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopdescriptorskey
 
@@ -350,7 +344,6 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopDescriptorsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopskeyfiltertypekey
 
@@ -360,7 +353,6 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsKeyFilterTypeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopsloopmodekey
 
@@ -370,7 +362,6 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsLoopModeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopsrootkeykey
 
@@ -380,7 +371,6 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsRootKeyKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemapplicationcategorieskey
 
@@ -390,7 +380,6 @@ func (m_ MetadataItem) NSMetadataItemApplicationCategoriesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemattributechangedatekey
 
@@ -400,7 +389,6 @@ func (m_ MetadataItem) NSMetadataItemAttributeChangeDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudienceskey
 
@@ -410,7 +398,6 @@ func (m_ MetadataItem) NSMetadataItemAudiencesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiobitratekey
 
@@ -420,7 +407,6 @@ func (m_ MetadataItem) NSMetadataItemAudioBitRateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiochannelcountkey
 
@@ -430,7 +416,6 @@ func (m_ MetadataItem) NSMetadataItemAudioChannelCountKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudioencodingapplicationkey
 
@@ -440,7 +425,6 @@ func (m_ MetadataItem) NSMetadataItemAudioEncodingApplicationKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiosampleratekey
 
@@ -450,7 +434,6 @@ func (m_ MetadataItem) NSMetadataItemAudioSampleRateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiotracknumberkey
 
@@ -460,7 +443,6 @@ func (m_ MetadataItem) NSMetadataItemAudioTrackNumberKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemauthoraddresseskey
 
@@ -470,7 +452,6 @@ func (m_ MetadataItem) NSMetadataItemAuthorAddressesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemauthoremailaddresseskey
 
@@ -480,7 +461,6 @@ func (m_ MetadataItem) NSMetadataItemAuthorEmailAddressesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemauthorskey
 
@@ -490,7 +470,6 @@ func (m_ MetadataItem) NSMetadataItemAuthorsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitembitspersamplekey
 
@@ -500,7 +479,6 @@ func (m_ MetadataItem) NSMetadataItemBitsPerSampleKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcfbundleidentifierkey
 
@@ -510,7 +488,6 @@ func (m_ MetadataItem) NSMetadataItemCFBundleIdentifierKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcameraownerkey
 
@@ -520,7 +497,6 @@ func (m_ MetadataItem) NSMetadataItemCameraOwnerKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcitykey
 
@@ -530,7 +506,6 @@ func (m_ MetadataItem) NSMetadataItemCityKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcodecskey
 
@@ -540,7 +515,6 @@ func (m_ MetadataItem) NSMetadataItemCodecsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcolorspacekey
 
@@ -550,7 +524,6 @@ func (m_ MetadataItem) NSMetadataItemColorSpaceKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcommentkey
 
@@ -560,7 +533,6 @@ func (m_ MetadataItem) NSMetadataItemCommentKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcomposerkey
 
@@ -570,7 +542,6 @@ func (m_ MetadataItem) NSMetadataItemComposerKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontactkeywordskey
 
@@ -580,7 +551,6 @@ func (m_ MetadataItem) NSMetadataItemContactKeywordsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontentcreationdatekey
 
@@ -590,7 +560,6 @@ func (m_ MetadataItem) NSMetadataItemContentCreationDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontentmodificationdatekey
 
@@ -600,7 +569,6 @@ func (m_ MetadataItem) NSMetadataItemContentModificationDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypekey
 
@@ -610,7 +578,6 @@ func (m_ MetadataItem) NSMetadataItemContentTypeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypetreekey
 
@@ -620,7 +587,6 @@ func (m_ MetadataItem) NSMetadataItemContentTypeTreeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontributorskey
 
@@ -630,7 +596,6 @@ func (m_ MetadataItem) NSMetadataItemContributorsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcopyrightkey
 
@@ -640,7 +605,6 @@ func (m_ MetadataItem) NSMetadataItemCopyrightKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcountrykey
 
@@ -650,7 +614,6 @@ func (m_ MetadataItem) NSMetadataItemCountryKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcoveragekey
 
@@ -660,7 +623,6 @@ func (m_ MetadataItem) NSMetadataItemCoverageKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcreatorkey
 
@@ -670,7 +632,6 @@ func (m_ MetadataItem) NSMetadataItemCreatorKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdateaddedkey
 
@@ -680,7 +641,6 @@ func (m_ MetadataItem) NSMetadataItemDateAddedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdeliverytypekey
 
@@ -690,7 +650,6 @@ func (m_ MetadataItem) NSMetadataItemDeliveryTypeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdescriptionkey
 
@@ -700,7 +659,6 @@ func (m_ MetadataItem) NSMetadataItemDescriptionKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdirectorkey
 
@@ -710,7 +668,6 @@ func (m_ MetadataItem) NSMetadataItemDirectorKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdisplaynamekey
 
@@ -720,7 +677,6 @@ func (m_ MetadataItem) NSMetadataItemDisplayNameKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdownloadeddatekey
 
@@ -730,7 +686,6 @@ func (m_ MetadataItem) NSMetadataItemDownloadedDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemduedatekey
 
@@ -740,7 +695,6 @@ func (m_ MetadataItem) NSMetadataItemDueDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdurationsecondskey
 
@@ -750,7 +704,6 @@ func (m_ MetadataItem) NSMetadataItemDurationSecondsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexifgpsversionkey
 
@@ -760,7 +713,6 @@ func (m_ MetadataItem) NSMetadataItemEXIFGPSVersionKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexifversionkey
 
@@ -770,7 +722,6 @@ func (m_ MetadataItem) NSMetadataItemEXIFVersionKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemeditorskey
 
@@ -780,7 +731,6 @@ func (m_ MetadataItem) NSMetadataItemEditorsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitememailaddresseskey
 
@@ -790,7 +740,6 @@ func (m_ MetadataItem) NSMetadataItemEmailAddressesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemencodingapplicationskey
 
@@ -800,7 +749,6 @@ func (m_ MetadataItem) NSMetadataItemEncodingApplicationsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexecutablearchitectureskey
 
@@ -810,7 +758,6 @@ func (m_ MetadataItem) NSMetadataItemExecutableArchitecturesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexecutableplatformkey
 
@@ -820,7 +767,6 @@ func (m_ MetadataItem) NSMetadataItemExecutablePlatformKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposuremodekey
 
@@ -830,7 +776,6 @@ func (m_ MetadataItem) NSMetadataItemExposureModeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposureprogramkey
 
@@ -840,7 +785,6 @@ func (m_ MetadataItem) NSMetadataItemExposureProgramKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposuretimesecondskey
 
@@ -850,7 +794,6 @@ func (m_ MetadataItem) NSMetadataItemExposureTimeSecondsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposuretimestringkey
 
@@ -860,7 +803,6 @@ func (m_ MetadataItem) NSMetadataItemExposureTimeStringKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfnumberkey
 
@@ -870,7 +812,6 @@ func (m_ MetadataItem) NSMetadataItemFNumberKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfscontentchangedatekey
 
@@ -880,7 +821,6 @@ func (m_ MetadataItem) NSMetadataItemFSContentChangeDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfscreationdatekey
 
@@ -890,7 +830,6 @@ func (m_ MetadataItem) NSMetadataItemFSCreationDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfsnamekey
 
@@ -900,7 +839,6 @@ func (m_ MetadataItem) NSMetadataItemFSNameKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfssizekey
 
@@ -910,7 +848,6 @@ func (m_ MetadataItem) NSMetadataItemFSSizeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfindercommentkey
 
@@ -920,7 +857,6 @@ func (m_ MetadataItem) NSMetadataItemFinderCommentKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemflashonoffkey
 
@@ -930,7 +866,6 @@ func (m_ MetadataItem) NSMetadataItemFlashOnOffKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfocallength35mmkey
 
@@ -940,7 +875,6 @@ func (m_ MetadataItem) NSMetadataItemFocalLength35mmKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfocallengthkey
 
@@ -950,7 +884,6 @@ func (m_ MetadataItem) NSMetadataItemFocalLengthKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfontskey
 
@@ -960,7 +893,6 @@ func (m_ MetadataItem) NSMetadataItemFontsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsareainformationkey
 
@@ -970,7 +902,6 @@ func (m_ MetadataItem) NSMetadataItemGPSAreaInformationKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdopkey
 
@@ -980,7 +911,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDOPKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdatestampkey
 
@@ -990,7 +920,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDateStampKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestbearingkey
 
@@ -1000,7 +929,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDestBearingKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestdistancekey
 
@@ -1010,7 +938,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDestDistanceKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestlatitudekey
 
@@ -1020,7 +947,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDestLatitudeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestlongitudekey
 
@@ -1030,7 +956,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDestLongitudeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdifferentalkey
 
@@ -1040,7 +965,6 @@ func (m_ MetadataItem) NSMetadataItemGPSDifferentalKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsmapdatumkey
 
@@ -1050,7 +974,6 @@ func (m_ MetadataItem) NSMetadataItemGPSMapDatumKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsmeasuremodekey
 
@@ -1060,7 +983,6 @@ func (m_ MetadataItem) NSMetadataItemGPSMeasureModeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsprocessingmethodkey
 
@@ -1070,7 +992,6 @@ func (m_ MetadataItem) NSMetadataItemGPSProcessingMethodKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsstatuskey
 
@@ -1080,7 +1001,6 @@ func (m_ MetadataItem) NSMetadataItemGPSStatusKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpstrackkey
 
@@ -1090,7 +1010,6 @@ func (m_ MetadataItem) NSMetadataItemGPSTrackKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgenrekey
 
@@ -1100,7 +1019,6 @@ func (m_ MetadataItem) NSMetadataItemGenreKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemhasalphachannelkey
 
@@ -1110,7 +1028,6 @@ func (m_ MetadataItem) NSMetadataItemHasAlphaChannelKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemheadlinekey
 
@@ -1120,7 +1037,6 @@ func (m_ MetadataItem) NSMetadataItemHeadlineKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisospeedkey
 
@@ -1130,7 +1046,6 @@ func (m_ MetadataItem) NSMetadataItemISOSpeedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemidentifierkey
 
@@ -1140,7 +1055,6 @@ func (m_ MetadataItem) NSMetadataItemIdentifierKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemimagedirectionkey
 
@@ -1150,7 +1064,6 @@ func (m_ MetadataItem) NSMetadataItemImageDirectionKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataiteminformationkey
 
@@ -1160,7 +1073,6 @@ func (m_ MetadataItem) NSMetadataItemInformationKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataiteminstantmessageaddresseskey
 
@@ -1170,7 +1082,6 @@ func (m_ MetadataItem) NSMetadataItemInstantMessageAddressesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataiteminstructionskey
 
@@ -1180,7 +1091,6 @@ func (m_ MetadataItem) NSMetadataItemInstructionsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisapplicationmanagedkey
 
@@ -1190,7 +1100,6 @@ func (m_ MetadataItem) NSMetadataItemIsApplicationManagedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisgeneralmidisequencekey
 
@@ -1200,7 +1109,6 @@ func (m_ MetadataItem) NSMetadataItemIsGeneralMIDISequenceKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemislikelyjunkkey
 
@@ -1210,7 +1118,6 @@ func (m_ MetadataItem) NSMetadataItemIsLikelyJunkKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisubiquitouskey
 
@@ -1220,7 +1127,6 @@ func (m_ MetadataItem) NSMetadataItemIsUbiquitousKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemkeysignaturekey
 
@@ -1230,7 +1136,6 @@ func (m_ MetadataItem) NSMetadataItemKeySignatureKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemkeywordskey
 
@@ -1240,7 +1145,6 @@ func (m_ MetadataItem) NSMetadataItemKeywordsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemkindkey
 
@@ -1250,7 +1154,6 @@ func (m_ MetadataItem) NSMetadataItemKindKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlanguageskey
 
@@ -1260,7 +1163,6 @@ func (m_ MetadataItem) NSMetadataItemLanguagesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlastuseddatekey
 
@@ -1270,7 +1172,6 @@ func (m_ MetadataItem) NSMetadataItemLastUsedDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlatitudekey
 
@@ -1280,7 +1181,6 @@ func (m_ MetadataItem) NSMetadataItemLatitudeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlayernameskey
 
@@ -1290,7 +1190,6 @@ func (m_ MetadataItem) NSMetadataItemLayerNamesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlensmodelkey
 
@@ -1300,7 +1199,6 @@ func (m_ MetadataItem) NSMetadataItemLensModelKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlongitudekey
 
@@ -1310,7 +1208,6 @@ func (m_ MetadataItem) NSMetadataItemLongitudeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlyricistkey
 
@@ -1320,7 +1217,6 @@ func (m_ MetadataItem) NSMetadataItemLyricistKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmaxaperturekey
 
@@ -1330,7 +1226,6 @@ func (m_ MetadataItem) NSMetadataItemMaxApertureKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmediatypeskey
 
@@ -1340,7 +1235,6 @@ func (m_ MetadataItem) NSMetadataItemMediaTypesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmeteringmodekey
 
@@ -1350,7 +1244,6 @@ func (m_ MetadataItem) NSMetadataItemMeteringModeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmusicalgenrekey
 
@@ -1360,7 +1253,6 @@ func (m_ MetadataItem) NSMetadataItemMusicalGenreKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmusicalinstrumentcategorykey
 
@@ -1370,7 +1262,6 @@ func (m_ MetadataItem) NSMetadataItemMusicalInstrumentCategoryKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmusicalinstrumentnamekey
 
@@ -1380,7 +1271,6 @@ func (m_ MetadataItem) NSMetadataItemMusicalInstrumentNameKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemnamedlocationkey
 
@@ -1390,7 +1280,6 @@ func (m_ MetadataItem) NSMetadataItemNamedLocationKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemnumberofpageskey
 
@@ -1400,7 +1289,6 @@ func (m_ MetadataItem) NSMetadataItemNumberOfPagesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemorganizationskey
 
@@ -1410,7 +1298,6 @@ func (m_ MetadataItem) NSMetadataItemOrganizationsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemorientationkey
 
@@ -1420,7 +1307,6 @@ func (m_ MetadataItem) NSMetadataItemOrientationKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemoriginalformatkey
 
@@ -1430,7 +1316,6 @@ func (m_ MetadataItem) NSMetadataItemOriginalFormatKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemoriginalsourcekey
 
@@ -1440,7 +1325,6 @@ func (m_ MetadataItem) NSMetadataItemOriginalSourceKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempageheightkey
 
@@ -1450,7 +1334,6 @@ func (m_ MetadataItem) NSMetadataItemPageHeightKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempagewidthkey
 
@@ -1460,7 +1343,6 @@ func (m_ MetadataItem) NSMetadataItemPageWidthKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemparticipantskey
 
@@ -1470,7 +1352,6 @@ func (m_ MetadataItem) NSMetadataItemParticipantsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempathkey
 
@@ -1480,7 +1361,6 @@ func (m_ MetadataItem) NSMetadataItemPathKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemperformerskey
 
@@ -1490,7 +1370,6 @@ func (m_ MetadataItem) NSMetadataItemPerformersKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemphonenumberskey
 
@@ -1500,7 +1379,6 @@ func (m_ MetadataItem) NSMetadataItemPhoneNumbersKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempixelcountkey
 
@@ -1510,7 +1388,6 @@ func (m_ MetadataItem) NSMetadataItemPixelCountKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempixelheightkey
 
@@ -1520,7 +1397,6 @@ func (m_ MetadataItem) NSMetadataItemPixelHeightKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempixelwidthkey
 
@@ -1530,7 +1406,6 @@ func (m_ MetadataItem) NSMetadataItemPixelWidthKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemproducerkey
 
@@ -1540,7 +1415,6 @@ func (m_ MetadataItem) NSMetadataItemProducerKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemprofilenamekey
 
@@ -1550,7 +1424,6 @@ func (m_ MetadataItem) NSMetadataItemProfileNameKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemprojectskey
 
@@ -1560,7 +1433,6 @@ func (m_ MetadataItem) NSMetadataItemProjectsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempublisherskey
 
@@ -1570,7 +1442,6 @@ func (m_ MetadataItem) NSMetadataItemPublishersKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecipientaddresseskey
 
@@ -1580,7 +1451,6 @@ func (m_ MetadataItem) NSMetadataItemRecipientAddressesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecipientemailaddresseskey
 
@@ -1590,7 +1460,6 @@ func (m_ MetadataItem) NSMetadataItemRecipientEmailAddressesKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecipientskey
 
@@ -1600,7 +1469,6 @@ func (m_ MetadataItem) NSMetadataItemRecipientsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecordingdatekey
 
@@ -1610,7 +1478,6 @@ func (m_ MetadataItem) NSMetadataItemRecordingDateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecordingyearkey
 
@@ -1620,7 +1487,6 @@ func (m_ MetadataItem) NSMetadataItemRecordingYearKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemredeyeonoffkey
 
@@ -1630,7 +1496,6 @@ func (m_ MetadataItem) NSMetadataItemRedEyeOnOffKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemresolutionheightdpikey
 
@@ -1640,7 +1505,6 @@ func (m_ MetadataItem) NSMetadataItemResolutionHeightDPIKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemresolutionwidthdpikey
 
@@ -1650,7 +1514,6 @@ func (m_ MetadataItem) NSMetadataItemResolutionWidthDPIKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrightskey
 
@@ -1660,7 +1523,6 @@ func (m_ MetadataItem) NSMetadataItemRightsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemsecuritymethodkey
 
@@ -1670,7 +1532,6 @@ func (m_ MetadataItem) NSMetadataItemSecurityMethodKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemspeedkey
 
@@ -1680,7 +1541,6 @@ func (m_ MetadataItem) NSMetadataItemSpeedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemstarratingkey
 
@@ -1690,7 +1550,6 @@ func (m_ MetadataItem) NSMetadataItemStarRatingKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemstateorprovincekey
 
@@ -1700,7 +1559,6 @@ func (m_ MetadataItem) NSMetadataItemStateOrProvinceKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemstreamablekey
 
@@ -1710,7 +1568,6 @@ func (m_ MetadataItem) NSMetadataItemStreamableKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemsubjectkey
 
@@ -1720,7 +1577,6 @@ func (m_ MetadataItem) NSMetadataItemSubjectKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtempokey
 
@@ -1730,7 +1586,6 @@ func (m_ MetadataItem) NSMetadataItemTempoKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtextcontentkey
 
@@ -1740,7 +1595,6 @@ func (m_ MetadataItem) NSMetadataItemTextContentKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemthemekey
 
@@ -1750,7 +1604,6 @@ func (m_ MetadataItem) NSMetadataItemThemeKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtimesignaturekey
 
@@ -1760,7 +1613,6 @@ func (m_ MetadataItem) NSMetadataItemTimeSignatureKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtimestampkey
 
@@ -1770,7 +1622,6 @@ func (m_ MetadataItem) NSMetadataItemTimestampKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtitlekey
 
@@ -1780,7 +1631,6 @@ func (m_ MetadataItem) NSMetadataItemTitleKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtotalbitratekey
 
@@ -1790,7 +1640,6 @@ func (m_ MetadataItem) NSMetadataItemTotalBitRateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemurlkey
 
@@ -1800,7 +1649,6 @@ func (m_ MetadataItem) NSMetadataItemURLKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemversionkey
 
@@ -1810,7 +1658,6 @@ func (m_ MetadataItem) NSMetadataItemVersionKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemvideobitratekey
 
@@ -1820,7 +1667,6 @@ func (m_ MetadataItem) NSMetadataItemVideoBitRateKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemwherefromskey
 
@@ -1830,7 +1676,6 @@ func (m_ MetadataItem) NSMetadataItemWhereFromsKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemwhitebalancekey
 
@@ -1840,7 +1685,6 @@ func (m_ MetadataItem) NSMetadataItemWhiteBalanceKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemcontainerdisplaynamekey
 
@@ -1850,7 +1694,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemContainerDisplayNameKey() string 
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadrequestedkey
 
@@ -1860,7 +1703,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadRequestedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingerrorkey
 
@@ -1870,7 +1712,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingErrorKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuscurrent
 
@@ -1880,7 +1721,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusCurrent() string
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusdownloaded
 
@@ -1890,7 +1730,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusDownloaded() str
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuskey
 
@@ -1900,7 +1739,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusnotdownloaded
 
@@ -1910,7 +1748,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() 
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemhasunresolvedconflictskey
 
@@ -1920,7 +1757,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemHasUnresolvedConflictsKey() strin
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadedkey
 
@@ -1930,7 +1766,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadingkey
 
@@ -1940,7 +1775,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadingKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisexternaldocumentkey
 
@@ -1950,7 +1784,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsExternalDocumentKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemissharedkey
 
@@ -1960,7 +1793,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsSharedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadedkey
 
@@ -1970,7 +1802,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadingkey
 
@@ -1980,7 +1811,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadingKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentdownloadedkey
 
@@ -1990,7 +1820,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemPercentDownloadedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentuploadedkey
 
@@ -2000,7 +1829,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemPercentUploadedKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemurlinlocalcontainerkey
 
@@ -2010,7 +1838,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemURLInLocalContainerKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemuploadingerrorkey
 
@@ -2020,7 +1847,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemUploadingErrorKey() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserpermissionskey
 
@@ -2030,7 +1856,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey()
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserrolekey
 
@@ -2040,7 +1865,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserRoleKey() string
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemmostrecenteditornamecomponentskey
 
@@ -2050,7 +1874,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemMostRecentEditorNameCompone
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemownernamecomponentskey
 
@@ -2060,7 +1883,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() st
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadonly
 
@@ -2070,7 +1892,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadOnly() strin
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadwrite
 
@@ -2080,7 +1901,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadWrite() stri
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleowner
 
@@ -2090,7 +1910,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleOwner() string {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleparticipant
 

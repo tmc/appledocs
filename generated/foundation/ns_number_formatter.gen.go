@@ -901,7 +901,6 @@ func (n_ NumberFormatter) SetMinimumFractionDigits(value uint) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumGroupingDigits
 
@@ -911,7 +910,6 @@ func (n_ NumberFormatter) MinimumGroupingDigits() int {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumGroupingDigits
 

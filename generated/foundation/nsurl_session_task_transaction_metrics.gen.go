@@ -433,7 +433,6 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupStartDate(value IDate)
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainresolutionprotocol
 
@@ -443,7 +442,6 @@ func (u_ URLSessionTaskTransactionMetrics) DomainResolutionProtocol() unsafe.Poi
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainresolutionprotocol
 

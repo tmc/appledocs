@@ -185,7 +185,6 @@ func (t_ Task) SetExecutableURL(value IURL) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
 
@@ -195,7 +194,6 @@ func (t_ Task) LaunchRequirementData() NSData {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
 
@@ -320,7 +318,6 @@ func (t_ Task) SetLaunchPath(value string) {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchrequirement
 
@@ -330,7 +327,6 @@ func (t_ Task) LaunchRequirement() unsafe.Pointer {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchrequirement
 

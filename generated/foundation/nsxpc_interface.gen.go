@@ -160,7 +160,6 @@ func (x_ XPCInterface) SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInter
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setXPCType(_:for:argumentIndex:ofReply:)
 

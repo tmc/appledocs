@@ -142,7 +142,6 @@ func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem unsafe.
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForNonExistentItem(withIdentifier:)
 
@@ -152,7 +151,6 @@ func (ec _ErrorClass) FileProviderErrorForNonExistentItemWithIdentifier(itemIden
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForRejectedDeletion(of:)
 
@@ -270,7 +268,6 @@ func (e_ Error) RecoveryAttempter() objc.ID {
 }
 
 
-//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/underlyingErrors
 
