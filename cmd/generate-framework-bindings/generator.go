@@ -625,7 +625,9 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 	}
 
 	// Create master template and parse all sub-templates
-	tmpl := template.New("module").Funcs(templateFuncs)
+	// Chain Funcs calls: first core "dumb" functions, then GeneratorFuncs methods
+	gf := GeneratorFuncs{g}
+	tmpl := template.New("module").Funcs(templateFuncs).Funcs(gf.Funcs())
 
 	// Dynamically discover all templates from the archive (except "module")
 	templateFiles := make(map[string]bool)

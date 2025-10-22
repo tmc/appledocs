@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"text/template"
 
 	"github.com/tmc/appledocs/occ2go"
 )
@@ -15,6 +16,30 @@ import (
 // data structures and indexes.
 type GeneratorFuncs struct {
 	*Generator
+}
+
+// Funcs returns a template.FuncMap containing all GeneratorFuncs methods.
+// These functions receive the necessary context from the GeneratorFuncs receiver,
+// so templates only need to pass the specific data item (e.g., the method).
+//
+// Template usage: {{formatMethodParams .}} instead of {{formatMethodParams $.Generator .}}
+func (gf GeneratorFuncs) Funcs() template.FuncMap {
+	return template.FuncMap{
+		// Method Formatting
+		"formatMethodParams": gf.formatMethodParams,
+
+		// Type Resolution
+		// TODO: Add type resolution methods as they're converted
+
+		// Name Conversion
+		// TODO: Add name conversion methods as they're converted
+
+		// Constructor Generation
+		// TODO: Add constructor methods as they're converted
+
+		// Import Resolution
+		// TODO: Add import resolution methods as they're converted
+	}
 }
 
 // Method Formatting

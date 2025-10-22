@@ -441,7 +441,7 @@ type I{{$structName}} interface {
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}
@@ -527,7 +527,7 @@ func New{{$structName}}() {{$structName}} {
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func {{$constructorName}}({{formatMethodParams $.Generator .}}) {{$structName}} {
+func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
 {{end}}
@@ -544,7 +544,7 @@ func {{$constructorName}}({{formatMethodParams $.Generator .}}) {{$structName}} 
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -584,7 +584,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -653,7 +653,7 @@ type I{{$structName}} interface {
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
 	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
 	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
+	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$goType}}{{end}}{{end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}
@@ -736,7 +736,7 @@ func New{{$structName}}() {{$structName}} {
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func {{$constructorName}}({{formatMethodParams $.Generator .}}) {{$structName}} {
+func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
 {{getConstructorBody . $structName $paramNames}}
 }
 {{end}}
@@ -753,7 +753,7 @@ func {{$constructorName}}({{formatMethodParams $.Generator .}}) {{$structName}} 
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
+func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
 	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
@@ -796,7 +796,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
-func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams $.Generator .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv

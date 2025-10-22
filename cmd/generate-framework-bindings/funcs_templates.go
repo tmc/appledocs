@@ -218,14 +218,6 @@ func extractTypeName(funcName, framework string) string {
 	return typeName
 }
 
-// formatMethodParamsAdapter adapts the GeneratorFuncs method for use in templates.
-// Templates call this like: {{formatMethodParams $.Generator .}}
-// Returns: "title string, target objectivec.IObject, action objc.Selector"
-func formatMethodParamsAdapter(gen *Generator, method *occ2go.ParsedMethod) string {
-	gf := GeneratorFuncs{gen}
-	return gf.formatMethodParams(method)
-}
-
 // formatMethodParamNames formats method parameter names for calling.
 // Returns: "title, target, action"
 func formatMethodParamNames(method *occ2go.ParsedMethod) string {
