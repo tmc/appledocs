@@ -44,6 +44,7 @@ type ListFilters struct {
 	MinVersion string
 	Pattern    string
 	ShowAll    bool
+	Beta       bool
 }
 
 // getFrameworkList fetches and caches the list of available frameworks from technologies.json
@@ -243,7 +244,7 @@ func getBool(m map[string]interface{}, key string) bool {
 
 // filterFrameworks applies filters to the framework list
 func filterFrameworks(frameworks []FrameworkInfo, filters ListFilters) []FrameworkInfo {
-	if filters.Platform == "" && filters.MinVersion == "" && filters.Pattern == "" {
+	if filters.Platform == "" && filters.MinVersion == "" && filters.Pattern == "" && !filters.Beta {
 		return frameworks
 	}
 
@@ -253,6 +254,20 @@ func filterFrameworks(frameworks []FrameworkInfo, filters ListFilters) []Framewo
 		if filters.Pattern != "" {
 			matched, _ := filepath.Match(filters.Pattern, fw.Name)
 			if !matched {
+				continue
+			}
+		}
+
+		// Beta filter - check if any platform is marked as beta
+		if filters.Beta {
+			hasBeta := false
+			for _, p := range fw.Platforms {
+				if p.Beta {
+					hasBeta = true
+					break
+				}
+			}
+			if !hasBeta {
 				continue
 			}
 		}
@@ -364,8 +379,9 @@ func listAvailableFrameworks(ctx context.Context, cacheDir, baseURL string, json
 	w.Flush()
 
 	fmt.Printf("\nUsage: appledocs crawl <framework>\n")
-	fmt.Printf("       appledocs list --platform macOS\n")
-	fmt.Printf("       appledocs list --pattern '^Core'\n")
+	fmt.Printf("       appledocs list-frameworks --platform macOS\n")
+	fmt.Printf("       appledocs list-frameworks --pattern '^Core'\n")
+	fmt.Printf("       appledocs list-frameworks --beta\n")
 	fmt.Printf("Example: appledocs crawl Foundation\n\n")
 
 	return nil
