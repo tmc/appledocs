@@ -30,6 +30,7 @@ import (
 var embeddedFS embed.FS
 
 var verbose bool
+var debugTypeAnnotations bool
 
 func main() {
 	framework := flag.String("framework", "CoreGraphics", "Framework to generate bindings for (supports regexp patterns like 'Core.*' or '^(AppKit|Foundation)$')")
@@ -49,6 +50,7 @@ func main() {
 	debugFilter := flag.String("debug-filter", "", "Filter debug output with regex pattern (e.g., 'Coder|Error' or 'typemap:Coder,hierarchy:Broadcast')")
 	debugHelp := flag.Bool("debug-help", false, "Show available debug categories and usage examples")
 	traceOrigin := flag.Bool("trace-origin", false, "Include source traceability comments in generated code")
+	debugTypeAnnotationsFlag := flag.Bool("debug-type-annotations", false, "Annotate generated code with type resolution decisions")
 
 	// Performance profiling flags
 	cpuProfile := flag.String("cpuprofile", "", "Write CPU profile to file")
@@ -81,6 +83,7 @@ func main() {
 	InitDebug(*debugCategories, *debugFilter)
 
 	verbose = *verboseFlag
+	debugTypeAnnotations = *debugTypeAnnotationsFlag
 
 	// Store trace-origin flag globally for use in templates
 	_ = *traceOrigin // TODO: Pass to generator

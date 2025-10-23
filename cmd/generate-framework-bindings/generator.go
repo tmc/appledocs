@@ -260,17 +260,23 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		// Check if this type is known in the cross-framework registry
 		// If it is, it's a class from another framework - use objc.IObject
 		// to avoid framework hierarchy violations
-		if _, found := crossFrameworkTypeRegistry[goType]; found {
+		if frameworkPkg, found := crossFrameworkTypeRegistry[goType]; found {
 			Debug.TypeMap("cross-framework type not in current framework", goType, "objc.IObject",
 				"goType", goType,
 				"returning", "objc.IObject")
+			if debugTypeAnnotations {
+				return fmt.Sprintf("objc.IObject /* type-resolution: cross-framework=%s.%s, objc-type=%s, reason=hierarchy-violation */", frameworkPkg, goType, goType)
+			}
 			return "objc.IObject /* cross-framework: " + goType + " */"
 		}
 		if baseType != goType {
-			if _, found := crossFrameworkTypeRegistry[baseType]; found {
+			if frameworkPkg, found := crossFrameworkTypeRegistry[baseType]; found {
 				Debug.TypeMap("cross-framework type not in current framework (stripped)", baseType, "objc.IObject",
 					"baseType", baseType,
 					"returning", "objc.IObject")
+				if debugTypeAnnotations {
+					return fmt.Sprintf("objc.IObject /* type-resolution: cross-framework=%s.%s, objc-type=%s, stripped-from=%s, reason=hierarchy-violation */", frameworkPkg, baseType, baseType, goType)
+				}
 				return "objc.IObject /* cross-framework: " + baseType + " */"
 			}
 		}
@@ -278,6 +284,9 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		Debug.TypeMap("NOT a class, returning unchanged", goType, "",
 			"goType", goType,
 			"returning", goType)
+		if debugTypeAnnotations {
+			return goType + " /* type-resolution: not-a-class, returned-as-is */"
+		}
 		return goType + " /* not a class type */"
 	}
 
