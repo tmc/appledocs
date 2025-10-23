@@ -90,9 +90,6 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	return nil
 }
 
-// GenerateTxtarFromModule generates the entire txtar output using the module template
-// GenerateTxtarFromModule is defined in generator.go
-
 // generateTxtar generates all files as txtar format
 func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
@@ -615,7 +612,6 @@ func parseVersion(s string) (major, minor int, ok bool) {
 
 	return major, minor, true
 }
-
 
 // generateObjcRuntimePackage generates the framework-independent objc runtime package
 // by extracting all templates with the objc/ prefix from the template archive.
