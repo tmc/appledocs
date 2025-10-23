@@ -30,11 +30,11 @@ type _PredicateClass struct {
 // An interface definition for the [Predicate] class.
 type IPredicate interface {
 	objectivec.IObject
+	PredicateFormat() string
 	AllowEvaluation()
 	EvaluateWithObject(object objectivec.IObject) bool
 	EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary) bool
 	PredicateWithSubstitutionVariables(variables IDictionary) unsafe.Pointer
-	PredicateFormat() string
 }
 
 // A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.

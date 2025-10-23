@@ -2,9 +2,6 @@
 
 package foundation
 
-// Type alias for NSTimeInterval
-type TimeInterval = float64  // NSTimeInterval
-
 // Foundation-specific types
 
 // Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange

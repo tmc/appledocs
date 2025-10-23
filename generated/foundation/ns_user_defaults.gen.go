@@ -30,6 +30,7 @@ type _UserDefaultsClass struct {
 // An interface definition for the [UserDefaults] class.
 type IUserDefaults interface {
 	objectivec.IObject
+	VolatileDomainNames() []string
 	AddSuiteNamed(suiteName string)
 	ArrayForKey(defaultName string) IArray
 	BoolForKey(defaultName string) bool
@@ -61,7 +62,6 @@ type IUserDefaults interface {
 	Synchronize() bool
 	URLForKey(defaultName string) IURL
 	VolatileDomainForName(domainName string) IDictionary
-	VolatileDomainNames() []string
 }
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
@@ -156,7 +156,7 @@ func (uc _UserDefaultsClass) ResetStandardUserDefaults() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
 func (uc _UserDefaultsClass) StandardUserDefaults() UserDefaults {
-	rv := objc.Send[NSUserDefaults](objc.ID(uc.class), objc.Sel("standardUserDefaults"))
+	rv := objc.Send[UserDefaults](objc.ID(uc.class), objc.Sel("standardUserDefaults"))
 	return rv
 }
 
@@ -461,7 +461,7 @@ func (u_ UserDefaults) VolatileDomainForName(domainName string) IDictionary {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
 func (u_ UserDefaults) StandardUserDefaults() IUserDefaults {
-	rv := objc.Send[NSUserDefaults](u_.ID, objc.Sel("standardUserDefaults"))
+	rv := objc.Send[UserDefaults](u_.ID, objc.Sel("standardUserDefaults"))
 	return rv
 }
 

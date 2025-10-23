@@ -121,7 +121,7 @@ func (u_ URLAuthenticationChallenge) SetError(value IError) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/failureresponse
 func (u_ URLAuthenticationChallenge) FailureResponse() IURLResponse {
-	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("failureResponse"))
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("failureResponse"))
 	return rv
 }
 
@@ -159,7 +159,7 @@ func (u_ URLAuthenticationChallenge) SetPreviousFailureCount(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/proposedcredential
 func (u_ URLAuthenticationChallenge) ProposedCredential() IURLCredential {
-	rv := objc.Send[NSURLCredential](u_.ID, objc.Sel("proposedCredential"))
+	rv := objc.Send[URLCredential](u_.ID, objc.Sel("proposedCredential"))
 	return rv
 }
 
@@ -178,7 +178,7 @@ func (u_ URLAuthenticationChallenge) SetProposedCredential(value IURLCredential)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
 func (u_ URLAuthenticationChallenge) ProtectionSpace() IURLProtectionSpace {
-	rv := objc.Send[NSURLProtectionSpace](u_.ID, objc.Sel("protectionSpace"))
+	rv := objc.Send[URLProtectionSpace](u_.ID, objc.Sel("protectionSpace"))
 	return rv
 }
 

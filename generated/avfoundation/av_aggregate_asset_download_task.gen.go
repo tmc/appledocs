@@ -92,7 +92,7 @@ func NewAggregateAssetDownloadTask() AggregateAssetDownloadTask {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask/urlasset
 func (a_ AggregateAssetDownloadTask) UrlAsset() IAVURLAsset {
-	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("urlAsset"))
+	rv := objc.Send[URLAsset](a_.ID, objc.Sel("urlAsset"))
 	return rv
 }
 

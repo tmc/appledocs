@@ -30,17 +30,6 @@ type _LocaleClass struct {
 // An interface definition for the [Locale] class.
 type ILocale interface {
 	objectivec.IObject
-	DisplayNameForKeyValue(key LocaleKey, value objectivec.IObject) IString
-	LocalizedStringForCalendarIdentifier(calendarIdentifier string) IString
-	LocalizedStringForCollationIdentifier(collationIdentifier string) IString
-	LocalizedStringForCollatorIdentifier(collatorIdentifier string) IString
-	LocalizedStringForCountryCode(countryCode string) IString
-	LocalizedStringForCurrencyCode(currencyCode string) IString
-	LocalizedStringForLanguageCode(languageCode string) IString
-	LocalizedStringForLocaleIdentifier(localeIdentifier string) IString
-	LocalizedStringForScriptCode(scriptCode string) IString
-	LocalizedStringForVariantCode(variantCode string) IString
-	ObjectForKey(key LocaleKey) objc.ID
 	AlternateQuotationBeginDelimiter() string
 	AlternateQuotationEndDelimiter() string
 	CalendarIdentifier() string
@@ -63,6 +52,17 @@ type ILocale interface {
 	VariantCode() string
 	Locale() ILocale
 	SetLocale(value ILocale)
+	DisplayNameForKeyValue(key LocaleKey, value objectivec.IObject) IString
+	LocalizedStringForCalendarIdentifier(calendarIdentifier string) IString
+	LocalizedStringForCollationIdentifier(collationIdentifier string) IString
+	LocalizedStringForCollatorIdentifier(collatorIdentifier string) IString
+	LocalizedStringForCountryCode(countryCode string) IString
+	LocalizedStringForCurrencyCode(currencyCode string) IString
+	LocalizedStringForLanguageCode(languageCode string) IString
+	LocalizedStringForLocaleIdentifier(localeIdentifier string) IString
+	LocalizedStringForScriptCode(scriptCode string) IString
+	LocalizedStringForVariantCode(variantCode string) IString
+	ObjectForKey(key LocaleKey) objc.ID
 }
 
 // Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.
@@ -238,7 +238,7 @@ func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier st
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/autoupdatingCurrent
 func (lc _LocaleClass) AutoupdatingCurrentLocale() Locale {
-	rv := objc.Send[NSLocale](objc.ID(lc.class), objc.Sel("autoupdatingCurrentLocale"))
+	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("autoupdatingCurrentLocale"))
 	return rv
 }
 
@@ -265,7 +265,7 @@ func (lc _LocaleClass) CommonISOCurrencyCodes() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/current
 func (lc _LocaleClass) CurrentLocale() Locale {
-	rv := objc.Send[NSLocale](objc.ID(lc.class), objc.Sel("currentLocale"))
+	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("currentLocale"))
 	return rv
 }
 
@@ -310,7 +310,7 @@ func (lc _LocaleClass) PreferredLanguages() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/system
 func (lc _LocaleClass) SystemLocale() Locale {
-	rv := objc.Send[NSLocale](objc.ID(lc.class), objc.Sel("systemLocale"))
+	rv := objc.Send[Locale](objc.ID(lc.class), objc.Sel("systemLocale"))
 	return rv
 }
 
@@ -449,7 +449,7 @@ func (l_ Locale) AlternateQuotationEndDelimiter() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/autoupdatingCurrent
 func (l_ Locale) AutoupdatingCurrentLocale() ILocale {
-	rv := objc.Send[NSLocale](l_.ID, objc.Sel("autoupdatingCurrentLocale"))
+	rv := objc.Send[Locale](l_.ID, objc.Sel("autoupdatingCurrentLocale"))
 	return rv
 }
 
@@ -539,7 +539,7 @@ func (l_ Locale) CurrencySymbol() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/current
 func (l_ Locale) CurrentLocale() ILocale {
-	rv := objc.Send[NSLocale](l_.ID, objc.Sel("currentLocale"))
+	rv := objc.Send[Locale](l_.ID, objc.Sel("currentLocale"))
 	return rv
 }
 
@@ -559,7 +559,7 @@ func (l_ Locale) DecimalSeparator() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/exemplarCharacterSet
 func (l_ Locale) ExemplarCharacterSet() ICharacterSet {
-	rv := objc.Send[NSCharacterSet](l_.ID, objc.Sel("exemplarCharacterSet"))
+	rv := objc.Send[CharacterSet](l_.ID, objc.Sel("exemplarCharacterSet"))
 	return rv
 }
 
@@ -685,7 +685,7 @@ func (l_ Locale) ScriptCode() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/system
 func (l_ Locale) SystemLocale() ILocale {
-	rv := objc.Send[NSLocale](l_.ID, objc.Sel("systemLocale"))
+	rv := objc.Send[Locale](l_.ID, objc.Sel("systemLocale"))
 	return rv
 }
 

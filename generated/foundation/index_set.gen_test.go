@@ -17,3 +17,19 @@ func ExampleNewIndexSetWithIndex() {
 	)
 	// Output:
 }
+// ExampleNewIndexSetWithIndexSet demonstrates how to create a IndexSet instance using NewIndexSetWithIndexSet.
+// Initializes an allocated   object with an index set.
+func ExampleNewIndexSetWithIndexSet() {
+	_ = foundation.NewIndexSetWithIndexSet(
+		foundation.NSIndexSet{}, // indexSet NSIndexSet
+	)
+	// Output:
+}
+// ExampleNewIndexSetWithIndexesInRange demonstrates how to create a IndexSet instance using NewIndexSetWithIndexesInRange.
+// Initializes an allocated   object with an index range.
+func ExampleNewIndexSetWithIndexesInRange() {
+	_ = foundation.NewIndexSetWithIndexesInRange(
+		foundation.Range{}, // range Range
+	)
+	// Output:
+}

@@ -30,10 +30,10 @@ type _RecursiveLockClass struct {
 // An interface definition for the [RecursiveLock] class.
 type IRecursiveLock interface {
 	objectivec.IObject
-	LockBeforeDate(limit IDate) bool
-	TryLock() bool
 	Name() string
 	SetName(value string)
+	LockBeforeDate(limit IDate) bool
+	TryLock() bool
 }
 
 // A lock that may be acquired multiple times by the same thread without causing a deadlock.

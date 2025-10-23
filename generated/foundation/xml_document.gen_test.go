@@ -9,6 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewXMLDocument
 
+// ExampleNewXMLDocument demonstrates how to create a XMLDocument instance.
+func ExampleNewXMLDocument() {
+	_ = foundation.NewXMLDocument()
+	// Output:
+}
 // ExampleNewXMLDocumentWithContentsOfURLOptionsError demonstrates how to create a XMLDocument instance using NewXMLDocumentWithContentsOfURLOptionsError.
 // Initializes and returns an NSXMLDocument object created from the XML or HTML contents of a URL-referenced source
 func ExampleNewXMLDocumentWithContentsOfURLOptionsError() {

@@ -136,7 +136,7 @@ func (p_ PlayerLooper) SetLoopCount(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
 func (p_ PlayerLooper) LoopingPlayerItems() IAVPlayerItem {
-	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("loopingPlayerItems"))
+	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("loopingPlayerItems"))
 	return rv
 }
 

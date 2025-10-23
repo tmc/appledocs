@@ -30,34 +30,6 @@ type _BundleClass struct {
 // An interface definition for the [Bundle] class.
 type IBundle interface {
 	objectivec.IObject
-	ClassNamed(className string) objc.Class
-	ContextHelpForKey(key unsafe.Pointer) IAttributedString
-	LoadAndReturnError(error_ IError) bool
-	LoadAppleScriptObjectiveCScripts()
-	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objectivec.IObject, topLevelObjects objectivec.IObject) bool
-	LocalizedStringForKeyValueTable(key string, value string, tableName string) IString
-	ObjectForInfoDictionaryKey(key string) objc.ID
-	PathForAuxiliaryExecutable(executableName string) IString
-	PathForResourceOfType(name string, ext string) IString
-	PathForResourceOfTypeInDirectory(name string, ext string, subpath string) IString
-	PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) IString
-	PathForSoundResource(name unsafe.Pointer) IString
-	PathForImageResource(name unsafe.Pointer) IString
-	PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string
-	PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string
-	PreflightAndReturnError(error_ IError) bool
-	PreservationPriorityForTag(tag string) float64
-	SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer)
-	Unload() bool
-	URLForAuxiliaryExecutable(executableName string) IURL
-	URLForResourceWithExtension(name string, ext string) IURL
-	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) IURL
-	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) IURL
-	URLForImageResource(name unsafe.Pointer) IURL
-	URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL
-	URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL
-	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) IAttributedString
-	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) IString
 	AppStoreReceiptURL() IURL
 	BuiltInPlugInsPath() string
 	BuiltInPlugInsURL() IURL
@@ -99,6 +71,34 @@ type IBundle interface {
 	NSExecutableRuntimeMismatchError() int
 	SetNSExecutableRuntimeMismatchError(value int)
 	NSLoadedClasses() string
+	ClassNamed(className string) objc.Class
+	ContextHelpForKey(key unsafe.Pointer) IAttributedString
+	LoadAndReturnError(error_ IError) bool
+	LoadAppleScriptObjectiveCScripts()
+	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objectivec.IObject, topLevelObjects objectivec.IObject) bool
+	LocalizedStringForKeyValueTable(key string, value string, tableName string) IString
+	ObjectForInfoDictionaryKey(key string) objc.ID
+	PathForAuxiliaryExecutable(executableName string) IString
+	PathForResourceOfType(name string, ext string) IString
+	PathForResourceOfTypeInDirectory(name string, ext string, subpath string) IString
+	PathForResourceOfTypeInDirectoryForLocalization(name string, ext string, subpath string, localizationName string) IString
+	PathForSoundResource(name unsafe.Pointer) IString
+	PathForImageResource(name unsafe.Pointer) IString
+	PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string
+	PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string
+	PreflightAndReturnError(error_ IError) bool
+	PreservationPriorityForTag(tag string) float64
+	SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer)
+	Unload() bool
+	URLForAuxiliaryExecutable(executableName string) IURL
+	URLForResourceWithExtension(name string, ext string) IURL
+	URLForResourceWithExtensionSubdirectory(name string, ext string, subpath string) IURL
+	URLForResourceWithExtensionSubdirectoryLocalization(name string, ext string, subpath string, localizationName string) IURL
+	URLForImageResource(name unsafe.Pointer) IURL
+	URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL
+	URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL
+	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) IAttributedString
+	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) IString
 }
 
 // A representation of the code and resources stored in a bundle directory on disk.
@@ -342,7 +342,7 @@ func (bc _BundleClass) AllFrameworks() []Bundle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
 func (bc _BundleClass) MainBundle() Bundle {
-	rv := objc.Send[NSBundle](objc.ID(bc.class), objc.Sel("mainBundle"))
+	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("mainBundle"))
 	return rv
 }
 
@@ -795,7 +795,7 @@ func (b_ Bundle) LocalizedInfoDictionary() IDictionary {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
 func (b_ Bundle) MainBundle() IBundle {
-	rv := objc.Send[NSBundle](b_.ID, objc.Sel("mainBundle"))
+	rv := objc.Send[Bundle](b_.ID, objc.Sel("mainBundle"))
 	return rv
 }
 

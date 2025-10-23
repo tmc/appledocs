@@ -30,10 +30,10 @@ type _LockClass struct {
 // An interface definition for the [Lock] class.
 type ILock interface {
 	objectivec.IObject
-	LockBeforeDate(limit IDate) bool
-	TryLock() bool
 	Name() string
 	SetName(value string)
+	LockBeforeDate(limit IDate) bool
+	TryLock() bool
 }
 
 // An object that coordinates the operation of multiple threads of execution within the same application.

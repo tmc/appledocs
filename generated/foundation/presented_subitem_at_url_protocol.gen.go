@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // presentedSubitemAtURLProtocol is the presentedSubitemAtURL: protocol.
 //
 // Availability:
-//   - Mac Catalyst 8.0+
+//   - Mac Catalyst 13.1+
 //   - iOS 8.0+
 //   - iPadOS 8.0+
 //   - macOS 10.10+

@@ -221,7 +221,7 @@ func (s_ SampleBufferDisplayLayer) SetPreventsDisplaySleepDuringVideoPlayback(va
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/samplebufferrenderer
 func (s_ SampleBufferDisplayLayer) SampleBufferRenderer() IAVSampleBufferVideoRenderer {
-	rv := objc.Send[AVSampleBufferVideoRenderer](s_.ID, objc.Sel("sampleBufferRenderer"))
+	rv := objc.Send[SampleBufferVideoRenderer](s_.ID, objc.Sel("sampleBufferRenderer"))
 	return rv
 }
 

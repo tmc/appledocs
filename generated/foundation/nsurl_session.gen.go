@@ -30,6 +30,11 @@ type _URLSessionClass struct {
 // An interface definition for the [URLSession] class.
 type IURLSession interface {
 	objectivec.IObject
+	Configuration() IURLSessionConfiguration
+	Delegate() objc.ID
+	DelegateQueue() IOperationQueue
+	SessionDescription() string
+	SetSessionDescription(value string)
 	DataTaskWithURL(url IURL) IURLSessionDataTask
 	DataTaskWithRequest(request IURLRequest) IURLSessionDataTask
 	DataTaskWithURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) IURLSessionDataTask
@@ -57,11 +62,6 @@ type IURLSession interface {
 	WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask
 	WebSocketTaskWithRequest(request IURLRequest) IURLSessionWebSocketTask
 	WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask
-	Configuration() IURLSessionConfiguration
-	Delegate() objc.ID
-	DelegateQueue() IOperationQueue
-	SessionDescription() string
-	SetSessionDescription(value string)
 }
 
 // An object that coordinates a group of related, network data transfer tasks.
@@ -163,7 +163,7 @@ func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configu
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/shared
 func (uc _URLSessionClass) SharedSession() URLSession {
-	rv := objc.Send[NSURLSession](objc.ID(uc.class), objc.Sel("sharedSession"))
+	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sharedSession"))
 	return rv
 }
 
@@ -432,7 +432,7 @@ func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/configuration
 func (u_ URLSession) Configuration() IURLSessionConfiguration {
-	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("configuration"))
+	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -452,7 +452,7 @@ func (u_ URLSession) Delegate() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/delegateQueue
 func (u_ URLSession) DelegateQueue() IOperationQueue {
-	rv := objc.Send[NSOperationQueue](u_.ID, objc.Sel("delegateQueue"))
+	rv := objc.Send[OperationQueue](u_.ID, objc.Sel("delegateQueue"))
 	return rv
 }
 
@@ -481,7 +481,7 @@ func (u_ URLSession) SetSessionDescription(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/shared
 func (u_ URLSession) SharedSession() IURLSession {
-	rv := objc.Send[NSURLSession](u_.ID, objc.Sel("sharedSession"))
+	rv := objc.Send[URLSession](u_.ID, objc.Sel("sharedSession"))
 	return rv
 }
 

@@ -30,15 +30,6 @@ type _MetadataQueryClass struct {
 // An interface definition for the [MetadataQuery] class.
 type IMetadataQuery interface {
 	objectivec.IObject
-	DisableUpdates()
-	EnableUpdates()
-	EnumerateResultsUsingBlock(block unsafe.Pointer)
-	EnumerateResultsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
-	IndexOfResult(result objectivec.IObject) uint
-	ResultAtIndex(idx uint) objc.ID
-	StartQuery() bool
-	StopQuery()
-	ValueOfAttributeForResultAtIndex(attrName string, idx uint) objc.ID
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	GroupedResults() []MetadataQueryResultGroup
@@ -70,6 +61,15 @@ type IMetadataQuery interface {
 	SetIsStarted(value bool)
 	IsStopped() bool
 	SetIsStopped(value bool)
+	DisableUpdates()
+	EnableUpdates()
+	EnumerateResultsUsingBlock(block unsafe.Pointer)
+	EnumerateResultsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
+	IndexOfResult(result objectivec.IObject) uint
+	ResultAtIndex(idx uint) objc.ID
+	StartQuery() bool
+	StopQuery()
+	ValueOfAttributeForResultAtIndex(attrName string, idx uint) objc.ID
 }
 
 // A query that you perform against Spotlight metadata.
@@ -322,7 +322,7 @@ func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
 func (m_ MetadataQuery) OperationQueue() IOperationQueue {
-	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
+	rv := objc.Send[OperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -341,7 +341,7 @@ func (m_ MetadataQuery) SetOperationQueue(value IOperationQueue) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
 func (m_ MetadataQuery) Predicate() IPredicate {
-	rv := objc.Send[NSPredicate](m_.ID, objc.Sel("predicate"))
+	rv := objc.Send[Predicate](m_.ID, objc.Sel("predicate"))
 	return rv
 }
 

@@ -29,7 +29,8 @@ type _CapturePhotoBracketSettingsClass struct {
 // An interface definition for the [CapturePhotoBracketSettings] class.
 type ICapturePhotoBracketSettings interface {
 	ICapturePhotoSettings
-	BracketedSettings() []unsafe.Pointer
+	BracketedSettings() unsafe.Pointer
+	SetBracketedSettings(value unsafe.Pointer)
 	IsLensStabilizationEnabled() bool
 	SetIsLensStabilizationEnabled(value bool)
 	IsHighResolutionPhotoEnabled() bool
@@ -96,10 +97,19 @@ func NewCapturePhotoBracketSettings() CapturePhotoBracketSettings {
 // An array describing the number of and settings for images to produce in a bracketed capture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoBracketSettings/bracketedSettings
-func (c_ CapturePhotoBracketSettings) BracketedSettings() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("bracketedSettings"))
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/bracketedsettings
+func (c_ CapturePhotoBracketSettings) BracketedSettings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bracketedSettings"))
 	return rv
+}
+
+
+// An array describing the number of and settings for images to produce in a bracketed capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/bracketedsettings
+func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBracketedSettings:"), value)
 }
 
 

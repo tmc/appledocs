@@ -85,4 +85,14 @@ func NewFileSecurity() FileSecurity {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileSecurity/init(coder:)
+func NewFileSecurityWithCoder(coder ICoder) FileSecurity {
+	instance := getFileSecurityClass().Alloc()
+	rv := objc.Send[FileSecurity](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
 

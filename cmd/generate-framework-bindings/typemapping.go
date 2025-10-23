@@ -47,40 +47,46 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "CGAffineTransform", GoType: "CGAffineTransform", Framework: "CoreGraphics"},
 	{ObjCType: "CGVector", GoType: "CGVector", Framework: "CoreGraphics"},
 	{ObjCType: "CGFloat", GoType: "float64", Framework: "CoreGraphics"},
-	// Opaque ref types
-	{ObjCType: "CGColorRef", GoType: "CGColorRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGColorSpaceRef", GoType: "CGColorSpaceRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGContextRef", GoType: "CGContextRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGImageRef", GoType: "CGImageRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPathRef", GoType: "CGPathRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGLayerRef", GoType: "CGLayerRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGFontRef", GoType: "CGFontRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGDataProviderRef", GoType: "CGDataProviderRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGDataConsumerRef", GoType: "CGDataConsumerRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGFunctionRef", GoType: "CGFunctionRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGShadingRef", GoType: "CGShadingRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGGradientRef", GoType: "CGGradientRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPatternRef", GoType: "CGPatternRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFDocumentRef", GoType: "CGPDFDocumentRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFPageRef", GoType: "CGPDFPageRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGColorConversionInfoRef", GoType: "CGColorConversionInfoRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGDisplayConfigRef", GoType: "CGDisplayConfigRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGDisplayModeRef", GoType: "CGDisplayModeRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGDisplayStreamRef", GoType: "CGDisplayStreamRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGDisplayStreamUpdateRef", GoType: "CGDisplayStreamUpdateRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGEventSourceRef", GoType: "CGEventSourceRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGMutablePathRef", GoType: "CGMutablePathRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFArrayRef", GoType: "CGPDFArrayRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFContentStreamRef", GoType: "CGPDFContentStreamRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFDictionaryRef", GoType: "CGPDFDictionaryRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFObjectRef", GoType: "CGPDFObjectRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFOperatorTableRef", GoType: "CGPDFOperatorTableRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFScannerRef", GoType: "CGPDFScannerRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFStreamRef", GoType: "CGPDFStreamRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPDFStringRef", GoType: "CGPDFStringRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGPSConverterRef", GoType: "CGPSConverterRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGRenderingBufferProviderRef", GoType: "CGRenderingBufferProviderRef", Framework: "CoreGraphics"},
-	{ObjCType: "CGEventRef", GoType: "CGEventRef", Framework: "CoreGraphics"},
+	// Opaque ref types - strip CG prefix to match generated typedefs
+	{ObjCType: "CGColorRef", GoType: "ColorRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGColorSpaceRef", GoType: "ColorSpaceRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGContextRef", GoType: "ContextRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGImageRef", GoType: "ImageRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPathRef", GoType: "PathRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGLayerRef", GoType: "LayerRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGFontRef", GoType: "FontRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDataProviderRef", GoType: "DataProviderRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDataConsumerRef", GoType: "DataConsumerRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGFunctionRef", GoType: "FunctionRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGShadingRef", GoType: "ShadingRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGGradientRef", GoType: "GradientRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPatternRef", GoType: "PatternRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFDocumentRef", GoType: "PDFDocumentRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFPageRef", GoType: "PDFPageRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGColorConversionInfoRef", GoType: "ColorConversionInfoRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayConfigRef", GoType: "DisplayConfigRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayModeRef", GoType: "DisplayModeRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayStreamRef", GoType: "DisplayStreamRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayStreamUpdateRef", GoType: "DisplayStreamUpdateRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventSourceRef", GoType: "EventSourceRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGMutablePathRef", GoType: "MutablePathRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFArrayRef", GoType: "PDFArrayRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFContentStreamRef", GoType: "PDFContentStreamRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFDictionaryRef", GoType: "PDFDictionaryRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFObjectRef", GoType: "PDFObjectRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFOperatorTableRef", GoType: "PDFOperatorTableRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFScannerRef", GoType: "PDFScannerRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFStreamRef", GoType: "PDFStreamRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPDFStringRef", GoType: "PDFStringRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGPSConverterRef", GoType: "PSConverterRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGRenderingBufferProviderRef", GoType: "RenderingBufferProviderRef", Framework: "CoreGraphics"},
+	{ObjCType: "CGEventRef", GoType: "EventRef", Framework: "CoreGraphics"},
+	// Common C typedef types
+	{ObjCType: "CGError", GoType: "Error", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayReservationInterval", GoType: "DisplayReservationInterval", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayFadeReservationToken", GoType: "DisplayFadeReservationToken", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayCount", GoType: "DisplayCount", Framework: "CoreGraphics"},
+	{ObjCType: "CGDisplayErr", GoType: "DisplayErr", Framework: "CoreGraphics"},
 
 	// ==== Geometry types - AppKit framework ====
 	// AppKit uses CoreGraphics types - import from CoreGraphics package
@@ -170,15 +176,16 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "NSString *", GoType: "string", Framework: ""},
 
 	// ==== UniformTypeIdentifiers types ====
-	// UTType within its own framework - unqualified
-	{ObjCType: "UTType", GoType: "UTType", Framework: "UniformTypeIdentifiers"},
-	// UTType used in other frameworks - qualified
-	{ObjCType: "UTType", GoType: "uniformtypeidentifiers.UTType", Framework: "AppKit"},
+	// Removed - let automatic type resolution handle UTType
 
 	// Foundation date/time types - unqualified within Foundation
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "Foundation"},
+
+	// Foundation enum types - preserve NS prefix
+	{ObjCType: "NSISO8601DateFormatOptions", GoType: "NSISO8601DateFormatOptions", Framework: "Foundation"},
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "ObjectiveC"},
 	{ObjCType: "NSObject", GoType: "objectivec.IObject", Framework: "*"}, // NSObject should always map to objectivec.IObject
+	{ObjCType: "Object", GoType: "objectivec.IObject", Framework: "*"},   // Swift Object type (stripped NSObject) maps to objectivec.IObject
 	// Foundation date/time types for AppKit - as float64 (no darwinkit imports)
 	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: "AppKit"},
 	// Default for all other frameworks - use qualified foundation.TimeInterval
@@ -304,13 +311,13 @@ var typeRegistry = []TypeMapping{
 	// UserNotifications types used in Foundation - use objc.ID to avoid import cycles
 	// Foundation imports UserNotifications, and UserNotifications imports Foundation,
 	// creating a cycle if we use typed references
-	{ObjCType: "UNNotificationAction", GoType: "objc.ID", Framework: "Foundation"},
+	{ObjCType: "UNNotificationAction", GoType: "objectivec.IObject", Framework: "Foundation"},
 
 	// Foundation ↔ UniformTypeIdentifiers import cycle:
-	// Foundation methods reference UTType, but UniformTypeIdentifiers imports Foundation (for NSString, etc.)
-	// Break the cycle by mapping UTType to unsafe.Pointer in Foundation
-	{ObjCType: "UTType", GoType: "unsafe.Pointer", Framework: "Foundation"},
-	{ObjCType: "UTType *", GoType: "unsafe.Pointer", Framework: "Foundation"},
+	// Foundation methods reference UTType, but UniformTypeIdentifiers imports Foundation (for URL, Number, etc.)
+	// Break the cycle by mapping UTType to objectivec.IObject in Foundation
+	{ObjCType: "UTType", GoType: "objectivec.IObject", Framework: "Foundation"},
+	{ObjCType: "UTType *", GoType: "objectivec.IObject", Framework: "Foundation"},
 }
 
 // lookupTypeMapping finds a type mapping for the given Objective-C type.
@@ -318,9 +325,16 @@ var typeRegistry = []TypeMapping{
 func lookupTypeMapping(objcType, framework string) (string, bool) {
 	objcType = strings.TrimSpace(objcType)
 
+	if strings.Contains(objcType, "Quality") {
+		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping ENTRY: objcType=%q framework=%q\n", objcType, framework)
+	}
+
 	// Direct lookup - try framework-specific first
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType && mapping.Framework != "" && mapping.Framework == framework {
+			if strings.Contains(objcType, "Quality") {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping FOUND framework-specific: %q -> %q\n", objcType, mapping.GoType)
+			}
 			return mapping.GoType, true
 		}
 	}
@@ -385,7 +399,7 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// Try with both ObjC names (NSColor, NSImageScaling) and Go names (Color, ImageScaling)
 	// First try the stripped name (preferred) to avoid returning NSCellAttribute when we want CellAttribute
 	strippedType := stripObjCPrefix(objcType)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error")) {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Quality")) {
 		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: objcType=%s strippedType=%s (stripped=%v)\n",
 			objcType, strippedType, strippedType != objcType)
 	}
@@ -393,6 +407,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// IMPORTANT: Check if the stripped type exists in the current framework BEFORE checking cross-framework registry
 	// This prevents "Cursor" in CloudKit from resolving to appkit.Cursor instead of CKQueryCursor
 	if strippedType != objcType {
+		if strings.Contains(objcType, "Quality") {
+			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: checking current framework for %q (stripped=%q)\n", objcType, strippedType)
+			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: currentFrameworkEnums[%q]=%v (map size=%d)\n", strippedType, currentFrameworkEnums[strippedType], len(currentFrameworkEnums))
+		}
 		// Check if this stripped type is a class in the current framework
 		if currentFrameworkClasses[strippedType] {
 			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
@@ -403,12 +421,14 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		}
 
 		// Check if it's an enum in the current framework
+		// IMPORTANT: Enums must keep their NS/CG/CA prefix (e.g., NSQualityOfService not QualityOfService)
+		// This is because objc.Send[T] requires the concrete enum type name
 		if currentFrameworkEnums[strippedType] {
 			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s enums, using unqualified name\n",
-					strippedType, framework)
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s enums, returning FULL name %s\n",
+					strippedType, framework, objcType)
 			}
-			return strippedType, true
+			return objcType, true // Return FULL name with NS prefix, not stripped
 		}
 
 		// Check if it's a typedef in the current framework

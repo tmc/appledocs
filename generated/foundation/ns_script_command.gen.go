@@ -30,10 +30,6 @@ type _ScriptCommandClass struct {
 // An interface definition for the [ScriptCommand] class.
 type IScriptCommand interface {
 	objectivec.IObject
-	ExecuteCommand() objc.ID
-	PerformDefaultImplementation() objc.ID
-	ResumeExecutionWithResult(result objectivec.IObject)
-	SuspendExecution()
 	AppleEvent() IAppleEventDescriptor
 	Arguments() IDictionary
 	SetArguments(value IDictionary)
@@ -55,6 +51,10 @@ type IScriptCommand interface {
 	SetScriptErrorString(value string)
 	IsWellFormed() bool
 	SetIsWellFormed(value bool)
+	ExecuteCommand() objc.ID
+	PerformDefaultImplementation() objc.ID
+	ResumeExecutionWithResult(result objectivec.IObject)
+	SuspendExecution()
 }
 
 // A self-contained scripting statement.
@@ -186,7 +186,7 @@ func (s_ ScriptCommand) SuspendExecution() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/appleEvent
 func (s_ ScriptCommand) AppleEvent() IAppleEventDescriptor {
-	rv := objc.Send[NSAppleEventDescriptor](s_.ID, objc.Sel("appleEvent"))
+	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("appleEvent"))
 	return rv
 }
 
@@ -215,7 +215,7 @@ func (s_ ScriptCommand) SetArguments(value IDictionary) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/commandDescription
 func (s_ ScriptCommand) CommandDescription() IScriptCommandDescription {
-	rv := objc.Send[NSScriptCommandDescription](s_.ID, objc.Sel("commandDescription"))
+	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("commandDescription"))
 	return rv
 }
 
@@ -274,7 +274,7 @@ func (s_ ScriptCommand) WellFormed() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/receiversSpecifier
 func (s_ ScriptCommand) ReceiversSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("receiversSpecifier"))
+	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("receiversSpecifier"))
 	return rv
 }
 
@@ -293,7 +293,7 @@ func (s_ ScriptCommand) SetReceiversSpecifier(value IScriptObjectSpecifier) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/scriptErrorExpectedTypeDescriptor
 func (s_ ScriptCommand) ScriptErrorExpectedTypeDescriptor() IAppleEventDescriptor {
-	rv := objc.Send[NSAppleEventDescriptor](s_.ID, objc.Sel("scriptErrorExpectedTypeDescriptor"))
+	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("scriptErrorExpectedTypeDescriptor"))
 	return rv
 }
 
@@ -331,7 +331,7 @@ func (s_ ScriptCommand) SetScriptErrorNumber(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/scriptErrorOffendingObjectDescriptor
 func (s_ ScriptCommand) ScriptErrorOffendingObjectDescriptor() IAppleEventDescriptor {
-	rv := objc.Send[NSAppleEventDescriptor](s_.ID, objc.Sel("scriptErrorOffendingObjectDescriptor"))
+	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("scriptErrorOffendingObjectDescriptor"))
 	return rv
 }
 

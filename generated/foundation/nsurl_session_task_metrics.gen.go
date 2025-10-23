@@ -104,7 +104,7 @@ func (u_ URLSessionTaskMetrics) RedirectCount() uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/taskInterval
 func (u_ URLSessionTaskMetrics) TaskInterval() IDateInterval {
-	rv := objc.Send[NSDateInterval](u_.ID, objc.Sel("taskInterval"))
+	rv := objc.Send[DateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }
 

@@ -29,8 +29,6 @@ type _MeasurementFormatterClass struct {
 // An interface definition for the [MeasurementFormatter] class.
 type IMeasurementFormatter interface {
 	IFormatter
-	StringFromUnit(unit IUnit) IString
-	StringFromMeasurement(measurement IMeasurement) IString
 	Locale() ILocale
 	SetLocale(value ILocale)
 	NumberFormatter() INumberFormatter
@@ -39,6 +37,8 @@ type IMeasurementFormatter interface {
 	SetUnitOptions(value NSMeasurementFormatterUnitOptions)
 	UnitStyle() NSFormattingUnitStyle
 	SetUnitStyle(value NSFormattingUnitStyle)
+	StringFromUnit(unit IUnit) IString
+	StringFromMeasurement(measurement IMeasurement) IString
 }
 
 // A formatter that provides localized representations of units and measurements.
@@ -121,7 +121,7 @@ func (m_ MeasurementFormatter) StringFromMeasurement(measurement IMeasurement) I
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/locale
 func (m_ MeasurementFormatter) Locale() ILocale {
-	rv := objc.Send[NSLocale](m_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -140,7 +140,7 @@ func (m_ MeasurementFormatter) SetLocale(value ILocale) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/numberFormatter
 func (m_ MeasurementFormatter) NumberFormatter() INumberFormatter {
-	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
+	rv := objc.Send[NumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 

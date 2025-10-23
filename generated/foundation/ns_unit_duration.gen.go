@@ -91,7 +91,7 @@ func NewUnitDuration() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/hours
 func (uc _UnitDurationClass) Hours() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("hours"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("hours"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitDurationClass) Hours() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/microseconds
 func (uc _UnitDurationClass) Microseconds() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("microseconds"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("microseconds"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitDurationClass) Microseconds() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/milliseconds
 func (uc _UnitDurationClass) Milliseconds() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("milliseconds"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("milliseconds"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitDurationClass) Milliseconds() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/minutes
 func (uc _UnitDurationClass) Minutes() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("minutes"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("minutes"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitDurationClass) Minutes() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/nanoseconds
 func (uc _UnitDurationClass) Nanoseconds() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("nanoseconds"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("nanoseconds"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitDurationClass) Nanoseconds() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/picoseconds
 func (uc _UnitDurationClass) Picoseconds() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("picoseconds"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("picoseconds"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitDurationClass) Picoseconds() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
 func (uc _UnitDurationClass) Seconds() UnitDuration {
-	rv := objc.Send[NSUnitDuration](objc.ID(uc.class), objc.Sel("seconds"))
+	rv := objc.Send[UnitDuration](objc.ID(uc.class), objc.Sel("seconds"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (uc _UnitDurationClass) Seconds() UnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/hours
 func (u_ UnitDuration) Hours() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("hours"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("hours"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (u_ UnitDuration) Hours() IUnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/microseconds
 func (u_ UnitDuration) Microseconds() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("microseconds"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("microseconds"))
 	return rv
 }
 
@@ -174,7 +174,7 @@ func (u_ UnitDuration) Microseconds() IUnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/milliseconds
 func (u_ UnitDuration) Milliseconds() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("milliseconds"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("milliseconds"))
 	return rv
 }
 
@@ -184,7 +184,7 @@ func (u_ UnitDuration) Milliseconds() IUnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/minutes
 func (u_ UnitDuration) Minutes() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("minutes"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("minutes"))
 	return rv
 }
 
@@ -194,7 +194,7 @@ func (u_ UnitDuration) Minutes() IUnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/nanoseconds
 func (u_ UnitDuration) Nanoseconds() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("nanoseconds"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("nanoseconds"))
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (u_ UnitDuration) Nanoseconds() IUnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/picoseconds
 func (u_ UnitDuration) Picoseconds() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("picoseconds"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("picoseconds"))
 	return rv
 }
 
@@ -214,7 +214,7 @@ func (u_ UnitDuration) Picoseconds() IUnitDuration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
 func (u_ UnitDuration) Seconds() IUnitDuration {
-	rv := objc.Send[NSUnitDuration](u_.ID, objc.Sel("seconds"))
+	rv := objc.Send[UnitDuration](u_.ID, objc.Sel("seconds"))
 	return rv
 }
 

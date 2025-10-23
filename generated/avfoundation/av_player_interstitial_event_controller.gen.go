@@ -98,7 +98,7 @@ func NewPlayerInterstitialEventController() PlayerInterstitialEventController {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/events
 func (p_ PlayerInterstitialEventController) Events() IAVPlayerInterstitialEvent {
-	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("events"))
+	rv := objc.Send[PlayerInterstitialEvent](p_.ID, objc.Sel("events"))
 	return rv
 }
 

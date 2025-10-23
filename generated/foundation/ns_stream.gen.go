@@ -112,7 +112,7 @@ func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostn
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamError
 func (s_ Stream) StreamError() IError {
-	rv := objc.Send[NSError](s_.ID, objc.Sel("streamError"))
+	rv := objc.Send[Error](s_.ID, objc.Sel("streamError"))
 	return rv
 }
 

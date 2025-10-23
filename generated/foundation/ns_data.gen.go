@@ -30,6 +30,17 @@ type _DataClass struct {
 // An interface definition for the [Data] class.
 type IData interface {
 	objectivec.IObject
+	Bytes() unsafe.Pointer
+	Description() string
+	Length() uint
+	NSCompressionErrorMaximum() int
+	SetNSCompressionErrorMaximum(value int)
+	NSCompressionErrorMinimum() int
+	SetNSCompressionErrorMinimum(value int)
+	NSCompressionFailedError() int
+	SetNSCompressionFailedError(value int)
+	NSDecompressionFailedError() int
+	SetNSDecompressionFailedError(value int)
 	Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions) IData
 	Base64EncodedStringWithOptions(options NSDataBase64EncodingOptions) IString
 	CompressedDataUsingAlgorithmError(algorithm NSDataCompressionAlgorithm, error_ IError) unsafe.Pointer
@@ -44,17 +55,6 @@ type IData interface {
 	WriteToURLOptionsError(url IURL, writeOptionsMask NSDataWritingOptions, errorPtr IError) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	WriteToFileOptionsError(path string, writeOptionsMask NSDataWritingOptions, errorPtr IError) bool
-	Bytes() unsafe.Pointer
-	Description() string
-	Length() uint
-	NSCompressionErrorMaximum() int
-	SetNSCompressionErrorMaximum(value int)
-	NSCompressionErrorMinimum() int
-	SetNSCompressionErrorMinimum(value int)
-	NSCompressionFailedError() int
-	SetNSCompressionFailedError(value int)
-	NSDecompressionFailedError() int
-	SetNSDecompressionFailedError(value int)
 }
 
 // A static byte buffer in memory.

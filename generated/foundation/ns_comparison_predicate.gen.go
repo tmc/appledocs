@@ -29,18 +29,12 @@ type _ComparisonPredicateClass struct {
 // An interface definition for the [ComparisonPredicate] class.
 type IComparisonPredicate interface {
 	IPredicate
-	ComparisonPredicateModifier() unsafe.Pointer
-	SetComparisonPredicateModifier(value unsafe.Pointer)
-	CustomSelector() unsafe.Pointer
-	SetCustomSelector(value unsafe.Pointer)
+	ComparisonPredicateModifier() NSComparisonPredicateModifier
+	CustomSelector() objc.SEL
 	LeftExpression() IExpression
-	SetLeftExpression(value IExpression)
-	Options() unsafe.Pointer
-	SetOptions(value unsafe.Pointer)
-	PredicateOperatorType() unsafe.Pointer
-	SetPredicateOperatorType(value unsafe.Pointer)
+	Options() NSComparisonPredicateOptions
+	PredicateOperatorType() NSPredicateOperatorType
 	RightExpression() IExpression
-	SetRightExpression(value IExpression)
 }
 
 // A specialized predicate for comparing expressions.
@@ -98,12 +92,59 @@ func NewComparisonPredicate() ComparisonPredicate {
 
 
 
-// The comparison predicate modifier for the receiver.
+// Creates a predicate by decoding from the coder you specify.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
-func (c_ ComparisonPredicate) ComparisonPredicateModifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("comparisonPredicateModifier"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/init(coder:)
+func NewComparisonPredicateWithCoder(coder ICoder) ComparisonPredicate {
+	instance := getComparisonPredicateClass().Alloc()
+	rv := objc.Send[ComparisonPredicate](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a predicate that you form by combining specified left and right expressions using a specified selector.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/init(leftExpression:rightExpression:customSelector:)
+func NewComparisonPredicateWithLeftExpressionRightExpressionCustomSelector(lhs IExpression, rhs IExpression, selector objc.SEL) ComparisonPredicate {
+	instance := getComparisonPredicateClass().Alloc()
+	rv := objc.Send[ComparisonPredicate](instance.ID, objc.Sel("initWithLeftExpression:rightExpression:customSelector:"), lhs, rhs, selector)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a predicate to a specified type that you form by combining specified left and right expressions using a specified modifier and options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/init(leftExpression:rightExpression:modifier:type:options:)
+func NewComparisonPredicateWithLeftExpressionRightExpressionModifierTypeOptions(lhs IExpression, rhs IExpression, modifier NSComparisonPredicateModifier, type_ NSPredicateOperatorType, options NSComparisonPredicateOptions) ComparisonPredicate {
+	instance := getComparisonPredicateClass().Alloc()
+	rv := objc.Send[ComparisonPredicate](instance.ID, objc.Sel("initWithLeftExpression:rightExpression:modifier:type:options:"), lhs, rhs, modifier, type_, options)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a new predicate formed by combining the left and right expressions using a given selector.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/predicateWithLeftExpression:rightExpression:customSelector:
+func (cc _ComparisonPredicateClass) PredicateWithLeftExpressionRightExpressionCustomSelector(lhs IExpression, rhs IExpression, selector objc.SEL) IComparisonPredicate {
+	rv := objc.Send[ComparisonPredicate](objc.ID(cc.class), objc.Sel("predicateWithLeftExpression:rightExpression:customSelector:"), lhs, rhs, selector)
+	return rv
+}
+
+
+// Creates and returns a predicate of a given type formed by combining given left and right expressions using a given modifier and options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/predicateWithLeftExpression:rightExpression:modifier:type:options:
+func (cc _ComparisonPredicateClass) PredicateWithLeftExpressionRightExpressionModifierTypeOptions(lhs IExpression, rhs IExpression, modifier NSComparisonPredicateModifier, type_ NSPredicateOperatorType, options NSComparisonPredicateOptions) IComparisonPredicate {
+	rv := objc.Send[ComparisonPredicate](objc.ID(cc.class), objc.Sel("predicateWithLeftExpression:rightExpression:modifier:type:options:"), lhs, rhs, modifier, type_, options)
 	return rv
 }
 
@@ -111,18 +152,9 @@ func (c_ ComparisonPredicate) ComparisonPredicateModifier() unsafe.Pointer {
 // The comparison predicate modifier for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/comparisonpredicatemodifier
-func (c_ ComparisonPredicate) SetComparisonPredicateModifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonPredicateModifier:"), value)
-}
-
-
-// The selector for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/customselector
-func (c_ ComparisonPredicate) CustomSelector() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("customSelector"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/comparisonPredicateModifier
+func (c_ ComparisonPredicate) ComparisonPredicateModifier() NSComparisonPredicateModifier {
+	rv := objc.Send[ComparisonPredicateModifier](c_.ID, objc.Sel("comparisonPredicateModifier"))
 	return rv
 }
 
@@ -130,37 +162,19 @@ func (c_ ComparisonPredicate) CustomSelector() unsafe.Pointer {
 // The selector for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/customselector
-func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomSelector:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/customSelector
+func (c_ ComparisonPredicate) CustomSelector() objc.SEL {
+	rv := objc.Send[objc.SEL](c_.ID, objc.Sel("customSelector"))
+	return rv
 }
 
 
 // The left expression for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/leftExpression
 func (c_ ComparisonPredicate) LeftExpression() IExpression {
-	rv := objc.Send[NSExpression](c_.ID, objc.Sel("leftExpression"))
-	return rv
-}
-
-
-// The left expression for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) SetLeftExpression(value IExpression) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
-}
-
-
-// The options to use for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
-func (c_ ComparisonPredicate) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
+	rv := objc.Send[Expression](c_.ID, objc.Sel("leftExpression"))
 	return rv
 }
 
@@ -168,18 +182,9 @@ func (c_ ComparisonPredicate) Options() unsafe.Pointer {
 // The options to use for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.property
-func (c_ ComparisonPredicate) SetOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
-}
-
-
-// The predicate type for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
-func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateOperatorType"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/options-swift.property
+func (c_ ComparisonPredicate) Options() NSComparisonPredicateOptions {
+	rv := objc.Send[ComparisonPredicateOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -187,29 +192,20 @@ func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
 // The predicate type for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
-func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateOperatorType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/predicateOperatorType
+func (c_ ComparisonPredicate) PredicateOperatorType() NSPredicateOperatorType {
+	rv := objc.Send[PredicateOperatorType](c_.ID, objc.Sel("predicateOperatorType"))
+	return rv
 }
 
 
 // The right expression for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/rightexpression
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
 func (c_ ComparisonPredicate) RightExpression() IExpression {
-	rv := objc.Send[NSExpression](c_.ID, objc.Sel("rightExpression"))
+	rv := objc.Send[Expression](c_.ID, objc.Sel("rightExpression"))
 	return rv
 }
-
-
-// The right expression for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/rightexpression
-func (c_ ComparisonPredicate) SetRightExpression(value IExpression) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRightExpression:"), value)
-}
-
 
 

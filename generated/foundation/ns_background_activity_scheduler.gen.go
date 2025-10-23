@@ -30,8 +30,6 @@ type _BackgroundActivitySchedulerClass struct {
 // An interface definition for the [BackgroundActivityScheduler] class.
 type IBackgroundActivityScheduler interface {
 	objectivec.IObject
-	Invalidate()
-	ScheduleWithBlock(block unsafe.Pointer)
 	Identifier() string
 	Interval() TimeInterval
 	SetInterval(value TimeInterval)
@@ -42,6 +40,8 @@ type IBackgroundActivityScheduler interface {
 	ShouldDefer() bool
 	Tolerance() TimeInterval
 	SetTolerance(value TimeInterval)
+	Invalidate()
+	ScheduleWithBlock(block unsafe.Pointer)
 }
 
 // A task scheduler suitable for low priority operations that can run in the background.

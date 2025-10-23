@@ -29,6 +29,14 @@ type _MutableIndexSetClass struct {
 // An interface definition for the [MutableIndexSet] class.
 type IMutableIndexSet interface {
 	IIndexSet
+	AddIndex(value uint)
+	AddIndexes(indexSet IIndexSet)
+	AddIndexesInRange(range_ Range)
+	RemoveIndexes(indexSet IIndexSet)
+	RemoveIndex(value uint)
+	RemoveIndexesInRange(range_ Range)
+	RemoveAllIndexes()
+	ShiftIndexesStartingAtIndexBy(index uint, delta int)
 }
 
 // A mutable collection of unique integer values that represent indexes in another collection.
@@ -84,6 +92,78 @@ func NewMutableIndexSet() MutableIndexSet {
 	return getMutableIndexSetClass().New()
 }
 
+
+
+// Adds an index to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(_:)-6dtkj
+func (m_ MutableIndexSet) AddIndex(value uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addIndex:"), value)
+}
+
+
+// Adds the indexes in an index set to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(_:)-6zmti
+func (m_ MutableIndexSet) AddIndexes(indexSet IIndexSet) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addIndexes:"), indexSet)
+}
+
+
+// Adds the indexes in an index range to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(in:)
+func (m_ MutableIndexSet) AddIndexesInRange(range_ Range) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addIndexesInRange:"), range_)
+}
+
+
+// Removes the indexes in an index set from the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(_:)-196u2
+func (m_ MutableIndexSet) RemoveIndexes(indexSet IIndexSet) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexes:"), indexSet)
+}
+
+
+// Removes an index from the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(_:)-5li0r
+func (m_ MutableIndexSet) RemoveIndex(value uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndex:"), value)
+}
+
+
+// Removes the indexes in an index range from the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(in:)
+func (m_ MutableIndexSet) RemoveIndexesInRange(range_ Range) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexesInRange:"), range_)
+}
+
+
+// Removes the receiver’s indexes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/removeAllIndexes()
+func (m_ MutableIndexSet) RemoveAllIndexes() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllIndexes"))
+}
+
+
+// Shifts a group of indexes to the left or the right within the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/shiftIndexesStarting(at:by:)
+func (m_ MutableIndexSet) ShiftIndexesStartingAtIndexBy(index uint, delta int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("shiftIndexesStartingAtIndex:by:"), index, delta)
+}
 
 
 

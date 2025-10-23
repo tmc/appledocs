@@ -30,12 +30,6 @@ type _TaskClass struct {
 // An interface definition for the [Task] class.
 type ITask interface {
 	objectivec.IObject
-	Interrupt()
-	Resume() bool
-	LaunchAndReturnError(error_ IError) bool
-	Suspend() bool
-	Terminate()
-	WaitUntilExit()
 	Arguments() []string
 	SetArguments(value []string)
 	CurrentDirectoryPath() string
@@ -68,6 +62,12 @@ type ITask interface {
 	SetIsRunning(value bool)
 	LaunchRequirement() unsafe.Pointer
 	SetLaunchRequirement(value unsafe.Pointer)
+	Interrupt()
+	Resume() bool
+	LaunchAndReturnError(error_ IError) bool
+	Suspend() bool
+	Terminate()
+	WaitUntilExit()
 }
 
 // An object that represents a subprocess of the current process.
@@ -338,7 +338,7 @@ func (t_ Task) SetLaunchPath(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
 func (t_ Task) LaunchRequirementData() IData {
-	rv := objc.Send[NSData](t_.ID, objc.Sel("launchRequirementData"))
+	rv := objc.Send[Data](t_.ID, objc.Sel("launchRequirementData"))
 	return rv
 }
 

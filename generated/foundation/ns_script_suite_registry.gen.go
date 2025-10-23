@@ -30,6 +30,7 @@ type _ScriptSuiteRegistryClass struct {
 // An interface definition for the [ScriptSuiteRegistry] class.
 type IScriptSuiteRegistry interface {
 	objectivec.IObject
+	SuiteNames() []string
 	AeteResource(languageName string) IData
 	AppleEventCodeForSuite(suiteName string) unsafe.Pointer
 	BundleForSuite(suiteName string) IBundle
@@ -42,7 +43,6 @@ type IScriptSuiteRegistry interface {
 	RegisterCommandDescription(commandDescription IScriptCommandDescription)
 	RegisterClassDescription(classDescription IScriptClassDescription)
 	SuiteForAppleEventCode(appleEventCode unsafe.Pointer) IString
-	SuiteNames() []string
 }
 
 // The top-level repository of scriptability information for an app at runtime.

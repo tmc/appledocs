@@ -91,7 +91,7 @@ func NewUnitPressure() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/bars
 func (uc _UnitPressureClass) Bars() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("bars"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("bars"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitPressureClass) Bars() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/gigapascals
 func (uc _UnitPressureClass) Gigapascals() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("gigapascals"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("gigapascals"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitPressureClass) Gigapascals() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/hectopascals
 func (uc _UnitPressureClass) Hectopascals() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("hectopascals"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("hectopascals"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitPressureClass) Hectopascals() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/inchesOfMercury
 func (uc _UnitPressureClass) InchesOfMercury() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("inchesOfMercury"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("inchesOfMercury"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitPressureClass) InchesOfMercury() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/kilopascals
 func (uc _UnitPressureClass) Kilopascals() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("kilopascals"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("kilopascals"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitPressureClass) Kilopascals() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/megapascals
 func (uc _UnitPressureClass) Megapascals() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("megapascals"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("megapascals"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitPressureClass) Megapascals() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millibars
 func (uc _UnitPressureClass) Millibars() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("millibars"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("millibars"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (uc _UnitPressureClass) Millibars() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
 func (uc _UnitPressureClass) MillimetersOfMercury() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("millimetersOfMercury"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("millimetersOfMercury"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (uc _UnitPressureClass) MillimetersOfMercury() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
 func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("newtonsPerMetersSquared"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("newtonsPerMetersSquared"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/poundsForcePerSquareInch
 func (uc _UnitPressureClass) PoundsForcePerSquareInch() UnitPressure {
-	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("poundsForcePerSquareInch"))
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("poundsForcePerSquareInch"))
 	return rv
 }
 
@@ -181,7 +181,7 @@ func (uc _UnitPressureClass) PoundsForcePerSquareInch() UnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/bars
 func (u_ UnitPressure) Bars() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("bars"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("bars"))
 	return rv
 }
 
@@ -191,7 +191,7 @@ func (u_ UnitPressure) Bars() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/gigapascals
 func (u_ UnitPressure) Gigapascals() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("gigapascals"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("gigapascals"))
 	return rv
 }
 
@@ -201,7 +201,7 @@ func (u_ UnitPressure) Gigapascals() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/hectopascals
 func (u_ UnitPressure) Hectopascals() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("hectopascals"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("hectopascals"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (u_ UnitPressure) Hectopascals() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/inchesOfMercury
 func (u_ UnitPressure) InchesOfMercury() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("inchesOfMercury"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("inchesOfMercury"))
 	return rv
 }
 
@@ -221,7 +221,7 @@ func (u_ UnitPressure) InchesOfMercury() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/kilopascals
 func (u_ UnitPressure) Kilopascals() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("kilopascals"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("kilopascals"))
 	return rv
 }
 
@@ -231,7 +231,7 @@ func (u_ UnitPressure) Kilopascals() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/megapascals
 func (u_ UnitPressure) Megapascals() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("megapascals"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("megapascals"))
 	return rv
 }
 
@@ -241,7 +241,7 @@ func (u_ UnitPressure) Megapascals() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millibars
 func (u_ UnitPressure) Millibars() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("millibars"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("millibars"))
 	return rv
 }
 
@@ -251,7 +251,7 @@ func (u_ UnitPressure) Millibars() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
 func (u_ UnitPressure) MillimetersOfMercury() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("millimetersOfMercury"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("millimetersOfMercury"))
 	return rv
 }
 
@@ -261,7 +261,7 @@ func (u_ UnitPressure) MillimetersOfMercury() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
 func (u_ UnitPressure) NewtonsPerMetersSquared() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
 	return rv
 }
 
@@ -271,7 +271,7 @@ func (u_ UnitPressure) NewtonsPerMetersSquared() IUnitPressure {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/poundsForcePerSquareInch
 func (u_ UnitPressure) PoundsForcePerSquareInch() IUnitPressure {
-	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("poundsForcePerSquareInch"))
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("poundsForcePerSquareInch"))
 	return rv
 }
 

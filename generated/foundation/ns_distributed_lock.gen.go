@@ -30,10 +30,10 @@ type _DistributedLockClass struct {
 // An interface definition for the [DistributedLock] class.
 type IDistributedLock interface {
 	objectivec.IObject
+	LockDate() IDate
 	BreakLock()
 	TryLock() bool
 	Unlock()
-	LockDate() IDate
 }
 
 // A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
@@ -145,7 +145,7 @@ func (d_ DistributedLock) Unlock() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockDate
 func (d_ DistributedLock) LockDate() IDate {
-	rv := objc.Send[NSDate](d_.ID, objc.Sel("lockDate"))
+	rv := objc.Send[Date](d_.ID, objc.Sel("lockDate"))
 	return rv
 }
 

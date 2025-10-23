@@ -30,8 +30,6 @@ type _CoderClass struct {
 // An interface definition for the [Coder] class.
 type ICoder interface {
 	objectivec.IObject
-	DecodeObject() objc.ID
-	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 	DecodingFailurePolicy() unsafe.Pointer
 	AllowedClasses() unsafe.Pointer
 	SetAllowedClasses(value unsafe.Pointer)
@@ -53,6 +51,8 @@ type ICoder interface {
 	SetNSCoderReadCorruptError(value int)
 	NSCoderValueNotFoundError() int
 	SetNSCoderValueNotFoundError(value int)
+	DecodeObject() objc.ID
+	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 }
 
 // An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.

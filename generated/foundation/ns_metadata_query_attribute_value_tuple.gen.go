@@ -133,7 +133,7 @@ func (m_ MetadataQueryAttributeValueTuple) Value() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
 func (m_ MetadataQueryAttributeValueTuple) GroupedResults() IMetadataQueryResultGroup {
-	rv := objc.Send[NSMetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
+	rv := objc.Send[MetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
 	return rv
 }
 
@@ -152,7 +152,7 @@ func (m_ MetadataQueryAttributeValueTuple) SetGroupedResults(value IMetadataQuer
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/operationqueue
 func (m_ MetadataQueryAttributeValueTuple) OperationQueue() IOperationQueue {
-	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
+	rv := objc.Send[OperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -209,7 +209,7 @@ func (m_ MetadataQueryAttributeValueTuple) SetResults(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
 func (m_ MetadataQueryAttributeValueTuple) ValueLists() IMetadataQueryAttributeValueTuple {
-	rv := objc.Send[NSMetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
+	rv := objc.Send[MetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
 	return rv
 }
 

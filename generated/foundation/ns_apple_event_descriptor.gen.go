@@ -30,20 +30,6 @@ type _AppleEventDescriptorClass struct {
 // An interface definition for the [AppleEventDescriptor] class.
 type IAppleEventDescriptor interface {
 	objectivec.IObject
-	DescriptorAtIndex(index int) IAppleEventDescriptor
-	AttributeDescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
-	CoerceToDescriptorType(descriptorType unsafe.Pointer) IAppleEventDescriptor
-	DescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
-	InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int)
-	KeywordForDescriptorAtIndex(index int) unsafe.Pointer
-	ParamDescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
-	RemoveDescriptorAtIndex(index int)
-	RemoveDescriptorWithKeyword(keyword unsafe.Pointer)
-	RemoveParamDescriptorWithKeyword(keyword unsafe.Pointer)
-	SendEventWithOptionsTimeoutError(sendOptions NSAppleEventSendOptions, timeoutInSeconds TimeInterval, error_ IError) IAppleEventDescriptor
-	SetAttributeDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
-	SetDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
-	SetParamDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
 	AeDesc() unsafe.Pointer
 	BooleanValue() unsafe.Pointer
 	Data() IData
@@ -61,6 +47,20 @@ type IAppleEventDescriptor interface {
 	StringValue() string
 	TransactionID() unsafe.Pointer
 	TypeCodeValue() unsafe.Pointer
+	DescriptorAtIndex(index int) IAppleEventDescriptor
+	AttributeDescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
+	CoerceToDescriptorType(descriptorType unsafe.Pointer) IAppleEventDescriptor
+	DescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
+	InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int)
+	KeywordForDescriptorAtIndex(index int) unsafe.Pointer
+	ParamDescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
+	RemoveDescriptorAtIndex(index int)
+	RemoveDescriptorWithKeyword(keyword unsafe.Pointer)
+	RemoveParamDescriptorWithKeyword(keyword unsafe.Pointer)
+	SendEventWithOptionsTimeoutError(sendOptions NSAppleEventSendOptions, timeoutInSeconds TimeInterval, error_ IError) IAppleEventDescriptor
+	SetAttributeDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
+	SetDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
+	SetParamDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
 }
 
 // A wrapper for the Apple event descriptor data type.
@@ -609,7 +609,7 @@ func (a_ AppleEventDescriptor) BooleanValue() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/data
 func (a_ AppleEventDescriptor) Data() IData {
-	rv := objc.Send[NSData](a_.ID, objc.Sel("data"))
+	rv := objc.Send[Data](a_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -617,7 +617,7 @@ func (a_ AppleEventDescriptor) Data() IData {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/dateValue
 func (a_ AppleEventDescriptor) DateValue() IDate {
-	rv := objc.Send[NSDate](a_.ID, objc.Sel("dateValue"))
+	rv := objc.Send[Date](a_.ID, objc.Sel("dateValue"))
 	return rv
 }
 

@@ -212,6 +212,11 @@ type DictionaryRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryApplierFunction
 // CFDictionaryApplierFunction has base type: void (*)(const void *, const void *, void *)
 type DictionaryApplierFunction uintptr
+// DictionaryCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value or key in a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCopyDescriptionCallBack
+// CFDictionaryCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
+type DictionaryCopyDescriptionCallBack uintptr
 // DictionaryEqualCallBack - Prototype of a callback function used to determine if two values or keys in a dictionary are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryEqualCallBack

@@ -61,8 +61,8 @@ func extractEnumValues(framework, enumName string) (*Enum, error) {
 	inEnum := false
 	// Match both Swift-style (enum Name : Type {) and C-style (typedef ... Name {)
 	enumPattern := regexp.MustCompile(`(?:enum\s+` + regexp.QuoteMeta(enumName) + `\s*:\s*\w+|typedef.*?` + regexp.QuoteMeta(enumName) + `)\s*\{`)
-	// Match explicit values including negative numbers and suffixes like L, UL
-	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(-?\d+[UL]*)`)
+	// Match explicit values including negative numbers, hex values, and suffixes like L, UL
+	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(-?(?:0[xX][0-9A-Fa-f]+|\d+)[UL]*)`)
 	// Match implicit values (no = assignment) - allow __attribute__, comma, or nothing (last enum case)
 	namePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__|,|$)`)
 
@@ -90,12 +90,25 @@ func extractEnumValues(framework, enumName string) (*Enum, error) {
 			if len(matches) >= 3 {
 				// Strip L, UL suffixes from the value string
 				valueStr := strings.TrimSuffix(strings.TrimSuffix(matches[2], "UL"), "L")
-				val, _ := strconv.Atoi(valueStr)
+				var val int64
+				var err error
+				// Check if it's a hex value
+				if strings.HasPrefix(valueStr, "0x") || strings.HasPrefix(valueStr, "0X") {
+					val, err = strconv.ParseInt(valueStr[2:], 16, 64)
+				} else if strings.HasPrefix(valueStr, "-0x") || strings.HasPrefix(valueStr, "-0X") {
+					val, err = strconv.ParseInt(valueStr[3:], 16, 64)
+					val = -val
+				} else {
+					val, err = strconv.ParseInt(valueStr, 10, 64)
+				}
+				if err != nil {
+					continue
+				}
 				result.Values = append(result.Values, EnumValue{
 					Name:  matches[1],
-					Value: val,
+					Value: int(val),
 				})
-				currentValue = val + 1
+				currentValue = int(val) + 1
 				continue
 			}
 

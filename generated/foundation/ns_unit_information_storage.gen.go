@@ -91,7 +91,7 @@ func NewUnitInformationStorage() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/bits
 func (uc _UnitInformationStorageClass) Bits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("bits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("bits"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitInformationStorageClass) Bits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/bytes
 func (uc _UnitInformationStorageClass) Bytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("bytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("bytes"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitInformationStorageClass) Bytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exabits
 func (uc _UnitInformationStorageClass) Exabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("exabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("exabits"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitInformationStorageClass) Exabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exabytes
 func (uc _UnitInformationStorageClass) Exabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("exabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("exabytes"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitInformationStorageClass) Exabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exbibits
 func (uc _UnitInformationStorageClass) Exbibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("exbibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("exbibits"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitInformationStorageClass) Exbibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exbibytes
 func (uc _UnitInformationStorageClass) Exbibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("exbibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("exbibytes"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitInformationStorageClass) Exbibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gibibits
 func (uc _UnitInformationStorageClass) Gibibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("gibibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("gibibits"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (uc _UnitInformationStorageClass) Gibibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gibibytes
 func (uc _UnitInformationStorageClass) Gibibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("gibibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("gibibytes"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (uc _UnitInformationStorageClass) Gibibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gigabits
 func (uc _UnitInformationStorageClass) Gigabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("gigabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("gigabits"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (uc _UnitInformationStorageClass) Gigabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gigabytes
 func (uc _UnitInformationStorageClass) Gigabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("gigabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("gigabytes"))
 	return rv
 }
 
@@ -181,7 +181,7 @@ func (uc _UnitInformationStorageClass) Gigabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kibibits
 func (uc _UnitInformationStorageClass) Kibibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("kibibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("kibibits"))
 	return rv
 }
 
@@ -190,7 +190,7 @@ func (uc _UnitInformationStorageClass) Kibibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kibibytes
 func (uc _UnitInformationStorageClass) Kibibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("kibibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("kibibytes"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (uc _UnitInformationStorageClass) Kibibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kilobits
 func (uc _UnitInformationStorageClass) Kilobits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("kilobits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("kilobits"))
 	return rv
 }
 
@@ -208,7 +208,7 @@ func (uc _UnitInformationStorageClass) Kilobits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kilobytes
 func (uc _UnitInformationStorageClass) Kilobytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("kilobytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("kilobytes"))
 	return rv
 }
 
@@ -217,7 +217,7 @@ func (uc _UnitInformationStorageClass) Kilobytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/mebibits
 func (uc _UnitInformationStorageClass) Mebibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("mebibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("mebibits"))
 	return rv
 }
 
@@ -226,7 +226,7 @@ func (uc _UnitInformationStorageClass) Mebibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/mebibytes
 func (uc _UnitInformationStorageClass) Mebibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("mebibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("mebibytes"))
 	return rv
 }
 
@@ -235,7 +235,7 @@ func (uc _UnitInformationStorageClass) Mebibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/megabits
 func (uc _UnitInformationStorageClass) Megabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("megabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("megabits"))
 	return rv
 }
 
@@ -244,7 +244,7 @@ func (uc _UnitInformationStorageClass) Megabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/megabytes
 func (uc _UnitInformationStorageClass) Megabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("megabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("megabytes"))
 	return rv
 }
 
@@ -253,7 +253,7 @@ func (uc _UnitInformationStorageClass) Megabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/nibbles
 func (uc _UnitInformationStorageClass) Nibbles() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("nibbles"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("nibbles"))
 	return rv
 }
 
@@ -262,7 +262,7 @@ func (uc _UnitInformationStorageClass) Nibbles() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/pebibits
 func (uc _UnitInformationStorageClass) Pebibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("pebibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("pebibits"))
 	return rv
 }
 
@@ -271,7 +271,7 @@ func (uc _UnitInformationStorageClass) Pebibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/pebibytes
 func (uc _UnitInformationStorageClass) Pebibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("pebibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("pebibytes"))
 	return rv
 }
 
@@ -280,7 +280,7 @@ func (uc _UnitInformationStorageClass) Pebibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/petabits
 func (uc _UnitInformationStorageClass) Petabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("petabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("petabits"))
 	return rv
 }
 
@@ -289,7 +289,7 @@ func (uc _UnitInformationStorageClass) Petabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/petabytes
 func (uc _UnitInformationStorageClass) Petabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("petabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("petabytes"))
 	return rv
 }
 
@@ -298,7 +298,7 @@ func (uc _UnitInformationStorageClass) Petabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/tebibits
 func (uc _UnitInformationStorageClass) Tebibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("tebibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("tebibits"))
 	return rv
 }
 
@@ -307,7 +307,7 @@ func (uc _UnitInformationStorageClass) Tebibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/tebibytes
 func (uc _UnitInformationStorageClass) Tebibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("tebibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("tebibytes"))
 	return rv
 }
 
@@ -316,7 +316,7 @@ func (uc _UnitInformationStorageClass) Tebibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/terabits
 func (uc _UnitInformationStorageClass) Terabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("terabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("terabits"))
 	return rv
 }
 
@@ -325,7 +325,7 @@ func (uc _UnitInformationStorageClass) Terabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/terabytes
 func (uc _UnitInformationStorageClass) Terabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("terabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("terabytes"))
 	return rv
 }
 
@@ -334,7 +334,7 @@ func (uc _UnitInformationStorageClass) Terabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yobibits
 func (uc _UnitInformationStorageClass) Yobibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("yobibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("yobibits"))
 	return rv
 }
 
@@ -343,7 +343,7 @@ func (uc _UnitInformationStorageClass) Yobibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yobibytes
 func (uc _UnitInformationStorageClass) Yobibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("yobibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("yobibytes"))
 	return rv
 }
 
@@ -352,7 +352,7 @@ func (uc _UnitInformationStorageClass) Yobibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yottabits
 func (uc _UnitInformationStorageClass) Yottabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("yottabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("yottabits"))
 	return rv
 }
 
@@ -361,7 +361,7 @@ func (uc _UnitInformationStorageClass) Yottabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yottabytes
 func (uc _UnitInformationStorageClass) Yottabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("yottabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("yottabytes"))
 	return rv
 }
 
@@ -370,7 +370,7 @@ func (uc _UnitInformationStorageClass) Yottabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zebibits
 func (uc _UnitInformationStorageClass) Zebibits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("zebibits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("zebibits"))
 	return rv
 }
 
@@ -379,7 +379,7 @@ func (uc _UnitInformationStorageClass) Zebibits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zebibytes
 func (uc _UnitInformationStorageClass) Zebibytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("zebibytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("zebibytes"))
 	return rv
 }
 
@@ -388,7 +388,7 @@ func (uc _UnitInformationStorageClass) Zebibytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zettabits
 func (uc _UnitInformationStorageClass) Zettabits() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("zettabits"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("zettabits"))
 	return rv
 }
 
@@ -397,7 +397,7 @@ func (uc _UnitInformationStorageClass) Zettabits() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zettabytes
 func (uc _UnitInformationStorageClass) Zettabytes() UnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](objc.ID(uc.class), objc.Sel("zettabytes"))
+	rv := objc.Send[UnitInformationStorage](objc.ID(uc.class), objc.Sel("zettabytes"))
 	return rv
 }
 
@@ -406,7 +406,7 @@ func (uc _UnitInformationStorageClass) Zettabytes() UnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/bits
 func (u_ UnitInformationStorage) Bits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("bits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("bits"))
 	return rv
 }
 
@@ -416,7 +416,7 @@ func (u_ UnitInformationStorage) Bits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/bytes
 func (u_ UnitInformationStorage) Bytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("bytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("bytes"))
 	return rv
 }
 
@@ -426,7 +426,7 @@ func (u_ UnitInformationStorage) Bytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exabits
 func (u_ UnitInformationStorage) Exabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("exabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("exabits"))
 	return rv
 }
 
@@ -436,7 +436,7 @@ func (u_ UnitInformationStorage) Exabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exabytes
 func (u_ UnitInformationStorage) Exabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("exabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("exabytes"))
 	return rv
 }
 
@@ -446,7 +446,7 @@ func (u_ UnitInformationStorage) Exabytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exbibits
 func (u_ UnitInformationStorage) Exbibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("exbibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("exbibits"))
 	return rv
 }
 
@@ -456,7 +456,7 @@ func (u_ UnitInformationStorage) Exbibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/exbibytes
 func (u_ UnitInformationStorage) Exbibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("exbibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("exbibytes"))
 	return rv
 }
 
@@ -466,7 +466,7 @@ func (u_ UnitInformationStorage) Exbibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gibibits
 func (u_ UnitInformationStorage) Gibibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("gibibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("gibibits"))
 	return rv
 }
 
@@ -476,7 +476,7 @@ func (u_ UnitInformationStorage) Gibibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gibibytes
 func (u_ UnitInformationStorage) Gibibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("gibibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("gibibytes"))
 	return rv
 }
 
@@ -486,7 +486,7 @@ func (u_ UnitInformationStorage) Gibibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gigabits
 func (u_ UnitInformationStorage) Gigabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("gigabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("gigabits"))
 	return rv
 }
 
@@ -496,7 +496,7 @@ func (u_ UnitInformationStorage) Gigabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/gigabytes
 func (u_ UnitInformationStorage) Gigabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("gigabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("gigabytes"))
 	return rv
 }
 
@@ -506,7 +506,7 @@ func (u_ UnitInformationStorage) Gigabytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kibibits
 func (u_ UnitInformationStorage) Kibibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("kibibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("kibibits"))
 	return rv
 }
 
@@ -516,7 +516,7 @@ func (u_ UnitInformationStorage) Kibibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kibibytes
 func (u_ UnitInformationStorage) Kibibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("kibibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("kibibytes"))
 	return rv
 }
 
@@ -526,7 +526,7 @@ func (u_ UnitInformationStorage) Kibibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kilobits
 func (u_ UnitInformationStorage) Kilobits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("kilobits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("kilobits"))
 	return rv
 }
 
@@ -536,7 +536,7 @@ func (u_ UnitInformationStorage) Kilobits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/kilobytes
 func (u_ UnitInformationStorage) Kilobytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("kilobytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("kilobytes"))
 	return rv
 }
 
@@ -546,7 +546,7 @@ func (u_ UnitInformationStorage) Kilobytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/mebibits
 func (u_ UnitInformationStorage) Mebibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("mebibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("mebibits"))
 	return rv
 }
 
@@ -556,7 +556,7 @@ func (u_ UnitInformationStorage) Mebibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/mebibytes
 func (u_ UnitInformationStorage) Mebibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("mebibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("mebibytes"))
 	return rv
 }
 
@@ -566,7 +566,7 @@ func (u_ UnitInformationStorage) Mebibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/megabits
 func (u_ UnitInformationStorage) Megabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("megabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("megabits"))
 	return rv
 }
 
@@ -576,7 +576,7 @@ func (u_ UnitInformationStorage) Megabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/megabytes
 func (u_ UnitInformationStorage) Megabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("megabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("megabytes"))
 	return rv
 }
 
@@ -586,7 +586,7 @@ func (u_ UnitInformationStorage) Megabytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/nibbles
 func (u_ UnitInformationStorage) Nibbles() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("nibbles"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("nibbles"))
 	return rv
 }
 
@@ -596,7 +596,7 @@ func (u_ UnitInformationStorage) Nibbles() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/pebibits
 func (u_ UnitInformationStorage) Pebibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("pebibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("pebibits"))
 	return rv
 }
 
@@ -606,7 +606,7 @@ func (u_ UnitInformationStorage) Pebibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/pebibytes
 func (u_ UnitInformationStorage) Pebibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("pebibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("pebibytes"))
 	return rv
 }
 
@@ -616,7 +616,7 @@ func (u_ UnitInformationStorage) Pebibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/petabits
 func (u_ UnitInformationStorage) Petabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("petabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("petabits"))
 	return rv
 }
 
@@ -626,7 +626,7 @@ func (u_ UnitInformationStorage) Petabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/petabytes
 func (u_ UnitInformationStorage) Petabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("petabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("petabytes"))
 	return rv
 }
 
@@ -636,7 +636,7 @@ func (u_ UnitInformationStorage) Petabytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/tebibits
 func (u_ UnitInformationStorage) Tebibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("tebibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("tebibits"))
 	return rv
 }
 
@@ -646,7 +646,7 @@ func (u_ UnitInformationStorage) Tebibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/tebibytes
 func (u_ UnitInformationStorage) Tebibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("tebibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("tebibytes"))
 	return rv
 }
 
@@ -656,7 +656,7 @@ func (u_ UnitInformationStorage) Tebibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/terabits
 func (u_ UnitInformationStorage) Terabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("terabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("terabits"))
 	return rv
 }
 
@@ -666,7 +666,7 @@ func (u_ UnitInformationStorage) Terabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/terabytes
 func (u_ UnitInformationStorage) Terabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("terabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("terabytes"))
 	return rv
 }
 
@@ -676,7 +676,7 @@ func (u_ UnitInformationStorage) Terabytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yobibits
 func (u_ UnitInformationStorage) Yobibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("yobibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("yobibits"))
 	return rv
 }
 
@@ -686,7 +686,7 @@ func (u_ UnitInformationStorage) Yobibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yobibytes
 func (u_ UnitInformationStorage) Yobibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("yobibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("yobibytes"))
 	return rv
 }
 
@@ -696,7 +696,7 @@ func (u_ UnitInformationStorage) Yobibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yottabits
 func (u_ UnitInformationStorage) Yottabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("yottabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("yottabits"))
 	return rv
 }
 
@@ -706,7 +706,7 @@ func (u_ UnitInformationStorage) Yottabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/yottabytes
 func (u_ UnitInformationStorage) Yottabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("yottabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("yottabytes"))
 	return rv
 }
 
@@ -716,7 +716,7 @@ func (u_ UnitInformationStorage) Yottabytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zebibits
 func (u_ UnitInformationStorage) Zebibits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("zebibits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("zebibits"))
 	return rv
 }
 
@@ -726,7 +726,7 @@ func (u_ UnitInformationStorage) Zebibits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zebibytes
 func (u_ UnitInformationStorage) Zebibytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("zebibytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("zebibytes"))
 	return rv
 }
 
@@ -736,7 +736,7 @@ func (u_ UnitInformationStorage) Zebibytes() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zettabits
 func (u_ UnitInformationStorage) Zettabits() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("zettabits"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("zettabits"))
 	return rv
 }
 
@@ -746,7 +746,7 @@ func (u_ UnitInformationStorage) Zettabits() IUnitInformationStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitInformationStorage/zettabytes
 func (u_ UnitInformationStorage) Zettabytes() IUnitInformationStorage {
-	rv := objc.Send[NSUnitInformationStorage](u_.ID, objc.Sel("zettabytes"))
+	rv := objc.Send[UnitInformationStorage](u_.ID, objc.Sel("zettabytes"))
 	return rv
 }
 

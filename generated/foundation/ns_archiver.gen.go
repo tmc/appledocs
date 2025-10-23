@@ -94,7 +94,7 @@ func NewArchiver() Archiver {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
 func (a_ Archiver) ArchiverData() IMutableData {
-	rv := objc.Send[NSMutableData](a_.ID, objc.Sel("archiverData"))
+	rv := objc.Send[MutableData](a_.ID, objc.Sel("archiverData"))
 	return rv
 }
 

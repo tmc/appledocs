@@ -96,7 +96,7 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
 func (d_ DecimalNumberHandler) RoundingBehavior() IDecimalNumberHandler {
-	rv := objc.Send[NSDecimalNumberHandler](d_.ID, objc.Sel("roundingBehavior"))
+	rv := objc.Send[DecimalNumberHandler](d_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
 

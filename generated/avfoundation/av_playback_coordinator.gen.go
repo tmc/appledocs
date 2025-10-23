@@ -30,8 +30,6 @@ type _PlaybackCoordinatorClass struct {
 // An interface definition for the [PlaybackCoordinator] class.
 type IPlaybackCoordinator interface {
 	objectivec.IObject
-	ParticipantLimitForWaitingOutSuspensionsWithReason(reason unsafe.Pointer) int
-	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer)
 	OtherParticipants() IAVCoordinatedPlaybackParticipant
 	SetOtherParticipants(value IAVCoordinatedPlaybackParticipant)
 	PauseSnapsToMediaTimeOfOriginator() bool
@@ -40,6 +38,8 @@ type IPlaybackCoordinator interface {
 	SetSuspensionReasons(value unsafe.Pointer)
 	SuspensionReasonsThatTriggerWaiting() unsafe.Pointer
 	SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer)
+	ParticipantLimitForWaitingOutSuspensionsWithReason(reason unsafe.Pointer) int
+	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason unsafe.Pointer)
 }
 
 // An object that coordinates the playback of players in a connected group.
@@ -119,7 +119,7 @@ func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithRea
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
 func (p_ PlaybackCoordinator) OtherParticipants() IAVCoordinatedPlaybackParticipant {
-	rv := objc.Send[AVCoordinatedPlaybackParticipant](p_.ID, objc.Sel("otherParticipants"))
+	rv := objc.Send[CoordinatedPlaybackParticipant](p_.ID, objc.Sel("otherParticipants"))
 	return rv
 }
 

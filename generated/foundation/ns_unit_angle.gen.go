@@ -91,7 +91,7 @@ func NewUnitAngle() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcMinutes
 func (uc _UnitAngleClass) ArcMinutes() UnitAngle {
-	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("arcMinutes"))
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("arcMinutes"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitAngleClass) ArcMinutes() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
 func (uc _UnitAngleClass) ArcSeconds() UnitAngle {
-	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("arcSeconds"))
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("arcSeconds"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitAngleClass) ArcSeconds() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
 func (uc _UnitAngleClass) Degrees() UnitAngle {
-	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("degrees"))
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("degrees"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitAngleClass) Degrees() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/gradians
 func (uc _UnitAngleClass) Gradians() UnitAngle {
-	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("gradians"))
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("gradians"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitAngleClass) Gradians() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/radians
 func (uc _UnitAngleClass) Radians() UnitAngle {
-	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("radians"))
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("radians"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitAngleClass) Radians() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/revolutions
 func (uc _UnitAngleClass) Revolutions() UnitAngle {
-	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("revolutions"))
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("revolutions"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitAngleClass) Revolutions() UnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcMinutes
 func (u_ UnitAngle) ArcMinutes() IUnitAngle {
-	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("arcMinutes"))
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("arcMinutes"))
 	return rv
 }
 
@@ -155,7 +155,7 @@ func (u_ UnitAngle) ArcMinutes() IUnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
 func (u_ UnitAngle) ArcSeconds() IUnitAngle {
-	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("arcSeconds"))
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("arcSeconds"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (u_ UnitAngle) ArcSeconds() IUnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
 func (u_ UnitAngle) Degrees() IUnitAngle {
-	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("degrees"))
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("degrees"))
 	return rv
 }
 
@@ -175,7 +175,7 @@ func (u_ UnitAngle) Degrees() IUnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/gradians
 func (u_ UnitAngle) Gradians() IUnitAngle {
-	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("gradians"))
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("gradians"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (u_ UnitAngle) Gradians() IUnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/radians
 func (u_ UnitAngle) Radians() IUnitAngle {
-	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("radians"))
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("radians"))
 	return rv
 }
 
@@ -195,7 +195,7 @@ func (u_ UnitAngle) Radians() IUnitAngle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/revolutions
 func (u_ UnitAngle) Revolutions() IUnitAngle {
-	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("revolutions"))
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("revolutions"))
 	return rv
 }
 

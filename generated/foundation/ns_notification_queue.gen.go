@@ -106,7 +106,7 @@ func NewNotificationQueueWithNotificationCenter(notificationCenter INotification
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
 func (nc _NotificationQueueClass) DefaultQueue() NotificationQueue {
-	rv := objc.Send[NSNotificationQueue](objc.ID(nc.class), objc.Sel("defaultQueue"))
+	rv := objc.Send[NotificationQueue](objc.ID(nc.class), objc.Sel("defaultQueue"))
 	return rv
 }
 
@@ -142,7 +142,7 @@ func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
 func (n_ NotificationQueue) DefaultQueue() INotificationQueue {
-	rv := objc.Send[NSNotificationQueue](n_.ID, objc.Sel("defaultQueue"))
+	rv := objc.Send[NotificationQueue](n_.ID, objc.Sel("defaultQueue"))
 	return rv
 }
 

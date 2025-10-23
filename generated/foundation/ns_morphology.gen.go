@@ -107,7 +107,7 @@ func NewMorphology() Morphology {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/userMorphology
 func (mc _MorphologyClass) UserMorphology() Morphology {
-	rv := objc.Send[NSMorphology](objc.ID(mc.class), objc.Sel("userMorphology"))
+	rv := objc.Send[Morphology](objc.ID(mc.class), objc.Sel("userMorphology"))
 	return rv
 }
 
@@ -258,7 +258,7 @@ func (m_ Morphology) Unspecified() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/userMorphology
 func (m_ Morphology) UserMorphology() IMorphology {
-	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("userMorphology"))
+	rv := objc.Send[Morphology](m_.ID, objc.Sel("userMorphology"))
 	return rv
 }
 

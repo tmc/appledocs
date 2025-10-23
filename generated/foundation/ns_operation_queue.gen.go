@@ -30,12 +30,6 @@ type _OperationQueueClass struct {
 // An interface definition for the [OperationQueue] class.
 type IOperationQueue interface {
 	objectivec.IObject
-	AddBarrierBlock(barrier unsafe.Pointer)
-	AddOperationWithBlock(block unsafe.Pointer)
-	AddOperation(op IOperation)
-	AddOperationsWaitUntilFinished(ops []Operation, wait bool)
-	CancelAllOperations()
-	WaitUntilAllOperationsAreFinished()
 	Suspended() bool
 	SetSuspended(value bool)
 	MaxConcurrentOperationCount() int
@@ -44,7 +38,7 @@ type IOperationQueue interface {
 	SetName(value string)
 	OperationCount() uint
 	Operations() []Operation
-	Progress() Progress
+	Progress() IProgress
 	QualityOfService() NSQualityOfService
 	SetQualityOfService(value NSQualityOfService)
 	UnderlyingQueue() unsafe.Pointer
@@ -55,6 +49,12 @@ type IOperationQueue interface {
 	SetQueuePriority(value unsafe.Pointer)
 	IsSuspended() bool
 	SetIsSuspended(value bool)
+	AddBarrierBlock(barrier unsafe.Pointer)
+	AddOperationWithBlock(block unsafe.Pointer)
+	AddOperation(op IOperation)
+	AddOperationsWaitUntilFinished(ops []Operation, wait bool)
+	CancelAllOperations()
+	WaitUntilAllOperationsAreFinished()
 }
 
 // A queue that regulates the execution of operations.
@@ -115,7 +115,7 @@ func NewOperationQueue() OperationQueue {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/current
 func (oc _OperationQueueClass) CurrentQueue() OperationQueue {
-	rv := objc.Send[NSOperationQueue](objc.ID(oc.class), objc.Sel("currentQueue"))
+	rv := objc.Send[OperationQueue](objc.ID(oc.class), objc.Sel("currentQueue"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (oc _OperationQueueClass) CurrentQueue() OperationQueue {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/main
 func (oc _OperationQueueClass) MainQueue() OperationQueue {
-	rv := objc.Send[NSOperationQueue](objc.ID(oc.class), objc.Sel("mainQueue"))
+	rv := objc.Send[OperationQueue](objc.ID(oc.class), objc.Sel("mainQueue"))
 	return rv
 }
 
@@ -187,7 +187,7 @@ func (o_ OperationQueue) WaitUntilAllOperationsAreFinished() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/current
 func (o_ OperationQueue) CurrentQueue() IOperationQueue {
-	rv := objc.Send[NSOperationQueue](o_.ID, objc.Sel("currentQueue"))
+	rv := objc.Send[OperationQueue](o_.ID, objc.Sel("currentQueue"))
 	return rv
 }
 
@@ -216,7 +216,7 @@ func (o_ OperationQueue) SetSuspended(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/main
 func (o_ OperationQueue) MainQueue() IOperationQueue {
-	rv := objc.Send[NSOperationQueue](o_.ID, objc.Sel("mainQueue"))
+	rv := objc.Send[OperationQueue](o_.ID, objc.Sel("mainQueue"))
 	return rv
 }
 
@@ -283,7 +283,7 @@ func (o_ OperationQueue) Operations() []Operation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/progress
-func (o_ OperationQueue) Progress() Progress {
+func (o_ OperationQueue) Progress() IProgress {
 	rv := objc.Send[Progress](o_.ID, objc.Sel("progress"))
 	return rv
 }

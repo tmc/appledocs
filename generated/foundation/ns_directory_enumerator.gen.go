@@ -29,12 +29,12 @@ type _DirectoryEnumeratorClass struct {
 // An interface definition for the [DirectoryEnumerator] class.
 type IDirectoryEnumerator interface {
 	IEnumerator
-	SkipDescendants()
-	SkipDescendents()
 	DirectoryAttributes() IDictionary
 	FileAttributes() IDictionary
 	IsEnumeratingDirectoryPostOrder() bool
 	Level() uint
+	SkipDescendants()
+	SkipDescendents()
 }
 
 // An object that enumerates the contents of a directory.

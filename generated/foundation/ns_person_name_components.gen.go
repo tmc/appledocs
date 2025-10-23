@@ -218,7 +218,7 @@ func (p_ PersonNameComponents) SetNickname(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/phoneticRepresentation
 func (p_ PersonNameComponents) PhoneticRepresentation() IPersonNameComponents {
-	rv := objc.Send[NSPersonNameComponents](p_.ID, objc.Sel("phoneticRepresentation"))
+	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("phoneticRepresentation"))
 	return rv
 }
 

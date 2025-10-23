@@ -30,25 +30,6 @@ type _UndoManagerClass struct {
 // An interface definition for the [UndoManager] class.
 type IUndoManager interface {
 	objectivec.IObject
-	RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler unsafe.Pointer)
-	BeginUndoGrouping()
-	DisableUndoRegistration()
-	EnableUndoRegistration()
-	EndUndoGrouping()
-	PrepareWithInvocationTarget(target objectivec.IObject) objc.ID
-	Redo()
-	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
-	RedoMenuTitleForUndoActionName(actionName string) IString
-	RegisterUndoWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, object objectivec.IObject)
-	RemoveAllActions()
-	RemoveAllActionsWithTarget(target objectivec.IObject)
-	SetActionIsDiscardable(discardable bool)
-	SetActionName(actionName string)
-	SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey)
-	Undo()
-	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
-	UndoMenuTitleForUndoActionName(actionName string) IString
-	UndoNestedGroup()
 	CanRedo() bool
 	CanUndo() bool
 	GroupingLevel() int
@@ -77,6 +58,25 @@ type IUndoManager interface {
 	SetIsUndoRegistrationEnabled(value bool)
 	IsUndoing() bool
 	SetIsUndoing(value bool)
+	RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler unsafe.Pointer)
+	BeginUndoGrouping()
+	DisableUndoRegistration()
+	EnableUndoRegistration()
+	EndUndoGrouping()
+	PrepareWithInvocationTarget(target objectivec.IObject) objc.ID
+	Redo()
+	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
+	RedoMenuTitleForUndoActionName(actionName string) IString
+	RegisterUndoWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, object objectivec.IObject)
+	RemoveAllActions()
+	RemoveAllActionsWithTarget(target objectivec.IObject)
+	SetActionIsDiscardable(discardable bool)
+	SetActionName(actionName string)
+	SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey)
+	Undo()
+	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
+	UndoMenuTitleForUndoActionName(actionName string) IString
+	UndoNestedGroup()
 }
 
 // A general-purpose recorder of operations that enables undo and redo.

@@ -90,7 +90,7 @@ func NewAudioMix() AudioMix {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaudiomix/inputparameters
 func (a_ AudioMix) InputParameters() IAVAudioMixInputParameters {
-	rv := objc.Send[AVAudioMixInputParameters](a_.ID, objc.Sel("inputParameters"))
+	rv := objc.Send[AudioMixInputParameters](a_.ID, objc.Sel("inputParameters"))
 	return rv
 }
 

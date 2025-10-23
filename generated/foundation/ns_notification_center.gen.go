@@ -97,7 +97,7 @@ func NewNotificationCenter() NotificationCenter {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
 func (nc _NotificationCenterClass) DefaultCenter() NotificationCenter {
-	rv := objc.Send[NSNotificationCenter](objc.ID(nc.class), objc.Sel("defaultCenter"))
+	rv := objc.Send[NotificationCenter](objc.ID(nc.class), objc.Sel("defaultCenter"))
 	return rv
 }
 
@@ -170,7 +170,7 @@ func (n_ NotificationCenter) RemoveObserverNameObject(observer objectivec.IObjec
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
 func (n_ NotificationCenter) DefaultCenter() INotificationCenter {
-	rv := objc.Send[NSNotificationCenter](n_.ID, objc.Sel("defaultCenter"))
+	rv := objc.Send[NotificationCenter](n_.ID, objc.Sel("defaultCenter"))
 	return rv
 }
 

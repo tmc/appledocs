@@ -91,7 +91,7 @@ func NewUnitElectricCharge() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/ampereHours
 func (uc _UnitElectricChargeClass) AmpereHours() UnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("ampereHours"))
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("ampereHours"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitElectricChargeClass) AmpereHours() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
 func (uc _UnitElectricChargeClass) Coulombs() UnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("coulombs"))
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("coulombs"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitElectricChargeClass) Coulombs() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/kiloampereHours
 func (uc _UnitElectricChargeClass) KiloampereHours() UnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("kiloampereHours"))
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("kiloampereHours"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitElectricChargeClass) KiloampereHours() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/megaampereHours
 func (uc _UnitElectricChargeClass) MegaampereHours() UnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("megaampereHours"))
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("megaampereHours"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitElectricChargeClass) MegaampereHours() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/microampereHours
 func (uc _UnitElectricChargeClass) MicroampereHours() UnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("microampereHours"))
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("microampereHours"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitElectricChargeClass) MicroampereHours() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/milliampereHours
 func (uc _UnitElectricChargeClass) MilliampereHours() UnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("milliampereHours"))
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("milliampereHours"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitElectricChargeClass) MilliampereHours() UnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/ampereHours
 func (u_ UnitElectricCharge) AmpereHours() IUnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("ampereHours"))
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("ampereHours"))
 	return rv
 }
 
@@ -155,7 +155,7 @@ func (u_ UnitElectricCharge) AmpereHours() IUnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
 func (u_ UnitElectricCharge) Coulombs() IUnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("coulombs"))
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("coulombs"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (u_ UnitElectricCharge) Coulombs() IUnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/kiloampereHours
 func (u_ UnitElectricCharge) KiloampereHours() IUnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("kiloampereHours"))
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("kiloampereHours"))
 	return rv
 }
 
@@ -175,7 +175,7 @@ func (u_ UnitElectricCharge) KiloampereHours() IUnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/megaampereHours
 func (u_ UnitElectricCharge) MegaampereHours() IUnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("megaampereHours"))
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("megaampereHours"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (u_ UnitElectricCharge) MegaampereHours() IUnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/microampereHours
 func (u_ UnitElectricCharge) MicroampereHours() IUnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("microampereHours"))
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("microampereHours"))
 	return rv
 }
 
@@ -195,7 +195,7 @@ func (u_ UnitElectricCharge) MicroampereHours() IUnitElectricCharge {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/milliampereHours
 func (u_ UnitElectricCharge) MilliampereHours() IUnitElectricCharge {
-	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("milliampereHours"))
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("milliampereHours"))
 	return rv
 }
 

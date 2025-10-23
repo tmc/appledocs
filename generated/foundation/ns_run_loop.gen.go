@@ -30,6 +30,7 @@ type _RunLoopClass struct {
 // An interface definition for the [RunLoop] class.
 type IRunLoop interface {
 	objectivec.IObject
+	CurrentMode() RunLoopMode
 	AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate)
 	AddTimerForMode(timer ITimer, mode RunLoopMode)
 	AddPortForMode(aPort IPort, mode RunLoopMode)
@@ -44,7 +45,6 @@ type IRunLoop interface {
 	Run()
 	RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool
 	RunUntilDate(limitDate IDate)
-	CurrentMode() RunLoopMode
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -105,7 +105,7 @@ func NewRunLoop() RunLoop {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
 func (rc _RunLoopClass) CurrentRunLoop() RunLoop {
-	rv := objc.Send[NSRunLoop](objc.ID(rc.class), objc.Sel("currentRunLoop"))
+	rv := objc.Send[RunLoop](objc.ID(rc.class), objc.Sel("currentRunLoop"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (rc _RunLoopClass) CurrentRunLoop() RunLoop {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
 func (rc _RunLoopClass) MainRunLoop() RunLoop {
-	rv := objc.Send[NSRunLoop](objc.ID(rc.class), objc.Sel("mainRunLoop"))
+	rv := objc.Send[RunLoop](objc.ID(rc.class), objc.Sel("mainRunLoop"))
 	return rv
 }
 
@@ -252,7 +252,7 @@ func (r_ RunLoop) RunUntilDate(limitDate IDate) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
 func (r_ RunLoop) CurrentRunLoop() IRunLoop {
-	rv := objc.Send[NSRunLoop](r_.ID, objc.Sel("currentRunLoop"))
+	rv := objc.Send[RunLoop](r_.ID, objc.Sel("currentRunLoop"))
 	return rv
 }
 
@@ -272,7 +272,7 @@ func (r_ RunLoop) CurrentMode() RunLoopMode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
 func (r_ RunLoop) MainRunLoop() IRunLoop {
-	rv := objc.Send[NSRunLoop](r_.ID, objc.Sel("mainRunLoop"))
+	rv := objc.Send[RunLoop](r_.ID, objc.Sel("mainRunLoop"))
 	return rv
 }
 

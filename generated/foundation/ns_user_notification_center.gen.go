@@ -101,7 +101,7 @@ func NewUserNotificationCenter() UserNotificationCenter {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
 func (uc _UserNotificationCenterClass) DefaultUserNotificationCenter() UserNotificationCenter {
-	rv := objc.Send[NSUserNotificationCenter](objc.ID(uc.class), objc.Sel("defaultUserNotificationCenter"))
+	rv := objc.Send[UserNotificationCenter](objc.ID(uc.class), objc.Sel("defaultUserNotificationCenter"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (uc _UserNotificationCenterClass) DefaultUserNotificationCenter() UserNotif
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/default
 func (u_ UserNotificationCenter) DefaultUserNotificationCenter() IUserNotificationCenter {
-	rv := objc.Send[NSUserNotificationCenter](u_.ID, objc.Sel("defaultUserNotificationCenter"))
+	rv := objc.Send[UserNotificationCenter](u_.ID, objc.Sel("defaultUserNotificationCenter"))
 	return rv
 }
 

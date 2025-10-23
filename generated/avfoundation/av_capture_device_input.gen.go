@@ -29,6 +29,8 @@ type _CaptureDeviceInputClass struct {
 // An interface definition for the [CaptureDeviceInput] class.
 type ICaptureDeviceInput interface {
 	ICaptureInput
+	MultichannelAudioMode() unsafe.Pointer
+	SetMultichannelAudioMode(value unsafe.Pointer)
 	ActiveExternalSyncVideoFrameDuration() unsafe.Pointer
 	SetActiveExternalSyncVideoFrameDuration(value unsafe.Pointer)
 	ActiveLockedVideoFrameDuration() unsafe.Pointer
@@ -49,8 +51,6 @@ type ICaptureDeviceInput interface {
 	SetIsWindNoiseRemovalEnabled(value bool)
 	IsWindNoiseRemovalSupported() bool
 	SetIsWindNoiseRemovalSupported(value bool)
-	MultichannelAudioMode() unsafe.Pointer
-	SetMultichannelAudioMode(value unsafe.Pointer)
 	SimulatedAperture() float32
 	SetSimulatedAperture(value float32)
 	UnifiedAutoExposureDefaultsEnabled() bool
@@ -114,6 +114,25 @@ func NewCaptureDeviceInput() CaptureDeviceInput {
 
 
 
+// The multichannel audio mode to apply when recording audio.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/multichannelAudioMode
+func (c_ CaptureDeviceInput) MultichannelAudioMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("multichannelAudioMode"))
+	return rv
+}
+
+
+// The multichannel audio mode to apply when recording audio.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/multichannelAudioMode
+func (c_ CaptureDeviceInput) SetMultichannelAudioMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMultichannelAudioMode:"), value)
+}
+
+
 // The receiver’s external sync frame duration (the reciprocal of its frame rate) when being driven by an external sync device.
 //
 // [Full Topic]
@@ -157,7 +176,7 @@ func (c_ CaptureDeviceInput) SetActiveLockedVideoFrameDuration(value unsafe.Poin
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/device
 func (c_ CaptureDeviceInput) Device() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("device"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -293,25 +312,6 @@ func (c_ CaptureDeviceInput) IsWindNoiseRemovalSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/iswindnoiseremovalsupported
 func (c_ CaptureDeviceInput) SetIsWindNoiseRemovalSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsWindNoiseRemovalSupported:"), value)
-}
-
-
-// The multichannel audio mode to apply when recording audio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/multichannelaudiomode
-func (c_ CaptureDeviceInput) MultichannelAudioMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("multichannelAudioMode"))
-	return rv
-}
-
-
-// The multichannel audio mode to apply when recording audio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/multichannelaudiomode
-func (c_ CaptureDeviceInput) SetMultichannelAudioMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMultichannelAudioMode:"), value)
 }
 
 

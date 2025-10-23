@@ -31,6 +31,8 @@ type _AttributedStringClass struct {
 // An interface definition for the [AttributedString] class.
 type IAttributedString interface {
 	objectivec.IObject
+	Length() uint
+	String() string
 	AttributeAtIndexEffectiveRange(attrName AttributedStringKey, location uint, range_ unsafe.Pointer) objc.ID
 	AttributeAtIndexLongestEffectiveRangeInRange(attrName AttributedStringKey, location uint, range_ unsafe.Pointer, rangeLimit Range) objc.ID
 	AttributedSubstringFromRange(range_ Range) IAttributedString
@@ -63,8 +65,6 @@ type IAttributedString interface {
 	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range, dict IDictionary) IFileWrapper
 	RulerAttributesInRange(range_ Range) IDictionary
 	Size() coregraphics.CGSize
-	Length() uint
-	String() string
 }
 
 // A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.

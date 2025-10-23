@@ -30,14 +30,14 @@ type _PositionalSpecifierClass struct {
 // An interface definition for the [PositionalSpecifier] class.
 type IPositionalSpecifier interface {
 	objectivec.IObject
-	Evaluate()
-	SetInsertionClassDescription(classDescription IScriptClassDescription)
 	InsertionContainer() objc.ID
 	InsertionIndex() int
 	InsertionKey() string
 	InsertionReplaces() bool
 	ObjectSpecifier() IScriptObjectSpecifier
 	Position() NSInsertionPosition
+	Evaluate()
+	SetInsertionClassDescription(classDescription IScriptClassDescription)
 }
 
 // A specifier for an insertion point in a container relative to another object in the container.
@@ -169,7 +169,7 @@ func (p_ PositionalSpecifier) InsertionReplaces() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/objectSpecifier
 func (p_ PositionalSpecifier) ObjectSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](p_.ID, objc.Sel("objectSpecifier"))
+	rv := objc.Send[ScriptObjectSpecifier](p_.ID, objc.Sel("objectSpecifier"))
 	return rv
 }
 

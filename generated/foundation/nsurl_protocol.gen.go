@@ -129,7 +129,7 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
 func (u_ URLProtocol) CachedResponse() ICachedURLResponse {
-	rv := objc.Send[NSCachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
+	rv := objc.Send[CachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
 
@@ -186,7 +186,7 @@ func (u_ URLProtocol) SetRequest(value IURLRequest) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
 func (u_ URLProtocol) Task() IURLSessionTask {
-	rv := objc.Send[NSURLSessionTask](u_.ID, objc.Sel("task"))
+	rv := objc.Send[URLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
 }
 

@@ -3,6 +3,16 @@
 package avfoundation
 
 // Enum types and constants
+// AVAudioSpatializationFormats - A structure that defines the spatialization formats that a player item supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioSpatializationFormats
+type AVAudioSpatializationFormats uint
+
+// AVContentAuthorizationStatus - A value representing the status of a content authorization request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentAuthorizationStatus
+type AVContentAuthorizationStatus uint
+
 // AVError - An enumeration that defines the errors that framework operations can generate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code
@@ -44,5 +54,26 @@ type AVPlayerTimeControlStatus uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerAudiovisualBackgroundPlaybackPolicy
 type AVPlayerAudiovisualBackgroundPlaybackPolicy uint
+
+// AVPlayerItemStatus - The statuses for a player item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum
+type AVPlayerItemStatus uint
+
+const (
+	// AVPlayerItemStatusReadyToPlay - The item is ready to play.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay
+	AVPlayerItemStatusReadyToPlay AVPlayerItemStatus = 0
+	// AVPlayerItemStatusUnknown - The item’s status is unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown
+	AVPlayerItemStatusUnknown AVPlayerItemStatus = 0
+)
+
+// AVVariantPreferences - Defines the preferences the player item uses when selecting variant playlists.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVariantPreferences
+type AVVariantPreferences uint
 
 

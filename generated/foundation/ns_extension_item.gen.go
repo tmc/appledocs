@@ -125,7 +125,7 @@ func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attributedContentText
 func (e_ ExtensionItem) AttributedContentText() IAttributedString {
-	rv := objc.Send[NSAttributedString](e_.ID, objc.Sel("attributedContentText"))
+	rv := objc.Send[AttributedString](e_.ID, objc.Sel("attributedContentText"))
 	return rv
 }
 
@@ -144,7 +144,7 @@ func (e_ ExtensionItem) SetAttributedContentText(value IAttributedString) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attributedTitle
 func (e_ ExtensionItem) AttributedTitle() IAttributedString {
-	rv := objc.Send[NSAttributedString](e_.ID, objc.Sel("attributedTitle"))
+	rv := objc.Send[AttributedString](e_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 

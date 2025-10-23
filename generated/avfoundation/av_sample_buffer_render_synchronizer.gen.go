@@ -32,8 +32,6 @@ type _SampleBufferRenderSynchronizerClass struct {
 // An interface definition for the [SampleBufferRenderSynchronizer] class.
 type ISampleBufferRenderSynchronizer interface {
 	objectivec.IObject
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	SetRateTime(rate float32, time unsafe.Pointer)
 	DelaysRateChangeUntilHasSufficientMediaData() bool
 	SetDelaysRateChangeUntilHasSufficientMediaData(value bool)
 	IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience
@@ -44,6 +42,8 @@ type ISampleBufferRenderSynchronizer interface {
 	SetRenderers(value unsafe.Pointer)
 	Timebase() unsafe.Pointer
 	SetTimebase(value unsafe.Pointer)
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	SetRateTime(rate float32, time unsafe.Pointer)
 }
 
 // An object used to synchronize multiple queued sample buffers to a single timeline.

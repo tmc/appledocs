@@ -143,7 +143,7 @@ func (p_ PlayerLayer) SetPixelBufferAttributes(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/player
 func (p_ PlayerLayer) Player() IAVPlayer {
-	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
+	rv := objc.Send[Player](p_.ID, objc.Sel("player"))
 	return rv
 }
 

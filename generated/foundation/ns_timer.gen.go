@@ -30,8 +30,6 @@ type _TimerClass struct {
 // An interface definition for the [Timer] class.
 type ITimer interface {
 	objectivec.IObject
-	Fire()
-	Invalidate()
 	FireDate() IDate
 	SetFireDate(value IDate)
 	Valid() bool
@@ -41,6 +39,8 @@ type ITimer interface {
 	UserInfo() objc.ID
 	IsValid() bool
 	SetIsValid(value bool)
+	Fire()
+	Invalidate()
 }
 
 // A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.
@@ -234,7 +234,7 @@ func (t_ Timer) Invalidate() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fireDate
 func (t_ Timer) FireDate() IDate {
-	rv := objc.Send[NSDate](t_.ID, objc.Sel("fireDate"))
+	rv := objc.Send[Date](t_.ID, objc.Sel("fireDate"))
 	return rv
 }
 

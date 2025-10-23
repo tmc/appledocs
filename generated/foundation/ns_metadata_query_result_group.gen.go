@@ -30,7 +30,6 @@ type _MetadataQueryResultGroupClass struct {
 // An interface definition for the [MetadataQueryResultGroup] class.
 type IMetadataQueryResultGroup interface {
 	objectivec.IObject
-	ResultAtIndex(idx uint) objc.ID
 	Attribute() string
 	ResultCount() uint
 	Results() objc.ID
@@ -42,6 +41,7 @@ type IMetadataQueryResultGroup interface {
 	SetOperationQueue(value IOperationQueue)
 	ValueLists() IMetadataQueryAttributeValueTuple
 	SetValueLists(value IMetadataQueryAttributeValueTuple)
+	ResultAtIndex(idx uint) objc.ID
 }
 
 // The class represents a collection of grouped attribute results returned by an object.
@@ -160,7 +160,7 @@ func (m_ MetadataQueryResultGroup) Value() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
 func (m_ MetadataQueryResultGroup) GroupedResults() IMetadataQueryResultGroup {
-	rv := objc.Send[NSMetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
+	rv := objc.Send[MetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
 	return rv
 }
 
@@ -179,7 +179,7 @@ func (m_ MetadataQueryResultGroup) SetGroupedResults(value IMetadataQueryResultG
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/operationqueue
 func (m_ MetadataQueryResultGroup) OperationQueue() IOperationQueue {
-	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
+	rv := objc.Send[OperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -198,7 +198,7 @@ func (m_ MetadataQueryResultGroup) SetOperationQueue(value IOperationQueue) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
 func (m_ MetadataQueryResultGroup) ValueLists() IMetadataQueryAttributeValueTuple {
-	rv := objc.Send[NSMetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
+	rv := objc.Send[MetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
 	return rv
 }
 

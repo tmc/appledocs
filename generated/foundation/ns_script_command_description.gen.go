@@ -30,11 +30,6 @@ type _ScriptCommandDescriptionClass struct {
 // An interface definition for the [ScriptCommandDescription] class.
 type IScriptCommandDescription interface {
 	objectivec.IObject
-	AppleEventCodeForArgumentWithName(argumentName string) unsafe.Pointer
-	CreateCommandInstance() IScriptCommand
-	CreateCommandInstanceWithZone(zone unsafe.Pointer) IScriptCommand
-	IsOptionalArgumentWithName(argumentName string) bool
-	TypeForArgumentWithName(argumentName string) IString
 	AppleEventClassCode() unsafe.Pointer
 	AppleEventCode() unsafe.Pointer
 	AppleEventCodeForReturnType() unsafe.Pointer
@@ -43,6 +38,11 @@ type IScriptCommandDescription interface {
 	CommandName() string
 	ReturnType() string
 	SuiteName() string
+	AppleEventCodeForArgumentWithName(argumentName string) unsafe.Pointer
+	CreateCommandInstance() IScriptCommand
+	CreateCommandInstanceWithZone(zone unsafe.Pointer) IScriptCommand
+	IsOptionalArgumentWithName(argumentName string) bool
+	TypeForArgumentWithName(argumentName string) IString
 }
 
 // A script command that a macOS app supports.

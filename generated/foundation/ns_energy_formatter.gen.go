@@ -30,11 +30,6 @@ type _EnergyFormatterClass struct {
 // An interface definition for the [EnergyFormatter] class.
 type IEnergyFormatter interface {
 	IFormatter
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	StringFromJoules(numberInJoules float64) IString
-	StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString
-	UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) IString
-	UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString
 	ForFoodEnergyUse() bool
 	SetForFoodEnergyUse(value bool)
 	NumberFormatter() INumberFormatter
@@ -43,6 +38,11 @@ type IEnergyFormatter interface {
 	SetUnitStyle(value NSFormattingUnitStyle)
 	IsForFoodEnergyUse() bool
 	SetIsForFoodEnergyUse(value bool)
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
+	StringFromJoules(numberInJoules float64) IString
+	StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString
+	UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) IString
+	UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) IString
 }
 
 // A formatter that provides localized descriptions of energy values.
@@ -172,7 +172,7 @@ func (e_ EnergyFormatter) SetForFoodEnergyUse(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/numberFormatter
 func (e_ EnergyFormatter) NumberFormatter() INumberFormatter {
-	rv := objc.Send[NSNumberFormatter](e_.ID, objc.Sel("numberFormatter"))
+	rv := objc.Send[NumberFormatter](e_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 

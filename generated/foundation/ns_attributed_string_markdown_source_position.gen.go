@@ -30,11 +30,11 @@ type _AttributedStringMarkdownSourcePositionClass struct {
 // An interface definition for the [AttributedStringMarkdownSourcePosition] class.
 type IAttributedStringMarkdownSourcePosition interface {
 	objectivec.IObject
-	RangeInString(string_ string) Range
 	EndColumn() int
 	EndLine() int
 	StartColumn() int
 	StartLine() int
+	RangeInString(string_ string) Range
 }
 
 // The position of attributed string text in its original Markdown source string.

@@ -30,13 +30,10 @@ type _BundleResourceRequestClass struct {
 // An interface definition for the [BundleResourceRequest] class.
 type IBundleResourceRequest interface {
 	objectivec.IObject
-	BeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
-	ConditionallyBeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
-	EndAccessingResources()
 	Bundle() IBundle
 	LoadingPriority() float64
 	SetLoadingPriority(value float64)
-	Progress() Progress
+	Progress() IProgress
 	Tags() unsafe.Pointer
 	NSBundleErrorMaximum() int
 	SetNSBundleErrorMaximum(value int)
@@ -49,6 +46,9 @@ type IBundleResourceRequest interface {
 	NSBundleOnDemandResourceOutOfSpaceError() int
 	SetNSBundleOnDemandResourceOutOfSpaceError(value int)
 	NSBundleResourceRequestLoadingPriorityUrgent() float64
+	BeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
+	ConditionallyBeginAccessingResourcesWithCompletionHandler(completionHandler unsafe.Pointer)
+	EndAccessingResources()
 }
 
 // A resource manager you use to download content hosted on the App Store at the time your app needs it.
@@ -161,7 +161,7 @@ func (b_ BundleResourceRequest) EndAccessingResources() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/bundle
 func (b_ BundleResourceRequest) Bundle() IBundle {
-	rv := objc.Send[NSBundle](b_.ID, objc.Sel("bundle"))
+	rv := objc.Send[Bundle](b_.ID, objc.Sel("bundle"))
 	return rv
 }
 
@@ -189,7 +189,7 @@ func (b_ BundleResourceRequest) SetLoadingPriority(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/progress
-func (b_ BundleResourceRequest) Progress() Progress {
+func (b_ BundleResourceRequest) Progress() IProgress {
 	rv := objc.Send[Progress](b_.ID, objc.Sel("progress"))
 	return rv
 }

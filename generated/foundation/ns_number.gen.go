@@ -30,9 +30,6 @@ type _NumberClass struct {
 // An interface definition for the [Number] class.
 type INumber interface {
 	IValue
-	Compare(otherNumber INumber) NSComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) IString
-	IsEqualToNumber(number INumber) bool
 	BoolValue() bool
 	DecimalValue() unsafe.Pointer
 	DoubleValue() float64
@@ -70,6 +67,9 @@ type INumber interface {
 	SetUintValue(value uint)
 	ObjCType() unsafe.Pointer
 	SetObjCType(value unsafe.Pointer)
+	Compare(otherNumber INumber) NSComparisonResult
+	DescriptionWithLocale(locale objectivec.IObject) IString
+	IsEqualToNumber(number INumber) bool
 }
 
 // An object wrapper for primitive scalar numeric values.

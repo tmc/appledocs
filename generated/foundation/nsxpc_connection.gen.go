@@ -30,14 +30,6 @@ type _XPCConnectionClass struct {
 // An interface definition for the [XPCConnection] class.
 type IXPCConnection interface {
 	objectivec.IObject
-	Activate()
-	Invalidate()
-	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
-	Resume()
-	ScheduleSendBarrierBlock(block unsafe.Pointer)
-	SetCodeSigningRequirement(requirement string)
-	Suspend()
-	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 	AuditSessionIdentifier() unsafe.Pointer
 	EffectiveGroupIdentifier() unsafe.Pointer
 	EffectiveUserIdentifier() unsafe.Pointer
@@ -67,6 +59,14 @@ type IXPCConnection interface {
 	SetNSXPCConnectionInvalid(value int)
 	NSXPCConnectionReplyInvalid() int
 	SetNSXPCConnectionReplyInvalid(value int)
+	Activate()
+	Invalidate()
+	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
+	Resume()
+	ScheduleSendBarrierBlock(block unsafe.Pointer)
+	SetCodeSigningRequirement(requirement string)
+	Suspend()
+	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 }
 
 // A bidirectional communication channel between two processes.
@@ -276,7 +276,7 @@ func (x_ XPCConnection) EffectiveUserIdentifier() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/endpoint
 func (x_ XPCConnection) Endpoint() IXPCListenerEndpoint {
-	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
+	rv := objc.Send[XPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
@@ -286,7 +286,7 @@ func (x_ XPCConnection) Endpoint() IXPCListenerEndpoint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
 func (x_ XPCConnection) ExportedInterface() IXPCInterface {
-	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("exportedInterface"))
+	rv := objc.Send[XPCInterface](x_.ID, objc.Sel("exportedInterface"))
 	return rv
 }
 
@@ -372,7 +372,7 @@ func (x_ XPCConnection) ProcessIdentifier() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
 func (x_ XPCConnection) RemoteObjectInterface() IXPCInterface {
-	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("remoteObjectInterface"))
+	rv := objc.Send[XPCInterface](x_.ID, objc.Sel("remoteObjectInterface"))
 	return rv
 }
 

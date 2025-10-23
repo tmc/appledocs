@@ -29,13 +29,13 @@ type _MutableAttributedStringClass struct {
 // An interface definition for the [MutableAttributedString] class.
 type IMutableAttributedString interface {
 	IAttributedString
+	MutableString() IMutableString
+	SetMutableString(value IMutableString)
 	AppendAttributedString(attrString IAttributedString)
 	AppendLocalizedFormat(format IAttributedString)
 	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
 	ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString)
 	SetAttributedString(attrString IAttributedString)
-	MutableString() IMutableString
-	SetMutableString(value IMutableString)
 }
 
 // A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.
@@ -141,7 +141,7 @@ func (m_ MutableAttributedString) SetAttributedString(attrString IAttributedStri
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
 func (m_ MutableAttributedString) MutableString() IMutableString {
-	rv := objc.Send[NSMutableString](m_.ID, objc.Sel("mutableString"))
+	rv := objc.Send[MutableString](m_.ID, objc.Sel("mutableString"))
 	return rv
 }
 

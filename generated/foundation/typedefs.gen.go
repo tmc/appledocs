@@ -58,6 +58,10 @@ type ErrorDomain = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderServiceName
 // NSFileProviderServiceName is a string typedef
 type FileProviderServiceName = string
+// HashTableOptions - Components in a bit-field to specify the behavior of elements in an   object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTableOptions
+type HashTableOptions uint
 // KeyValueChangeKey - The keys that can appear in the change dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChangeKey
@@ -73,6 +77,10 @@ type KeyValueOperator = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/Key
 // NSLocaleKey is a string typedef
 type LocaleKey = string
+// MapTableOptions - Constants used as components in a bitfield to specify the behavior of elements (keys and values) in an   object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTableOptions
+type MapTableOptions uint
 // NotificationName - A structure that defines the name of a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/Name-swift.struct
@@ -81,6 +89,11 @@ type NotificationName = string
 // SKIPPED: NSPoint - conflicts with existing enum "Point"
 // SKIPPED: NSRect - conflicts with existing enum "Rect"
 // SKIPPED: NSSize - conflicts with existing enum "Size"
+// TimeInterval - A number of seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/TimeInterval
+// NSTimeInterval has base type: double
+type TimeInterval uintptr
 // URLBookmarkFileCreationOptions - Options used when creating file bookmark data
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkFileCreationOptions
@@ -121,7 +134,6 @@ type SocketNativeHandle int32
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/StringEncodingDetectionOptionsKey
 // NSStringEncodingDetectionOptionsKey is a string typedef
 type StringEncodingDetectionOptionsKey = string
-// SKIPPED: NSTimeInterval - conflicts with existing enum "TimeInterval"
 // URLFileProtectionType - Protection-level values for a URL resource key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileProtection

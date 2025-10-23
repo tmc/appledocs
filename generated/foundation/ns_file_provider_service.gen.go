@@ -30,8 +30,8 @@ type _FileProviderServiceClass struct {
 // An interface definition for the [FileProviderService] class.
 type IFileProviderService interface {
 	objectivec.IObject
-	GetFileProviderConnectionWithCompletionHandler(completionHandler unsafe.Pointer)
 	Name() FileProviderServiceName
+	GetFileProviderConnectionWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // A service that provides a custom communication channel between your app and a File Provider extension.

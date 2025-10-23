@@ -30,6 +30,10 @@ type _XMLElementClass struct {
 // An interface definition for the [XMLElement] class.
 type IXMLElement interface {
 	IXMLNode
+	Attributes() []XMLNode
+	SetAttributes(value []XMLNode)
+	Namespaces() []XMLNode
+	SetNamespaces(value []XMLNode)
 	AddAttribute(attribute IXMLNode)
 	AddChild(child IXMLNode)
 	AddNamespace(aNamespace IXMLNode)
@@ -49,10 +53,6 @@ type IXMLElement interface {
 	ResolvePrefixForNamespaceURI(namespaceURI string) IString
 	SetAttributesWithDictionary(attributes IDictionary)
 	SetChildren(children []XMLNode)
-	Attributes() []XMLNode
-	SetAttributes(value []XMLNode)
-	Namespaces() []XMLNode
-	SetNamespaces(value []XMLNode)
 }
 
 // The element nodes in an XML tree structure.

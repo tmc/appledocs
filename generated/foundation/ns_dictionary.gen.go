@@ -30,6 +30,11 @@ type _DictionaryClass struct {
 // An interface definition for the [Dictionary] class.
 type IDictionary interface {
 	objectivec.IObject
+	AllKeys() []objc.ID
+	AllValues() []objc.ID
+	Count() uint
+	Description() string
+	DescriptionInStringsFileFormat() string
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
 	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len_ uint) uint
 	DescriptionWithLocale(locale objectivec.IObject) IString
@@ -65,11 +70,6 @@ type IDictionary interface {
 	ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.Pointer) []objc.ID
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
 	WriteToURLError(url IURL, error_ IError) bool
-	AllKeys() []objc.ID
-	AllValues() []objc.ID
-	Count() uint
-	Description() string
-	DescriptionInStringsFileFormat() string
 }
 
 // A static collection of objects associated with unique keys.

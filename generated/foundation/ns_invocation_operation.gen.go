@@ -119,7 +119,7 @@ func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, s
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/invocation
 func (i_ InvocationOperation) Invocation() IInvocation {
-	rv := objc.Send[NSInvocation](i_.ID, objc.Sel("invocation"))
+	rv := objc.Send[Invocation](i_.ID, objc.Sel("invocation"))
 	return rv
 }
 

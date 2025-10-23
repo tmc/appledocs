@@ -93,7 +93,7 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
 func (u_ URLSessionDownloadTask) Response() IURLResponse {
-	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 

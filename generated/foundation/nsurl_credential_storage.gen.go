@@ -92,7 +92,7 @@ func NewURLCredentialStorage() URLCredentialStorage {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
 func (u_ URLCredentialStorage) AllCredentials() IURLCredential {
-	rv := objc.Send[NSURLCredential](u_.ID, objc.Sel("allCredentials"))
+	rv := objc.Send[URLCredential](u_.ID, objc.Sel("allCredentials"))
 	return rv
 }
 

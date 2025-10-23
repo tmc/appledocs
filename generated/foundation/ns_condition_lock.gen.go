@@ -30,15 +30,15 @@ type _ConditionLockClass struct {
 // An interface definition for the [ConditionLock] class.
 type IConditionLock interface {
 	objectivec.IObject
+	Condition() int
+	Name() string
+	SetName(value string)
 	LockBeforeDate(limit IDate) bool
 	LockWhenCondition(condition int)
 	LockWhenConditionBeforeDate(condition int, limit IDate) bool
 	TryLock() bool
 	TryLockWhenCondition(condition int) bool
 	UnlockWithCondition(condition int)
-	Condition() int
-	Name() string
-	SetName(value string)
 }
 
 // A lock that can be associated with specific, user-defined conditions.

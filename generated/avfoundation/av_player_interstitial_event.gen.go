@@ -311,7 +311,7 @@ func (p_ PlayerInterstitialEvent) SetPlayoutLimit(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/primaryitem
 func (p_ PlayerInterstitialEvent) PrimaryItem() IAVPlayerItem {
-	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("primaryItem"))
+	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("primaryItem"))
 	return rv
 }
 
@@ -425,7 +425,7 @@ func (p_ PlayerInterstitialEvent) SetSupplementsPrimaryContent(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
 func (p_ PlayerInterstitialEvent) TemplateItems() IAVPlayerItem {
-	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("templateItems"))
+	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("templateItems"))
 	return rv
 }
 

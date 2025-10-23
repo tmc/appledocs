@@ -157,7 +157,7 @@ func NewSocketPortWithTCPPort(port unsafe.Pointer) SocketPort {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/address
 func (s_ SocketPort) Address() IData {
-	rv := objc.Send[NSData](s_.ID, objc.Sel("address"))
+	rv := objc.Send[Data](s_.ID, objc.Sel("address"))
 	return rv
 }
 

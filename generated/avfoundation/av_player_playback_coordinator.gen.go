@@ -156,7 +156,7 @@ func (p_ PlayerPlaybackCoordinator) SetPlaybackCoordinationMedium(value unsafe.P
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator/player
 func (p_ PlayerPlaybackCoordinator) Player() IAVPlayer {
-	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
+	rv := objc.Send[Player](p_.ID, objc.Sel("player"))
 	return rv
 }
 

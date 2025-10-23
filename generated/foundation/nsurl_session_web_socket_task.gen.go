@@ -100,7 +100,7 @@ func NewURLSessionWebSocketTask() URLSessionWebSocketTask {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeReason
 func (u_ URLSessionWebSocketTask) CloseReason() IData {
-	rv := objc.Send[NSData](u_.ID, objc.Sel("closeReason"))
+	rv := objc.Send[Data](u_.ID, objc.Sel("closeReason"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
 func (u_ URLSessionWebSocketTask) HttpCookieStorage() IHTTPCookieStorage {
-	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
+	rv := objc.Send[HTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
 	return rv
 }
 

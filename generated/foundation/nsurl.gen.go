@@ -30,25 +30,6 @@ type _URLClass struct {
 // An interface definition for the [URL] class.
 type IURL interface {
 	objectivec.IObject
-	URLByAppendingPathComponent(pathComponent string) IURL
-	URLByAppendingPathComponentConformingToType(partialName string, contentType objectivec.IObject) IURL
-	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) IURL
-	URLByAppendingPathExtension(pathExtension string) IURL
-	URLByAppendingPathExtensionForType(contentType objectivec.IObject) IURL
-	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) IData
-	CheckResourceIsReachableAndReturnError(error_ IError) bool
-	FileReferenceURL() IURL
-	GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBufferLength uint) bool
-	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
-	IsFileReferenceURL() bool
-	RemoveAllCachedResourceValues()
-	RemoveCachedResourceValueForKey(key URLResourceKey)
-	ResourceValuesForKeysError(keys []string, error_ IError) IDictionary
-	SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
-	SetResourceValuesError(keyedValues IDictionary, error_ IError) bool
-	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey)
-	StartAccessingSecurityScopedResource() bool
-	StopAccessingSecurityScopedResource()
 	AbsoluteString() string
 	AbsoluteURL() IURL
 	BaseURL() IURL
@@ -71,7 +52,9 @@ type IURL interface {
 	RelativePath() string
 	RelativeString() string
 	URLByResolvingSymlinksInPath() IURL
+	Scheme() string
 	URLByStandardizingPath() IURL
+	User() string
 	CustomPlaygroundQuickLook() unsafe.Pointer
 	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
 	DataRepresentation() IData
@@ -86,14 +69,29 @@ type IURL interface {
 	SetResolvingSymlinksInPath(value IURL)
 	ResourceSpecifier() string
 	SetResourceSpecifier(value string)
-	Scheme() string
-	SetScheme(value string)
 	Standardized() IURL
 	SetStandardized(value IURL)
 	StandardizingPath() IURL
 	SetStandardizingPath(value IURL)
-	User() string
-	SetUser(value string)
+	URLByAppendingPathComponent(pathComponent string) IURL
+	URLByAppendingPathComponentConformingToType(partialName string, contentType objectivec.IObject) IURL
+	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) IURL
+	URLByAppendingPathExtension(pathExtension string) IURL
+	URLByAppendingPathExtensionForType(contentType objectivec.IObject) IURL
+	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) IData
+	CheckResourceIsReachableAndReturnError(error_ IError) bool
+	FileReferenceURL() IURL
+	GetFileSystemRepresentationMaxLength(buffer unsafe.Pointer, maxBufferLength uint) bool
+	GetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
+	IsFileReferenceURL() bool
+	RemoveAllCachedResourceValues()
+	RemoveCachedResourceValueForKey(key URLResourceKey)
+	ResourceValuesForKeysError(keys []string, error_ IError) IDictionary
+	SetResourceValueForKeyError(value objectivec.IObject, key URLResourceKey, error_ IError) bool
+	SetResourceValuesError(keyedValues IDictionary, error_ IError) bool
+	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey)
+	StartAccessingSecurityScopedResource() bool
+	StopAccessingSecurityScopedResource()
 }
 
 // An object that represents the location of a resource, such as an item on a remote server or the path to a local file.
@@ -806,12 +804,32 @@ func (u_ URL) URLByResolvingSymlinksInPath() IURL {
 }
 
 
+// The scheme. (read-only)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/scheme
+func (u_ URL) Scheme() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("scheme"))
+	return rv
+}
+
+
 // A URL that points to the same resource as the original URL using an absolute path. (read-only)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/standardizingPath
 func (u_ URL) URLByStandardizingPath() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByStandardizingPath"))
+	return rv
+}
+
+
+// The user name, conforming to RFC 1808.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/user
+func (u_ URL) User() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -941,25 +959,6 @@ func (u_ URL) SetResourceSpecifier(value string) {
 }
 
 
-// The scheme. (read-only)
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/scheme
-func (u_ URL) Scheme() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("scheme"))
-	return rv
-}
-
-
-// The scheme. (read-only)
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/scheme
-func (u_ URL) SetScheme(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setScheme:"), objc.String(value))
-}
-
-
 // A copy of the URL with any instances of
 //
 // [Full Topic]
@@ -995,25 +994,6 @@ func (u_ URL) StandardizingPath() IURL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/standardizingpath
 func (u_ URL) SetStandardizingPath(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardizingPath:"), value)
-}
-
-
-// The user name, conforming to RFC 1808.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/user
-func (u_ URL) User() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("user"))
-	return rv
-}
-
-
-// The user name, conforming to RFC 1808.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/user
-func (u_ URL) SetUser(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), objc.String(value))
 }
 
 

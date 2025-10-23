@@ -30,12 +30,12 @@ type _PortMessageClass struct {
 // An interface definition for the [PortMessage] class.
 type IPortMessage interface {
 	objectivec.IObject
-	SendBeforeDate(date IDate) bool
 	Components() objc.ID
 	Msgid() uint32
 	SetMsgid(value uint32)
 	ReceivePort() IPort
 	SendPort() IPort
+	SendBeforeDate(date IDate) bool
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
@@ -148,7 +148,7 @@ func (p_ PortMessage) SetMsgid(value uint32) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
 func (p_ PortMessage) ReceivePort() IPort {
-	rv := objc.Send[NSPort](p_.ID, objc.Sel("receivePort"))
+	rv := objc.Send[Port](p_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (p_ PortMessage) ReceivePort() IPort {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/sendPort
 func (p_ PortMessage) SendPort() IPort {
-	rv := objc.Send[NSPort](p_.ID, objc.Sel("sendPort"))
+	rv := objc.Send[Port](p_.ID, objc.Sel("sendPort"))
 	return rv
 }
 

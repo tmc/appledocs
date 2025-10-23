@@ -13,4 +13,9 @@ type CaptureSessionPreset = string
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/WaitingReason
 // AVPlayerWaitingReason is a string typedef
 type PlayerWaitingReason = string
+// VideoApertureMode - A value that describes how a video is scaled or cropped.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoApertureMode
+// AVVideoApertureMode is a string typedef
+type VideoApertureMode = string
 

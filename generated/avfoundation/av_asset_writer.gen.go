@@ -71,6 +71,7 @@ type IAssetWriter interface {
 	SetShouldOptimizeForNetworkUse(value bool)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
+	StartSessionAtSourceTime(startTime unsafe.Pointer)
 }
 
 // An object that writes media data to a container file.
@@ -124,6 +125,15 @@ func NewAssetWriter() AssetWriter {
 	return getAssetWriterClass().New()
 }
 
+
+
+// Starts an asset-writing session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/startSession(atSourceTime:)
+func (a_ AssetWriter) StartSessionAtSourceTime(startTime unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("startSessionAtSourceTime:"), startTime)
+}
 
 
 // The media types the asset writer supports adding as inputs.
@@ -283,7 +293,7 @@ func (a_ AssetWriter) SetInputGroups(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
 func (a_ AssetWriter) Inputs() IAVAssetWriterInput {
-	rv := objc.Send[AVAssetWriterInput](a_.ID, objc.Sel("inputs"))
+	rv := objc.Send[AssetWriterInput](a_.ID, objc.Sel("inputs"))
 	return rv
 }
 
@@ -302,7 +312,7 @@ func (a_ AssetWriter) SetInputs(value IAVAssetWriterInput) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/metadata
 func (a_ AssetWriter) Metadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("metadata"))
+	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 

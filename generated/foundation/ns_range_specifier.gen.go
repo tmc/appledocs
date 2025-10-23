@@ -118,7 +118,7 @@ func NewRangeSpecifierWithContainerClassDescriptionContainerSpecifierKeyStartSpe
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/endSpecifier
 func (r_ RangeSpecifier) EndSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("endSpecifier"))
+	rv := objc.Send[ScriptObjectSpecifier](r_.ID, objc.Sel("endSpecifier"))
 	return rv
 }
 
@@ -137,7 +137,7 @@ func (r_ RangeSpecifier) SetEndSpecifier(value IScriptObjectSpecifier) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
 func (r_ RangeSpecifier) StartSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("startSpecifier"))
+	rv := objc.Send[ScriptObjectSpecifier](r_.ID, objc.Sel("startSpecifier"))
 	return rv
 }
 

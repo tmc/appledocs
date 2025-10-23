@@ -117,7 +117,7 @@ func (c_ CachedURLResponse) SetData(value IData) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
 func (c_ CachedURLResponse) Response() IURLResponse {
-	rv := objc.Send[NSURLResponse](c_.ID, objc.Sel("response"))
+	rv := objc.Send[URLResponse](c_.ID, objc.Sel("response"))
 	return rv
 }
 

@@ -30,12 +30,12 @@ type _MeasurementClass struct {
 // An interface definition for the [Measurement] class.
 type IMeasurement interface {
 	objectivec.IObject
+	DoubleValue() float64
+	Unit() unsafe.Pointer
 	MeasurementByAddingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
 	CanBeConvertedToUnit(unit IUnit) bool
 	MeasurementByConvertingToUnit(unit IUnit) IMeasurement
 	MeasurementBySubtractingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
-	DoubleValue() float64
-	Unit() unsafe.Pointer
 }
 
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.

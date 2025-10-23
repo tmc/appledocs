@@ -30,16 +30,16 @@ type _PointerArrayClass struct {
 // An interface definition for the [PointerArray] class.
 type IPointerArray interface {
 	objectivec.IObject
+	AllObjects() objc.ID
+	Count() uint
+	SetCount(value uint)
+	PointerFunctions() IPointerFunctions
 	AddPointer(pointer unsafe.Pointer)
 	Compact()
 	InsertPointerAtIndex(item unsafe.Pointer, index uint)
 	PointerAtIndex(index uint)
 	RemovePointerAtIndex(index uint)
 	ReplacePointerAtIndexWithPointer(index uint, item unsafe.Pointer)
-	AllObjects() objc.ID
-	Count() uint
-	SetCount(value uint)
-	PointerFunctions() IPointerFunctions
 }
 
 // A collection similar to an array, but with a broader range of available memory semantics.
@@ -268,7 +268,7 @@ func (p_ PointerArray) SetCount(value uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerFunctions
 func (p_ PointerArray) PointerFunctions() IPointerFunctions {
-	rv := objc.Send[NSPointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
+	rv := objc.Send[PointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 

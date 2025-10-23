@@ -30,11 +30,6 @@ type _LengthFormatterClass struct {
 // An interface definition for the [LengthFormatter] class.
 type ILengthFormatter interface {
 	IFormatter
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	StringFromMeters(numberInMeters float64) IString
-	StringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString
-	UnitStringFromMetersUsedUnit(numberInMeters float64, unitp NSLengthFormatterUnit) IString
-	UnitStringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString
 	ForPersonHeightUse() bool
 	SetForPersonHeightUse(value bool)
 	NumberFormatter() INumberFormatter
@@ -43,6 +38,11 @@ type ILengthFormatter interface {
 	SetUnitStyle(value NSFormattingUnitStyle)
 	IsForPersonHeightUse() bool
 	SetIsForPersonHeightUse(value bool)
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
+	StringFromMeters(numberInMeters float64) IString
+	StringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString
+	UnitStringFromMetersUsedUnit(numberInMeters float64, unitp NSLengthFormatterUnit) IString
+	UnitStringFromValueUnit(value float64, unit NSLengthFormatterUnit) IString
 }
 
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements.
@@ -172,7 +172,7 @@ func (l_ LengthFormatter) SetForPersonHeightUse(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
 func (l_ LengthFormatter) NumberFormatter() INumberFormatter {
-	rv := objc.Send[NSNumberFormatter](l_.ID, objc.Sel("numberFormatter"))
+	rv := objc.Send[NumberFormatter](l_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 

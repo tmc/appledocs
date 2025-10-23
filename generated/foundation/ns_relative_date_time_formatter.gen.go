@@ -30,10 +30,6 @@ type _RelativeDateTimeFormatterClass struct {
 // An interface definition for the [RelativeDateTimeFormatter] class.
 type IRelativeDateTimeFormatter interface {
 	IFormatter
-	LocalizedStringForDateRelativeToDate(date IDate, referenceDate IDate) IString
-	LocalizedStringFromDateComponents(dateComponents IDateComponents) IString
-	LocalizedStringFromTimeInterval(timeInterval TimeInterval) IString
-	StringForObjectValue(obj objectivec.IObject) IString
 	Calendar() ICalendar
 	SetCalendar(value ICalendar)
 	DateTimeStyle() NSRelativeDateTimeFormatterStyle
@@ -44,6 +40,10 @@ type IRelativeDateTimeFormatter interface {
 	SetLocale(value ILocale)
 	UnitsStyle() NSRelativeDateTimeFormatterUnitsStyle
 	SetUnitsStyle(value NSRelativeDateTimeFormatterUnitsStyle)
+	LocalizedStringForDateRelativeToDate(date IDate, referenceDate IDate) IString
+	LocalizedStringFromDateComponents(dateComponents IDateComponents) IString
+	LocalizedStringFromTimeInterval(timeInterval TimeInterval) IString
+	StringForObjectValue(obj objectivec.IObject) IString
 }
 
 // A formatter that creates locale-aware string representations of a relative date or time.
@@ -146,7 +146,7 @@ func (r_ RelativeDateTimeFormatter) StringForObjectValue(obj objectivec.IObject)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/calendar
 func (r_ RelativeDateTimeFormatter) Calendar() ICalendar {
-	rv := objc.Send[NSCalendar](r_.ID, objc.Sel("calendar"))
+	rv := objc.Send[Calendar](r_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (r_ RelativeDateTimeFormatter) SetFormattingContext(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/locale
 func (r_ RelativeDateTimeFormatter) Locale() ILocale {
-	rv := objc.Send[NSLocale](r_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](r_.ID, objc.Sel("locale"))
 	return rv
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"text/template"
 
@@ -31,7 +32,7 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		// Type Resolution
 		"shouldSkipTypedef":   gf.shouldSkipTypedef,
 		"typeToInterfaceType": gf.TypeToInterfaceType,
-		"typeToStructName":    typeToStructName,
+		"concreteReturnType":  gf.concreteReturnType,
 
 		// Name Conversion
 		// TODO: Add name conversion methods as they're converted
@@ -149,9 +150,122 @@ func (gf GeneratorFuncs) isTypeInTypesTemplate(typeName string) bool {
 //   - Two-tier template function registration (templateFuncs + GeneratorFuncs)
 //   - Templates cleaned up (0 references to $.Generator)
 //   - Three GeneratorFuncs methods implemented:
-//     * formatMethodParams - O(1) type lookups for method parameters
-//     * shouldSkipTypedef - Uses enumIndex for duplicate detection
-//     * TypeToInterfaceType - Exposes Generator.TypeToInterfaceType to templates
+//   - formatMethodParams - O(1) type lookups for method parameters
+//   - shouldSkipTypedef - Uses enumIndex for duplicate detection
+//   - TypeToInterfaceType - Exposes Generator.TypeToInterfaceType to templates
+//
+// concreteReturnType extracts the unqualified type name from a Go type for objc.Send[T].
+// This strips framework prefixes and handles the difference between classes and enums:
+// - Classes: NS prefix is stripped (Data not NSData)
+// - Enums: NS prefix is preserved (NSQualityOfService not QualityOfService)
+//
+// Examples:
+//
+//	foundation.Data -> Data (class, already stripped by mapObjCTypeToGo)
+//	NSData -> Data (class from ObjC, needs stripping)
+//	foundation.NSQualityOfService -> NSQualityOfService (enum, keep NS prefix)
+//	NSQualityOfService -> NSQualityOfService (enum from ObjC, keep NS prefix)
+//	objc.ID -> objc.ID (preserved)
+//	[]objc.ID -> []objc.ID (preserved)
+func (gf GeneratorFuncs) concreteReturnType(goType string) string {
+	// Handle empty types
+	if goType == "" {
+		return goType
+	}
+
+	// Handle slices - preserve brackets and recurse on element type
+	if strings.HasPrefix(goType, "[]") {
+		elementType := strings.TrimPrefix(goType, "[]")
+		return "[]" + gf.concreteReturnType(elementType)
+	}
+
+	// Handle maps - preserve entire map type
+	if strings.HasPrefix(goType, "map[") {
+		return goType
+	}
+
+	// Handle basic types and types that should be preserved as-is
+	if goType == "string" || goType == "bool" || goType == "int" ||
+		goType == "uint" || goType == "float32" || goType == "float64" ||
+		goType == "int8" || goType == "int16" || goType == "int32" || goType == "int64" ||
+		goType == "uint8" || goType == "uint16" || goType == "uint32" || goType == "uint64" ||
+		goType == "uintptr" || goType == "byte" || goType == "rune" {
+		return goType
+	}
+
+	// Handle qualified types from standard packages (objc., unsafe., etc.)
+	if strings.HasPrefix(goType, "objc.") || strings.HasPrefix(goType, "unsafe.") {
+		return goType
+	}
+
+	// Handle cross-framework references (e.g., "coregraphics.CGRect", "foundation.Data")
+	// Only strip the framework prefix if it matches the current framework
+	if strings.Contains(goType, ".") {
+		parts := strings.Split(goType, ".")
+		frameworkPrefix := parts[0]
+		typeName := parts[len(parts)-1]
+
+		// Debug
+		if strings.Contains(goType, "Data") || strings.Contains(goType, "Quality") {
+			fmt.Fprintf(os.Stderr, "DEBUG framework check: frameworkPrefix=%q gf.Framework=%q strings.ToLower(gf.Framework)=%q\n",
+				frameworkPrefix, gf.Framework, strings.ToLower(gf.Framework))
+		}
+
+		// If it's from a different framework, keep it fully qualified
+		// For example, in Foundation: "coregraphics.CGRect" stays as "coregraphics.CGRect"
+		if frameworkPrefix != strings.ToLower(gf.Framework) {
+			// Cross-framework reference - keep qualified
+			return goType
+		}
+
+		// Same framework - unqualify
+		goType = typeName
+	}
+
+	// Now goType is unqualified (e.g., "Data", "NSData", "NSQualityOfService", "QualityOfService")
+	// Check if it's an enum (preserve NS prefix) or class (strip NS prefix)
+
+	// Check if it's already an enum as-is
+	if _, isEnum := gf.enumIndex[goType]; isEnum {
+		// It's an enum - keep it as-is
+		if strings.Contains(goType, "Quality") {
+			fmt.Fprintf(os.Stderr, "DEBUG: concreteReturnType found %q in enumIndex directly\n", goType)
+		}
+		return goType
+	}
+
+	// If it HAS an NS/CG/CA prefix, check if the stripped version is an enum
+	// Enums are indexed by both full and stripped names, so we need to check both
+	if strings.HasPrefix(goType, "NS") || strings.HasPrefix(goType, "CG") || strings.HasPrefix(goType, "CA") {
+		strippedName := stripObjCPrefix(goType)
+		if _, isEnum := gf.enumIndex[strippedName]; isEnum {
+			// The stripped name is in the enum index - return the FULL name (with prefix)
+			if strings.Contains(goType, "Quality") {
+				fmt.Fprintf(os.Stderr, "DEBUG: concreteReturnType found stripped %q in enumIndex for %q\n", strippedName, goType)
+			}
+			return goType
+		}
+		if strings.Contains(goType, "Quality") {
+			fmt.Fprintf(os.Stderr, "DEBUG: concreteReturnType did NOT find %q or %q in enumIndex (size=%d)\n", goType, strippedName, len(gf.enumIndex))
+		}
+	}
+
+	// If it doesn't have NS prefix, try adding it to check if it's an enum
+	// (mapObjCTypeToGo might have stripped the prefix)
+	if !strings.HasPrefix(goType, "NS") && !strings.HasPrefix(goType, "CG") && !strings.HasPrefix(goType, "CA") {
+		// Try with NS prefix
+		withNS := "NS" + goType
+		if _, isEnum := gf.enumIndex[withNS]; isEnum {
+			// It's an enum that had its prefix stripped - restore it
+			return withNS
+		}
+	}
+
+	// Not an enum - apply class name stripping
+	result := classToStructName(goType)
+	return result
+}
+
 //
 // 📝 Design Decision:
 //   Most template functions are pure utilities in templateFuncs (funcs_core.go).

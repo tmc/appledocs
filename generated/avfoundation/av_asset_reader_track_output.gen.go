@@ -34,8 +34,8 @@ type IAssetReaderTrackOutput interface {
 	SetAudioTimePitchAlgorithm(value unsafe.Pointer)
 	OutputSettings() string
 	SetOutputSettings(value string)
-	Track() AssetTrack
-	SetTrack(value AssetTrack)
+	Track() IAVAssetTrack
+	SetTrack(value IAVAssetTrack)
 	AVVideoCleanApertureKey() string
 	AVVideoPixelAspectRatioKey() string
 	AVVideoScalingModeKey() string
@@ -163,7 +163,7 @@ func (a_ AssetReaderTrackOutput) SetOutputSettings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/track
-func (a_ AssetReaderTrackOutput) Track() AssetTrack {
+func (a_ AssetReaderTrackOutput) Track() IAVAssetTrack {
 	rv := objc.Send[AssetTrack](a_.ID, objc.Sel("track"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (a_ AssetReaderTrackOutput) Track() AssetTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/track
-func (a_ AssetReaderTrackOutput) SetTrack(value AssetTrack) {
+func (a_ AssetReaderTrackOutput) SetTrack(value IAVAssetTrack) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrack:"), value)
 }
 

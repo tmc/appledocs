@@ -30,14 +30,14 @@ type _AppleScriptClass struct {
 // An interface definition for the [AppleScript] class.
 type IAppleScript interface {
 	objectivec.IObject
-	CompileAndReturnError(errorInfo IDictionary) bool
-	ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDescriptor
-	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) IAppleEventDescriptor
 	Compiled() bool
 	RichTextSource() IAttributedString
 	Source() string
 	IsCompiled() bool
 	SetIsCompiled(value bool)
+	CompileAndReturnError(errorInfo IDictionary) bool
+	ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDescriptor
+	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) IAppleEventDescriptor
 }
 
 // An object that provides the ability to load, compile, and execute scripts.
@@ -163,7 +163,7 @@ func (a_ AppleScript) Compiled() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/richTextSource
 func (a_ AppleScript) RichTextSource() IAttributedString {
-	rv := objc.Send[NSAttributedString](a_.ID, objc.Sel("richTextSource"))
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("richTextSource"))
 	return rv
 }
 

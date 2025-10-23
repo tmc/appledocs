@@ -30,6 +30,8 @@ type _AppleEventManagerClass struct {
 // An interface definition for the [AppleEventManager] class.
 type IAppleEventManager interface {
 	objectivec.IObject
+	CurrentAppleEvent() IAppleEventDescriptor
+	CurrentReplyAppleEvent() IAppleEventDescriptor
 	AppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID) IAppleEventDescriptor
 	DispatchRawAppleEventWithRawReplyHandlerRefCon(theAppleEvent unsafe.Pointer, theReply unsafe.Pointer, handlerRefCon unsafe.Pointer) unsafe.Pointer
 	RemoveEventHandlerForEventClassAndEventID(eventClass unsafe.Pointer, eventID unsafe.Pointer)
@@ -38,8 +40,6 @@ type IAppleEventManager interface {
 	SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID AppleEventManagerSuspensionID)
 	SetEventHandlerAndSelectorForEventClassAndEventID(handler objectivec.IObject, handleEventSelector objc.SEL, eventClass unsafe.Pointer, eventID unsafe.Pointer)
 	SuspendCurrentAppleEvent() AppleEventManagerSuspensionID
-	CurrentAppleEvent() IAppleEventDescriptor
-	CurrentReplyAppleEvent() IAppleEventDescriptor
 }
 
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
@@ -186,7 +186,7 @@ func (a_ AppleEventManager) SuspendCurrentAppleEvent() AppleEventManagerSuspensi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/currentAppleEvent
 func (a_ AppleEventManager) CurrentAppleEvent() IAppleEventDescriptor {
-	rv := objc.Send[NSAppleEventDescriptor](a_.ID, objc.Sel("currentAppleEvent"))
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentAppleEvent"))
 	return rv
 }
 
@@ -196,7 +196,7 @@ func (a_ AppleEventManager) CurrentAppleEvent() IAppleEventDescriptor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/currentReplyAppleEvent
 func (a_ AppleEventManager) CurrentReplyAppleEvent() IAppleEventDescriptor {
-	rv := objc.Send[NSAppleEventDescriptor](a_.ID, objc.Sel("currentReplyAppleEvent"))
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentReplyAppleEvent"))
 	return rv
 }
 

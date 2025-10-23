@@ -245,7 +245,7 @@ func (c_ CaptureDevice) SystemPressureState() CaptureSystemPressureState {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeprimaryconstituent
 func (c_ CaptureDevice) ActivePrimaryConstituent() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("activePrimaryConstituent"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("activePrimaryConstituent"))
 	return rv
 }
 
@@ -359,7 +359,7 @@ func (c_ CaptureDevice) SetCinematicVideoCaptureSceneMonitoringStatuses(value un
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/companiondeskviewcamera
 func (c_ CaptureDevice) CompanionDeskViewCamera() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("companionDeskViewCamera"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("companionDeskViewCamera"))
 	return rv
 }
 
@@ -378,7 +378,7 @@ func (c_ CaptureDevice) SetCompanionDeskViewCamera(value IAVCaptureDevice) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/constituentdevices
 func (c_ CaptureDevice) ConstituentDevices() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("constituentDevices"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("constituentDevices"))
 	return rv
 }
 
@@ -454,7 +454,7 @@ func (c_ CaptureDevice) SetDynamicDimensions(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/fallbackprimaryconstituentdevices
 func (c_ CaptureDevice) FallbackPrimaryConstituentDevices() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("fallbackPrimaryConstituentDevices"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("fallbackPrimaryConstituentDevices"))
 	return rv
 }
 
@@ -872,7 +872,7 @@ func (c_ CaptureDevice) SetSpatialCaptureDiscomfortReasons(value unsafe.Pointer)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/supportedfallbackprimaryconstituentdevices
 func (c_ CaptureDevice) SupportedFallbackPrimaryConstituentDevices() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("supportedFallbackPrimaryConstituentDevices"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("supportedFallbackPrimaryConstituentDevices"))
 	return rv
 }
 

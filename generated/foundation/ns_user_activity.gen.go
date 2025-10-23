@@ -30,11 +30,6 @@ type _UserActivityClass struct {
 // An interface definition for the [UserActivity] class.
 type IUserActivity interface {
 	objectivec.IObject
-	AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject)
-	BecomeCurrent()
-	GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer)
-	Invalidate()
-	ResignCurrent()
 	ActivityType() string
 	AppClipActivationPayload() unsafe.Pointer
 	ContextIdentifierPath() []string
@@ -104,6 +99,11 @@ type IUserActivity interface {
 	NSUserActivityRemoteApplicationTimedOutError() int
 	SetNSUserActivityRemoteApplicationTimedOutError(value int)
 	NSUserActivityTypeBrowsingWeb() string
+	AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject)
+	BecomeCurrent()
+	GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer)
+	Invalidate()
+	ResignCurrent()
 }
 
 // A representation of the state of your app at a moment in time.
@@ -289,7 +289,7 @@ func (u_ UserActivity) SetDelegate(value objc.ID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
 func (u_ UserActivity) ExpirationDate() IDate {
-	rv := objc.Send[NSDate](u_.ID, objc.Sel("expirationDate"))
+	rv := objc.Send[Date](u_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 

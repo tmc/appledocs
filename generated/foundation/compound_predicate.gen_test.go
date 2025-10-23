@@ -25,6 +25,22 @@ func ExampleNewCompoundPredicateNotPredicateWithSubpredicate() {
 	)
 	// Output:
 }
+// ExampleNewCompoundPredicateOrPredicateWithSubpredicates demonstrates how to create a CompoundPredicate instance using NewCompoundPredicateOrPredicateWithSubpredicates.
+// Returns a new predicate that you form using an OR operation on the predicates in a specified array.
+func ExampleNewCompoundPredicateOrPredicateWithSubpredicates() {
+	_ = foundation.NewCompoundPredicateOrPredicateWithSubpredicates(
+		[]foundation.Predicate{}, // subpredicates []Predicate
+	)
+	// Output:
+}
+// ExampleNewCompoundPredicateWithCoder demonstrates how to create a CompoundPredicate instance using NewCompoundPredicateWithCoder.
+// Creates a predicate by decoding from the coder you specify.
+func ExampleNewCompoundPredicateWithCoder() {
+	_ = foundation.NewCompoundPredicateWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
+	)
+	// Output:
+}
 // ExampleNewCompoundPredicateWithTypeSubpredicates demonstrates how to create a CompoundPredicate instance using NewCompoundPredicateWithTypeSubpredicates.
 // Returns the receiver that a specified type initializes using predicates from a specified array.
 func ExampleNewCompoundPredicateWithTypeSubpredicates() {

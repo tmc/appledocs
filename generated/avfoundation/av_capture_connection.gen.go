@@ -163,7 +163,7 @@ func (c_ CaptureConnection) SetActiveVideoStabilizationMode(value unsafe.Pointer
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/audiochannels
 func (c_ CaptureConnection) AudioChannels() IAVCaptureAudioChannel {
-	rv := objc.Send[AVCaptureAudioChannel](c_.ID, objc.Sel("audioChannels"))
+	rv := objc.Send[CaptureAudioChannel](c_.ID, objc.Sel("audioChannels"))
 	return rv
 }
 
@@ -467,7 +467,7 @@ func (c_ CaptureConnection) SetIsVideoStabilizationSupported(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/output
 func (c_ CaptureConnection) Output() IAVCaptureOutput {
-	rv := objc.Send[AVCaptureOutput](c_.ID, objc.Sel("output"))
+	rv := objc.Send[CaptureOutput](c_.ID, objc.Sel("output"))
 	return rv
 }
 
@@ -600,7 +600,7 @@ func (c_ CaptureConnection) SetVideoOrientation(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videopreviewlayer
 func (c_ CaptureConnection) VideoPreviewLayer() IAVCaptureVideoPreviewLayer {
-	rv := objc.Send[AVCaptureVideoPreviewLayer](c_.ID, objc.Sel("videoPreviewLayer"))
+	rv := objc.Send[CaptureVideoPreviewLayer](c_.ID, objc.Sel("videoPreviewLayer"))
 	return rv
 }
 

@@ -129,7 +129,7 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/date
 func (t_ TextCheckingResult) Date() IDate {
-	rv := objc.Send[NSDate](t_.ID, objc.Sel("date"))
+	rv := objc.Send[Date](t_.ID, objc.Sel("date"))
 	return rv
 }
 
@@ -269,7 +269,7 @@ func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/orthography
 func (t_ TextCheckingResult) Orthography() IOrthography {
-	rv := objc.Send[NSOrthography](t_.ID, objc.Sel("orthography"))
+	rv := objc.Send[Orthography](t_.ID, objc.Sel("orthography"))
 	return rv
 }
 
@@ -307,7 +307,7 @@ func (t_ TextCheckingResult) SetRange(value Range) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/regularexpression
 func (t_ TextCheckingResult) RegularExpression() IRegularExpression {
-	rv := objc.Send[NSRegularExpression](t_.ID, objc.Sel("regularExpression"))
+	rv := objc.Send[RegularExpression](t_.ID, objc.Sel("regularExpression"))
 	return rv
 }
 

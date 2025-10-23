@@ -29,6 +29,36 @@ type _MutableOrderedSetClass struct {
 // An interface definition for the [MutableOrderedSet] class.
 type IMutableOrderedSet interface {
 	IOrderedSet
+	AddObject(object unsafe.Pointer)
+	AddObjectsCount(objects unsafe.Pointer, count uint)
+	AddObjectsFromArray(array []objc.ID)
+	ApplyDifference(difference unsafe.Pointer)
+	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint, idx2 uint)
+	FilterUsingPredicate(p IPredicate)
+	InsertObjectsAtIndexes(objects []objc.ID, indexes IIndexSet)
+	InsertObjectAtIndex(object unsafe.Pointer, idx uint)
+	IntersectOrderedSet(other unsafe.Pointer)
+	IntersectSet(other unsafe.Pointer)
+	MinusOrderedSet(other unsafe.Pointer)
+	MinusSet(other unsafe.Pointer)
+	MoveObjectsAtIndexesToIndex(indexes IIndexSet, idx uint)
+	RemoveObject(object unsafe.Pointer)
+	RemoveAllObjects()
+	RemoveObjectAtIndex(idx uint)
+	RemoveObjectsAtIndexes(indexes IIndexSet)
+	RemoveObjectsInArray(array []objc.ID)
+	RemoveObjectsInRange(range_ Range)
+	ReplaceObjectAtIndexWithObject(idx uint, object unsafe.Pointer)
+	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
+	ReplaceObjectsInRangeWithObjectsCount(range_ Range, objects unsafe.Pointer, count uint)
+	SetObjectAtIndex(obj unsafe.Pointer, idx uint)
+	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
+	SortUsingComparator(cmptr unsafe.Pointer)
+	SortWithOptionsUsingComparator(opts NSSortOptions, cmptr unsafe.Pointer)
+	SortUsingDescriptors(sortDescriptors []SortDescriptor)
+	SortRangeOptionsUsingComparator(range_ Range, opts NSSortOptions, cmptr unsafe.Pointer)
+	UnionOrderedSet(other unsafe.Pointer)
+	UnionSet(other unsafe.Pointer)
 }
 
 // A dynamic, ordered collection of unique objects.
@@ -85,5 +115,305 @@ func NewMutableOrderedSet() MutableOrderedSet {
 }
 
 
+
+// Returns an initialized mutable ordered set with a given initial capacity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/init(capacity:)
+func NewMutableOrderedSetWithCapacity(numItems uint) MutableOrderedSet {
+	instance := getMutableOrderedSetClass().Alloc()
+	rv := objc.Send[MutableOrderedSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/init(coder:)
+func NewMutableOrderedSetWithCoder(coder ICoder) MutableOrderedSet {
+	instance := getMutableOrderedSetClass().Alloc()
+	rv := objc.Send[MutableOrderedSet](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns an mutable ordered set with a given initial capacity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/orderedSetWithCapacity:
+func (mc _MutableOrderedSetClass) OrderedSetWithCapacity(numItems uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("orderedSetWithCapacity:"), numItems)
+	return rv
+}
+
+
+// Appends a given object to the end of the mutable ordered set, if it is not already a member.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/add(_:)
+func (m_ MutableOrderedSet) AddObject(object unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addObject:"), object)
+}
+
+
+// Appends the given number of objects from a given C array to the end of the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/add(_:count:)
+func (m_ MutableOrderedSet) AddObjectsCount(objects unsafe.Pointer, count uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addObjects:count:"), objects, count)
+}
+
+
+// Appends to the end of the mutable ordered set each object contained in a given array that is not already a member.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/addObjects(from:)
+func (m_ MutableOrderedSet) AddObjectsFromArray(array []objc.ID) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), array)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/applyDifference:
+func (m_ MutableOrderedSet) ApplyDifference(difference unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("applyDifference:"), difference)
+}
+
+
+// Exchanges the object at the specified index with the object at the other index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/exchangeObject(at:withObjectAt:)
+func (m_ MutableOrderedSet) ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint, idx2 uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("exchangeObjectAtIndex:withObjectAtIndex:"), idx1, idx2)
+}
+
+
+// Evaluates a given predicate against the mutable ordered set’s content and leaves only objects that match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/filter(using:)
+func (m_ MutableOrderedSet) FilterUsingPredicate(p IPredicate) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("filterUsingPredicate:"), p)
+}
+
+
+// Inserts the objects in the array at the specified indexes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/insert(_:at:)-3ncnm
+func (m_ MutableOrderedSet) InsertObjectsAtIndexes(objects []objc.ID, indexes IIndexSet) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("insertObjects:atIndexes:"), objects, indexes)
+}
+
+
+// Inserts the given object at the specified index of the mutable ordered set, if it is not already a member.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/insert(_:at:)-7qg51
+func (m_ MutableOrderedSet) InsertObjectAtIndex(object unsafe.Pointer, idx uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("insertObject:atIndex:"), object, idx)
+}
+
+
+// Removes from the receiving ordered set each object that isn’t a member of another ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/intersect(_:)
+func (m_ MutableOrderedSet) IntersectOrderedSet(other unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("intersectOrderedSet:"), other)
+}
+
+
+// Removes from the receiving ordered set each object that isn’t a member of another set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/intersectSet(_:)
+func (m_ MutableOrderedSet) IntersectSet(other unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("intersectSet:"), other)
+}
+
+
+// Removes each object in another given ordered set from the receiving mutable ordered set, if present.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/minus(_:)
+func (m_ MutableOrderedSet) MinusOrderedSet(other unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("minusOrderedSet:"), other)
+}
+
+
+// Removes each object in another given set from the receiving mutable ordered set, if present.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/minusSet(_:)
+func (m_ MutableOrderedSet) MinusSet(other unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("minusSet:"), other)
+}
+
+
+// Moves the objects at the specified indexes to the new location.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/moveObjects(at:to:)
+func (m_ MutableOrderedSet) MoveObjectsAtIndexesToIndex(indexes IIndexSet, idx uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("moveObjectsAtIndexes:toIndex:"), indexes, idx)
+}
+
+
+// Removes a given object from the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/remove(_:)
+func (m_ MutableOrderedSet) RemoveObject(object unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeObject:"), object)
+}
+
+
+// Removes all the objects from the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeAllObjects()
+func (m_ MutableOrderedSet) RemoveAllObjects() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllObjects"))
+}
+
+
+// Removes a the object at the specified index from the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObject(at:)
+func (m_ MutableOrderedSet) RemoveObjectAtIndex(idx uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectAtIndex:"), idx)
+}
+
+
+// Removes the objects at the specified indexes from the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(at:)
+func (m_ MutableOrderedSet) RemoveObjectsAtIndexes(indexes IIndexSet) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsAtIndexes:"), indexes)
+}
+
+
+// Removes the objects in the array from the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-8h2kh
+func (m_ MutableOrderedSet) RemoveObjectsInArray(array []objc.ID) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInArray:"), array)
+}
+
+
+// Removes from the mutable ordered set each of the objects within a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-9jkis
+func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInRange:"), range_)
+}
+
+
+// Replaces the object at the specified index with the new object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObject(at:with:)
+func (m_ MutableOrderedSet) ReplaceObjectAtIndexWithObject(idx uint, object unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectAtIndex:withObject:"), idx, object)
+}
+
+
+// Replaces the objects at the specified indexes with the new objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(at:with:)
+func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
+}
+
+
+// Replaces the objects in the receiving mutable ordered set at the range with the specified number of objects from a given C array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(in:with:count:)
+func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range, objects unsafe.Pointer, count uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjects:count:"), range_, objects, count)
+}
+
+
+// Appends or replaces the object at the specified index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/setObject(_:at:)
+func (m_ MutableOrderedSet) SetObjectAtIndex(obj unsafe.Pointer, idx uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndex:"), obj, idx)
+}
+
+
+// Replaces the given object at the specified index of the mutable ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/setObject:atIndexedSubscript:
+func (m_ MutableOrderedSet) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), obj, idx)
+}
+
+
+// Sorts the mutable ordered set using the comparison method specified by the comparator block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(comparator:)
+func (m_ MutableOrderedSet) SortUsingComparator(cmptr unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingComparator:"), cmptr)
+}
+
+
+// Sorts the mutable ordered set using the specified options and the comparison method specified by a given comparator block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(options:usingComparator:)
+func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts NSSortOptions, cmptr unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("sortWithOptions:usingComparator:"), opts, cmptr)
+}
+
+
+// Sorts the receiving ordered set using a given array of sort descriptors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(using:)
+func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []SortDescriptor) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
+}
+
+
+// Sorts the specified range of the mutable ordered set using the specified options and the comparison method specified by a given comparator block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sortRange(_:options:usingComparator:)
+func (m_ MutableOrderedSet) SortRangeOptionsUsingComparator(range_ Range, opts NSSortOptions, cmptr unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("sortRange:options:usingComparator:"), range_, opts, cmptr)
+}
+
+
+// Adds each object in another given ordered set to the receiving mutable ordered set, if not present.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/union(_:)
+func (m_ MutableOrderedSet) UnionOrderedSet(other unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("unionOrderedSet:"), other)
+}
+
+
+// Adds each object in another given set to the receiving mutable ordered set, if not present.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/unionSet(_:)
+func (m_ MutableOrderedSet) UnionSet(other unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("unionSet:"), other)
+}
 
 

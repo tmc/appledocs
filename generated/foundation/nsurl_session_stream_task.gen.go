@@ -29,14 +29,14 @@ type _URLSessionStreamTaskClass struct {
 // An interface definition for the [URLSessionStreamTask] class.
 type IURLSessionStreamTask interface {
 	IURLSessionTask
+	HttpShouldUsePipelining() bool
+	SetHttpShouldUsePipelining(value bool)
 	CaptureStreams()
 	CloseRead()
 	CloseWrite()
 	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout TimeInterval, completionHandler unsafe.Pointer)
 	StartSecureConnection()
 	WriteDataTimeoutCompletionHandler(data IData, timeout TimeInterval, completionHandler unsafe.Pointer)
-	HttpShouldUsePipelining() bool
-	SetHttpShouldUsePipelining(value bool)
 }
 
 // A URL session task that is stream-based.

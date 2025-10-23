@@ -94,7 +94,7 @@ func NewTimedMetadataGroup() TimedMetadataGroup {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
 func (t_ TimedMetadataGroup) Items() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](t_.ID, objc.Sel("items"))
+	rv := objc.Send[MetadataItem](t_.ID, objc.Sel("items"))
 	return rv
 }
 

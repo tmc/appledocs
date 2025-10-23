@@ -32,7 +32,6 @@ type _AssetClass struct {
 // An interface definition for the [Asset] class.
 type IAsset interface {
 	objectivec.IObject
-	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer)
 	AllMediaSelections() IAVMediaSelection
 	SetAllMediaSelections(value IAVMediaSelection)
 	AvailableChapterLocales() foundation.Locale
@@ -89,10 +88,11 @@ type IAsset interface {
 	SetProvidesPreciseDurationAndTiming(value bool)
 	ReferenceRestrictions() unsafe.Pointer
 	SetReferenceRestrictions(value unsafe.Pointer)
-	TrackGroups() AssetTrackGroup
-	SetTrackGroups(value AssetTrackGroup)
-	Tracks() AssetTrack
-	SetTracks(value AssetTrack)
+	TrackGroups() IAVAssetTrackGroup
+	SetTrackGroups(value IAVAssetTrackGroup)
+	Tracks() IAVAssetTrack
+	SetTracks(value IAVAssetTrack)
+	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
 // An object that models timed audiovisual media.
@@ -162,7 +162,7 @@ func (a_ Asset) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacte
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/allmediaselections
 func (a_ Asset) AllMediaSelections() IAVMediaSelection {
-	rv := objc.Send[AVMediaSelection](a_.ID, objc.Sel("allMediaSelections"))
+	rv := objc.Send[MediaSelection](a_.ID, objc.Sel("allMediaSelections"))
 	return rv
 }
 
@@ -257,7 +257,7 @@ func (a_ Asset) SetCanContainFragments(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
 func (a_ Asset) CommonMetadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("commonMetadata"))
+	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -295,7 +295,7 @@ func (a_ Asset) SetContainsFragments(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/creationdate
 func (a_ Asset) CreationDate() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("creationDate"))
+	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -485,7 +485,7 @@ func (a_ Asset) SetLyrics(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/metadata
 func (a_ Asset) Metadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("metadata"))
+	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -580,7 +580,7 @@ func (a_ Asset) SetPreferredDisplayCriteria(value DisplayCriteria) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/preferredmediaselection
 func (a_ Asset) PreferredMediaSelection() IAVMediaSelection {
-	rv := objc.Send[AVMediaSelection](a_.ID, objc.Sel("preferredMediaSelection"))
+	rv := objc.Send[MediaSelection](a_.ID, objc.Sel("preferredMediaSelection"))
 	return rv
 }
 
@@ -693,7 +693,7 @@ func (a_ Asset) SetReferenceRestrictions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/trackgroups
-func (a_ Asset) TrackGroups() AssetTrackGroup {
+func (a_ Asset) TrackGroups() IAVAssetTrackGroup {
 	rv := objc.Send[AssetTrackGroup](a_.ID, objc.Sel("trackGroups"))
 	return rv
 }
@@ -703,7 +703,7 @@ func (a_ Asset) TrackGroups() AssetTrackGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/trackgroups
-func (a_ Asset) SetTrackGroups(value AssetTrackGroup) {
+func (a_ Asset) SetTrackGroups(value IAVAssetTrackGroup) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackGroups:"), value)
 }
 
@@ -712,7 +712,7 @@ func (a_ Asset) SetTrackGroups(value AssetTrackGroup) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/tracks
-func (a_ Asset) Tracks() AssetTrack {
+func (a_ Asset) Tracks() IAVAssetTrack {
 	rv := objc.Send[AssetTrack](a_.ID, objc.Sel("tracks"))
 	return rv
 }
@@ -722,7 +722,7 @@ func (a_ Asset) Tracks() AssetTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/tracks
-func (a_ Asset) SetTracks(value AssetTrack) {
+func (a_ Asset) SetTracks(value IAVAssetTrack) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTracks:"), value)
 }
 

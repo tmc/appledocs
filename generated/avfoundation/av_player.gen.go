@@ -32,25 +32,6 @@ type _PlayerClass struct {
 // An interface definition for the [Player] class.
 type IPlayer interface {
 	objectivec.IObject
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	CancelPendingPrerolls()
-	CurrentTime() unsafe.Pointer
-	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic unsafe.Pointer) unsafe.Pointer
-	Pause()
-	Play()
-	PlayImmediatelyAtRate(rate float32)
-	PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer)
-	RemoveTimeObserver(observer objectivec.IObject)
-	ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem)
-	SeekToTime(time unsafe.Pointer)
-	SeekToDate(date foundation.NSDate)
-	SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer)
-	SeekToDateCompletionHandler(date foundation.NSDate, completionHandler unsafe.Pointer)
-	SeekToTimeToleranceBeforeToleranceAfter(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer)
-	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
-	SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer)
-	SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
 	ActionAtItemEnd() AVPlayerActionAtItemEnd
 	SetActionAtItemEnd(value AVPlayerActionAtItemEnd)
 	AllowsAirPlayVideo() bool
@@ -117,10 +98,29 @@ type IPlayer interface {
 	SetIsMuted(value bool)
 	IsOutputObscuredDueToInsufficientExternalProtection() bool
 	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool)
-	AllowedAudioSpatializationFormats() unsafe.Pointer
-	SetAllowedAudioSpatializationFormats(value unsafe.Pointer)
+	AllowedAudioSpatializationFormats() AVAudioSpatializationFormats
+	SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats)
 	IsAudioSpatializationAllowed() bool
 	SetIsAudioSpatializationAllowed(value bool)
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	CancelPendingPrerolls()
+	CurrentTime() unsafe.Pointer
+	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic unsafe.Pointer) unsafe.Pointer
+	Pause()
+	Play()
+	PlayImmediatelyAtRate(rate float32)
+	PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer)
+	RemoveTimeObserver(observer objectivec.IObject)
+	ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem)
+	SeekToTime(time unsafe.Pointer)
+	SeekToDate(date foundation.NSDate)
+	SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer)
+	SeekToDateCompletionHandler(date foundation.NSDate, completionHandler unsafe.Pointer)
+	SeekToTimeToleranceBeforeToleranceAfter(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer)
+	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
+	SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer)
+	SetRateTimeAtHostTime(rate float32, itemTime unsafe.Pointer, hostClockTime unsafe.Pointer)
 }
 
 // An object that provides the interface to control the player’s transport behavior.
@@ -581,7 +581,7 @@ func (p_ Player) AvailableHDRModes() AVPlayerHDRMode {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/currentItem
 func (p_ Player) CurrentItem() IAVPlayerItem {
-	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("currentItem"))
+	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("currentItem"))
 	return rv
 }
 
@@ -793,7 +793,7 @@ func (p_ Player) SetNetworkResourcePriority(value AVPlayerNetworkResourcePriorit
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playbackCoordinator
 func (p_ Player) PlaybackCoordinator() IAVPlayerPlaybackCoordinator {
-	rv := objc.Send[AVPlayerPlaybackCoordinator](p_.ID, objc.Sel("playbackCoordinator"))
+	rv := objc.Send[PlayerPlaybackCoordinator](p_.ID, objc.Sel("playbackCoordinator"))
 	return rv
 }
 
@@ -1098,8 +1098,8 @@ func (p_ Player) SetIsOutputObscuredDueToInsufficientExternalProtection(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
-func (p_ Player) AllowedAudioSpatializationFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+func (p_ Player) AllowedAudioSpatializationFormats() AVAudioSpatializationFormats {
+	rv := objc.Send[AudioSpatializationFormats](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
 	return rv
 }
 
@@ -1108,7 +1108,7 @@ func (p_ Player) AllowedAudioSpatializationFormats() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
-func (p_ Player) SetAllowedAudioSpatializationFormats(value unsafe.Pointer) {
+func (p_ Player) SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
 

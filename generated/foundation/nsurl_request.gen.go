@@ -323,7 +323,7 @@ func (u_ URLRequest) SetHttpBody(value IData) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
 func (u_ URLRequest) HttpBodyStream() IInputStream {
-	rv := objc.Send[NSInputStream](u_.ID, objc.Sel("httpBodyStream"))
+	rv := objc.Send[InputStream](u_.ID, objc.Sel("httpBodyStream"))
 	return rv
 }
 

@@ -30,9 +30,6 @@ type _ByteCountFormatterClass struct {
 // An interface definition for the [ByteCountFormatter] class.
 type IByteCountFormatter interface {
 	IFormatter
-	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromMeasurement(measurement unsafe.Pointer) IString
-	StringFromByteCount(byteCount unsafe.Pointer) IString
 	AllowedUnits() NSByteCountFormatterUnits
 	SetAllowedUnits(value NSByteCountFormatterUnits)
 	AllowsNonnumericFormatting() bool
@@ -53,6 +50,9 @@ type IByteCountFormatter interface {
 	SetZeroPadsFractionDigits(value bool)
 	IsAdaptive() bool
 	SetIsAdaptive(value bool)
+	StringForObjectValue(obj objectivec.IObject) IString
+	StringFromMeasurement(measurement unsafe.Pointer) IString
+	StringFromByteCount(byteCount unsafe.Pointer) IString
 }
 
 // A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on).

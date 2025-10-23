@@ -91,7 +91,7 @@ func NewUnitElectricResistance() UnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/kiloohms
 func (uc _UnitElectricResistanceClass) Kiloohms() UnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("kiloohms"))
+	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("kiloohms"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitElectricResistanceClass) Kiloohms() UnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/megaohms
 func (uc _UnitElectricResistanceClass) Megaohms() UnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("megaohms"))
+	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("megaohms"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitElectricResistanceClass) Megaohms() UnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/microohms
 func (uc _UnitElectricResistanceClass) Microohms() UnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("microohms"))
+	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("microohms"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitElectricResistanceClass) Microohms() UnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/milliohms
 func (uc _UnitElectricResistanceClass) Milliohms() UnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("milliohms"))
+	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("milliohms"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitElectricResistanceClass) Milliohms() UnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
 func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
+	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/kiloohms
 func (u_ UnitElectricResistance) Kiloohms() IUnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("kiloohms"))
+	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("kiloohms"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (u_ UnitElectricResistance) Kiloohms() IUnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/megaohms
 func (u_ UnitElectricResistance) Megaohms() IUnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("megaohms"))
+	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("megaohms"))
 	return rv
 }
 
@@ -156,7 +156,7 @@ func (u_ UnitElectricResistance) Megaohms() IUnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/microohms
 func (u_ UnitElectricResistance) Microohms() IUnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("microohms"))
+	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("microohms"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (u_ UnitElectricResistance) Microohms() IUnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/milliohms
 func (u_ UnitElectricResistance) Milliohms() IUnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("milliohms"))
+	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("milliohms"))
 	return rv
 }
 
@@ -176,7 +176,7 @@ func (u_ UnitElectricResistance) Milliohms() IUnitElectricResistance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
 func (u_ UnitElectricResistance) Ohms() IUnitElectricResistance {
-	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("ohms"))
+	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("ohms"))
 	return rv
 }
 

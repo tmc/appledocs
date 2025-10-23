@@ -3,6 +3,8 @@ package main
 import (
 	"strings"
 	"text/template"
+
+	"github.com/tmc/appledocs/occ2go"
 )
 
 // currentFrameworkClasses holds the set of class names (after prefix stripping) defined in the current framework
@@ -103,7 +105,7 @@ var templateFuncs = template.FuncMap{
 	"contains":                    sliceContainsString,
 	"capitalize":                  capitalizeFirst,
 	"propertyConflictsWithParent": propertyConflictsWithParent,
-	"typeToInterfaceType":         typeToInterfaceType,
+	// Note: typeToInterfaceType is now provided by GeneratorFuncs.TypeToInterfaceType
 
 	// Import merging
 	"mergeImports": mergeImports,
@@ -133,6 +135,7 @@ var templateFuncs = template.FuncMap{
 	"stripObjCPrefix":   stripObjCPrefix,
 	"cleanConstantName": cleanConstantName,
 	"strContains":       stringsContains,
+	"enumUnderlyingType": enumUnderlyingType,
 }
 
 // FunctionData represents data for function template rendering.
@@ -258,4 +261,30 @@ func isValidGoIdentifier(s string) bool {
 	}
 
 	return true
+}
+
+// enumUnderlyingType determines the appropriate Go type for an enum.
+// It's data-driven: first checks the enum's BaseType from documentation,
+// then falls back to inspecting actual enum values for negative numbers.
+func enumUnderlyingType(enum *occ2go.ParsedEnum) string {
+	// Data-driven approach: use the BaseType from documentation if available
+	if enum.BaseType != "" {
+		switch enum.BaseType {
+		case "NSInteger", "NSInt", "int", "Int", "signed long", "signed int", "int32_t", "int64_t":
+			return "int"
+		case "NSUInteger", "NSUInt", "uint", "UInt", "unsigned long", "unsigned int", "uint32_t", "uint64_t":
+			return "uint"
+		}
+	}
+
+	// Fallback: inspect actual values for negative numbers
+	// This handles cases where BaseType is not set or is ambiguous
+	for _, enumCase := range enum.Cases {
+		if enumCase.IntValue < 0 {
+			return "int"
+		}
+	}
+
+	// Default to uint for non-negative enums
+	return "uint"
 }

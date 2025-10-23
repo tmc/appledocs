@@ -33,7 +33,6 @@ var (
 // IObject is the root interface for all Objective-C objects.
 // It provides access to the underlying objc.ID.
 type IObject interface {
-	GetID() ID
 }
 
 var (
@@ -79,4 +78,3 @@ func String(s string) ID {
 	initOnce.Do(initStringHelpers)
 	return Send[ID](ID(nsStringClass), selStringWithUTF8, s)
 }
-

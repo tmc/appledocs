@@ -69,6 +69,10 @@ func isPropertySetter(method MethodInfo) bool {
 // typeToInterfaceType is a template wrapper function that calls Generator.TypeToInterfaceType.
 // The Generator is expected to be in the template's root context (.).
 // This wrapper extracts the Generator from the template data and delegates to the method.
+// typeToInterfaceType is a legacy stub function.
+// DEPRECATED: This function is no longer registered in templateFuncs.
+// Templates should use GeneratorFuncs.TypeToInterfaceType() instead, which is
+// registered via .Funcs(gf.Funcs()) in generator.go.
 func typeToInterfaceType(gen interface{}, goType string) string {
 	if g, ok := gen.(*Generator); ok {
 		return g.TypeToInterfaceType(goType)

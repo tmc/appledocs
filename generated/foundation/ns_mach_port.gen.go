@@ -30,11 +30,11 @@ type _MachPortClass struct {
 // An interface definition for the [MachPort] class.
 type IMachPort interface {
 	IPort
+	MachPort() uint32
 	Delegate() objc.ID
 	RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
 	ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
 	SetDelegate(anObject objectivec.IObject)
-	MachPort() uint32
 }
 
 // A port that can be used as an endpoint for distributed object connections (or raw messaging).

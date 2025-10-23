@@ -30,6 +30,14 @@ type _ScriptClassDescriptionClass struct {
 // An interface definition for the [ScriptClassDescription] class.
 type IScriptClassDescription interface {
 	IClassDescription
+	AppleEventCode() unsafe.Pointer
+	ClassName() string
+	DefaultSubcontainerAttributeKey() string
+	ImplementationClassName() string
+	SuiteName() string
+	SuperclassDescription() IScriptClassDescription
+	Superclass() IScriptClassDescription
+	SetSuperclass(value IScriptClassDescription)
 	AppleEventCodeForKey(key string) unsafe.Pointer
 	ClassDescriptionForKey(key string) IScriptClassDescription
 	HasOrderedToManyRelationshipForKey(key string) bool
@@ -42,14 +50,6 @@ type IScriptClassDescription interface {
 	SelectorForCommand(commandDescription IScriptCommandDescription) objc.SEL
 	SupportsCommand(commandDescription IScriptCommandDescription) bool
 	TypeForKey(key string) IString
-	AppleEventCode() unsafe.Pointer
-	ClassName() string
-	DefaultSubcontainerAttributeKey() string
-	ImplementationClassName() string
-	SuiteName() string
-	SuperclassDescription() IScriptClassDescription
-	Superclass() IScriptClassDescription
-	SetSuperclass(value IScriptClassDescription)
 }
 
 // A scriptable class that a macOS app supports.
@@ -315,7 +315,7 @@ func (s_ ScriptClassDescription) SuiteName() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/superclass
 func (s_ ScriptClassDescription) SuperclassDescription() IScriptClassDescription {
-	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("superclassDescription"))
+	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("superclassDescription"))
 	return rv
 }
 
@@ -325,7 +325,7 @@ func (s_ ScriptClassDescription) SuperclassDescription() IScriptClassDescription
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
 func (s_ ScriptClassDescription) Superclass() IScriptClassDescription {
-	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("superclass"))
+	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("superclass"))
 	return rv
 }
 

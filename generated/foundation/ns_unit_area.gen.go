@@ -91,7 +91,7 @@ func NewUnitArea() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/acres
 func (uc _UnitAreaClass) Acres() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("acres"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("acres"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitAreaClass) Acres() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/ares
 func (uc _UnitAreaClass) Ares() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("ares"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("ares"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitAreaClass) Ares() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/hectares
 func (uc _UnitAreaClass) Hectares() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("hectares"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("hectares"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitAreaClass) Hectares() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareCentimeters
 func (uc _UnitAreaClass) SquareCentimeters() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareCentimeters"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareCentimeters"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitAreaClass) SquareCentimeters() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareFeet
 func (uc _UnitAreaClass) SquareFeet() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareFeet"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareFeet"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitAreaClass) SquareFeet() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareInches
 func (uc _UnitAreaClass) SquareInches() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareInches"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareInches"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitAreaClass) SquareInches() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareKilometers
 func (uc _UnitAreaClass) SquareKilometers() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareKilometers"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareKilometers"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (uc _UnitAreaClass) SquareKilometers() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMegameters
 func (uc _UnitAreaClass) SquareMegameters() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareMegameters"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMegameters"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (uc _UnitAreaClass) SquareMegameters() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMeters
 func (uc _UnitAreaClass) SquareMeters() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareMeters"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMeters"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (uc _UnitAreaClass) SquareMeters() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMicrometers
 func (uc _UnitAreaClass) SquareMicrometers() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareMicrometers"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMicrometers"))
 	return rv
 }
 
@@ -181,7 +181,7 @@ func (uc _UnitAreaClass) SquareMicrometers() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMiles
 func (uc _UnitAreaClass) SquareMiles() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareMiles"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMiles"))
 	return rv
 }
 
@@ -190,7 +190,7 @@ func (uc _UnitAreaClass) SquareMiles() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMillimeters
 func (uc _UnitAreaClass) SquareMillimeters() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareMillimeters"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMillimeters"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (uc _UnitAreaClass) SquareMillimeters() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareNanometers
 func (uc _UnitAreaClass) SquareNanometers() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareNanometers"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareNanometers"))
 	return rv
 }
 
@@ -208,7 +208,7 @@ func (uc _UnitAreaClass) SquareNanometers() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareYards
 func (uc _UnitAreaClass) SquareYards() UnitArea {
-	rv := objc.Send[NSUnitArea](objc.ID(uc.class), objc.Sel("squareYards"))
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareYards"))
 	return rv
 }
 
@@ -217,7 +217,7 @@ func (uc _UnitAreaClass) SquareYards() UnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/acres
 func (u_ UnitArea) Acres() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("acres"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("acres"))
 	return rv
 }
 
@@ -227,7 +227,7 @@ func (u_ UnitArea) Acres() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/ares
 func (u_ UnitArea) Ares() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("ares"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("ares"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (u_ UnitArea) Ares() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/hectares
 func (u_ UnitArea) Hectares() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("hectares"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("hectares"))
 	return rv
 }
 
@@ -247,7 +247,7 @@ func (u_ UnitArea) Hectares() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareCentimeters
 func (u_ UnitArea) SquareCentimeters() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareCentimeters"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareCentimeters"))
 	return rv
 }
 
@@ -257,7 +257,7 @@ func (u_ UnitArea) SquareCentimeters() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareFeet
 func (u_ UnitArea) SquareFeet() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareFeet"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareFeet"))
 	return rv
 }
 
@@ -267,7 +267,7 @@ func (u_ UnitArea) SquareFeet() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareInches
 func (u_ UnitArea) SquareInches() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareInches"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareInches"))
 	return rv
 }
 
@@ -277,7 +277,7 @@ func (u_ UnitArea) SquareInches() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareKilometers
 func (u_ UnitArea) SquareKilometers() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareKilometers"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareKilometers"))
 	return rv
 }
 
@@ -287,7 +287,7 @@ func (u_ UnitArea) SquareKilometers() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMegameters
 func (u_ UnitArea) SquareMegameters() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareMegameters"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMegameters"))
 	return rv
 }
 
@@ -297,7 +297,7 @@ func (u_ UnitArea) SquareMegameters() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMeters
 func (u_ UnitArea) SquareMeters() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareMeters"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMeters"))
 	return rv
 }
 
@@ -307,7 +307,7 @@ func (u_ UnitArea) SquareMeters() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMicrometers
 func (u_ UnitArea) SquareMicrometers() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareMicrometers"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMicrometers"))
 	return rv
 }
 
@@ -317,7 +317,7 @@ func (u_ UnitArea) SquareMicrometers() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMiles
 func (u_ UnitArea) SquareMiles() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareMiles"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMiles"))
 	return rv
 }
 
@@ -327,7 +327,7 @@ func (u_ UnitArea) SquareMiles() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMillimeters
 func (u_ UnitArea) SquareMillimeters() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareMillimeters"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMillimeters"))
 	return rv
 }
 
@@ -337,7 +337,7 @@ func (u_ UnitArea) SquareMillimeters() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareNanometers
 func (u_ UnitArea) SquareNanometers() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareNanometers"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareNanometers"))
 	return rv
 }
 
@@ -347,7 +347,7 @@ func (u_ UnitArea) SquareNanometers() IUnitArea {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareYards
 func (u_ UnitArea) SquareYards() IUnitArea {
-	rv := objc.Send[NSUnitArea](u_.ID, objc.Sel("squareYards"))
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareYards"))
 	return rv
 }
 

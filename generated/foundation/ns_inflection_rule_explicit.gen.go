@@ -103,7 +103,7 @@ func NewInflectionRuleExplicitWithMorphology(morphology IMorphology) InflectionR
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit/morphology
 func (i_ InflectionRuleExplicit) Morphology() IMorphology {
-	rv := objc.Send[NSMorphology](i_.ID, objc.Sel("morphology"))
+	rv := objc.Send[Morphology](i_.ID, objc.Sel("morphology"))
 	return rv
 }
 

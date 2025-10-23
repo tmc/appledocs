@@ -30,8 +30,7 @@ type _FileAccessIntentClass struct {
 // An interface definition for the [FileAccessIntent] class.
 type IFileAccessIntent interface {
 	objectivec.IObject
-	Url() IURL
-	SetUrl(value IURL)
+	URL() IURL
 }
 
 // The details of a coordinated-read or coordinated-write operation.
@@ -87,12 +86,22 @@ func NewFileAccessIntent() FileAccessIntent {
 
 
 
-// The current URL for the item managed by the file access intent instance. (read-only)
+// Returns a file access intent object for reading the given URL with the provided options.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileaccessintent/url
-func (f_ FileAccessIntent) Url() IURL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("url"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/readingIntent(with:options:)
+func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options NSFileCoordinatorReadingOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("readingIntentWithURL:options:"), url, options)
+	return rv
+}
+
+
+// Returns a file access intent object for writing to the given URL with the provided options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/writingIntent(with:options:)
+func (fc _FileAccessIntentClass) WritingIntentWithURLOptions(url IURL, options NSFileCoordinatorWritingOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("writingIntentWithURL:options:"), url, options)
 	return rv
 }
 
@@ -100,9 +109,10 @@ func (f_ FileAccessIntent) Url() IURL {
 // The current URL for the item managed by the file access intent instance. (read-only)
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileaccessintent/url
-func (f_ FileAccessIntent) SetUrl(value IURL) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/url
+func (f_ FileAccessIntent) URL() IURL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
+	return rv
 }
 
 

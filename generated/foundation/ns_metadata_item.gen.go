@@ -30,8 +30,6 @@ type _MetadataItemClass struct {
 // An interface definition for the [MetadataItem] class.
 type IMetadataItem interface {
 	objectivec.IObject
-	ValueForAttribute(key string) objc.ID
-	ValuesForAttributes(keys []string) IDictionary
 	Attributes() []string
 	NSMetadataItemAcquisitionMakeKey() string
 	NSMetadataItemAcquisitionModelKey() string
@@ -214,6 +212,8 @@ type IMetadataItem interface {
 	NSMetadataUbiquitousSharedItemPermissionsReadWrite() string
 	NSMetadataUbiquitousSharedItemRoleOwner() string
 	NSMetadataUbiquitousSharedItemRoleParticipant() string
+	ValueForAttribute(key string) objc.ID
+	ValuesForAttributes(keys []string) IDictionary
 }
 
 // The metadata associated with a file.

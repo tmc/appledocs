@@ -30,6 +30,10 @@ type _FileCoordinatorClass struct {
 // An interface definition for the [FileCoordinator] class.
 type IFileCoordinator interface {
 	objectivec.IObject
+	PurposeIdentifier() string
+	SetPurposeIdentifier(value string)
+	NSUserCancelledError() int
+	SetNSUserCancelledError(value int)
 	Cancel()
 	CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options NSFileCoordinatorReadingOptions, outError IError, reader unsafe.Pointer)
 	CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL IURL, readingOptions NSFileCoordinatorReadingOptions, writingURL IURL, writingOptions NSFileCoordinatorWritingOptions, outError IError, readerWriter unsafe.Pointer)
@@ -40,10 +44,6 @@ type IFileCoordinator interface {
 	ItemAtURLDidMoveToURL(oldURL IURL, newURL IURL)
 	ItemAtURLWillMoveToURL(oldURL IURL, newURL IURL)
 	PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions NSFileCoordinatorReadingOptions, writingURLs []URL, writingOptions NSFileCoordinatorWritingOptions, outError IError, batchAccessor unsafe.Pointer)
-	PurposeIdentifier() string
-	SetPurposeIdentifier(value string)
-	NSUserCancelledError() int
-	SetNSUserCancelledError(value int)
 }
 
 // An object that coordinates the reading and writing of files and directories among file presenters.

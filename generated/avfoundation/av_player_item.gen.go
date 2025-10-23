@@ -33,58 +33,92 @@ type _PlayerItemClass struct {
 // An interface definition for the [PlayerItem] class.
 type IPlayerItem interface {
 	objectivec.IObject
-	AllowedAudioSpatializationFormats() unsafe.Pointer
-	SetAllowedAudioSpatializationFormats(value unsafe.Pointer)
 	AppliesPerFrameHDRDisplayMetadata() bool
 	SetAppliesPerFrameHDRDisplayMetadata(value bool)
 	Asset() IAVAsset
-	SetAsset(value IAVAsset)
 	AudioMix() IAVAudioMix
 	SetAudioMix(value IAVAudioMix)
 	AudioTimePitchAlgorithm() unsafe.Pointer
 	SetAudioTimePitchAlgorithm(value unsafe.Pointer)
 	AutomaticallyHandlesInterstitialEvents() bool
 	SetAutomaticallyHandlesInterstitialEvents(value bool)
-	AutomaticallyLoadedAssetKeys() string
-	SetAutomaticallyLoadedAssetKeys(value string)
+	AutomaticallyLoadedAssetKeys() []string
 	AutomaticallyPreservesTimeOffsetFromLive() bool
 	SetAutomaticallyPreservesTimeOffsetFromLive(value bool)
 	CanPlayFastForward() bool
-	SetCanPlayFastForward(value bool)
 	CanPlayFastReverse() bool
-	SetCanPlayFastReverse(value bool)
 	CanPlayReverse() bool
-	SetCanPlayReverse(value bool)
 	CanPlaySlowForward() bool
-	SetCanPlaySlowForward(value bool)
 	CanPlaySlowReverse() bool
-	SetCanPlaySlowReverse(value bool)
 	CanStepBackward() bool
-	SetCanStepBackward(value bool)
 	CanStepForward() bool
-	SetCanStepForward(value bool)
 	CanUseNetworkResourcesForLiveStreamingWhilePaused() bool
 	SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value bool)
 	ConfiguredTimeOffsetFromLive() unsafe.Pointer
 	SetConfiguredTimeOffsetFromLive(value unsafe.Pointer)
-	ContentAuthorizationRequestStatus() unsafe.Pointer
-	SetContentAuthorizationRequestStatus(value unsafe.Pointer)
+	ContentAuthorizationRequestStatus() AVContentAuthorizationStatus
 	CurrentMediaSelection() IAVMediaSelection
-	SetCurrentMediaSelection(value IAVMediaSelection)
-	CustomVideoCompositor() unsafe.Pointer
-	SetCustomVideoCompositor(value unsafe.Pointer)
+	CustomVideoCompositor() objc.ID
 	Duration() unsafe.Pointer
-	SetDuration(value unsafe.Pointer)
 	Error() AVError
-	SetError(value AVError)
-	ExternalMetadata() IAVMetadataItem
-	SetExternalMetadata(value IAVMetadataItem)
+	ExternalMetadata() []MetadataItem
+	SetExternalMetadata(value []MetadataItem)
 	ForwardPlaybackEndTime() unsafe.Pointer
 	SetForwardPlaybackEndTime(value unsafe.Pointer)
 	IntegratedTimeline() IAVPlayerItemIntegratedTimeline
-	SetIntegratedTimeline(value IAVPlayerItemIntegratedTimeline)
-	InterstitialTimeRanges() avkit.InterstitialTimeRange
-	SetInterstitialTimeRanges(value avkit.InterstitialTimeRange)
+	InterstitialTimeRanges() []avkit.InterstitialTimeRange
+	ApplicationAuthorizedForPlayback() bool
+	AuthorizationRequiredForPlayback() bool
+	ContentAuthorizedForPlayback() bool
+	PlaybackBufferEmpty() bool
+	PlaybackBufferFull() bool
+	PlaybackLikelyToKeepUp() bool
+	LoadedTimeRanges() []foundation.Value
+	MediaDataCollectors() []unsafe.Pointer
+	NavigationMarkerGroups() []avkit.NavigationMarkersGroup
+	SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup)
+	NextContentProposal() avkit.ContentProposal
+	SetNextContentProposal(value avkit.ContentProposal)
+	NowPlayingInfo() foundation.IDictionary
+	SetNowPlayingInfo(value foundation.IDictionary)
+	Outputs() []unsafe.Pointer
+	PreferredCustomMediaSelectionSchemes() []CustomMediaSelectionScheme
+	SetPreferredCustomMediaSelectionSchemes(value []CustomMediaSelectionScheme)
+	PreferredForwardBufferDuration() foundation.TimeInterval
+	SetPreferredForwardBufferDuration(value foundation.TimeInterval)
+	PreferredMaximumResolution() coregraphics.CGSize
+	SetPreferredMaximumResolution(value coregraphics.CGSize)
+	PreferredMaximumResolutionForExpensiveNetworks() coregraphics.CGSize
+	SetPreferredMaximumResolutionForExpensiveNetworks(value coregraphics.CGSize)
+	PreferredPeakBitRate() float64
+	SetPreferredPeakBitRate(value float64)
+	PreferredPeakBitRateForExpensiveNetworks() float64
+	SetPreferredPeakBitRateForExpensiveNetworks(value float64)
+	PresentationSize() coregraphics.CGSize
+	RecommendedTimeOffsetFromLive() unsafe.Pointer
+	ReversePlaybackEndTime() unsafe.Pointer
+	SetReversePlaybackEndTime(value unsafe.Pointer)
+	SeekableTimeRanges() []foundation.Value
+	SeekingWaitsForVideoCompositionRendering() bool
+	SetSeekingWaitsForVideoCompositionRendering(value bool)
+	StartsOnFirstEligibleVariant() bool
+	SetStartsOnFirstEligibleVariant(value bool)
+	Status() AVPlayerItemStatus
+	TemplatePlayerItem() IAVPlayerItem
+	TextStyleRules() []TextStyleRule
+	SetTextStyleRules(value []TextStyleRule)
+	Timebase() unsafe.Pointer
+	Tracks() []PlayerItemTrack
+	TranslatesPlayerInterstitialEvents() bool
+	SetTranslatesPlayerInterstitialEvents(value bool)
+	VariantPreferences() AVVariantPreferences
+	SetVariantPreferences(value AVVariantPreferences)
+	VideoApertureMode() VideoApertureMode
+	SetVideoApertureMode(value VideoApertureMode)
+	VideoComposition() VideoComposition
+	SetVideoComposition(value VideoComposition)
+	AllowedAudioSpatializationFormats() AVAudioSpatializationFormats
+	SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats)
 	IsApplicationAuthorizedForPlayback() bool
 	SetIsApplicationAuthorizedForPlayback(value bool)
 	IsAudioSpatializationAllowed() bool
@@ -99,60 +133,32 @@ type IPlayerItem interface {
 	SetIsPlaybackBufferFull(value bool)
 	IsPlaybackLikelyToKeepUp() bool
 	SetIsPlaybackLikelyToKeepUp(value bool)
-	LoadedTimeRanges() foundation.Value
-	SetLoadedTimeRanges(value foundation.Value)
-	MediaDataCollectors() unsafe.Pointer
-	SetMediaDataCollectors(value unsafe.Pointer)
-	NavigationMarkerGroups() avkit.NavigationMarkersGroup
-	SetNavigationMarkerGroups(value avkit.NavigationMarkersGroup)
-	NextContentProposal() avkit.ContentProposal
-	SetNextContentProposal(value avkit.ContentProposal)
-	NowPlayingInfo() string
-	SetNowPlayingInfo(value string)
-	Outputs() unsafe.Pointer
-	SetOutputs(value unsafe.Pointer)
-	PreferredCustomMediaSelectionSchemes() unsafe.Pointer
-	SetPreferredCustomMediaSelectionSchemes(value unsafe.Pointer)
-	PreferredForwardBufferDuration() unsafe.Pointer
-	SetPreferredForwardBufferDuration(value unsafe.Pointer)
-	PreferredMaximumResolution() coregraphics.CGSize
-	SetPreferredMaximumResolution(value coregraphics.CGSize)
-	PreferredMaximumResolutionForExpensiveNetworks() coregraphics.CGSize
-	SetPreferredMaximumResolutionForExpensiveNetworks(value coregraphics.CGSize)
-	PreferredPeakBitRate() float64
-	SetPreferredPeakBitRate(value float64)
-	PreferredPeakBitRateForExpensiveNetworks() float64
-	SetPreferredPeakBitRateForExpensiveNetworks(value float64)
-	PresentationSize() coregraphics.CGSize
-	SetPresentationSize(value coregraphics.CGSize)
-	RecommendedTimeOffsetFromLive() unsafe.Pointer
-	SetRecommendedTimeOffsetFromLive(value unsafe.Pointer)
-	ReversePlaybackEndTime() unsafe.Pointer
-	SetReversePlaybackEndTime(value unsafe.Pointer)
-	SeekableTimeRanges() foundation.Value
-	SetSeekableTimeRanges(value foundation.Value)
-	SeekingWaitsForVideoCompositionRendering() bool
-	SetSeekingWaitsForVideoCompositionRendering(value bool)
-	StartsOnFirstEligibleVariant() bool
-	SetStartsOnFirstEligibleVariant(value bool)
-	Status() unsafe.Pointer
-	SetStatus(value unsafe.Pointer)
 	Template() IAVPlayerItem
 	SetTemplate(value IAVPlayerItem)
-	TextStyleRules() unsafe.Pointer
-	SetTextStyleRules(value unsafe.Pointer)
-	Timebase() unsafe.Pointer
-	SetTimebase(value unsafe.Pointer)
-	Tracks() IAVPlayerItemTrack
-	SetTracks(value IAVPlayerItemTrack)
-	TranslatesPlayerInterstitialEvents() bool
-	SetTranslatesPlayerInterstitialEvents(value bool)
-	VariantPreferences() unsafe.Pointer
-	SetVariantPreferences(value unsafe.Pointer)
-	VideoApertureMode() unsafe.Pointer
-	SetVideoApertureMode(value unsafe.Pointer)
-	VideoComposition() VideoComposition
-	SetVideoComposition(value VideoComposition)
+	AccessLog() IPlayerItemAccessLog
+	AddOutput(output unsafe.Pointer)
+	AddMediaDataCollector(collector unsafe.Pointer)
+	CancelContentAuthorizationRequest()
+	CancelPendingSeeks()
+	CancelPlaybackRestrictionsAuthorizationRequest()
+	CurrentDate() foundation.Date
+	CurrentTime() unsafe.Pointer
+	EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary
+	ErrorLog() IPlayerItemErrorLog
+	RemoveMediaDataCollector(collector unsafe.Pointer)
+	RemoveOutput(output unsafe.Pointer)
+	RequestContentAuthorizationAsynchronouslyWithTimeoutIntervalCompletionHandler(timeoutInterval foundation.TimeInterval, handler unsafe.Pointer)
+	RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer)
+	SeekToDateCompletionHandler(date foundation.NSDate, completionHandler unsafe.Pointer) bool
+	SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer)
+	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
+	SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting IAVMediaPresentationSetting, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption IAVMediaSelectionOption, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String
+	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary
+	StepByCount(stepCount int)
 }
 
 // An object that models the timing and presentation state of an asset during playback.
@@ -208,29 +214,301 @@ func NewPlayerItem() PlayerItem {
 
 
 
-// The source audio channel layouts the player item supports for spatialization.
+// Creates a player item for a specified asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
-func (p_ PlayerItem) AllowedAudioSpatializationFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/init(asset:)-87rjl
+func NewPlayerItemWithAsset(asset IAVAsset) PlayerItem {
+	instance := getPlayerItemClass().Alloc()
+	rv := objc.Send[PlayerItem](instance.ID, objc.Sel("initWithAsset:"), asset)
+	rv.Autorelease()
 	return rv
 }
 
 
-// The source audio channel layouts the player item supports for spatialization.
+// Creates a player item with the specified asset and the asset keys to automatically load.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
-func (p_ PlayerItem) SetAllowedAudioSpatializationFormats(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/init(asset:automaticallyLoadedAssetKeys:)-8x4
+func NewPlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automaticallyLoadedAssetKeys []string) PlayerItem {
+	instance := getPlayerItemClass().Alloc()
+	rv := objc.Send[PlayerItem](instance.ID, objc.Sel("initWithAsset:automaticallyLoadedAssetKeys:"), asset, automaticallyLoadedAssetKeys)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a player item with a specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/init(url:)
+func NewPlayerItemWithURL(URL foundation.URL) PlayerItem {
+	instance := getPlayerItemClass().Alloc()
+	rv := objc.Send[PlayerItem](instance.ID, objc.Sel("initWithURL:"), URL)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a new player item for a specified asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/playerItemWithAsset:
+func (pc _PlayerItemClass) PlayerItemWithAsset(asset IAVAsset) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerItemWithAsset:"), asset)
+	return rv
+}
+
+
+// Creates a player item with the specified asset and the asset keys to automatically load.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/playerItemWithAsset:automaticallyLoadedAssetKeys:
+func (pc _PlayerItemClass) PlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automaticallyLoadedAssetKeys []string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerItemWithAsset:automaticallyLoadedAssetKeys:"), asset, automaticallyLoadedAssetKeys)
+	return rv
+}
+
+
+// Returns a new player item with a specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/playerItemWithURL:
+func (pc _PlayerItemClass) PlayerItemWithURL(URL foundation.URL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerItemWithURL:"), URL)
+	return rv
+}
+
+
+// Returns an object that represents a snapshot of the network access log.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/accessLog()
+func (p_ PlayerItem) AccessLog() IPlayerItemAccessLog {
+	rv := objc.Send[PlayerItemAccessLog](p_.ID, objc.Sel("accessLog"))
+	return rv
+}
+
+
+// Adds the specified player item output object to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/add(_:)-16ctk
+func (p_ PlayerItem) AddOutput(output unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addOutput:"), output)
+}
+
+
+// Adds the specified media data collector to the player item’s collection of media collectors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/add(_:)-9l3to
+func (p_ PlayerItem) AddMediaDataCollector(collector unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addMediaDataCollector:"), collector)
+}
+
+
+// Cancels the currently outstanding content authorization request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/cancelContentAuthorizationRequest()
+func (p_ PlayerItem) CancelContentAuthorizationRequest() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("cancelContentAuthorizationRequest"))
+}
+
+
+// Cancels any pending seek requests and invokes the corresponding completion handlers if present.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/cancelPendingSeeks()
+func (p_ PlayerItem) CancelPendingSeeks() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("cancelPendingSeeks"))
+}
+
+
+// Cancels a pending authorization request and dismisses the passcode entry, if displayed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/cancelPlaybackRestrictionsAuthorizationRequest()
+func (p_ PlayerItem) CancelPlaybackRestrictionsAuthorizationRequest() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("cancelPlaybackRestrictionsAuthorizationRequest"))
+}
+
+
+// Returns the current time of the item as a date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentDate()
+func (p_ PlayerItem) CurrentDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
+	return rv
+}
+
+
+// Returns the current time of the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentTime()
+func (p_ PlayerItem) CurrentTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
+	return rv
+}
+
+
+// Indicates the media presentation settings with media characteristics that are possessed by the currently selected AVMediaSelectionOption in the specified AVMediaSelectionGroup.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/effectiveMediaPresentationSettings(for:)
+func (p_ PlayerItem) EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("effectiveMediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
+	return rv
+}
+
+
+// Returns an object that represents a snapshot of the error log.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/errorLog()
+func (p_ PlayerItem) ErrorLog() IPlayerItemErrorLog {
+	rv := objc.Send[PlayerItemErrorLog](p_.ID, objc.Sel("errorLog"))
+	return rv
+}
+
+
+// Removes the specified media data collector from the player item’s collection of media collectors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/remove(_:)-29iuz
+func (p_ PlayerItem) RemoveMediaDataCollector(collector unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("removeMediaDataCollector:"), collector)
+}
+
+
+// Removes the specified player item output object from the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/remove(_:)-46b1r
+func (p_ PlayerItem) RemoveOutput(output unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("removeOutput:"), output)
+}
+
+
+// Presents the user the opportunity to authorize the content for playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)
+func (p_ PlayerItem) RequestContentAuthorizationAsynchronouslyWithTimeoutIntervalCompletionHandler(timeoutInterval foundation.TimeInterval, handler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"), timeoutInterval, handler)
+}
+
+
+// Determines whether this item is subject to parental restrictions, and, if so, prompts the user to enter the restrictions passcode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/requestPlaybackRestrictionsAuthorization(_:)
+func (p_ PlayerItem) RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("requestPlaybackRestrictionsAuthorization:"), completion)
+}
+
+
+// Sets the current playback time to the time specified by the date object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seek(to:completionHandler:)-1dibq
+func (p_ PlayerItem) SeekToDateCompletionHandler(date foundation.NSDate, completionHandler unsafe.Pointer) bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("seekToDate:completionHandler:"), date, completionHandler)
+	return rv
+}
+
+
+// Sets the current playback time to the specified time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seek(to:completionHandler:)-91gnw
+func (p_ PlayerItem) SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:completionHandler:"), time, completionHandler)
+}
+
+
+// Sets the current playback time within a specified time bound and invokes the specified block when the seek operation completes or is interrupted.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seek(to:toleranceBefore:toleranceAfter:completionHandler:)
+func (p_ PlayerItem) SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:toleranceBefore:toleranceAfter:completionHandler:"), time, toleranceBefore, toleranceAfter, completionHandler)
+}
+
+
+// When the associated AVPlayer’s appliesMediaSelectionCriteriaAutomatically property is set to YES, configures the player item to prefer a particular presentation setting, replacing any previous preference for settings of the same media presentation selector.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/select(_:for:)
+func (p_ PlayerItem) SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting IAVMediaPresentationSetting, mediaSelectionGroup IAVMediaSelectionGroup) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationSetting:forMediaSelectionGroup:"), mediaPresentationSetting, mediaSelectionGroup)
+}
+
+
+// Selects a media option in a given media selection group and deselects all other options in that group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/select(_:in:)
+func (p_ PlayerItem) SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption IAVMediaSelectionOption, mediaSelectionGroup IAVMediaSelectionGroup) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaOption:inMediaSelectionGroup:"), mediaSelectionOption, mediaSelectionGroup)
+}
+
+
+// Selects the media option in the specified media selection group that best matches the receiver’s automatic selection criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectMediaOptionAutomatically(in:)
+func (p_ PlayerItem) SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaOptionAutomaticallyInMediaSelectionGroup:"), mediaSelectionGroup)
+}
+
+
+// When the associated AVPlayer’s appliesMediaSelectionCriteriaAutomatically property is set to YES, configures the player item to prefer a particular language, replacing any previous preference for available languages of the specified group’s custom media selection scheme.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectMediaPresentationLanguage(_:for:)
+func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup IAVMediaSelectionGroup) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationLanguage:forMediaSelectionGroup:"), objc.String(language), mediaSelectionGroup)
+}
+
+
+// Returns the selected media presentation language for the specified media selection group, if any language has previously been selected via use of -selectMediaPresentationLanguages:forMediaSelectionGroup:.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationLanguage(for:)
+func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
+	return rv
+}
+
+
+// Indicates the media presentation settings that have most recently been selected for each AVMediaPresentationSelector of the AVCustomMediaSelectionScheme of the specified AVMediaSelectionGroup.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationSettings(for:)
+func (p_ PlayerItem) SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("selectedMediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
+	return rv
+}
+
+
+// Moves the player item’s current time forward or backward by a specified number of steps.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/step(byCount:)
+func (p_ PlayerItem) StepByCount(stepCount int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("stepByCount:"), stepCount)
 }
 
 
 // A Boolean value that indicates whether the player item applies per-frame HDR display metadata during playback.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/appliesperframehdrdisplaymetadata
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/appliesPerFrameHDRDisplayMetadata
 func (p_ PlayerItem) AppliesPerFrameHDRDisplayMetadata() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("appliesPerFrameHDRDisplayMetadata"))
 	return rv
@@ -240,7 +518,7 @@ func (p_ PlayerItem) AppliesPerFrameHDRDisplayMetadata() bool {
 // A Boolean value that indicates whether the player item applies per-frame HDR display metadata during playback.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/appliesperframehdrdisplaymetadata
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/appliesPerFrameHDRDisplayMetadata
 func (p_ PlayerItem) SetAppliesPerFrameHDRDisplayMetadata(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppliesPerFrameHDRDisplayMetadata:"), value)
 }
@@ -249,28 +527,19 @@ func (p_ PlayerItem) SetAppliesPerFrameHDRDisplayMetadata(value bool) {
 // The asset provided during initialization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/asset
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/asset
 func (p_ PlayerItem) Asset() IAVAsset {
-	rv := objc.Send[AVAsset](p_.ID, objc.Sel("asset"))
+	rv := objc.Send[Asset](p_.ID, objc.Sel("asset"))
 	return rv
-}
-
-
-// The asset provided during initialization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/asset
-func (p_ PlayerItem) SetAsset(value IAVAsset) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAsset:"), value)
 }
 
 
 // The audio mix parameters to be applied during playback.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiomix
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/audioMix
 func (p_ PlayerItem) AudioMix() IAVAudioMix {
-	rv := objc.Send[AVAudioMix](p_.ID, objc.Sel("audioMix"))
+	rv := objc.Send[AudioMix](p_.ID, objc.Sel("audioMix"))
 	return rv
 }
 
@@ -278,7 +547,7 @@ func (p_ PlayerItem) AudioMix() IAVAudioMix {
 // The audio mix parameters to be applied during playback.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiomix
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/audioMix
 func (p_ PlayerItem) SetAudioMix(value IAVAudioMix) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioMix:"), value)
 }
@@ -287,7 +556,7 @@ func (p_ PlayerItem) SetAudioMix(value IAVAudioMix) {
 // The processing algorithm used to manage audio pitch for scaled audio edits.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiotimepitchalgorithm
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/audioTimePitchAlgorithm
 func (p_ PlayerItem) AudioTimePitchAlgorithm() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
@@ -297,7 +566,7 @@ func (p_ PlayerItem) AudioTimePitchAlgorithm() unsafe.Pointer {
 // The processing algorithm used to manage audio pitch for scaled audio edits.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiotimepitchalgorithm
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/audioTimePitchAlgorithm
 func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
@@ -306,7 +575,7 @@ func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
 // A Boolean value that indicates whether the player item automatically plays interstitial events according to server-side directives.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyhandlesinterstitialevents
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyHandlesInterstitialEvents
 func (p_ PlayerItem) AutomaticallyHandlesInterstitialEvents() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticallyHandlesInterstitialEvents"))
 	return rv
@@ -316,7 +585,7 @@ func (p_ PlayerItem) AutomaticallyHandlesInterstitialEvents() bool {
 // A Boolean value that indicates whether the player item automatically plays interstitial events according to server-side directives.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyhandlesinterstitialevents
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyHandlesInterstitialEvents
 func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyHandlesInterstitialEvents:"), value)
 }
@@ -325,26 +594,17 @@ func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool) {
 // The array of asset keys to be automatically loaded before the player item is ready to play.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyloadedassetkeys
-func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyLoadedAssetKeys
+func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
 	return rv
-}
-
-
-// The array of asset keys to be automatically loaded before the player item is ready to play.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyloadedassetkeys
-func (p_ PlayerItem) SetAutomaticallyLoadedAssetKeys(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyLoadedAssetKeys:"), objc.String(value))
 }
 
 
 // A Boolean value that indicates whether the player preserves its time offset from the live time after a buffering operation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallypreservestimeoffsetfromlive
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyPreservesTimeOffsetFromLive
 func (p_ PlayerItem) AutomaticallyPreservesTimeOffsetFromLive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticallyPreservesTimeOffsetFromLive"))
 	return rv
@@ -354,7 +614,7 @@ func (p_ PlayerItem) AutomaticallyPreservesTimeOffsetFromLive() bool {
 // A Boolean value that indicates whether the player preserves its time offset from the live time after a buffering operation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallypreservestimeoffsetfromlive
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyPreservesTimeOffsetFromLive
 func (p_ PlayerItem) SetAutomaticallyPreservesTimeOffsetFromLive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyPreservesTimeOffsetFromLive:"), value)
 }
@@ -363,140 +623,77 @@ func (p_ PlayerItem) SetAutomaticallyPreservesTimeOffsetFromLive(value bool) {
 // A Boolean value that indicates whether the item can be fast forwarded.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayfastforward
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlayFastForward
 func (p_ PlayerItem) CanPlayFastForward() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlayFastForward"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item can be fast forwarded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayfastforward
-func (p_ PlayerItem) SetCanPlayFastForward(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanPlayFastForward:"), value)
-}
-
-
 // A Boolean value that indicates whether the item can be quickly reversed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayfastreverse
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlayFastReverse
 func (p_ PlayerItem) CanPlayFastReverse() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlayFastReverse"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item can be quickly reversed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayfastreverse
-func (p_ PlayerItem) SetCanPlayFastReverse(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanPlayFastReverse:"), value)
-}
-
-
 // A Boolean value that indicates whether the item can play in reverse.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayreverse
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlayReverse
 func (p_ PlayerItem) CanPlayReverse() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlayReverse"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item can play in reverse.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayreverse
-func (p_ PlayerItem) SetCanPlayReverse(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanPlayReverse:"), value)
-}
-
-
 // A Boolean value that indicates whether the item can play slower than normal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayslowforward
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlaySlowForward
 func (p_ PlayerItem) CanPlaySlowForward() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlaySlowForward"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item can play slower than normal.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayslowforward
-func (p_ PlayerItem) SetCanPlaySlowForward(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanPlaySlowForward:"), value)
-}
-
-
 // A Boolean value that indicates whether the item can play slowly backward.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayslowreverse
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlaySlowReverse
 func (p_ PlayerItem) CanPlaySlowReverse() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlaySlowReverse"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item can play slowly backward.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canplayslowreverse
-func (p_ PlayerItem) SetCanPlaySlowReverse(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanPlaySlowReverse:"), value)
-}
-
-
 // A Boolean value that indicates whether the item supports stepping backward.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canstepbackward
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canStepBackward
 func (p_ PlayerItem) CanStepBackward() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canStepBackward"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item supports stepping backward.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canstepbackward
-func (p_ PlayerItem) SetCanStepBackward(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanStepBackward:"), value)
-}
-
-
 // A Boolean value that indicates whether the item supports stepping forward.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canstepforward
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canStepForward
 func (p_ PlayerItem) CanStepForward() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canStepForward"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the item supports stepping forward.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canstepforward
-func (p_ PlayerItem) SetCanStepForward(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCanStepForward:"), value)
-}
-
-
 // A Boolean value that indicates whether the player item can use network resources to keep the playback state up to date while paused.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canusenetworkresourcesforlivestreamingwhilepaused
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canUseNetworkResourcesForLiveStreamingWhilePaused
 func (p_ PlayerItem) CanUseNetworkResourcesForLiveStreamingWhilePaused() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canUseNetworkResourcesForLiveStreamingWhilePaused"))
 	return rv
@@ -506,7 +703,7 @@ func (p_ PlayerItem) CanUseNetworkResourcesForLiveStreamingWhilePaused() bool {
 // A Boolean value that indicates whether the player item can use network resources to keep the playback state up to date while paused.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/canusenetworkresourcesforlivestreamingwhilepaused
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canUseNetworkResourcesForLiveStreamingWhilePaused
 func (p_ PlayerItem) SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanUseNetworkResourcesForLiveStreamingWhilePaused:"), value)
 }
@@ -515,7 +712,7 @@ func (p_ PlayerItem) SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value 
 // A time value that indicates the offset from the live time to start playback, or resume playback after a seek to positive infinity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/configuredtimeoffsetfromlive
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/configuredTimeOffsetFromLive
 func (p_ PlayerItem) ConfiguredTimeOffsetFromLive() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuredTimeOffsetFromLive"))
 	return rv
@@ -525,7 +722,7 @@ func (p_ PlayerItem) ConfiguredTimeOffsetFromLive() unsafe.Pointer {
 // A time value that indicates the offset from the live time to start playback, or resume playback after a seek to positive infinity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/configuredtimeoffsetfromlive
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/configuredTimeOffsetFromLive
 func (p_ PlayerItem) SetConfiguredTimeOffsetFromLive(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguredTimeOffsetFromLive:"), value)
 }
@@ -534,47 +731,19 @@ func (p_ PlayerItem) SetConfiguredTimeOffsetFromLive(value unsafe.Pointer) {
 // The status of the most recent content authorization request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/contentauthorizationrequeststatus
-func (p_ PlayerItem) ContentAuthorizationRequestStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentAuthorizationRequestStatus"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus
+func (p_ PlayerItem) ContentAuthorizationRequestStatus() AVContentAuthorizationStatus {
+	rv := objc.Send[ContentAuthorizationStatus](p_.ID, objc.Sel("contentAuthorizationRequestStatus"))
 	return rv
-}
-
-
-// The status of the most recent content authorization request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/contentauthorizationrequeststatus
-func (p_ PlayerItem) SetContentAuthorizationRequestStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentAuthorizationRequestStatus:"), value)
 }
 
 
 // The current media selections for each of the receiver’s media selection groups.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/currentmediaselection
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentMediaSelection
 func (p_ PlayerItem) CurrentMediaSelection() IAVMediaSelection {
-	rv := objc.Send[AVMediaSelection](p_.ID, objc.Sel("currentMediaSelection"))
-	return rv
-}
-
-
-// The current media selections for each of the receiver’s media selection groups.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/currentmediaselection
-func (p_ PlayerItem) SetCurrentMediaSelection(value IAVMediaSelection) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentMediaSelection:"), value)
-}
-
-
-// The custom video compositor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/customvideocompositor
-func (p_ PlayerItem) CustomVideoCompositor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("customVideoCompositor"))
+	rv := objc.Send[MediaSelection](p_.ID, objc.Sel("currentMediaSelection"))
 	return rv
 }
 
@@ -582,56 +751,39 @@ func (p_ PlayerItem) CustomVideoCompositor() unsafe.Pointer {
 // The custom video compositor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/customvideocompositor
-func (p_ PlayerItem) SetCustomVideoCompositor(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomVideoCompositor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/customVideoCompositor
+func (p_ PlayerItem) CustomVideoCompositor() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("customVideoCompositor"))
+	return rv
 }
 
 
 // The duration of the item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/duration
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/duration
 func (p_ PlayerItem) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// The duration of the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/duration
-func (p_ PlayerItem) SetDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
-}
-
-
 // The error that caused the player item to fail.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/error
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/error
 func (p_ PlayerItem) Error() AVError {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// The error that caused the player item to fail.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/error
-func (p_ PlayerItem) SetError(value AVError) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
-}
-
-
 // An array of additional metadata for the player item to supplement or replace an asset’s embedded metadata.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/externalmetadata
-func (p_ PlayerItem) ExternalMetadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](p_.ID, objc.Sel("externalMetadata"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/externalMetadata
+func (p_ PlayerItem) ExternalMetadata() []MetadataItem {
+	rv := objc.Send[[]MetadataItem](p_.ID, objc.Sel("externalMetadata"))
 	return rv
 }
 
@@ -639,16 +791,26 @@ func (p_ PlayerItem) ExternalMetadata() IAVMetadataItem {
 // An array of additional metadata for the player item to supplement or replace an asset’s embedded metadata.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/externalmetadata
-func (p_ PlayerItem) SetExternalMetadata(value IAVMetadataItem) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalMetadata:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/externalMetadata
+func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalMetadata:"), nsArray)
 }
 
 
 // The time at which forward playback ends.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/forwardplaybackendtime
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime
 func (p_ PlayerItem) ForwardPlaybackEndTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("forwardPlaybackEndTime"))
 	return rv
@@ -658,7 +820,7 @@ func (p_ PlayerItem) ForwardPlaybackEndTime() unsafe.Pointer {
 // The time at which forward playback ends.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/forwardplaybackendtime
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime
 func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setForwardPlaybackEndTime:"), value)
 }
@@ -667,28 +829,9 @@ func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
 // An integrated timeline that represents the player item timing including its scheduled interstitial events.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/integratedtimeline
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/integratedTimeline
 func (p_ PlayerItem) IntegratedTimeline() IAVPlayerItemIntegratedTimeline {
-	rv := objc.Send[AVPlayerItemIntegratedTimeline](p_.ID, objc.Sel("integratedTimeline"))
-	return rv
-}
-
-
-// An integrated timeline that represents the player item timing including its scheduled interstitial events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/integratedtimeline
-func (p_ PlayerItem) SetIntegratedTimeline(value IAVPlayerItemIntegratedTimeline) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIntegratedTimeline:"), value)
-}
-
-
-// An array of time ranges that identify interstitial content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/interstitialtimeranges
-func (p_ PlayerItem) InterstitialTimeRanges() avkit.InterstitialTimeRange {
-	rv := objc.Send[avkit.InterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
+	rv := objc.Send[PlayerItemIntegratedTimeline](p_.ID, objc.Sel("integratedTimeline"))
 	return rv
 }
 
@@ -696,9 +839,542 @@ func (p_ PlayerItem) InterstitialTimeRanges() avkit.InterstitialTimeRange {
 // An array of time ranges that identify interstitial content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/interstitialtimeranges
-func (p_ PlayerItem) SetInterstitialTimeRanges(value avkit.InterstitialTimeRange) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInterstitialTimeRanges:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
+func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange {
+	rv := objc.Send[[]avkit.InterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the application can be used to play the content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback
+func (p_ PlayerItem) ApplicationAuthorizedForPlayback() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("applicationAuthorizedForPlayback"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether authorization is required to play the content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback
+func (p_ PlayerItem) AuthorizationRequiredForPlayback() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("authorizationRequiredForPlayback"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the content has been authorized by the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback
+func (p_ PlayerItem) ContentAuthorizedForPlayback() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("contentAuthorizedForPlayback"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether playback has consumed all buffered media and that playback will stall or end.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isPlaybackBufferEmpty
+func (p_ PlayerItem) PlaybackBufferEmpty() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("playbackBufferEmpty"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the internal media buffer is full and that further I/O is suspended.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isPlaybackBufferFull
+func (p_ PlayerItem) PlaybackBufferFull() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("playbackBufferFull"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the item will likely play through without stalling.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isPlaybackLikelyToKeepUp
+func (p_ PlayerItem) PlaybackLikelyToKeepUp() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("playbackLikelyToKeepUp"))
+	return rv
+}
+
+
+// An array of time ranges indicating media data that is readily available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/loadedTimeRanges
+func (p_ PlayerItem) LoadedTimeRanges() []foundation.Value {
+	rv := objc.Send[[]foundation.Value](p_.ID, objc.Sel("loadedTimeRanges"))
+	return rv
+}
+
+
+// The collection of associated media data collectors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/mediaDataCollectors
+func (p_ PlayerItem) MediaDataCollectors() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("mediaDataCollectors"))
+	return rv
+}
+
+
+// The time marker groups that provide ways to navigate the player item’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
+func (p_ PlayerItem) NavigationMarkerGroups() []avkit.NavigationMarkersGroup {
+	rv := objc.Send[[]avkit.NavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
+	return rv
+}
+
+
+// The time marker groups that provide ways to navigate the player item’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
+func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNavigationMarkerGroups:"), nsArray)
+}
+
+
+// The item proposed to follow the current content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
+func (p_ PlayerItem) NextContentProposal() avkit.ContentProposal {
+	rv := objc.Send[avkit.ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
+	return rv
+}
+
+
+// The item proposed to follow the current content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
+func (p_ PlayerItem) SetNextContentProposal(value avkit.ContentProposal) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNextContentProposal:"), value)
+}
+
+
+// The current now playing information for the player item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nowPlayingInfo
+func (p_ PlayerItem) NowPlayingInfo() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("nowPlayingInfo"))
+	return rv
+}
+
+
+// The current now playing information for the player item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nowPlayingInfo
+func (p_ PlayerItem) SetNowPlayingInfo(value foundation.IDictionary) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingInfo:"), value)
+}
+
+
+// An array of outputs associated with the player item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/outputs
+func (p_ PlayerItem) Outputs() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("outputs"))
+	return rv
+}
+
+
+// Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
+func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []CustomMediaSelectionScheme {
+	rv := objc.Send[[]CustomMediaSelectionScheme](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
+	return rv
+}
+
+
+// Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
+func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []CustomMediaSelectionScheme) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredCustomMediaSelectionSchemes:"), nsArray)
+}
+
+
+// The duration the player should buffer media from the network ahead of the playhead to guard against playback disruption.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredForwardBufferDuration
+func (p_ PlayerItem) PreferredForwardBufferDuration() foundation.TimeInterval {
+	rv := objc.Send[foundation.TimeInterval](p_.ID, objc.Sel("preferredForwardBufferDuration"))
+	return rv
+}
+
+
+// The duration the player should buffer media from the network ahead of the playhead to guard against playback disruption.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredForwardBufferDuration
+func (p_ PlayerItem) SetPreferredForwardBufferDuration(value foundation.TimeInterval) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredForwardBufferDuration:"), value)
+}
+
+
+// The desired maximum resolution of a video that is to be downloaded.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredMaximumResolution
+func (p_ PlayerItem) PreferredMaximumResolution() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("preferredMaximumResolution"))
+	return rv
+}
+
+
+// The desired maximum resolution of a video that is to be downloaded.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredMaximumResolution
+func (p_ PlayerItem) SetPreferredMaximumResolution(value coregraphics.CGSize) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredMaximumResolution:"), value)
+}
+
+
+// An upper limit on the resolution of video to download when connecting over expensive networks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredMaximumResolutionForExpensiveNetworks
+func (p_ PlayerItem) PreferredMaximumResolutionForExpensiveNetworks() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("preferredMaximumResolutionForExpensiveNetworks"))
+	return rv
+}
+
+
+// An upper limit on the resolution of video to download when connecting over expensive networks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredMaximumResolutionForExpensiveNetworks
+func (p_ PlayerItem) SetPreferredMaximumResolutionForExpensiveNetworks(value coregraphics.CGSize) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredMaximumResolutionForExpensiveNetworks:"), value)
+}
+
+
+// The desired limit, in bits per second, of network bandwidth consumption for this item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
+func (p_ PlayerItem) PreferredPeakBitRate() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRate"))
+	return rv
+}
+
+
+// The desired limit, in bits per second, of network bandwidth consumption for this item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
+func (p_ PlayerItem) SetPreferredPeakBitRate(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRate:"), value)
+}
+
+
+// A limit of network bandwidth consumption by the item when connecting over expensive networks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRateForExpensiveNetworks
+func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRateForExpensiveNetworks"))
+	return rv
+}
+
+
+// A limit of network bandwidth consumption by the item when connecting over expensive networks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRateForExpensiveNetworks
+func (p_ PlayerItem) SetPreferredPeakBitRateForExpensiveNetworks(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRateForExpensiveNetworks:"), value)
+}
+
+
+// The size at which the visual portion of the item is presented by the player.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/presentationSize
+func (p_ PlayerItem) PresentationSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("presentationSize"))
+	return rv
+}
+
+
+// A recommended time offset from the live time based on observed network conditions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/recommendedTimeOffsetFromLive
+func (p_ PlayerItem) RecommendedTimeOffsetFromLive() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recommendedTimeOffsetFromLive"))
+	return rv
+}
+
+
+// The time at which reverse playback ends.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime
+func (p_ PlayerItem) ReversePlaybackEndTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("reversePlaybackEndTime"))
+	return rv
+}
+
+
+// The time at which reverse playback ends.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime
+func (p_ PlayerItem) SetReversePlaybackEndTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setReversePlaybackEndTime:"), value)
+}
+
+
+// An array of time ranges within which it is possible to seek.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seekableTimeRanges
+func (p_ PlayerItem) SeekableTimeRanges() []foundation.Value {
+	rv := objc.Send[[]foundation.Value](p_.ID, objc.Sel("seekableTimeRanges"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the item’s timing follows the displayed video frame when seeking with a video composition.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seekingWaitsForVideoCompositionRendering
+func (p_ PlayerItem) SeekingWaitsForVideoCompositionRendering() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("seekingWaitsForVideoCompositionRendering"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the item’s timing follows the displayed video frame when seeking with a video composition.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seekingWaitsForVideoCompositionRendering
+func (p_ PlayerItem) SetSeekingWaitsForVideoCompositionRendering(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSeekingWaitsForVideoCompositionRendering:"), value)
+}
+
+
+// A Boolean value that indicates whether playback starts with the first eligible variant that appears in the stream’s main playlist.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/startsOnFirstEligibleVariant
+func (p_ PlayerItem) StartsOnFirstEligibleVariant() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("startsOnFirstEligibleVariant"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether playback starts with the first eligible variant that appears in the stream’s main playlist.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/startsOnFirstEligibleVariant
+func (p_ PlayerItem) SetStartsOnFirstEligibleVariant(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStartsOnFirstEligibleVariant:"), value)
+}
+
+
+// The status of the player item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/status-swift.property
+func (p_ PlayerItem) Status() AVPlayerItemStatus {
+	rv := objc.Send[PlayerItemStatus](p_.ID, objc.Sel("status"))
+	return rv
+}
+
+
+// The template player item that initializes this instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/template
+func (p_ PlayerItem) TemplatePlayerItem() IAVPlayerItem {
+	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("templatePlayerItem"))
+	return rv
+}
+
+
+// An array of text style rules that specify the formatting and presentation of Web Video Text Tracks (WebVTT) subtitles.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/textStyleRules
+func (p_ PlayerItem) TextStyleRules() []TextStyleRule {
+	rv := objc.Send[[]TextStyleRule](p_.ID, objc.Sel("textStyleRules"))
+	return rv
+}
+
+
+// An array of text style rules that specify the formatting and presentation of Web Video Text Tracks (WebVTT) subtitles.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/textStyleRules
+func (p_ PlayerItem) SetTextStyleRules(value []TextStyleRule) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTextStyleRules:"), nsArray)
+}
+
+
+// The timebase information for the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/timebase
+func (p_ PlayerItem) Timebase() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timebase"))
+	return rv
+}
+
+
+// An array of player item track objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/tracks
+func (p_ PlayerItem) Tracks() []PlayerItemTrack {
+	rv := objc.Send[[]PlayerItemTrack](p_.ID, objc.Sel("tracks"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the player translates interstitial events to interstitial time ranges.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents
+func (p_ PlayerItem) TranslatesPlayerInterstitialEvents() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("translatesPlayerInterstitialEvents"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the player translates interstitial events to interstitial time ranges.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents
+func (p_ PlayerItem) SetTranslatesPlayerInterstitialEvents(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTranslatesPlayerInterstitialEvents:"), value)
+}
+
+
+// The preferences the player item uses when selecting variant playlists.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/variantPreferences
+func (p_ PlayerItem) VariantPreferences() AVVariantPreferences {
+	rv := objc.Send[VariantPreferences](p_.ID, objc.Sel("variantPreferences"))
+	return rv
+}
+
+
+// The preferences the player item uses when selecting variant playlists.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/variantPreferences
+func (p_ PlayerItem) SetVariantPreferences(value AVVariantPreferences) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVariantPreferences:"), value)
+}
+
+
+// The video aperture mode to apply during playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoApertureMode
+func (p_ PlayerItem) VideoApertureMode() VideoApertureMode {
+	rv := objc.Send[VideoApertureMode](p_.ID, objc.Sel("videoApertureMode"))
+	return rv
+}
+
+
+// The video aperture mode to apply during playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoApertureMode
+func (p_ PlayerItem) SetVideoApertureMode(value VideoApertureMode) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoApertureMode:"), value)
+}
+
+
+// The video composition settings to be applied during playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoComposition
+func (p_ PlayerItem) VideoComposition() VideoComposition {
+	rv := objc.Send[VideoComposition](p_.ID, objc.Sel("videoComposition"))
+	return rv
+}
+
+
+// The video composition settings to be applied during playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoComposition
+func (p_ PlayerItem) SetVideoComposition(value VideoComposition) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoComposition:"), value)
+}
+
+
+// The source audio channel layouts the player item supports for spatialization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
+func (p_ PlayerItem) AllowedAudioSpatializationFormats() AVAudioSpatializationFormats {
+	rv := objc.Send[AudioSpatializationFormats](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+	return rv
+}
+
+
+// The source audio channel layouts the player item supports for spatialization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
+func (p_ PlayerItem) SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
 
 
@@ -835,373 +1511,12 @@ func (p_ PlayerItem) SetIsPlaybackLikelyToKeepUp(value bool) {
 }
 
 
-// An array of time ranges indicating media data that is readily available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/loadedtimeranges
-func (p_ PlayerItem) LoadedTimeRanges() foundation.Value {
-	rv := objc.Send[foundation.Value](p_.ID, objc.Sel("loadedTimeRanges"))
-	return rv
-}
-
-
-// An array of time ranges indicating media data that is readily available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/loadedtimeranges
-func (p_ PlayerItem) SetLoadedTimeRanges(value foundation.Value) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLoadedTimeRanges:"), value)
-}
-
-
-// The collection of associated media data collectors.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/mediadatacollectors
-func (p_ PlayerItem) MediaDataCollectors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaDataCollectors"))
-	return rv
-}
-
-
-// The collection of associated media data collectors.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/mediadatacollectors
-func (p_ PlayerItem) SetMediaDataCollectors(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaDataCollectors:"), value)
-}
-
-
-// The time marker groups that provide ways to navigate the player item’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/navigationmarkergroups
-func (p_ PlayerItem) NavigationMarkerGroups() avkit.NavigationMarkersGroup {
-	rv := objc.Send[avkit.NavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
-	return rv
-}
-
-
-// The time marker groups that provide ways to navigate the player item’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/navigationmarkergroups
-func (p_ PlayerItem) SetNavigationMarkerGroups(value avkit.NavigationMarkersGroup) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNavigationMarkerGroups:"), value)
-}
-
-
-// The item proposed to follow the current content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/nextcontentproposal
-func (p_ PlayerItem) NextContentProposal() avkit.ContentProposal {
-	rv := objc.Send[avkit.ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
-	return rv
-}
-
-
-// The item proposed to follow the current content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/nextcontentproposal
-func (p_ PlayerItem) SetNextContentProposal(value avkit.ContentProposal) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNextContentProposal:"), value)
-}
-
-
-// The current now playing information for the player item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/nowplayinginfo
-func (p_ PlayerItem) NowPlayingInfo() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("nowPlayingInfo"))
-	return rv
-}
-
-
-// The current now playing information for the player item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/nowplayinginfo
-func (p_ PlayerItem) SetNowPlayingInfo(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingInfo:"), objc.String(value))
-}
-
-
-// An array of outputs associated with the player item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/outputs
-func (p_ PlayerItem) Outputs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("outputs"))
-	return rv
-}
-
-
-// An array of outputs associated with the player item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/outputs
-func (p_ PlayerItem) SetOutputs(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputs:"), value)
-}
-
-
-// Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredcustommediaselectionschemes
-func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
-	return rv
-}
-
-
-// Indicates the AVCustomMediaSelectionSchemes of AVMediaSelectionGroups of the receiver’s asset with which an associated UI implementation should configure its interface for media selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredcustommediaselectionschemes
-func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredCustomMediaSelectionSchemes:"), value)
-}
-
-
-// The duration the player should buffer media from the network ahead of the playhead to guard against playback disruption.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredforwardbufferduration
-func (p_ PlayerItem) PreferredForwardBufferDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredForwardBufferDuration"))
-	return rv
-}
-
-
-// The duration the player should buffer media from the network ahead of the playhead to guard against playback disruption.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredforwardbufferduration
-func (p_ PlayerItem) SetPreferredForwardBufferDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredForwardBufferDuration:"), value)
-}
-
-
-// The desired maximum resolution of a video that is to be downloaded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredmaximumresolution
-func (p_ PlayerItem) PreferredMaximumResolution() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("preferredMaximumResolution"))
-	return rv
-}
-
-
-// The desired maximum resolution of a video that is to be downloaded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredmaximumresolution
-func (p_ PlayerItem) SetPreferredMaximumResolution(value coregraphics.CGSize) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredMaximumResolution:"), value)
-}
-
-
-// An upper limit on the resolution of video to download when connecting over expensive networks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredmaximumresolutionforexpensivenetworks
-func (p_ PlayerItem) PreferredMaximumResolutionForExpensiveNetworks() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("preferredMaximumResolutionForExpensiveNetworks"))
-	return rv
-}
-
-
-// An upper limit on the resolution of video to download when connecting over expensive networks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredmaximumresolutionforexpensivenetworks
-func (p_ PlayerItem) SetPreferredMaximumResolutionForExpensiveNetworks(value coregraphics.CGSize) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredMaximumResolutionForExpensiveNetworks:"), value)
-}
-
-
-// The desired limit, in bits per second, of network bandwidth consumption for this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredpeakbitrate
-func (p_ PlayerItem) PreferredPeakBitRate() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRate"))
-	return rv
-}
-
-
-// The desired limit, in bits per second, of network bandwidth consumption for this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredpeakbitrate
-func (p_ PlayerItem) SetPreferredPeakBitRate(value float64) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRate:"), value)
-}
-
-
-// A limit of network bandwidth consumption by the item when connecting over expensive networks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredpeakbitrateforexpensivenetworks
-func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRateForExpensiveNetworks"))
-	return rv
-}
-
-
-// A limit of network bandwidth consumption by the item when connecting over expensive networks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/preferredpeakbitrateforexpensivenetworks
-func (p_ PlayerItem) SetPreferredPeakBitRateForExpensiveNetworks(value float64) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRateForExpensiveNetworks:"), value)
-}
-
-
-// The size at which the visual portion of the item is presented by the player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/presentationsize
-func (p_ PlayerItem) PresentationSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("presentationSize"))
-	return rv
-}
-
-
-// The size at which the visual portion of the item is presented by the player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/presentationsize
-func (p_ PlayerItem) SetPresentationSize(value coregraphics.CGSize) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPresentationSize:"), value)
-}
-
-
-// A recommended time offset from the live time based on observed network conditions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/recommendedtimeoffsetfromlive
-func (p_ PlayerItem) RecommendedTimeOffsetFromLive() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recommendedTimeOffsetFromLive"))
-	return rv
-}
-
-
-// A recommended time offset from the live time based on observed network conditions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/recommendedtimeoffsetfromlive
-func (p_ PlayerItem) SetRecommendedTimeOffsetFromLive(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRecommendedTimeOffsetFromLive:"), value)
-}
-
-
-// The time at which reverse playback ends.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/reverseplaybackendtime
-func (p_ PlayerItem) ReversePlaybackEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("reversePlaybackEndTime"))
-	return rv
-}
-
-
-// The time at which reverse playback ends.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/reverseplaybackendtime
-func (p_ PlayerItem) SetReversePlaybackEndTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setReversePlaybackEndTime:"), value)
-}
-
-
-// An array of time ranges within which it is possible to seek.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/seekabletimeranges
-func (p_ PlayerItem) SeekableTimeRanges() foundation.Value {
-	rv := objc.Send[foundation.Value](p_.ID, objc.Sel("seekableTimeRanges"))
-	return rv
-}
-
-
-// An array of time ranges within which it is possible to seek.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/seekabletimeranges
-func (p_ PlayerItem) SetSeekableTimeRanges(value foundation.Value) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSeekableTimeRanges:"), value)
-}
-
-
-// A Boolean value that indicates whether the item’s timing follows the displayed video frame when seeking with a video composition.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/seekingwaitsforvideocompositionrendering
-func (p_ PlayerItem) SeekingWaitsForVideoCompositionRendering() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("seekingWaitsForVideoCompositionRendering"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the item’s timing follows the displayed video frame when seeking with a video composition.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/seekingwaitsforvideocompositionrendering
-func (p_ PlayerItem) SetSeekingWaitsForVideoCompositionRendering(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSeekingWaitsForVideoCompositionRendering:"), value)
-}
-
-
-// A Boolean value that indicates whether playback starts with the first eligible variant that appears in the stream’s main playlist.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/startsonfirsteligiblevariant
-func (p_ PlayerItem) StartsOnFirstEligibleVariant() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("startsOnFirstEligibleVariant"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether playback starts with the first eligible variant that appears in the stream’s main playlist.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/startsonfirsteligiblevariant
-func (p_ PlayerItem) SetStartsOnFirstEligibleVariant(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStartsOnFirstEligibleVariant:"), value)
-}
-
-
-// The status of the player item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.property
-func (p_ PlayerItem) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// The status of the player item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.property
-func (p_ PlayerItem) SetStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStatus:"), value)
-}
-
-
 // The template player item that initializes this instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/template
 func (p_ PlayerItem) Template() IAVPlayerItem {
-	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("template"))
+	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("template"))
 	return rv
 }
 
@@ -1213,139 +1528,5 @@ func (p_ PlayerItem) Template() IAVPlayerItem {
 func (p_ PlayerItem) SetTemplate(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplate:"), value)
 }
-
-
-// An array of text style rules that specify the formatting and presentation of Web Video Text Tracks (WebVTT) subtitles.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/textstylerules
-func (p_ PlayerItem) TextStyleRules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("textStyleRules"))
-	return rv
-}
-
-
-// An array of text style rules that specify the formatting and presentation of Web Video Text Tracks (WebVTT) subtitles.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/textstylerules
-func (p_ PlayerItem) SetTextStyleRules(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTextStyleRules:"), value)
-}
-
-
-// The timebase information for the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/timebase
-func (p_ PlayerItem) Timebase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timebase"))
-	return rv
-}
-
-
-// The timebase information for the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/timebase
-func (p_ PlayerItem) SetTimebase(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTimebase:"), value)
-}
-
-
-// An array of player item track objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/tracks
-func (p_ PlayerItem) Tracks() IAVPlayerItemTrack {
-	rv := objc.Send[AVPlayerItemTrack](p_.ID, objc.Sel("tracks"))
-	return rv
-}
-
-
-// An array of player item track objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/tracks
-func (p_ PlayerItem) SetTracks(value IAVPlayerItemTrack) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTracks:"), value)
-}
-
-
-// A Boolean value that indicates whether the player translates interstitial events to interstitial time ranges.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/translatesplayerinterstitialevents
-func (p_ PlayerItem) TranslatesPlayerInterstitialEvents() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("translatesPlayerInterstitialEvents"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the player translates interstitial events to interstitial time ranges.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/translatesplayerinterstitialevents
-func (p_ PlayerItem) SetTranslatesPlayerInterstitialEvents(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTranslatesPlayerInterstitialEvents:"), value)
-}
-
-
-// The preferences the player item uses when selecting variant playlists.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/variantpreferences
-func (p_ PlayerItem) VariantPreferences() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("variantPreferences"))
-	return rv
-}
-
-
-// The preferences the player item uses when selecting variant playlists.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/variantpreferences
-func (p_ PlayerItem) SetVariantPreferences(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVariantPreferences:"), value)
-}
-
-
-// The video aperture mode to apply during playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/videoaperturemode
-func (p_ PlayerItem) VideoApertureMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoApertureMode"))
-	return rv
-}
-
-
-// The video aperture mode to apply during playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/videoaperturemode
-func (p_ PlayerItem) SetVideoApertureMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoApertureMode:"), value)
-}
-
-
-// The video composition settings to be applied during playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/videocomposition
-func (p_ PlayerItem) VideoComposition() VideoComposition {
-	rv := objc.Send[VideoComposition](p_.ID, objc.Sel("videoComposition"))
-	return rv
-}
-
-
-// The video composition settings to be applied during playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/videocomposition
-func (p_ PlayerItem) SetVideoComposition(value VideoComposition) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoComposition:"), value)
-}
-
 
 

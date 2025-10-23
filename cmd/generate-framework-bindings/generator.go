@@ -153,6 +153,9 @@ func (g *Generator) IsTypedefType(typeName string) bool {
 
 	// O(1) lookup in index
 	_, ok := g.typedefIndex[typeName]
+	if os.Getenv("DEBUG_TIMEINTERVAL") == "1" && typeName == "TimeInterval" {
+		fmt.Fprintf(os.Stderr, "DEBUG: IsTypedefType(TimeInterval) = %v, index size = %d\n", ok, len(g.typedefIndex))
+	}
 	return ok
 }
 
@@ -214,10 +217,9 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return goType
 	}
 
-	// Don't convert Foundation geometry types - these are C structs, not ObjC classes
-	if goType == "Point" || goType == "Size" || goType == "Rect" || goType == "Range" {
-		return goType
-	}
+	// REMOVED: Hardcoded geometry/alias checks - now fully data-driven
+	// TimeInterval and other template-defined types are added to Typedefs synthetically
+	// during preparation, so IsTypedefType check above catches them.
 
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
@@ -458,6 +460,12 @@ func (g *Generator) prepare() {
 	g.typedefIndex = make(map[string]*occ2go.ParsedTypedef, len(g.Typedefs))
 	for _, typedef := range g.Typedefs {
 		g.typedefIndex[typedef.Name] = typedef
+		if os.Getenv("DEBUG_TIMEINTERVAL") == "1" && typedef.Name == "TimeInterval" {
+			fmt.Fprintf(os.Stderr, "DEBUG: Building typedef index - found TimeInterval\n")
+		}
+	}
+	if os.Getenv("DEBUG_TIMEINTERVAL") == "1" {
+		fmt.Fprintf(os.Stderr, "DEBUG: Built typedef index with %d entries, TimeInterval present = %v\n", len(g.typedefIndex), g.typedefIndex["TimeInterval"] != nil)
 	}
 }
 

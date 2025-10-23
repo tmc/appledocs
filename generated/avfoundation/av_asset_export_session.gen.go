@@ -31,7 +31,6 @@ type _AssetExportSessionClass struct {
 // An interface definition for the [AssetExportSession] class.
 type IAssetExportSession interface {
 	objectivec.IObject
-	ExportAsynchronouslyWithCompletionHandler(handler unsafe.Pointer)
 	AllowsParallelizedExport() bool
 	SetAllowsParallelizedExport(value bool)
 	Asset() IAVAsset
@@ -153,15 +152,6 @@ func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAss
 }
 
 
-// Starts the asynchronous execution of an export session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/exportAsynchronously(completionHandler:)
-func (a_ AssetExportSession) ExportAsynchronouslyWithCompletionHandler(handler unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("exportAsynchronouslyWithCompletionHandler:"), handler)
-}
-
-
 // A Boolean value that indicates whether the session can parallelize its export operation.
 //
 // [Full Topic]
@@ -186,7 +176,7 @@ func (a_ AssetExportSession) SetAllowsParallelizedExport(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/asset
 func (a_ AssetExportSession) Asset() IAVAsset {
-	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
+	rv := objc.Send[Asset](a_.ID, objc.Sel("asset"))
 	return rv
 }
 
@@ -205,7 +195,7 @@ func (a_ AssetExportSession) SetAsset(value IAVAsset) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiomix
 func (a_ AssetExportSession) AudioMix() IAVAudioMix {
-	rv := objc.Send[AVAudioMix](a_.ID, objc.Sel("audioMix"))
+	rv := objc.Send[AudioMix](a_.ID, objc.Sel("audioMix"))
 	return rv
 }
 
@@ -395,7 +385,7 @@ func (a_ AssetExportSession) SetMaxDuration(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadata
 func (a_ AssetExportSession) Metadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("metadata"))
+	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 

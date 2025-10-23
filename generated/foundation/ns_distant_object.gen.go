@@ -148,7 +148,7 @@ func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObjec
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/connectionForProxy
 func (d_ DistantObject) ConnectionForProxy() IConnection {
-	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connectionForProxy"))
+	rv := objc.Send[Connection](d_.ID, objc.Sel("connectionForProxy"))
 	return rv
 }
 

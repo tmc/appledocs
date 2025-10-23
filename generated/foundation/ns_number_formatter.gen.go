@@ -30,9 +30,6 @@ type _NumberFormatterClass struct {
 // An interface definition for the [NumberFormatter] class.
 type INumberFormatter interface {
 	IFormatter
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
-	NumberFromString(string_ string) INumber
-	StringFromNumber(number INumber) IString
 	AllowsFloats() bool
 	SetAllowsFloats(value bool)
 	AlwaysShowsDecimalSeparator() bool
@@ -169,6 +166,9 @@ type INumberFormatter interface {
 	SetIsLenient(value bool)
 	IsPartialStringValidationEnabled() bool
 	SetIsPartialStringValidationEnabled(value bool)
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
+	NumberFromString(string_ string) INumber
+	StringFromNumber(number INumber) IString
 }
 
 // A formatter that converts between numeric values and their textual representations.
@@ -328,7 +328,7 @@ func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
 func (n_ NumberFormatter) AttributedStringForNil() IAttributedString {
-	rv := objc.Send[NSAttributedString](n_.ID, objc.Sel("attributedStringForNil"))
+	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForNil"))
 	return rv
 }
 
@@ -347,7 +347,7 @@ func (n_ NumberFormatter) SetAttributedStringForNil(value IAttributedString) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
 func (n_ NumberFormatter) AttributedStringForNotANumber() IAttributedString {
-	rv := objc.Send[NSAttributedString](n_.ID, objc.Sel("attributedStringForNotANumber"))
+	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForNotANumber"))
 	return rv
 }
 
@@ -366,7 +366,7 @@ func (n_ NumberFormatter) SetAttributedStringForNotANumber(value IAttributedStri
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
 func (n_ NumberFormatter) AttributedStringForZero() IAttributedString {
-	rv := objc.Send[NSAttributedString](n_.ID, objc.Sel("attributedStringForZero"))
+	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForZero"))
 	return rv
 }
 
@@ -708,7 +708,7 @@ func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
 func (n_ NumberFormatter) Locale() ILocale {
-	rv := objc.Send[NSLocale](n_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](n_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -1255,7 +1255,7 @@ func (n_ NumberFormatter) SetPositiveSuffix(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingBehavior
 func (n_ NumberFormatter) RoundingBehavior() IDecimalNumberHandler {
-	rv := objc.Send[NSDecimalNumberHandler](n_.ID, objc.Sel("roundingBehavior"))
+	rv := objc.Send[DecimalNumberHandler](n_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
 

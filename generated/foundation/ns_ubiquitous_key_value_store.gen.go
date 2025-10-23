@@ -30,6 +30,10 @@ type _UbiquitousKeyValueStoreClass struct {
 // An interface definition for the [UbiquitousKeyValueStore] class.
 type IUbiquitousKeyValueStore interface {
 	objectivec.IObject
+	DictionaryRepresentation() IDictionary
+	NSUbiquitousKeyValueStoreChangeReasonKey() string
+	NSUbiquitousKeyValueStoreQuotaViolationChange() int
+	SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int)
 	ArrayForKey(aKey string) IArray
 	BoolForKey(aKey string) bool
 	DataForKey(aKey string) IData
@@ -48,10 +52,6 @@ type IUbiquitousKeyValueStore interface {
 	SetDictionaryForKey(aDictionary IDictionary, aKey string)
 	StringForKey(aKey string) IString
 	Synchronize() bool
-	DictionaryRepresentation() IDictionary
-	NSUbiquitousKeyValueStoreChangeReasonKey() string
-	NSUbiquitousKeyValueStoreQuotaViolationChange() int
-	SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int)
 }
 
 // An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
@@ -112,7 +112,7 @@ func NewUbiquitousKeyValueStore() UbiquitousKeyValueStore {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/default
 func (uc _UbiquitousKeyValueStoreClass) DefaultStore() UbiquitousKeyValueStore {
-	rv := objc.Send[NSUbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("defaultStore"))
+	rv := objc.Send[UbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("defaultStore"))
 	return rv
 }
 
@@ -292,7 +292,7 @@ func (u_ UbiquitousKeyValueStore) Synchronize() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/default
 func (u_ UbiquitousKeyValueStore) DefaultStore() IUbiquitousKeyValueStore {
-	rv := objc.Send[NSUbiquitousKeyValueStore](u_.ID, objc.Sel("defaultStore"))
+	rv := objc.Send[UbiquitousKeyValueStore](u_.ID, objc.Sel("defaultStore"))
 	return rv
 }
 

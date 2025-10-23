@@ -31,6 +31,15 @@ type _ExtensionContextClass struct {
 // An interface definition for the [ExtensionContext] class.
 type IExtensionContext interface {
 	objectivec.IObject
+	HostedViewMaximumAllowedSize() coregraphics.CGSize
+	HostedViewMinimumAllowedSize() coregraphics.CGSize
+	InputItems() objc.ID
+	NotificationActions() []objectivec.IObject
+	SetNotificationActions(value []objectivec.IObject)
+	WidgetActiveDisplayMode() unsafe.Pointer
+	WidgetLargestAvailableDisplayMode() unsafe.Pointer
+	SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer)
+	NSExtensionItemsAndErrorsKey() string
 	CancelRequestWithError(error_ IError)
 	CompleteRequestReturningItemsCompletionHandler(items objectivec.IObject, completionHandler unsafe.Pointer)
 	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary)
@@ -41,15 +50,6 @@ type IExtensionContext interface {
 	MediaPlayingStarted()
 	OpenURLCompletionHandler(URL IURL, completionHandler unsafe.Pointer)
 	PerformNotificationDefaultAction()
-	HostedViewMaximumAllowedSize() coregraphics.CGSize
-	HostedViewMinimumAllowedSize() coregraphics.CGSize
-	InputItems() objc.ID
-	NotificationActions() []objectivec.IObject
-	SetNotificationActions(value []objectivec.IObject)
-	WidgetActiveDisplayMode() unsafe.Pointer
-	WidgetLargestAvailableDisplayMode() unsafe.Pointer
-	SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer)
-	NSExtensionItemsAndErrorsKey() string
 }
 
 // The host app context from which an app extension is invoked.

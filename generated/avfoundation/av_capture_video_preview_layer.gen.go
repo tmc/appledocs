@@ -104,7 +104,7 @@ func NewCaptureVideoPreviewLayer() CaptureVideoPreviewLayer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/connection
 func (c_ CaptureVideoPreviewLayer) Connection() IAVCaptureConnection {
-	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connection"))
+	rv := objc.Send[CaptureConnection](c_.ID, objc.Sel("connection"))
 	return rv
 }
 
@@ -180,7 +180,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/session
 func (c_ CaptureVideoPreviewLayer) Session() IAVCaptureSession {
-	rv := objc.Send[AVCaptureSession](c_.ID, objc.Sel("session"))
+	rv := objc.Send[CaptureSession](c_.ID, objc.Sel("session"))
 	return rv
 }
 

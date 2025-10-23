@@ -17,3 +17,21 @@ func ExampleNewHashTableWithOptions() {
 	)
 	// Output:
 }
+// ExampleNewHashTableWithOptionsCapacity demonstrates how to create a HashTable instance using NewHashTableWithOptionsCapacity.
+// Returns a hash table initialized with the given attributes.
+func ExampleNewHashTableWithOptionsCapacity() {
+	_ = foundation.NewHashTableWithOptionsCapacity(
+		foundation.PointerFunctionsOptions{}, // options PointerFunctionsOptions
+		0, // initialCapacity uint
+	)
+	// Output:
+}
+// ExampleNewHashTableWithPointerFunctionsCapacity demonstrates how to create a HashTable instance using NewHashTableWithPointerFunctionsCapacity.
+// Returns a hash table initialized with the given functions and capacity.
+func ExampleNewHashTableWithPointerFunctionsCapacity() {
+	_ = foundation.NewHashTableWithPointerFunctionsCapacity(
+		foundation.NSPointerFunctions{}, // functions NSPointerFunctions
+		0, // initialCapacity uint
+	)
+	// Output:
+}

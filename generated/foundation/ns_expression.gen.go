@@ -30,35 +30,30 @@ type _ExpressionClass struct {
 // An interface definition for the [Expression] class.
 type IExpression interface {
 	objectivec.IObject
-	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
-	Arguments() IExpression
-	SetArguments(value IExpression)
-	Collection() unsafe.Pointer
-	SetCollection(value unsafe.Pointer)
-	ConstantValue() unsafe.Pointer
-	SetConstantValue(value unsafe.Pointer)
-	ExpressionBlock() IMutableDictionary
-	SetExpressionBlock(value IMutableDictionary)
-	ExpressionType() unsafe.Pointer
-	SetExpressionType(value unsafe.Pointer)
+	Arguments() []Expression
+	Collection() objc.ID
+	ConstantValue() objc.ID
+	ExpressionBlock() unsafe.Pointer
+	ExpressionType() NSExpressionType
+	FalseExpression() IExpression
+	Function() string
+	KeyPath() string
+	LeftExpression() IExpression
+	Operand() IExpression
+	Predicate() IPredicate
+	RightExpression() IExpression
+	TrueExpression() IExpression
+	Variable() string
 	False() IExpression
 	SetFalse(value IExpression)
-	Function() string
-	SetFunction(value string)
-	KeyPath() string
-	SetKeyPath(value string)
 	Left() IExpression
 	SetLeft(value IExpression)
-	Operand() IExpression
-	SetOperand(value IExpression)
-	Predicate() IPredicate
-	SetPredicate(value IPredicate)
 	Right() IExpression
 	SetRight(value IExpression)
 	True() IExpression
 	SetTrue(value IExpression)
-	Variable() string
-	SetVariable(value string)
+	AllowEvaluation()
+	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
 }
 
 // An expression for use in a comparison predicate.
@@ -114,6 +109,350 @@ func NewExpression() Expression {
 
 
 
+// Creates an aggregate expression for a specified collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
+func NewExpressionForAggregate(subexpressions []Expression) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForAggregate:"), subexpressions)
+	return rv
+}
+
+
+// Creates an expression object that uses the block for evaluating objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
+func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
+	return rv
+}
+
+
+// Creates an expression that returns a result, depending on the value of predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forConditional:trueExpression:falseExpression:)
+func NewExpressionForConditionalTrueExpressionFalseExpression(predicate IPredicate, trueExpression IExpression, falseExpression IExpression) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForConditional:trueExpression:falseExpression:"), predicate, trueExpression, falseExpression)
+	return rv
+}
+
+
+// Creates an expression that represents a specified constant value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forConstantValue:)
+func NewExpressionForConstantValue(obj objectivec.IObject) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForConstantValue:"), obj)
+	return rv
+}
+
+
+// Creates an expression that invokes one of the predefined functions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:arguments:)
+func NewExpressionForFunctionArguments(name string, parameters objectivec.IObject) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForFunction:arguments:"), objc.String(name), parameters)
+	return rv
+}
+
+
+// Creates an expression that returns the result of invoking a selector with a specified name using specified arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:selectorName:arguments:)
+func NewExpressionForFunctionSelectorNameArguments(target IExpression, name string, parameters objectivec.IObject) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForFunction:selectorName:arguments:"), target, objc.String(name), parameters)
+	return rv
+}
+
+
+// Creates an expression object that represents the intersection of a specified set and collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forIntersectSet:with:)
+func NewExpressionForIntersectSetWith(left IExpression, right IExpression) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForIntersectSet:with:"), left, right)
+	return rv
+}
+
+
+// Creates an expression that invokes the value function with a specified key path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forKeyPath:)-1aqf5
+func NewExpressionForKeyPath(keyPath string) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForKeyPath:"), objc.String(keyPath))
+	return rv
+}
+
+
+// Creates an expression object that represents the subtraction of a specified collection from a specified set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forMinusSet:with:)
+func NewExpressionForMinusSetWith(left IExpression, right IExpression) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForMinusSet:with:"), left, right)
+	return rv
+}
+
+
+// Creates an expression that filters a collection by storing elements in the collection in a specified variable and keeping the elements that the qualifier returns as true.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forSubquery:usingIteratorVariable:predicate:)
+func NewExpressionForSubqueryUsingIteratorVariablePredicate(expression IExpression, variable string, predicate IPredicate) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForSubquery:usingIteratorVariable:predicate:"), expression, objc.String(variable), predicate)
+	return rv
+}
+
+
+// Creates an expression object that represents the union of a specified set and collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forUnionSet:with:)
+func NewExpressionForUnionSetWith(left IExpression, right IExpression) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForUnionSet:with:"), left, right)
+	return rv
+}
+
+
+// Creates an expression that extracts a value from the variable bindings dictionary for a specified key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forVariable:)
+func NewExpressionForVariable(string_ string) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForVariable:"), objc.String(string_))
+	return rv
+}
+
+
+// Creates an expression by decoding from the coder you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(coder:)
+func NewExpressionWithCoder(coder ICoder) Expression {
+	instance := getExpressionClass().Alloc()
+	rv := objc.Send[Expression](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates the expression with the specified expression type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(expressionType:)
+func NewExpressionWithExpressionType(type_ NSExpressionType) Expression {
+	instance := getExpressionClass().Alloc()
+	rv := objc.Send[Expression](instance.ID, objc.Sel("initWithExpressionType:"), type_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates the expression with the specified expression format and array of arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:argumentArray:)
+func NewExpressionWithFormatArgumentArray(expressionFormat string, arguments objectivec.IObject) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionWithFormat:argumentArray:"), objc.String(expressionFormat), arguments)
+	return rv
+}
+
+
+// Creates the expression with the specified expression format and arguments list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:arguments:)
+func NewExpressionWithFormatArguments(expressionFormat string, argList unsafe.Pointer) Expression {
+	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionWithFormat:arguments:"), objc.String(expressionFormat), argList)
+	return rv
+}
+
+
+
+// Creates an expression that represents any key for a Spotlight query.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionForAnyKey()
+func (ec _ExpressionClass) ExpressionForAnyKey() IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForAnyKey"))
+	return rv
+}
+
+
+// Creates an expression that represents the object you’re evaluating.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionForEvaluatedObject()
+func (ec _ExpressionClass) ExpressionForEvaluatedObject() IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForEvaluatedObject"))
+	return rv
+}
+
+
+// Creates the expression with the specified expression arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionWithFormat:
+func (ec _ExpressionClass) ExpressionWithFormat(expressionFormat string) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionWithFormat:"), objc.String(expressionFormat))
+	return rv
+}
+
+
+// Creates an expression object that uses the block for evaluating objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
+func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
+	return rv
+}
+
+
+// Creates an aggregate expression for a specified collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
+func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []Expression) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForAggregate:"), subexpressions)
+	return rv
+}
+
+
+// Creates an expression that returns a result, depending on the value of predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forConditional:trueExpression:falseExpression:)
+func (ec _ExpressionClass) ExpressionForConditionalTrueExpressionFalseExpression(predicate IPredicate, trueExpression IExpression, falseExpression IExpression) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForConditional:trueExpression:falseExpression:"), predicate, trueExpression, falseExpression)
+	return rv
+}
+
+
+// Creates an expression that represents a specified constant value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forConstantValue:)
+func (ec _ExpressionClass) ExpressionForConstantValue(obj objectivec.IObject) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForConstantValue:"), obj)
+	return rv
+}
+
+
+// Creates an expression that invokes one of the predefined functions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:arguments:)
+func (ec _ExpressionClass) ExpressionForFunctionArguments(name string, parameters objectivec.IObject) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForFunction:arguments:"), objc.String(name), parameters)
+	return rv
+}
+
+
+// Creates an expression that returns the result of invoking a selector with a specified name using specified arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:selectorName:arguments:)
+func (ec _ExpressionClass) ExpressionForFunctionSelectorNameArguments(target IExpression, name string, parameters objectivec.IObject) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForFunction:selectorName:arguments:"), target, objc.String(name), parameters)
+	return rv
+}
+
+
+// Creates an expression object that represents the intersection of a specified set and collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forIntersectSet:with:)
+func (ec _ExpressionClass) ExpressionForIntersectSetWith(left IExpression, right IExpression) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForIntersectSet:with:"), left, right)
+	return rv
+}
+
+
+// Creates an expression that invokes the value function with a specified key path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forKeyPath:)-1aqf5
+func (ec _ExpressionClass) ExpressionForKeyPath(keyPath string) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForKeyPath:"), objc.String(keyPath))
+	return rv
+}
+
+
+// Creates an expression object that represents the subtraction of a specified collection from a specified set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forMinusSet:with:)
+func (ec _ExpressionClass) ExpressionForMinusSetWith(left IExpression, right IExpression) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForMinusSet:with:"), left, right)
+	return rv
+}
+
+
+// Creates an expression that filters a collection by storing elements in the collection in a specified variable and keeping the elements that the qualifier returns as true.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forSubquery:usingIteratorVariable:predicate:)
+func (ec _ExpressionClass) ExpressionForSubqueryUsingIteratorVariablePredicate(expression IExpression, variable string, predicate IPredicate) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForSubquery:usingIteratorVariable:predicate:"), expression, objc.String(variable), predicate)
+	return rv
+}
+
+
+// Creates an expression object that represents the union of a specified set and collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forUnionSet:with:)
+func (ec _ExpressionClass) ExpressionForUnionSetWith(left IExpression, right IExpression) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForUnionSet:with:"), left, right)
+	return rv
+}
+
+
+// Creates an expression that extracts a value from the variable bindings dictionary for a specified key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forVariable:)
+func (ec _ExpressionClass) ExpressionForVariable(string_ string) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForVariable:"), objc.String(string_))
+	return rv
+}
+
+
+// Creates the expression with the specified expression format and array of arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:argumentArray:)
+func (ec _ExpressionClass) ExpressionWithFormatArgumentArray(expressionFormat string, arguments objectivec.IObject) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionWithFormat:argumentArray:"), objc.String(expressionFormat), arguments)
+	return rv
+}
+
+
+// Creates the expression with the specified expression format and arguments list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:arguments:)
+func (ec _ExpressionClass) ExpressionWithFormatArguments(expressionFormat string, argList unsafe.Pointer) IExpression {
+	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionWithFormat:arguments:"), objc.String(expressionFormat), argList)
+	return rv
+}
+
+
+// Forces a securely decoded expression to allow evaluation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/allowEvaluation()
+func (e_ Expression) AllowEvaluation() {
+	objc.Send[objc.ID](e_.ID, objc.Sel("allowEvaluation"))
+}
+
+
 // Evaluates an expression using a specified object and context.
 //
 // [Full Topic]
@@ -127,28 +466,9 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject,
 // The arguments for the expression.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) Arguments() IExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("arguments"))
-	return rv
-}
-
-
-// The arguments for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) SetArguments(value IExpression) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setArguments:"), value)
-}
-
-
-// The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
-func (e_ Expression) Collection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("collection"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/arguments
+func (e_ Expression) Arguments() []Expression {
+	rv := objc.Send[[]Expression](e_.ID, objc.Sel("arguments"))
 	return rv
 }
 
@@ -156,18 +476,9 @@ func (e_ Expression) Collection() unsafe.Pointer {
 // The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/collection
-func (e_ Expression) SetCollection(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setCollection:"), value)
-}
-
-
-// The constant value of the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/constantvalue
-func (e_ Expression) ConstantValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("constantValue"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/collection
+func (e_ Expression) Collection() objc.ID {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("collection"))
 	return rv
 }
 
@@ -175,18 +486,9 @@ func (e_ Expression) ConstantValue() unsafe.Pointer {
 // The constant value of the expression.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/constantvalue
-func (e_ Expression) SetConstantValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setConstantValue:"), value)
-}
-
-
-// The block that executes to evaluate the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-func (e_ Expression) ExpressionBlock() IMutableDictionary {
-	rv := objc.Send[NSMutableDictionary](e_.ID, objc.Sel("expressionBlock"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/constantValue
+func (e_ Expression) ConstantValue() objc.ID {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("constantValue"))
 	return rv
 }
 
@@ -194,18 +496,9 @@ func (e_ Expression) ExpressionBlock() IMutableDictionary {
 // The block that executes to evaluate the expression.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-func (e_ Expression) SetExpressionBlock(value IMutableDictionary) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionBlock:"), value)
-}
-
-
-// The expression type for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.property
-func (e_ Expression) ExpressionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionType"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionBlock
+func (e_ Expression) ExpressionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionBlock"))
 	return rv
 }
 
@@ -213,9 +506,100 @@ func (e_ Expression) ExpressionType() unsafe.Pointer {
 // The expression type for the expression.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.property
-func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionType-swift.property
+func (e_ Expression) ExpressionType() NSExpressionType {
+	rv := objc.Send[ExpressionType](e_.ID, objc.Sel("expressionType"))
+	return rv
+}
+
+
+// An expression to evalutate if a conditional expression’s predicate evaluates to false.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/false
+func (e_ Expression) FalseExpression() IExpression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("falseExpression"))
+	return rv
+}
+
+
+// The function for the expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/function
+func (e_ Expression) Function() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("function"))
+	return rv
+}
+
+
+// The key path for the expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/keyPath
+func (e_ Expression) KeyPath() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("keyPath"))
+	return rv
+}
+
+
+// The left expression of an aggregate expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/left
+func (e_ Expression) LeftExpression() IExpression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("leftExpression"))
+	return rv
+}
+
+
+// The operand for the expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/operand
+func (e_ Expression) Operand() IExpression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("operand"))
+	return rv
+}
+
+
+// The predicate of a subquery expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/predicate
+func (e_ Expression) Predicate() IPredicate {
+	rv := objc.Send[Predicate](e_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// The right expression of an aggregate expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/right
+func (e_ Expression) RightExpression() IExpression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("rightExpression"))
+	return rv
+}
+
+
+// An expression to evalutate if a conditional expression’s predicate evaluates to true.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/true
+func (e_ Expression) TrueExpression() IExpression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("trueExpression"))
+	return rv
+}
+
+
+// The variable for the expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/variable
+func (e_ Expression) Variable() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("variable"))
+	return rv
 }
 
 
@@ -224,7 +608,7 @@ func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
 func (e_ Expression) False() IExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("false"))
+	rv := objc.Send[Expression](e_.ID, objc.Sel("false"))
 	return rv
 }
 
@@ -238,50 +622,12 @@ func (e_ Expression) SetFalse(value IExpression) {
 }
 
 
-// The function for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) Function() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("function"))
-	return rv
-}
-
-
-// The function for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) SetFunction(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), objc.String(value))
-}
-
-
-// The key path for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-func (e_ Expression) KeyPath() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("keyPath"))
-	return rv
-}
-
-
-// The key path for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-func (e_ Expression) SetKeyPath(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), objc.String(value))
-}
-
-
 // The left expression of an aggregate expression.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
 func (e_ Expression) Left() IExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("left"))
+	rv := objc.Send[Expression](e_.ID, objc.Sel("left"))
 	return rv
 }
 
@@ -295,50 +641,12 @@ func (e_ Expression) SetLeft(value IExpression) {
 }
 
 
-// The operand for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) Operand() IExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("operand"))
-	return rv
-}
-
-
-// The operand for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) SetOperand(value IExpression) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setOperand:"), value)
-}
-
-
-// The predicate of a subquery expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/predicate
-func (e_ Expression) Predicate() IPredicate {
-	rv := objc.Send[NSPredicate](e_.ID, objc.Sel("predicate"))
-	return rv
-}
-
-
-// The predicate of a subquery expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/predicate
-func (e_ Expression) SetPredicate(value IPredicate) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
-}
-
-
 // The right expression of an aggregate expression.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
 func (e_ Expression) Right() IExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("right"))
+	rv := objc.Send[Expression](e_.ID, objc.Sel("right"))
 	return rv
 }
 
@@ -357,7 +665,7 @@ func (e_ Expression) SetRight(value IExpression) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
 func (e_ Expression) True() IExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("true"))
+	rv := objc.Send[Expression](e_.ID, objc.Sel("true"))
 	return rv
 }
 
@@ -369,25 +677,5 @@ func (e_ Expression) True() IExpression {
 func (e_ Expression) SetTrue(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTrue:"), value)
 }
-
-
-// The variable for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-func (e_ Expression) Variable() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("variable"))
-	return rv
-}
-
-
-// The variable for the expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-func (e_ Expression) SetVariable(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), objc.String(value))
-}
-
 
 

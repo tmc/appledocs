@@ -30,12 +30,12 @@ type _ConditionClass struct {
 // An interface definition for the [Condition] class.
 type ICondition interface {
 	objectivec.IObject
+	Name() string
+	SetName(value string)
 	Broadcast()
 	Signal()
 	Wait()
 	WaitUntilDate(limit IDate) bool
-	Name() string
-	SetName(value string)
 }
 
 // A condition variable whose semantics follow those used for POSIX-style conditions.

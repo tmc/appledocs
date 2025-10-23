@@ -118,7 +118,7 @@ func NewRelativeSpecifierWithContainerClassDescriptionContainerSpecifierKeyRelat
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/baseSpecifier
 func (r_ RelativeSpecifier) BaseSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("baseSpecifier"))
+	rv := objc.Send[ScriptObjectSpecifier](r_.ID, objc.Sel("baseSpecifier"))
 	return rv
 }
 

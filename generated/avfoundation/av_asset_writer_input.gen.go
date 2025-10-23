@@ -322,7 +322,7 @@ func (a_ AssetWriterInput) SetMediaType(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/metadata
 func (a_ AssetWriterInput) Metadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("metadata"))
+	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 

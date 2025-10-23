@@ -183,7 +183,7 @@ func (c_ CaptureMovieFileOutput) SetIsSpatialVideoCaptureSupported(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput/metadata
 func (c_ CaptureMovieFileOutput) Metadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
+	rv := objc.Send[MetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 

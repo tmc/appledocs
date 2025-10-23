@@ -331,7 +331,7 @@ func init() {
 //
 {{end -}}
 // Added in {{$docData.IntroducedPlatform}} {{$docData.IntroducedVersion}}.
-{{end -}}
+{{- end -}}
 {{if $docData.DocURL -}}
 {{template "doc_comment" $docData}}
 {{end -}}
@@ -341,12 +341,11 @@ func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}
 	{{if $docData.ReturnType}}ret := {{end}}fn({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}}.Ptr(){{end}})
 	{{if $docData.ReturnType -}}
 	return To{{$docData.ReturnType}}(ret)
-	{{end -}}
+	{{- end -}}
 	{{else -}}
 	{{if $docData.ReturnType}}return {{end}}_{{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}{{$p.Name}}{{end}})
-	{{end -}}
+	{{- end}}
 }
-
 {{end}}
 
 -- class.gen.go --
@@ -505,7 +504,7 @@ func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{typeToStructName $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{concreteReturnType $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else}}
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
@@ -527,7 +526,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}})
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
-	rv := objc.Send[{{typeToStructName $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
+	rv := objc.Send[{{concreteReturnType $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
 	return rv
 }
 {{- end}}
@@ -551,7 +550,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{typeToStructName $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
@@ -572,7 +571,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
-	rv := objc.Send[{{typeToStructName $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
+	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
 	return rv
 }
 {{ $isReadOnly := contains .Attributes "readonly"}}

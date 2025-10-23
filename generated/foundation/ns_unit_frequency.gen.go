@@ -91,7 +91,7 @@ func NewUnitFrequency() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/framesPerSecond
 func (uc _UnitFrequencyClass) FramesPerSecond() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("framesPerSecond"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("framesPerSecond"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitFrequencyClass) FramesPerSecond() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/gigahertz
 func (uc _UnitFrequencyClass) Gigahertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("gigahertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("gigahertz"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitFrequencyClass) Gigahertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/hertz
 func (uc _UnitFrequencyClass) Hertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("hertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("hertz"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitFrequencyClass) Hertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/kilohertz
 func (uc _UnitFrequencyClass) Kilohertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("kilohertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("kilohertz"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitFrequencyClass) Kilohertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/megahertz
 func (uc _UnitFrequencyClass) Megahertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("megahertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("megahertz"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitFrequencyClass) Megahertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/microhertz
 func (uc _UnitFrequencyClass) Microhertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("microhertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("microhertz"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (uc _UnitFrequencyClass) Microhertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/millihertz
 func (uc _UnitFrequencyClass) Millihertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("millihertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("millihertz"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (uc _UnitFrequencyClass) Millihertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/nanohertz
 func (uc _UnitFrequencyClass) Nanohertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("nanohertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("nanohertz"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (uc _UnitFrequencyClass) Nanohertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/terahertz
 func (uc _UnitFrequencyClass) Terahertz() UnitFrequency {
-	rv := objc.Send[NSUnitFrequency](objc.ID(uc.class), objc.Sel("terahertz"))
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("terahertz"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (uc _UnitFrequencyClass) Terahertz() UnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/framesPerSecond
 func (u_ UnitFrequency) FramesPerSecond() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("framesPerSecond"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("framesPerSecond"))
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (u_ UnitFrequency) FramesPerSecond() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/gigahertz
 func (u_ UnitFrequency) Gigahertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("gigahertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("gigahertz"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (u_ UnitFrequency) Gigahertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/hertz
 func (u_ UnitFrequency) Hertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("hertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("hertz"))
 	return rv
 }
 
@@ -202,7 +202,7 @@ func (u_ UnitFrequency) Hertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/kilohertz
 func (u_ UnitFrequency) Kilohertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("kilohertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("kilohertz"))
 	return rv
 }
 
@@ -212,7 +212,7 @@ func (u_ UnitFrequency) Kilohertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/megahertz
 func (u_ UnitFrequency) Megahertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("megahertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("megahertz"))
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (u_ UnitFrequency) Megahertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/microhertz
 func (u_ UnitFrequency) Microhertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("microhertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("microhertz"))
 	return rv
 }
 
@@ -232,7 +232,7 @@ func (u_ UnitFrequency) Microhertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/millihertz
 func (u_ UnitFrequency) Millihertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("millihertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("millihertz"))
 	return rv
 }
 
@@ -242,7 +242,7 @@ func (u_ UnitFrequency) Millihertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/nanohertz
 func (u_ UnitFrequency) Nanohertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("nanohertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("nanohertz"))
 	return rv
 }
 
@@ -252,7 +252,7 @@ func (u_ UnitFrequency) Nanohertz() IUnitFrequency {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/terahertz
 func (u_ UnitFrequency) Terahertz() IUnitFrequency {
-	rv := objc.Send[NSUnitFrequency](u_.ID, objc.Sel("terahertz"))
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("terahertz"))
 	return rv
 }
 

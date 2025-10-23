@@ -102,7 +102,7 @@ func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/dependentMorphology
 func (m_ MorphologyPronoun) DependentMorphology() IMorphology {
-	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("dependentMorphology"))
+	rv := objc.Send[Morphology](m_.ID, objc.Sel("dependentMorphology"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (m_ MorphologyPronoun) DependentMorphology() IMorphology {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
 func (m_ MorphologyPronoun) Morphology() IMorphology {
-	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("morphology"))
+	rv := objc.Send[Morphology](m_.ID, objc.Sel("morphology"))
 	return rv
 }
 

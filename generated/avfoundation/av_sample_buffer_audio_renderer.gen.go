@@ -30,8 +30,8 @@ type _SampleBufferAudioRendererClass struct {
 // An interface definition for the [SampleBufferAudioRenderer] class.
 type ISampleBufferAudioRenderer interface {
 	objectivec.IObject
-	AllowedAudioSpatializationFormats() unsafe.Pointer
-	SetAllowedAudioSpatializationFormats(value unsafe.Pointer)
+	AllowedAudioSpatializationFormats() AVAudioSpatializationFormats
+	SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats)
 	AudioOutputDeviceUniqueID() string
 	SetAudioOutputDeviceUniqueID(value string)
 	AudioTimePitchAlgorithm() unsafe.Pointer
@@ -104,8 +104,8 @@ func NewSampleBufferAudioRenderer() SampleBufferAudioRenderer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/allowedaudiospatializationformats
-func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() AVAudioSpatializationFormats {
+	rv := objc.Send[AudioSpatializationFormats](s_.ID, objc.Sel("allowedAudioSpatializationFormats"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (s_ SampleBufferAudioRenderer) AllowedAudioSpatializationFormats() unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/allowedaudiospatializationformats
-func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value unsafe.Pointer) {
+func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
 

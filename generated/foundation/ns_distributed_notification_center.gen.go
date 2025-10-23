@@ -30,6 +30,8 @@ type _DistributedNotificationCenterClass struct {
 // An interface definition for the [DistributedNotificationCenter] class.
 type IDistributedNotificationCenter interface {
 	INotificationCenter
+	Suspended() bool
+	SetSuspended(value bool)
 	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName, anObject string)
 	AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName, object string, suspensionBehavior NSNotificationSuspensionBehavior)
 	PostNotificationNameObject(aName NotificationName, anObject string)
@@ -37,8 +39,6 @@ type IDistributedNotificationCenter interface {
 	PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool)
 	PostNotificationNameObjectUserInfoOptions(name NotificationName, object string, userInfo objectivec.IObject, options NSDistributedNotificationOptions)
 	RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName, anObject string)
-	Suspended() bool
-	SetSuspended(value bool)
 }
 
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.

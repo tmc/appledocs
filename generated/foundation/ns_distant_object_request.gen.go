@@ -93,7 +93,7 @@ func NewDistantObjectRequest() DistantObjectRequest {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/connection
 func (d_ DistantObjectRequest) Connection() IConnection {
-	rv := objc.Send[NSConnection](d_.ID, objc.Sel("connection"))
+	rv := objc.Send[Connection](d_.ID, objc.Sel("connection"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (d_ DistantObjectRequest) Conversation() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/invocation
 func (d_ DistantObjectRequest) Invocation() IInvocation {
-	rv := objc.Send[NSInvocation](d_.ID, objc.Sel("invocation"))
+	rv := objc.Send[Invocation](d_.ID, objc.Sel("invocation"))
 	return rv
 }
 

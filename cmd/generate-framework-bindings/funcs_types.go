@@ -62,7 +62,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
 	if os.Getenv("DEBUG_TYPEMAP") == "1" {
-		if strings.Contains(objcType, "NSCharacterSet") || strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(objcType, "Broadcast") || (framework == "Foundation" && strings.Contains(objcType, "NE")) || strings.Contains(objcType, "CGFloat") {
+		if strings.Contains(objcType, "NSCharacterSet") || strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(objcType, "Broadcast") || (framework == "Foundation" && strings.Contains(objcType, "NE")) || strings.Contains(objcType, "CGFloat") || strings.Contains(objcType, "Quality") {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%s\n", objcType, framework)
 		}
 	}
@@ -253,12 +253,28 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Also try stripping prefix for NON-pointer types (handles docs that omit the *)
 	// This is especially common for return types and property types
+	// IMPORTANT: Do NOT strip prefix for enums - they need to keep their NS prefix
 	if !isPointer && objcType != "" {
+		if strings.Contains(objcType, "Quality") {
+			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: entering NON-POINTER block for %q (isPointer=%v)\n", objcType, isPointer)
+		}
 		strippedType := stripObjCPrefix(objcType)
 		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo NON-POINTER: objcType=%s strippedType=%s\n", objcType, strippedType)
 		}
 		if strippedType != objcType {
+			// Check if this is an enum type - enums must keep their NS prefix
+			if currentFrameworkEnums[strippedType] {
+				// This is an enum - return the original type with NS prefix intact
+				if strings.Contains(objcType, "Quality") {
+					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q is an enum, returning original %q\n", strippedType, objcType)
+				}
+				return objcType
+			}
+			if strings.Contains(objcType, "Quality") {
+				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q NOT in currentFrameworkEnums (size=%d)\n", strippedType, len(currentFrameworkEnums))
+			}
+
 			// Successfully stripped a prefix - check if this is a known type
 			// in the current framework or type registry
 			if mappedGoType, found := lookupTypeMapping(strippedType, framework); found {

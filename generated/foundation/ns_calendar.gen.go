@@ -30,6 +30,35 @@ type _CalendarClass struct {
 // An interface definition for the [Calendar] class.
 type ICalendar interface {
 	objectivec.IObject
+	AMSymbol() string
+	CalendarIdentifier() CalendarIdentifier
+	EraSymbols() []string
+	FirstWeekday() uint
+	SetFirstWeekday(value uint)
+	Locale() ILocale
+	SetLocale(value ILocale)
+	LongEraSymbols() []string
+	MinimumDaysInFirstWeek() uint
+	SetMinimumDaysInFirstWeek(value uint)
+	MonthSymbols() []string
+	PMSymbol() string
+	QuarterSymbols() []string
+	ShortMonthSymbols() []string
+	ShortQuarterSymbols() []string
+	ShortStandaloneMonthSymbols() []string
+	ShortStandaloneQuarterSymbols() []string
+	ShortStandaloneWeekdaySymbols() []string
+	ShortWeekdaySymbols() []string
+	StandaloneMonthSymbols() []string
+	StandaloneQuarterSymbols() []string
+	StandaloneWeekdaySymbols() []string
+	TimeZone() ITimeZone
+	SetTimeZone(value ITimeZone)
+	VeryShortMonthSymbols() []string
+	VeryShortStandaloneMonthSymbols() []string
+	VeryShortStandaloneWeekdaySymbols() []string
+	VeryShortWeekdaySymbols() []string
+	WeekdaySymbols() []string
 	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit NSCalendarUnit) NSComparisonResult
 	ComponentFromDate(unit NSCalendarUnit, date IDate) int
 	ComponentsFromDate(unitFlags NSCalendarUnit, date IDate) IDateComponents
@@ -65,35 +94,6 @@ type ICalendar interface {
 	RangeOfUnitStartDateIntervalForDate(unit NSCalendarUnit, datep IDate, tip TimeInterval, date IDate) bool
 	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval, date IDate) bool
 	StartOfDayForDate(date IDate) IDate
-	AMSymbol() string
-	CalendarIdentifier() CalendarIdentifier
-	EraSymbols() []string
-	FirstWeekday() uint
-	SetFirstWeekday(value uint)
-	Locale() ILocale
-	SetLocale(value ILocale)
-	LongEraSymbols() []string
-	MinimumDaysInFirstWeek() uint
-	SetMinimumDaysInFirstWeek(value uint)
-	MonthSymbols() []string
-	PMSymbol() string
-	QuarterSymbols() []string
-	ShortMonthSymbols() []string
-	ShortQuarterSymbols() []string
-	ShortStandaloneMonthSymbols() []string
-	ShortStandaloneQuarterSymbols() []string
-	ShortStandaloneWeekdaySymbols() []string
-	ShortWeekdaySymbols() []string
-	StandaloneMonthSymbols() []string
-	StandaloneQuarterSymbols() []string
-	StandaloneWeekdaySymbols() []string
-	TimeZone() ITimeZone
-	SetTimeZone(value ITimeZone)
-	VeryShortMonthSymbols() []string
-	VeryShortStandaloneMonthSymbols() []string
-	VeryShortStandaloneWeekdaySymbols() []string
-	VeryShortWeekdaySymbols() []string
-	WeekdaySymbols() []string
 }
 
 // A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
@@ -187,7 +187,7 @@ func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant Calen
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/autoupdatingCurrent
 func (cc _CalendarClass) AutoupdatingCurrentCalendar() Calendar {
-	rv := objc.Send[NSCalendar](objc.ID(cc.class), objc.Sel("autoupdatingCurrentCalendar"))
+	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("autoupdatingCurrentCalendar"))
 	return rv
 }
 
@@ -196,7 +196,7 @@ func (cc _CalendarClass) AutoupdatingCurrentCalendar() Calendar {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/current
 func (cc _CalendarClass) CurrentCalendar() Calendar {
-	rv := objc.Send[NSCalendar](objc.ID(cc.class), objc.Sel("currentCalendar"))
+	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("currentCalendar"))
 	return rv
 }
 
@@ -561,7 +561,7 @@ func (c_ Calendar) AMSymbol() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/autoupdatingCurrent
 func (c_ Calendar) AutoupdatingCurrentCalendar() ICalendar {
-	rv := objc.Send[NSCalendar](c_.ID, objc.Sel("autoupdatingCurrentCalendar"))
+	rv := objc.Send[Calendar](c_.ID, objc.Sel("autoupdatingCurrentCalendar"))
 	return rv
 }
 
@@ -581,7 +581,7 @@ func (c_ Calendar) CalendarIdentifier() CalendarIdentifier {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/current
 func (c_ Calendar) CurrentCalendar() ICalendar {
-	rv := objc.Send[NSCalendar](c_.ID, objc.Sel("currentCalendar"))
+	rv := objc.Send[Calendar](c_.ID, objc.Sel("currentCalendar"))
 	return rv
 }
 
@@ -620,7 +620,7 @@ func (c_ Calendar) SetFirstWeekday(value uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
 func (c_ Calendar) Locale() ILocale {
-	rv := objc.Send[NSLocale](c_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](c_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -788,7 +788,7 @@ func (c_ Calendar) StandaloneWeekdaySymbols() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
 func (c_ Calendar) TimeZone() ITimeZone {
-	rv := objc.Send[NSTimeZone](c_.ID, objc.Sel("timeZone"))
+	rv := objc.Send[TimeZone](c_.ID, objc.Sel("timeZone"))
 	return rv
 }
 

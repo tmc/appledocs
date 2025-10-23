@@ -157,7 +157,7 @@ func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
 func (p_ PointerFunctions) PointerFunctions() IPointerFunctions {
-	rv := objc.Send[NSPointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
+	rv := objc.Send[PointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 

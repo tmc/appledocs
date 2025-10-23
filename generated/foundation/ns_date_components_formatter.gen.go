@@ -30,11 +30,6 @@ type _DateComponentsFormatterClass struct {
 // An interface definition for the [DateComponentsFormatter] class.
 type IDateComponentsFormatter interface {
 	IFormatter
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromTimeInterval(ti TimeInterval) IString
-	StringFromDateComponents(components IDateComponents) IString
-	StringFromDateToDate(startDate IDate, endDate IDate) IString
 	AllowedUnits() NSCalendarUnit
 	SetAllowedUnits(value NSCalendarUnit)
 	AllowsFractionalUnits() bool
@@ -57,6 +52,11 @@ type IDateComponentsFormatter interface {
 	SetUnitsStyle(value NSDateComponentsFormatterUnitsStyle)
 	ZeroFormattingBehavior() NSDateComponentsFormatterZeroFormattingBehavior
 	SetZeroFormattingBehavior(value NSDateComponentsFormatterZeroFormattingBehavior)
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
+	StringForObjectValue(obj objectivec.IObject) IString
+	StringFromTimeInterval(ti TimeInterval) IString
+	StringFromDateComponents(components IDateComponents) IString
+	StringFromDateToDate(startDate IDate, endDate IDate) IString
 }
 
 // A formatter that creates string representations of quantities of time.
@@ -215,7 +215,7 @@ func (d_ DateComponentsFormatter) SetAllowsFractionalUnits(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/calendar
 func (d_ DateComponentsFormatter) Calendar() ICalendar {
-	rv := objc.Send[NSCalendar](d_.ID, objc.Sel("calendar"))
+	rv := objc.Send[Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -323,7 +323,7 @@ func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/referenceDate
 func (d_ DateComponentsFormatter) ReferenceDate() IDate {
-	rv := objc.Send[NSDate](d_.ID, objc.Sel("referenceDate"))
+	rv := objc.Send[Date](d_.ID, objc.Sel("referenceDate"))
 	return rv
 }
 

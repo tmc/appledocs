@@ -30,11 +30,11 @@ type _XPCListenerClass struct {
 // An interface definition for the [XPCListener] class.
 type IXPCListener interface {
 	objectivec.IObject
-	Suspend()
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	Endpoint() IXPCListenerEndpoint
 	SetEndpoint(value IXPCListenerEndpoint)
+	Suspend()
 }
 
 // A listener that waits for new incoming connections, configures them, and accepts or rejects them.
@@ -133,7 +133,7 @@ func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/endpoint
 func (x_ XPCListener) Endpoint() IXPCListenerEndpoint {
-	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
+	rv := objc.Send[XPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
 

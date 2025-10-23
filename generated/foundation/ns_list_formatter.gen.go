@@ -30,12 +30,12 @@ type _ListFormatterClass struct {
 // An interface definition for the [ListFormatter] class.
 type IListFormatter interface {
 	IFormatter
-	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromItems(items objectivec.IObject) IString
 	ItemFormatter() IFormatter
 	SetItemFormatter(value IFormatter)
 	Locale() ILocale
 	SetLocale(value ILocale)
+	StringForObjectValue(obj objectivec.IObject) IString
+	StringFromItems(items objectivec.IObject) IString
 }
 
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
@@ -128,7 +128,7 @@ func (l_ ListFormatter) StringFromItems(items objectivec.IObject) IString {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/itemFormatter
 func (l_ ListFormatter) ItemFormatter() IFormatter {
-	rv := objc.Send[NSFormatter](l_.ID, objc.Sel("itemFormatter"))
+	rv := objc.Send[Formatter](l_.ID, objc.Sel("itemFormatter"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (l_ ListFormatter) SetItemFormatter(value IFormatter) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/locale
 func (l_ ListFormatter) Locale() ILocale {
-	rv := objc.Send[NSLocale](l_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](l_.ID, objc.Sel("locale"))
 	return rv
 }
 

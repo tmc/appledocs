@@ -105,7 +105,7 @@ func NewURLSessionWebSocketMessageWithString(string_ string) URLSessionWebSocket
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/data
 func (u_ URLSessionWebSocketMessage) Data() IData {
-	rv := objc.Send[NSData](u_.ID, objc.Sel("data"))
+	rv := objc.Send[Data](u_.ID, objc.Sel("data"))
 	return rv
 }
 

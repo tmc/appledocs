@@ -30,6 +30,15 @@ type _FileManagerClass struct {
 // An interface definition for the [FileManager] class.
 type IFileManager interface {
 	objectivec.IObject
+	CurrentDirectoryPath() string
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	HomeDirectoryForCurrentUser() IURL
+	TemporaryDirectory() IURL
+	UbiquityIdentityToken() objc.ID
+	NSFileManagerUnmountDissentingProcessIdentifierErrorKey() string
+	NSFoundationVersionWithFileManagerResourceForkSupport() unsafe.Pointer
+	SetNSFoundationVersionWithFileManagerResourceForkSupport(value unsafe.Pointer)
 	AttributesOfFileSystemForPathError(path string, error_ IError) IDictionary
 	AttributesOfItemAtPathError(path string, error_ IError) IDictionary
 	ChangeCurrentDirectoryPath(path string) bool
@@ -87,15 +96,6 @@ type IFileManager interface {
 	URLForUbiquityContainerIdentifier(containerIdentifier string) IURL
 	URLsForDirectoryInDomains(directory NSSearchPathDirectory, domainMask NSSearchPathDomainMask) []URL
 	EnumeratorAtURLIncludingPropertiesForKeysOptionsErrorHandler(url IURL, keys []string, mask NSDirectoryEnumerationOptions, handler unsafe.Pointer) unsafe.Pointer
-	CurrentDirectoryPath() string
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	HomeDirectoryForCurrentUser() IURL
-	TemporaryDirectory() IURL
-	UbiquityIdentityToken() objc.ID
-	NSFileManagerUnmountDissentingProcessIdentifierErrorKey() string
-	NSFoundationVersionWithFileManagerResourceForkSupport() unsafe.Pointer
-	SetNSFoundationVersionWithFileManagerResourceForkSupport(value unsafe.Pointer)
 }
 
 // A convenient interface to the contents of the file system, and the primary means of interacting with it.
@@ -177,7 +177,7 @@ func (fc _FileManagerClass) FileManagerWithAuthorization(authorization objective
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/default
 func (fc _FileManagerClass) DefaultManager() FileManager {
-	rv := objc.Send[NSFileManager](objc.ID(fc.class), objc.Sel("defaultManager"))
+	rv := objc.Send[FileManager](objc.ID(fc.class), objc.Sel("defaultManager"))
 	return rv
 }
 
@@ -760,7 +760,7 @@ func (f_ FileManager) CurrentDirectoryPath() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/default
 func (f_ FileManager) DefaultManager() IFileManager {
-	rv := objc.Send[NSFileManager](f_.ID, objc.Sel("defaultManager"))
+	rv := objc.Send[FileManager](f_.ID, objc.Sel("defaultManager"))
 	return rv
 }
 

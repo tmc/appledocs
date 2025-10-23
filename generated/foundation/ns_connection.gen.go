@@ -280,7 +280,7 @@ func (c_ Connection) MultipleThreadsEnabled() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/receivePort-c.property
 func (c_ Connection) ReceivePort() IPort {
-	rv := objc.Send[NSPort](c_.ID, objc.Sel("receivePort"))
+	rv := objc.Send[Port](c_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
@@ -367,7 +367,7 @@ func (c_ Connection) SetRootObject(value objc.ID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxy
 func (c_ Connection) RootProxy() IDistantObject {
-	rv := objc.Send[NSDistantObject](c_.ID, objc.Sel("rootProxy"))
+	rv := objc.Send[DistantObject](c_.ID, objc.Sel("rootProxy"))
 	return rv
 }
 
@@ -377,7 +377,7 @@ func (c_ Connection) RootProxy() IDistantObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/sendPort-c.property
 func (c_ Connection) SendPort() IPort {
-	rv := objc.Send[NSPort](c_.ID, objc.Sel("sendPort"))
+	rv := objc.Send[Port](c_.ID, objc.Sel("sendPort"))
 	return rv
 }
 

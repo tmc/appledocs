@@ -30,10 +30,6 @@ type _PersonNameComponentsFormatterClass struct {
 // An interface definition for the [PersonNameComponentsFormatter] class.
 type IPersonNameComponentsFormatter interface {
 	IFormatter
-	AnnotatedStringFromPersonNameComponents(components IPersonNameComponents) IAttributedString
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	PersonNameComponentsFromString(string_ string) IPersonNameComponents
-	StringFromPersonNameComponents(components IPersonNameComponents) IString
 	Phonetic() bool
 	SetPhonetic(value bool)
 	Locale() ILocale
@@ -42,6 +38,10 @@ type IPersonNameComponentsFormatter interface {
 	SetStyle(value NSPersonNameComponentsFormatterStyle)
 	IsPhonetic() bool
 	SetIsPhonetic(value bool)
+	AnnotatedStringFromPersonNameComponents(components IPersonNameComponents) IAttributedString
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
+	PersonNameComponentsFromString(string_ string) IPersonNameComponents
+	StringFromPersonNameComponents(components IPersonNameComponents) IString
 }
 
 // A formatter that provides localized representations of the components of a person’s name.
@@ -171,7 +171,7 @@ func (p_ PersonNameComponentsFormatter) SetPhonetic(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/locale
 func (p_ PersonNameComponentsFormatter) Locale() ILocale {
-	rv := objc.Send[NSLocale](p_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](p_.ID, objc.Sel("locale"))
 	return rv
 }
 

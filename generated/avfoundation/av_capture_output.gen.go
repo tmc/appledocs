@@ -96,7 +96,7 @@ func NewCaptureOutput() CaptureOutput {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
 func (c_ CaptureOutput) Connections() IAVCaptureConnection {
-	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connections"))
+	rv := objc.Send[CaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
 

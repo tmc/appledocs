@@ -202,7 +202,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetTaskInterval(value IDateInterval) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/transactionmetrics
 func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() IURLSessionTaskTransactionMetrics {
-	rv := objc.Send[NSURLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
+	rv := objc.Send[URLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
 }
 
@@ -768,7 +768,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetResourceFetchType(value unsafe.Poi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
 func (u_ URLSessionTaskTransactionMetrics) Response() IURLResponse {
-	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 

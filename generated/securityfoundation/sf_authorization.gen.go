@@ -35,8 +35,6 @@ type ISFAuthorization interface {
 	InvalidateCredentials()
 	ObtainWithRightFlagsError(rightName unsafe.Pointer, flags unsafe.Pointer, error_ foundation.NSError) bool
 	ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.NSError) bool
-	PermitWithRightFlags(rightName unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer
-	PermitWithRightsFlagsEnvironmentAuthorizedRights(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer) unsafe.Pointer
 }
 
 // A class that allows you to restrict a user’s access to particular features in your Mac app or daemon.
@@ -160,26 +158,6 @@ func (s_ SFAuthorization) ObtainWithRightFlagsError(rightName unsafe.Pointer, fl
 // [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/obtain(withRights:flags:environment:authorizedRights:)
 func (s_ SFAuthorization) ObtainWithRightsFlagsEnvironmentAuthorizedRightsError(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer, error_ foundation.NSError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("obtainWithRights:flags:environment:authorizedRights:error:"), rights, flags, environment, authorizedRights, error_)
-	return rv
-}
-
-
-// Authorizes and preauthorizes one specific right.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/permitWithRight:flags:
-func (s_ SFAuthorization) PermitWithRightFlags(rightName unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("permitWithRight:flags:"), rightName, flags)
-	return rv
-}
-
-
-// Authorizes and preauthorizes rights to access a privileged operation and returns the granted rights.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SecurityFoundation/SFAuthorization/permitWithRights:flags:environment:authorizedRights:
-func (s_ SFAuthorization) PermitWithRightsFlagsEnvironmentAuthorizedRights(rights unsafe.Pointer, flags unsafe.Pointer, environment unsafe.Pointer, authorizedRights unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("permitWithRights:flags:environment:authorizedRights:"), rights, flags, environment, authorizedRights)
 	return rv
 }
 

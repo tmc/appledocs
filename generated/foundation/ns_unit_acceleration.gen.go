@@ -91,7 +91,7 @@ func NewUnitAcceleration() UnitAcceleration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/gravity
 func (uc _UnitAccelerationClass) Gravity() UnitAcceleration {
-	rv := objc.Send[NSUnitAcceleration](objc.ID(uc.class), objc.Sel("gravity"))
+	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("gravity"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitAccelerationClass) Gravity() UnitAcceleration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
 func (uc _UnitAccelerationClass) MetersPerSecondSquared() UnitAcceleration {
-	rv := objc.Send[NSUnitAcceleration](objc.ID(uc.class), objc.Sel("metersPerSecondSquared"))
+	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("metersPerSecondSquared"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitAccelerationClass) MetersPerSecondSquared() UnitAcceleration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/gravity
 func (u_ UnitAcceleration) Gravity() IUnitAcceleration {
-	rv := objc.Send[NSUnitAcceleration](u_.ID, objc.Sel("gravity"))
+	rv := objc.Send[UnitAcceleration](u_.ID, objc.Sel("gravity"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (u_ UnitAcceleration) Gravity() IUnitAcceleration {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
 func (u_ UnitAcceleration) MetersPerSecondSquared() IUnitAcceleration {
-	rv := objc.Send[NSUnitAcceleration](u_.ID, objc.Sel("metersPerSecondSquared"))
+	rv := objc.Send[UnitAcceleration](u_.ID, objc.Sel("metersPerSecondSquared"))
 	return rv
 }
 

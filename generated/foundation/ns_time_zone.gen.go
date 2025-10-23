@@ -30,8 +30,6 @@ type _TimeZoneClass struct {
 // An interface definition for the [TimeZone] class.
 type ITimeZone interface {
 	objectivec.IObject
-	AbbreviationForDate(aDate IDate) IString
-	SecondsFromGMTForDate(aDate IDate) int
 	Abbreviation() string
 	Data() IData
 	Name() string
@@ -44,6 +42,8 @@ type ITimeZone interface {
 	SetIsDaylightSavingTime(value bool)
 	NextDaylightSavingTimeTransition() IDate
 	SetNextDaylightSavingTimeTransition(value IDate)
+	AbbreviationForDate(aDate IDate) IString
+	SecondsFromGMTForDate(aDate IDate) int
 }
 
 // Information about standard time conventions associated with a specific geopolitical region.
@@ -143,7 +143,7 @@ func (t_ TimeZone) Abbreviation() string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/data
 func (t_ TimeZone) Data() IData {
-	rv := objc.Send[NSData](t_.ID, objc.Sel("data"))
+	rv := objc.Send[Data](t_.ID, objc.Sel("data"))
 	return rv
 }
 

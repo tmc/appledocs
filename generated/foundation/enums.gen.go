@@ -3,6 +3,11 @@
 package foundation
 
 // Enum types and constants
+// NSAlignmentOptions - Values representing alignment operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions
+type NSAlignmentOptions uint
+
 // NSByteCountFormatterCountStyle - Specifies display of file or storage byte counts. The display style is platform specific.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/CountStyle-swift.enum
@@ -30,14 +35,14 @@ const (
 	NSByteCountFormatterUsePB NSByteCountFormatterUnits = 1
 	NSByteCountFormatterUseEB NSByteCountFormatterUnits = 1
 	NSByteCountFormatterUseZB NSByteCountFormatterUnits = 1
-	NSByteCountFormatterUseYBOrHigher NSByteCountFormatterUnits = 0
-	NSByteCountFormatterUseAll NSByteCountFormatterUnits = 0
+	NSByteCountFormatterUseYBOrHigher NSByteCountFormatterUnits = 255
+	NSByteCountFormatterUseAll NSByteCountFormatterUnits = 65535
 )
 
 // NSComparisonResult - Constants that indicate sort order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult
-type NSComparisonResult uint
+type NSComparisonResult int
 
 const (
 	// NSOrderedAscending - The left operand is smaller than the right operand.
@@ -295,7 +300,7 @@ const (
 	// NSAllDomainsMask - All domains.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/allDomainsMask
-	NSAllDomainsMask NSSearchPathDomainMask = 0
+	NSAllDomainsMask NSSearchPathDomainMask = 65535
 	// NSLocalDomainMask - The place to install items available to everyone on this machine.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask/localDomainMask
@@ -364,6 +369,26 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/VolumeEnumerationOptions/skipHiddenVolumes
 	NSVolumeEnumerationSkipHiddenVolumes NSVolumeEnumerationOptions = 1
+)
+
+// NSFileWrapperReadingOptions - Reading options that can be set by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/ReadingOptions
+type NSFileWrapperReadingOptions uint
+
+const (
+	NSFileWrapperReadingImmediate NSFileWrapperReadingOptions = 1
+	NSFileWrapperReadingWithoutMapping NSFileWrapperReadingOptions = 1
+)
+
+// NSFileWrapperWritingOptions - Writing options that can be set by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/WritingOptions
+type NSFileWrapperWritingOptions uint
+
+const (
+	NSFileWrapperWritingAtomic NSFileWrapperWritingOptions = 1
+	NSFileWrapperWritingWithNameUpdating NSFileWrapperWritingOptions = 1
 )
 
 // NSFormattingContext - The formatting context for a formatter.
@@ -484,7 +509,7 @@ const (
 // NSAttributedStringMarkdownParsingFailurePolicy - A type that represents policies for handling parsing failures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy
-type NSAttributedStringMarkdownParsingFailurePolicy uint
+type NSAttributedStringMarkdownParsingFailurePolicy int
 
 const (
 	// NSAttributedStringMarkdownParsingFailureReturnError - A policy to return an error from the initializer if parsing fails.
@@ -512,6 +537,11 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/Result/finished
 	NSBackgroundActivityResultFinished NSBackgroundActivityResult = 1
 )
+
+// NSBinarySearchingOptions - Options for searches and insertions using 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions
+type NSBinarySearchingOptions uint
 
 // NSCalendarOptions - The options for arithmetic operations involving calendars.
 //
@@ -698,6 +728,61 @@ const (
 	NSCalendarUnitYearForWeekOfYear NSCalendarUnit = 3
 )
 
+// NSComparisonPredicateModifier - Constants that describe the possible types of modifier for a comparison predicate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/Modifier
+type NSComparisonPredicateModifier uint
+
+const (
+	NSDirectPredicateModifier NSComparisonPredicateModifier = 0
+	NSAllPredicateModifier NSComparisonPredicateModifier = 1
+	NSAnyPredicateModifier NSComparisonPredicateModifier = 2
+)
+
+// NSPredicateOperatorType - Defines the type of comparison for a comparison predicate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/Operator
+type NSPredicateOperatorType uint
+
+const (
+	NSLessThanPredicateOperatorType NSPredicateOperatorType = 0
+	NSLessThanOrEqualToPredicateOperatorType NSPredicateOperatorType = 1
+	NSGreaterThanPredicateOperatorType NSPredicateOperatorType = 2
+	NSGreaterThanOrEqualToPredicateOperatorType NSPredicateOperatorType = 3
+	NSEqualToPredicateOperatorType NSPredicateOperatorType = 4
+	NSNotEqualToPredicateOperatorType NSPredicateOperatorType = 5
+	NSMatchesPredicateOperatorType NSPredicateOperatorType = 6
+	NSLikePredicateOperatorType NSPredicateOperatorType = 7
+	NSBeginsWithPredicateOperatorType NSPredicateOperatorType = 8
+	NSEndsWithPredicateOperatorType NSPredicateOperatorType = 9
+	NSInPredicateOperatorType NSPredicateOperatorType = 10
+	NSCustomSelectorPredicateOperatorType NSPredicateOperatorType = 11
+	NSContainsPredicateOperatorType NSPredicateOperatorType = 12
+	NSBetweenPredicateOperatorType NSPredicateOperatorType = 13
+)
+
+// NSComparisonPredicateOptions - Constants that describe the possible types of string comparison for comparison predicates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/Options-swift.struct
+type NSComparisonPredicateOptions uint
+
+const (
+	NSCaseInsensitivePredicateOption NSComparisonPredicateOptions = 1
+	NSDiacriticInsensitivePredicateOption NSComparisonPredicateOptions = 2
+	NSNormalizedPredicateOption NSComparisonPredicateOptions = 3
+)
+
+// NSCompoundPredicateType - Constants that describe the possible types of a compound predicate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/LogicalType
+type NSCompoundPredicateType uint
+
+const (
+	NSNotPredicateType NSCompoundPredicateType = 0
+	NSAndPredicateType NSCompoundPredicateType = 1
+	NSOrPredicateType NSCompoundPredicateType = 2
+)
+
 // NSDataBase64DecodingOptions - Options to modify the decoding algorithm used to decode Base64 encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64DecodingOptions
@@ -770,6 +855,34 @@ const (
 	NSDataWritingFileProtectionCompleteWhenUserInactive NSDataWritingOptions = 7
 	NSDataWritingFileProtectionMask NSDataWritingOptions = 8
 	NSAtomicWrite NSDataWritingOptions = 9
+)
+
+// NSExpressionType - Defines the possible types of an expression.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum
+type NSExpressionType uint
+
+const (
+	// NSAggregateExpressionType - An expression that defines an aggregate of   objects.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum/aggregate
+	NSAggregateExpressionType NSExpressionType = 9
+	// NSIntersectSetExpressionType - An expression that creates an intersection of the results of two nested expressions.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum/intersectSet
+	NSIntersectSetExpressionType NSExpressionType = 6
+	// NSMinusSetExpressionType - An expression that combines two nested expression results by set subtraction.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum/minusSet
+	NSMinusSetExpressionType NSExpressionType = 7
+	// NSSubqueryExpressionType - An expression that filters a collection using a subpredicate.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum/subquery
+	NSSubqueryExpressionType NSExpressionType = 8
+	// NSUnionSetExpressionType - An expression that creates a union of the results of two nested expressions.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/ExpressionType-swift.enum/unionSet
+	NSUnionSetExpressionType NSExpressionType = 5
 )
 
 // NSFileCoordinatorReadingOptions - Options to use when reading the contents or attributes of a file or directory.
@@ -1053,7 +1166,7 @@ const (
 // NSItemProviderErrorCode - The error codes that describe problems with consuming data from an item provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/ErrorCode
-type NSItemProviderErrorCode uint
+type NSItemProviderErrorCode int
 
 const (
 	// NSItemProviderItemUnavailableError - An error code indicating that the requested data was unavailable from an item provider.
@@ -1133,10 +1246,10 @@ const (
 type NSKeyValueObservingOptions uint
 
 const (
-	NSKeyValueObservingOptionNew NSKeyValueObservingOptions = 0
-	NSKeyValueObservingOptionOld NSKeyValueObservingOptions = 0
-	NSKeyValueObservingOptionInitial NSKeyValueObservingOptions = 1
-	NSKeyValueObservingOptionPrior NSKeyValueObservingOptions = 2
+	NSKeyValueObservingOptionNew NSKeyValueObservingOptions = 1
+	NSKeyValueObservingOptionOld NSKeyValueObservingOptions = 2
+	NSKeyValueObservingOptionInitial NSKeyValueObservingOptions = 3
+	NSKeyValueObservingOptionPrior NSKeyValueObservingOptions = 4
 )
 
 // NSKeyValueSetMutationKind enum type
@@ -1188,6 +1301,11 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPortOptions/NSMachPortDeallocateNone
 	NSMachPortDeallocateNone NSMachPortOptions = 0
 )
+
+// NSOrderedCollectionDifferenceCalculationOptions - Constants that specify the options to use when creating an ordered collection difference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions
+type NSOrderedCollectionDifferenceCalculationOptions uint
 
 // NSPointerFunctionsOptions - Defines the memory and personality options for an 
 //
@@ -1265,7 +1383,7 @@ const (
 // NSPresentationIntentKind - An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind
-type NSPresentationIntentKind uint
+type NSPresentationIntentKind int
 
 const (
 	NSPresentationIntentKindParagraph NSPresentationIntentKind = 0
@@ -1316,6 +1434,17 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions
 type NSSortOptions uint
+
+const (
+	// NSSortConcurrent - Specifies that the Block sort operation should be concurrent.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions/concurrent
+	NSSortConcurrent NSSortOptions = 0
+	// NSSortStable - Specifies that the sorted results should return compared items having equal value in the order they occurred originally.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions/stable
+	NSSortStable NSSortOptions = 0
+)
 
 // NSTestComparisonOperation - These are passed to  
 //
@@ -1551,7 +1680,13 @@ const (
 // NSURLErrorNetworkUnavailableReason - An enumeration of reasons why a task couldn’t satisfy networking constraints.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLErrorNetworkUnavailableReason
-type NSURLErrorNetworkUnavailableReason uint
+type NSURLErrorNetworkUnavailableReason int
+
+const (
+	NSURLErrorNetworkUnavailableReasonCellular NSURLErrorNetworkUnavailableReason = 0
+	NSURLErrorNetworkUnavailableReasonExpensive NSURLErrorNetworkUnavailableReason = 1
+	NSURLErrorNetworkUnavailableReasonConstrained NSURLErrorNetworkUnavailableReason = 2
+)
 
 // NSURLRequestCachePolicy - The constants used to specify interaction with the cached responses.
 //
@@ -1562,7 +1697,7 @@ const (
 	// NSURLRequestReloadIgnoringLocalAndRemoteCacheData - Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringLocalAndRemoteCacheData
-	NSURLRequestReloadIgnoringLocalAndRemoteCacheData NSURLRequestCachePolicy = 0
+	NSURLRequestReloadIgnoringLocalAndRemoteCacheData NSURLRequestCachePolicy = 4
 )
 
 // NSURLRequestNetworkServiceType - Constants that specify how a request uses network resources.
@@ -1570,10 +1705,22 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/NetworkServiceType-swift.enum
 type NSURLRequestNetworkServiceType uint
 
+const (
+	NSURLNetworkServiceTypeDefault NSURLRequestNetworkServiceType = 0
+	NSURLNetworkServiceTypeVoIP NSURLRequestNetworkServiceType = 1
+	NSURLNetworkServiceTypeVideo NSURLRequestNetworkServiceType = 2
+	NSURLNetworkServiceTypeBackground NSURLRequestNetworkServiceType = 3
+	NSURLNetworkServiceTypeVoice NSURLRequestNetworkServiceType = 4
+	NSURLNetworkServiceTypeResponsiveData NSURLRequestNetworkServiceType = 6
+	NSURLNetworkServiceTypeAVStreaming NSURLRequestNetworkServiceType = 7
+	NSURLNetworkServiceTypeResponsiveAV NSURLRequestNetworkServiceType = 8
+	NSURLNetworkServiceTypeCallSignaling NSURLRequestNetworkServiceType = 9
+)
+
 // NSURLSessionWebSocketMessageType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessageType
-type NSURLSessionWebSocketMessageType uint
+type NSURLSessionWebSocketMessageType int
 
 const (
 	//
@@ -1618,7 +1765,7 @@ type NSXPCConnectionOptions uint
 // NSNetServicesError - These constants identify errors that can occur when accessing net services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum
-type NSNetServicesError uint
+type NSNetServicesError int
 
 const (
 	// NSNetServicesActivityInProgress - The net service cannot process the request at this time. No additional information about the network state is known.
@@ -1741,7 +1888,7 @@ const (
 // NSOperationQueuePriority - These constants let you prioritize the order in which operations execute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/QueuePriority-swift.enum
-type NSOperationQueuePriority uint
+type NSOperationQueuePriority int
 
 const (
 	// NSOperationQueuePriorityHigh - Operations receive high priority for execution.
@@ -1837,7 +1984,7 @@ const (
 	// NSActivityUserInteractive - A flag to indicate the app is responding to user interaction.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/userInteractive
-	NSActivityUserInteractive NSActivityOptions = 1
+	NSActivityUserInteractive NSActivityOptions = 2
 )
 
 // NSProcessInfoThermalState - Values used to indicate the system’s thermal state.
@@ -1855,24 +2002,24 @@ const (
 // NSQualityOfService - Constants that indicate the nature and importance of work to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService
-type NSQualityOfService uint
+type NSQualityOfService int
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/background
-	NSQualityOfServiceBackground NSQualityOfService = 0
+	NSQualityOfServiceBackground NSQualityOfService = 9
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/default
 	NSQualityOfServiceDefault NSQualityOfService = -1
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInitiated
-	NSQualityOfServiceUserInitiated NSQualityOfService = 0
+	NSQualityOfServiceUserInitiated NSQualityOfService = 25
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInteractive
-	NSQualityOfServiceUserInteractive NSQualityOfService = 0
+	NSQualityOfServiceUserInteractive NSQualityOfService = 33
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/utility
-	NSQualityOfServiceUtility NSQualityOfService = 0
+	NSQualityOfServiceUtility NSQualityOfService = 17
 )
 
 // NSRelativeDateTimeFormatterStyle - A type that represents the style to use when formatting relative dates, such as “1 week ago” or “last week”.
@@ -1962,15 +2109,15 @@ const (
 	// NSURLSessionMultipathServiceTypeAggregate - A service that aggregates the capacities of other Multipath options in an attempt to increase throughput and minimize latency.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/aggregate
-	NSURLSessionMultipathServiceTypeAggregate NSURLSessionMultipathServiceType = 0
+	NSURLSessionMultipathServiceTypeAggregate NSURLSessionMultipathServiceType = 3
 	// NSURLSessionMultipathServiceTypeHandover - A Multipath TCP service that provides seamless handover between Wi-Fi and cellular in order to preserve the connection.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/handover
-	NSURLSessionMultipathServiceTypeHandover NSURLSessionMultipathServiceType = 0
+	NSURLSessionMultipathServiceTypeHandover NSURLSessionMultipathServiceType = 1
 	// NSURLSessionMultipathServiceTypeInteractive - A service whereby Multipath TCP attempts to use the lowest-latency interface.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/interactive
-	NSURLSessionMultipathServiceTypeInteractive NSURLSessionMultipathServiceType = 0
+	NSURLSessionMultipathServiceTypeInteractive NSURLSessionMultipathServiceType = 2
 	// NSURLSessionMultipathServiceTypeNone - The default service type indicating that Multipath TCP should not be used.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/MultipathServiceType-swift.enum/none
@@ -2075,6 +2222,18 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/DTDKind-swift.enum/unparsed
 	NSXMLEntityUnparsedKind NSXMLDTDNodeKind = 3
+)
+
+// NSXMLDocumentContentKind - Type used to define the kind of document content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/ContentKind
+type NSXMLDocumentContentKind uint
+
+const (
+	NSXMLDocumentXMLKind NSXMLDocumentContentKind = 0
+	NSXMLDocumentXHTMLKind NSXMLDocumentContentKind = 1
+	NSXMLDocumentHTMLKind NSXMLDocumentContentKind = 2
+	NSXMLDocumentTextKind NSXMLDocumentContentKind = 3
 )
 
 // NSXMLNodeKind enum type

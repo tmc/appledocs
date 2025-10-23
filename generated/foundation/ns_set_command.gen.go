@@ -29,8 +29,8 @@ type _SetCommandClass struct {
 // An interface definition for the [SetCommand] class.
 type ISetCommand interface {
 	IScriptCommand
-	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 	KeySpecifier() IScriptObjectSpecifier
+	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 
 // A command that sets one or more attributes or relationships to one or more values.
@@ -102,7 +102,7 @@ func (s_ SetCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand/keySpecifier
 func (s_ SetCommand) KeySpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
+	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
 

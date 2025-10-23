@@ -127,7 +127,7 @@ func NewMetadataItem() MetadataItem {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
 func (m_ MetadataItem) CommonMetadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("commonMetadata"))
+	rv := objc.Send[MetadataItem](m_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (m_ MetadataItem) SetCommonMetadata(value IAVMetadataItem) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/metadata
 func (m_ MetadataItem) Metadata() IAVMetadataItem {
-	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("metadata"))
+	rv := objc.Send[MetadataItem](m_.ID, objc.Sel("metadata"))
 	return rv
 }
 

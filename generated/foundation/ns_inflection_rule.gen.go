@@ -100,7 +100,7 @@ func (ic _InflectionRuleClass) CanInflectLanguage(language string) bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/automaticRule
 func (ic _InflectionRuleClass) AutomaticRule() InflectionRule {
-	rv := objc.Send[NSInflectionRule](objc.ID(ic.class), objc.Sel("automaticRule"))
+	rv := objc.Send[InflectionRule](objc.ID(ic.class), objc.Sel("automaticRule"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/automaticRule
 func (i_ InflectionRule) AutomaticRule() IInflectionRule {
-	rv := objc.Send[NSInflectionRule](i_.ID, objc.Sel("automaticRule"))
+	rv := objc.Send[InflectionRule](i_.ID, objc.Sel("automaticRule"))
 	return rv
 }
 

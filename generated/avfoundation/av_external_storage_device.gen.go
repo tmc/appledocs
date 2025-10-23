@@ -219,7 +219,7 @@ func (e_ ExternalStorageDevice) SetUuid(value foundation.UUID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicediscoverysession/externalstoragedevices
 func (e_ ExternalStorageDevice) ExternalStorageDevices() IAVExternalStorageDevice {
-	rv := objc.Send[AVExternalStorageDevice](e_.ID, objc.Sel("externalStorageDevices"))
+	rv := objc.Send[ExternalStorageDevice](e_.ID, objc.Sel("externalStorageDevices"))
 	return rv
 }
 

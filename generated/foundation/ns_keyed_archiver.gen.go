@@ -30,8 +30,6 @@ type _KeyedArchiverClass struct {
 // An interface definition for the [KeyedArchiver] class.
 type IKeyedArchiver interface {
 	ICoder
-	EncodeDoubleForKey(value float64, key string)
-	FinishEncoding()
 	EncodedData() IData
 	OutputFormat() unsafe.Pointer
 	SetOutputFormat(value unsafe.Pointer)
@@ -39,6 +37,8 @@ type IKeyedArchiver interface {
 	SetRequiresSecureCoding(value bool)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	EncodeDoubleForKey(value float64, key string)
+	FinishEncoding()
 }
 
 // An encoder that stores an object’s data to an archive referenced by keys.
@@ -149,7 +149,7 @@ func (k_ KeyedArchiver) FinishEncoding() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encodedData
 func (k_ KeyedArchiver) EncodedData() IData {
-	rv := objc.Send[NSData](k_.ID, objc.Sel("encodedData"))
+	rv := objc.Send[Data](k_.ID, objc.Sel("encodedData"))
 	return rv
 }
 

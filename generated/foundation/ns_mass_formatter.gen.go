@@ -114,7 +114,7 @@ func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
 func (m_ MassFormatter) NumberFormatter() INumberFormatter {
-	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
+	rv := objc.Send[NumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 

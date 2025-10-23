@@ -29,8 +29,8 @@ type _BlockOperationClass struct {
 // An interface definition for the [BlockOperation] class.
 type IBlockOperation interface {
 	IOperation
-	AddExecutionBlock(block unsafe.Pointer)
 	ExecutionBlocks() []func()
+	AddExecutionBlock(block unsafe.Pointer)
 }
 
 // An operation that manages the concurrent execution of one or more blocks.

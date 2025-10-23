@@ -91,7 +91,7 @@ func NewUnitElectricCurrent() UnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
 func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("amperes"))
+	rv := objc.Send[UnitElectricCurrent](objc.ID(uc.class), objc.Sel("amperes"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/kiloamperes
 func (uc _UnitElectricCurrentClass) Kiloamperes() UnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("kiloamperes"))
+	rv := objc.Send[UnitElectricCurrent](objc.ID(uc.class), objc.Sel("kiloamperes"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitElectricCurrentClass) Kiloamperes() UnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/megaamperes
 func (uc _UnitElectricCurrentClass) Megaamperes() UnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("megaamperes"))
+	rv := objc.Send[UnitElectricCurrent](objc.ID(uc.class), objc.Sel("megaamperes"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitElectricCurrentClass) Megaamperes() UnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/microamperes
 func (uc _UnitElectricCurrentClass) Microamperes() UnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("microamperes"))
+	rv := objc.Send[UnitElectricCurrent](objc.ID(uc.class), objc.Sel("microamperes"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitElectricCurrentClass) Microamperes() UnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/milliamperes
 func (uc _UnitElectricCurrentClass) Milliamperes() UnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("milliamperes"))
+	rv := objc.Send[UnitElectricCurrent](objc.ID(uc.class), objc.Sel("milliamperes"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (uc _UnitElectricCurrentClass) Milliamperes() UnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
 func (u_ UnitElectricCurrent) Amperes() IUnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("amperes"))
+	rv := objc.Send[UnitElectricCurrent](u_.ID, objc.Sel("amperes"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (u_ UnitElectricCurrent) Amperes() IUnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/kiloamperes
 func (u_ UnitElectricCurrent) Kiloamperes() IUnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("kiloamperes"))
+	rv := objc.Send[UnitElectricCurrent](u_.ID, objc.Sel("kiloamperes"))
 	return rv
 }
 
@@ -156,7 +156,7 @@ func (u_ UnitElectricCurrent) Kiloamperes() IUnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/megaamperes
 func (u_ UnitElectricCurrent) Megaamperes() IUnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("megaamperes"))
+	rv := objc.Send[UnitElectricCurrent](u_.ID, objc.Sel("megaamperes"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (u_ UnitElectricCurrent) Megaamperes() IUnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/microamperes
 func (u_ UnitElectricCurrent) Microamperes() IUnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("microamperes"))
+	rv := objc.Send[UnitElectricCurrent](u_.ID, objc.Sel("microamperes"))
 	return rv
 }
 
@@ -176,7 +176,7 @@ func (u_ UnitElectricCurrent) Microamperes() IUnitElectricCurrent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/milliamperes
 func (u_ UnitElectricCurrent) Milliamperes() IUnitElectricCurrent {
-	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("milliamperes"))
+	rv := objc.Send[UnitElectricCurrent](u_.ID, objc.Sel("milliamperes"))
 	return rv
 }
 

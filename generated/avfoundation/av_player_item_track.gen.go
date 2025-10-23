@@ -30,8 +30,8 @@ type _PlayerItemTrackClass struct {
 // An interface definition for the [PlayerItemTrack] class.
 type IPlayerItemTrack interface {
 	objectivec.IObject
-	AssetTrack() AssetTrack
-	SetAssetTrack(value AssetTrack)
+	AssetTrack() IAVAssetTrack
+	SetAssetTrack(value IAVAssetTrack)
 	CurrentVideoFrameRate() float32
 	SetCurrentVideoFrameRate(value float32)
 	IsEnabled() bool
@@ -96,7 +96,7 @@ func NewPlayerItemTrack() PlayerItemTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
-func (p_ PlayerItemTrack) AssetTrack() AssetTrack {
+func (p_ PlayerItemTrack) AssetTrack() IAVAssetTrack {
 	rv := objc.Send[AssetTrack](p_.ID, objc.Sel("assetTrack"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (p_ PlayerItemTrack) AssetTrack() AssetTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
-func (p_ PlayerItemTrack) SetAssetTrack(value AssetTrack) {
+func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetTrack:"), value)
 }
 

@@ -30,13 +30,13 @@ type _URLConnectionClass struct {
 // An interface definition for the [URLConnection] class.
 type IURLConnection interface {
 	objectivec.IObject
+	CurrentRequest() IURLRequest
+	OriginalRequest() IURLRequest
 	Cancel()
 	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 	SetDelegateQueue(queue IOperationQueue)
 	Start()
 	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	CurrentRequest() IURLRequest
-	OriginalRequest() IURLRequest
 }
 
 // An object that enables you to start and stop URL requests.
@@ -206,7 +206,7 @@ func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode Run
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/currentRequest
 func (u_ URLConnection) CurrentRequest() IURLRequest {
-	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("currentRequest"))
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
@@ -216,7 +216,7 @@ func (u_ URLConnection) CurrentRequest() IURLRequest {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/originalRequest
 func (u_ URLConnection) OriginalRequest() IURLRequest {
-	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("originalRequest"))
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 

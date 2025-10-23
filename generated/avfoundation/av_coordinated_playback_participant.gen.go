@@ -156,7 +156,7 @@ func (c_ CoordinatedPlaybackParticipant) SetSuspensionReasons(value unsafe.Point
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
 func (c_ CoordinatedPlaybackParticipant) OtherParticipants() IAVCoordinatedPlaybackParticipant {
-	rv := objc.Send[AVCoordinatedPlaybackParticipant](c_.ID, objc.Sel("otherParticipants"))
+	rv := objc.Send[CoordinatedPlaybackParticipant](c_.ID, objc.Sel("otherParticipants"))
 	return rv
 }
 

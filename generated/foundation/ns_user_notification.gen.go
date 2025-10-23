@@ -161,7 +161,7 @@ func (u_ UserNotification) ActivationType() NSUserNotificationActivationType {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actualDeliveryDate
 func (u_ UserNotification) ActualDeliveryDate() IDate {
-	rv := objc.Send[NSDate](u_.ID, objc.Sel("actualDeliveryDate"))
+	rv := objc.Send[Date](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
 }
 
@@ -200,7 +200,7 @@ func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActivationAction
 func (u_ UserNotification) AdditionalActivationAction() IUserNotificationAction {
-	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
+	rv := objc.Send[UserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
 }
 
@@ -210,7 +210,7 @@ func (u_ UserNotification) AdditionalActivationAction() IUserNotificationAction 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryDate
 func (u_ UserNotification) DeliveryDate() IDate {
-	rv := objc.Send[NSDate](u_.ID, objc.Sel("deliveryDate"))
+	rv := objc.Send[Date](u_.ID, objc.Sel("deliveryDate"))
 	return rv
 }
 
@@ -229,7 +229,7 @@ func (u_ UserNotification) SetDeliveryDate(value IDate) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryRepeatInterval
 func (u_ UserNotification) DeliveryRepeatInterval() IDateComponents {
-	rv := objc.Send[NSDateComponents](u_.ID, objc.Sel("deliveryRepeatInterval"))
+	rv := objc.Send[DateComponents](u_.ID, objc.Sel("deliveryRepeatInterval"))
 	return rv
 }
 
@@ -248,7 +248,7 @@ func (u_ UserNotification) SetDeliveryRepeatInterval(value IDateComponents) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryTimeZone
 func (u_ UserNotification) DeliveryTimeZone() ITimeZone {
-	rv := objc.Send[NSTimeZone](u_.ID, objc.Sel("deliveryTimeZone"))
+	rv := objc.Send[TimeZone](u_.ID, objc.Sel("deliveryTimeZone"))
 	return rv
 }
 
@@ -382,7 +382,7 @@ func (u_ UserNotification) SetOtherButtonTitle(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/response
 func (u_ UserNotification) Response() IAttributedString {
-	rv := objc.Send[NSAttributedString](u_.ID, objc.Sel("response"))
+	rv := objc.Send[AttributedString](u_.ID, objc.Sel("response"))
 	return rv
 }
 

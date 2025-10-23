@@ -376,8 +376,17 @@ func (c *Crawler) shouldSkipURL(parsed *url.URL) bool {
 		strings.Contains(parsed.Path, "#") ||
 		strings.Contains(parsed.Path, "managedapp")
 
+	// Skip standard library math functions that are re-exported (e.g., acos, sin, etc.)
+	pathLower := strings.ToLower(parsed.Path)
+	isStdLibMath := isStandardMathFunction(pathLower)
+
+	// Skip C preprocessor macros and compiler directives
+	isCMacro := isCPreprocessorMacro(pathLower)
+
 	return isMediaFile ||
 		isMarketingPage ||
+		isStdLibMath ||
+		isCMacro ||
 		strings.Contains(parsed.Path, "/assets/") ||
 		strings.HasSuffix(parsed.Path, ".css") ||
 		strings.HasSuffix(parsed.Path, ".js") ||
@@ -385,6 +394,64 @@ func (c *Crawler) shouldSkipURL(parsed *url.URL) bool {
 		strings.HasSuffix(parsed.Path, ".jpg") ||
 		strings.HasSuffix(parsed.Path, ".svg") ||
 		strings.HasSuffix(parsed.Path, ".pdf")
+}
+
+// isStandardMathFunction checks if the path represents a standard C/Swift math function
+func isStandardMathFunction(pathLower string) bool {
+	// List of standard math functions that frameworks sometimes re-export
+	mathFuncs := []string{
+		"/acos(", "/acosh(", "/asin(", "/asinh(", "/atan(", "/atan2(", "/atanh(",
+		"/cbrt(", "/cos(", "/cosh(", "/erf(", "/erfc(", "/exp(", "/exp2(", "/expm1(",
+		"/fdim(", "/fmax(", "/fmin(", "/hypot(", "/ilogb(", "/j0(", "/j1(", "/jn(",
+		"/ldexp(", "/lgamma(", "/log(", "/log10(", "/log1p(", "/log2(", "/logb(",
+		"/nan(", "/nearbyint(", "/nextafter(", "/pow(", "/remquo(", "/rint(",
+		"/sin(", "/sinh(", "/tan(", "/tanh(", "/tgamma(", "/y0(", "/y1(", "/yn(",
+		"/copysign(",
+	}
+
+	for _, fn := range mathFuncs {
+		if strings.Contains(pathLower, fn) {
+			return true
+		}
+	}
+	return false
+}
+
+// isCPreprocessorMacro checks if the path represents a C preprocessor macro or compiler directive
+func isCPreprocessorMacro(pathLower string) bool {
+	// Common patterns for C macros and compiler directives
+	macroPatterns := []string{
+		"_extern", "_inline", "_local", "_deprecated", "_obsolete",
+		"_soft_deprecated", "_boxable", "_bridge_", "_nonnull", "_nullable",
+		"_version", "_hdr_", "_pure", "_extern_32", "_extern_64",
+	}
+
+	for _, pattern := range macroPatterns {
+		if strings.Contains(pathLower, pattern) {
+			return true
+		}
+	}
+
+	// Also skip paths that look like macro definitions (all caps with underscores)
+	parts := strings.Split(pathLower, "/")
+	if len(parts) > 0 {
+		lastPart := parts[len(parts)-1]
+		// Check if it looks like a macro (contains underscores and mostly uppercase)
+		if strings.Contains(lastPart, "_") {
+			upperCount := 0
+			for _, c := range lastPart {
+				if c >= 'A' && c <= 'Z' {
+					upperCount++
+				}
+			}
+			// If more than 50% uppercase and has underscores, likely a macro
+			if float64(upperCount)/float64(len(lastPart)) > 0.5 {
+				return true
+			}
+		}
+	}
+
+	return false
 }
 
 // Utility functions for crawler logic follow...

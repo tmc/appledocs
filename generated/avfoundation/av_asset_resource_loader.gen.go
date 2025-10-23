@@ -176,7 +176,7 @@ func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
 func (a_ AssetResourceLoader) ResourceLoader() IAVAssetResourceLoader {
-	rv := objc.Send[AVAssetResourceLoader](a_.ID, objc.Sel("resourceLoader"))
+	rv := objc.Send[AssetResourceLoader](a_.ID, objc.Sel("resourceLoader"))
 	return rv
 }
 

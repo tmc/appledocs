@@ -100,7 +100,7 @@ func NewAssetReader() AssetReader {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
 func (a_ AssetReader) Asset() IAVAsset {
-	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
+	rv := objc.Send[Asset](a_.ID, objc.Sel("asset"))
 	return rv
 }
 

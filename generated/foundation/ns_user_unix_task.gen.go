@@ -29,13 +29,13 @@ type _UserUnixTaskClass struct {
 // An interface definition for the [UserUnixTask] class.
 type IUserUnixTask interface {
 	IUserScriptTask
-	ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer)
 	StandardError() IFileHandle
 	SetStandardError(value IFileHandle)
 	StandardInput() IFileHandle
 	SetStandardInput(value IFileHandle)
 	StandardOutput() IFileHandle
 	SetStandardOutput(value IFileHandle)
+	ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer)
 }
 
 // An object that executes unix applications.
@@ -107,7 +107,7 @@ func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments []string,
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardError
 func (u_ UserUnixTask) StandardError() IFileHandle {
-	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardError"))
+	rv := objc.Send[FileHandle](u_.ID, objc.Sel("standardError"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (u_ UserUnixTask) SetStandardError(value IFileHandle) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
 func (u_ UserUnixTask) StandardInput() IFileHandle {
-	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardInput"))
+	rv := objc.Send[FileHandle](u_.ID, objc.Sel("standardInput"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (u_ UserUnixTask) SetStandardInput(value IFileHandle) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
 func (u_ UserUnixTask) StandardOutput() IFileHandle {
-	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardOutput"))
+	rv := objc.Send[FileHandle](u_.ID, objc.Sel("standardOutput"))
 	return rv
 }
 

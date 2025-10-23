@@ -30,28 +30,6 @@ type _CaptureSessionClass struct {
 // An interface definition for the [CaptureSession] class.
 type ICaptureSession interface {
 	objectivec.IObject
-	AddConnection(connection IAVCaptureConnection)
-	AddControl(control unsafe.Pointer)
-	AddInput(input IAVCaptureInput)
-	AddInputWithNoConnections(input IAVCaptureInput)
-	AddOutput(output IAVCaptureOutput)
-	AddOutputWithNoConnections(output IAVCaptureOutput)
-	BeginConfiguration()
-	CanAddConnection(connection IAVCaptureConnection) bool
-	CanAddControl(control unsafe.Pointer) bool
-	CanAddInput(input IAVCaptureInput) bool
-	CanAddOutput(output IAVCaptureOutput) bool
-	CanSetSessionPreset(preset CaptureSessionPreset) bool
-	CommitConfiguration()
-	RemoveConnection(connection IAVCaptureConnection)
-	RemoveControl(control unsafe.Pointer)
-	RemoveInput(input IAVCaptureInput)
-	RemoveOutput(output IAVCaptureOutput)
-	RunDeferredStartWhenNeeded()
-	SetControlsDelegateQueue(controlsDelegate objectivec.IObject, controlsDelegateCallbackQueue unsafe.Pointer)
-	SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objectivec.IObject, deferredStartDelegateCallbackQueue unsafe.Pointer)
-	StartRunning()
-	StopRunning()
 	AutomaticallyConfiguresApplicationAudioSession() bool
 	SetAutomaticallyConfiguresApplicationAudioSession(value bool)
 	AutomaticallyConfiguresCaptureDeviceForWideColor() bool
@@ -95,6 +73,28 @@ type ICaptureSession interface {
 	SetIsMultitaskingCameraAccessSupported(value bool)
 	IsRunning() bool
 	SetIsRunning(value bool)
+	AddConnection(connection IAVCaptureConnection)
+	AddControl(control unsafe.Pointer)
+	AddInput(input IAVCaptureInput)
+	AddInputWithNoConnections(input IAVCaptureInput)
+	AddOutput(output IAVCaptureOutput)
+	AddOutputWithNoConnections(output IAVCaptureOutput)
+	BeginConfiguration()
+	CanAddConnection(connection IAVCaptureConnection) bool
+	CanAddControl(control unsafe.Pointer) bool
+	CanAddInput(input IAVCaptureInput) bool
+	CanAddOutput(output IAVCaptureOutput) bool
+	CanSetSessionPreset(preset CaptureSessionPreset) bool
+	CommitConfiguration()
+	RemoveConnection(connection IAVCaptureConnection)
+	RemoveControl(control unsafe.Pointer)
+	RemoveInput(input IAVCaptureInput)
+	RemoveOutput(output IAVCaptureOutput)
+	RunDeferredStartWhenNeeded()
+	SetControlsDelegateQueue(controlsDelegate objectivec.IObject, controlsDelegateCallbackQueue unsafe.Pointer)
+	SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objectivec.IObject, deferredStartDelegateCallbackQueue unsafe.Pointer)
+	StartRunning()
+	StopRunning()
 }
 
 // An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.

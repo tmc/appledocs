@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MutableURLRequest] class.
@@ -69,6 +70,7 @@ type IMutableURLRequest interface {
 	SetTimeoutInterval(value TimeInterval)
 	Url() IURL
 	SetUrl(value IURL)
+	BindToHotspotHelperCommand(command objectivec.IObject)
 }
 
 // A mutable URL load request that is independent of protocol or URL scheme.
@@ -124,6 +126,15 @@ func NewMutableURLRequest() MutableURLRequest {
 	return getMutableURLRequestClass().New()
 }
 
+
+
+// Binds a URL request to the network interface associated with the hotspot helper command instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/bind(to:)
+func (m_ MutableURLRequest) BindToHotspotHelperCommand(command objectivec.IObject) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("bindToHotspotHelperCommand:"), command)
+}
 
 
 // A dictionary containing all of the HTTP header fields for a request.
@@ -324,7 +335,7 @@ func (m_ MutableURLRequest) SetHttpBody(value IData) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
 func (m_ MutableURLRequest) HttpBodyStream() IInputStream {
-	rv := objc.Send[NSInputStream](m_.ID, objc.Sel("httpBodyStream"))
+	rv := objc.Send[InputStream](m_.ID, objc.Sel("httpBodyStream"))
 	return rv
 }
 

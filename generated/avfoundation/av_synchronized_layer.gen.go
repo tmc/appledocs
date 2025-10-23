@@ -108,7 +108,7 @@ func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() foundation.TimeInte
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer/playeritem
 func (s_ SynchronizedLayer) PlayerItem() IAVPlayerItem {
-	rv := objc.Send[AVPlayerItem](s_.ID, objc.Sel("playerItem"))
+	rv := objc.Send[PlayerItem](s_.ID, objc.Sel("playerItem"))
 	return rv
 }
 

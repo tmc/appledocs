@@ -30,10 +30,10 @@ type _XPCInterfaceClass struct {
 // An interface definition for the [XPCInterface] class.
 type IXPCInterface interface {
 	objectivec.IObject
-	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer
-	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
 	Protocol() objectivec.Protocol
 	SetProtocol(value objectivec.Protocol)
+	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer
+	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
 }
 
 // An interface that may be sent to an exported object or remote object proxy.

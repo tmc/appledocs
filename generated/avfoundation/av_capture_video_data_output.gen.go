@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,10 @@ type _CaptureVideoDataOutputClass struct {
 // An interface definition for the [CaptureVideoDataOutput] class.
 type ICaptureVideoDataOutput interface {
 	ICaptureOutput
-	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
 	AlwaysDiscardsLateVideoFrames() bool
 	SetAlwaysDiscardsLateVideoFrames(value bool)
+	VideoSettings() foundation.IDictionary
+	SetVideoSettings(value foundation.IDictionary)
 	AutomaticallyConfiguresOutputBufferDimensions() bool
 	SetAutomaticallyConfiguresOutputBufferDimensions(value bool)
 	AvailableVideoCodecTypes() unsafe.Pointer
@@ -51,8 +53,7 @@ type ICaptureVideoDataOutput interface {
 	SetSampleBufferCallbackQueue(value unsafe.Pointer)
 	SampleBufferDelegate() unsafe.Pointer
 	SetSampleBufferDelegate(value unsafe.Pointer)
-	VideoSettings() string
-	SetVideoSettings(value string)
+	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
 }
 
 // A capture output that records video and provides access to video frames for processing.
@@ -135,6 +136,25 @@ func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames
 func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlwaysDiscardsLateVideoFrames:"), value)
+}
+
+
+// A dictionary that contains the compression settings for the output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings
+func (c_ CaptureVideoDataOutput) VideoSettings() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](c_.ID, objc.Sel("videoSettings"))
+	return rv
+}
+
+
+// A dictionary that contains the compression settings for the output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/videoSettings
+func (c_ CaptureVideoDataOutput) SetVideoSettings(value foundation.IDictionary) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoSettings:"), value)
 }
 
 
@@ -306,25 +326,6 @@ func (c_ CaptureVideoDataOutput) SampleBufferDelegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/samplebufferdelegate
 func (c_ CaptureVideoDataOutput) SetSampleBufferDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:"), value)
-}
-
-
-// A dictionary that contains the compression settings for the output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/videosettings
-func (c_ CaptureVideoDataOutput) VideoSettings() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("videoSettings"))
-	return rv
-}
-
-
-// A dictionary that contains the compression settings for the output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/videosettings
-func (c_ CaptureVideoDataOutput) SetVideoSettings(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoSettings:"), objc.String(value))
 }
 
 

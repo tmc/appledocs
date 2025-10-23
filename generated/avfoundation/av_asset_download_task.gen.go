@@ -157,7 +157,7 @@ func (a_ AssetDownloadTask) SetOptions(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
 func (a_ AssetDownloadTask) UrlAsset() IAVURLAsset {
-	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("urlAsset"))
+	rv := objc.Send[URLAsset](a_.ID, objc.Sel("urlAsset"))
 	return rv
 }
 

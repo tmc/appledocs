@@ -200,7 +200,7 @@ func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/test
 func (w_ WhoseSpecifier) Test() IScriptWhoseTest {
-	rv := objc.Send[NSScriptWhoseTest](w_.ID, objc.Sel("test"))
+	rv := objc.Send[ScriptWhoseTest](w_.ID, objc.Sel("test"))
 	return rv
 }
 

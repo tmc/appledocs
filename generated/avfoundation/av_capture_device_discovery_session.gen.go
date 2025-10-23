@@ -94,7 +94,7 @@ func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/devices
 func (c_ CaptureDeviceDiscoverySession) Devices() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("devices"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("devices"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (c_ CaptureDeviceDiscoverySession) SetDevices(value IAVCaptureDevice) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
 func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() IAVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
 	return rv
 }
 

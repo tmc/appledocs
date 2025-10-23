@@ -176,7 +176,7 @@ func (c_ CaptureAudioChannel) SetVolume(value float32) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/connections
 func (c_ CaptureAudioChannel) Connections() IAVCaptureConnection {
-	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connections"))
+	rv := objc.Send[CaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
 

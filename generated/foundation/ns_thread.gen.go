@@ -30,9 +30,6 @@ type _ThreadClass struct {
 // An interface definition for the [Thread] class.
 type IThread interface {
 	objectivec.IObject
-	Cancel()
-	Main()
-	Start()
 	Cancelled() bool
 	Executing() bool
 	Finished() bool
@@ -53,6 +50,9 @@ type IThread interface {
 	SetIsExecuting(value bool)
 	IsFinished() bool
 	SetIsFinished(value bool)
+	Cancel()
+	Main()
+	Start()
 }
 
 // A thread of execution.
@@ -227,7 +227,7 @@ func (tc _ThreadClass) CallStackSymbols() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
 func (tc _ThreadClass) CurrentThread() Thread {
-	rv := objc.Send[NSThread](objc.ID(tc.class), objc.Sel("currentThread"))
+	rv := objc.Send[Thread](objc.ID(tc.class), objc.Sel("currentThread"))
 	return rv
 }
 
@@ -236,7 +236,7 @@ func (tc _ThreadClass) CurrentThread() Thread {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
 func (tc _ThreadClass) MainThread() Thread {
-	rv := objc.Send[NSThread](objc.ID(tc.class), objc.Sel("mainThread"))
+	rv := objc.Send[Thread](objc.ID(tc.class), objc.Sel("mainThread"))
 	return rv
 }
 
@@ -292,7 +292,7 @@ func (t_ Thread) CallStackSymbols() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
 func (t_ Thread) CurrentThread() IThread {
-	rv := objc.Send[NSThread](t_.ID, objc.Sel("currentThread"))
+	rv := objc.Send[Thread](t_.ID, objc.Sel("currentThread"))
 	return rv
 }
 
@@ -342,7 +342,7 @@ func (t_ Thread) IsMainThread() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
 func (t_ Thread) MainThread() IThread {
-	rv := objc.Send[NSThread](t_.ID, objc.Sel("mainThread"))
+	rv := objc.Send[Thread](t_.ID, objc.Sel("mainThread"))
 	return rv
 }
 
@@ -405,7 +405,7 @@ func (t_ Thread) SetStackSize(value uint) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadDictionary
 func (t_ Thread) ThreadDictionary() IMutableDictionary {
-	rv := objc.Send[NSMutableDictionary](t_.ID, objc.Sel("threadDictionary"))
+	rv := objc.Send[MutableDictionary](t_.ID, objc.Sel("threadDictionary"))
 	return rv
 }
 

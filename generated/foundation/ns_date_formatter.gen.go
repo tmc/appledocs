@@ -30,10 +30,6 @@ type _DateFormatterClass struct {
 // An interface definition for the [DateFormatter] class.
 type IDateFormatter interface {
 	IFormatter
-	DateFromString(string_ string) IDate
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
-	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string)
-	StringFromDate(date IDate) IString
 	AMSymbol() string
 	SetAMSymbol(value string)
 	Calendar() ICalendar
@@ -104,6 +100,10 @@ type IDateFormatter interface {
 	SetWeekdaySymbols(value []string)
 	IsLenient() bool
 	SetIsLenient(value bool)
+	DateFromString(string_ string) IDate
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
+	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string)
+	StringFromDate(date IDate) IString
 }
 
 // A formatter that converts between dates and their textual representations.
@@ -266,7 +266,7 @@ func (d_ DateFormatter) SetAMSymbol(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/calendar
 func (d_ DateFormatter) Calendar() ICalendar {
-	rv := objc.Send[NSCalendar](d_.ID, objc.Sel("calendar"))
+	rv := objc.Send[Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -323,7 +323,7 @@ func (d_ DateFormatter) SetDateStyle(value NSDateFormatterStyle) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/defaultDate
 func (d_ DateFormatter) DefaultDate() IDate {
-	rv := objc.Send[NSDate](d_.ID, objc.Sel("defaultDate"))
+	rv := objc.Send[Date](d_.ID, objc.Sel("defaultDate"))
 	return rv
 }
 
@@ -466,7 +466,7 @@ func (d_ DateFormatter) SetGeneratesCalendarDates(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/gregorianStartDate
 func (d_ DateFormatter) GregorianStartDate() IDate {
-	rv := objc.Send[NSDate](d_.ID, objc.Sel("gregorianStartDate"))
+	rv := objc.Send[Date](d_.ID, objc.Sel("gregorianStartDate"))
 	return rv
 }
 
@@ -504,7 +504,7 @@ func (d_ DateFormatter) SetLenient(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/locale
 func (d_ DateFormatter) Locale() ILocale {
-	rv := objc.Send[NSLocale](d_.ID, objc.Sel("locale"))
+	rv := objc.Send[Locale](d_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -909,7 +909,7 @@ func (d_ DateFormatter) SetTimeStyle(value NSDateFormatterStyle) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/timeZone
 func (d_ DateFormatter) TimeZone() ITimeZone {
-	rv := objc.Send[NSTimeZone](d_.ID, objc.Sel("timeZone"))
+	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
@@ -928,7 +928,7 @@ func (d_ DateFormatter) SetTimeZone(value ITimeZone) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/twoDigitStartDate
 func (d_ DateFormatter) TwoDigitStartDate() IDate {
-	rv := objc.Send[NSDate](d_.ID, objc.Sel("twoDigitStartDate"))
+	rv := objc.Send[Date](d_.ID, objc.Sel("twoDigitStartDate"))
 	return rv
 }
 

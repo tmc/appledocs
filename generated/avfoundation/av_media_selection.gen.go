@@ -32,6 +32,7 @@ type IMediaSelection interface {
 	objectivec.IObject
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
+	SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IMediaSelectionOption
 }
 
 // An object that represents a complete rendition of media selection options on an asset.
@@ -85,12 +86,22 @@ func NewMediaSelection() MediaSelection {
 
 
 
+// Returns the media selection option that’s currently selected in the specified group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection/selectedMediaOption(in:)
+func (m_ MediaSelection) SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IMediaSelectionOption {
+	rv := objc.Send[MediaSelectionOption](m_.ID, objc.Sel("selectedMediaOptionInMediaSelectionGroup:"), mediaSelectionGroup)
+	return rv
+}
+
+
 // The asset associated with the media selection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
 func (m_ MediaSelection) Asset() IAVAsset {
-	rv := objc.Send[AVAsset](m_.ID, objc.Sel("asset"))
+	rv := objc.Send[Asset](m_.ID, objc.Sel("asset"))
 	return rv
 }
 

@@ -112,6 +112,8 @@ func main() {
 
 func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples bool) error {
 	startTime := time.Now()
+	fmt.Fprintf(os.Stderr, "DEBUG main.go:generateFramework: ENTRY for framework %s\n", framework)
+	fmt.Fprintf(os.Stderr, "DEBUG main.go:generateFramework: Second debug message\n")
 	if verbose {
 		fmt.Fprintf(os.Stderr, "[%s] Starting generation\n", framework)
 	}
@@ -122,13 +124,16 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		// Already logged in loadFrameworkMetadata with verbose flag
 		return nil // Skip generation silently
 	}
+	fmt.Fprintf(os.Stderr, "DEBUG main.go: Past iOS-only check, about to open filesystem\n")
 
 	// Open the appledocs filesystem
 	phaseStart := time.Now()
 	fsys, err := appledocs.Open(inputDir)
 	if err != nil {
+		fmt.Fprintf(os.Stderr, "DEBUG main.go: appledocs.Open FAILED: %v\n", err)
 		return fmt.Errorf("failed to open appledocs filesystem: %w", err)
 	}
+	fmt.Fprintf(os.Stderr, "DEBUG main.go: appledocs.Open succeeded\n")
 	if verbose {
 		fmt.Fprintf(os.Stderr, "[%s] Opened filesystem (%.2fs)\n", framework, time.Since(phaseStart).Seconds())
 	}
@@ -144,6 +149,25 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	processedFiles := 0
 	parseErrors := 0
 
+	// Try to load from cache first
+	usedCache := false
+	if os.Getenv("NO_CACHE") != "1" {
+		if cache, err := loadCache(framework, inputDir, verbose); cache != nil && err == nil {
+			functions = cache.Functions
+			classes = cache.Classes
+			protocols = cache.Protocols
+			enums = cache.Enums
+			typedefs = cache.Typedefs
+			constants = cache.Constants
+			usedCache = true
+			if verbose {
+				fmt.Fprintf(os.Stderr, "[%s] Using cached parsed symbols (%d classes, %d methods total)\n",
+					framework, len(classes), countMethods(classes))
+			}
+		}
+	}
+
+	if !usedCache {
 	// First, extract synthetic documents from API collection pages
 	phaseStart = time.Now()
 	syntheticDocs := extractSymbolsFromAPICollections(fsys, framework, verbose)
@@ -342,11 +366,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		fmt.Fprintf(os.Stderr, "[%s] Found: %d functions, %d classes, %d protocols, %d enums, %d typedefs, %d constants\n", framework, len(functions), len(classes), len(protocols), len(enums), len(typedefs), len(constants))
 	}
 
+	fmt.Fprintf(os.Stderr, "DEBUG main.go LINE 367: About to populate currentFrameworkClasses\n")
 	// Populate currentFrameworkClasses map for cross-framework type detection
 	phaseStart = time.Now()
 	// This helps resolve whether a type like "Number" or "AccessibilityCustomAction"
 	// exists in the current framework or is from another framework
 	currentFrameworkClasses = make(map[string]bool)
+	fmt.Fprintf(os.Stderr, "DEBUG main.go: Made currentFrameworkClasses map\n")
 	for _, cls := range classes {
 		// Store both the original name and the stripped name
 		strippedName := stripObjCPrefix(cls.Name)
@@ -359,8 +385,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		if enum.Name != "" {
 			strippedName := stripObjCPrefix(enum.Name)
 			currentFrameworkEnums[strippedName] = true
+			if strippedName == "QualityOfService" {
+				fmt.Fprintf(os.Stderr, "DEBUG main.go: Added %q to currentFrameworkEnums (framework=%s)\n", strippedName, framework)
+			}
 		}
 	}
+	fmt.Fprintf(os.Stderr, "DEBUG main.go LINE 386: About to print currentFrameworkEnums message\n")
+	fmt.Fprintf(os.Stderr, "DEBUG main.go: Populated currentFrameworkEnums with %d enums for framework %s\n", len(currentFrameworkEnums), framework)
 
 	// Populate typedef names for current framework type resolution
 	currentFrameworkTypedefs = make(map[string]bool)
@@ -518,6 +549,25 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			fmt.Fprintf(os.Stderr, "[%s] Enriched enums in %.2fs\n", framework, time.Since(enrichStart).Seconds())
 		}
 	}
+	} // end if !usedCache
+
+	// Save parsed symbols to cache for next run
+	if os.Getenv("NO_CACHE") != "1" {
+		inputHash, _ := getInputHash(inputDir, framework)
+		cache := &ParsedCache{
+			Framework:  framework,
+			Version:    cacheVersion,
+			Timestamp:  time.Now(),
+			InputHash:  inputHash,
+			Functions:  functions,
+			Classes:    classes,
+			Protocols:  protocols,
+			Enums:      enums,
+			Typedefs:   typedefs,
+			Constants:  constants,
+		}
+		_ = saveCache(cache, framework, verbose)
+	}
 
 	// Build type registry from parsed data (source of truth)
 	// This populates crossFrameworkTypeRegistry with mappings like:
@@ -614,6 +664,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	if verbose {
 		fmt.Fprintf(os.Stderr, "[%s] Starting code generation\n", framework)
 	}
+	fmt.Fprintf(os.Stderr, "DEBUG main.go: Before generateTxtar, currentFrameworkEnums size=%d\n", len(currentFrameworkEnums))
 	if txtarOutput {
 		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
@@ -636,3 +687,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 }
 
 // generateFiles generates all files to disk
+
+// Cache implementation for parsed symbols
+

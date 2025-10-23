@@ -91,7 +91,7 @@ func NewUnitSpeed() UnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/kilometersPerHour
 func (uc _UnitSpeedClass) KilometersPerHour() UnitSpeed {
-	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("kilometersPerHour"))
+	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("kilometersPerHour"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (uc _UnitSpeedClass) KilometersPerHour() UnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/knots
 func (uc _UnitSpeedClass) Knots() UnitSpeed {
-	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("knots"))
+	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("knots"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (uc _UnitSpeedClass) Knots() UnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
 func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
-	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("metersPerSecond"))
+	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("metersPerSecond"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/milesPerHour
 func (uc _UnitSpeedClass) MilesPerHour() UnitSpeed {
-	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("milesPerHour"))
+	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("milesPerHour"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (uc _UnitSpeedClass) MilesPerHour() UnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/kilometersPerHour
 func (u_ UnitSpeed) KilometersPerHour() IUnitSpeed {
-	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("kilometersPerHour"))
+	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("kilometersPerHour"))
 	return rv
 }
 
@@ -137,7 +137,7 @@ func (u_ UnitSpeed) KilometersPerHour() IUnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/knots
 func (u_ UnitSpeed) Knots() IUnitSpeed {
-	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("knots"))
+	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("knots"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (u_ UnitSpeed) Knots() IUnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
 func (u_ UnitSpeed) MetersPerSecond() IUnitSpeed {
-	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("metersPerSecond"))
+	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("metersPerSecond"))
 	return rv
 }
 
@@ -157,7 +157,7 @@ func (u_ UnitSpeed) MetersPerSecond() IUnitSpeed {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/milesPerHour
 func (u_ UnitSpeed) MilesPerHour() IUnitSpeed {
-	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("milesPerHour"))
+	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("milesPerHour"))
 	return rv
 }
 

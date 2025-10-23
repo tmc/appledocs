@@ -30,12 +30,6 @@ type _OperationClass struct {
 // An interface definition for the [Operation] class.
 type IOperation interface {
 	objectivec.IObject
-	AddDependency(op IOperation)
-	Cancel()
-	Main()
-	RemoveDependency(op IOperation)
-	Start()
-	WaitUntilFinished()
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 	Dependencies() []Operation
@@ -65,6 +59,12 @@ type IOperation interface {
 	SetIsFinished(value bool)
 	IsReady() bool
 	SetIsReady(value bool)
+	AddDependency(op IOperation)
+	Cancel()
+	Main()
+	RemoveDependency(op IOperation)
+	Start()
+	WaitUntilFinished()
 }
 
 // An abstract class that represents the code and data associated with a single task.

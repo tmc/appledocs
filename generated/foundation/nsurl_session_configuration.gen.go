@@ -30,8 +30,8 @@ type _URLSessionConfigurationClass struct {
 // An interface definition for the [URLSessionConfiguration] class.
 type IURLSessionConfiguration interface {
 	objectivec.IObject
-	ProxyConfigurations() []Object
-	SetProxyConfigurations(value []Object)
+	ProxyConfigurations() []objectivec.IObject
+	SetProxyConfigurations(value []objectivec.IObject)
 	ConnectionProxyDictionary() objc.ID
 	SetConnectionProxyDictionary(value objc.ID)
 	HTTPCookieAcceptPolicy() unsafe.Pointer
@@ -168,7 +168,7 @@ func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifie
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
 func (uc _URLSessionConfigurationClass) DefaultSessionConfiguration() URLSessionConfiguration {
-	rv := objc.Send[NSURLSessionConfiguration](objc.ID(uc.class), objc.Sel("defaultSessionConfiguration"))
+	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("defaultSessionConfiguration"))
 	return rv
 }
 
@@ -177,7 +177,7 @@ func (uc _URLSessionConfigurationClass) DefaultSessionConfiguration() URLSession
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
 func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() URLSessionConfiguration {
-	rv := objc.Send[NSURLSessionConfiguration](objc.ID(uc.class), objc.Sel("ephemeralSessionConfiguration"))
+	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("ephemeralSessionConfiguration"))
 	return rv
 }
 
@@ -185,8 +185,8 @@ func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() URLSessi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) ProxyConfigurations() []Object {
-	rv := objc.Send[[]Object](u_.ID, objc.Sel("proxyConfigurations"))
+func (u_ URLSessionConfiguration) ProxyConfigurations() []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](u_.ID, objc.Sel("proxyConfigurations"))
 	return rv
 }
 
@@ -195,7 +195,7 @@ func (u_ URLSessionConfiguration) ProxyConfigurations() []Object {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) SetProxyConfigurations(value []Object) {
+func (u_ URLSessionConfiguration) SetProxyConfigurations(value []objectivec.IObject) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -234,7 +234,7 @@ func (u_ URLSessionConfiguration) SetConnectionProxyDictionary(value objc.ID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
 func (u_ URLSessionConfiguration) DefaultSessionConfiguration() IURLSessionConfiguration {
-	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("defaultSessionConfiguration"))
+	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("defaultSessionConfiguration"))
 	return rv
 }
 
@@ -244,7 +244,7 @@ func (u_ URLSessionConfiguration) DefaultSessionConfiguration() IURLSessionConfi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
 func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() IURLSessionConfiguration {
-	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
+	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
 	return rv
 }
 
@@ -273,7 +273,7 @@ func (u_ URLSessionConfiguration) SetHTTPCookieAcceptPolicy(value unsafe.Pointer
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpCookieStorage
 func (u_ URLSessionConfiguration) HTTPCookieStorage() IHTTPCookieStorage {
-	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("HTTPCookieStorage"))
+	rv := objc.Send[HTTPCookieStorage](u_.ID, objc.Sel("HTTPCookieStorage"))
 	return rv
 }
 
@@ -421,7 +421,7 @@ func (u_ URLSessionConfiguration) SetWaitsForConnectivity(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
 func (u_ URLSessionConfiguration) Configuration() IURLSessionConfiguration {
-	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("configuration"))
+	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -808,7 +808,7 @@ func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocolVersion(value un
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcache
 func (u_ URLSessionConfiguration) UrlCache() IURLCache {
-	rv := objc.Send[NSURLCache](u_.ID, objc.Sel("urlCache"))
+	rv := objc.Send[URLCache](u_.ID, objc.Sel("urlCache"))
 	return rv
 }
 
@@ -827,7 +827,7 @@ func (u_ URLSessionConfiguration) SetUrlCache(value IURLCache) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcredentialstorage
 func (u_ URLSessionConfiguration) UrlCredentialStorage() IURLCredentialStorage {
-	rv := objc.Send[NSURLCredentialStorage](u_.ID, objc.Sel("urlCredentialStorage"))
+	rv := objc.Send[URLCredentialStorage](u_.ID, objc.Sel("urlCredentialStorage"))
 	return rv
 }
 

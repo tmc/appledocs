@@ -30,10 +30,10 @@ type _AssetTrackSegmentClass struct {
 // An interface definition for the [AssetTrackSegment] class.
 type IAssetTrackSegment interface {
 	objectivec.IObject
-	Empty() bool
-	TimeMapping() unsafe.Pointer
 	IsEmpty() bool
 	SetIsEmpty(value bool)
+	TimeMapping() unsafe.Pointer
+	SetTimeMapping(value unsafe.Pointer)
 }
 
 // An object that represents a time range segment of an asset track.
@@ -90,26 +90,6 @@ func NewAssetTrackSegment() AssetTrackSegment {
 // A Boolean value that indicates whether the segment is empty.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment/isEmpty
-func (a_ AssetTrackSegment) Empty() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("empty"))
-	return rv
-}
-
-
-// The time range of the track that this segment presents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrackSegment/timeMapping
-func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeMapping"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the segment is empty.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
 func (a_ AssetTrackSegment) IsEmpty() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEmpty"))
@@ -123,6 +103,25 @@ func (a_ AssetTrackSegment) IsEmpty() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
 func (a_ AssetTrackSegment) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEmpty:"), value)
+}
+
+
+// The time range of the track that this segment presents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/timemapping
+func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeMapping"))
+	return rv
+}
+
+
+// The time range of the track that this segment presents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/timemapping
+func (a_ AssetTrackSegment) SetTimeMapping(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeMapping:"), value)
 }
 
 

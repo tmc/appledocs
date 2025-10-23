@@ -29,6 +29,12 @@ type _XMLDTDClass struct {
 // An interface definition for the [XMLDTD] class.
 type IXMLDTD interface {
 	IXMLNode
+	PublicID() string
+	SetPublicID(value string)
+	SystemID() string
+	SetSystemID(value string)
+	Dtd() IXMLDTD
+	SetDtd(value IXMLDTD)
 	AttributeDeclarationForNameElementName(name string, elementName string) IXMLDTDNode
 	ElementDeclarationForName(name string) IXMLDTDNode
 	EntityDeclarationForName(name string) IXMLDTDNode
@@ -36,12 +42,6 @@ type IXMLDTD interface {
 	InsertChildrenAtIndex(children []XMLNode, index uint)
 	NotationDeclarationForName(name string) IXMLDTDNode
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
-	PublicID() string
-	SetPublicID(value string)
-	SystemID() string
-	SetSystemID(value string)
-	Dtd() IXMLDTD
-	SetDtd(value IXMLDTD)
 }
 
 // A representation of a Document Type Definition.
@@ -232,7 +232,7 @@ func (x_ XMLDTD) SetSystemID(value string) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
 func (x_ XMLDTD) Dtd() IXMLDTD {
-	rv := objc.Send[NSXMLDTD](x_.ID, objc.Sel("dtd"))
+	rv := objc.Send[XMLDTD](x_.ID, objc.Sel("dtd"))
 	return rv
 }
 
