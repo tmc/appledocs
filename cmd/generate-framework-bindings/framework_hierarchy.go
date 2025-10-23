@@ -169,32 +169,6 @@ func shouldSkipProperty(prop *occ2go.ParsedProperty, currentFramework string, cu
 	return violatesHierarchy(propType, currentFramework, currentLevel)
 }
 
-// shouldSkipMethod returns true if a method references types from a higher-level framework
-func shouldSkipMethod(method *occ2go.ParsedMethod, currentFramework string, currentLevel int) bool {
-	// Check return type
-	if violatesHierarchy(method.ReturnType, currentFramework, currentLevel) {
-		if os.Getenv("DEBUG_HIERARCHY") == "1" {
-			fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s due to return type %s\n", method.Name, method.ReturnType)
-		}
-		return true
-	}
-
-	// Check all parameters
-	for _, param := range method.Parameters {
-		if os.Getenv("DEBUG_HIERARCHY") == "1" {
-			fmt.Fprintf(os.Stderr, "DEBUG shouldSkipMethod: method=%s param=%s type=%s\n", method.Name, param.Name, param.Type)
-		}
-		if violatesHierarchy(param.Type, currentFramework, currentLevel) {
-			if os.Getenv("DEBUG_HIERARCHY") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s due to parameter %s type %s\n", method.Name, param.Name, param.Type)
-			}
-			return true
-		}
-	}
-
-	return false
-}
-
 // violatesHierarchy checks if a type reference would create an upward dependency violation
 func violatesHierarchy(objcType, currentFramework string, currentLevel int) bool {
 	// Map the type to Go to see if it references another framework

@@ -373,6 +373,87 @@ See [DISTRIBUTION.md](DISTRIBUTION.md) for details on module structure and versi
 
 This project generates comprehensive, type-safe Go bindings for Apple frameworks using [purego](https://github.com/ebitengine/purego) for cgo-free Objective-C interop.
 
+### Architecture Overview
+
+The binding generator transforms Apple's official documentation into idiomatic Go code through a multi-layered pipeline:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                   Apple Documentation JSON                       │
+│              (~/.appledocs/cache/*.json files)                   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Discovery & Loading Phase                     │
+│  • Framework discovery (pattern matching, regex)                │
+│  • Cross-framework type registry (existing bindings)            │
+│  • Symbol extraction from API collections                       │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Objective-C Parsing Phase                     │
+│  • Token analysis (Objective-C/Swift declarations)              │
+│  • Symbol-specific parsers (classes, methods, properties)       │
+│  • Type declaration extraction (enums, protocols, typedefs)     │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     Type Resolution Phase                        │
+│  • Framework-aware type mapping (ObjC → Go)                     │
+│  • Cross-framework type lookups                                 │
+│  • Geometry types, reference types, class types                 │
+│  • Dependency hierarchy enforcement                             │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   Generation Preparation Phase                   │
+│  • Dependency sorting (topological order)                       │
+│  • Parent stub generation (missing superclasses)                │
+│  • Property override merging (manual corrections)               │
+│  • Method signature processing                                  │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Template Execution Phase                      │
+│  • Two-tier function registration:                              │
+│    - Core utilities (string manipulation, formatting)           │
+│    - Generator methods (state-dependent operations)             │
+│  • Module generation (txtar archive format)                     │
+│  • Per-symbol file generation (classes, protocols, enums)       │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       Generated Go Code                          │
+│  • Type-safe wrappers (classes, methods, properties)            │
+│  • Automatic memory management (Autorelease)                    │
+│  • Cached selectors (performance optimization)                  │
+│  • Example tests (usage demonstrations)                         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Key Components
+
+#### Documentation Processing
+- **Symbol Extraction**: Discovers C functions, Objective-C classes, protocols, and enums from Apple's JSON documentation
+- **API Collections**: Synthesizes missing symbols from `-api.json` collection files
+- **Type Registry**: Builds cross-framework type index from previously generated bindings
+
+#### Parsing & Type Resolution
+- **Objective-C Parser**: Token-based analysis of class declarations, method signatures, and property definitions
+- **Type Mapping**: Framework-aware conversion of Objective-C types to idiomatic Go equivalents
+- **Hierarchy Management**: Prevents circular dependencies through framework-level dependency tracking
+
+#### Code Generation
+- **Template-Driven**: Uses Go text/template with custom helper functions for consistent, maintainable output
+- **Memory Safety**: Automatic Autorelease() injection for Objective-C reference counting
+- **Performance**: Selector caching via compile-time lookup tables
+
 ### Coverage
 
 - **69 frameworks** with complete Go bindings (see [FRAMEWORK_COVERAGE.md](FRAMEWORK_COVERAGE.md))

@@ -613,45 +613,6 @@ func parseVersion(s string) (major, minor int, ok bool) {
 	return major, minor, true
 }
 
-// generateTestsFile generates test file
-func generateTestsFile(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, variant string) error {
-	data := struct {
-		Framework   string
-		PackageName string
-		Functions   []*occ2go.ParsedFunction
-	}{framework, packageName, functions}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("functions_test.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("functions_test.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
-
-// generateExamplesFile generates examples file
-func generateExamplesFile(w io.Writer, framework, packageName string, functions []*occ2go.ParsedFunction, variant string) error {
-	data := struct {
-		Framework   string
-		PackageName string
-		Functions   []*occ2go.ParsedFunction
-	}{framework, packageName, functions}
-
-	// Load template with variant support
-	templateContent, err := getTemplateVariant("examples_test.gen.go", variant)
-	if err != nil {
-		return err
-	}
-	tmpl, err := template.New("examples_test.gen.go").Funcs(templateFuncs).Parse(templateContent)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
-}
 
 // generateObjcRuntimePackage generates the framework-independent objc runtime package
 // by extracting all templates with the objc/ prefix from the template archive.

@@ -482,11 +482,3 @@ func classbelongsToFramework(doc *appledocs.Document, framework string) bool {
 
 	return false
 }
-
-// getClassFramework returns the framework name from the document's metadata.
-func getClassFramework(doc *appledocs.Document) string {
-	if doc == nil || doc.Metadata.Modules == nil || len(doc.Metadata.Modules) == 0 {
-		return "unknown"
-	}
-	return doc.Metadata.Modules[0].Name
-}

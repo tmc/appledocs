@@ -108,11 +108,6 @@ func classTestFileName(className string) string {
 	return occ2go.ClassTestFileName(className)
 }
 
-// toSnakeCase converts CamelCase to snake_case.
-// Delegates to occ2go.ToSnakeCase.
-func toSnakeCase(s string) string {
-	return occ2go.ToSnakeCase(s)
-}
 
 // receiverName generates a short receiver name for methods.
 // Delegates to occ2go.ReceiverName.
