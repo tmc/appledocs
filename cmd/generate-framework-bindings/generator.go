@@ -205,7 +205,7 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		goType == "float64" ||
 		goType == "bool" ||
 		goType == "unsafe.Pointer" {
-		return goType + " /* primitive/slice/pointer */"
+		return goType + " /* primitive/slice/pointer. */"
 	}
 
 	// Don't convert CoreGraphics types (structs and refs like CGPoint, CGContextRef)
@@ -600,7 +600,48 @@ func (g *Generator) GenerateMissingParentStubs() []*occ2go.ParsedClass {
 				currentFrameworkClasses = savedClasses
 
 				// Only create stub if it's not from another framework
+				// IMPORTANT: Check if the resolved type actually matches the original class name
+				// Example: NSStream (Foundation) and SCStream (ScreenCaptureKit) both strip to "Stream"
+				// If cls.SuperClass is "NSStream" but resolvedType is "screencapturekit.Stream",
+				// these are DIFFERENT classes and we need a stub for NSStream
+				needsStub := false
 				if !strings.Contains(resolvedType, ".") {
+					// No framework qualifier means it's local/undefined - needs stub
+					needsStub = true
+				} else {
+					// Check if the resolved framework type matches the original class name
+					// Extract the framework from resolvedType (e.g., "screencapturekit" from "screencapturekit.Stream")
+					parts := strings.Split(resolvedType, ".")
+					if len(parts) == 2 {
+						frameworkName := parts[0]
+						typeName := parts[1]
+
+						// Rebuild the expected ObjC class name based on framework prefix
+						expectedPrefix := ""
+						switch frameworkName {
+						case "foundation":
+							expectedPrefix = "NS"
+						case "screencapturekit":
+							expectedPrefix = "SC"
+						case "appkit":
+							expectedPrefix = "NS"
+						case "coregraphics":
+							expectedPrefix = "CG"
+						case "quartz", "quartzcore":
+							expectedPrefix = "CA"
+						// Add more framework prefixes as needed
+						}
+
+						expectedClassName := expectedPrefix + typeName
+						// If the original superclass name doesn't match the resolved class name,
+						// they're different classes that happen to have the same stripped name
+						if cls.SuperClass != expectedClassName {
+							needsStub = true
+						}
+					}
+				}
+
+				if needsStub {
 					missing[cls.SuperClass] = true
 				}
 			}
