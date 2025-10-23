@@ -5,6 +5,9 @@ import (
 	"unsafe"
 )
 
+// CFStringRef is a CoreGraphics opaque type.
+type CFStringRef unsafe.Pointer
+
 
 // Foundation-specific types
 
@@ -29,27 +32,51 @@ type Range struct {
 	Length   int
 }
 
-// RectEdge defines which edge of a rectangle.
-type RectEdge int
-
-const (
-	RectEdgeMinX RectEdge = 0
-	RectEdgeMinY RectEdge = 1
-	RectEdgeMaxX RectEdge = 2
-	RectEdgeMaxY RectEdge = 3
-)
-
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
 type AffineTransformStruct = int
 
+type AttributedStringCompletionHandler = int
+
+type BinarySearchingOptions = int
+
+type Comparator = int
+
 type ComparisonResult = int
 
 type Decimal = int
 
 type EdgeInsets = int
+
+type FontTraitMask = int
+
+type HashEnumerator = int
+
+type HashTableCallBacks = int
+
+type KeyValueObservingOptions = int
+
+type MapEnumerator = int
+
+type MapTableKeyCallBacks = int
+
+type MapTableValueCallBacks = int
+
+type StringDrawingOptions = int
+
+type StringRef = int
+
+type TextAlignment = int
+
+type UInteger = int
+
+type URLHandle = int
+
+type WritingDirection = int
+
+type Zone = int
 
 
 

@@ -26,7 +26,7 @@ func ExampleNewMutableOrderedSetWithCapacity() {
 // ExampleNewMutableOrderedSetWithCoder demonstrates how to create a MutableOrderedSet instance using NewMutableOrderedSetWithCoder.
 func ExampleNewMutableOrderedSetWithCoder() {
 	_ = foundation.NewMutableOrderedSetWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
+		foundation.Coder{}, // coder Coder
 	)
 	// Output:
 }

@@ -156,6 +156,46 @@ func NewDecimalNumberWithStringLocale(numberValue string /* primitive/slice/poin
 
 
 
+// Creates and returns a decimal number equivalent to a given decimal structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithDecimal:
+func (dc _DecimalNumberClass) DecimalNumberWithDecimal(dcm Decimal /* foo */) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithDecimal:"), dcm)
+	return rv
+}
+
+
+// Creates and returns a decimal number equivalent to the number specified by the arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithMantissa:exponent:isNegative:
+func (dc _DecimalNumberClass) DecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive/slice/pointer */, exponent unsafe.Pointer, flag bool /* primitive/slice/pointer */) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithMantissa:exponent:isNegative:"), mantissa, exponent, flag)
+	return rv
+}
+
+
+// Creates a decimal number whose value is equivalent to that in a given numeric string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:
+func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue string /* primitive/slice/pointer */) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:"), objc.String(numberValue))
+	return rv
+}
+
+
+// Creates a decimal number whose value is equivalent to that in a given numeric string, interpreted using a given locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:locale:
+func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue string /* primitive/slice/pointer */, locale objectivec.IObject) IDecimalNumber {
+	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:locale:"), objc.String(numberValue), locale)
+	return rv
+}
+
+
 // The way arithmetic methods round off and handle error conditions.
 //
 // [Full Topic]

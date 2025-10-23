@@ -36,7 +36,7 @@ type IISO8601DateFormatter interface {
 	SetTimeZone(value ITimeZone)
 	// methods:
 	DateFromString(string_ string /* primitive/slice/pointer */) IDate
-	StringFromDate(date IDate) IString
+	StringFromDate(date IDate) String /* foo */
 }
 
 // A formatter that converts between dates and their ISO 8601 string representations.
@@ -99,7 +99,7 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) IString {
+func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) String /* foo */ {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
 }
@@ -119,7 +119,7 @@ func (i_ ISO8601DateFormatter) DateFromString(string_ string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:)
-func (i_ ISO8601DateFormatter) StringFromDate(date IDate) IString {
+func (i_ ISO8601DateFormatter) StringFromDate(date IDate) String /* foo */ {
 	rv := objc.Send[String](i_.ID, objc.Sel("stringFromDate:"), date)
 	return rv
 }

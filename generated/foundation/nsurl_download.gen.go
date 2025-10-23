@@ -33,8 +33,8 @@ type IURLDownload interface {
 	// properties:
 	DeletesFileUponFailure() bool /* primitive/slice/pointer */
 	SetDeletesFileUponFailure(value bool /* primitive/slice/pointer */)
-	Request() IURLRequest
-	SetRequest(value IURLRequest)
+	Request() URLRequest /* foo */
+	SetRequest(value URLRequest /* foo */)
 	ResumeData() IData
 	SetResumeData(value IData)
 	// methods:
@@ -116,7 +116,7 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/request
-func (u_ URLDownload) Request() IURLRequest {
+func (u_ URLDownload) Request() URLRequest /* foo */ {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (u_ URLDownload) Request() IURLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/request
-func (u_ URLDownload) SetRequest(value IURLRequest) {
+func (u_ URLDownload) SetRequest(value URLRequest /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
 

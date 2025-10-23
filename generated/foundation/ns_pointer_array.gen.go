@@ -122,46 +122,6 @@ func NewPointerArrayWithPointerFunctions(functions IPointerFunctions) PointerArr
 
 
 
-// Returns a new pointer array initialized to use the given options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithOptions:
-func (pc _PointerArrayClass) PointerArrayWithOptions(options PointerFunctionsOptions) IPointerArray {
-	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithOptions:"), options)
-	return rv
-}
-
-
-// A new pointer array initialized to use the given functions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithPointerFunctions:
-func (pc _PointerArrayClass) PointerArrayWithPointerFunctions(functions IPointerFunctions) IPointerArray {
-	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithPointerFunctions:"), functions)
-	return rv
-}
-
-
-// Returns a new pointer array that maintains strong references to its elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithStrongObjects
-func (pc _PointerArrayClass) PointerArrayWithStrongObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("pointerArrayWithStrongObjects"))
-	return rv
-}
-
-
-// Returns a new pointer array that maintains weak references to its elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithWeakObjects
-func (pc _PointerArrayClass) PointerArrayWithWeakObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("pointerArrayWithWeakObjects"))
-	return rv
-}
-
-
 // Returns a new pointer array that maintains strong references to its elements.
 //
 // [Full Topic]

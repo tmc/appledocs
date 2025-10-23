@@ -169,6 +169,36 @@ func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool /* pr
 
 
 
+// Returns a URL components object by parsing a URL in string form.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:
+func (uc _URLComponentsClass) ComponentsWithString(URLString string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:"), objc.String(URLString))
+	return rv
+}
+
+
+// Returns a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:encodingInvalidCharacters:
+func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLString string /* primitive/slice/pointer */, encodingInvalidCharacters bool /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
+	return rv
+}
+
+
+// Returns a URL components object by parsing the URL from an object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithURL:resolvingAgainstBaseURL:
+func (uc _URLComponentsClass) ComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithURL:resolvingAgainstBaseURL:"), url, resolve)
+	return rv
+}
+
+
 // Returns a URL object derived from the components object.
 //
 // [Full Topic]

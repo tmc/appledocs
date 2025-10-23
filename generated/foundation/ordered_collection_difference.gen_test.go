@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewOrderedCollectionDifference
 
+// ExampleNewOrderedCollectionDifferenceWithChanges demonstrates how to create a OrderedCollectionDifference instance using NewOrderedCollectionDifferenceWithChanges.
+// Creates an ordered collection difference using an array of ordered collection changes.
+func ExampleNewOrderedCollectionDifferenceWithChanges() {
+	_ = foundation.NewOrderedCollectionDifferenceWithChanges(
+		[]foundation.OrderedCollectionChange{}, // changes []OrderedCollectionChange
+	)
+	// Output:
+}

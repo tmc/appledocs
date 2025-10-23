@@ -33,6 +33,10 @@ type ICountedSet interface {
 	Count() int /* primitive/slice/pointer */
 	SetCount(value int /* primitive/slice/pointer */)
 	// methods:
+	AddObject(object unsafe.Pointer)
+	CountForObject(object unsafe.Pointer) uint /* primitive/slice/pointer */
+	ObjectEnumerator() unsafe.Pointer
+	RemoveObject(object unsafe.Pointer)
 }
 
 // A mutable, unordered collection of distinct objects that may appear more than once in the collection.
@@ -90,6 +94,81 @@ func NewCountedSet() CountedSet {
 
 
 
+// Returns a counted set object initialized with the contents of a given array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(array:)
+func NewCountedSetWithArray(array []objc.ID /* already interface */) CountedSet {
+	instance := getCountedSetClass().Alloc()
+	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithArray:"), array)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns a counted set object initialized with enough memory to hold a given number of objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(capacity:)
+func NewCountedSetWithCapacity(numItems uint /* primitive/slice/pointer */) CountedSet {
+	instance := getCountedSetClass().Alloc()
+	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns a counted set object initialized with the contents of a given set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(set:)
+func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
+	instance := getCountedSetClass().Alloc()
+	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithSet:"), set)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Adds a given object to the set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/add(_:)
+func (c_ CountedSet) AddObject(object unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addObject:"), object)
+}
+
+
+// Returns the count associated with a given object in the set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/count(for:)
+func (c_ CountedSet) CountForObject(object unsafe.Pointer) uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](c_.ID, objc.Sel("countForObject:"), object)
+	return rv
+}
+
+
+// Returns an enumerator object that lets you access each object in the set once, independent of its count.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/objectEnumerator()
+func (c_ CountedSet) ObjectEnumerator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectEnumerator"))
+	return rv
+}
+
+
+// Removes a given object from the set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/remove(_:)
+func (c_ CountedSet) RemoveObject(object unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("removeObject:"), object)
+}
+
+
 // The number of members in the set.
 //
 // [Full Topic]
@@ -107,6 +186,5 @@ func (c_ CountedSet) Count() int /* primitive/slice/pointer */ {
 func (c_ CountedSet) SetCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCount:"), value)
 }
-
 
 

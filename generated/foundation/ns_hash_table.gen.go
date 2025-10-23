@@ -139,16 +139,6 @@ func NewHashTableWithPointerFunctionsCapacity(functions IPointerFunctions, initi
 
 
 
-// Returns a new hash table for storing weak references to its contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/hashTableWithWeakObjects
-func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("hashTableWithWeakObjects"))
-	return rv
-}
-
-
 // Returns a hash table with given pointer functions options.
 //
 // [Full Topic]

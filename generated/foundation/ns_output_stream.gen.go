@@ -31,8 +31,8 @@ type IOutputStream interface {
 	IStream
 	// properties:
 	HasSpaceAvailable() bool /* primitive/slice/pointer */
+	SetHasSpaceAvailable(value bool /* primitive/slice/pointer */)
 	// methods:
-	WriteMaxLength(buffer unsafe.Pointer, len_ uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
 }
 
 // A stream that provides write-only stream functionality.
@@ -90,101 +90,12 @@ func NewOutputStream() OutputStream {
 
 
 
-// Returns an initialized output stream that can write to a provided buffer.
+// A boolean value that indicates whether the receiver can be written to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toBuffer:capacity:)
-func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint /* primitive/slice/pointer */) OutputStream {
-	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToBuffer:capacity:"), buffer, capacity)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an initialized output stream for writing to a specified file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toFileAtPath:append:)
-func NewOutputStreamToFileAtPathAppend(path string /* primitive/slice/pointer */, shouldAppend bool /* primitive/slice/pointer */) OutputStream {
-	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToFileAtPath:append:"), objc.String(path), shouldAppend)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an initialized output stream that will write to memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toMemory:)
-func NewOutputStreamToMemory() OutputStream {
-	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToMemory"))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an initialized output stream for writing to a specified URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(url:append:)-5soau
-func NewOutputStreamWithURLAppend(url IURL, shouldAppend bool /* primitive/slice/pointer */) OutputStream {
-	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initWithURL:append:"), url, shouldAppend)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and returns an initialized output stream that can write to a provided buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOutputStream/outputStreamToBuffer:capacity:
-func (oc _OutputStreamClass) OutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint /* primitive/slice/pointer */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToBuffer:capacity:"), buffer, capacity)
-	return rv
-}
-
-
-// Creates and returns an initialized output stream for writing to a specified file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOutputStream/outputStreamToFileAtPath:append:
-func (oc _OutputStreamClass) OutputStreamToFileAtPathAppend(path string /* primitive/slice/pointer */, shouldAppend bool /* primitive/slice/pointer */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToFileAtPath:append:"), objc.String(path), shouldAppend)
-	return rv
-}
-
-
-// Creates and returns an initialized output stream for writing to a specified URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(URL:append:)-8e5le
-func (oc _OutputStreamClass) OutputStreamWithURLAppend(url IURL, shouldAppend bool /* primitive/slice/pointer */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamWithURL:append:"), url, shouldAppend)
-	return rv
-}
-
-
-// Creates and returns an initialized output stream that will write stream data to memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/toMemory()
-func (oc _OutputStreamClass) OutputStreamToMemory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToMemory"))
-	return rv
-}
-
-
-// Writes the contents of a provided data buffer to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/write(_:maxLength:)
-func (o_ OutputStream) WriteMaxLength(buffer unsafe.Pointer, len_ uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
-	rv := objc.Send[int](o_.ID, objc.Sel("write:maxLength:"), buffer, len_)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/outputstream/hasspaceavailable
+func (o_ OutputStream) HasSpaceAvailable() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](o_.ID, objc.Sel("hasSpaceAvailable"))
 	return rv
 }
 
@@ -192,10 +103,10 @@ func (o_ OutputStream) WriteMaxLength(buffer unsafe.Pointer, len_ uint /* primit
 // A boolean value that indicates whether the receiver can be written to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/hasSpaceAvailable
-func (o_ OutputStream) HasSpaceAvailable() bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("hasSpaceAvailable"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/outputstream/hasspaceavailable
+func (o_ OutputStream) SetHasSpaceAvailable(value bool /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setHasSpaceAvailable:"), value)
 }
+
 
 

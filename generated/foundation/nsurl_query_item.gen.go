@@ -104,6 +104,16 @@ func NewURLQueryItemWithNameValue(name string /* primitive/slice/pointer */, val
 
 
 
+// Creates a new query item with the specified name and value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/queryItemWithName:value:
+func (uc _URLQueryItemClass) QueryItemWithNameValue(name string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("queryItemWithName:value:"), objc.String(name), objc.String(value))
+	return rv
+}
+
+
 // The name of the query item.
 //
 // [Full Topic]

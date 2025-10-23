@@ -19,7 +19,7 @@ func ExampleNewDateInterval() {
 // Returns a date interval initialized from data in the given unarchiver.
 func ExampleNewDateIntervalWithCoder() {
 	_ = foundation.NewDateIntervalWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
+		foundation.Coder{}, // coder Coder
 	)
 	// Output:
 }

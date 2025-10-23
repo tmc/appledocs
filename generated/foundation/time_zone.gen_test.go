@@ -33,3 +33,12 @@ func ExampleNewTimeZoneWithName() {
 	)
 	// Output:
 }
+// ExampleNewTimeZoneWithNameData demonstrates how to create a TimeZone instance using NewTimeZoneWithNameData.
+// Initializes a time zone with a given identifier and time zone data.
+func ExampleNewTimeZoneWithNameData() {
+	_ = foundation.NewTimeZoneWithNameData(
+		"tzName", // tzName string
+		foundation.NSData{}, // aData NSData
+	)
+	// Output:
+}

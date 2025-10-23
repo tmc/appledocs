@@ -115,6 +115,16 @@ func NewUUIDWithUUIDString(string_ string /* primitive/slice/pointer */) UUID {
 
 
 
+// Create and returns a new UUID with RFC 4122 version 4 random bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/UUID
+func (uc _UUIDClass) UUID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("UUID"))
+	return rv
+}
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
 func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult /* foo */ {

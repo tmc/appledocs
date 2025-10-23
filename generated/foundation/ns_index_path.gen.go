@@ -32,14 +32,15 @@ type IIndexPath interface {
 	objectivec.IObject
 	// properties:
 	Item() int /* primitive/slice/pointer */
-	SetItem(value int /* primitive/slice/pointer */)
-	Length() int /* primitive/slice/pointer */
-	SetLength(value int /* primitive/slice/pointer */)
+	Length() uint /* primitive/slice/pointer */
 	Row() int /* primitive/slice/pointer */
-	SetRow(value int /* primitive/slice/pointer */)
 	Section() int /* primitive/slice/pointer */
-	SetSection(value int /* primitive/slice/pointer */)
 	// methods:
+	IndexPathByAddingIndex(index uint /* primitive/slice/pointer */) IIndexPath
+	Compare(otherObject IIndexPath) ComparisonResult /* foo */
+	GetIndexesRange(indexes UInteger /* foo */, positionRange Range /* foo */)
+	IndexAtPosition(position uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
+	IndexPathByRemovingLastIndex() IIndexPath
 }
 
 // A list of indexes that together represent the path to a specific location in a tree of nested arrays.
@@ -95,80 +96,157 @@ func NewIndexPath() IndexPath {
 
 
 
+// Initializes an index path with the indexes of a specific item and section in a collection view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forItem:inSection:)
+func NewIndexPathForItemInSection(item int /* primitive/slice/pointer */, section int /* primitive/slice/pointer */) IndexPath {
+	rv := objc.Send[IndexPath](objc.ID(getIndexPathClass().class), objc.Sel("indexPathForItem:inSection:"), item, section)
+	return rv
+}
+
+
+// Initializes an index path with the indexes of a specific row and section in a table view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forRow:inSection:)
+func NewIndexPathForRowInSection(row int /* primitive/slice/pointer */, section int /* primitive/slice/pointer */) IndexPath {
+	rv := objc.Send[IndexPath](objc.ID(getIndexPathClass().class), objc.Sel("indexPathForRow:inSection:"), row, section)
+	return rv
+}
+
+
+// Initializes an index path with a single node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(index:)
+func NewIndexPathWithIndex(index uint /* primitive/slice/pointer */) IndexPath {
+	instance := getIndexPathClass().Alloc()
+	rv := objc.Send[IndexPath](instance.ID, objc.Sel("initWithIndex:"), index)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes an index path with the given nodes and length.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(indexes:length:)
+func NewIndexPathWithIndexesLength(indexes UInteger [] /* foo */, length uint /* primitive/slice/pointer */) IndexPath {
+	instance := getIndexPathClass().Alloc()
+	rv := objc.Send[IndexPath](instance.ID, objc.Sel("initWithIndexes:length:"), indexes, length)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Initializes an index path with the indexes of a specific item and section in a collection view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forItem:inSection:)
+func (ic _IndexPathClass) IndexPathForItemInSection(item int /* primitive/slice/pointer */, section int /* primitive/slice/pointer */) IIndexPath {
+	rv := objc.Send[IndexPath](objc.ID(ic.class), objc.Sel("indexPathForItem:inSection:"), item, section)
+	return rv
+}
+
+
+// Initializes an index path with the indexes of a specific row and section in a table view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forRow:inSection:)
+func (ic _IndexPathClass) IndexPathForRowInSection(row int /* primitive/slice/pointer */, section int /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexPathForRow:inSection:"), row, section)
+	return rv
+}
+
+
+// Returns an index path containing the nodes in the receiving index path plus another given index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/adding(_:)
+func (i_ IndexPath) IndexPathByAddingIndex(index uint /* primitive/slice/pointer */) IIndexPath {
+	rv := objc.Send[IndexPath](i_.ID, objc.Sel("indexPathByAddingIndex:"), index)
+	return rv
+}
+
+
+// Indicates the depth-first traversal order of the receiving index path and another index path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/compare(_:)
+func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult /* foo */ {
+	rv := objc.Send[ComparisonResult](i_.ID, objc.Sel("compare:"), otherObject)
+	return rv
+}
+
+
+// Copies the indexes stored in the index path from the positions specified by the position range into the specified indexes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/getIndexes(_:range:)
+func (i_ IndexPath) GetIndexesRange(indexes UInteger /* foo */, positionRange Range /* foo */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("getIndexes:range:"), indexes, positionRange)
+}
+
+
+// Provides the value at a particular node in the index path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/index(atPosition:)
+func (i_ IndexPath) IndexAtPosition(position uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](i_.ID, objc.Sel("indexAtPosition:"), position)
+	return rv
+}
+
+
+// Returns an index path with the nodes in the receiving index path, excluding the last one.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/removingLastIndex()
+func (i_ IndexPath) IndexPathByRemovingLastIndex() IIndexPath {
+	rv := objc.Send[IndexPath](i_.ID, objc.Sel("indexPathByRemovingLastIndex"))
+	return rv
+}
+
+
 // An index number identifying an item in a section of a collection view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/item
 func (i_ IndexPath) Item() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("item"))
 	return rv
 }
 
 
-// An index number identifying an item in a section of a collection view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-func (i_ IndexPath) SetItem(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setItem:"), value)
-}
-
-
 // The number of nodes in the index path.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
-func (i_ IndexPath) Length() int /* primitive/slice/pointer */ {
-	rv := objc.Send[int](i_.ID, objc.Sel("length"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/length
+func (i_ IndexPath) Length() uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](i_.ID, objc.Sel("length"))
 	return rv
-}
-
-
-// The number of nodes in the index path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
-func (i_ IndexPath) SetLength(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setLength:"), value)
 }
 
 
 // An index number identifying a row in a section of a table view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/row
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/row
 func (i_ IndexPath) Row() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("row"))
 	return rv
 }
 
 
-// An index number identifying a row in a section of a table view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/row
-func (i_ IndexPath) SetRow(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRow:"), value)
-}
-
-
 // An index number identifying a section in a table view or collection view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/section
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/section
 func (i_ IndexPath) Section() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("section"))
 	return rv
 }
-
-
-// An index number identifying a section in a table view or collection view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/section
-func (i_ IndexPath) SetSection(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSection:"), value)
-}
-
 
 

@@ -61,7 +61,7 @@ type ICalendar interface {
 	VeryShortWeekdaySymbols() []string /* primitive/slice/pointer */
 	WeekdaySymbols() []string /* primitive/slice/pointer */
 	// methods:
-	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult
+	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult /* foo */
 	ComponentFromDate(unit CalendarUnit, date IDate) int /* primitive/slice/pointer */
 	ComponentsFromDate(unitFlags CalendarUnit, date IDate) IDateComponents
 	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags CalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options CalendarOptions) IDateComponents
@@ -76,9 +76,9 @@ type ICalendar interface {
 	DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int /* primitive/slice/pointer */, yearValue int /* primitive/slice/pointer */, weekValue int /* primitive/slice/pointer */, weekdayValue int /* primitive/slice/pointer */, hourValue int /* primitive/slice/pointer */, minuteValue int /* primitive/slice/pointer */, secondValue int /* primitive/slice/pointer */, nanosecondValue int /* primitive/slice/pointer */) IDate
 	DateFromComponents(comps IDateComponents) IDate
 	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts CalendarOptions, block unsafe.Pointer)
-	GetEraYearMonthDayFromDate(eraValuePointer Integer /* foo */, yearValuePointer Integer /* foo */, monthValuePointer Integer /* foo */, dayValuePointer Integer /* foo */, date IDate)
-	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer Integer /* foo */, yearValuePointer Integer /* foo */, weekValuePointer Integer /* foo */, weekdayValuePointer Integer /* foo */, date IDate)
-	GetHourMinuteSecondNanosecondFromDate(hourValuePointer Integer /* foo */, minuteValuePointer Integer /* foo */, secondValuePointer Integer /* foo */, nanosecondValuePointer Integer /* foo */, date IDate)
+	GetEraYearMonthDayFromDate(eraValuePointer Integer /* NSInteger/NSUInteger typedef */, yearValuePointer Integer /* NSInteger/NSUInteger typedef */, monthValuePointer Integer /* NSInteger/NSUInteger typedef */, dayValuePointer Integer /* NSInteger/NSUInteger typedef */, date IDate)
+	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer Integer /* NSInteger/NSUInteger typedef */, yearValuePointer Integer /* NSInteger/NSUInteger typedef */, weekValuePointer Integer /* NSInteger/NSUInteger typedef */, weekdayValuePointer Integer /* NSInteger/NSUInteger typedef */, date IDate)
+	GetHourMinuteSecondNanosecondFromDate(hourValuePointer Integer /* NSInteger/NSUInteger typedef */, minuteValuePointer Integer /* NSInteger/NSUInteger typedef */, secondValuePointer Integer /* NSInteger/NSUInteger typedef */, nanosecondValuePointer Integer /* NSInteger/NSUInteger typedef */, date IDate)
 	IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) bool /* primitive/slice/pointer */
 	IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool /* primitive/slice/pointer */
 	IsDateInToday(date IDate) bool /* primitive/slice/pointer */
@@ -206,7 +206,7 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/compare(_:to:toUnitGranularity:)
-func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult {
+func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult /* foo */ {
 	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compareDate:toDate:toUnitGranularity:"), date1, date2, unit)
 	return rv
 }
@@ -355,7 +355,7 @@ func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsing
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:year:month:day:from:)
-func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer Integer /* foo */, yearValuePointer Integer /* foo */, monthValuePointer Integer /* foo */, dayValuePointer Integer /* foo */, date IDate) {
+func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer Integer /* NSInteger/NSUInteger typedef */, yearValuePointer Integer /* NSInteger/NSUInteger typedef */, monthValuePointer Integer /* NSInteger/NSUInteger typedef */, dayValuePointer Integer /* NSInteger/NSUInteger typedef */, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:year:month:day:fromDate:"), eraValuePointer, yearValuePointer, monthValuePointer, dayValuePointer, date)
 }
 
@@ -364,7 +364,7 @@ func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer Integer /* foo */,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:yearForWeekOfYear:weekOfYear:weekday:from:)
-func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer Integer /* foo */, yearValuePointer Integer /* foo */, weekValuePointer Integer /* foo */, weekdayValuePointer Integer /* foo */, date IDate) {
+func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer Integer /* NSInteger/NSUInteger typedef */, yearValuePointer Integer /* NSInteger/NSUInteger typedef */, weekValuePointer Integer /* NSInteger/NSUInteger typedef */, weekdayValuePointer Integer /* NSInteger/NSUInteger typedef */, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:"), eraValuePointer, yearValuePointer, weekValuePointer, weekdayValuePointer, date)
 }
 
@@ -373,7 +373,7 @@ func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePoin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getHour(_:minute:second:nanosecond:from:)
-func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer Integer /* foo */, minuteValuePointer Integer /* foo */, secondValuePointer Integer /* foo */, nanosecondValuePointer Integer /* foo */, date IDate) {
+func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer Integer /* NSInteger/NSUInteger typedef */, minuteValuePointer Integer /* NSInteger/NSUInteger typedef */, secondValuePointer Integer /* NSInteger/NSUInteger typedef */, nanosecondValuePointer Integer /* NSInteger/NSUInteger typedef */, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getHour:minute:second:nanosecond:fromDate:"), hourValuePointer, minuteValuePointer, secondValuePointer, nanosecondValuePointer, date)
 }
 

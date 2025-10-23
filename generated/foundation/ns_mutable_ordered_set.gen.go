@@ -34,7 +34,6 @@ type IMutableOrderedSet interface {
 	AddObject(object unsafe.Pointer)
 	AddObjectsCount(objects unsafe.Pointer, count uint /* primitive/slice/pointer */)
 	AddObjectsFromArray(array []objc.ID /* already interface */)
-	ApplyDifference(difference unsafe.Pointer)
 	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint /* primitive/slice/pointer */, idx2 uint /* primitive/slice/pointer */)
 	FilterUsingPredicate(p IPredicate)
 	InsertObjectsAtIndexes(objects []objc.ID /* already interface */, indexes IIndexSet)
@@ -54,7 +53,6 @@ type IMutableOrderedSet interface {
 	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID /* already interface */)
 	ReplaceObjectsInRangeWithObjectsCount(range_ Range /* foo */, objects unsafe.Pointer, count uint /* primitive/slice/pointer */)
 	SetObjectAtIndex(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */)
-	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */)
 	SortUsingComparator(cmptr Comparator /* foo */)
 	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */)
 	SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */)
@@ -132,23 +130,13 @@ func NewMutableOrderedSetWithCapacity(numItems uint /* primitive/slice/pointer *
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/init(coder:)
-func NewMutableOrderedSetWithCoder(coder ICoder) MutableOrderedSet {
+func NewMutableOrderedSetWithCoder(coder Coder /* foo */) MutableOrderedSet {
 	instance := getMutableOrderedSetClass().Alloc()
 	rv := objc.Send[MutableOrderedSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// Creates and returns an mutable ordered set with a given initial capacity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/orderedSetWithCapacity:
-func (mc _MutableOrderedSetClass) OrderedSetWithCapacity(numItems uint /* primitive/slice/pointer */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("orderedSetWithCapacity:"), numItems)
-	return rv
-}
 
 
 // Appends a given object to the end of the mutable ordered set, if it is not already a member.
@@ -175,13 +163,6 @@ func (m_ MutableOrderedSet) AddObjectsCount(objects unsafe.Pointer, count uint /
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/addObjects(from:)
 func (m_ MutableOrderedSet) AddObjectsFromArray(array []objc.ID /* already interface */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), array)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/applyDifference:
-func (m_ MutableOrderedSet) ApplyDifference(difference unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("applyDifference:"), difference)
 }
 
 
@@ -353,15 +334,6 @@ func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range /
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/setObject(_:at:)
 func (m_ MutableOrderedSet) SetObjectAtIndex(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndex:"), obj, idx)
-}
-
-
-// Replaces the given object at the specified index of the mutable ordered set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/setObject:atIndexedSubscript:
-func (m_ MutableOrderedSet) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), obj, idx)
 }
 
 

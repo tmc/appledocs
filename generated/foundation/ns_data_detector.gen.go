@@ -31,7 +31,6 @@ type IDataDetector interface {
 	IRegularExpression
 	// properties:
 	CheckingTypes() TextCheckingTypes /* foo */
-	SetCheckingTypes(value TextCheckingTypes /* foo */)
 	NSNotFound() int /* primitive/slice/pointer */
 	Date() IDate
 	SetDate(value IDate)
@@ -99,22 +98,26 @@ func NewDataDetector() DataDetector {
 
 
 
-// Returns the checking types for the data detector.
+// Initializes and returns a data detector instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
-func (d_ DataDetector) CheckingTypes() TextCheckingTypes /* foo */ {
-	rv := objc.Send[TextCheckingTypes](d_.ID, objc.Sel("checkingTypes"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/init(types:)
+func NewDataDetectorWithTypesError(checkingTypes TextCheckingTypes /* foo */, error_ unsafe.Pointer) DataDetector {
+	instance := getDataDetectorClass().Alloc()
+	rv := objc.Send[DataDetector](instance.ID, objc.Sel("initWithTypes:error:"), checkingTypes, error_)
+	rv.Autorelease()
 	return rv
 }
 
 
+
 // Returns the checking types for the data detector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
-func (d_ DataDetector) SetCheckingTypes(value TextCheckingTypes /* foo */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCheckingTypes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/checkingTypes
+func (d_ DataDetector) CheckingTypes() TextCheckingTypes /* foo */ {
+	rv := objc.Send[TextCheckingTypes](d_.ID, objc.Sel("checkingTypes"))
+	return rv
 }
 
 
@@ -202,6 +205,5 @@ func (d_ DataDetector) Url() IURL {
 func (d_ DataDetector) SetUrl(value IURL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }
-
 
 

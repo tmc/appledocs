@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MutableSet] class.
@@ -28,31 +29,24 @@ type _MutableSetClass struct {
 
 // An interface definition for the [MutableSet] class.
 type IMutableSet interface {
-	ISet
+	objectivec.IObject
 	// properties:
 	// methods:
 }
 
-// A dynamic unordered collection of unique objects.
-//
-// You can use this type in Swift instead of a in cases that require reference semantics. The class declares the programmatic interface to a mutable, unordered collection of distinct objects. The class, which is a concrete subclass of , supports mutable sets that can contain multiple instances of the same element. The class supports creating and managing immutable sets. NSMutableSet is “toll-free bridged” with its Core Foundation counterpart, . See for more information.
+// A parent class referenced by other Foundation classes.
 
 
-// A dynamic unordered collection of unique objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet
+// A parent class referenced by other Foundation classes. [Full Topic]
 type MutableSet struct {
-	Set
+	objectivec.Object
 }
 
 // MutableSetFrom constructs a [MutableSet] from an unsafe.Pointer.
 //
-// A dynamic unordered collection of unique objects.
+// A parent class referenced by other Foundation classes.
 func MutableSetFrom(ptr unsafe.Pointer) MutableSet {
-	return MutableSet{
-		Set: SetFrom(ptr),
-	}
+	return MutableSet{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.

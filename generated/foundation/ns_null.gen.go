@@ -88,16 +88,6 @@ func NewNull() Null {
 
 
 
-// Returns the singleton instance of .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull/null
-func (nc _NullClass) Null() INull {
-	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("null"))
-	return rv
-}
-
-
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
 // [Full Topic]

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MutableAttributedString] class.
@@ -30,14 +31,33 @@ type _MutableAttributedStringClass struct {
 type IMutableAttributedString interface {
 	IAttributedString
 	// properties:
-	MutableString() IMutableString
-	SetMutableString(value IMutableString)
+	MutableString() MutableString /* foo */
 	// methods:
+	AddAttributeValueRange(name AttributedStringKey /* foo */, value objectivec.IObject, range_ Range /* foo */)
+	AddAttributesRange(attrs IDictionary /* already interface */, range_ Range /* foo */)
 	AppendAttributedString(attrString IAttributedString)
-	AppendLocalizedFormat(format IAttributedString)
+	ApplyFontTraitsRange(traitMask FontTraitMask /* foo */, range_ Range /* foo */)
+	BeginEditing()
+	DeleteCharactersInRange(range_ Range /* foo */)
+	EndEditing()
+	FixAttachmentAttributeInRange(range_ Range /* foo */)
+	FixAttributesInRange(range_ Range /* foo */)
+	FixFontAttributeInRange(range_ Range /* foo */)
+	FixParagraphStyleAttributeInRange(range_ Range /* foo */)
 	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint /* primitive/slice/pointer */)
+	ReadFromURLOptionsDocumentAttributesError(url IURL, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	ReadFromDataOptionsDocumentAttributesError(data IData, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	RemoveAttributeRange(name AttributedStringKey /* foo */, range_ Range /* foo */)
 	ReplaceCharactersInRangeWithAttributedString(range_ Range /* foo */, attrString IAttributedString)
+	ReplaceCharactersInRangeWithString(range_ Range /* foo */, str string /* primitive/slice/pointer */)
+	SetAlignmentRange(alignment TextAlignment /* foo */, range_ Range /* foo */)
 	SetAttributedString(attrString IAttributedString)
+	SetAttributesRange(attrs IDictionary /* already interface */, range_ Range /* foo */)
+	SetBaseWritingDirectionRange(writingDirection WritingDirection /* foo */, range_ Range /* foo */)
+	SubscriptRange(range_ Range /* foo */)
+	SuperscriptRange(range_ Range /* foo */)
+	UnscriptRange(range_ Range /* foo */)
+	UpdateAttachmentsFromPath(path string /* primitive/slice/pointer */)
 }
 
 // A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.
@@ -95,6 +115,24 @@ func NewMutableAttributedString() MutableAttributedString {
 
 
 
+// Adds an attribute with the given name and value to the characters in the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/addAttribute(_:value:range:)
+func (m_ MutableAttributedString) AddAttributeValueRange(name AttributedStringKey /* foo */, value objectivec.IObject, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addAttribute:value:range:"), name, value, range_)
+}
+
+
+// Adds the given collection of attributes to the characters in the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/addAttributes(_:range:)
+func (m_ MutableAttributedString) AddAttributesRange(attrs IDictionary /* already interface */, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addAttributes:range:"), attrs, range_)
+}
+
+
 // Adds the characters and attributes of a given attributed string to the end of the receiver.
 //
 // [Full Topic]
@@ -104,10 +142,75 @@ func (m_ MutableAttributedString) AppendAttributedString(attrString IAttributedS
 }
 
 
+// Applies the specified font-related attributes to characters in the string.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/appendLocalizedFormat:
-func (m_ MutableAttributedString) AppendLocalizedFormat(format IAttributedString) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("appendLocalizedFormat:"), format)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/applyFontTraits(_:range:)
+func (m_ MutableAttributedString) ApplyFontTraitsRange(traitMask FontTraitMask /* foo */, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("applyFontTraits:range:"), traitMask, range_)
+}
+
+
+// Begins the buffering of changes to the string’s characters and attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/beginEditing()
+func (m_ MutableAttributedString) BeginEditing() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("beginEditing"))
+}
+
+
+// Deletes the characters in the given range along with their associated attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/deleteCharacters(in:)
+func (m_ MutableAttributedString) DeleteCharactersInRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("deleteCharactersInRange:"), range_)
+}
+
+
+// Ends the buffering of changes to the string’s characters and attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/endEditing()
+func (m_ MutableAttributedString) EndEditing() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("endEditing"))
+}
+
+
+// Cleans up attachment attributes in the specified range and removes all attachment attributes assigned to characters except the designated attachment character.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixAttachmentAttribute(in:)
+func (m_ MutableAttributedString) FixAttachmentAttributeInRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("fixAttachmentAttributeInRange:"), range_)
+}
+
+
+// Cleans up font, paragraph style, and attachment attributes within the given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixAttributes(in:)
+func (m_ MutableAttributedString) FixAttributesInRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("fixAttributesInRange:"), range_)
+}
+
+
+// Fixes the font attribute in the specified range and assigns default fonts where appropriate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixFontAttribute(in:)
+func (m_ MutableAttributedString) FixFontAttributeInRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("fixFontAttributeInRange:"), range_)
+}
+
+
+// Fixes the paragraph style attributes in the specified range and assigns a paragraph style to all characters in the paragraph.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixParagraphStyleAttribute(in:)
+func (m_ MutableAttributedString) FixParagraphStyleAttributeInRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("fixParagraphStyleAttributeInRange:"), range_)
 }
 
 
@@ -120,12 +223,59 @@ func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttr
 }
 
 
+// Sets the contents of attributed string using the contents of the specified file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/read(from:options:documentAttributes:)-54wth
+func (m_ MutableAttributedString) ReadFromURLOptionsDocumentAttributesError(url IURL, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](m_.ID, objc.Sel("readFromURL:options:documentAttributes:error:"), url, opts, dict, error_)
+	return rv
+}
+
+
+// Sets the contents of the attributed string using the specified data object
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/read(from:options:documentAttributes:)-5mbcx
+func (m_ MutableAttributedString) ReadFromDataOptionsDocumentAttributesError(data IData, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](m_.ID, objc.Sel("readFromData:options:documentAttributes:error:"), data, opts, dict, error_)
+	return rv
+}
+
+
+// Removes the named attribute from the characters in the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/removeAttribute(_:range:)
+func (m_ MutableAttributedString) RemoveAttributeRange(name AttributedStringKey /* foo */, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeAttribute:range:"), name, range_)
+}
+
+
 // Replaces the characters and attributes in a given range with the characters and attributes of the given attributed string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-1uaw7
 func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range /* foo */, attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withAttributedString:"), range_, attrString)
+}
+
+
+// Replaces the characters in the given range with the characters of the given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-6oq9r
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithString(range_ Range /* foo */, str string /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(str))
+}
+
+
+// Sets the alignment characteristic of the paragraph style attribute for the specified range of text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setAlignment(_:range:)
+func (m_ MutableAttributedString) SetAlignmentRange(alignment TextAlignment /* foo */, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAlignment:range:"), alignment, range_)
 }
 
 
@@ -138,22 +288,67 @@ func (m_ MutableAttributedString) SetAttributedString(attrString IAttributedStri
 }
 
 
-// The character contents of the receiver as a mutable string object.
+// Sets the attributes for the characters in the specified range to the specified attributes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
-func (m_ MutableAttributedString) MutableString() IMutableString {
-	rv := objc.Send[MutableString](m_.ID, objc.Sel("mutableString"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setAttributes(_:range:)
+func (m_ MutableAttributedString) SetAttributesRange(attrs IDictionary /* already interface */, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:range:"), attrs, range_)
+}
+
+
+// Sets the base writing direction for the characters to the specified direction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setBaseWritingDirection(_:range:)
+func (m_ MutableAttributedString) SetBaseWritingDirectionRange(writingDirection WritingDirection /* foo */, range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBaseWritingDirection:range:"), writingDirection, range_)
+}
+
+
+// Decrements the value of the superscript attribute for characters in the specified range by one.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/subscriptRange(_:)
+func (m_ MutableAttributedString) SubscriptRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("subscriptRange:"), range_)
+}
+
+
+// Increments the value of the superscript attribute for characters in the specified range by one.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/superscriptRange(_:)
+func (m_ MutableAttributedString) SuperscriptRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("superscriptRange:"), range_)
+}
+
+
+// Removes the superscript attribute from the characters in the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/unscriptRange(_:)
+func (m_ MutableAttributedString) UnscriptRange(range_ Range /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("unscriptRange:"), range_)
+}
+
+
+// Updates all attachments based on files contained in the RTFD file package at the specified file path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/updateAttachments(fromPath:)
+func (m_ MutableAttributedString) UpdateAttachmentsFromPath(path string /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("updateAttachmentsFromPath:"), objc.String(path))
 }
 
 
 // The character contents of the receiver as a mutable string object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
-func (m_ MutableAttributedString) SetMutableString(value IMutableString) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableString:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/mutableString
+func (m_ MutableAttributedString) MutableString() MutableString /* foo */ {
+	rv := objc.Send[MutableString](m_.ID, objc.Sel("mutableString"))
+	return rv
 }
 
 

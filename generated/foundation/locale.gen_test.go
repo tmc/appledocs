@@ -13,7 +13,7 @@ var _ = foundation.NewLocale
 // Returns a locale initialized from data in the given unarchiver.
 func ExampleNewLocaleWithCoder() {
 	_ = foundation.NewLocaleWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
+		foundation.Coder{}, // coder Coder
 	)
 	// Output:
 }

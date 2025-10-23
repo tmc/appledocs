@@ -42,8 +42,8 @@ type IDate interface {
 	SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer */)
 	// methods:
 	DateByAddingTimeInterval(ti TimeInterval /* foo */) unsafe.Pointer
-	Compare(other IDate) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) IString
+	Compare(other IDate) ComparisonResult /* foo */
+	DescriptionWithLocale(locale objectivec.IObject) String /* foo */
 	EarlierDate(anotherDate IDate) IDate
 	IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer */
 	LaterDate(anotherDate IDate) IDate
@@ -107,7 +107,7 @@ func NewDate() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(coder:)
-func NewDateWithCoder(coder ICoder) Date {
+func NewDateWithCoder(coder Coder /* foo */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -216,46 +216,6 @@ func (dc _DateClass) DateWithNaturalLanguageStringLocale(string_ string /* primi
 }
 
 
-// Creates and returns a new date object set to the current date and time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/date
-func (dc _DateClass) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("date"))
-	return rv
-}
-
-
-// Creates and returns a date object set to the given number of seconds from 00:00:00 UTC on 1 January 1970.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSince1970:
-func (dc _DateClass) DateWithTimeIntervalSince1970(secs TimeInterval /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSince1970:"), secs)
-	return rv
-}
-
-
-// Creates and returns a date object set to a given number of seconds from the current date and time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceNow:
-func (dc _DateClass) DateWithTimeIntervalSinceNow(secs TimeInterval /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceNow:"), secs)
-	return rv
-}
-
-
-// Creates and returns a date object set to a given number of seconds from 00:00:00 UTC on 1 January 2001.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceReferenceDate:
-func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceReferenceDate:"), ti)
-	return rv
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(SRAbsoluteTime:)-9wpl1
 func (dc _DateClass) DateWithSRAbsoluteTime(time unsafe.Pointer) unsafe.Pointer {
@@ -315,7 +275,7 @@ func (d_ Date) DateByAddingTimeInterval(ti TimeInterval /* foo */) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/compare(_:)
-func (d_ Date) Compare(other IDate) ComparisonResult {
+func (d_ Date) Compare(other IDate) ComparisonResult /* foo */ {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), other)
 	return rv
 }
@@ -325,7 +285,7 @@ func (d_ Date) Compare(other IDate) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/description(with:)
-func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) String /* foo */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }

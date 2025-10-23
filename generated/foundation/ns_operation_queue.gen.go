@@ -31,32 +31,27 @@ type _OperationQueueClass struct {
 type IOperationQueue interface {
 	objectivec.IObject
 	// properties:
-	Suspended() bool /* primitive/slice/pointer */
-	SetSuspended(value bool /* primitive/slice/pointer */)
-	MaxConcurrentOperationCount() int /* primitive/slice/pointer */
-	SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer */)
-	Name() string /* primitive/slice/pointer */
-	SetName(value string /* primitive/slice/pointer */)
-	OperationCount() uint /* primitive/slice/pointer */
-	Operations() []Operation /* primitive/slice/pointer */
-	Progress() IProgress
-	QualityOfService() QualityOfService
-	SetQualityOfService(value QualityOfService)
-	UnderlyingQueue() unsafe.Pointer
-	SetUnderlyingQueue(value unsafe.Pointer)
 	IsReady() bool /* primitive/slice/pointer */
 	SetIsReady(value bool /* primitive/slice/pointer */)
 	QueuePriority() unsafe.Pointer
 	SetQueuePriority(value unsafe.Pointer)
 	IsSuspended() bool /* primitive/slice/pointer */
 	SetIsSuspended(value bool /* primitive/slice/pointer */)
+	MaxConcurrentOperationCount() int /* primitive/slice/pointer */
+	SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer */)
+	Name() string /* primitive/slice/pointer */
+	SetName(value string /* primitive/slice/pointer */)
+	OperationCount() int /* primitive/slice/pointer */
+	SetOperationCount(value int /* primitive/slice/pointer */)
+	Operations() IOperation
+	SetOperations(value IOperation)
+	Progress() Progress /* foo */
+	SetProgress(value Progress /* foo */)
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
+	UnderlyingQueue() unsafe.Pointer
+	SetUnderlyingQueue(value unsafe.Pointer)
 	// methods:
-	AddBarrierBlock(barrier unsafe.Pointer)
-	AddOperationWithBlock(block unsafe.Pointer)
-	AddOperation(op IOperation)
-	AddOperationsWaitUntilFinished(ops []Operation /* primitive/slice/pointer */, wait bool /* primitive/slice/pointer */)
-	CancelAllOperations()
-	WaitUntilAllOperationsAreFinished()
 }
 
 // A queue that regulates the execution of operations.
@@ -110,223 +105,6 @@ func NewOperationQueue() OperationQueue {
 	return getOperationQueueClass().New()
 }
 
-
-
-// Returns the operation queue that launched the current operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/current
-func (oc _OperationQueueClass) CurrentQueue() OperationQueue {
-	rv := objc.Send[OperationQueue](objc.ID(oc.class), objc.Sel("currentQueue"))
-	return rv
-}
-
-// Returns the operation queue associated with the main thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/main
-func (oc _OperationQueueClass) MainQueue() OperationQueue {
-	rv := objc.Send[OperationQueue](objc.ID(oc.class), objc.Sel("mainQueue"))
-	return rv
-}
-
-// Invokes a block when the queue finishes all enqueued operations, and prevents subsequent operations from starting until the block has completed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addBarrierBlock(_:)
-func (o_ OperationQueue) AddBarrierBlock(barrier unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addBarrierBlock:"), barrier)
-}
-
-
-// Wraps the specified block in an operation and adds it to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperation(_:)-5s294
-func (o_ OperationQueue) AddOperationWithBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addOperationWithBlock:"), block)
-}
-
-
-// Adds the specified operation to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperation(_:)-64o8a
-func (o_ OperationQueue) AddOperation(op IOperation) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addOperation:"), op)
-}
-
-
-// Adds the specified operations to the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperations(_:waitUntilFinished:)
-func (o_ OperationQueue) AddOperationsWaitUntilFinished(ops []Operation /* primitive/slice/pointer */, wait bool /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addOperations:waitUntilFinished:"), ops, wait)
-}
-
-
-// Cancels all queued and executing operations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/cancelAllOperations()
-func (o_ OperationQueue) CancelAllOperations() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("cancelAllOperations"))
-}
-
-
-// Blocks the current thread until all the receiver’s queued and executing operations finish executing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/waitUntilAllOperationsAreFinished()
-func (o_ OperationQueue) WaitUntilAllOperationsAreFinished() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("waitUntilAllOperationsAreFinished"))
-}
-
-
-// Returns the operation queue that launched the current operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/current
-func (o_ OperationQueue) CurrentQueue() IOperationQueue {
-	rv := objc.Send[OperationQueue](o_.ID, objc.Sel("currentQueue"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the queue is actively scheduling operations for execution.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/isSuspended
-func (o_ OperationQueue) Suspended() bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("suspended"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the queue is actively scheduling operations for execution.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/isSuspended
-func (o_ OperationQueue) SetSuspended(value bool /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setSuspended:"), value)
-}
-
-
-// Returns the operation queue associated with the main thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/main
-func (o_ OperationQueue) MainQueue() IOperationQueue {
-	rv := objc.Send[OperationQueue](o_.ID, objc.Sel("mainQueue"))
-	return rv
-}
-
-
-// The maximum number of queued operations that can run at the same time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/maxConcurrentOperationCount
-func (o_ OperationQueue) MaxConcurrentOperationCount() int /* primitive/slice/pointer */ {
-	rv := objc.Send[int](o_.ID, objc.Sel("maxConcurrentOperationCount"))
-	return rv
-}
-
-
-// The maximum number of queued operations that can run at the same time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/maxConcurrentOperationCount
-func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setMaxConcurrentOperationCount:"), value)
-}
-
-
-// The name of the operation queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/name
-func (o_ OperationQueue) Name() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](o_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The name of the operation queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/name
-func (o_ OperationQueue) SetName(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-
-// The number of operations currently in the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operationCount
-func (o_ OperationQueue) OperationCount() uint /* primitive/slice/pointer */ {
-	rv := objc.Send[uint](o_.ID, objc.Sel("operationCount"))
-	return rv
-}
-
-
-// The operations currently in the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
-func (o_ OperationQueue) Operations() []Operation /* primitive/slice/pointer */ {
-	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
-	return rv
-}
-
-
-// An object that represents the total progress of the operations executing in the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/progress
-func (o_ OperationQueue) Progress() IProgress {
-	rv := objc.Send[Progress](o_.ID, objc.Sel("progress"))
-	return rv
-}
-
-
-// The default service level to apply to operations that the queue invokes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/qualityOfService
-func (o_ OperationQueue) QualityOfService() QualityOfService {
-	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
-	return rv
-}
-
-
-// The default service level to apply to operations that the queue invokes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/qualityOfService
-func (o_ OperationQueue) SetQualityOfService(value QualityOfService) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
-}
-
-
-// The dispatch queue that the operation queue uses to invoke operations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/underlyingQueue
-func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("underlyingQueue"))
-	return rv
-}
-
-
-// The dispatch queue that the operation queue uses to invoke operations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/underlyingQueue
-func (o_ OperationQueue) SetUnderlyingQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUnderlyingQueue:"), value)
-}
 
 
 // A Boolean value indicating whether the operation can be performed now.
@@ -383,6 +161,139 @@ func (o_ OperationQueue) IsSuspended() bool /* primitive/slice/pointer */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
 func (o_ OperationQueue) SetIsSuspended(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSuspended:"), value)
+}
+
+
+// The maximum number of queued operations that can run at the same time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/maxconcurrentoperationcount
+func (o_ OperationQueue) MaxConcurrentOperationCount() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](o_.ID, objc.Sel("maxConcurrentOperationCount"))
+	return rv
+}
+
+
+// The maximum number of queued operations that can run at the same time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/maxconcurrentoperationcount
+func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setMaxConcurrentOperationCount:"), value)
+}
+
+
+// The name of the operation queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
+func (o_ OperationQueue) Name() string /* primitive/slice/pointer */ {
+	rv := objc.Send[string](o_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The name of the operation queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
+func (o_ OperationQueue) SetName(value string /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The number of operations currently in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operationcount
+func (o_ OperationQueue) OperationCount() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](o_.ID, objc.Sel("operationCount"))
+	return rv
+}
+
+
+// The number of operations currently in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operationcount
+func (o_ OperationQueue) SetOperationCount(value int /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setOperationCount:"), value)
+}
+
+
+// The operations currently in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operations
+func (o_ OperationQueue) Operations() IOperation {
+	rv := objc.Send[Operation](o_.ID, objc.Sel("operations"))
+	return rv
+}
+
+
+// The operations currently in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operations
+func (o_ OperationQueue) SetOperations(value IOperation) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setOperations:"), value)
+}
+
+
+// An object that represents the total progress of the operations executing in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
+func (o_ OperationQueue) Progress() Progress /* foo */ {
+	rv := objc.Send[Progress](o_.ID, objc.Sel("progress"))
+	return rv
+}
+
+
+// An object that represents the total progress of the operations executing in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
+func (o_ OperationQueue) SetProgress(value Progress /* foo */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
+}
+
+
+// The default service level to apply to operations that the queue invokes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
+func (o_ OperationQueue) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// The default service level to apply to operations that the queue invokes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
+func (o_ OperationQueue) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+
+// The dispatch queue that the operation queue uses to invoke operations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
+func (o_ OperationQueue) UnderlyingQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("underlyingQueue"))
+	return rv
+}
+
+
+// The dispatch queue that the operation queue uses to invoke operations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/underlyingqueue
+func (o_ OperationQueue) SetUnderlyingQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUnderlyingQueue:"), value)
 }
 
 

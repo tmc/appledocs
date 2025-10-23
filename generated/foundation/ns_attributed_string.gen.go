@@ -32,6 +32,7 @@ type _AttributedStringClass struct {
 type IAttributedString interface {
 	objectivec.IObject
 	// properties:
+	ContainsAttachments() bool /* primitive/slice/pointer */
 	Length() uint /* primitive/slice/pointer */
 	String() string /* primitive/slice/pointer */
 	// methods:
@@ -40,17 +41,19 @@ type IAttributedString interface {
 	AttributedSubstringFromRange(range_ Range /* foo */) IAttributedString
 	AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) IDictionary /* already interface */
 	AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) IDictionary /* already interface */
-	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* foo */) coregraphics.CGRect
+	BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions /* foo */) Rect /* foo */
+	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */) coregraphics.CGRect
 	ContainsAttachmentsInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
-	DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ IError) IData
+	DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData
 	DocFormatFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* foo */
 	DrawAtPoint(point coregraphics.CGPoint)
 	DrawInRect(rect coregraphics.CGRect)
-	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* foo */)
+	DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions /* foo */)
+	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */)
 	EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* foo */, enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
 	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */)
-	FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ IError) IFileWrapper
+	FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* foo */
 	FontAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */
 	AttributedStringByInflectingString() IAttributedString
 	IsEqualToAttributedString(other IAttributedString) bool /* primitive/slice/pointer */
@@ -64,7 +67,7 @@ type IAttributedString interface {
 	RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
 	RTFFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	RTFDFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
-	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IFileWrapper
+	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) FileWrapper /* foo */
 	RulerAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */
 	Size() coregraphics.CGSize
 }
@@ -122,26 +125,280 @@ func NewAttributedString() AttributedString {
 
 
 
-// Initializes an attributed string by substituting a list of function arguments into a specially formatted string and applying additional contextual information.
+// Creates an attributed string with an adaptive image glyph and applies the specified attributes to it.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithFormat:options:locale:context:arguments:
-func NewAttributedStringWithFormatOptionsLocaleContextArguments(format IAttributedString, options AttributedStringFormattingOptions, locale ILocale, context IDictionary /* already interface */, arguments unsafe.Pointer) AttributedString {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(adaptiveImageGlyph:attributes:)
+func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* foo */, attributes IDictionary /* already interface */) AttributedString {
+	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAdaptiveImageGlyph:attributes:"), adaptiveImageGlyph, attributes)
+	return rv
+}
+
+
+// Creates an attributed string with an attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:)
+func NewAttributedStringWithAttachment(attachment TextAttachment /* foo */) AttributedString {
+	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAttachment:"), attachment)
+	return rv
+}
+
+
+// Creates an attributed string with an attachment and applies the specified attributes to it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:attributes:)
+func NewAttributedStringWithAttachmentAttributes(attachment TextAttachment /* foo */, attributes IDictionary /* already interface */) AttributedString {
+	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAttachment:attributes:"), attachment, attributes)
+	return rv
+}
+
+
+// Creates a new attributed string from the contents of another attributed string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attributedString:)
+func NewAttributedStringWithAttributedString(attrStr IAttributedString) AttributedString {
 	instance := getAttributedStringClass().Alloc()
-	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithFormat:options:locale:context:arguments:"), format, options, locale, context, arguments)
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithAttributedString:"), attrStr)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the contents of the specified data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(data:options:documentAttributes:)
+func NewAttributedStringWithDataOptionsDocumentAttributesError(data IData, options IDictionary /* already interface */, dict IDictionary /* already interface */, error_ unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithData:options:documentAttributes:error:"), data, options, dict, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from Microsoft Word format data in the specified data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(docFormat:documentAttributes:)
+func NewAttributedStringWithDocFormatDocumentAttributes(data IData, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithDocFormat:documentAttributes:"), data, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a new attributed string object from the data at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(fileURL:options:documentAttributes:)
+func NewAttributedStringWithFileURLOptionsDocumentAttributesError(url IURL, options objectivec.IObject, dict objectivec.IObject, error_ unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithFileURL:options:documentAttributes:error:"), url, options, dict, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the HTML in the specified data object and base URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(HTML:baseURL:documentAttributes:)
+func NewAttributedStringWithHTMLBaseURLDocumentAttributes(data IData, base IURL, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithHTML:baseURL:documentAttributes:"), data, base, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the HTML in the specified data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(HTML:documentAttributes:)
+func NewAttributedStringWithHTMLDocumentAttributes(data IData, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithHTML:documentAttributes:"), data, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the HTML in the specified data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(HTML:options:documentAttributes:)
+func NewAttributedStringWithHTMLOptionsDocumentAttributes(data IData, options IDictionary /* already interface */, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithHTML:options:documentAttributes:"), data, options, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a new attribute string object from RTF or RTFD data in the file at the specified path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(path:documentAttributes:)
+func NewAttributedStringWithPathDocumentAttributes(path string /* primitive/slice/pointer */, dict objectivec.IObject) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithPath:documentAttributes:"), objc.String(path), dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string by decoding the stream of RTFD commands and data in the specified data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(RTFD:documentAttributes:)
+func NewAttributedStringWithRTFDDocumentAttributes(data IData, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithRTFD:documentAttributes:"), data, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the specified file wrapper that contains an RTFD document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(RTFDFileWrapper:documentAttributes:)
+func NewAttributedStringWithRTFDFileWrapperDocumentAttributes(wrapper FileWrapper /* foo */, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithRTFDFileWrapper:documentAttributes:"), wrapper, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string by decoding the stream of RTF commands and data in the specified data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(RTF:documentAttributes:)
+func NewAttributedStringWithRTFDocumentAttributes(data IData, dict IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithRTF:documentAttributes:"), data, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string with the specified text and no attribute information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(string:)
+func NewAttributedStringWithString(str string /* primitive/slice/pointer */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithString:"), objc.String(str))
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string with the specified text and attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(string:attributes:)
+func NewAttributedStringWithStringAttributes(str string /* primitive/slice/pointer */, attrs IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithString:attributes:"), objc.String(str), attrs)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a new attributed string object from the data at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(URL:documentAttributes:)
+func NewAttributedStringWithURLDocumentAttributes(url IURL, dict objectivec.IObject) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithURL:documentAttributes:"), url, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the contents of the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(URL:options:documentAttributes:)
+func NewAttributedStringWithURLOptionsDocumentAttributesError(url IURL, options IDictionary /* already interface */, dict IDictionary /* already interface */, error_ unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithURL:options:documentAttributes:error:"), url, options, dict, error_)
 	rv.Autorelease()
 	return rv
 }
 
 
 
-// Creates an attributed string by substituting arguments into a specially formatted string and applying additional contextual information.
+// Creates an attributed string with an adaptive image glyph and applies the specified attributes to it.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/localizedAttributedStringWithFormat:context:
-func (ac _AttributedStringClass) LocalizedAttributedStringWithFormatContext(format IAttributedString, context IDictionary /* already interface */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("localizedAttributedStringWithFormat:context:"), format, context)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(adaptiveImageGlyph:attributes:)
+func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* foo */, attributes IDictionary /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributedStringWithAdaptiveImageGlyph:attributes:"), adaptiveImageGlyph, attributes)
 	return rv
+}
+
+
+// Creates an attributed string with an attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:)
+func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment TextAttachment /* foo */) IAttributedString {
+	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("attributedStringWithAttachment:"), attachment)
+	return rv
+}
+
+
+// Creates an attributed string with an attachment and applies the specified attributes to it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:attributes:)
+func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attachment TextAttachment /* foo */, attributes IDictionary /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributedStringWithAttachment:attributes:"), attachment, attributes)
+	return rv
+}
+
+
+// Creates an attributed string from the specified HTML data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(data:options:completionHandler:)
+func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(data IData, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithData:options:completionHandler:"), data, options, completionHandler)
+}
+
+
+// Creates an attributed string by converting the content of a local HTML file at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(fileURL:options:completionHandler:)
+func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler(fileURL IURL, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithFileURL:options:completionHandler:"), fileURL, options, completionHandler)
+}
+
+
+// Creates an attributed string by converting the contents of the specified HTML URL request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(request:options:completionHandler:)
+func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler(request URLRequest /* foo */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithRequest:options:completionHandler:"), request, options, completionHandler)
+}
+
+
+// Creates an attributed string from the specified HTML string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(string:options:completionHandler:)
+func (ac _AttributedStringClass) LoadFromHTMLWithStringOptionsCompletionHandler(string_ string /* primitive/slice/pointer */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithString:options:completionHandler:"), objc.String(string_), options, completionHandler)
 }
 
 
@@ -213,11 +470,21 @@ func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(locatio
 }
 
 
+// Calculates and returns a bounding rectangle for the attributed string using the options specified within the specified rectangle in the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:)
+func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions /* foo */) Rect /* foo */ {
+	rv := objc.Send[Rect](a_.ID, objc.Sel("boundingRectWithSize:options:"), size, options)
+	return rv
+}
+
+
 // Returns the bounding rectangle necessary to draw the string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:context:)
-func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context StringDrawingContext /* foo */) coregraphics.CGRect {
+func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("boundingRectWithSize:options:context:"), size, options, context)
 	return rv
 }
@@ -237,7 +504,7 @@ func (a_ AttributedString) ContainsAttachmentsInRange(range_ Range /* foo */) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/data(from:documentAttributes:)
-func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ IError) IData {
+func (a_ AttributedString) DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData {
 	rv := objc.Send[Data](a_.ID, objc.Sel("dataFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
@@ -281,11 +548,20 @@ func (a_ AttributedString) DrawInRect(rect coregraphics.CGRect) {
 }
 
 
+// Draws the attributed string with the specified options within the specified rectangle in the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:)
+func (a_ AttributedString) DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions /* foo */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:"), rect, options)
+}
+
+
 // Draws the attributed string in the specified bounding rectangle using the provided options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:context:)
-func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context StringDrawingContext /* foo */) {
+func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:context:"), rect, options, context)
 }
 
@@ -312,7 +588,7 @@ func (a_ AttributedString) EnumerateAttributesInRangeOptionsUsingBlock(enumerati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/fileWrapper(from:documentAttributes:)
-func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ IError) IFileWrapper {
+func (a_ AttributedString) FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* foo */ {
 	rv := objc.Send[FileWrapper](a_.ID, objc.Sel("fileWrapperFromRange:documentAttributes:error:"), range_, dict, error_)
 	return rv
 }
@@ -450,7 +726,7 @@ func (a_ AttributedString) RTFDFromRangeDocumentAttributes(range_ Range /* foo *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/rtfdFileWrapper(from:documentAttributes:)
-func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IFileWrapper {
+func (a_ AttributedString) RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) FileWrapper /* foo */ {
 	rv := objc.Send[FileWrapper](a_.ID, objc.Sel("RTFDFileWrapperFromRange:documentAttributes:"), range_, dict)
 	return rv
 }
@@ -472,6 +748,16 @@ func (a_ AttributedString) RulerAttributesInRange(range_ Range /* foo */) IDicti
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/size()
 func (a_ AttributedString) Size() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](a_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the attribute string contains any attachment attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/containsAttachments
+func (a_ AttributedString) ContainsAttachments() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("containsAttachments"))
 	return rv
 }
 

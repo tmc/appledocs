@@ -133,6 +133,26 @@ func NewMutableDataWithLength(length uint /* primitive/slice/pointer */) Mutable
 
 
 
+// Creates and returns a mutable data object capable of holding the specified number of bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/dataWithCapacity:
+func (mc _MutableDataClass) DataWithCapacity(aNumItems uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dataWithCapacity:"), aNumItems)
+	return rv
+}
+
+
+// Creates and returns an mutable data object containing a given number of zeroed bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/dataWithLength:
+func (mc _MutableDataClass) DataWithLength(length uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dataWithLength:"), length)
+	return rv
+}
+
+
 // Appends the content of another data object to the receiver.
 //
 // [Full Topic]

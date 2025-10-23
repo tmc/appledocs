@@ -31,12 +31,15 @@ type _CharacterSetClass struct {
 type ICharacterSet interface {
 	objectivec.IObject
 	// properties:
-	InvertedSet() ICharacterSet
 	BitmapRepresentation() IData
-	SetBitmapRepresentation(value IData)
+	InvertedSet() ICharacterSet
 	Inverted() ICharacterSet
 	SetInverted(value ICharacterSet)
 	// methods:
+	CharacterIsMember(aCharacter unichar /* typedef */) bool /* primitive/slice/pointer */
+	HasMemberInPlane(thePlane unsafe.Pointer) bool /* primitive/slice/pointer */
+	IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primitive/slice/pointer */
+	LongCharacterIsMember(theLongChar unsafe.Pointer) bool /* primitive/slice/pointer */
 }
 
 // An object representing a fixed set of Unicode character values for use in search operations.
@@ -90,6 +93,97 @@ func NewCharacterSet() CharacterSet {
 	return getCharacterSetClass().New()
 }
 
+
+
+// Returns a character set containing characters determined by a given bitmap representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(bitmapRepresentation:)
+func NewCharacterSetWithBitmapRepresentation(data IData) CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
+	return rv
+}
+
+
+// Returns a character set containing the characters in a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(charactersIn:)
+func NewCharacterSetWithCharactersInString(aString string /* primitive/slice/pointer */) CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(coder:)
+func NewCharacterSetWithCoder(coder Coder /* foo */) CharacterSet {
+	instance := getCharacterSetClass().Alloc()
+	rv := objc.Send[CharacterSet](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns a character set read from the bitmap representation stored in the file a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(contentsOfFile:)
+func NewCharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer */) CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
+	return rv
+}
+
+
+// Returns a character set containing characters with Unicode values in a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(range:)
+func NewCharacterSetWithRange(aRange Range /* foo */) CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
+	return rv
+}
+
+
+
+// Returns a character set containing characters determined by a given bitmap representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(bitmapRepresentation:)
+func (cc _CharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) ICharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
+	return rv
+}
+
+
+// Returns a character set containing the characters in a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(charactersIn:)
+func (cc _CharacterSetClass) CharacterSetWithCharactersInString(aString string /* primitive/slice/pointer */) ICharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
+	return rv
+}
+
+
+// Returns a character set read from the bitmap representation stored in the file a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(contentsOfFile:)
+func (cc _CharacterSetClass) CharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer */) ICharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
+	return rv
+}
+
+
+// Returns a character set containing characters with Unicode values in a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(range:)
+func (cc _CharacterSetClass) CharacterSetWithRange(aRange Range /* foo */) ICharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithRange:"), aRange)
+	return rv
+}
 
 
 // A character set containing the characters in Unicode General Categories L*, M*, and N*.
@@ -209,6 +303,33 @@ func (cc _CharacterSetClass) UppercaseLetterCharacterSet() CharacterSet {
 	return rv
 }
 
+// Returns the character set for characters allowed in a fragment URL component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlFragmentAllowed
+func (cc _CharacterSetClass) URLFragmentAllowedCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("URLFragmentAllowedCharacterSet"))
+	return rv
+}
+
+// Returns the character set for characters allowed in a host URL subcomponent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlHostAllowed
+func (cc _CharacterSetClass) URLHostAllowedCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("URLHostAllowedCharacterSet"))
+	return rv
+}
+
+// Returns the character set for characters allowed in a password URL subcomponent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlPasswordAllowed
+func (cc _CharacterSetClass) URLPasswordAllowedCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("URLPasswordAllowedCharacterSet"))
+	return rv
+}
+
 // Returns the character set for characters allowed in a path URL component.
 //
 // [Full Topic]
@@ -224,6 +345,15 @@ func (cc _CharacterSetClass) URLPathAllowedCharacterSet() CharacterSet {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlQueryAllowed
 func (cc _CharacterSetClass) URLQueryAllowedCharacterSet() CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("URLQueryAllowedCharacterSet"))
+	return rv
+}
+
+// Returns the character set for characters allowed in a user URL subcomponent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlUserAllowed
+func (cc _CharacterSetClass) URLUserAllowedCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("URLUserAllowedCharacterSet"))
 	return rv
 }
 
@@ -245,12 +375,62 @@ func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() CharacterSet {
 	return rv
 }
 
+// Returns a Boolean value that indicates whether a given character is in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/characterIsMember(_:)
+func (c_ CharacterSet) CharacterIsMember(aCharacter unichar /* typedef */) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("characterIsMember:"), aCharacter)
+	return rv
+}
+
+
+// Returns a Boolean value that indicates whether the receiver has at least one member in a given character plane.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/hasMemberInPlane(_:)
+func (c_ CharacterSet) HasMemberInPlane(thePlane unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasMemberInPlane:"), thePlane)
+	return rv
+}
+
+
+// Returns a Boolean value that indicates whether the receiver is a superset of another given character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/isSuperset(of:)
+func (c_ CharacterSet) IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isSupersetOfSet:"), theOtherSet)
+	return rv
+}
+
+
+// Returns a Boolean value that indicates whether a given long character is a member of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/longCharacterIsMember(_:)
+func (c_ CharacterSet) LongCharacterIsMember(theLongChar unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("longCharacterIsMember:"), theLongChar)
+	return rv
+}
+
+
 // A character set containing the characters in Unicode General Categories L*, M*, and N*.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/alphanumerics
 func (c_ CharacterSet) AlphanumericCharacterSet() ICharacterSet {
 	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("alphanumericCharacterSet"))
+	return rv
+}
+
+
+// An object encoding the receiver in binary format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/bitmapRepresentation
+func (c_ CharacterSet) BitmapRepresentation() IData {
+	rv := objc.Send[Data](c_.ID, objc.Sel("bitmapRepresentation"))
 	return rv
 }
 
@@ -385,6 +565,36 @@ func (c_ CharacterSet) UppercaseLetterCharacterSet() ICharacterSet {
 }
 
 
+// Returns the character set for characters allowed in a fragment URL component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlFragmentAllowed
+func (c_ CharacterSet) URLFragmentAllowedCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("URLFragmentAllowedCharacterSet"))
+	return rv
+}
+
+
+// Returns the character set for characters allowed in a host URL subcomponent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlHostAllowed
+func (c_ CharacterSet) URLHostAllowedCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("URLHostAllowedCharacterSet"))
+	return rv
+}
+
+
+// Returns the character set for characters allowed in a password URL subcomponent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlPasswordAllowed
+func (c_ CharacterSet) URLPasswordAllowedCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("URLPasswordAllowedCharacterSet"))
+	return rv
+}
+
+
 // Returns the character set for characters allowed in a path URL component.
 //
 // [Full Topic]
@@ -401,6 +611,16 @@ func (c_ CharacterSet) URLPathAllowedCharacterSet() ICharacterSet {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlQueryAllowed
 func (c_ CharacterSet) URLQueryAllowedCharacterSet() ICharacterSet {
 	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("URLQueryAllowedCharacterSet"))
+	return rv
+}
+
+
+// Returns the character set for characters allowed in a user URL subcomponent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlUserAllowed
+func (c_ CharacterSet) URLUserAllowedCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("URLUserAllowedCharacterSet"))
 	return rv
 }
 
@@ -425,25 +645,6 @@ func (c_ CharacterSet) WhitespaceAndNewlineCharacterSet() ICharacterSet {
 }
 
 
-// An
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
-func (c_ CharacterSet) BitmapRepresentation() IData {
-	rv := objc.Send[Data](c_.ID, objc.Sel("bitmapRepresentation"))
-	return rv
-}
-
-
-// An
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
-func (c_ CharacterSet) SetBitmapRepresentation(value IData) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBitmapRepresentation:"), value)
-}
-
-
 // A character set containing only characters that don’t exist in the receiver.
 //
 // [Full Topic]
@@ -461,6 +662,5 @@ func (c_ CharacterSet) Inverted() ICharacterSet {
 func (c_ CharacterSet) SetInverted(value ICharacterSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInverted:"), value)
 }
-
 
 

@@ -103,9 +103,9 @@ type IDateFormatter interface {
 	SetIsLenient(value bool /* primitive/slice/pointer */)
 	// methods:
 	DateFromString(string_ string /* primitive/slice/pointer */) IDate
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ IError) bool /* primitive/slice/pointer */
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
 	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string /* primitive/slice/pointer */)
-	StringFromDate(date IDate) IString
+	StringFromDate(date IDate) String /* foo */
 }
 
 // A formatter that converts between dates and their textual representations.
@@ -163,24 +163,11 @@ func NewDateFormatter() DateFormatter {
 
 
 
-// Initializes and returns an instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/initWithDateFormat:allowNaturalLanguage:
-func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) DateFormatter {
-	instance := getDateFormatterClass().Alloc()
-	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), objc.String(format), flag)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // Returns a localized date format string representing the given date format components arranged appropriately for the specified locale.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat(fromTemplate:options:locale:)
-func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string /* primitive/slice/pointer */, opts uint /* primitive/slice/pointer */, locale ILocale) IString {
+func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string /* primitive/slice/pointer */, opts uint /* primitive/slice/pointer */, locale ILocale) String /* foo */ {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("dateFormatFromTemplate:options:locale:"), objc.String(tmplate), opts, locale)
 	return rv
 }
@@ -190,7 +177,7 @@ func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/localizedString(from:dateStyle:timeStyle:)
-func (dc _DateFormatterClass) LocalizedStringFromDateDateStyleTimeStyle(date IDate, dstyle DateFormatterStyle, tstyle DateFormatterStyle) IString {
+func (dc _DateFormatterClass) LocalizedStringFromDateDateStyleTimeStyle(date IDate, dstyle DateFormatterStyle, tstyle DateFormatterStyle) String /* foo */ {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("localizedStringFromDate:dateStyle:timeStyle:"), date, dstyle, tstyle)
 	return rv
 }
@@ -219,7 +206,7 @@ func (d_ DateFormatter) DateFromString(string_ string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/getObjectValue(_:for:range:)
-func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ IError) bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* foo */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
@@ -238,7 +225,7 @@ func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/string(from:)
-func (d_ DateFormatter) StringFromDate(date IDate) IString {
+func (d_ DateFormatter) StringFromDate(date IDate) String /* foo */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:"), date)
 	return rv
 }
@@ -1106,5 +1093,6 @@ func (d_ DateFormatter) IsLenient() bool /* primitive/slice/pointer */ {
 func (d_ DateFormatter) SetIsLenient(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLenient:"), value)
 }
+
 
 

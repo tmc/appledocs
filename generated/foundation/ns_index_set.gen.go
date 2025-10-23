@@ -49,13 +49,13 @@ type IIndexSet interface {
 	IndexInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer */
+	IndexesInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
+	IndexesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
+	IndexesPassingTest(predicate unsafe.Pointer) IIndexSet
 	IndexGreaterThanIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexGreaterThanOrEqualToIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexLessThanIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexLessThanOrEqualToIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
-	IndexesInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
-	IndexesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
-	IndexesPassingTest(predicate unsafe.Pointer) IIndexSet
 	IntersectsIndexesInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
 	IsEqualToIndexSet(indexSet IIndexSet) bool /* primitive/slice/pointer */
 }
@@ -148,36 +148,6 @@ func NewIndexSetWithIndexesInRange(range_ Range /* foo */) IndexSet {
 	return rv
 }
 
-
-
-// Creates an empty index set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSet
-func (ic _IndexSetClass) IndexSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSet"))
-	return rv
-}
-
-
-// Creates an index set with an index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndex:
-func (ic _IndexSetClass) IndexSetWithIndex(value uint /* primitive/slice/pointer */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndex:"), value)
-	return rv
-}
-
-
-// Creates an index set with an index range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndexesInRange:
-func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ Range /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndexesInRange:"), range_)
-	return rv
-}
 
 
 // Indicates whether the receiving index set contains a superset of the indexes in another index set.
@@ -314,6 +284,36 @@ func (i_ IndexSet) IndexPassingTest(predicate unsafe.Pointer) uint /* primitive/
 }
 
 
+// Returns an containing the receiving index set’s objects in the specified range that pass the Block test.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(in:options:passingTest:)
+func (i_ IndexSet) IndexesInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
+	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesInRange:options:passingTest:"), range_, opts, predicate)
+	return rv
+}
+
+
+// Returns an containing the receiving index set’s objects that pass the Block test using the specified enumeration options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(options:passingTest:)
+func (i_ IndexSet) IndexesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
+	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesWithOptions:passingTest:"), opts, predicate)
+	return rv
+}
+
+
+// Returns an containing the receiving index set’s objects that pass the Block test.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(passingTest:)
+func (i_ IndexSet) IndexesPassingTest(predicate unsafe.Pointer) IIndexSet {
+	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesPassingTest:"), predicate)
+	return rv
+}
+
+
 // Returns either the closest index in the index set that is greater than a specific index or the not-found indicator.
 //
 // [Full Topic]
@@ -350,36 +350,6 @@ func (i_ IndexSet) IndexLessThanIndex(value uint /* primitive/slice/pointer */) 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexLessThanOrEqual(to:)
 func (i_ IndexSet) IndexLessThanOrEqualToIndex(value uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexLessThanOrEqualToIndex:"), value)
-	return rv
-}
-
-
-// Returns an containing the receiving index set’s objects in the specified range that pass the Block test.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(in:options:passingTest:)
-func (i_ IndexSet) IndexesInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
-	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesInRange:options:passingTest:"), range_, opts, predicate)
-	return rv
-}
-
-
-// Returns an containing the receiving index set’s objects that pass the Block test using the specified enumeration options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(options:passingTest:)
-func (i_ IndexSet) IndexesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
-	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesWithOptions:passingTest:"), opts, predicate)
-	return rv
-}
-
-
-// Returns an containing the receiving index set’s objects that pass the Block test.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexes(passingTest:)
-func (i_ IndexSet) IndexesPassingTest(predicate unsafe.Pointer) IIndexSet {
-	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesPassingTest:"), predicate)
 	return rv
 }
 

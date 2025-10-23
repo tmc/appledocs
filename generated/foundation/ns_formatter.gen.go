@@ -32,19 +32,25 @@ type IFormatter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
+	StringForObjectValue(obj objectivec.IObject) String /* foo */
 }
 
-// A parent class referenced by other Foundation classes.
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
+//
+// The Foundation framework provides several concrete subclasses of , including , , , , , , and .
 
 
-// A parent class referenced by other Foundation classes. [Full Topic]
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter
 type Formatter struct {
 	objectivec.Object
 }
 
 // FormatterFrom constructs a [Formatter] from an unsafe.Pointer.
 //
-// A parent class referenced by other Foundation classes.
+// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
 func FormatterFrom(ptr unsafe.Pointer) Formatter {
 	return Formatter{objectivec.Object{objc.ID(ptr)}}
 }
@@ -80,6 +86,16 @@ func NewFormatter() Formatter {
 	return getFormatterClass().New()
 }
 
+
+
+// The default implementation of this method raises an exception.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
+func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) String /* foo */ {
+	rv := objc.Send[String](f_.ID, objc.Sel("stringForObjectValue:"), obj)
+	return rv
+}
 
 
 

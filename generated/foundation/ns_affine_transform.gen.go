@@ -115,6 +115,16 @@ func NewAffineTransformWithTransform(transform IAffineTransform) AffineTransform
 
 
 
+// Creates a new affine transform initialized to the identity matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform
+func (ac _AffineTransformClass) Transform() IAffineTransform {
+	rv := objc.Send[AffineTransform](objc.ID(ac.class), objc.Sel("transform"))
+	return rv
+}
+
+
 // Appends the specified matrix to the receiver’s matrix.
 //
 // [Full Topic]

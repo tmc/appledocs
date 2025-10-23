@@ -269,6 +269,76 @@ func NewDataWithData(data IData) Data {
 
 
 
+// Creates an empty data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/data
+func (dc _DataClass) Data() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("data"))
+	return rv
+}
+
+
+// Creates a data object containing a given number of bytes copied from a given buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithBytes:length:
+func (dc _DataClass) DataWithBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithBytes:length:"), bytes, length)
+	return rv
+}
+
+
+// Creates a data object that holds a given number of bytes from a given buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithBytesNoCopy:length:
+func (dc _DataClass) DataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithBytesNoCopy:length:"), bytes, length)
+	return rv
+}
+
+
+// Creates a data object that holds a given number of bytes from a given buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithBytesNoCopy:length:freeWhenDone:
+func (dc _DataClass) DataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint /* primitive/slice/pointer */, b bool /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithBytesNoCopy:length:freeWhenDone:"), bytes, length, b)
+	return rv
+}
+
+
+// Creates a data object by reading every byte from the file at a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfFile:
+func (dc _DataClass) DataWithContentsOfFile(path string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:"), objc.String(path))
+	return rv
+}
+
+
+// Creates a data object by reading every byte from the file at a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfFile:options:error:
+func (dc _DataClass) DataWithContentsOfFileOptionsError(path string /* primitive/slice/pointer */, readOptionsMask DataReadingOptions, errorPtr unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:options:error:"), objc.String(path), readOptionsMask, errorPtr)
+	return rv
+}
+
+
+// Creates a data object containing the contents of another data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithData:
+func (dc _DataClass) DataWithData(data IData) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithData:"), data)
+	return rv
+}
+
+
 // Creates a data object from the mapped file at a given path.
 //
 // [Full Topic]

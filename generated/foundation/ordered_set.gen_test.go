@@ -18,7 +18,7 @@ func ExampleNewOrderedSet() {
 // ExampleNewOrderedSetWithCoder demonstrates how to create a OrderedSet instance using NewOrderedSetWithCoder.
 func ExampleNewOrderedSetWithCoder() {
 	_ = foundation.NewOrderedSetWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
+		foundation.Coder{}, // coder Coder
 	)
 	// Output:
 }

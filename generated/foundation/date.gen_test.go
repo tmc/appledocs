@@ -19,7 +19,7 @@ func ExampleNewDate() {
 // Returns a date object initialized from data in the given unarchiver.
 func ExampleNewDateWithCoder() {
 	_ = foundation.NewDateWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
+		foundation.Coder{}, // coder Coder
 	)
 	// Output:
 }

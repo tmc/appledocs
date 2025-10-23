@@ -31,16 +31,21 @@ type _RegularExpressionClass struct {
 type IRegularExpression interface {
 	objectivec.IObject
 	// properties:
-	NSNotFound() int /* primitive/slice/pointer */
-	NumberOfCaptureGroups() int /* primitive/slice/pointer */
-	SetNumberOfCaptureGroups(value int /* primitive/slice/pointer */)
-	Options() unsafe.Pointer
-	SetOptions(value unsafe.Pointer)
+	NumberOfCaptureGroups() uint /* primitive/slice/pointer */
+	Options() RegularExpressionOptions
 	Pattern() string /* primitive/slice/pointer */
-	SetPattern(value string /* primitive/slice/pointer */)
+	NSNotFound() int /* primitive/slice/pointer */
 	Range() Range /* foo */
 	SetRange(value Range /* foo */)
 	// methods:
+	EnumerateMatchesInStringOptionsRangeUsingBlock(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */, block unsafe.Pointer)
+	FirstMatchInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) ITextCheckingResult
+	MatchesInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) []TextCheckingResult /* primitive/slice/pointer */
+	NumberOfMatchesInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) uint /* primitive/slice/pointer */
+	RangeOfFirstMatchInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) Range /* foo */
+	ReplaceMatchesInStringOptionsRangeWithTemplate(string_ MutableString /* foo */, options MatchingOptions, range_ Range /* foo */, templ string /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
+	ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ string /* primitive/slice/pointer */, offset int /* primitive/slice/pointer */, templ string /* primitive/slice/pointer */) String /* foo */
+	StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */, templ string /* primitive/slice/pointer */) String /* foo */
 }
 
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
@@ -96,6 +101,148 @@ func NewRegularExpression() RegularExpression {
 
 
 
+// Returns an initialized NSRegularExpression instance with the specified regular expression pattern and options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/init(pattern:options:)
+func NewRegularExpressionWithPatternOptionsError(pattern string /* primitive/slice/pointer */, options RegularExpressionOptions, error_ unsafe.Pointer) RegularExpression {
+	instance := getRegularExpressionClass().Alloc()
+	rv := objc.Send[RegularExpression](instance.ID, objc.Sel("initWithPattern:options:error:"), objc.String(pattern), options, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/escapedPattern(for:)
+func (rc _RegularExpressionClass) EscapedPatternForString(string_ string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](objc.ID(rc.class), objc.Sel("escapedPatternForString:"), objc.String(string_))
+	return rv
+}
+
+
+// Returns a template string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/escapedTemplate(for:)
+func (rc _RegularExpressionClass) EscapedTemplateForString(string_ string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](objc.ID(rc.class), objc.Sel("escapedTemplateForString:"), objc.String(string_))
+	return rv
+}
+
+
+// Enumerates the string allowing the Block to handle each regular expression match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/enumerateMatches(in:options:range:using:)
+func (r_ RegularExpression) EnumerateMatchesInStringOptionsRangeUsingBlock(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */, block unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("enumerateMatchesInString:options:range:usingBlock:"), objc.String(string_), options, range_, block)
+}
+
+
+// Returns the first match of the regular expression within the specified range of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/firstMatch(in:options:range:)
+func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) ITextCheckingResult {
+	rv := objc.Send[TextCheckingResult](r_.ID, objc.Sel("firstMatchInString:options:range:"), objc.String(string_), options, range_)
+	return rv
+}
+
+
+// Returns an array containing all the matches of the regular expression in the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/matches(in:options:range:)
+func (r_ RegularExpression) MatchesInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) []TextCheckingResult /* primitive/slice/pointer */ {
+	rv := objc.Send[[]TextCheckingResult](r_.ID, objc.Sel("matchesInString:options:range:"), objc.String(string_), options, range_)
+	return rv
+}
+
+
+// Returns the number of matches of the regular expression within the specified range of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/numberOfMatches(in:options:range:)
+func (r_ RegularExpression) NumberOfMatchesInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfMatchesInString:options:range:"), objc.String(string_), options, range_)
+	return rv
+}
+
+
+// Returns the range of the first match of the regular expression within the specified range of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/rangeOfFirstMatch(in:options:range:)
+func (r_ RegularExpression) RangeOfFirstMatchInStringOptionsRange(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */) Range /* foo */ {
+	rv := objc.Send[Range](r_.ID, objc.Sel("rangeOfFirstMatchInString:options:range:"), objc.String(string_), options, range_)
+	return rv
+}
+
+
+// Replaces regular expression matches within the mutable string using the template string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/replaceMatches(in:options:range:withTemplate:)
+func (r_ RegularExpression) ReplaceMatchesInStringOptionsRangeWithTemplate(string_ MutableString /* foo */, options MatchingOptions, range_ Range /* foo */, templ string /* primitive/slice/pointer */) uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](r_.ID, objc.Sel("replaceMatchesInString:options:range:withTemplate:"), string_, options, range_, objc.String(templ))
+	return rv
+}
+
+
+// Used to perform template substitution for a single result for clients implementing their own replace functionality.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/replacementString(for:in:offset:template:)
+func (r_ RegularExpression) ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ string /* primitive/slice/pointer */, offset int /* primitive/slice/pointer */, templ string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](r_.ID, objc.Sel("replacementStringForResult:inString:offset:template:"), result, objc.String(string_), offset, objc.String(templ))
+	return rv
+}
+
+
+// Returns a new string containing matching regular expressions replaced with the template string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/stringByReplacingMatches(in:options:range:withTemplate:)
+func (r_ RegularExpression) StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ string /* primitive/slice/pointer */, options MatchingOptions, range_ Range /* foo */, templ string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](r_.ID, objc.Sel("stringByReplacingMatchesInString:options:range:withTemplate:"), objc.String(string_), options, range_, objc.String(templ))
+	return rv
+}
+
+
+// Returns the number of capture groups in the regular expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/numberOfCaptureGroups
+func (r_ RegularExpression) NumberOfCaptureGroups() uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfCaptureGroups"))
+	return rv
+}
+
+
+// Returns the options used when the regular expression option was created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/options-swift.property
+func (r_ RegularExpression) Options() RegularExpressionOptions {
+	rv := objc.Send[RegularExpressionOptions](r_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// Returns the regular expression pattern.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/pattern
+func (r_ RegularExpression) Pattern() string /* primitive/slice/pointer */ {
+	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
+	return rv
+}
+
+
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
 //
 // [Full Topic]
@@ -103,63 +250,6 @@ func NewRegularExpression() RegularExpression {
 func (r_ RegularExpression) NSNotFound() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
 	return rv
-}
-
-
-// Returns the number of capture groups in the regular expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
-func (r_ RegularExpression) NumberOfCaptureGroups() int /* primitive/slice/pointer */ {
-	rv := objc.Send[int](r_.ID, objc.Sel("numberOfCaptureGroups"))
-	return rv
-}
-
-
-// Returns the number of capture groups in the regular expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
-func (r_ RegularExpression) SetNumberOfCaptureGroups(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfCaptureGroups:"), value)
-}
-
-
-// Returns the options used when the regular expression option was created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
-func (r_ RegularExpression) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("options"))
-	return rv
-}
-
-
-// Returns the options used when the regular expression option was created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property
-func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setOptions:"), value)
-}
-
-
-// Returns the regular expression pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-func (r_ RegularExpression) Pattern() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
-	return rv
-}
-
-
-// Returns the regular expression pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-func (r_ RegularExpression) SetPattern(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), objc.String(value))
 }
 
 
@@ -180,6 +270,5 @@ func (r_ RegularExpression) Range() Range /* foo */ {
 func (r_ RegularExpression) SetRange(value Range /* foo */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }
-
 
 

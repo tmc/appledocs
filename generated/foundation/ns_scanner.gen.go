@@ -31,22 +31,28 @@ type _ScannerClass struct {
 type IScanner interface {
 	objectivec.IObject
 	// properties:
-	NSNotFound() int /* primitive/slice/pointer */
 	CaseSensitive() bool /* primitive/slice/pointer */
 	SetCaseSensitive(value bool /* primitive/slice/pointer */)
 	CharactersToBeSkipped() ICharacterSet
 	SetCharactersToBeSkipped(value ICharacterSet)
+	AtEnd() bool /* primitive/slice/pointer */
+	Locale() objc.ID
+	SetLocale(value objc.ID)
+	ScanLocation() uint /* primitive/slice/pointer */
+	SetScanLocation(value uint /* primitive/slice/pointer */)
+	String() string /* primitive/slice/pointer */
+	NSNotFound() int /* primitive/slice/pointer */
 	CurrentIndex() unsafe.Pointer
 	SetCurrentIndex(value unsafe.Pointer)
 	IsAtEnd() bool /* primitive/slice/pointer */
 	SetIsAtEnd(value bool /* primitive/slice/pointer */)
-	Locale() unsafe.Pointer
-	SetLocale(value unsafe.Pointer)
-	ScanLocation() int /* primitive/slice/pointer */
-	SetScanLocation(value int /* primitive/slice/pointer */)
-	String() string /* primitive/slice/pointer */
-	SetString(value string /* primitive/slice/pointer */)
 	// methods:
+	ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/pointer */
+	ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/pointer */
+	ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
+	ScanInteger(result Integer /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */
+	ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
+	ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
 }
 
 // A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
@@ -102,12 +108,85 @@ func NewScanner() Scanner {
 
 
 
-// A value indicating that a requested item couldn’t be found or doesn’t exist.
+// Returns an object initialized to scan a given string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer */ {
-	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/init(string:)
+func NewScannerWithString(string_ string /* primitive/slice/pointer */) Scanner {
+	instance := getScannerClass().Alloc()
+	rv := objc.Send[Scanner](instance.ID, objc.Sel("initWithString:"), objc.String(string_))
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns an object that scans a given string according to the user’s default locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
+func (sc _ScannerClass) LocalizedScannerWithString(string_ string /* primitive/slice/pointer */) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string_))
+	return rv
+}
+
+
+// Scans for a double value from a hexadecimal representation, returning a found value by reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexDouble(_:)
+func (s_ Scanner) ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexDouble:"), result)
+	return rv
+}
+
+
+// Scans for a double value from a hexadecimal representation, returning a found value by reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexFloat(_:)
+func (s_ Scanner) ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexFloat:"), result)
+	return rv
+}
+
+
+// Scans for a long long value from a hexadecimal representation, returning a found value by reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexInt64(_:)
+func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexLongLong:"), result)
+	return rv
+}
+
+
+// Scans for an NSInteger value from a decimal representation, returning a found value by reference
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt(_:)
+func (s_ Scanner) ScanInteger(result Integer /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("scanInteger:"), result)
+	return rv
+}
+
+
+// Scans for a long long value from a decimal representation, returning a found value by reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt64(_:)
+func (s_ Scanner) ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("scanLongLong:"), result)
+	return rv
+}
+
+
+// Scans for an unsigned long long value from a decimal representation, returning a found value by reference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanUnsignedLongLong(_:)
+func (s_ Scanner) ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("scanUnsignedLongLong:"), result)
 	return rv
 }
 
@@ -115,7 +194,7 @@ func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer */ {
 // Flag that indicates whether the receiver distinguishes case in the characters it scans.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/caseSensitive
 func (s_ Scanner) CaseSensitive() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("caseSensitive"))
 	return rv
@@ -125,7 +204,7 @@ func (s_ Scanner) CaseSensitive() bool /* primitive/slice/pointer */ {
 // Flag that indicates whether the receiver distinguishes case in the characters it scans.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/caseSensitive
 func (s_ Scanner) SetCaseSensitive(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCaseSensitive:"), value)
 }
@@ -134,7 +213,7 @@ func (s_ Scanner) SetCaseSensitive(value bool /* primitive/slice/pointer */) {
 // Character set containing the characters the scanner ignores when looking for a scannable element.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/charactersToBeSkipped
 func (s_ Scanner) CharactersToBeSkipped() ICharacterSet {
 	rv := objc.Send[CharacterSet](s_.ID, objc.Sel("charactersToBeSkipped"))
 	return rv
@@ -144,9 +223,77 @@ func (s_ Scanner) CharactersToBeSkipped() ICharacterSet {
 // Character set containing the characters the scanner ignores when looking for a scannable element.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/charactersToBeSkipped
 func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCharactersToBeSkipped:"), value)
+}
+
+
+// Flag that indicates whether the receiver has exhausted all significant characters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/isAtEnd
+func (s_ Scanner) AtEnd() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("atEnd"))
+	return rv
+}
+
+
+// The locale to use when scanning.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/locale
+func (s_ Scanner) Locale() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("locale"))
+	return rv
+}
+
+
+// The locale to use when scanning.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/locale
+func (s_ Scanner) SetLocale(value objc.ID) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
+}
+
+
+// The character position at which the receiver will begin its next scanning operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanLocation
+func (s_ Scanner) ScanLocation() uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](s_.ID, objc.Sel("scanLocation"))
+	return rv
+}
+
+
+// The character position at which the receiver will begin its next scanning operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanLocation
+func (s_ Scanner) SetScanLocation(value uint /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
+}
+
+
+// The string the scanner will scan.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/string
+func (s_ Scanner) String() string /* primitive/slice/pointer */ {
+	rv := objc.Send[string](s_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// A value indicating that a requested item couldn’t be found or doesn’t exist.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
+func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
+	return rv
 }
 
 
@@ -182,63 +329,5 @@ func (s_ Scanner) IsAtEnd() bool /* primitive/slice/pointer */ {
 func (s_ Scanner) SetIsAtEnd(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAtEnd:"), value)
 }
-
-
-// The locale to use when scanning.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/locale
-func (s_ Scanner) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("locale"))
-	return rv
-}
-
-
-// The locale to use when scanning.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/locale
-func (s_ Scanner) SetLocale(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
-}
-
-
-// The character position at which the receiver will begin its next scanning operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
-func (s_ Scanner) ScanLocation() int /* primitive/slice/pointer */ {
-	rv := objc.Send[int](s_.ID, objc.Sel("scanLocation"))
-	return rv
-}
-
-
-// The character position at which the receiver will begin its next scanning operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
-func (s_ Scanner) SetScanLocation(value int /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
-}
-
-
-// The string the scanner will scan.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) String() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("string"))
-	return rv
-}
-
-
-// The string the scanner will scan.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) SetString(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setString:"), objc.String(value))
-}
-
 
 

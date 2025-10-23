@@ -35,12 +35,12 @@ type INumberFormatter interface {
 	SetAllowsFloats(value bool /* primitive/slice/pointer */)
 	AlwaysShowsDecimalSeparator() bool /* primitive/slice/pointer */
 	SetAlwaysShowsDecimalSeparator(value bool /* primitive/slice/pointer */)
-	AttributedStringForNil() AttributedString /* foo */
-	SetAttributedStringForNil(value AttributedString /* foo */)
-	AttributedStringForNotANumber() AttributedString /* foo */
-	SetAttributedStringForNotANumber(value AttributedString /* foo */)
-	AttributedStringForZero() AttributedString /* foo */
-	SetAttributedStringForZero(value AttributedString /* foo */)
+	AttributedStringForNil() IAttributedString
+	SetAttributedStringForNil(value IAttributedString)
+	AttributedStringForNotANumber() IAttributedString
+	SetAttributedStringForNotANumber(value IAttributedString)
+	AttributedStringForZero() IAttributedString
+	SetAttributedStringForZero(value IAttributedString)
 	CurrencyCode() string /* primitive/slice/pointer */
 	SetCurrencyCode(value string /* primitive/slice/pointer */)
 	CurrencyDecimalSeparator() string /* primitive/slice/pointer */
@@ -75,8 +75,8 @@ type INumberFormatter interface {
 	SetLenient(value bool /* primitive/slice/pointer */)
 	PartialStringValidationEnabled() bool /* primitive/slice/pointer */
 	SetPartialStringValidationEnabled(value bool /* primitive/slice/pointer */)
-	Locale() Locale /* foo */
-	SetLocale(value Locale /* foo */)
+	Locale() ILocale
+	SetLocale(value ILocale)
 	LocalizesFormat() bool /* primitive/slice/pointer */
 	SetLocalizesFormat(value bool /* primitive/slice/pointer */)
 	Maximum() Number /* foo */
@@ -329,7 +329,7 @@ func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
-func (n_ NumberFormatter) AttributedStringForNil() AttributedString /* foo */ {
+func (n_ NumberFormatter) AttributedStringForNil() IAttributedString {
 	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForNil"))
 	return rv
 }
@@ -339,7 +339,7 @@ func (n_ NumberFormatter) AttributedStringForNil() AttributedString /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
-func (n_ NumberFormatter) SetAttributedStringForNil(value AttributedString /* foo */) {
+func (n_ NumberFormatter) SetAttributedStringForNil(value IAttributedString) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForNil:"), value)
 }
 
@@ -348,7 +348,7 @@ func (n_ NumberFormatter) SetAttributedStringForNil(value AttributedString /* fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
-func (n_ NumberFormatter) AttributedStringForNotANumber() AttributedString /* foo */ {
+func (n_ NumberFormatter) AttributedStringForNotANumber() IAttributedString {
 	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForNotANumber"))
 	return rv
 }
@@ -358,7 +358,7 @@ func (n_ NumberFormatter) AttributedStringForNotANumber() AttributedString /* fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
-func (n_ NumberFormatter) SetAttributedStringForNotANumber(value AttributedString /* foo */) {
+func (n_ NumberFormatter) SetAttributedStringForNotANumber(value IAttributedString) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForNotANumber:"), value)
 }
 
@@ -367,7 +367,7 @@ func (n_ NumberFormatter) SetAttributedStringForNotANumber(value AttributedStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
-func (n_ NumberFormatter) AttributedStringForZero() AttributedString /* foo */ {
+func (n_ NumberFormatter) AttributedStringForZero() IAttributedString {
 	rv := objc.Send[AttributedString](n_.ID, objc.Sel("attributedStringForZero"))
 	return rv
 }
@@ -377,7 +377,7 @@ func (n_ NumberFormatter) AttributedStringForZero() AttributedString /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
-func (n_ NumberFormatter) SetAttributedStringForZero(value AttributedString /* foo */) {
+func (n_ NumberFormatter) SetAttributedStringForZero(value IAttributedString) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForZero:"), value)
 }
 
@@ -709,7 +709,7 @@ func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
-func (n_ NumberFormatter) Locale() Locale /* foo */ {
+func (n_ NumberFormatter) Locale() ILocale {
 	rv := objc.Send[Locale](n_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -719,7 +719,7 @@ func (n_ NumberFormatter) Locale() Locale /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
-func (n_ NumberFormatter) SetLocale(value Locale /* foo */) {
+func (n_ NumberFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -1573,7 +1573,6 @@ func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool /* primitive/s
 func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
 }
-
 
 
 

@@ -31,9 +31,6 @@ type _MorphologyPronounClass struct {
 type IMorphologyPronoun interface {
 	objectivec.IObject
 	// properties:
-	DependentMorphology() IMorphology
-	Morphology() IMorphology
-	Pronoun() string /* primitive/slice/pointer */
 	// methods:
 }
 
@@ -89,39 +86,5 @@ func NewMorphologyPronoun() MorphologyPronoun {
 }
 
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
-func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string /* primitive/slice/pointer */, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
-	instance := getMorphologyPronounClass().Alloc()
-	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), objc.String(pronoun), morphology, dependentMorphology)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/dependentMorphology
-func (m_ MorphologyPronoun) DependentMorphology() IMorphology {
-	rv := objc.Send[Morphology](m_.ID, objc.Sel("dependentMorphology"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
-func (m_ MorphologyPronoun) Morphology() IMorphology {
-	rv := objc.Send[Morphology](m_.ID, objc.Sel("morphology"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/pronoun
-func (m_ MorphologyPronoun) Pronoun() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("pronoun"))
-	return rv
-}
 
 

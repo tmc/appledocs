@@ -55,10 +55,10 @@ type IDateComponentsFormatter interface {
 	SetZeroFormattingBehavior(value DateComponentsFormatterZeroFormattingBehavior)
 	// methods:
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromTimeInterval(ti TimeInterval /* foo */) IString
-	StringFromDateComponents(components IDateComponents) IString
-	StringFromDateToDate(startDate IDate, endDate IDate) IString
+	StringForObjectValue(obj objectivec.IObject) String /* foo */
+	StringFromTimeInterval(ti TimeInterval /* foo */) String /* foo */
+	StringFromDateComponents(components IDateComponents) String /* foo */
+	StringFromDateToDate(startDate IDate, endDate IDate) String /* foo */
 }
 
 // A formatter that creates string representations of quantities of time.
@@ -120,7 +120,7 @@ func NewDateComponentsFormatter() DateComponentsFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/localizedString(from:unitsStyle:)
-func (dc _DateComponentsFormatterClass) LocalizedStringFromDateComponentsUnitsStyle(components IDateComponents, unitsStyle DateComponentsFormatterUnitsStyle) IString {
+func (dc _DateComponentsFormatterClass) LocalizedStringFromDateComponentsUnitsStyle(components IDateComponents, unitsStyle DateComponentsFormatterUnitsStyle) String /* foo */ {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("localizedStringFromDateComponents:unitsStyle:"), components, unitsStyle)
 	return rv
 }
@@ -138,7 +138,7 @@ func (d_ DateComponentsFormatter) GetObjectValueForStringErrorDescription(obj ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(for:)
-func (d_ DateComponentsFormatter) StringForObjectValue(obj objectivec.IObject) IString {
+func (d_ DateComponentsFormatter) StringForObjectValue(obj objectivec.IObject) String /* foo */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
@@ -148,7 +148,7 @@ func (d_ DateComponentsFormatter) StringForObjectValue(obj objectivec.IObject) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(from:)-7sj4j
-func (d_ DateComponentsFormatter) StringFromTimeInterval(ti TimeInterval /* foo */) IString {
+func (d_ DateComponentsFormatter) StringFromTimeInterval(ti TimeInterval /* foo */) String /* foo */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromTimeInterval:"), ti)
 	return rv
 }
@@ -158,7 +158,7 @@ func (d_ DateComponentsFormatter) StringFromTimeInterval(ti TimeInterval /* foo 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(from:)-9exxn
-func (d_ DateComponentsFormatter) StringFromDateComponents(components IDateComponents) IString {
+func (d_ DateComponentsFormatter) StringFromDateComponents(components IDateComponents) String /* foo */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDateComponents:"), components)
 	return rv
 }
@@ -168,7 +168,7 @@ func (d_ DateComponentsFormatter) StringFromDateComponents(components IDateCompo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(from:to:)
-func (d_ DateComponentsFormatter) StringFromDateToDate(startDate IDate, endDate IDate) IString {
+func (d_ DateComponentsFormatter) StringFromDateToDate(startDate IDate, endDate IDate) String /* foo */ {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:toDate:"), startDate, endDate)
 	return rv
 }

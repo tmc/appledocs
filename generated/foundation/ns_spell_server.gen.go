@@ -31,9 +31,12 @@ type _SpellServerClass struct {
 type ISpellServer interface {
 	objectivec.IObject
 	// properties:
-	Delegate() SpellServerDelegate /* foo */
-	SetDelegate(value SpellServerDelegate /* foo */)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	// methods:
+	IsWordInUserDictionariesCaseSensitive(word string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	RegisterLanguageByVendor(language string /* primitive/slice/pointer */, vendor string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	Run()
 }
 
 // A server that your app uses to provide a spell checker service to other apps running in the system.
@@ -89,12 +92,41 @@ func NewSpellServer() SpellServer {
 
 
 
+// Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
+func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
+	return rv
+}
+
+
+// Notifies the receiver of a language your spelling checker can check.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/registerLanguage(_:byVendor:)
+func (s_ SpellServer) RegisterLanguageByVendor(language string /* primitive/slice/pointer */, vendor string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("registerLanguage:byVendor:"), objc.String(language), objc.String(vendor))
+	return rv
+}
+
+
+// Causes the receiver to start listening for spell-checking requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/run()
+func (s_ SpellServer) Run() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
+}
+
+
 // Returns the receiver’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
-func (s_ SpellServer) Delegate() SpellServerDelegate /* foo */ {
-	rv := objc.Send[SpellServerDelegate](s_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/delegate
+func (s_ SpellServer) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -102,8 +134,8 @@ func (s_ SpellServer) Delegate() SpellServerDelegate /* foo */ {
 // Returns the receiver’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
-func (s_ SpellServer) SetDelegate(value SpellServerDelegate /* foo */) {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/delegate
+func (s_ SpellServer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 

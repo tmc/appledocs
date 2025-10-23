@@ -31,17 +31,14 @@ type _OrthographyClass struct {
 type IOrthography interface {
 	objectivec.IObject
 	// properties:
-	AllLanguages() string /* primitive/slice/pointer */
-	SetAllLanguages(value string /* primitive/slice/pointer */)
-	AllScripts() string /* primitive/slice/pointer */
-	SetAllScripts(value string /* primitive/slice/pointer */)
+	AllLanguages() []string /* primitive/slice/pointer */
+	AllScripts() []string /* primitive/slice/pointer */
 	DominantLanguage() string /* primitive/slice/pointer */
-	SetDominantLanguage(value string /* primitive/slice/pointer */)
 	DominantScript() string /* primitive/slice/pointer */
-	SetDominantScript(value string /* primitive/slice/pointer */)
-	LanguageMap() string /* primitive/slice/pointer */
-	SetLanguageMap(value string /* primitive/slice/pointer */)
+	LanguageMap() IDictionary /* already interface */
 	// methods:
+	DominantLanguageForScript(script string /* primitive/slice/pointer */) String /* foo */
+	LanguagesForScript(script string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */
 }
 
 // A description of the linguistic content of natural language text, typically used for spelling and grammar checking.
@@ -97,12 +94,55 @@ func NewOrthography() Orthography {
 
 
 
-// The languages appearing in values of the language map.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(coder:)
+func NewOrthographyWithCoder(coder Coder /* foo */) Orthography {
+	instance := getOrthographyClass().Alloc()
+	rv := objc.Send[Orthography](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an orthography object with the specified dominant script and language map.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/alllanguages
-func (o_ Orthography) AllLanguages() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](o_.ID, objc.Sel("allLanguages"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/init(dominantScript:languageMap:)
+func NewOrthographyWithDominantScriptLanguageMap(script string /* primitive/slice/pointer */, map_ IDictionary /* already interface */) Orthography {
+	instance := getOrthographyClass().Alloc()
+	rv := objc.Send[Orthography](instance.ID, objc.Sel("initWithDominantScript:languageMap:"), objc.String(script), map_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns an orthography object with the default language map for the specified language.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/defaultOrthography(forLanguage:)
+func (oc _OrthographyClass) DefaultOrthographyForLanguage(language string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("defaultOrthographyForLanguage:"), objc.String(language))
+	return rv
+}
+
+
+// Returns the dominant language for the specified script.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantLanguage(forScript:)
+func (o_ Orthography) DominantLanguageForScript(script string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](o_.ID, objc.Sel("dominantLanguageForScript:"), objc.String(script))
+	return rv
+}
+
+
+// Returns the list of languages for the specified script.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/languages(forScript:)
+func (o_ Orthography) LanguagesForScript(script string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */ {
+	rv := objc.Send[[]string](o_.ID, objc.Sel("languagesForScript:"), objc.String(script))
 	return rv
 }
 
@@ -110,18 +150,9 @@ func (o_ Orthography) AllLanguages() string /* primitive/slice/pointer */ {
 // The languages appearing in values of the language map.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/alllanguages
-func (o_ Orthography) SetAllLanguages(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAllLanguages:"), objc.String(value))
-}
-
-
-// The scripts appearing as keys in the language map.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/allscripts
-func (o_ Orthography) AllScripts() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](o_.ID, objc.Sel("allScripts"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/allLanguages
+func (o_ Orthography) AllLanguages() []string /* primitive/slice/pointer */ {
+	rv := objc.Send[[]string](o_.ID, objc.Sel("allLanguages"))
 	return rv
 }
 
@@ -129,67 +160,40 @@ func (o_ Orthography) AllScripts() string /* primitive/slice/pointer */ {
 // The scripts appearing as keys in the language map.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/allscripts
-func (o_ Orthography) SetAllScripts(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAllScripts:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/allScripts
+func (o_ Orthography) AllScripts() []string /* primitive/slice/pointer */ {
+	rv := objc.Send[[]string](o_.ID, objc.Sel("allScripts"))
+	return rv
 }
 
 
 // The first language in the list of languages for the dominant script.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/dominantlanguage
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantLanguage
 func (o_ Orthography) DominantLanguage() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("dominantLanguage"))
 	return rv
 }
 
 
-// The first language in the list of languages for the dominant script.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/dominantlanguage
-func (o_ Orthography) SetDominantLanguage(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDominantLanguage:"), objc.String(value))
-}
-
-
 // The dominant script for the text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/dominantscript
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantScript
 func (o_ Orthography) DominantScript() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("dominantScript"))
 	return rv
 }
 
 
-// The dominant script for the text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/dominantscript
-func (o_ Orthography) SetDominantScript(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDominantScript:"), objc.String(value))
-}
-
-
 // A dictionary that maps script tags to arrays of language tags.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/languagemap
-func (o_ Orthography) LanguageMap() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](o_.ID, objc.Sel("languageMap"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/languageMap
+func (o_ Orthography) LanguageMap() IDictionary /* already interface */ {
+	rv := objc.Send[IDictionary](o_.ID, objc.Sel("languageMap"))
 	return rv
 }
-
-
-// A dictionary that maps script tags to arrays of language tags.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorthography/languagemap
-func (o_ Orthography) SetLanguageMap(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setLanguageMap:"), objc.String(value))
-}
-
 
 
