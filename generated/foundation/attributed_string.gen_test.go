@@ -9,6 +9,32 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewAttributedString
 
+// ExampleNewAttributedStringWithAdaptiveImageGlyphAttributes demonstrates how to create a AttributedString instance using NewAttributedStringWithAdaptiveImageGlyphAttributes.
+// Creates an attributed string with an adaptive image glyph and applies the specified attributes to it.
+func ExampleNewAttributedStringWithAdaptiveImageGlyphAttributes() {
+	_ = foundation.NewAttributedStringWithAdaptiveImageGlyphAttributes(
+		foundation.AdaptiveImageGlyph{}, // adaptiveImageGlyph AdaptiveImageGlyph
+		foundation.IDictionary{}, // attributes IDictionary
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithAttachment demonstrates how to create a AttributedString instance using NewAttributedStringWithAttachment.
+// Creates an attributed string with an attachment.
+func ExampleNewAttributedStringWithAttachment() {
+	_ = foundation.NewAttributedStringWithAttachment(
+		foundation.TextAttachment{}, // attachment TextAttachment
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithAttachmentAttributes demonstrates how to create a AttributedString instance using NewAttributedStringWithAttachmentAttributes.
+// Creates an attributed string with an attachment and applies the specified attributes to it.
+func ExampleNewAttributedStringWithAttachmentAttributes() {
+	_ = foundation.NewAttributedStringWithAttachmentAttributes(
+		foundation.TextAttachment{}, // attachment TextAttachment
+		foundation.IDictionary{}, // attributes IDictionary
+	)
+	// Output:
+}
 // ExampleNewAttributedStringWithAttributedString demonstrates how to create a AttributedString instance using NewAttributedStringWithAttributedString.
 // Creates a new attributed string from the contents of another attributed string.
 func ExampleNewAttributedStringWithAttributedString() {

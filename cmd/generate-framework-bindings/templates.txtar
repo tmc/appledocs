@@ -221,16 +221,6 @@ type Range struct {
 	Length   int
 }
 
-// RectEdge defines which edge of a rectangle.
-type RectEdge int
-
-const (
-	RectEdgeMinX RectEdge = 0
-	RectEdgeMinY RectEdge = 1
-	RectEdgeMaxX RectEdge = 2
-	RectEdgeMaxY RectEdge = 3
-)
-
 {{end -}}
 {{if eq .Framework "QuartzCore" -}}
 // QuartzCore needs CGFloat for its functions
@@ -547,6 +537,15 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if or .Abstract .DocURL}}
 {{template "doc_comment" .}}
 {{end -}}
+{{- /* Check if any parameters were relaxed due to hierarchy violations */}}
+{{- $methodSelector := .Selector}}
+{{- range .Parameters}}
+{{- $relaxedInfo := getRelaxedParamInfo $className $methodSelector .Name}}
+{{- if $relaxedInfo}}
+// Note: {{.Name}} parameter relaxed to objectivec.IObject due to cross-framework reference.
+// Expected type: {{$relaxedInfo.ExpectedGoType}} (originally {{$relaxedInfo.OriginalType}})
+{{- end}}
+{{- end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})

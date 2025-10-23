@@ -153,9 +153,10 @@ func (g *Generator) IsTypedefType(typeName string) bool {
 
 	// O(1) lookup in index
 	_, ok := g.typedefIndex[typeName]
-	if os.Getenv("DEBUG_TIMEINTERVAL") == "1" && typeName == "TimeInterval" {
-		fmt.Fprintf(os.Stderr, "DEBUG: IsTypedefType(TimeInterval) = %v, index size = %d\n", ok, len(g.typedefIndex))
-	}
+	Debug.TimeInterval("IsTypedefType check", typeName, "",
+		"typeName", typeName,
+		"found", ok,
+		"indexSize", len(g.typedefIndex))
 	return ok
 }
 
@@ -226,9 +227,10 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 	// For enums, return the goType as-is (which is already the stripped/Go name)
 	// The goType parameter has already been mapped by mapObjCTypeToGo
 	if g.IsEnumType(goType) {
-		if os.Getenv("DEBUG_ENUM_TYPE") == "1" && strings.Contains(goType, "Compression") {
-			fmt.Fprintf(os.Stderr, "DEBUG: ToInterfaceType: %s is enum, returning as-is\n", goType)
-		}
+		Debug.EnumType("ToInterfaceType enum check", goType, "",
+			"goType", goType,
+			"isEnum", true,
+			"returning", goType)
 		return goType // Return the mapped Go type name, not the original ObjC name
 	}
 	if g.IsTypedefType(goType) {
@@ -249,22 +251,24 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 	// DATA-DRIVEN: Check if this is actually a class type by looking it up
 	// Check both the original type and the stripped version
 	// If it's not a class, it's likely a struct - don't convert
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
-		fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: goType=%s baseType=%s IsClass(goType)=%v IsClass(baseType)=%v\n",
-			goType, baseType, g.IsClassType(goType), g.IsClassType(baseType))
-	}
+	Debug.TypeMap("TypeToInterfaceType class check", goType, baseType,
+		"goType", goType,
+		"baseType", baseType,
+		"isClassGoType", g.IsClassType(goType),
+		"isClassBaseType", g.IsClassType(baseType))
 	if !g.IsClassType(goType) && !g.IsClassType(baseType) {
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
-			fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: NOT a class, returning goType=%s unchanged\n", goType)
-		}
+		Debug.TypeMap("NOT a class, returning unchanged", goType, "",
+			"goType", goType,
+			"returning", goType)
 		return goType + " /* foo */"
 	}
 
 	// Convert to interface type: "Data" -> "IData"
 	// Use the stripped base type for the interface name
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
-		fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: IS a class, returning I%s\n", baseType)
-	}
+	Debug.TypeMap("IS a class, converting to interface", goType, baseType,
+		"goType", goType,
+		"baseType", baseType,
+		"returning", "I"+baseType)
 	return "I" + baseType
 }
 
@@ -326,34 +330,34 @@ func (g *Generator) prepare() {
 	for _, enum := range g.Enums {
 		if existing, exists := enumsMap[enum.Name]; exists {
 			// Merge cases from duplicate enum into existing enum
-			if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG: Merging duplicate enum %s with %d new cases into existing %d cases\n",
-					enum.Name, len(enum.Cases), len(existing.Cases))
-			}
+			Debug.EnumDedup("merging duplicate enum", enum.Name, "",
+				"enumName", enum.Name,
+				"newCases", len(enum.Cases),
+				"existingCases", len(existing.Cases))
 			for _, newCase := range enum.Cases {
 				// Check if this case already exists
 				isDuplicate := false
 				for _, existingCase := range existing.Cases {
 					if existingCase.Name == newCase.Name {
 						isDuplicate = true
-						if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
-							fmt.Fprintf(os.Stderr, "DEBUG:   Skipping duplicate case %s\n", newCase.Name)
-						}
+						Debug.EnumDedup("skipping duplicate case", newCase.Name, enum.Name,
+							"caseName", newCase.Name,
+							"enumName", enum.Name)
 						break
 					}
 				}
 				if !isDuplicate {
-					if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
-						fmt.Fprintf(os.Stderr, "DEBUG:   Adding new case %s\n", newCase.Name)
-					}
+					Debug.EnumDedup("adding new case", newCase.Name, enum.Name,
+						"caseName", newCase.Name,
+						"enumName", enum.Name)
 					existing.Cases = append(existing.Cases, newCase)
 				}
 			}
 		} else {
 			// First time seeing this enum - but also deduplicate its cases
-			if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG: First occurrence of enum %s with %d cases\n", enum.Name, len(enum.Cases))
-			}
+			Debug.EnumDedup("first occurrence of enum", enum.Name, "",
+				"enumName", enum.Name,
+				"caseCount", len(enum.Cases))
 
 			// Deduplicate cases within this enum
 			casesSeen := make(map[string]bool)
@@ -362,8 +366,10 @@ func (g *Generator) prepare() {
 				if !casesSeen[enumCase.Name] {
 					casesSeen[enumCase.Name] = true
 					deduplicatedCases = append(deduplicatedCases, enumCase)
-				} else if os.Getenv("DEBUG_ENUM_DEDUP") == "1" {
-					fmt.Fprintf(os.Stderr, "DEBUG:   Removing duplicate case %s from first occurrence\n", enumCase.Name)
+				} else {
+					Debug.EnumDedup("removing duplicate case from first", enumCase.Name, enum.Name,
+						"caseName", enumCase.Name,
+						"enumName", enum.Name)
 				}
 			}
 			enum.Cases = deduplicatedCases
@@ -380,13 +386,24 @@ func (g *Generator) prepare() {
 	}
 	g.Enums = deduplicatedEnums
 
-	// Deduplicate typedefs by name - keep only the first occurrence
-	typedefsSeen := make(map[string]bool)
+	// Deduplicate typedefs by STRIPPED name - keep only the first occurrence
+	// This prevents collisions when both NSFoo and CFCFoo strip to "Foo"
+	typedefsSeen := make(map[string]*occ2go.ParsedTypedef)
 	deduplicatedTypedefs := make([]*occ2go.ParsedTypedef, 0, len(g.Typedefs))
 	for _, typedef := range g.Typedefs {
-		if !typedefsSeen[typedef.Name] {
-			typedefsSeen[typedef.Name] = true
+		strippedName := stripObjCPrefix(typedef.Name)
+		if existing, seen := typedefsSeen[strippedName]; !seen {
+			typedefsSeen[strippedName] = typedef
 			deduplicatedTypedefs = append(deduplicatedTypedefs, typedef)
+		} else {
+			// Log which typedef is being skipped due to name collision
+			Debug.TypeMap("typedef name collision - skipping duplicate", typedef.Name, strippedName,
+				"skippedName", typedef.Name,
+				"skippedBaseType", typedef.BaseType,
+				"keptName", existing.Name,
+				"keptBaseType", existing.BaseType,
+				"strippedName", strippedName,
+				"framework", g.Framework)
 		}
 	}
 	g.Typedefs = deduplicatedTypedefs
@@ -454,13 +471,12 @@ func (g *Generator) prepare() {
 	g.typedefIndex = make(map[string]*occ2go.ParsedTypedef, len(g.Typedefs))
 	for _, typedef := range g.Typedefs {
 		g.typedefIndex[typedef.Name] = typedef
-		if os.Getenv("DEBUG_TIMEINTERVAL") == "1" && typedef.Name == "TimeInterval" {
-			fmt.Fprintf(os.Stderr, "DEBUG: Building typedef index - found TimeInterval\n")
-		}
+		Debug.TimeInterval("building typedef index", typedef.Name, "",
+			"typedefName", typedef.Name)
 	}
-	if os.Getenv("DEBUG_TIMEINTERVAL") == "1" {
-		fmt.Fprintf(os.Stderr, "DEBUG: Built typedef index with %d entries, TimeInterval present = %v\n", len(g.typedefIndex), g.typedefIndex["TimeInterval"] != nil)
-	}
+	Debug.TimeInterval("built typedef index", "", "",
+		"entryCount", len(g.typedefIndex),
+		"hasTimeInterval", g.typedefIndex["TimeInterval"] != nil)
 }
 
 // SortClassesByDependency sorts classes topologically so parent classes come before children.

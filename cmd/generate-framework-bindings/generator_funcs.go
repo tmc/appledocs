@@ -24,6 +24,8 @@ type GeneratorFuncs struct {
 //
 // Template usage: {{formatMethodParams .}} instead of {{formatMethodParams $.Generator .}}
 func (gf GeneratorFuncs) Funcs() template.FuncMap {
+	Debug.TypeMap("GeneratorFuncs.Funcs() called", gf.Framework, "",
+		"framework", gf.Framework)
 	return template.FuncMap{
 		// Method Formatting
 		"formatMethodParams": gf.formatMethodParams,
@@ -50,6 +52,9 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 // formatMethodParams formats method parameters for Go function signatures using data-driven type checking.
 // This method uses the O(1) indexes from Phase 1 refactoring for efficient type lookups.
 func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string {
+	Debug.TypeMap("formatMethodParams called", method.Name, "",
+		"method", method.Name,
+		"numParams", len(method.Parameters))
 	if len(method.Parameters) == 0 {
 		return ""
 	}
@@ -64,6 +69,12 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 			paramName += "_"
 		}
 
+		Debug.TypeMap("formatMethodParams entry", p.Name, p.Type,
+			"method", method.Name,
+			"param", p.Name,
+			"paramType", p.Type,
+			"framework", gf.Framework)
+
 		goType := mapObjCTypeToGo(p.Type, gf.Framework)
 
 		// Convert objc.ID to objectivec.IObject for better type safety
@@ -73,6 +84,42 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 			// Use data-driven type checking instead of heuristics
 			// This calls Generator.TypeToInterfaceType which uses classIndex, enumIndex, typedefIndex
 			goType = gf.TypeToInterfaceType(goType)
+		}
+
+		// WORKAROUND for bead appledocs-473: Strip NS/CG/CA prefix from types that look like
+		// undefined enums (not in our indexes but have the prefix pattern)
+		// This handles enums like NSEnergyFormatterUnit that exist but weren't extracted
+		stripped := stripObjCPrefix(goType)
+		isClass := gf.IsClassType(goType)
+		isEnum := gf.IsEnumType(goType)
+		isTypedef := gf.IsTypedefType(goType)
+		Debug.TypeMap("type classification check", goType, stripped,
+			"goType", goType,
+			"stripped", stripped,
+			"equal", stripped == goType,
+			"isClass", isClass,
+			"isEnum", isEnum,
+			"isTypedef", isTypedef)
+		// Check if the STRIPPED name is in the enum index but the FULL name is not
+		strippedIsEnum := gf.IsEnumType(stripped)
+		if isEnum != strippedIsEnum {
+			Debug.TypeMap("enum mismatch detected", goType, stripped,
+				"fullType", goType,
+				"fullIsEnum", isEnum,
+				"strippedType", stripped,
+				"strippedIsEnum", strippedIsEnum)
+		}
+		// The fix: if stripped name is an enum but full name also says it's an enum,
+		// it means the enum index has BOTH. We should use the stripped name.
+		if stripped != goType && !gf.IsClassType(goType) && !gf.IsTypedefType(goType) {
+			// Skip the isEnum check - just strip if it's not a class or typedef
+			Debug.TypeMap("formatMethodParams: stripping type", goType, stripped,
+				"originalType", goType,
+				"strippedType", stripped,
+				"method", method.Name,
+				"param", p.Name,
+				"framework", gf.Framework)
+			goType = stripped
 		}
 
 		parts[i] = fmt.Sprintf("%s %s", paramName, goType)
@@ -116,9 +163,11 @@ func (gf GeneratorFuncs) shouldSkipTypedef(typedef *occ2go.ParsedTypedef) bool {
 }
 
 // isTypeInTypesTemplate checks if a type name is defined in the types.gen.go template.
-// This avoids hardcoding a list by using pattern matching and framework-specific rules.
+// This checks for geometry struct types that are manually defined in the template
+// (Point, Size, Rect, Range, Vector) which should not be generated as typedefs.
 func (gf GeneratorFuncs) isTypeInTypesTemplate(typeName string) bool {
 	// Common geometry types used across frameworks
+	// These are STRUCT types manually defined in types.gen.go, not extracted from docs
 	geometryTypes := map[string]bool{
 		"Point":  true, // NSPoint/CGPoint
 		"Size":   true, // NSSize/CGSize
@@ -127,17 +176,7 @@ func (gf GeneratorFuncs) isTypeInTypesTemplate(typeName string) bool {
 		"Vector": true, // CGVector/NSVector
 	}
 
-	// Geometry types are defined in types.gen.go for several frameworks
-	if geometryTypes[typeName] {
-		return true
-	}
-
-	// RectEdge is a special enum defined inline in types.gen.go for Foundation
-	if gf.Framework == "Foundation" && typeName == "RectEdge" {
-		return true
-	}
-
-	return false
+	return geometryTypes[typeName]
 }
 
 // Phase 3 Status: COMPLETE

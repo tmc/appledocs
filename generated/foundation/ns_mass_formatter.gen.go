@@ -30,8 +30,8 @@ type _MassFormatterClass struct {
 type IMassFormatter interface {
 	IFormatter
 	// properties:
-	UnitStyle() NSFormattingUnitStyle /* foo */
-	SetUnitStyle(value NSFormattingUnitStyle /* foo */)
+	UnitStyle() FormattingUnitStyle /* foo */
+	SetUnitStyle(value FormattingUnitStyle /* foo */)
 	IsForPersonMassUse() bool /* primitive/slice/pointer */
 	SetIsForPersonMassUse(value bool /* primitive/slice/pointer */)
 	NumberFormatter() INumberFormatter
@@ -96,7 +96,7 @@ func NewMassFormatter() MassFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/unitStyle
-func (m_ MassFormatter) UnitStyle() NSFormattingUnitStyle /* foo */ {
+func (m_ MassFormatter) UnitStyle() FormattingUnitStyle /* foo */ {
 	rv := objc.Send[FormattingUnitStyle](m_.ID, objc.Sel("unitStyle"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (m_ MassFormatter) UnitStyle() NSFormattingUnitStyle /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/unitStyle
-func (m_ MassFormatter) SetUnitStyle(value NSFormattingUnitStyle /* foo */) {
+func (m_ MassFormatter) SetUnitStyle(value FormattingUnitStyle /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }
 

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"strings"
 )
 
@@ -392,67 +390,62 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// Try with both ObjC names (NSColor, NSImageScaling) and Go names (Color, ImageScaling)
 	// First try the stripped name (preferred) to avoid returning NSCellAttribute when we want CellAttribute
 	strippedType := stripObjCPrefix(objcType)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error")) {
-		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: objcType=%s strippedType=%s (stripped=%v)\n",
-			objcType, strippedType, strippedType != objcType)
-	}
+	Debug.TypeMap("lookupTypeMapping", objcType, strippedType,
+		"objcType", objcType,
+		"strippedType", strippedType,
+		"stripped", strippedType != objcType)
 
 	// IMPORTANT: Check if the stripped type exists in the current framework BEFORE checking cross-framework registry
 	// This prevents "Cursor" in CloudKit from resolving to appkit.Cursor instead of CKQueryCursor
 	if strippedType != objcType {
 		// Check if this stripped type is a class in the current framework
 		if currentFrameworkClasses[strippedType] {
-			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s classes, using unqualified name\n",
-					strippedType, framework)
-			}
+			Debug.TypeMap("lookupTypeMapping: found in current framework classes", objcType, strippedType,
+				"framework", framework,
+				"using", "unqualified name")
 			return strippedType, true
 		}
 
 		// Check if it's an enum in the current framework
 		// Enums are generated with stripped names (e.g., ComparisonResult not NSComparisonResult)
 		// so we must return the stripped name to match the generated enum type
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Comparison") {
-			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: checking if %s is in currentFrameworkEnums (size=%d)\n",
-				strippedType, len(currentFrameworkEnums))
-		}
+		Debug.TypeMap("checking currentFrameworkEnums", objcType, strippedType,
+			"strippedType", strippedType,
+			"enumsSize", len(currentFrameworkEnums))
 		if currentFrameworkEnums[strippedType] {
-			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s enums, returning STRIPPED name %s\n",
-					strippedType, framework, strippedType)
-			}
+			Debug.TypeMap("found in current framework enums", objcType, strippedType,
+				"framework", framework,
+				"returning", "STRIPPED name")
 			return strippedType, true // Return STRIPPED name to match generated enum types
 		}
 
-		// HEURISTIC: If currentFrameworkEnums is empty (not populated yet), use a heuristic:
-		// Types with NS/CG/CA prefix that are NOT pointer types are likely enums
+		// HEURISTIC: Types with NS/CG/CA prefix that are NOT pointer types are likely enums
 		// Classes are always used as pointers (*), but enums are value types
 		// Only apply this if objcType does NOT contain " *" (not a pointer type)
 		// IMPORTANT: Return STRIPPED name since enums are generated without prefixes
-		if len(currentFrameworkEnums) == 0 && !strings.Contains(objcType, " *") {
+		// NOTE: This handles enums that exist but weren't extracted (see bead appledocs-473)
+		Debug.TypeMap("HEURISTIC CHECK", objcType, strippedType,
+			"hasPointer", strings.Contains(objcType, " *"))
+		if !strings.Contains(objcType, " *") {
 			// Type has a prefix and is not a pointer type - likely an enum
-			if os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: HEURISTIC - %s is non-pointer with prefix, likely enum, returning STRIPPED name %s\n",
-					strippedType, strippedType)
-			}
+			Debug.TypeMap("HEURISTIC: non-pointer with prefix, likely enum", objcType, strippedType,
+				"returning", "STRIPPED name")
 			return strippedType, true // Return STRIPPED name to match generated enum types
 		}
 
 		// Check if it's a typedef in the current framework
 		if currentFrameworkTypedefs[strippedType] {
-			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s typedefs, using unqualified name\n",
-					strippedType, framework)
-			}
+			Debug.TypeMap("found in current framework typedefs", objcType, strippedType,
+				"framework", framework,
+				"using", "unqualified name")
 			return strippedType, true
 		}
 
 		// Not in current framework, check cross-framework registry
 		if frameworkPkg, found := crossFrameworkTypeRegistry[strippedType]; found {
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped objcType=%s strippedType=%s frameworkPkg=%s currentFramework=%s\n",
-					objcType, strippedType, frameworkPkg, framework)
-			}
+			Debug.TypeMap("found in cross-framework registry (stripped)", objcType, strippedType,
+				"frameworkPkg", frameworkPkg,
+				"currentFramework", framework)
 			// Don't qualify types with their own framework name
 			if strings.ToLower(framework) == frameworkPkg {
 				return strippedType, true
@@ -462,22 +455,18 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 				return strippedType, true
 			}
 			result := frameworkPkg + "." + strippedType
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Coder") {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: returning qualified type: %s\n", result)
-			}
+			Debug.TypeMap("returning qualified type", objcType, result,
+				"result", result)
 			return result, true
 		}
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error")) {
-			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s NOT FOUND in registry\n", strippedType)
-		}
+		Debug.TypeMap("stripped type NOT FOUND in registry", objcType, strippedType)
 	}
 
 	// Then try the original name as fallback
 	if frameworkPkg, found := crossFrameworkTypeRegistry[objcType]; found {
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
-			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: original objcType=%s frameworkPkg=%s currentFramework=%s\n",
-				objcType, frameworkPkg, framework)
-		}
+		Debug.TypeMap("found in cross-framework registry (original)", objcType, objcType,
+			"frameworkPkg", frameworkPkg,
+			"currentFramework", framework)
 		// Don't qualify types with their own framework name
 		if strings.ToLower(framework) == frameworkPkg {
 			return objcType, true
@@ -487,14 +476,11 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			return objcType, true
 		}
 		result := frameworkPkg + "." + objcType
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
-			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: returning qualified: %s\n", result)
-		}
+		Debug.TypeMap("returning qualified", objcType, result,
+			"result", result)
 		return result, true
 	}
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Operation")) {
-		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: NOT FOUND in registry: objcType=%s\n", objcType)
-	}
+	Debug.TypeMap("NOT FOUND in registry", objcType, objcType)
 
 	// Try without pointer suffix in cross-framework registry
 	if objcTypeNoPtr != objcType {

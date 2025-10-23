@@ -42,15 +42,15 @@ type IScanner interface {
 	SetScanLocation(value uint /* primitive/slice/pointer */)
 	String() string /* primitive/slice/pointer */
 	NSNotFound() int /* primitive/slice/pointer */
-	CurrentIndex() unsafe.Pointer
-	SetCurrentIndex(value unsafe.Pointer)
+	CurrentIndex() Index /* foo */
+	SetCurrentIndex(value Index /* foo */)
 	IsAtEnd() bool /* primitive/slice/pointer */
 	SetIsAtEnd(value bool /* primitive/slice/pointer */)
 	// methods:
 	ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/pointer */
 	ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/pointer */
 	ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
-	ScanInteger(result NSInteger /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */
+	ScanInteger(result Integer /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */
 	ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
 	ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
 }
@@ -175,7 +175,7 @@ func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt(_:)
-func (s_ Scanner) ScanInteger(result NSInteger /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */ {
+func (s_ Scanner) ScanInteger(result Integer /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInteger:"), result)
 	return rv
 }
@@ -309,15 +309,15 @@ func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) CurrentIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentIndex"))
+func (s_ Scanner) CurrentIndex() Index /* foo */ {
+	rv := objc.Send[Index](s_.ID, objc.Sel("currentIndex"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
+func (s_ Scanner) SetCurrentIndex(value Index /* foo */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
 }
 

@@ -42,8 +42,9 @@ var templateFuncs = template.FuncMap{
 	"mapCTypeToGo": mapCTypeToGoWithFramework,
 
 	// Parameter processing helpers
-	"isGoKeyword":   isGoKeyword,
-	"prepareParams": prepareParams,
+	"isGoKeyword":         isGoKeyword,
+	"prepareParams":       prepareParams,
+	"getRelaxedParamInfo": GetRelaxedParamInfo, // Access relaxed parameter metadata
 
 	// Function data preparation
 	"prepareFunctionData":    prepareFunctionData,

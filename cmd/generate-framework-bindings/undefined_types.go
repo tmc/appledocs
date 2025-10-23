@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"regexp"
 	"strings"
 
@@ -80,9 +78,10 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	// Filter out types that are defined
 	defined := g.getDefinedTypes()
 	for name := range undefined {
-		if os.Getenv("DEBUG_UNDEFINED") == "1" && (strings.Contains(name, "Date") || strings.Contains(name, "Error") || strings.Contains(name, "URL") || strings.Contains(name, "Comparison")) {
-			fmt.Fprintf(os.Stderr, "DEBUG %s filtering undefined: name=%s, defined=%v\n", g.Framework, name, defined[name])
-		}
+		Debug.Undefined("filtering undefined type", name, g.Framework,
+			"framework", g.Framework,
+			"name", name,
+			"defined", defined[name])
 		if defined[name] {
 			delete(undefined, name)
 		}
@@ -136,9 +135,9 @@ func boolToInt(b bool) int {
 // collectTypeReferences extracts type names from a type string and adds them to undefined.
 // IMPORTANT: This should only be called on MAPPED Go types (after resolveType), not raw ObjC types.
 func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, framework string, typedefNames map[string]bool) {
-	if os.Getenv("DEBUG_UNDEFINED") == "1" && framework == "Foundation" && strings.Contains(typeStr, "Comparison") {
-		fmt.Fprintf(os.Stderr, "DEBUG collectTypeReferences: typeStr=%s\n", typeStr)
-	}
+	Debug.Undefined("collectTypeReferences entry", typeStr, framework,
+		"typeStr", typeStr,
+		"framework", framework)
 	if typeStr == "" || typeStr == "void" {
 		return
 	}
@@ -170,9 +169,11 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 	matches := pattern.FindAllString(typeStr, -1)
 
 	for _, match := range matches {
-		if os.Getenv("DEBUG_UNDEFINED") == "1" && framework == "Foundation" && strings.Contains(typeStr, "Comparison") {
-			fmt.Fprintf(os.Stderr, "  match=%s, isBuiltin=%v, isTypedef=%v\n", match, isBuiltinType(match), typedefNames != nil && typedefNames[match])
-		}
+		Debug.Undefined("match found", match, typeStr,
+			"match", match,
+			"isBuiltin", isBuiltinType(match),
+			"isTypedef", typedefNames != nil && typedefNames[match],
+			"framework", framework)
 		// Skip common built-ins and primitive types
 		if isBuiltinType(match) {
 			continue
@@ -186,9 +187,9 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 		// Skip if already tracking
 		if _, exists := undefined[match]; exists {
 			undefined[match].References++
-			if os.Getenv("DEBUG_UNDEFINED") == "1" && framework == "Foundation" && strings.Contains(match, "Comparison") {
-				fmt.Fprintf(os.Stderr, "  → incrementing reference count for %s\n", match)
-			}
+			Debug.Undefined("incrementing reference count", match, framework,
+				"match", match,
+				"references", undefined[match].References)
 		} else {
 			undefined[match] = &UndefinedType{
 				Name:       match,
@@ -196,9 +197,9 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 				References: 1,
 				BaseType:   inferBaseType(match),
 			}
-			if os.Getenv("DEBUG_UNDEFINED") == "1" && framework == "Foundation" && strings.Contains(match, "Comparison") {
-				fmt.Fprintf(os.Stderr, "  → adding new undefined type %s\n", match)
-			}
+			Debug.Undefined("adding new undefined type", match, framework,
+				"match", match,
+				"framework", framework)
 		}
 	}
 }
@@ -207,12 +208,15 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 func (g *Generator) getDefinedTypes() map[string]bool {
 	defined := make(map[string]bool)
 
-	if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" {
-		fmt.Fprintf(os.Stderr, "DEBUG getDefinedTypes Foundation: g.Classes has %d classes\n", len(g.Classes))
-		for i, cls := range g.Classes {
-			if i < 10 || strings.Contains(cls.Name, "Date") || strings.Contains(cls.Name, "Error") || cls.Name == "NSURL" {
-				fmt.Fprintf(os.Stderr, "  [%d] %s\n", i, cls.Name)
-			}
+	Debug.Undefined("getDefinedTypes entry", g.Framework, "",
+		"framework", g.Framework,
+		"classCount", len(g.Classes))
+	for i, cls := range g.Classes {
+		if i < 10 {
+			Debug.Undefined("class sample", cls.Name, g.Framework,
+				"index", i,
+				"name", cls.Name,
+				"framework", g.Framework)
 		}
 	}
 
@@ -244,9 +248,10 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		// Also add Go struct name
 		structName := classToStructName(cls.Name)
 		defined[structName] = true
-		if os.Getenv("DEBUG_UNDEFINED") == "1" && (strings.Contains(cls.Name, "NSDate") || strings.Contains(cls.Name, "NSError") || cls.Name == "NSURL") {
-			fmt.Fprintf(os.Stderr, "DEBUG %s class: cls.Name=%s, structName=%s\n", g.Framework, cls.Name, structName)
-		}
+		Debug.Undefined("class type defined", cls.Name, structName,
+			"framework", g.Framework,
+			"className", cls.Name,
+			"structName", structName)
 	}
 
 	for _, proto := range g.Protocols {
@@ -257,16 +262,17 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 
 	// Add enum types
 	for _, enum := range g.Enums {
-		if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" && (enum.Name == "NSComparisonResult" || strings.Contains(enum.Name, "Comparison")) {
-			fmt.Fprintf(os.Stderr, "DEBUG %s marking enum as defined: enum.Name=%s\n", g.Framework, enum.Name)
-		}
+		Debug.Undefined("marking enum as defined", enum.Name, g.Framework,
+			"framework", g.Framework,
+			"enumName", enum.Name)
 		defined[enum.Name] = true
 		// Also add the stripped version (e.g., "SMAppServiceStatus" becomes "AppServiceStatus")
 		stripped := stripObjCPrefix(enum.Name)
 		defined[stripped] = true
-		if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" && (stripped == "ComparisonResult" || strings.Contains(stripped, "Comparison")) {
-			fmt.Fprintf(os.Stderr, "DEBUG %s also marking stripped version as defined: stripped=%s\n", g.Framework, stripped)
-		}
+		Debug.Undefined("marking stripped enum as defined", stripped, g.Framework,
+			"framework", g.Framework,
+			"stripped", stripped,
+			"original", enum.Name)
 	}
 
 	// Add ref types
@@ -288,16 +294,20 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		if pkgName == currentFrameworkPkg {
 			// Add both "Date" and "NSDate" for Foundation types
 			objcName := "NS" + typeName
-			if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" && (objcName == "NSComparisonResult" || strings.Contains(objcName, "Comparison")) {
-				fmt.Fprintf(os.Stderr, "DEBUG %s cross-framework registry marking as defined: typeName=%s, objcName=%s, pkgName=%s\n", g.Framework, typeName, objcName, pkgName)
-			}
+			Debug.Undefined("cross-framework registry (current)", typeName, objcName,
+				"framework", g.Framework,
+				"typeName", typeName,
+				"objcName", objcName,
+				"pkgName", pkgName)
 			defined[objcName] = true
 		} else {
 			// For other frameworks, just add the NS-prefixed version to catch references
 			objcName := "NS" + typeName
-			if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" && (objcName == "NSComparisonResult" || strings.Contains(objcName, "Comparison")) {
-				fmt.Fprintf(os.Stderr, "DEBUG %s cross-framework registry (other) marking as defined: typeName=%s, objcName=%s, pkgName=%s\n", g.Framework, typeName, objcName, pkgName)
-			}
+			Debug.Undefined("cross-framework registry (other)", typeName, objcName,
+				"framework", g.Framework,
+				"typeName", typeName,
+				"objcName", objcName,
+				"pkgName", pkgName)
 			defined[objcName] = true
 		}
 	}
@@ -336,16 +346,14 @@ func isBuiltinType(name string) bool {
 
 // GetUndefinedTypesForTemplate returns undefined types formatted for template use
 func (g *Generator) GetUndefinedTypesForTemplate() []UndefinedType {
-	if os.Getenv("DEBUG_UNDEFINED") == "1" {
-		fmt.Fprintf(os.Stderr, "DEBUG GetUndefinedTypesForTemplate called with %d classes, Framework=%s\n", len(g.Classes), g.Framework)
-	}
+	Debug.Undefined("GetUndefinedTypesForTemplate called", g.Framework, "",
+		"classCount", len(g.Classes),
+		"framework", g.Framework)
 	undefined := g.CollectUndefinedTypes()
-	if os.Getenv("DEBUG_UNDEFINED") == "1" && g.Framework == "Foundation" {
-		for name := range undefined {
-			if strings.Contains(name, "Comparison") {
-				fmt.Fprintf(os.Stderr, "DEBUG GetUndefinedTypesForTemplate: %s has undefined type %s\n", g.Framework, name)
-			}
-		}
+	for name := range undefined {
+		Debug.Undefined("found undefined type", name, g.Framework,
+			"framework", g.Framework,
+			"name", name)
 	}
 	result := make([]UndefinedType, 0, len(undefined))
 

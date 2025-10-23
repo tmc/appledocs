@@ -5,8 +5,11 @@ import (
 	"unsafe"
 )
 
-// CFTypeRef is a CoreGraphics opaque type.
-type CFTypeRef unsafe.Pointer
+// CFPlugInRef is a CoreGraphics opaque type.
+type CFPlugInRef unsafe.Pointer
+
+// CFRunLoopRef is a CoreGraphics opaque type.
+type CFRunLoopRef unsafe.Pointer
 
 
 // Foundation-specific types
@@ -32,63 +35,101 @@ type Range struct {
 	Length   int
 }
 
-// RectEdge defines which edge of a rectangle.
-type RectEdge int
-
-const (
-	RectEdgeMinX RectEdge = 0
-	RectEdgeMinY RectEdge = 1
-	RectEdgeMaxX RectEdge = 2
-	RectEdgeMaxY RectEdge = 3
-)
-
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
-type CFIndex = int
+type AbsoluteTime = int
 
-type CFStringEncoding = int
+type AccessibilityAssistiveTechnologyIdentifier = int
 
-type CFTypeID = int
+type AccessibilityNotifications = int
 
-type CFUUIDBytes = int
+type AccessibilityZoomType = int
 
-type NSAffineTransformStruct = int
+type AffineTransformStruct = int
 
-type NSAttributedStringCompletionHandler = int
+type AllocatorContext = int
 
-type NSComparator = int
+type ArrayCallBacks = int
 
-type NSComparisonResult = int
+type AttributedStringCompletionHandler = int
 
-type NSDecimal = int
+type BagCallBacks = int
 
-type NSEdgeInsets = int
+type BinaryHeapCallBacks = int
 
-type NSFontTraitMask = int
+type BinaryHeapCompareContext = int
 
-type NSFormattingUnitStyle = int
+type Bool = int
 
-type NSHashEnumerator = int
+type CFString = int
 
-type NSHashTableCallBacks = int
+type CFURL = int
 
-type NSKeyValueObservingOptions = int
+type Comparator = int
 
-type NSMapEnumerator = int
+type ComparatorFunction = int
 
-type NSMapTableKeyCallBacks = int
+type ComparisonResult = int
 
-type NSMapTableValueCallBacks = int
+type CompositingOperation = int
 
-type NSRunLoopMode = int
+type DateFormatterKey = int
 
-type NSTextAlignment = int
+type Decimal = int
 
-type NSWritingDirection = int
+type DictionaryKeyCallBacks = int
+
+type DictionaryValueCallBacks = int
+
+type EdgeInsets = int
+
+type FileDescriptorNativeDescriptor = int
+
+type FontTraitMask = int
+
+type FormattingUnitStyle = int
+
+type HashCode = int
+
+type HashEnumerator = int
+
+type HashTableCallBacks = int
+
+type ImageSymbolWeight = int
+
+type KeyValueObservingOptions = int
+
+type LocaleIdentifier = int
+
+type MapEnumerator = int
+
+type MapTableKeyCallBacks = int
+
+type MapTableValueCallBacks = int
+
+type PlugInRef = int
+
+type RunLoopMode = int
+
+type RunLoopRef = int
+
+type StreamClientContext = int
+
+type StreamError = int
+
+type StreamPropertyKey = int
+
+type StreamStatus = int
 
 type UIEdgeInsets = int
+
+type UInteger = int
+
+type UUIDBytes = int
+
+type Zone = int
 
 
 

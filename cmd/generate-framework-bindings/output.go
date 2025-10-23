@@ -576,11 +576,15 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 			continue
 		}
 
-		if verbose && enum.Name == "DataBase64EncodingOptions" {
-			fmt.Fprintf(os.Stderr, "DEBUG: parseEnumFromPreprocessed returned %d values for %s:\n", len(result.Values), enumNameForSDK)
-			for _, v := range result.Values {
-				fmt.Fprintf(os.Stderr, "  %s = %d\n", v.Name, v.Value)
-			}
+		Debug.EnumCases("parseEnumFromPreprocessed results", enum.Name, enumNameForSDK,
+			"enumName", enum.Name,
+			"enumNameForSDK", enumNameForSDK,
+			"valueCount", len(result.Values))
+		for _, v := range result.Values {
+			Debug.EnumCases("extracted enum value", enum.Name, v.Name,
+				"enumName", enum.Name,
+				"valueName", v.Name,
+				"value", v.Value)
 		}
 
 		// If enum has no cases from documentation, create them from SDK extraction
@@ -594,9 +598,9 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 					IntValue: v.Value,
 				})
 			}
-			if verbose {
-				fmt.Fprintf(os.Stderr, "DEBUG: After appending, enum %s now has %d cases\n", enum.Name, len(enum.Cases))
-			}
+			Debug.EnumCases("enum cases created from SDK", enum.Name, "",
+				"enumName", enum.Name,
+				"caseCount", len(enum.Cases))
 			enrichedCount++
 			continue
 		}
@@ -612,18 +616,22 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 		for _, enumCase := range enum.Cases {
 			// Try exact match first
 			if val, ok := valueMap[enumCase.Name]; ok {
-				if verbose && enum.Name == "DataBase64EncodingOptions" {
-					fmt.Fprintf(os.Stderr, "DEBUG: Matched %s.%s = %d (exact)\n", enum.Name, enumCase.Name, val)
-				}
+				Debug.EnumCases("matched enum case", enum.Name, enumCase.Name,
+					"enumName", enum.Name,
+					"caseName", enumCase.Name,
+					"value", val,
+					"matchType", "exact")
 				enumCase.IntValue = val
 				matchedCases++
 				continue
 			}
 			// Try with NS prefix (SDK uses NSEnumCase but docs might use EnumCase)
 			if val, ok := valueMap["NS"+enumCase.Name]; ok {
-				if verbose && enum.Name == "DataBase64EncodingOptions" {
-					fmt.Fprintf(os.Stderr, "DEBUG: Matched %s.%s = %d (with NS prefix)\n", enum.Name, enumCase.Name, val)
-				}
+				Debug.EnumCases("matched enum case", enum.Name, enumCase.Name,
+					"enumName", enum.Name,
+					"caseName", enumCase.Name,
+					"value", val,
+					"matchType", "with NS prefix")
 				enumCase.IntValue = val
 				matchedCases++
 				continue
@@ -632,9 +640,11 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 			nameWithoutNS := strings.TrimPrefix(enumCase.Name, "NS")
 			if nameWithoutNS != enumCase.Name {
 				if val, ok := valueMap[nameWithoutNS]; ok {
-					if verbose && enum.Name == "DataBase64EncodingOptions" {
-						fmt.Fprintf(os.Stderr, "DEBUG: Matched %s.%s = %d (without NS prefix)\n", enum.Name, enumCase.Name, val)
-					}
+					Debug.EnumCases("matched enum case", enum.Name, enumCase.Name,
+						"enumName", enum.Name,
+						"caseName", enumCase.Name,
+						"value", val,
+						"matchType", "without NS prefix")
 					enumCase.IntValue = val
 					matchedCases++
 				}

@@ -35,10 +35,10 @@ type IURLConnection interface {
 	OriginalRequest() URLRequest /* foo */
 	// methods:
 	Cancel()
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode NSRunLoopMode /* foo */)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */)
 	SetDelegateQueue(queue IOperationQueue)
 	Start()
-	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode NSRunLoopMode /* foo */)
+	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */)
 }
 
 // An object that enables you to start and stop URL requests.
@@ -171,7 +171,7 @@ func (u_ URLConnection) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/schedule(in:forMode:)
-func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode NSRunLoopMode /* foo */) {
+func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -198,7 +198,7 @@ func (u_ URLConnection) Start() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/unschedule(from:forMode:)
-func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode NSRunLoopMode /* foo */) {
+func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("unscheduleFromRunLoop:forMode:"), aRunLoop, mode)
 }
 

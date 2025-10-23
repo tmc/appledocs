@@ -38,6 +38,11 @@ type ErrorDomain = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUncaughtExceptionHandler
 // NSUncaughtExceptionHandler has base type: void (NSException *)
 type UncaughtExceptionHandler uintptr
+// StringEncodingDetectionOptionsKey type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/StringEncodingDetectionOptionsKey
+// NSStringEncodingDetectionOptionsKey is a string typedef
+type StringEncodingDetectionOptionsKey = string
 // URLResourceKey - Keys that apply to file system URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResourceKey
@@ -128,11 +133,85 @@ type TextCheckingTypes uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkFileCreationOptions
 type URLBookmarkFileCreationOptions uint
+// AXTechnology type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityTechnology
+// AXTechnology has base type: NSString * const
+type AXTechnology uintptr
+// AccessibilityActionName - Constants that describe types of actions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Action
+// NSAccessibilityActionName is a string typedef
+type AccessibilityActionName = string
+// AccessibilityAnnotationAttributeKey - Keys for annotation attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/AnnotationAttributeKey
+// NSAccessibilityAnnotationAttributeKey is a string typedef
+type AccessibilityAnnotationAttributeKey = string
+// AccessibilityAttributeName - Constants that describe attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Attribute
+// NSAccessibilityAttributeName is a string typedef
+type AccessibilityAttributeName = string
+// AccessibilityFontAttributeKey - Keys for font attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/FontAttributeKey
+// NSAccessibilityFontAttributeKey is a string typedef
+type AccessibilityFontAttributeKey = string
+// AccessibilityNotificationName - The name of the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Notification
+// NSAccessibilityNotificationName is a string typedef
+type AccessibilityNotificationName = string
+// AccessibilityOrientationValue - Values that indicate the orientation of user interface elements, such as scroll bars and split views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/OrientationValue
+// NSAccessibilityOrientationValue is a string typedef
+type AccessibilityOrientationValue = string
+// AccessibilityParameterizedAttributeName - Values that describe parameterized attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/ParameterizedAttribute
+// NSAccessibilityParameterizedAttributeName is a string typedef
+type AccessibilityParameterizedAttributeName = string
+// AccessibilityRulerMarkerTypeValue - Values that describe ruler marker types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/RulerMarkerTypeValue
+// NSAccessibilityRulerMarkerTypeValue is a string typedef
+type AccessibilityRulerMarkerTypeValue = string
+// AccessibilityRulerUnitValue - Values that indicate the unit values of a ruler or layout area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/RulerUnitValue
+// NSAccessibilityRulerUnitValue is a string typedef
+type AccessibilityRulerUnitValue = string
+// AccessibilitySortDirectionValue - Values that indicate the sort direction of a column.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue
+// NSAccessibilitySortDirectionValue is a string typedef
+type AccessibilitySortDirectionValue = string
 // AppKitVersion - Constants for determining which version of AppKit is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppKitVersion
 // NSAppKitVersion has base type: double
 type AppKitVersion uintptr
+// ColorSpaceName - Constants that specify color space names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpaceName
+// NSColorSpaceName is a string typedef
+type ColorSpaceName = string
+// DeviceDescriptionKey - These constants are the keys for device description dictionaries.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDeviceDescriptionKey
+// NSDeviceDescriptionKey is a string typedef
+type DeviceDescriptionKey = string
+// FontSymbolicTraits - A symbolic description of stylistic aspects of a font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontSymbolicTraits
+// NSFontSymbolicTraits has base type: uint32_t
+type FontSymbolicTraits uintptr
+// Glyph - The type used to specify glyphs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyph
+type Glyph uint32
 // PasteboardName - Constants that represent the standard pasteboard names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/Name-swift.struct
@@ -143,16 +222,75 @@ type PasteboardName = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType
 // NSPasteboardType is a string typedef
 type PasteboardType = string
+// PasteboardTypeFindPanelSearchOptionKey - Search options for the find panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/FindPanelSearchOptionKey
+// NSPasteboardTypeFindPanelSearchOptionKey is a string typedef
+type PasteboardTypeFindPanelSearchOptionKey = string
+// PasteboardTypeTextFinderOptionKey - Search options for text in Finder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/TextFinderOptionKey
+// NSPasteboardTypeTextFinderOptionKey is a string typedef
+type PasteboardTypeTextFinderOptionKey = string
 // PasteboardReadingOptionKey - Options for reading pasteboard data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptionKey
 // NSPasteboardReadingOptionKey is a string typedef
 type PasteboardReadingOptionKey = string
+// TextCheckingOptionKey - Constants that define options for text checking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/OptionKey
+// NSTextCheckingOptionKey is a string typedef
+type TextCheckingOptionKey = string
+// WindowFrameAutosaveName - The type of a window’s frame autosave name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/FrameAutosaveName-swift.typealias
+// NSWindowFrameAutosaveName is a string typedef
+type WindowFrameAutosaveName = string
+// WindowLevel - The standard window levels in macOS.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Level-swift.struct
+type WindowLevel int
+// WindowPersistableFrameDescriptor - The type of a window’s frame descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/PersistableFrameDescriptor
+// NSWindowPersistableFrameDescriptor is a string typedef
+type WindowPersistableFrameDescriptor = string
+// WindowTabbingIdentifier - A value that allows a group of related windows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/TabbingIdentifier-swift.typealias
+// NSWindowTabbingIdentifier is a string typedef
+type WindowTabbingIdentifier = string
 // WorkspaceDesktopImageOptionKey - Keys that indicate how to display a new desktop image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/DesktopImageOptionKey
 // NSWorkspaceDesktopImageOptionKey is a string typedef
 type WorkspaceDesktopImageOptionKey = string
+// WorkspaceLaunchConfigurationKey - The following keys can be used in the configuration dictionary of the   method.  Each key is optional, and if omitted, default behavior is applied.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/LaunchConfigurationKey
+// NSWorkspaceLaunchConfigurationKey is a string typedef
+type WorkspaceLaunchConfigurationKey = string
+// FontRef - A font object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFont
+// CTFontRef has base type: const struct __CTFont *
+type FontRef uintptr
+// GlyphInfoRef - Override a font’s specified mapping from Unicode to the glyph ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfo
+// CTGlyphInfoRef has base type: const struct __CTGlyphInfo *
+type GlyphInfoRef uintptr
+// ParagraphStyleRef - Paragraph or ruler attributes in an attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyle
+// CTParagraphStyleRef has base type: const struct __CTParagraphStyle *
+type ParagraphStyleRef uintptr
+// RunDelegateRef - A run delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegate
+// CTRunDelegateRef has base type: const struct __CTRunDelegate *
+type RunDelegateRef uintptr
 // Integer - Describes an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSInteger
@@ -213,11 +351,71 @@ type objc_zone_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocator
 // CFAllocatorRef has base type: const struct __CFAllocator *
 type AllocatorRef uintptr
+// AllocatorAllocateCallBack - A prototype for a function callback that allocates memory of a requested size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocateCallBack
+// CFAllocatorAllocateCallBack has base type: void *(*)(long, unsigned long, void *)
+type AllocatorAllocateCallBack uintptr
+// AllocatorCopyDescriptionCallBack - A prototype for a function callback that provides a description of the specified data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorCopyDescriptionCallBack
+// CFAllocatorCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
+type AllocatorCopyDescriptionCallBack uintptr
+// AllocatorDeallocateCallBack - A prototype for a function callback that deallocates a block of memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorDeallocateCallBack
+// CFAllocatorDeallocateCallBack has base type: void (*)(void *, void *)
+type AllocatorDeallocateCallBack uintptr
+// AllocatorPreferredSizeCallBack - A prototype for a function callback that gives the size of memory likely to be allocated, given a certain request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorPreferredSizeCallBack
+// CFAllocatorPreferredSizeCallBack has base type: long (*)(long, unsigned long, void *)
+type AllocatorPreferredSizeCallBack uintptr
+// AllocatorReallocateCallBack - A prototype for a function callback that reallocates memory of a requested size for an existing block of memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocateCallBack
+// CFAllocatorReallocateCallBack has base type: void *(*)(void *, long, unsigned long, void *)
+type AllocatorReallocateCallBack uintptr
+// AllocatorReleaseCallBack - A prototype for a function callback that releases the given data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReleaseCallBack
+// CFAllocatorReleaseCallBack has base type: void (*)(const void *)
+type AllocatorReleaseCallBack uintptr
+// AllocatorRetainCallBack - A prototype for a function callback that retains the given data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorRetainCallBack
+// CFAllocatorRetainCallBack has base type: const void *(*)(const void *)
+type AllocatorRetainCallBack uintptr
 // ArrayRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArray
 // CFArrayRef has base type: const struct __CFArray *
 type ArrayRef uintptr
+// ArrayApplierFunction - Prototype of a callback function that may be applied to every value in an array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayApplierFunction
+// CFArrayApplierFunction has base type: void (*)(const void *, void *)
+type ArrayApplierFunction uintptr
+// ArrayCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value in an array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCopyDescriptionCallBack
+// CFArrayCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
+type ArrayCopyDescriptionCallBack uintptr
+// ArrayEqualCallBack - Prototype of a callback function used to determine if two values in an array are equal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayEqualCallBack
+// CFArrayEqualCallBack has base type: unsigned char (*)(const void *, const void *)
+type ArrayEqualCallBack uintptr
+// ArrayReleaseCallBack - Prototype of a callback function used to release a value before it’s removed from an array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayReleaseCallBack
+// CFArrayReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
+type ArrayReleaseCallBack uintptr
+// ArrayRetainCallBack - Prototype of a callback function used to retain a value being added to an array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRetainCallBack
+// CFArrayRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
+type ArrayRetainCallBack uintptr
 // AttributedStringRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedString
@@ -228,11 +426,46 @@ type AttributedStringRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBag
 // CFBagRef has base type: const struct __CFBag *
 type BagRef uintptr
+// BagApplierFunction - Prototype of a callback function that may be applied to every value in a bag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagApplierFunction
+// CFBagApplierFunction has base type: void (*)(const void *, void *)
+type BagApplierFunction uintptr
+// BagCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value in a bag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCopyDescriptionCallBack
+// CFBagCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
+type BagCopyDescriptionCallBack uintptr
+// BagEqualCallBack - Prototype of a callback function used to determine if two values in a bag are equal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagEqualCallBack
+// CFBagEqualCallBack has base type: unsigned char (*)(const void *, const void *)
+type BagEqualCallBack uintptr
+// BagHashCallBack - Prototype of a callback function invoked to compute a hash code for a value. Hash codes are used when values are accessed, added, or removed from a collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagHashCallBack
+// CFBagHashCallBack has base type: unsigned long (*)(const void *)
+type BagHashCallBack uintptr
+// BagReleaseCallBack - Prototype of a callback function used to release a value before it’s removed from a bag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagReleaseCallBack
+// CFBagReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
+type BagReleaseCallBack uintptr
+// BagRetainCallBack - Prototype of a callback function used to retain a value being added to a bag.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRetainCallBack
+// CFBagRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
+type BagRetainCallBack uintptr
 // BinaryHeapRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeap
 // CFBinaryHeapRef has base type: struct __CFBinaryHeap *
 type BinaryHeapRef uintptr
+// BinaryHeapApplierFunction - Callback function used to apply a function to all members of a binary heap.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapApplierFunction
+// CFBinaryHeapApplierFunction has base type: void (*)(const void *, void *)
+type BinaryHeapApplierFunction uintptr
 // BitVectorRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBitVector
@@ -248,6 +481,10 @@ type BooleanRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundle
 // CFBundleRef has base type: struct __CFBundle *
 type BundleRef uintptr
+// BundleRefNum - Type that identifies a distinct reference number for a resource map.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBundleRefNum
+type BundleRefNum int32
 // CalendarRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendar
@@ -278,6 +515,36 @@ type DateFormatterRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionary
 // CFDictionaryRef has base type: const struct __CFDictionary *
 type DictionaryRef uintptr
+// DictionaryApplierFunction - Prototype of a callback function that may be applied to every key-value pair in a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryApplierFunction
+// CFDictionaryApplierFunction has base type: void (*)(const void *, const void *, void *)
+type DictionaryApplierFunction uintptr
+// DictionaryCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value or key in a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCopyDescriptionCallBack
+// CFDictionaryCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
+type DictionaryCopyDescriptionCallBack uintptr
+// DictionaryEqualCallBack - Prototype of a callback function used to determine if two values or keys in a dictionary are equal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryEqualCallBack
+// CFDictionaryEqualCallBack has base type: unsigned char (*)(const void *, const void *)
+type DictionaryEqualCallBack uintptr
+// DictionaryHashCallBack - Prototype of a callback function invoked to compute a hash code for a key. Hash codes are used when key-value pairs are accessed, added, or removed from a collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryHashCallBack
+// CFDictionaryHashCallBack has base type: unsigned long (*)(const void *)
+type DictionaryHashCallBack uintptr
+// DictionaryReleaseCallBack - Prototype of a callback function used to release a key-value pair before it’s removed from a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryReleaseCallBack
+// CFDictionaryReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
+type DictionaryReleaseCallBack uintptr
+// DictionaryRetainCallBack - Prototype of a callback function used to retain a value or key being added to a dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRetainCallBack
+// CFDictionaryRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
+type DictionaryRetainCallBack uintptr
 // ErrorRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFError
@@ -288,16 +555,31 @@ type ErrorRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptor
 // CFFileDescriptorRef has base type: struct __CFFileDescriptor *
 type FileDescriptorRef uintptr
+// Index - Priority values used for kAXPriorityKey
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFIndex
+// CFIndex has base type: long
+type Index uintptr
 // LocaleRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocale
 // CFLocaleRef has base type: const struct __CFLocale *
 type LocaleRef uintptr
+// MutableArrayRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableArray
+// CFMutableArrayRef has base type: struct __CFArray *
+type MutableArrayRef uintptr
 // MutableAttributedStringRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableAttributedString
 // CFMutableAttributedStringRef has base type: struct __CFAttributedString *
 type MutableAttributedStringRef uintptr
+// MutableBagRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableBag
+// CFMutableBagRef has base type: struct __CFBag *
+type MutableBagRef uintptr
 // MutableCharacterSetRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableCharacterSet
@@ -308,36 +590,71 @@ type MutableCharacterSetRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableData
 // CFMutableDataRef has base type: struct __CFData *
 type MutableDataRef uintptr
+// MutableDictionaryRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableDictionary
+// CFMutableDictionaryRef has base type: struct __CFDictionary *
+type MutableDictionaryRef uintptr
+// MutableStringRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableString
+// CFMutableStringRef has base type: struct __CFString *
+type MutableStringRef uintptr
 // NullRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNull
 // CFNullRef has base type: const struct __CFNull *
 type NullRef uintptr
+// NumberRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumber
+// CFNumberRef has base type: const struct __CFNumber *
+type NumberRef uintptr
 // OptionFlags - A bitfield used for passing special allocation and other requests into Core Foundation functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFOptionFlags
 // CFOptionFlags has base type: unsigned long
 type OptionFlags uintptr
+// ReadStreamRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStream
+// CFReadStreamRef has base type: struct __CFReadStream *
+type ReadStreamRef uintptr
+// SocketRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocket
+// CFSocketRef has base type: struct __CFSocket *
+type SocketRef uintptr
 // StringRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFString
 // CFStringRef has base type: const struct __CFString *
 type StringRef uintptr
+// StringEncoding - An integer type for constants used to specify supported string encodings in various CFString functions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringEncoding
+// CFStringEncoding has base type: UInt32
+type StringEncoding uintptr
 // TimeZoneRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZone
 // CFTimeZoneRef has base type: const struct __CFTimeZone *
 type TimeZoneRef uintptr
+// TypeID - A type for unique, constant integer values that identify particular Core Foundation opaque types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTypeID
+// CFTypeID has base type: unsigned long
+type TypeID uintptr
+// TypeRef - An untyped “generic” reference to any Core Foundation object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTypeRef
+// CFTypeRef has base type: const void *
+type TypeRef uintptr
 // URLRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURL
 // CFURLRef has base type: const struct __CFURL *
 type URLRef uintptr
-// URLBookmarkFileCreationOptions - Type for bookmark file creation options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkFileCreationOptions
-// CFURLBookmarkFileCreationOptions has base type: CFOptionFlags
-type URLBookmarkFileCreationOptions uintptr
 // UUIDRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUUID
@@ -348,6 +665,26 @@ type UUIDRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStream
 // CFWriteStreamRef has base type: struct __CFWriteStream *
 type WriteStreamRef uintptr
+// WriteStreamClientCallBack - Callback invoked when certain types of activity takes place on a writable stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamClientCallBack
+// CFWriteStreamClientCallBack has base type: void (*)(struct __CFWriteStream *, enum CFStreamEventType, void *)
+type WriteStreamClientCallBack uintptr
+// ColorRef - A set of components that define a color, with a color space specifying how to interpret them.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor
+// CGColorRef has base type: struct CGColor *
+type ColorRef uintptr
+// ColorSpaceRef - A profile that specifies how to interpret a color value for display.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace
+// CGColorSpaceRef has base type: struct CGColorSpace *
+type ColorSpaceRef uintptr
+// ImageRef - A bitmap image or image mask.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage
+// CGImageRef has base type: struct CGImage *
+type ImageRef uintptr
 // URLFileProtectionType - Protection-level values for a URL resource key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileProtection
@@ -388,6 +725,21 @@ type TimeInterval uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/unichar
 // unichar has base type: unsigned short
 type unichar uintptr
+// NetworkReachabilityRef - The handle to a network address or name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachability
+// SCNetworkReachabilityRef has base type: const struct __SCNetworkReachability *
+type NetworkReachabilityRef uintptr
+// AccessibilityPriority - Constants that specify priorities for accessibility announcements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibilityPriority
+// UIAccessibilityPriority is a string typedef
+type AccessibilityPriority = string
+// AccessibilityTextualContext - Constants that describe a named context that helps identify and classify the type of text inside an element.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibilityTextualContext
+// UIAccessibilityTextualContext is a string typedef
+type AccessibilityTextualContext = string
 // ApplicationOpenExternalURLOptionsKey - Options for opening a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/OpenExternalURLOptionsKey
@@ -407,4 +759,19 @@ type ContentSizeCategory = string
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/CreationIntent
 // UIDocumentCreationIntent is a string typedef
 type DocumentCreationIntent = string
+// FontTextStyle - Constants that describe the preferred styles for fonts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFont/TextStyle
+// UIFontTextStyle is a string typedef
+type FontTextStyle = string
+// FontWeight - Constants that represent standard typeface styles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFont/Weight
+// UIFontWeight has base type: CGFloat
+type FontWeight uintptr
+// FontWidth type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFont/Width
+// UIFontWidth has base type: CGFloat
+type FontWidth uintptr
 

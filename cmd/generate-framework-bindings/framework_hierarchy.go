@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"strings"
 
 	"github.com/tmc/appledocs/occ2go"
@@ -149,9 +147,10 @@ func FilterMethodsByHierarchy(methods []*occ2go.ParsedMethod, currentFramework s
 		// Only skip if return type violates hierarchy
 		// Parameters will be relaxed by RelaxMethodParameters
 		if violatesHierarchy(method.ReturnType, currentFramework, currentLevel) {
-			if os.Getenv("DEBUG_HIERARCHY") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG: Skipping method %s due to return type %s\n", method.Name, method.ReturnType)
-			}
+			Debug.Hierarchy("skipping method due to return type", method.Name, method.ReturnType,
+				"methodName", method.Name,
+				"returnType", method.ReturnType,
+				"framework", currentFramework)
 			continue
 		}
 		filtered = append(filtered, method)
@@ -195,17 +194,16 @@ func violatesHierarchy(objcType, currentFramework string, currentLevel int) bool
 	// Map the type to Go to see if it references another framework
 	goType := mapObjCTypeToGo(objcType, currentFramework)
 
-	debug := os.Getenv("DEBUG_HIERARCHY") == "1"
-	if debug && (strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "Broadcast") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(goType, "networkextension") || strings.Contains(goType, "replaykit")) {
-		fmt.Fprintf(os.Stderr, "DEBUG violatesHierarchy: objcType=%s goType=%s currentFramework=%s currentLevel=%d\n",
-			objcType, goType, currentFramework, currentLevel)
-	}
+	Debug.Hierarchy("violatesHierarchy check", objcType, goType,
+		"objcType", objcType,
+		"goType", goType,
+		"currentFramework", currentFramework,
+		"currentLevel", currentLevel)
 
 	// Check if it's a cross-framework reference (contains '.')
 	if !strings.Contains(goType, ".") {
-		if debug && (strings.Contains(objcType, "Hotspot") || strings.Contains(goType, "networkextension")) {
-			fmt.Fprintf(os.Stderr, "DEBUG violatesHierarchy: no cross-framework reference (no dot)\n")
-		}
+		Debug.Hierarchy("no cross-framework reference", objcType, goType,
+			"hasDot", false)
 		return false
 	}
 
@@ -219,17 +217,18 @@ func violatesHierarchy(objcType, currentFramework string, currentLevel int) bool
 	targetLevel, exists := frameworkLevels[targetFramework]
 	if !exists {
 		// Unknown target framework, allow it (might be a new framework we haven't categorized)
-		if debug && (strings.Contains(objcType, "Hotspot") || strings.Contains(goType, "networkextension")) {
-			fmt.Fprintf(os.Stderr, "DEBUG violatesHierarchy: unknown target framework %s\n", targetFramework)
-		}
+		Debug.Hierarchy("unknown target framework", targetFramework, currentFramework,
+			"targetFramework", targetFramework,
+			"allowing", true)
 		return false
 	}
 
 	// Violation if target framework is higher level than current
 	violation := targetLevel > currentLevel
-	if debug && (strings.Contains(objcType, "Hotspot") || strings.Contains(goType, "networkextension")) {
-		fmt.Fprintf(os.Stderr, "DEBUG violatesHierarchy: targetFramework=%s targetLevel=%d violation=%v\n",
-			targetFramework, targetLevel, violation)
-	}
+	Debug.Hierarchy("hierarchy violation check result", targetFramework, currentFramework,
+		"targetFramework", targetFramework,
+		"targetLevel", targetLevel,
+		"currentLevel", currentLevel,
+		"violation", violation)
 	return violation
 }

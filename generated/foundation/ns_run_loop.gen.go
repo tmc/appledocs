@@ -34,7 +34,7 @@ type IRunLoop interface {
 	CurrentMode() unsafe.Pointer
 	SetCurrentMode(value unsafe.Pointer)
 	// methods:
-	LimitDateForMode(mode NSRunLoopMode /* foo */) IDate
+	LimitDateForMode(mode RunLoopMode /* foo */) IDate
 	PerformBlock(block unsafe.Pointer)
 	PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer)
 }
@@ -96,7 +96,7 @@ func NewRunLoop() RunLoop {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
-func (r_ RunLoop) LimitDateForMode(mode NSRunLoopMode /* foo */) IDate {
+func (r_ RunLoop) LimitDateForMode(mode RunLoopMode /* foo */) IDate {
 	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
 	return rv
 }

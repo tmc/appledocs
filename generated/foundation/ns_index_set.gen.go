@@ -45,7 +45,7 @@ type IIndexSet interface {
 	EnumerateRangesUsingBlock(block unsafe.Pointer)
 	EnumerateRangesInRangeOptionsUsingBlock(range_ Range /* foo */, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
-	GetIndexesMaxCountInIndexRange(indexBuffer unsafe.Pointer, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */
+	GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */
 	IndexInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer */
@@ -278,7 +278,7 @@ func (i_ IndexSet) EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/getIndexes(_:maxCount:inIndexRange:)
-func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer unsafe.Pointer, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */ {
+func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("getIndexes:maxCount:inIndexRange:"), indexBuffer, bufferSize, range_)
 	return rv
 }

@@ -69,9 +69,10 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 					// Add to registry if not already present (first framework wins)
 					if _, exists := crossFrameworkTypeRegistry[typeName]; !exists {
 						crossFrameworkTypeRegistry[typeName] = frameworkPkg
-						if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
-							fmt.Fprintf(os.Stderr, "DEBUG registry: added %s -> %s (from %s)\n", typeName, frameworkPkg, filepath.Base(genFile))
-						}
+						Debug.TypeMap("registry: added type", typeName, frameworkPkg,
+							"typeName", typeName,
+							"framework", frameworkPkg,
+							"file", filepath.Base(genFile))
 					}
 
 					// Also register stripped name (NSCellAttribute → CellAttribute)
@@ -82,9 +83,11 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 						// So NSCellAttribute lookup finds CellAttribute, not NSCellAttribute
 						if _, exists := crossFrameworkTypeRegistry[strippedName]; !exists {
 							crossFrameworkTypeRegistry[strippedName] = frameworkPkg
-							if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(typeName, "Coder") || strings.Contains(typeName, "Error") || strings.Contains(typeName, "Operation")) {
-								fmt.Fprintf(os.Stderr, "DEBUG registry: added stripped %s (from %s) -> %s (from %s)\n", strippedName, typeName, frameworkPkg, filepath.Base(genFile))
-							}
+							Debug.TypeMap("registry: added stripped type", strippedName, typeName,
+								"strippedName", strippedName,
+								"originalName", typeName,
+								"framework", frameworkPkg,
+								"file", filepath.Base(genFile))
 						}
 					}
 				}

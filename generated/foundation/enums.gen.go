@@ -3,6 +3,16 @@
 package foundation
 
 // Enum types and constants
+// FileWrapperWritingOptions - Writing options that can be set by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/WritingOptions
+type FileWrapperWritingOptions uint
+
+const (
+	FileWrapperWritingAtomic FileWrapperWritingOptions = 1
+	FileWrapperWritingWithNameUpdating FileWrapperWritingOptions = 2
+)
+
 // FormattingContext - The formatting context for a formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context
@@ -78,8 +88,17 @@ const (
 type AttributedStringMarkdownInterpretedSyntax int
 
 const (
+	// AttributedStringMarkdownInterpretedSyntaxFull - A syntax value that interprets the full Markdown syntax and produces all relevant attributes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax/NSAttributedStringMarkdownInterpretedSyntaxFull
 	AttributedStringMarkdownInterpretedSyntaxFull AttributedStringMarkdownInterpretedSyntax = 0
+	// AttributedStringMarkdownInterpretedSyntaxInlineOnly - A syntax value that parses all Markdown text, but interprets only attributes that apply to inline spans.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax/NSAttributedStringMarkdownInterpretedSyntaxInlineOnly
 	AttributedStringMarkdownInterpretedSyntaxInlineOnly AttributedStringMarkdownInterpretedSyntax = 1
+	// AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace - A syntax value that parses all Markdown text, but interprets only attributes that apply to inline spans, perserving white space.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax/NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace
 	AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace AttributedStringMarkdownInterpretedSyntax = 2
 )
 
@@ -89,7 +108,13 @@ const (
 type AttributedStringMarkdownParsingFailurePolicy int
 
 const (
+	// AttributedStringMarkdownParsingFailureReturnError - A policy to return an error from the initializer if parsing fails.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy/NSAttributedStringMarkdownParsingFailureReturnError
 	AttributedStringMarkdownParsingFailureReturnError AttributedStringMarkdownParsingFailurePolicy = 0
+	// AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible - A policy to return a partially parsed string, if possible.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy/NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible
 	AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible AttributedStringMarkdownParsingFailurePolicy = 1
 )
 
@@ -356,9 +381,18 @@ const (
 type FileManagerResumeSyncBehavior uint
 
 const (
-	FileManagerResumeSyncBehaviorPreserveLocalChanges FileManagerResumeSyncBehavior = 0
+	// FileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict - Resumes sync by first uploading the local version of the file, failing if the provider detects a conflict.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerResumeSyncBehavior/afterUploadWithFailOnConflict
 	FileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict FileManagerResumeSyncBehavior = 1
+	// FileManagerResumeSyncBehaviorDropLocalChanges - Resumes synchronizing by overwriting any local changes with the remote version of the file.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerResumeSyncBehavior/dropLocalChanges
 	FileManagerResumeSyncBehaviorDropLocalChanges FileManagerResumeSyncBehavior = 2
+	// FileManagerResumeSyncBehaviorPreserveLocalChanges - Resumes synchronizing by uploading the local version of the file.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerResumeSyncBehavior/preserveLocalChanges
+	FileManagerResumeSyncBehaviorPreserveLocalChanges FileManagerResumeSyncBehavior = 0
 )
 
 // FileManagerSupportedSyncControls - An option set of the sync controls available for an item.
@@ -383,7 +417,13 @@ const (
 type FileManagerUploadLocalVersionConflictPolicy uint
 
 const (
+	// FileManagerUploadConflictPolicyDefault - Resolves the conflict using the policy defined by the file provider.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerUploadLocalVersionConflictPolicy/conflictPolicyDefault
 	FileManagerUploadConflictPolicyDefault FileManagerUploadLocalVersionConflictPolicy = 0
+	// FileManagerUploadConflictPolicyFailOnConflict - Resolves the conflict by causing the upload to fail.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerUploadLocalVersionConflictPolicy/conflictPolicyFailOnConflict
 	FileManagerUploadConflictPolicyFailOnConflict FileManagerUploadLocalVersionConflictPolicy = 1
 )
 
@@ -404,10 +444,10 @@ const (
 type ItemProviderRepresentationVisibility uint
 
 const (
-	ItemProviderRepresentationVisibilityAll ItemProviderRepresentationVisibility = 0
-	ItemProviderRepresentationVisibilityTeam ItemProviderRepresentationVisibility = 1
+	// ItemProviderRepresentationVisibilityGroup - A representation visibility specification confining item visibility to the app’s app group.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderRepresentationVisibility/group
 	ItemProviderRepresentationVisibilityGroup ItemProviderRepresentationVisibility = 2
-	ItemProviderRepresentationVisibilityOwnProcess ItemProviderRepresentationVisibility = 3
 )
 
 // PresentationIntentKind - An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
@@ -448,10 +488,160 @@ const (
 type StringDrawingOptions uint
 
 const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/disableScreenFontSubstitution
+	disableScreenFontSubstitution StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/oneShot
+	oneShot StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/optionsResolvesNaturalAlignmentWithBaseWritingDirection
+	optionsResolvesNaturalAlignmentWithBaseWritingDirection StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/truncatesLastVisibleLine
+	truncatesLastVisibleLine StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/usesDeviceMetrics
+	usesDeviceMetrics StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/usesFontLeading
+	usesFontLeading StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/usesLineFragmentOrigin
+	usesLineFragmentOrigin StringDrawingOptions = 0
+	// StringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection - Specifies the behavior for resolving   to the visual alignment.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringDrawingOptions/optionsResolvesNaturalAlignmentWithBaseWritingDirection
+	StringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection StringDrawingOptions = 0
+	// StringDrawingTruncatesLastVisibleLine - Truncates and adds the ellipsis character to the last visible line if the text doesn’t fit into the specified bounds.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringDrawingOptions/truncatesLastVisibleLine
+	StringDrawingTruncatesLastVisibleLine StringDrawingOptions = 0
+	// StringDrawingUsesDeviceMetrics - Uses image glyph bounds instead of typographic bounds.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringDrawingOptions/usesDeviceMetrics
+	StringDrawingUsesDeviceMetrics StringDrawingOptions = 0
+	// StringDrawingUsesFontLeading - Uses the font leading for calculating line heights.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringDrawingOptions/usesFontLeading
+	StringDrawingUsesFontLeading StringDrawingOptions = 0
 	// StringDrawingUsesLineFragmentOrigin - Uses the line fragment origin instead of the baseline origin.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringDrawingOptions/usesLineFragmentOrigin
 	StringDrawingUsesLineFragmentOrigin StringDrawingOptions = 0
+)
+
+// XMLParserError - The following error codes are defined by 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ErrorCode
+type XMLParserError uint
+
+const (
+	XMLParserInternalError XMLParserError = 1
+	XMLParserOutOfMemoryError XMLParserError = 2
+	XMLParserDocumentStartError XMLParserError = 3
+	XMLParserEmptyDocumentError XMLParserError = 4
+	XMLParserPrematureDocumentEndError XMLParserError = 5
+	XMLParserInvalidHexCharacterRefError XMLParserError = 6
+	XMLParserInvalidDecimalCharacterRefError XMLParserError = 7
+	XMLParserInvalidCharacterRefError XMLParserError = 8
+	XMLParserInvalidCharacterError XMLParserError = 9
+	XMLParserCharacterRefAtEOFError XMLParserError = 10
+	XMLParserCharacterRefInPrologError XMLParserError = 11
+	XMLParserCharacterRefInEpilogError XMLParserError = 12
+	XMLParserCharacterRefInDTDError XMLParserError = 13
+	XMLParserEntityRefAtEOFError XMLParserError = 14
+	XMLParserEntityRefInPrologError XMLParserError = 15
+	XMLParserEntityRefInEpilogError XMLParserError = 16
+	XMLParserEntityRefInDTDError XMLParserError = 17
+	XMLParserParsedEntityRefAtEOFError XMLParserError = 18
+	XMLParserParsedEntityRefInPrologError XMLParserError = 19
+	XMLParserParsedEntityRefInEpilogError XMLParserError = 20
+	XMLParserParsedEntityRefInInternalSubsetError XMLParserError = 21
+	XMLParserEntityReferenceWithoutNameError XMLParserError = 22
+	XMLParserEntityReferenceMissingSemiError XMLParserError = 23
+	XMLParserParsedEntityRefNoNameError XMLParserError = 24
+	XMLParserParsedEntityRefMissingSemiError XMLParserError = 25
+	XMLParserUndeclaredEntityError XMLParserError = 26
+	XMLParserUnparsedEntityError XMLParserError = 28
+	XMLParserEntityIsExternalError XMLParserError = 29
+	XMLParserEntityIsParameterError XMLParserError = 30
+	XMLParserUnknownEncodingError XMLParserError = 31
+	XMLParserEncodingNotSupportedError XMLParserError = 32
+	XMLParserStringNotStartedError XMLParserError = 33
+	XMLParserStringNotClosedError XMLParserError = 34
+	XMLParserNamespaceDeclarationError XMLParserError = 35
+	XMLParserEntityNotStartedError XMLParserError = 36
+	XMLParserEntityNotFinishedError XMLParserError = 37
+	XMLParserLessThanSymbolInAttributeError XMLParserError = 38
+	XMLParserAttributeNotStartedError XMLParserError = 39
+	XMLParserAttributeNotFinishedError XMLParserError = 40
+	XMLParserAttributeHasNoValueError XMLParserError = 41
+	XMLParserAttributeRedefinedError XMLParserError = 42
+	XMLParserLiteralNotStartedError XMLParserError = 43
+	XMLParserLiteralNotFinishedError XMLParserError = 44
+	XMLParserCommentNotFinishedError XMLParserError = 45
+	XMLParserProcessingInstructionNotStartedError XMLParserError = 46
+	XMLParserProcessingInstructionNotFinishedError XMLParserError = 47
+	XMLParserNotationNotStartedError XMLParserError = 48
+	XMLParserNotationNotFinishedError XMLParserError = 49
+	XMLParserAttributeListNotStartedError XMLParserError = 50
+	XMLParserAttributeListNotFinishedError XMLParserError = 51
+	XMLParserMixedContentDeclNotStartedError XMLParserError = 52
+	XMLParserMixedContentDeclNotFinishedError XMLParserError = 53
+	XMLParserElementContentDeclNotStartedError XMLParserError = 54
+	XMLParserElementContentDeclNotFinishedError XMLParserError = 55
+	XMLParserXMLDeclNotStartedError XMLParserError = 56
+	XMLParserXMLDeclNotFinishedError XMLParserError = 57
+	XMLParserConditionalSectionNotStartedError XMLParserError = 58
+	XMLParserConditionalSectionNotFinishedError XMLParserError = 59
+	XMLParserExternalSubsetNotFinishedError XMLParserError = 60
+	XMLParserDOCTYPEDeclNotFinishedError XMLParserError = 61
+	XMLParserMisplacedCDATAEndStringError XMLParserError = 62
+	XMLParserCDATANotFinishedError XMLParserError = 63
+	XMLParserMisplacedXMLDeclarationError XMLParserError = 64
+	XMLParserSpaceRequiredError XMLParserError = 65
+	XMLParserSeparatorRequiredError XMLParserError = 66
+	XMLParserNMTOKENRequiredError XMLParserError = 67
+	XMLParserNAMERequiredError XMLParserError = 68
+	XMLParserPCDATARequiredError XMLParserError = 69
+	XMLParserURIRequiredError XMLParserError = 70
+	XMLParserPublicIdentifierRequiredError XMLParserError = 71
+	XMLParserLTRequiredError XMLParserError = 72
+	XMLParserGTRequiredError XMLParserError = 73
+	XMLParserLTSlashRequiredError XMLParserError = 74
+	XMLParserEqualExpectedError XMLParserError = 75
+	XMLParserTagNameMismatchError XMLParserError = 76
+	XMLParserUnfinishedTagError XMLParserError = 77
+	XMLParserStandaloneValueError XMLParserError = 78
+	XMLParserInvalidEncodingNameError XMLParserError = 79
+	XMLParserCommentContainsDoubleHyphenError XMLParserError = 80
+	XMLParserInvalidEncodingError XMLParserError = 81
+	XMLParserExternalStandaloneEntityError XMLParserError = 82
+	XMLParserInvalidConditionalSectionError XMLParserError = 83
+	XMLParserEntityValueRequiredError XMLParserError = 84
+	XMLParserNotWellBalancedError XMLParserError = 85
+	XMLParserExtraContentError XMLParserError = 86
+	XMLParserInvalidCharacterInEntityError XMLParserError = 87
+	XMLParserParsedEntityRefInInternalError XMLParserError = 88
+	XMLParserEntityRefLoopError XMLParserError = 89
+	XMLParserEntityBoundaryError XMLParserError = 90
+	XMLParserInvalidURIError XMLParserError = 91
+	XMLParserURIFragmentError XMLParserError = 92
+	XMLParserNoDTDError XMLParserError = 94
+	XMLParserDelegateAbortedParseError XMLParserError = 512
+)
+
+// XMLParserExternalEntityResolvingPolicy enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum
+type XMLParserExternalEntityResolvingPolicy uint
+
+const (
+	XMLParserResolveExternalEntitiesNever XMLParserExternalEntityResolvingPolicy = 0
+	XMLParserResolveExternalEntitiesNoNetwork XMLParserExternalEntityResolvingPolicy = 1
+	XMLParserResolveExternalEntitiesSameOriginOnly XMLParserExternalEntityResolvingPolicy = 2
+	XMLParserResolveExternalEntitiesAlways XMLParserExternalEntityResolvingPolicy = 3
 )
 
 // AlignmentOptions - Values representing alignment operations.
@@ -734,6 +924,16 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/withoutDeletingBackupItem
 	FileManagerItemReplacementWithoutDeletingBackupItem FileManagerItemReplacementOptions = 2
+)
+
+// VolumeEnumerationOptions - Options for enumerating mounted volumes with the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/VolumeEnumerationOptions
+type VolumeEnumerationOptions uint
+
+const (
+	VolumeEnumerationSkipHiddenVolumes VolumeEnumerationOptions = 2
+	VolumeEnumerationProduceFileReferenceURLs VolumeEnumerationOptions = 4
 )
 
 // SearchPathDirectory - The location of significant directories.
@@ -1794,30 +1994,201 @@ const (
 	NumberFormatterSpellOutStyle NumberFormatterStyle = 0
 )
 
+// AXFeatureOverrideSessionOptions - Options indicating which Accessibility features will be turned on or off when an override session is held by your app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSession/Options
+type AXFeatureOverrideSessionOptions uint
+
+// AXFeatureOverrideSessionError enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionError-swift.struct/Code
+type AXFeatureOverrideSessionError uint
+
+// APActivationPayloadErrorCode - Error codes that an App Clip activation payload returns.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppClip/APActivationPayloadError/Code
+type APActivationPayloadErrorCode uint
+
+// AccessibilityAnnotationPosition - Constants that specify the position where the annotation applies.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityAnnotationPosition
+type AccessibilityAnnotationPosition uint
+
 // BezierPathElement - Constants that specify basic path element commands.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType
 type BezierPathElement uint
+
+const (
+	// BezierPathElementClosePath - Marks the end of the current subpath at the specified point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType/closePath
+	BezierPathElementClosePath BezierPathElement = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType/cubicCurveTo
+	BezierPathElementCubicCurveTo BezierPathElement = 0
+	// BezierPathElementCurveTo - Creates a curved line segment from the current point to the specified endpoint using two control points to define the curve.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType/curveTo
+	BezierPathElementCurveTo BezierPathElement = 0
+	// BezierPathElementLineTo - Creates a straight line from the current drawing point to the specified point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType/lineTo
+	BezierPathElementLineTo BezierPathElement = 0
+	// BezierPathElementMoveTo - Moves the path object’s current drawing point to the specified point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType/moveTo
+	BezierPathElementMoveTo BezierPathElement = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType/quadraticCurveTo
+	BezierPathElementQuadraticCurveTo BezierPathElement = 0
+)
 
 // LineCapStyle - Constants that specify the shape of endpoints for an open path when it is stroked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineCapStyle-swift.enum
 type LineCapStyle uint
 
+const (
+	// LineCapStyleButt - Specifies a butt line cap style for endpoints for an open path when stroked.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineCapStyle-swift.enum/butt
+	LineCapStyleButt LineCapStyle = 0
+	// LineCapStyleRound - Specifies a round line cap style for endpoints for an open path when stroked.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineCapStyle-swift.enum/round
+	LineCapStyleRound LineCapStyle = 0
+	// LineCapStyleSquare - Specifies a square line cap style for endpoints for an open path when stroked.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineCapStyle-swift.enum/square
+	LineCapStyleSquare LineCapStyle = 0
+)
+
 // LineJoinStyle - Constants that specify the shape of the joins between connected segments of a stroked path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineJoinStyle-swift.enum
 type LineJoinStyle uint
+
+const (
+	// LineJoinStyleBevel - Specifies a bevel line shape of the joints between connected segments of a stroked path.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineJoinStyle-swift.enum/bevel
+	LineJoinStyleBevel LineJoinStyle = 0
+	// LineJoinStyleMiter - Specifies a miter line shape of the joints between connected segments of a stroked path.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineJoinStyle-swift.enum/miter
+	LineJoinStyleMiter LineJoinStyle = 0
+	// LineJoinStyleRound - Specifies a round line shape of the joints between connected segments of a stroked path.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineJoinStyle-swift.enum/round
+	LineJoinStyleRound LineJoinStyle = 0
+)
 
 // WindingRule - Constants that specify the winding rule a Bézier path uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/WindingRule-swift.enum
 type WindingRule uint
 
+const (
+	// WindingRuleEvenOdd - Specifies the even-odd winding rule.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/WindingRule-swift.enum/evenOdd
+	WindingRuleEvenOdd WindingRule = 0
+	// WindingRuleNonZero - Specifies the non-zero winding rule.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/WindingRule-swift.enum/nonZero
+	WindingRuleNonZero WindingRule = 0
+)
+
 // BorderType - These constants specify the type of a view’s border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType
 type BorderType uint
+
+const (
+	// BezelBorder - A concave border that makes the view look sunken.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType/bezelBorder
+	BezelBorder BorderType = 0
+	// GrooveBorder - A thin border that looks etched around the image.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType/grooveBorder
+	GrooveBorder BorderType = 0
+	// LineBorder - A black line border around the view.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType/lineBorder
+	LineBorder BorderType = 0
+	// NoBorder - No border.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType/noBorder
+	NoBorder BorderType = 0
+)
+
+// CharacterCollection - Values that map character identifiers to glyphs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCharacterCollection
+type CharacterCollection uint
+
+// ColorType - Constants that indicate the color’s type, and which methods may be called on the color object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ColorType
+type ColorType uint
+
+// ColorSystemEffect - Constants for user interactions that change the appearance of a view or control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/SystemEffect
+type ColorSystemEffect uint
+
+// SaveOperationType - Constants for specifying the type of document-save operation to perform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/SaveOperationType
+type SaveOperationType uint
+
+const (
+	// SaveAsOperation - An operation that writes the document’s contents to a new location and updates the document to point to that location
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/SaveOperationType/saveAsOperation
+	SaveAsOperation SaveOperationType = 0
+	// SaveOperation - An operation that overwrites a document’s file or file package with the document’s contents.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/SaveOperationType/saveOperation
+	SaveOperation SaveOperationType = 0
+)
+
+// EventMask - Constants that you use to filter out specific event types from the stream of incoming events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/EventTypeMask
+type EventMask uint
+
+// FocusRingPlacement - Constants that indicate how the system draws the focus ring.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingPlacement
+type FocusRingPlacement uint
+
+// FocusRingType - Constants that describe the style of the focus ring.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingType
+type FocusRingType uint
+
+// FontCollectionOptions - Constants that support font collection management.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollectionOptions
+type FontCollectionOptions uint
+
+// FontRenderingMode - The font rendering mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontRenderingMode
+type FontRenderingMode uint
+
+// ImageLoadStatus - Status values for incremental image loading.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/LoadStatus
+type ImageLoadStatus uint
+
+// GlyphProperty - Glyph properties.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/GlyphProperty
+type GlyphProperty uint
 
 // TextLayoutOrientation - Constants that describe the text layout orientation.
 //
@@ -1829,12 +2200,65 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TextLayoutOrientation/horizontal
 	TextLayoutOrientationHorizontal TextLayoutOrientation = 0
+	// TextLayoutOrientationVertical - Lines render vertically, each line following the previous from right to left.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TextLayoutOrientation/vertical
+	TextLayoutOrientationVertical TextLayoutOrientation = 0
 )
+
+// TypesetterBehavior - Constants that determine the layout manager’s behavior during layout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TypesetterBehavior-swift.enum
+type TypesetterBehavior uint
+
+// LineBreakMode - Constants that specify what happens when a line is too long for a container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineBreakMode
+type LineBreakMode uint
+
+// LineMovementDirection - The direction in which a line moves.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineMovementDirection
+type LineMovementDirection uint
+
+// LineSweepDirection - Values that describe the progression of text on a page.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineSweepDirection
+type LineSweepDirection uint
+
+// LineBreakStrategy - Constants that specify how the text system breaks lines while laying out paragraphs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/LineBreakStrategy-swift.struct
+type LineBreakStrategy uint
+
+// TextTabType - Constants that specify the type of tab stop.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/TextTabType
+type TextTabType uint
 
 // PasteboardAccessBehavior - A value indicating pasteboard access behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum
 type PasteboardAccessBehavior uint
+
+const (
+	// PasteboardAccessBehaviorAlwaysAllow - The system will automatically allow all pasteboard access, without notifying the user.  The app is listed in the corresponding System Settings pane.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum/alwaysAllow
+	PasteboardAccessBehaviorAlwaysAllow PasteboardAccessBehavior = 0
+	// PasteboardAccessBehaviorAlwaysDeny - The system will automatically deny all pasteboard access, without notifying the user. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum/alwaysDeny
+	PasteboardAccessBehaviorAlwaysDeny PasteboardAccessBehavior = 0
+	// PasteboardAccessBehaviorAsk - The system will notify the user and ask for permission before granting pasteboard access. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum/ask
+	PasteboardAccessBehaviorAsk PasteboardAccessBehavior = 0
+	// PasteboardAccessBehaviorDefault - The default behavior for the General pasteboard is to ask upon programmatic access. All other pasteboards default to always allow access.   If an app has never triggered a pasteboard access alert, its General pasteboard will report   behavior. Such an app is not shown in the corresponding System Settings pane.   Once programmatic pasteboard access triggers the first pasteboard access alert, the state automatically changes to  . At this point the app starts being shown in System Settings, where the user can toggle the behavior between  ,  , and  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum/default
+	PasteboardAccessBehaviorDefault PasteboardAccessBehavior = 0
+)
 
 // PasteboardContentsOptions - Options for preparing the pasteboard.
 //
@@ -1846,85 +2270,676 @@ type PasteboardContentsOptions uint
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions
 type PasteboardReadingOptions uint
 
+const (
+	// PasteboardReadingAsData - An option to read data from the pasteboard as-is and return it as a data object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions/asData
+	PasteboardReadingAsData PasteboardReadingOptions = 0
+	// PasteboardReadingAsKeyedArchive - An option to read data from the pasteboard and use it to initialize the object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions/asKeyedArchive
+	PasteboardReadingAsKeyedArchive PasteboardReadingOptions = 0
+	// PasteboardReadingAsPropertyList - An option to read data from the pasteboard and unserialize it as a property list.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions/asPropertyList
+	PasteboardReadingAsPropertyList PasteboardReadingOptions = 0
+	// PasteboardReadingAsString - An option to read data from the pasteboard and convert it to a string object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions/asString
+	PasteboardReadingAsString PasteboardReadingOptions = 0
+)
+
 // PasteboardWritingOptions - Type to specify options for writing to a pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/WritingOptions
 type PasteboardWritingOptions uint
+
+const (
+	// PasteboardWritingPromised - Data for a type with this option is promised, not immediately written.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/WritingOptions/promised
+	PasteboardWritingPromised PasteboardWritingOptions = 0
+)
+
+// CorrectionIndicatorType - Constants that allow an app to specify the correction indicator type displayed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/CorrectionIndicatorType
+type CorrectionIndicatorType uint
+
+// CorrectionResponse - The correction response passed to the
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/CorrectionResponse
+type CorrectionResponse uint
+
+// TextAlignment - Constants that specify text alignment.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlignment
+type TextAlignment uint
+
+// TextInsertionIndicatorAutomaticModeOptions - Options that affect the automatic display mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct
+type TextInsertionIndicatorAutomaticModeOptions uint
+
+// TextInsertionIndicatorDisplayMode - Constants that determine how to display the system text cursor in a custom text UI.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum
+type TextInsertionIndicatorDisplayMode uint
+
+// TitlebarSeparatorStyle - Styles that determine the type of separator displayed between the title bar and content of a window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarSeparatorStyle
+type TitlebarSeparatorStyle uint
+
+// WindowAnimationBehavior - Constants that control the automatic window animation behavior windows use when ordering to the front or out of view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum
+type WindowAnimationBehavior uint
+
+// BackingStoreType - Constants that specify how the window device buffers the drawing done in a window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/BackingStoreType
+type BackingStoreType uint
+
+// WindowButton - Constants that provide a way to access standard title bar buttons.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/ButtonType
+type WindowButton uint
+
+// WindowCollectionBehavior - Window collection behaviors related to Mission Control, Spaces, and Stage Manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct
+type WindowCollectionBehavior uint
+
+// WindowDepth - A type that represents the depth, or amount of memory, for a single pixel in a window or screen.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth
+type WindowDepth uint
+
+// WindowNumberListOptions - Options to use when retrieving window numbers from the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/NumberListOptions
+type WindowNumberListOptions uint
+
+// WindowOcclusionState - Specifies whether the window is occluded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/OcclusionState-swift.struct
+type WindowOcclusionState uint
+
+// WindowOrderingMode - Constants that let you specify how a window is ordered relative to another window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/OrderingMode
+type WindowOrderingMode uint
+
+// SelectionDirection - Constants that specify the direction a window is currently using to change the key view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/SelectionDirection
+type SelectionDirection uint
+
+// WindowSharingType - Constants that represent the access levels other processes can have to a window’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/SharingType-swift.enum
+type WindowSharingType uint
+
+// WindowStyleMask - Constants that specify the style of a window, and that you can combine with the C bitwise OR operator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/StyleMask-swift.struct
+type WindowStyleMask uint
+
+// WindowTabbingMode - The preferred tabbing behavior of a window.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/TabbingMode-swift.enum
+type WindowTabbingMode uint
+
+// WindowTitleVisibility - Specifies the appearance of the window’s title bar area.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/TitleVisibility-swift.enum
+type WindowTitleVisibility uint
+
+// WindowToolbarStyle - Styles that determine the appearance and location of the toolbar in relation to the title bar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/ToolbarStyle-swift.enum
+type WindowToolbarStyle uint
+
+// WindowUserTabbingPreference - A value that indicates the user’s preference for window tabbing.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum
+type WindowUserTabbingPreference uint
 
 // WorkspaceAuthorizationType - The types of privileged file operations that can be authorized by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/AuthorizationType
 type WorkspaceAuthorizationType uint
 
+const (
+	// WorkspaceAuthorizationTypeCreateSymbolicLink - Authorization for the app to create a symbolic link.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/AuthorizationType/createSymbolicLink
+	WorkspaceAuthorizationTypeCreateSymbolicLink WorkspaceAuthorizationType = 0
+	// WorkspaceAuthorizationTypeReplaceFile - Authorization for the app to perform an atomic file write without changing the target file’s permissions.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/AuthorizationType/replaceFile
+	WorkspaceAuthorizationTypeReplaceFile WorkspaceAuthorizationType = 0
+	// WorkspaceAuthorizationTypeSetAttributes - Authorization for the app to change specific file attributes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/AuthorizationType/setAttributes
+	WorkspaceAuthorizationTypeSetAttributes WorkspaceAuthorizationType = 0
+)
+
 // WorkspaceIconCreationOptions - Constants that describe options for creating icons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/IconCreationOptions
 type WorkspaceIconCreationOptions uint
+
+const (
+	// Exclude10_4ElementsIconCreationOption - An option to suppress generation of the new higher resolution icon representations that are supported in macOS 10.4.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/IconCreationOptions/exclude10_4ElementsIconCreationOption
+	Exclude10_4ElementsIconCreationOption WorkspaceIconCreationOptions = 0
+	// ExcludeQuickDrawElementsIconCreationOption - An option to suppress generation of the QuickDraw format icon representations that are used in macOS 10.0 through macOS 10.4.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/IconCreationOptions/excludeQuickDrawElementsIconCreationOption
+	ExcludeQuickDrawElementsIconCreationOption WorkspaceIconCreationOptions = 0
+)
+
+// WorkspaceLaunchOptions - Constants specifying how you want to launch an app
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/LaunchOptions
+type WorkspaceLaunchOptions uint
+
+// WritingDirection - Constants that specify the writing direction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirection
+type WritingDirection uint
+
+const (
+	// WritingDirectionLeftToRight - The writing direction is left to right.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirection/leftToRight
+	WritingDirectionLeftToRight WritingDirection = 0
+	// WritingDirectionNatural - The writing direction of the current script that the system determines using the Unicode Bidi Algorithm rules P2 and P3.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirection/natural
+	WritingDirectionNatural WritingDirection = 0
+	// WritingDirectionRightToLeft - The writing direction is right to left.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirection/rightToLeft
+	WritingDirectionRightToLeft WritingDirection = 0
+)
+
+// FetchRequestResultType - Constants that specify the possible result types a fetch request can return.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestResultType
+type FetchRequestResultType uint
+
+// FetchedResultsChangeType - Constants that specify the possible types of changes that are reported.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsChangeType
+type FetchedResultsChangeType uint
+
+// CFCalendarUnit - CFCalendarUnit constants are used to specify calendrical units, such as day or month, in various calendar calculations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit
+type CFCalendarUnit uint
+
+const (
+	// kCFCalendarUnitDay - Specifies the day unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/day
+	kCFCalendarUnitDay CFCalendarUnit = 0
+	// kCFCalendarUnitEra - Specifies the era unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/era
+	kCFCalendarUnitEra CFCalendarUnit = 0
+	// kCFCalendarUnitHour - Specifies the hour unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/hour
+	kCFCalendarUnitHour CFCalendarUnit = 0
+	// kCFCalendarUnitMinute - Specifies the minute unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/minute
+	kCFCalendarUnitMinute CFCalendarUnit = 0
+	// kCFCalendarUnitMonth - Specifies the month unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/month
+	kCFCalendarUnitMonth CFCalendarUnit = 0
+	// kCFCalendarUnitQuarter - Specifies the quarter-year unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/quarter
+	kCFCalendarUnitQuarter CFCalendarUnit = 0
+	// kCFCalendarUnitSecond - Specifies the second unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/second
+	kCFCalendarUnitSecond CFCalendarUnit = 0
+	// kCFCalendarUnitWeek - Specifies the week unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/week
+	kCFCalendarUnitWeek CFCalendarUnit = 0
+	// kCFCalendarUnitWeekOfMonth - Specifies the original week of a month calendar unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/weekOfMonth
+	kCFCalendarUnitWeekOfMonth CFCalendarUnit = 0
+	// kCFCalendarUnitWeekOfYear - Specifies the original week of the year calendar unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/weekOfYear
+	kCFCalendarUnitWeekOfYear CFCalendarUnit = 0
+	// kCFCalendarUnitWeekday - Specifies the weekday unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/weekday
+	kCFCalendarUnitWeekday CFCalendarUnit = 0
+	// kCFCalendarUnitWeekdayOrdinal - Specifies the ordinal weekday unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/weekdayOrdinal
+	kCFCalendarUnitWeekdayOrdinal CFCalendarUnit = 0
+	// kCFCalendarUnitYear - Specifies the year unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/year
+	kCFCalendarUnitYear CFCalendarUnit = 0
+	// kCFCalendarUnitYearForWeekOfYear - Specifies the relative year for a week within a year calendar unit.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit/yearForWeekOfYear
+	kCFCalendarUnitYearForWeekOfYear CFCalendarUnit = 0
+)
+
+// CFCharacterSetPredefinedSet - Defines a predefined character set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetPredefinedSet
+type CFCharacterSetPredefinedSet uint
 
 // CFDataSearchFlags - A 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataSearchFlags
 type CFDataSearchFlags uint
 
+const (
+	// kCFDataSearchAnchored - Performs searching only on bytes at the beginning or, if   is also specified, at the end of the search range. No match at the beginning or end means nothing is found, even if a matching sequence of bytes occurs elsewhere in the data object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataSearchFlags/anchored
+	kCFDataSearchAnchored CFDataSearchFlags = 0
+)
+
+// CFDateFormatterStyle - Data type for predefined date and time format styles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterStyle
+type CFDateFormatterStyle uint
+
+// CFLocaleLanguageDirection - These constants describe the text direction for a language. They are returned by the functions 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleLanguageDirection
+type CFLocaleLanguageDirection uint
+
 // CFRunLoopRunResult enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult
 type CFRunLoopRunResult uint
+
+const (
+	// kCFRunLoopRunFinished - The running run loop mode has no sources or timers to process.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult/finished
+	kCFRunLoopRunFinished CFRunLoopRunResult = 0
+	// kCFRunLoopRunHandledSource - A source has been processed. This value is returned only if the run loop was told to run only until a source was processed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult/handledSource
+	kCFRunLoopRunHandledSource CFRunLoopRunResult = 0
+	// kCFRunLoopRunStopped -  was called on the run loop.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult/stopped
+	kCFRunLoopRunStopped CFRunLoopRunResult = 0
+	// kCFRunLoopRunTimedOut - The specified time interval for running the run loop has passed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult/timedOut
+	kCFRunLoopRunTimedOut CFRunLoopRunResult = 0
+)
+
+// CFStringBuiltInEncodings - Encodings that are built-in on all platforms on which macOS runs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings
+type CFStringBuiltInEncodings uint
+
+const (
+	// kCFStringEncodingASCII - An encoding constant that identifies the ASCII encoding (decimal values 0 through 127).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings/ASCII
+	kCFStringEncodingASCII CFStringBuiltInEncodings = 0
+	// kCFStringEncodingUTF8 - An encoding constant that identifies the UTF 8 encoding.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings/UTF8
+	kCFStringEncodingUTF8 CFStringBuiltInEncodings = 0
+	// kCFStringEncodingISOLatin1 - An encoding constant that identifies the ISO Latin 1 encoding (ISO 8859-1)
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings/isoLatin1
+	kCFStringEncodingISOLatin1 CFStringBuiltInEncodings = 0
+	// kCFStringEncodingMacRoman - An encoding constant that identifies the Mac Roman encoding.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings/macRoman
+	kCFStringEncodingMacRoman CFStringBuiltInEncodings = 0
+	// kCFStringEncodingNextStepLatin - An encoding constant that identifies the NextStep/OpenStep encoding.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings/nextStepLatin
+	kCFStringEncodingNextStepLatin CFStringBuiltInEncodings = 0
+	// kCFStringEncodingWindowsLatin1 - An encoding constant that identifies the Windows Latin 1 encoding (ANSI codepage 1252).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings/windowsLatin1
+	kCFStringEncodingWindowsLatin1 CFStringBuiltInEncodings = 0
+)
+
+// CFStringCompareFlags - A 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompareFlags
+type CFStringCompareFlags uint
+
+// CFStringEncodings - Index type for constants used to specify external string encodings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringEncodings
+type CFStringEncodings uint
+
+// CFTimeZoneNameStyle - Index type for constants used to specify styles of time zone names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneNameStyle
+type CFTimeZoneNameStyle uint
 
 // CFURLBookmarkCreationOptions - Type for bookmark data creation options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions
 type CFURLBookmarkCreationOptions uint
 
+const (
+	// kCFURLBookmarkCreationMinimalBookmarkMask - Specifies that an alias created with the bookmark data be created with minimal information, which may make it smaller but still able to resolve in certain ways.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions/minimalBookmarkMask
+	kCFURLBookmarkCreationMinimalBookmarkMask CFURLBookmarkCreationOptions = 0
+	// kCFURLBookmarkCreationPreferFileIDResolutionMask - Specifies that an alias created with the bookmark data prefers resolving with its embedded file ID.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions/preferFileIDResolutionMask
+	kCFURLBookmarkCreationPreferFileIDResolutionMask CFURLBookmarkCreationOptions = 0
+	// kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess - When combined with the   option, specifies that you want to create a security-scoped bookmark that, when resolved, provides a security-scoped URL allowing read-only access to a file-system resource; for use in an app that adopts App Sandbox.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions/securityScopeAllowOnlyReadAccess
+	kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess CFURLBookmarkCreationOptions = 0
+	// kCFURLBookmarkCreationSuitableForBookmarkFile - Specifies that the bookmark data include properties required to create Finder alias files.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions/suitableForBookmarkFile
+	kCFURLBookmarkCreationSuitableForBookmarkFile CFURLBookmarkCreationOptions = 0
+	// kCFURLBookmarkCreationWithSecurityScope - Specifies that you want to create a security-scoped bookmark that, when resolved, provides a security-scoped URL allowing read/write access to a file-system resource; for use in an app that adopts App Sandbox.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions/withSecurityScope
+	kCFURLBookmarkCreationWithSecurityScope CFURLBookmarkCreationOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions/withoutImplicitSecurityScope
+	kCFURLBookmarkCreationWithoutImplicitSecurityScope CFURLBookmarkCreationOptions = 0
+)
+
 // CFURLBookmarkResolutionOptions - Type for bookmark data resolution options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkResolutionOptions
 type CFURLBookmarkResolutionOptions uint
+
+const (
+	// kCFURLBookmarkResolutionWithSecurityScope - Specifies that the security scope, applied to the bookmark when it was created, should be used during resolution of the bookmark data.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkResolutionOptions/cfurlBookmarkResolutionWithSecurityScope
+	kCFURLBookmarkResolutionWithSecurityScope CFURLBookmarkResolutionOptions = 0
+)
 
 // CFURLComponentType - The types of components in a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLComponentType
 type CFURLComponentType uint
 
+const (
+	// kCFURLComponentHost - The URL’s host.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLComponentType/host
+	kCFURLComponentHost CFURLComponentType = 0
+	// kCFURLComponentPath - The URL’s path component.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLComponentType/path
+	kCFURLComponentPath CFURLComponentType = 0
+)
+
+// CFURLError enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLError
+type CFURLError uint
+
 // CFURLPathStyle - Options you can use to determine how CFURL functions parse a file system path name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLPathStyle
 type CFURLPathStyle uint
+
+const (
+	// kCFURLHFSPathStyle - Indicates a HFS style path name. Components are colon delimited. A leading colon indicates a relative path, otherwise the first path component denotes the volume.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLPathStyle/cfurlhfsPathStyle
+	kCFURLHFSPathStyle CFURLPathStyle = 0
+)
 
 // CGRectEdge enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CGRectEdge
 type CGRectEdge uint
 
+// LSAcceptanceFlags - The specification that determines whether an app can accept (open) an item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/lsacceptanceflags
+type LSAcceptanceFlags uint
+
+// LSHandlerOptions - The specification that controls the selection of handlers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/lshandleroptions
+type LSHandlerOptions uint
+
+// LSItemInfoFlags - The specification that provides information about an item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/lsiteminfoflags
+type LSItemInfoFlags uint
+
+// LSLaunchFlags - The specification for launching an app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/lslaunchflags
+type LSLaunchFlags uint
+
+// LSRequestedInfo - The specification that controls which information to obtain about an item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/lsrequestedinfo
+type LSRequestedInfo uint
+
+// LSRolesMask - The specification that sets the desired role or roles for an app to claim for an item or a family of items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/coreservices/lsrolesmask
+type LSRolesMask uint
+
+// DirectionalRectEdge - Constants that specify an edge or a set of edges, taking the user interface layout direction into account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSDirectionalRectEdge
+type DirectionalRectEdge uint
+
+// RectAlignment - Constants that specify alignment to an edge or a set of edges depending on the user interface layout direction.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSRectAlignment
+type RectAlignment uint
+
+// TextLayoutManagerSegmentOptions - Values that describe where and how the framework extends segments of a selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextLayoutManager/SegmentOptions
+type TextLayoutManagerSegmentOptions uint
+
+// TextLayoutManagerSegmentType - Values that describe the rendering of selection boundaries.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextLayoutManager/SegmentType
+type TextLayoutManagerSegmentType uint
+
+// TextSelectionNavigationDirection - Values that describe the direction of a selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextSelectionNavigation/Direction
+type TextSelectionNavigationDirection uint
+
+// UIGuidedAccessErrorCode - Error codes for Guided Access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibility/GuidedAccessError/Code
+type UIGuidedAccessErrorCode uint
+
+// UIAccessibilityHearingDeviceEar - Constants that specify how a person is using a hearing device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibility/HearingDeviceEar
+type UIAccessibilityHearingDeviceEar uint
+
+// UIAccessibilityContainerType - Constants that indicate the type of content in a data-based container.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAccessibilityContainerType
+type UIAccessibilityContainerType uint
+
 // UIApplicationCategory - Constants that describe the types of apps in the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/Category
 type UIApplicationCategory uint
+
+const (
+	// UIApplicationCategoryWebBrowser - The app is a web browser.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/Category/webBrowser
+	UIApplicationCategoryWebBrowser UIApplicationCategory = 0
+)
 
 // UIApplicationState - Constants that indicate the running states of an app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/State
 type UIApplicationState uint
 
+const (
+	// UIApplicationStateActive - The app is running in the foreground and currently receiving events.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/State/active
+	UIApplicationStateActive UIApplicationState = 0
+	// UIApplicationStateBackground - The app is running in the background.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/State/background
+	UIApplicationStateBackground UIApplicationState = 0
+	// UIApplicationStateInactive - The app is running in the foreground but isn’t receiving events.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/State/inactive
+	UIApplicationStateInactive UIApplicationState = 0
+)
+
 // UIApplicationCategoryDefaultStatus - The default status of an application for some category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplicationCategoryDefaultStatus
 type UIApplicationCategoryDefaultStatus int
+
+const (
+	// UIApplicationCategoryDefaultStatusIsDefault - The application is the default for the category.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplicationCategoryDefaultStatus/UIApplicationCategoryDefaultStatusIsDefault
+	UIApplicationCategoryDefaultStatusIsDefault UIApplicationCategoryDefaultStatus = 0
+)
+
+// UIAxis - A structure that specifies the layout axes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIAxis
+type UIAxis uint
 
 // UIBackgroundRefreshStatus - Constants that indicate whether background execution is enabled for the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIBackgroundRefreshStatus
 type UIBackgroundRefreshStatus uint
 
+const (
+	// UIBackgroundRefreshStatusAvailable - Background updates are available for the app.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIBackgroundRefreshStatus/available
+	UIBackgroundRefreshStatusAvailable UIBackgroundRefreshStatus = 0
+	// UIBackgroundRefreshStatusRestricted - Background updates are unavailable and the user cannot enable them again.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIBackgroundRefreshStatus/restricted
+	UIBackgroundRefreshStatusRestricted UIBackgroundRefreshStatus = 0
+)
+
+// UIBaselineAdjustment - Vertical adjustment options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIBaselineAdjustment
+type UIBaselineAdjustment uint
+
+// UIColorProminence - A type that indicates the prominence of a color in the interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIColor/Prominence-swift.enum
+type UIColorProminence uint
+
+const (
+	// UIColorProminencePrimary - A color with a primary prominence, the most prominent in the interface.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIColor/Prominence-swift.enum/primary
+	UIColorProminencePrimary UIColorProminence = 0
+	// UIColorProminenceQuaternary - A color with a quaternary prominence, the least prominent in the interface.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIColor/Prominence-swift.enum/quaternary
+	UIColorProminenceQuaternary UIColorProminence = 0
+	// UIColorProminenceSecondary - A color with a secondary prominence.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIColor/Prominence-swift.enum/secondary
+	UIColorProminenceSecondary UIColorProminence = 0
+	// UIColorProminenceTertiary - A color with a tertiary prominence.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIColor/Prominence-swift.enum/tertiary
+	UIColorProminenceTertiary UIColorProminence = 0
+)
+
+// UIControlEvents - Constants describing the types of events possible for controls.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIControl/Event
+type UIControlEvents uint
+
+const (
+	// UIControlEventTouchDown - A touch-down event in the control.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIControl/Event/touchDown
+	UIControlEventTouchDown UIControlEvents = 0
+)
+
+// UIControlState - Constants describing the state of a control.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIControl/State-swift.struct
+type UIControlState uint
+
 // UIDocumentChangeKind - Constants that specify the kind of change to a document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/ChangeKind
 type UIDocumentChangeKind uint
 
+const (
+	// UIDocumentChangeCleared - The document is cleared of outstanding changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/ChangeKind/cleared
+	UIDocumentChangeCleared UIDocumentChangeKind = 0
+	// UIDocumentChangeDone - A change has been made to the document.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/ChangeKind/done
+	UIDocumentChangeDone UIDocumentChangeKind = 0
+	// UIDocumentChangeRedone - An undone change to the document has been redone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/ChangeKind/redone
+	UIDocumentChangeRedone UIDocumentChangeKind = 0
+	// UIDocumentChangeUndone - A change to the document has been undone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/ChangeKind/undone
+	UIDocumentChangeUndone UIDocumentChangeKind = 0
+)
+
 // UIDocumentSaveOperation - Constants that specify the type of save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/SaveOperation
 type UIDocumentSaveOperation uint
+
+const (
+	// UIDocumentSaveForCreating - The document is being saved for the first time.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/SaveOperation/forCreating
+	UIDocumentSaveForCreating UIDocumentSaveOperation = 0
+	// UIDocumentSaveForOverwriting - The document is being saved by overwriting the current version.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/SaveOperation/forOverwriting
+	UIDocumentSaveForOverwriting UIDocumentSaveOperation = 0
+)
 
 // UIDocumentState - Constants that specify the document state.
 //
@@ -1936,10 +2951,22 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/closed
 	UIDocumentStateClosed UIDocumentState = 0
+	// UIDocumentStateEditingDisabled - The document is busy and it isn’t currently safe for user edits.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/editingDisabled
+	UIDocumentStateEditingDisabled UIDocumentState = 0
 	// UIDocumentStateInConflict - Conflicts exist for the document file located at the file URL.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/inConflict
 	UIDocumentStateInConflict UIDocumentState = 0
+	// UIDocumentStateNormal - The document is open, editing is enabled, and there are no conflicts or errors associated with it.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/normal
+	UIDocumentStateNormal UIDocumentState = 0
+	// UIDocumentStateProgressAvailable - The document is being downloaded or uploaded and progress information is available.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/progressAvailable
+	UIDocumentStateProgressAvailable UIDocumentState = 0
 	// UIDocumentStateSavingError - There was an error in saving or reverting the document.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/savingError
@@ -1951,10 +2978,118 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocumentPickerMode
 type UIDocumentPickerMode uint
 
+const (
+	// UIDocumentPickerModeExportToService - The document picker exports a local file to a destination outside the app’s sandbox.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocumentPickerMode/exportToService
+	UIDocumentPickerModeExportToService UIDocumentPickerMode = 0
+	// UIDocumentPickerModeOpen - The document picker opens an external file outside the app’s sandbox.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocumentPickerMode/open
+	UIDocumentPickerModeOpen UIDocumentPickerMode = 0
+)
+
+// UIFontDescriptorSymbolicTraits - Constants that describe the stylistic aspects of a font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct
+type UIFontDescriptorSymbolicTraits uint
+
+const (
+	// UIFontDescriptorTraitExpanded - The font’s characters have an expanded width.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct/traitExpanded
+	UIFontDescriptorTraitExpanded UIFontDescriptorSymbolicTraits = 0
+	// UIFontDescriptorTraitLooseLeading - The font uses a leading value that’s greater than the default.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct/traitLooseLeading
+	UIFontDescriptorTraitLooseLeading UIFontDescriptorSymbolicTraits = 0
+	// UIFontDescriptorTraitMonoSpace - The font’s characters all have the same width.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct/traitMonoSpace
+	UIFontDescriptorTraitMonoSpace UIFontDescriptorSymbolicTraits = 0
+)
+
+// UIGuidedAccessAccessibilityFeature - Constants that describe accessibility features for Guided Access.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIGuidedAccessAccessibilityFeature
+type UIGuidedAccessAccessibilityFeature uint
+
+// UIInterfaceOrientation - Constants that specify the orientation of the app’s user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIInterfaceOrientation
+type UIInterfaceOrientation uint
+
+// UIInterfaceOrientationMask - Constants that specify a view controller’s supported interface orientations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIInterfaceOrientationMask
+type UIInterfaceOrientationMask uint
+
+// UILineBreakMode - Options for wrapping and truncating text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UILineBreakMode
+type UILineBreakMode int
+
+// UISceneCollectionJoinBehavior - A set of behaviors that specify how a new scene joins a scene collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UISceneCollectionJoinBehavior
+type UISceneCollectionJoinBehavior uint
+
+// UISceneErrorCode - Error codes for issues with scenes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UISceneError/Code
+type UISceneErrorCode uint
+
+// UITableViewScrollPosition - The position in the table view (top, middle, bottom) to scroll a specified row to.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITableView/ScrollPosition
+type UITableViewScrollPosition uint
+
+// UITableViewSelfSizingInvalidation - Constants that describe modes for invalidating the size of self-sizing table view cells.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITableView/SelfSizingInvalidation-swift.enum
+type UITableViewSelfSizingInvalidation uint
+
+// UITableViewSeparatorInsetReference - Constants that indicate how to interpret the separator inset value of a table view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITableView/SeparatorInsetReference-swift.enum
+type UITableViewSeparatorInsetReference uint
+
+// UITableViewStyle - Constants for the table view styles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITableView/Style-swift.enum
+type UITableViewStyle uint
+
+// UITableViewCellSeparatorStyle - The style for cells to use as separators.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITableViewCell/SeparatorStyle
+type UITableViewCellSeparatorStyle uint
+
+// UITableViewContentHuggingElements - Constants that determine which types of items in a table view tightly hug their content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITableViewContentHuggingElements
+type UITableViewContentHuggingElements uint
+
+// UITextAlignment - Options for aligning text horizontally.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITextAlignment
+type UITextAlignment int
+
+// UITextItemContentType - Constants that describe and capture the type of content a text item represents along with a specific related value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UITextItemContentType
+type UITextItemContentType int
+
 // UIUserInterfaceLayoutDirection - Constants that specify the directional flow of the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIUserInterfaceLayoutDirection
 type UIUserInterfaceLayoutDirection uint
+
+const (
+	// UIUserInterfaceLayoutDirectionLeftToRight - The layout direction is left to right.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIUserInterfaceLayoutDirection/leftToRight
+	UIUserInterfaceLayoutDirectionLeftToRight UIUserInterfaceLayoutDirection = 0
+)
 
 // TextScalingType - Constants that specify the text scaling.
 //
@@ -1994,14 +3129,14 @@ const (
 type UnderlineStyle uint
 
 const (
+	// UnderlineStyleByWord - Draw the line only beneath or through words, not whitespace.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUnderlineStyle/byWord
+	UnderlineStyleByWord UnderlineStyle = 0
 	// UnderlineStyleNone - Don’t draw a line.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/NSUnderlineStyleNone
 	UnderlineStyleNone UnderlineStyle = 0
-	// UnderlineStyleByWord - Draw the line only beneath or through words, not whitespace.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/byWord
-	UnderlineStyleByWord UnderlineStyle = 0
 	// UnderlineStyleDouble - Draw a double line.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/double
@@ -2032,5 +3167,12 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/NSWritingDirectionFormatType
 type WritingDirectionFormatType uint
+
+const (
+	// WritingDirectionEmbedding - Text is embedded in text with another writing direction. For example, an English quotation in the middle of an Arabic sentence could be marked as being embedded left-to-right text.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirectionFormatType/embedding
+	WritingDirectionEmbedding WritingDirectionFormatType = 0
+)
 
 

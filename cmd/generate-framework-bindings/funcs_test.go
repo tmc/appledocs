@@ -316,6 +316,61 @@ func TestIsPropertyGetter(t *testing.T) {
 	}
 }
 
+func TestMapObjCTypeToGo_ArraySyntax(t *testing.T) {
+	tests := []struct {
+		name      string
+		objcType  string
+		framework string
+		expected  string
+	}{
+		{
+			name:      "NSUInteger array with space",
+			objcType:  "NSUInteger []",
+			framework: "Foundation",
+			expected:  "[]uint",
+		},
+		{
+			name:      "NSUInteger array without space",
+			objcType:  "NSUInteger[]",
+			framework: "Foundation",
+			expected:  "[]uint",
+		},
+		{
+			name:      "const NSUInteger array",
+			objcType:  "const NSUInteger []",
+			framework: "Foundation",
+			expected:  "[]uint",
+		},
+		{
+			name:      "NSInteger array",
+			objcType:  "NSInteger []",
+			framework: "Foundation",
+			expected:  "[]int",
+		},
+		{
+			name:      "CGFloat array",
+			objcType:  "CGFloat []",
+			framework: "CoreGraphics",
+			expected:  "[]float64",
+		},
+		{
+			name:      "non-array type unchanged",
+			objcType:  "NSString *",
+			framework: "Foundation",
+			expected:  "string",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := mapObjCTypeToGo(tt.objcType, tt.framework)
+			if result != tt.expected {
+				t.Errorf("mapObjCTypeToGo(%q, %q) = %q, want %q", tt.objcType, tt.framework, result, tt.expected)
+			}
+		})
+	}
+}
+
 func TestIsPropertySetter(t *testing.T) {
 	tests := []struct {
 		name       string

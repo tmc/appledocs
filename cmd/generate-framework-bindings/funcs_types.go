@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/tmc/appledocs/occ2go"
@@ -58,14 +57,27 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 //	NSButton * -> Button (interface type in parameters)
 //	NSRect -> foundation.Rect
 //	NSWindowStyleMask -> WindowStyleMask
+//	NSUInteger [] -> []uint (array syntax correction)
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" {
-		if strings.Contains(objcType, "NSCharacterSet") || strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "RPBroadcast") || strings.Contains(objcType, "Broadcast") || (framework == "Foundation" && strings.Contains(objcType, "NE")) || strings.Contains(objcType, "CGFloat") || strings.Contains(objcType, "Quality") {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%q framework=%s\n", objcType, framework)
-		}
+	// Handle C-style array syntax: "Type []" or "Type[]" -> "[]Type"
+	// ObjC sometimes uses array syntax like "const NSUInteger[]" which should become "[]uint" in Go
+	if strings.HasSuffix(objcType, "[]") || strings.HasSuffix(objcType, " []") {
+		// Remove the array brackets
+		arrayType := strings.TrimSuffix(strings.TrimSuffix(objcType, "[]"), " []")
+		arrayType = strings.TrimSpace(arrayType)
+		// Remove "const" keyword if present
+		arrayType = strings.TrimPrefix(arrayType, "const ")
+		arrayType = strings.TrimSpace(arrayType)
+		// Recursively map the base type, then prepend []
+		baseGoType := mapObjCTypeToGo(arrayType, framework)
+		return "[]" + baseGoType
 	}
+
+	Debug.TypeMap("mapObjCTypeToGo entry", objcType, framework,
+		"objcType", objcType,
+		"framework", framework)
 
 	// Strip self-package qualifications from Swift documentation
 	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
@@ -127,9 +139,9 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		elementType := occ2go.ExtractGenericElementType(objcType)
 		if elementType != "" {
 			// Successfully extracted NSArray element type
-			if os.Getenv("DEBUG_OBJECT") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG: ExtractGenericElementType: objcType=%q elementType=%q\n", objcType, elementType)
-			}
+			Debug.Object("ExtractGenericElementType", objcType, elementType,
+				"objcType", objcType,
+				"elementType", elementType)
 
 			// Special case: NSString -> string
 			if elementType == "NSString" {
@@ -139,9 +151,8 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			// Special case: NSObject with protocol conformance (e.g., NSObject<SomeProtocol>)
 			// These should map to []objectivec.IObject
 			if strings.HasPrefix(elementType, "NSObject<") {
-				if os.Getenv("DEBUG_OBJECT") == "1" {
-					fmt.Fprintf(os.Stderr, "DEBUG: Matched NSObject< pattern, returning []objectivec.IObject\n")
-				}
+				Debug.Object("NSObject< pattern match", objcType, elementType,
+					"returning", "[]objectivec.IObject")
 				return "[]objectivec.IObject"
 			}
 
@@ -211,18 +222,16 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	// This must come before the block check so that mapped block types (e.g., void (^)(void) -> func())
 	// are handled correctly
 	if goType, found := lookupTypeMapping(objcType, framework); found {
-		if os.Getenv("DEBUG_TYPEMAP") == "1" {
-			if strings.Contains(objcType, "NSObject") || strings.Contains(objcType, "CellAttribute") || strings.Contains(objcType, "Coder") {
-				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: found in registry objcType=%s goType=%s framework=%s\n", objcType, goType, framework)
-			}
-		}
+		Debug.TypeMap("found in registry", objcType, goType,
+			"objcType", objcType,
+			"goType", goType,
+			"framework", framework)
 		return goType
 	}
 
-	// Debug: check if NSObject wasn't found
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "NSObject") {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: NSObject NOT found in registry, objcType=%s framework=%s\n", objcType, framework)
-	}
+	Debug.TypeMap("NOT found in registry", objcType, framework,
+		"objcType", objcType,
+		"framework", framework)
 
 	// Handle Objective-C blocks (e.g., void (^)(NSModalResponse))
 	// Blocks are closures that cannot be easily represented in Go, so map to unsafe.Pointer
@@ -247,48 +256,60 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Check registry again for type without pointer
 	if isPointer && objcTypeNoPtr != objcType {
+		Debug.TypeMap("pointer check", objcType, objcTypeNoPtr,
+			"objcType", objcType,
+			"objcTypeNoPtr", objcTypeNoPtr,
+			"checking", "lookupTypeMapping")
 		if goType, found := lookupTypeMapping(objcTypeNoPtr, framework); found {
+			Debug.TypeMap("pointer-to-enum found", objcType, goType,
+				"objcType", objcType,
+				"objcTypeNoPtr", objcTypeNoPtr,
+				"goType", goType)
 			return goType
 		}
+		Debug.TypeMap("pointer not found", objcType, objcTypeNoPtr,
+			"objcType", objcType,
+			"objcTypeNoPtr", objcTypeNoPtr)
 	}
 
 	// Also try stripping prefix for NON-pointer types (handles docs that omit the *)
 	// This is especially common for return types and property types
 	// IMPORTANT: Do NOT strip prefix for enums - they need to keep their NS prefix
 	if !isPointer && objcType != "" {
-		if strings.Contains(objcType, "Quality") {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: entering NON-POINTER block for %q (isPointer=%v)\n", objcType, isPointer)
-		}
 		strippedType := stripObjCPrefix(objcType)
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && (strings.Contains(objcType, "NSCharacter") || strings.Contains(objcType, "Comparison")) {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo NON-POINTER: objcType=%s strippedType=%s\n", objcType, strippedType)
-		}
+		Debug.TypeMap("non-pointer block", objcType, strippedType,
+			"objcType", objcType,
+			"strippedType", strippedType,
+			"isPointer", isPointer,
+			"framework", framework)
 		if strippedType != objcType {
 			// Check if this is an enum type - enums use stripped names to match the generated type definitions
 			if currentFrameworkEnums[strippedType] {
 				// This is an enum - return the stripped type to match generated enum type names
-				if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Quality") || strings.Contains(objcType, "Comparison")) {
-					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q is an enum, returning stripped %q\n", objcType, strippedType)
-				}
+				Debug.TypeMap("is enum, returning stripped", objcType, strippedType,
+					"objcType", objcType,
+					"strippedType", strippedType)
 				return strippedType
 			}
-			if strings.Contains(objcType, "Quality") {
-				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q NOT in currentFrameworkEnums (size=%d)\n", strippedType, len(currentFrameworkEnums))
-			}
+			Debug.TypeMap("not in currentFrameworkEnums", objcType, strippedType,
+				"strippedType", strippedType,
+				"enumsSize", len(currentFrameworkEnums))
 
 			// Successfully stripped a prefix - check if this is a known type
 			// in the current framework or type registry
 			if mappedGoType, found := lookupTypeMapping(strippedType, framework); found {
-				if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
-					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: lookupTypeMapping found %s -> %s\n", strippedType, mappedGoType)
-				}
+				Debug.TypeMap("lookupTypeMapping found", strippedType, mappedGoType,
+					"strippedType", strippedType,
+					"mappedGoType", mappedGoType,
+					"framework", framework)
 				return mappedGoType
 			}
 			// Let it fall through to use strippedType and then resolve it
 			resolvedType := resolveType(framework, strippedType)
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
-				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: resolveType(%s, %s) -> %s\n", framework, strippedType, resolvedType)
-			}
+			Debug.TypeMap("resolveType called", strippedType, resolvedType,
+				"framework", framework,
+				"strippedType", strippedType,
+				"resolvedType", resolvedType)
 			// If resolveType returned unsafe.Pointer, return the ORIGINAL objcType
 			// so it can be collected as an undefined type with its full name
 			if resolvedType == "unsafe.Pointer" {
@@ -303,26 +324,43 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	goType := ""
 	if isPointer && objcTypeNoPtr != "" {
 		strippedType := stripObjCPrefix(objcTypeNoPtr)
-		// Debug ALL pointer types when framework is Foundation
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo POINTER: objcType=%s objcTypeNoPtr=%s strippedType=%s\n",
-				objcType, objcTypeNoPtr, strippedType)
-		}
+		Debug.TypeMap("pointer stripping", objcType, strippedType,
+			"objcType", objcType,
+			"objcTypeNoPtr", objcTypeNoPtr,
+			"strippedType", strippedType,
+			"framework", framework)
 		if strippedType != objcTypeNoPtr {
 			// Successfully stripped a prefix - this is likely an ObjC class type
 			// Use the stripped type and let resolveType find the right framework
 			goType = strippedType
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
-				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: set goType=%s from %s\n", goType, objcType)
-			}
+			Debug.TypeMap("set goType from stripped", objcType, goType,
+				"goType", goType,
+				"from", objcType)
 		}
 	}
 
 	// Fall back to occ2go mapping if we haven't resolved it yet
 	if goType == "" {
 		goType = occ2go.MapCTypeToGo(objcType, framework)
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Hotspot") || strings.Contains(objcType, "CellAttribute")) {
-			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: after occ2go.MapCTypeToGo goType=%q objcType=%s\n", goType, objcType)
+		Debug.TypeMap("after occ2go.MapCTypeToGo", objcType, goType,
+			"objcType", objcType,
+			"goType", goType)
+
+		// If occ2go.MapCTypeToGo returned a type with NS/CG/CA prefix, strip it
+		// This handles enums that exist but weren't extracted (see bead appledocs-473)
+		// Example: NSEnergyFormatterUnit -> EnergyFormatterUnit
+		strippedGoType := stripObjCPrefix(goType)
+		if strippedGoType != goType && goType != "unsafe.Pointer" {
+			Debug.TypeMap("stripping prefix from fallback", goType, strippedGoType,
+				"from", goType,
+				"to", strippedGoType)
+			goType = strippedGoType
+		} else {
+			Debug.TypeMap("NOT stripping fallback", goType, strippedGoType,
+				"goType", goType,
+				"strippedGoType", strippedGoType,
+				"equal", strippedGoType == goType,
+				"isUnsafe", goType == "unsafe.Pointer")
 		}
 	}
 
@@ -333,9 +371,11 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
 	resolvedType := resolveType(framework, goType)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "NSApplication") || objcType == "NSString *" || goType == "string") {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: objcType=%s framework=%s before resolve goType=%s, after resolve=%s\n", objcType, framework, goType, resolvedType)
-	}
+	Debug.TypeMap("before/after resolve", objcType, resolvedType,
+		"objcType", objcType,
+		"framework", framework,
+		"beforeResolve", goType,
+		"afterResolve", resolvedType)
 	goType = resolvedType
 
 	// Check for framework hierarchy violations - if resolved type references a higher-level framework,
@@ -349,25 +389,30 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			currentLevel := getFrameworkLevel(strings.ToLower(framework))
 			targetLevel := getFrameworkLevel(targetFramework)
 
-			if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "replaykit") {
-				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: checking hierarchy goType=%s framework=%s currentLevel=%d targetFramework=%s targetLevel=%d\n",
-					goType, framework, currentLevel, targetFramework, targetLevel)
-			}
+			Debug.Hierarchy("checking hierarchy", goType, framework,
+				"goType", goType,
+				"framework", framework,
+				"currentLevel", currentLevel,
+				"targetFramework", targetFramework,
+				"targetLevel", targetLevel)
 
 			if currentLevel >= 0 && targetLevel > currentLevel {
 				// Hierarchy violation - map to objectivec.IObject
-				if os.Getenv("DEBUG_TYPEMAP") == "1" {
-					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: hierarchy violation %s (level %d) -> %s (level %d), mapping to objectivec.IObject\n",
-						framework, currentLevel, targetFramework, targetLevel)
-				}
+				Debug.Hierarchy("hierarchy violation", framework, targetFramework,
+					"currentFramework", framework,
+					"currentLevel", currentLevel,
+					"targetFramework", targetFramework,
+					"targetLevel", targetLevel,
+					"mapping", "objectivec.IObject")
 				return "objectivec.IObject"
 			}
 		}
 	}
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "NSApplication") || goType == "appkit.string") {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo EXIT: objcType=%s framework=%s returning=%s\n", objcType, framework, goType)
-	}
+	Debug.TypeMap("exit", objcType, goType,
+		"objcType", objcType,
+		"framework", framework,
+		"returning", goType)
 
 	return goType
 }
@@ -444,9 +489,9 @@ func getFrameworkLevel(framework string) int {
 //	resolveType("AppKit", "MutableAttributedString") -> "foundation.MutableAttributedString" (cross-framework)
 //	resolveType("Foundation", "Array") -> "Array" (same framework)
 func resolveType(framework, typeName string) string {
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (typeName == "string" || strings.Contains(typeName, "string")) {
-		fmt.Fprintf(os.Stderr, "DEBUG resolveType ENTRY: framework=%s typeName=%q\n", framework, typeName)
-	}
+	Debug.TypeMap("resolveType entry", typeName, framework,
+		"framework", framework,
+		"typeName", typeName)
 
 	if typeName == "" {
 		return ""
@@ -474,18 +519,19 @@ func resolveType(framework, typeName string) string {
 		"unsafe.Pointer": true,
 	}
 	if goPrimitives[typeName] {
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && typeName == "string" {
-			fmt.Fprintf(os.Stderr, "DEBUG resolveType: returning primitive 'string' unqualified for framework %s\n", framework)
-		}
+		Debug.TypeMap("returning primitive unqualified", typeName, framework,
+			"typeName", typeName,
+			"framework", framework)
 		return typeName
 	}
 
 	// ALSO check for capital-S String which should map to lowercase string
 	// This happens when NSString typedef resolves to "String" instead of "string"
 	if typeName == "String" {
-		if os.Getenv("DEBUG_TYPEMAP") == "1" {
-			fmt.Fprintf(os.Stderr, "DEBUG resolveType: converting 'String' to 'string' for framework %s\n", framework)
-		}
+		Debug.TypeMap("converting String to string", typeName, "string",
+			"from", "String",
+			"to", "string",
+			"framework", framework)
 		return "string"
 	}
 

@@ -42,9 +42,28 @@ func main() {
 	generateExamples := flag.Bool("generate-examples", false, "Generate example code demonstrating API usage")
 	generateObjcRuntime := flag.Bool("generate-objc-runtime", false, "Generate only the objc runtime package (framework-independent)")
 	verboseFlag := flag.Bool("v", false, "Enable verbose output")
+
+	// Debug and traceability flags
+	debugCategories := flag.String("debug", "", "Enable debug logging for categories (comma-separated, or 'all'). Use --debug-help to see available categories")
+	debugFilter := flag.String("debug-filter", "", "Filter debug output with regex pattern (e.g., 'Coder|Error' or 'typemap:Coder,hierarchy:Broadcast')")
+	debugHelp := flag.Bool("debug-help", false, "Show available debug categories and usage examples")
+	traceOrigin := flag.Bool("trace-origin", false, "Include source traceability comments in generated code")
+
 	flag.Parse()
 
+	// Handle --debug-help
+	if *debugHelp {
+		PrintDebugHelp()
+		os.Exit(0)
+	}
+
+	// Initialize debug logging
+	InitDebug(*debugCategories, *debugFilter)
+
 	verbose = *verboseFlag
+
+	// Store trace-origin flag globally for use in templates
+	_ = *traceOrigin // TODO: Pass to generator
 
 	// Handle objc runtime generation
 	if *generateObjcRuntime {
@@ -300,9 +319,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 						if len(doc.Abstract) > 0 {
 							enum.Abstract = doc.Abstract[0].Text
 						}
-						if os.Getenv("DEBUG_ENUM_CREATE") == "1" && (strings.Contains(enum.Name, "Base64") || strings.Contains(enum.Name, "Compression")) {
-							fmt.Fprintf(os.Stderr, "DEBUG_CREATE: Creating enum %s with %d initial cases\n", enum.Name, len(enum.Cases))
-						}
+						Debug.EnumCreate("creating enum", enum.Name, "",
+							"enumName", enum.Name,
+							"initialCases", len(enum.Cases),
+							"framework", framework)
 						enums = append(enums, enum)
 					}
 				} else if len(parts) >= 4 {
@@ -310,10 +330,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					enumCase, enumCaseErr := occ2go.ParseEnumCase(doc)
 					if enumCaseErr == nil && enumCase != nil {
 						enumName := parts[2]
-						if os.Getenv("DEBUG_ENUM_CASES") == "1" && (strings.Contains(doc.Metadata.ExternalID, "Base64") || strings.Contains(doc.Metadata.ExternalID, "Compression")) {
-							fmt.Fprintf(os.Stderr, "DEBUG_CASES: Adding case %s to enum %s (from externalID: %s)\n",
-								enumCase.Name, enumName, doc.Metadata.ExternalID)
-						}
+						Debug.EnumCases("adding enum case", enumCase.Name, enumName,
+							"caseName", enumCase.Name,
+							"enumName", enumName,
+							"externalID", doc.Metadata.ExternalID,
+							"framework", framework)
 						enumCasesMap[enumName] = append(enumCasesMap[enumName], enumCase)
 					}
 				}
@@ -387,9 +408,10 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			if typedef.Name != "" {
 				strippedName := stripObjCPrefix(typedef.Name)
 				currentFrameworkTypedefs[strippedName] = true
-				if os.Getenv("DEBUG_TYPEMAP") == "1" && (typedef.Name == "NSErrorDomain" || typedef.Name == "NSComparisonResult" || strings.Contains(typedef.Name, "Options")) {
-					fmt.Fprintf(os.Stderr, "DEBUG: Added typedef %s -> %s to currentFrameworkTypedefs\n", typedef.Name, strippedName)
-				}
+				Debug.TypeMap("added typedef", typedef.Name, strippedName,
+					"typedef", typedef.Name,
+					"stripped", strippedName,
+					"framework", framework)
 			}
 		}
 
@@ -408,12 +430,24 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				// Check for methods: c:objc(cs)ClassName(im)methodName or c:objc(cs)ClassName(cm)methodName
 				if strings.Contains(externalID, "(im)") || strings.Contains(externalID, "(cm)") {
 					method, err := occ2go.ParseMethod(doc)
+					// Debug: log broadcast-related parsing
+					Debug.Hierarchy("ParseMethod result", externalID, "",
+						"externalID", externalID,
+						"error", err,
+						"hasMethod", method != nil,
+						"framework", framework)
 					if err == nil && method != nil {
 						// Extract class name from external ID
 						// Format: c:objc(cs)NSButton(im)initWithFrame:
 						parts := strings.Split(externalID, "(")
 						if len(parts) >= 2 {
 							className := strings.TrimPrefix(parts[1], "cs)")
+
+							// Debug: log ALL NSExtensionContext methods
+							Debug.Hierarchy("found method", className, method.Selector,
+								"className", className,
+								"selector", method.Selector,
+								"framework", framework)
 
 							// Initialize selector tracking for this class if needed
 							if classSeenSelectors[className] == nil {
@@ -468,15 +502,20 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			skippedPropertyCount := 0
 			for i := range classes {
 				if methods, ok := classMethodsMap[classes[i].Name]; ok {
-					// Debug: log methods for NSExtensionContext
-					if classes[i].Name == "NSExtensionContext" && os.Getenv("DEBUG_HIERARCHY") == "1" {
-						for _, m := range methods {
-							if strings.Contains(m.Name, "Broadcast") {
-								fmt.Fprintf(os.Stderr, "DEBUG main: NSExtensionContext method %s has %d params\n", m.Name, len(m.Parameters))
-								for j, p := range m.Parameters {
-									fmt.Fprintf(os.Stderr, "DEBUG main:   param[%d] name=%s type=%s\n", j, p.Name, p.Type)
-								}
-							}
+					// Debug: log methods for classes
+					for _, m := range methods {
+						Debug.Hierarchy("class method", classes[i].Name, m.Name,
+							"className", classes[i].Name,
+							"methodName", m.Name,
+							"paramCount", len(m.Parameters),
+							"framework", framework)
+						for j, p := range m.Parameters {
+							Debug.Hierarchy("method parameter", m.Name, p.Name,
+								"methodName", m.Name,
+								"paramIndex", j,
+								"paramName", p.Name,
+								"paramType", p.Type,
+								"framework", framework)
 						}
 					}
 					// Relax parameters that violate hierarchy (map to objectivec.IObject)
@@ -518,11 +557,15 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					enums[i].Cases = enumCases
 					caseCount += len(cases)
 
-					if os.Getenv("DEBUG_ENUM_ATTACH") == "1" && (strings.Contains(enums[i].Name, "Base64") || strings.Contains(enums[i].Name, "Compression")) {
-						fmt.Fprintf(os.Stderr, "DEBUG_ATTACH: Attaching %d cases to enum %s\n", len(cases), enums[i].Name)
-						for _, c := range cases {
-							fmt.Fprintf(os.Stderr, "DEBUG_ATTACH:   - %s\n", c.Name)
-						}
+					Debug.EnumAttach("attaching cases to enum", enums[i].Name, "",
+						"enumName", enums[i].Name,
+						"caseCount", len(cases),
+						"framework", framework)
+					for _, c := range cases {
+						Debug.EnumAttach("enum case", enums[i].Name, c.Name,
+							"enumName", enums[i].Name,
+							"caseName", c.Name,
+							"framework", framework)
 					}
 				}
 			}
