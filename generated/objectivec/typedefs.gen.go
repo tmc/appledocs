@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for ObjectiveC. DO NOT EDIT.
 
 package objectivec
+import (
+	"unsafe"
+)
 
 // Type aliases and typedefs
 // Category - An opaque type that represents a category.
@@ -11,8 +14,9 @@ type Category uintptr
 // IMP - A pointer to the start of a method implementation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/IMP
-// IMP has base type: void (*)(void)
-type IMP uintptr
+// IMP is a callback function
+// C type: void (*)(void)
+type IMP = func()
 // Ivar - An opaque type that represents an instance variable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/Ivar
@@ -31,38 +35,45 @@ type Integer uintptr
 // objc_exception_handler type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_handler
-// objc_exception_handler has base type: void (*)(id, void *)
-type objc_exception_handler uintptr
+// objc_exception_handler is a callback function
+// C type: void (*)(id, void *)
+type objc_exception_handler = func(id, unsafe.Pointer)
 // objc_exception_matcher type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_matcher
-// objc_exception_matcher has base type: int (*)(Class, id)
-type objc_exception_matcher uintptr
+// objc_exception_matcher is a callback function
+// C type: int (*)(Class, id)
+type objc_exception_matcher = func(Class, id) int32
 // objc_exception_preprocessor type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_preprocessor
-// objc_exception_preprocessor has base type: id (*)(id)
-type objc_exception_preprocessor uintptr
+// objc_exception_preprocessor is a callback function
+// C type: id (*)(id)
+type objc_exception_preprocessor = func(id) id
 // objc_func_loadImage type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_func_loadImage
-// objc_func_loadImage has base type: void (*)(const struct mach_header *)
-type objc_func_loadImage uintptr
+// objc_func_loadImage is a callback function
+// C type: void (*)(const struct mach_header *)
+type objc_func_loadImage = func(unsafe.Pointer)
 // objc_hook_getClass type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_hook_getClass
-// objc_hook_getClass has base type: _Bool (*)(const char *, Class *)
-type objc_hook_getClass uintptr
+// objc_hook_getClass is a callback function
+// C type: _Bool (*)(const char *, Class *)
+type objc_hook_getClass = func(string, unsafe.Pointer) _Bool
 // objc_hook_getImageName type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_hook_getImageName
-// objc_hook_getImageName has base type: _Bool (*)(Class, const char **)
-type objc_hook_getImageName uintptr
+// objc_hook_getImageName is a callback function
+// C type: _Bool (*)(Class, const char **)
+type objc_hook_getImageName = func(Class, unsafe.Pointer) _Bool
 // objc_hook_lazyClassNamer type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_hook_lazyClassNamer
-// objc_hook_lazyClassNamer has base type: const char *(*)(Class)
-type objc_hook_lazyClassNamer uintptr
+// objc_hook_lazyClassNamer is a callback function
+// C type: const char *(*)(Class)
+type objc_hook_lazyClassNamer = func(Class) string
 // objc_objectptr_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_objectptr_t
@@ -76,8 +87,9 @@ type objc_property_t uintptr
 // objc_uncaught_exception_handler type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_uncaught_exception_handler
-// objc_uncaught_exception_handler has base type: void (*)(id)
-type objc_uncaught_exception_handler uintptr
+// objc_uncaught_exception_handler is a callback function
+// C type: void (*)(id)
+type objc_uncaught_exception_handler = func(id)
 // objc_zone_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_zone_t

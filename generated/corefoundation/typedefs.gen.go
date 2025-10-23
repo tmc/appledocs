@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for CoreFoundation. DO NOT EDIT.
 
 package corefoundation
+import (
+	"unsafe"
+)
 
 // Type aliases and typedefs
 // AbsoluteTime - Type used to represent a specific point in time relative to the absolute reference date of 1 Jan 2001 00:00:00 GMT.
@@ -16,38 +19,45 @@ type AllocatorRef uintptr
 // AllocatorAllocateCallBack - A prototype for a function callback that allocates memory of a requested size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorAllocateCallBack
-// CFAllocatorAllocateCallBack has base type: void *(*)(long, unsigned long, void *)
-type AllocatorAllocateCallBack uintptr
+// CFAllocatorAllocateCallBack is a callback function
+// C type: void *(*)(long, unsigned long, void *)
+type AllocatorAllocateCallBack = func(int, uint, unsafe.Pointer) unsafe.Pointer
 // AllocatorCopyDescriptionCallBack - A prototype for a function callback that provides a description of the specified data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorCopyDescriptionCallBack
-// CFAllocatorCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type AllocatorCopyDescriptionCallBack uintptr
+// CFAllocatorCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type AllocatorCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // AllocatorDeallocateCallBack - A prototype for a function callback that deallocates a block of memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorDeallocateCallBack
-// CFAllocatorDeallocateCallBack has base type: void (*)(void *, void *)
-type AllocatorDeallocateCallBack uintptr
+// CFAllocatorDeallocateCallBack is a callback function
+// C type: void (*)(void *, void *)
+type AllocatorDeallocateCallBack = func(unsafe.Pointer, unsafe.Pointer)
 // AllocatorPreferredSizeCallBack - A prototype for a function callback that gives the size of memory likely to be allocated, given a certain request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorPreferredSizeCallBack
-// CFAllocatorPreferredSizeCallBack has base type: long (*)(long, unsigned long, void *)
-type AllocatorPreferredSizeCallBack uintptr
+// CFAllocatorPreferredSizeCallBack is a callback function
+// C type: long (*)(long, unsigned long, void *)
+type AllocatorPreferredSizeCallBack = func(int, uint, unsafe.Pointer) int
 // AllocatorReallocateCallBack - A prototype for a function callback that reallocates memory of a requested size for an existing block of memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReallocateCallBack
-// CFAllocatorReallocateCallBack has base type: void *(*)(void *, long, unsigned long, void *)
-type AllocatorReallocateCallBack uintptr
+// CFAllocatorReallocateCallBack is a callback function
+// C type: void *(*)(void *, long, unsigned long, void *)
+type AllocatorReallocateCallBack = func(unsafe.Pointer, int, uint, unsafe.Pointer) unsafe.Pointer
 // AllocatorReleaseCallBack - A prototype for a function callback that releases the given data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorReleaseCallBack
-// CFAllocatorReleaseCallBack has base type: void (*)(const void *)
-type AllocatorReleaseCallBack uintptr
+// CFAllocatorReleaseCallBack is a callback function
+// C type: void (*)(const void *)
+type AllocatorReleaseCallBack = func(unsafe.Pointer)
 // AllocatorRetainCallBack - A prototype for a function callback that retains the given data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorRetainCallBack
-// CFAllocatorRetainCallBack has base type: const void *(*)(const void *)
-type AllocatorRetainCallBack uintptr
+// CFAllocatorRetainCallBack is a callback function
+// C type: const void *(*)(const void *)
+type AllocatorRetainCallBack = func(unsafe.Pointer) unsafe.Pointer
 // AllocatorTypeID type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAllocatorTypeID
@@ -61,28 +71,33 @@ type ArrayRef uintptr
 // ArrayApplierFunction - Prototype of a callback function that may be applied to every value in an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayApplierFunction
-// CFArrayApplierFunction has base type: void (*)(const void *, void *)
-type ArrayApplierFunction uintptr
+// CFArrayApplierFunction is a callback function
+// C type: void (*)(const void *, void *)
+type ArrayApplierFunction = func(unsafe.Pointer, unsafe.Pointer)
 // ArrayCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value in an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayCopyDescriptionCallBack
-// CFArrayCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type ArrayCopyDescriptionCallBack uintptr
+// CFArrayCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type ArrayCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // ArrayEqualCallBack - Prototype of a callback function used to determine if two values in an array are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayEqualCallBack
-// CFArrayEqualCallBack has base type: unsigned char (*)(const void *, const void *)
-type ArrayEqualCallBack uintptr
+// CFArrayEqualCallBack is a callback function
+// C type: unsigned char (*)(const void *, const void *)
+type ArrayEqualCallBack = func(unsafe.Pointer, unsafe.Pointer) uint8
 // ArrayReleaseCallBack - Prototype of a callback function used to release a value before it’s removed from an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayReleaseCallBack
-// CFArrayReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
-type ArrayReleaseCallBack uintptr
+// CFArrayReleaseCallBack is a callback function
+// C type: void (*)(const struct __CFAllocator *, const void *)
+type ArrayReleaseCallBack = func(AllocatorRef, unsafe.Pointer)
 // ArrayRetainCallBack - Prototype of a callback function used to retain a value being added to an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFArrayRetainCallBack
-// CFArrayRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
-type ArrayRetainCallBack uintptr
+// CFArrayRetainCallBack is a callback function
+// C type: const void *(*)(const struct __CFAllocator *, const void *)
+type ArrayRetainCallBack = func(AllocatorRef, unsafe.Pointer) unsafe.Pointer
 // AttributedStringRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedString
@@ -96,33 +111,39 @@ type BagRef uintptr
 // BagApplierFunction - Prototype of a callback function that may be applied to every value in a bag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagApplierFunction
-// CFBagApplierFunction has base type: void (*)(const void *, void *)
-type BagApplierFunction uintptr
+// CFBagApplierFunction is a callback function
+// C type: void (*)(const void *, void *)
+type BagApplierFunction = func(unsafe.Pointer, unsafe.Pointer)
 // BagCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value in a bag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagCopyDescriptionCallBack
-// CFBagCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type BagCopyDescriptionCallBack uintptr
+// CFBagCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type BagCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // BagEqualCallBack - Prototype of a callback function used to determine if two values in a bag are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagEqualCallBack
-// CFBagEqualCallBack has base type: unsigned char (*)(const void *, const void *)
-type BagEqualCallBack uintptr
+// CFBagEqualCallBack is a callback function
+// C type: unsigned char (*)(const void *, const void *)
+type BagEqualCallBack = func(unsafe.Pointer, unsafe.Pointer) uint8
 // BagHashCallBack - Prototype of a callback function invoked to compute a hash code for a value. Hash codes are used when values are accessed, added, or removed from a collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagHashCallBack
-// CFBagHashCallBack has base type: unsigned long (*)(const void *)
-type BagHashCallBack uintptr
+// CFBagHashCallBack is a callback function
+// C type: unsigned long (*)(const void *)
+type BagHashCallBack = func(unsafe.Pointer) uint
 // BagReleaseCallBack - Prototype of a callback function used to release a value before it’s removed from a bag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagReleaseCallBack
-// CFBagReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
-type BagReleaseCallBack uintptr
+// CFBagReleaseCallBack is a callback function
+// C type: void (*)(const struct __CFAllocator *, const void *)
+type BagReleaseCallBack = func(AllocatorRef, unsafe.Pointer)
 // BagRetainCallBack - Prototype of a callback function used to retain a value being added to a bag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBagRetainCallBack
-// CFBagRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
-type BagRetainCallBack uintptr
+// CFBagRetainCallBack is a callback function
+// C type: const void *(*)(const struct __CFAllocator *, const void *)
+type BagRetainCallBack = func(AllocatorRef, unsafe.Pointer) unsafe.Pointer
 // BinaryHeapRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeap
@@ -131,8 +152,9 @@ type BinaryHeapRef uintptr
 // BinaryHeapApplierFunction - Callback function used to apply a function to all members of a binary heap.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBinaryHeapApplierFunction
-// CFBinaryHeapApplierFunction has base type: void (*)(const void *, void *)
-type BinaryHeapApplierFunction uintptr
+// CFBinaryHeapApplierFunction is a callback function
+// C type: void (*)(const void *, void *)
+type BinaryHeapApplierFunction = func(unsafe.Pointer, unsafe.Pointer)
 // Bit - A binary value of either   or  .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFBit
@@ -180,8 +202,9 @@ type CharacterSetRef uintptr
 // ComparatorFunction - Callback function that compares two values. You provide a pointer to this callback in certain Core Foundation sorting functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFComparatorFunction
-// CFComparatorFunction has base type: enum CFComparisonResult (*)(const void *, const void *, void *)
-type ComparatorFunction uintptr
+// CFComparatorFunction is a callback function
+// C type: enum CFComparisonResult (*)(const void *, const void *, void *)
+type ComparatorFunction = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ComparisonResult
 // DataRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFData
@@ -210,33 +233,39 @@ type DictionaryRef uintptr
 // DictionaryApplierFunction - Prototype of a callback function that may be applied to every key-value pair in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryApplierFunction
-// CFDictionaryApplierFunction has base type: void (*)(const void *, const void *, void *)
-type DictionaryApplierFunction uintptr
+// CFDictionaryApplierFunction is a callback function
+// C type: void (*)(const void *, const void *, void *)
+type DictionaryApplierFunction = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 // DictionaryCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value or key in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryCopyDescriptionCallBack
-// CFDictionaryCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type DictionaryCopyDescriptionCallBack uintptr
+// CFDictionaryCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type DictionaryCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // DictionaryEqualCallBack - Prototype of a callback function used to determine if two values or keys in a dictionary are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryEqualCallBack
-// CFDictionaryEqualCallBack has base type: unsigned char (*)(const void *, const void *)
-type DictionaryEqualCallBack uintptr
+// CFDictionaryEqualCallBack is a callback function
+// C type: unsigned char (*)(const void *, const void *)
+type DictionaryEqualCallBack = func(unsafe.Pointer, unsafe.Pointer) uint8
 // DictionaryHashCallBack - Prototype of a callback function invoked to compute a hash code for a key. Hash codes are used when key-value pairs are accessed, added, or removed from a collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryHashCallBack
-// CFDictionaryHashCallBack has base type: unsigned long (*)(const void *)
-type DictionaryHashCallBack uintptr
+// CFDictionaryHashCallBack is a callback function
+// C type: unsigned long (*)(const void *)
+type DictionaryHashCallBack = func(unsafe.Pointer) uint
 // DictionaryReleaseCallBack - Prototype of a callback function used to release a key-value pair before it’s removed from a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryReleaseCallBack
-// CFDictionaryReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
-type DictionaryReleaseCallBack uintptr
+// CFDictionaryReleaseCallBack is a callback function
+// C type: void (*)(const struct __CFAllocator *, const void *)
+type DictionaryReleaseCallBack = func(AllocatorRef, unsafe.Pointer)
 // DictionaryRetainCallBack - Prototype of a callback function used to retain a value or key being added to a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDictionaryRetainCallBack
-// CFDictionaryRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
-type DictionaryRetainCallBack uintptr
+// CFDictionaryRetainCallBack is a callback function
+// C type: const void *(*)(const struct __CFAllocator *, const void *)
+type DictionaryRetainCallBack = func(AllocatorRef, unsafe.Pointer) unsafe.Pointer
 // ErrorRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFError
@@ -255,8 +284,9 @@ type FileDescriptorRef uintptr
 // FileDescriptorCallBack - Defines a structure for a callback for a CFFileDescriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorCallBack
-// CFFileDescriptorCallBack has base type: void (*)(struct __CFFileDescriptor *, unsigned long, void *)
-type FileDescriptorCallBack uintptr
+// CFFileDescriptorCallBack is a callback function
+// C type: void (*)(struct __CFFileDescriptor *, unsigned long, void *)
+type FileDescriptorCallBack = func(FileDescriptorRef, uint, unsafe.Pointer)
 // FileDescriptorNativeDescriptor - Defines a type for the native file descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileDescriptorNativeDescriptor
@@ -274,8 +304,7 @@ type HashCode uintptr
 // Index - Priority values used for kAXPriorityKey
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFIndex
-// CFIndex has base type: long
-type Index uintptr
+type Index int64
 // LocaleRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocale
@@ -299,13 +328,15 @@ type MachPortRef uintptr
 // MachPortCallBack - Callback invoked to process a message received on a CFMachPort object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortCallBack
-// CFMachPortCallBack has base type: void (*)(struct __CFMachPort *, void *, long, void *)
-type MachPortCallBack uintptr
+// CFMachPortCallBack is a callback function
+// C type: void (*)(struct __CFMachPort *, void *, long, void *)
+type MachPortCallBack = func(MachPortRef, unsafe.Pointer, int, unsafe.Pointer)
 // MachPortInvalidationCallBack - Callback invoked when a CFMachPort object is invalidated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMachPortInvalidationCallBack
-// CFMachPortInvalidationCallBack has base type: void (*)(struct __CFMachPort *, void *)
-type MachPortInvalidationCallBack uintptr
+// CFMachPortInvalidationCallBack is a callback function
+// C type: void (*)(struct __CFMachPort *, void *)
+type MachPortInvalidationCallBack = func(MachPortRef, unsafe.Pointer)
 // MessagePortRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePort
@@ -314,13 +345,15 @@ type MessagePortRef uintptr
 // MessagePortCallBack - Callback invoked to process a message received on a CFMessagePort object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortCallBack
-// CFMessagePortCallBack has base type: const struct __CFData *(*)(struct __CFMessagePort *, int, const struct __CFData *, void *)
-type MessagePortCallBack uintptr
+// CFMessagePortCallBack is a callback function
+// C type: const struct __CFData *(*)(struct __CFMessagePort *, int, const struct __CFData *, void *)
+type MessagePortCallBack = func(MessagePortRef, int32, DataRef, unsafe.Pointer) DataRef
 // MessagePortInvalidationCallBack - Callback invoked when a CFMessagePort object is invalidated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMessagePortInvalidationCallBack
-// CFMessagePortInvalidationCallBack has base type: void (*)(struct __CFMessagePort *, void *)
-type MessagePortInvalidationCallBack uintptr
+// CFMessagePortInvalidationCallBack is a callback function
+// C type: void (*)(struct __CFMessagePort *, void *)
+type MessagePortInvalidationCallBack = func(MessagePortRef, unsafe.Pointer)
 // MutableArrayRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFMutableArray
@@ -369,8 +402,9 @@ type MutableStringRef uintptr
 // NotificationCallback - Callback function invoked for each observer of a notification when the notification is posted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCallback
-// CFNotificationCallback has base type: void (*)(struct __CFNotificationCenter *, void *, const struct __CFString *, const void *, const struct __CFDictionary *)
-type NotificationCallback uintptr
+// CFNotificationCallback is a callback function
+// C type: void (*)(struct __CFNotificationCenter *, void *, const struct __CFString *, const void *, const struct __CFDictionary *)
+type NotificationCallback = func(NotificationCenterRef, unsafe.Pointer, StringRef, unsafe.Pointer, DictionaryRef)
 // NotificationCenterRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationCenter
@@ -414,13 +448,15 @@ type PlugInRef uintptr
 // PlugInDynamicRegisterFunction - A callback which provides a plug-in the opportunity to dynamically register its types with a host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInDynamicRegisterFunction
-// CFPlugInDynamicRegisterFunction has base type: void (*)(struct __CFBundle *)
-type PlugInDynamicRegisterFunction uintptr
+// CFPlugInDynamicRegisterFunction is a callback function
+// C type: void (*)(struct __CFBundle *)
+type PlugInDynamicRegisterFunction = func(BundleRef)
 // PlugInFactoryFunction - Callback function that a plug-in author must implement to create a plug-in instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInFactoryFunction
-// CFPlugInFactoryFunction has base type: void *(*)(const struct __CFAllocator *, const struct __CFUUID *)
-type PlugInFactoryFunction uintptr
+// CFPlugInFactoryFunction is a callback function
+// C type: void *(*)(const struct __CFAllocator *, const struct __CFUUID *)
+type PlugInFactoryFunction = func(AllocatorRef, UUIDRef) unsafe.Pointer
 // PlugInInstanceRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstance
@@ -429,18 +465,21 @@ type PlugInInstanceRef uintptr
 // PlugInInstanceDeallocateInstanceDataFunction - Not recommended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceDeallocateInstanceDataFunction
-// CFPlugInInstanceDeallocateInstanceDataFunction has base type: void (*)(void *)
-type PlugInInstanceDeallocateInstanceDataFunction uintptr
+// CFPlugInInstanceDeallocateInstanceDataFunction is a callback function
+// C type: void (*)(void *)
+type PlugInInstanceDeallocateInstanceDataFunction = func(unsafe.Pointer)
 // PlugInInstanceGetInterfaceFunction - Not recommended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInInstanceGetInterfaceFunction
-// CFPlugInInstanceGetInterfaceFunction has base type: unsigned char (*)(struct __CFPlugInInstance *, const struct __CFString *, void **)
-type PlugInInstanceGetInterfaceFunction uintptr
+// CFPlugInInstanceGetInterfaceFunction is a callback function
+// C type: unsigned char (*)(struct __CFPlugInInstance *, const struct __CFString *, void **)
+type PlugInInstanceGetInterfaceFunction = func(PlugInInstanceRef, StringRef, unsafe.Pointer) uint8
 // PlugInUnloadFunction - Callback function that is called, if present, just before a plug-in’s code is unloaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPlugInUnloadFunction
-// CFPlugInUnloadFunction has base type: void (*)(struct __CFBundle *)
-type PlugInUnloadFunction uintptr
+// CFPlugInUnloadFunction is a callback function
+// C type: void (*)(struct __CFBundle *)
+type PlugInUnloadFunction = func(BundleRef)
 // PropertyListRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyList
@@ -454,8 +493,9 @@ type ReadStreamRef uintptr
 // ReadStreamClientCallBack - Callback invoked when certain types of activity takes place on a readable stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFReadStreamClientCallBack
-// CFReadStreamClientCallBack has base type: void (*)(struct __CFReadStream *, enum CFStreamEventType, void *)
-type ReadStreamClientCallBack uintptr
+// CFReadStreamClientCallBack is a callback function
+// C type: void (*)(struct __CFReadStream *, enum CFStreamEventType, void *)
+type ReadStreamClientCallBack = func(ReadStreamRef, StreamEventType, unsafe.Pointer)
 // RunLoopRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoop
@@ -474,8 +514,9 @@ type RunLoopObserverRef uintptr
 // RunLoopObserverCallBack - Callback invoked when a CFRunLoopObserver object is fired.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopObserverCallBack
-// CFRunLoopObserverCallBack has base type: void (*)(struct __CFRunLoopObserver *, enum CFRunLoopActivity, void *)
-type RunLoopObserverCallBack uintptr
+// CFRunLoopObserverCallBack is a callback function
+// C type: void (*)(struct __CFRunLoopObserver *, enum CFRunLoopActivity, void *)
+type RunLoopObserverCallBack = func(RunLoopObserverRef, RunLoopActivity, unsafe.Pointer)
 // RunLoopSourceRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopSource
@@ -489,8 +530,9 @@ type RunLoopTimerRef uintptr
 // RunLoopTimerCallBack - Callback invoked when a CFRunLoopTimer object fires.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopTimerCallBack
-// CFRunLoopTimerCallBack has base type: void (*)(struct __CFRunLoopTimer *, void *)
-type RunLoopTimerCallBack uintptr
+// CFRunLoopTimerCallBack is a callback function
+// C type: void (*)(struct __CFRunLoopTimer *, void *)
+type RunLoopTimerCallBack = func(RunLoopTimerRef, unsafe.Pointer)
 // SetRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSet
@@ -499,33 +541,39 @@ type SetRef uintptr
 // SetApplierFunction - Prototype of a callback function that may be applied to every value in a set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetApplierFunction
-// CFSetApplierFunction has base type: void (*)(const void *, void *)
-type SetApplierFunction uintptr
+// CFSetApplierFunction is a callback function
+// C type: void (*)(const void *, void *)
+type SetApplierFunction = func(unsafe.Pointer, unsafe.Pointer)
 // SetCopyDescriptionCallBack - Prototype of a callback function used to get a description of a value in a set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetCopyDescriptionCallBack
-// CFSetCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type SetCopyDescriptionCallBack uintptr
+// CFSetCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type SetCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // SetEqualCallBack - Prototype of a callback function used to determine if two values in a set are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetEqualCallBack
-// CFSetEqualCallBack has base type: unsigned char (*)(const void *, const void *)
-type SetEqualCallBack uintptr
+// CFSetEqualCallBack is a callback function
+// C type: unsigned char (*)(const void *, const void *)
+type SetEqualCallBack = func(unsafe.Pointer, unsafe.Pointer) uint8
 // SetHashCallBack - Prototype of a callback function called to compute a hash code for a value. Hash codes are used when values are accessed, added, or removed from a collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetHashCallBack
-// CFSetHashCallBack has base type: unsigned long (*)(const void *)
-type SetHashCallBack uintptr
+// CFSetHashCallBack is a callback function
+// C type: unsigned long (*)(const void *)
+type SetHashCallBack = func(unsafe.Pointer) uint
 // SetReleaseCallBack - Prototype of a callback function used to release a value before it’s removed from a set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetReleaseCallBack
-// CFSetReleaseCallBack has base type: void (*)(const struct __CFAllocator *, const void *)
-type SetReleaseCallBack uintptr
+// CFSetReleaseCallBack is a callback function
+// C type: void (*)(const struct __CFAllocator *, const void *)
+type SetReleaseCallBack = func(AllocatorRef, unsafe.Pointer)
 // SetRetainCallBack - Prototype of a callback function used to retain a value being added to a set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSetRetainCallBack
-// CFSetRetainCallBack has base type: const void *(*)(const struct __CFAllocator *, const void *)
-type SetRetainCallBack uintptr
+// CFSetRetainCallBack is a callback function
+// C type: const void *(*)(const struct __CFAllocator *, const void *)
+type SetRetainCallBack = func(AllocatorRef, unsafe.Pointer) unsafe.Pointer
 // SocketRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocket
@@ -534,8 +582,9 @@ type SocketRef uintptr
 // SocketCallBack - Callback invoked when certain types of activity takes place on a CFSocket object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCallBack
-// CFSocketCallBack has base type: void (*)(struct __CFSocket *, enum CFSocketCallBackType, const struct __CFData *, const void *, void *)
-type SocketCallBack uintptr
+// CFSocketCallBack is a callback function
+// C type: void (*)(struct __CFSocket *, enum CFSocketCallBackType, const struct __CFData *, const void *, void *)
+type SocketCallBack = func(SocketRef, SocketCallBackType, DataRef, unsafe.Pointer, unsafe.Pointer)
 // SocketNativeHandle - Type for the platform-specific native socket handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketNativeHandle
@@ -578,23 +627,27 @@ type TreeRef uintptr
 // TreeApplierFunction - Type of the callback function used by the CFTree apply function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeApplierFunction
-// CFTreeApplierFunction has base type: void (*)(const void *, void *)
-type TreeApplierFunction uintptr
+// CFTreeApplierFunction is a callback function
+// C type: void (*)(const void *, void *)
+type TreeApplierFunction = func(unsafe.Pointer, unsafe.Pointer)
 // TreeCopyDescriptionCallBack - Callback function used to provide a description of the program-defined information pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeCopyDescriptionCallBack
-// CFTreeCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type TreeCopyDescriptionCallBack uintptr
+// CFTreeCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type TreeCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // TreeReleaseCallBack - Callback function used to release a previously retained program-defined information pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeReleaseCallBack
-// CFTreeReleaseCallBack has base type: void (*)(const void *)
-type TreeReleaseCallBack uintptr
+// CFTreeReleaseCallBack is a callback function
+// C type: void (*)(const void *)
+type TreeReleaseCallBack = func(unsafe.Pointer)
 // TreeRetainCallBack - Callback function used to retain a program-defined information pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTreeRetainCallBack
-// CFTreeRetainCallBack has base type: const void *(*)(const void *)
-type TreeRetainCallBack uintptr
+// CFTreeRetainCallBack is a callback function
+// C type: const void *(*)(const void *)
+type TreeRetainCallBack = func(unsafe.Pointer) unsafe.Pointer
 // TypeID - A type for unique, constant integer values that identify particular Core Foundation opaque types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTypeID
@@ -633,8 +686,9 @@ type UserNotificationRef uintptr
 // UserNotificationCallBack - Callback invoked when an asynchronous user notification dialog is dismissed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFUserNotificationCallBack
-// CFUserNotificationCallBack has base type: void (*)(struct __CFUserNotification *, unsigned long)
-type UserNotificationCallBack uintptr
+// CFUserNotificationCallBack is a callback function
+// C type: void (*)(struct __CFUserNotification *, unsigned long)
+type UserNotificationCallBack = func(UserNotificationRef, uint)
 // WriteStreamRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStream
@@ -643,8 +697,9 @@ type WriteStreamRef uintptr
 // WriteStreamClientCallBack - Callback invoked when certain types of activity takes place on a writable stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStreamClientCallBack
-// CFWriteStreamClientCallBack has base type: void (*)(struct __CFWriteStream *, enum CFStreamEventType, void *)
-type WriteStreamClientCallBack uintptr
+// CFWriteStreamClientCallBack is a callback function
+// C type: void (*)(struct __CFWriteStream *, enum CFStreamEventType, void *)
+type WriteStreamClientCallBack = func(WriteStreamRef, StreamEventType, unsafe.Pointer)
 // XMLNodeRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNode
@@ -658,43 +713,51 @@ type XMLParserRef uintptr
 // XMLParserAddChildCallBack - Callback function invoked by the parser to notify your application of parent/child relationships between XML structures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserAddChildCallBack
-// CFXMLParserAddChildCallBack has base type: void (*)(struct __CFXMLParser *, void *, void *, void *)
-type XMLParserAddChildCallBack uintptr
+// CFXMLParserAddChildCallBack is a callback function
+// C type: void (*)(struct __CFXMLParser *, void *, void *, void *)
+type XMLParserAddChildCallBack = func(XMLParserRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 // XMLParserCopyDescriptionCallBack - Callback function invoked by the parser when handling the information pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCopyDescriptionCallBack
-// CFXMLParserCopyDescriptionCallBack has base type: const struct __CFString *(*)(const void *)
-type XMLParserCopyDescriptionCallBack uintptr
+// CFXMLParserCopyDescriptionCallBack is a callback function
+// C type: const struct __CFString *(*)(const void *)
+type XMLParserCopyDescriptionCallBack = func(unsafe.Pointer) StringRef
 // XMLParserCreateXMLStructureCallBack - Callback function invoked when the parser encounters an XML open tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserCreateXMLStructureCallBack
-// CFXMLParserCreateXMLStructureCallBack has base type: void *(*)(struct __CFXMLParser *, const struct __CFXMLNode *, void *)
-type XMLParserCreateXMLStructureCallBack uintptr
+// CFXMLParserCreateXMLStructureCallBack is a callback function
+// C type: void *(*)(struct __CFXMLParser *, const struct __CFXMLNode *, void *)
+type XMLParserCreateXMLStructureCallBack = func(XMLParserRef, XMLNodeRef, unsafe.Pointer) unsafe.Pointer
 // XMLParserEndXMLStructureCallBack - Callback function invoked by the parser to notify your application that an XML structure (and all its children) have been completely parsed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserEndXMLStructureCallBack
-// CFXMLParserEndXMLStructureCallBack has base type: void (*)(struct __CFXMLParser *, void *, void *)
-type XMLParserEndXMLStructureCallBack uintptr
+// CFXMLParserEndXMLStructureCallBack is a callback function
+// C type: void (*)(struct __CFXMLParser *, void *, void *)
+type XMLParserEndXMLStructureCallBack = func(XMLParserRef, unsafe.Pointer, unsafe.Pointer)
 // XMLParserHandleErrorCallBack - Callback function invoked by the parser to notify your application that an error has occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserHandleErrorCallBack
-// CFXMLParserHandleErrorCallBack has base type: unsigned char (*)(struct __CFXMLParser *, enum CFXMLParserStatusCode, void *)
-type XMLParserHandleErrorCallBack uintptr
+// CFXMLParserHandleErrorCallBack is a callback function
+// C type: unsigned char (*)(struct __CFXMLParser *, enum CFXMLParserStatusCode, void *)
+type XMLParserHandleErrorCallBack = func(XMLParserRef, XMLParserStatusCode, unsafe.Pointer) uint8
 // XMLParserReleaseCallBack - Callback function invoked by the parser when it wants to release a reference to the information pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserReleaseCallBack
-// CFXMLParserReleaseCallBack has base type: void (*)(const void *)
-type XMLParserReleaseCallBack uintptr
+// CFXMLParserReleaseCallBack is a callback function
+// C type: void (*)(const void *)
+type XMLParserReleaseCallBack = func(unsafe.Pointer)
 // XMLParserResolveExternalEntityCallBack - Callback function invoked by the parser to notify your application that an external entity has been referenced.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserResolveExternalEntityCallBack
-// CFXMLParserResolveExternalEntityCallBack has base type: const struct __CFData *(*)(struct __CFXMLParser *, CFXMLExternalID *, void *)
-type XMLParserResolveExternalEntityCallBack uintptr
+// CFXMLParserResolveExternalEntityCallBack is a callback function
+// C type: const struct __CFData *(*)(struct __CFXMLParser *, CFXMLExternalID *, void *)
+type XMLParserResolveExternalEntityCallBack = func(XMLParserRef, unsafe.Pointer, unsafe.Pointer) DataRef
 // XMLParserRetainCallBack - Callback function invoked by the parser when it needs another reference to the information pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserRetainCallBack
-// CFXMLParserRetainCallBack has base type: const void *(*)(const void *)
-type XMLParserRetainCallBack uintptr
+// CFXMLParserRetainCallBack is a callback function
+// C type: const void *(*)(const void *)
+type XMLParserRetainCallBack = func(unsafe.Pointer) unsafe.Pointer
 // XMLTreeRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLTree
