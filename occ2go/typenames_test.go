@@ -12,6 +12,8 @@ func TestStripTypeQualifiers(t *testing.T) {
 		{"NSString *", "NSString *"},
 		{"[]__kindof AVCaptureControl", "[]AVCaptureControl"},
 		{"__kindof NSView", "NSView"},
+		{"struct CGRect", "CGRect"},
+		{"struct CGScreenUpdateMoveDelta", "CGScreenUpdateMoveDelta"},
 		{"", ""},
 	}
 

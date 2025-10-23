@@ -5,11 +5,12 @@ import "strings"
 // typenames.go contains utilities for parsing and normalizing Objective-C type names.
 // These functions handle the syntactic aspects of ObjC types without framework-specific knowledge.
 
-// StripTypeQualifiers removes Objective-C type qualifiers like __kindof, const, etc.
+// StripTypeQualifiers removes Objective-C/C type qualifiers like __kindof, const, struct, etc.
 // Examples:
 //
 //	__kindof NSView * -> NSView *
 //	const char * -> char *
+//	struct CGRect -> CGRect
 func StripTypeQualifiers(typeName string) string {
 	typeName = strings.TrimSpace(typeName)
 
@@ -18,6 +19,9 @@ func StripTypeQualifiers(typeName string) string {
 
 	// Remove const qualifier
 	typeName = strings.TrimPrefix(typeName, "const ")
+
+	// Remove struct keyword (C structs in function parameters)
+	typeName = strings.TrimPrefix(typeName, "struct ")
 
 	// Handle in array types
 	if strings.HasPrefix(typeName, "[]__kindof ") {
