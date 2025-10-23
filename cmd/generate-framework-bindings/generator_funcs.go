@@ -104,20 +104,40 @@ func (gf GeneratorFuncs) shouldSkipTypedef(typedef *occ2go.ParsedTypedef) bool {
 		return true
 	}
 
-	// Skip Foundation types that are defined in types.gen.go template
-	// These have proper struct/alias definitions rather than generic uintptr typedefs
-	if gf.Framework == "Foundation" {
-		typesDefinedInTemplate := map[string]bool{
-			"TimeInterval": true, // float64 alias
-			"Point":        true, // struct with X, Y
-			"Size":         true, // struct with Width, Height
-			"Rect":         true, // struct with Origin, Size
-			"Range":        true, // struct with Location, Length
-			"RectEdge":     true, // enum type
-		}
-		if typesDefinedInTemplate[strippedName] {
-			return true
-		}
+	// Skip types that would conflict with hardcoded types in types.gen.go template
+	// Check both the stripped name and common type patterns
+	if gf.isTypeInTypesTemplate(strippedName) {
+		return true
+	}
+
+	return false
+}
+
+// isTypeInTypesTemplate checks if a type name is defined in the types.gen.go template.
+// This avoids hardcoding a list by using pattern matching and framework-specific rules.
+func (gf GeneratorFuncs) isTypeInTypesTemplate(typeName string) bool {
+	// Common geometry types used across frameworks
+	geometryTypes := map[string]bool{
+		"Point":  true, // NSPoint/CGPoint
+		"Size":   true, // NSSize/CGSize
+		"Rect":   true, // NSRect/CGRect
+		"Range":  true, // NSRange
+		"Vector": true, // CGVector/NSVector
+	}
+
+	// TimeInterval is defined for Foundation and ObjectiveC
+	if (gf.Framework == "Foundation" || gf.Framework == "ObjectiveC") && typeName == "TimeInterval" {
+		return true
+	}
+
+	// Geometry types are defined in types.gen.go for several frameworks
+	if geometryTypes[typeName] {
+		return true
+	}
+
+	// RectEdge is a special enum defined inline in types.gen.go for Foundation
+	if gf.Framework == "Foundation" && typeName == "RectEdge" {
+		return true
 	}
 
 	return false
