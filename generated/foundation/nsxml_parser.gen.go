@@ -40,6 +40,8 @@ type IXMLParser interface {
 	SetExternalEntityResolvingPolicy(value unsafe.Pointer)
 	LineNumber() int
 	SetLineNumber(value int)
+	ParserError() Error
+	SetParserError(value IError)
 	PublicID() string
 	SetPublicID(value string)
 	ShouldProcessNamespaces() bool
@@ -202,6 +204,25 @@ func (x_ XMLParser) LineNumber() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/linenumber
 func (x_ XMLParser) SetLineNumber(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setLineNumber:"), value)
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
+func (x_ XMLParser) ParserError() Error {
+	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
+	return rv
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
+func (x_ XMLParser) SetParserError(value IError) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setParserError:"), value)
 }
 
 

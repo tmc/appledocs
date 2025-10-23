@@ -37,6 +37,8 @@ type ICoder interface {
 	SetAllowedClasses(value unsafe.Pointer)
 	AllowsKeyedCoding() bool
 	SetAllowsKeyedCoding(value bool)
+	Error() Error
+	SetError(value IError)
 	RequiresSecureCoding() bool
 	SetRequiresSecureCoding(value bool)
 	SystemVersion() unsafe.Pointer
@@ -171,6 +173,25 @@ func (c_ Coder) AllowsKeyedCoding() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowskeyedcoding
 func (c_ Coder) SetAllowsKeyedCoding(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsKeyedCoding:"), value)
+}
+
+
+// An error in the top-level encode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
+func (c_ Coder) Error() Error {
+	rv := objc.Send[Error](c_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// An error in the top-level encode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/error
+func (c_ Coder) SetError(value IError) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setError:"), value)
 }
 
 

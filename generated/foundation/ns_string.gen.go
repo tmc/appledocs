@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,7 +32,7 @@ type _StringClass struct {
 type IString interface {
 	objectivec.IObject
 	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) String
-	StringByAddingPercentEscapesUsingEncoding(enc corefoundation.StringEncoding) String
+	StringByAddingPercentEscapesUsingEncoding(enc unsafe.Pointer) String
 	StringByAppendingString(aString string) String
 	StringByAppendingPathComponent(str string) String
 	StringByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) String
@@ -43,9 +42,9 @@ type IString interface {
 	BoundingRectWithSizeOptionsAttributes(size Size, options NSStringDrawingOptions, attributes IDictionary) Rect
 	BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options NSStringDrawingOptions, attributes IDictionary, context objectivec.IObject) coregraphics.CGRect
 	CString() unsafe.Pointer
-	CStringUsingEncoding(encoding corefoundation.StringEncoding) unsafe.Pointer
+	CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer
 	CStringLength() uint
-	CanBeConvertedToEncoding(encoding corefoundation.StringEncoding) bool
+	CanBeConvertedToEncoding(encoding unsafe.Pointer) bool
 	CapitalizedStringWithLocale(locale ILocale) String
 	CaseInsensitiveCompare(string_ string) ComparisonResult
 	CharacterAtIndex(index uint) unichar
@@ -58,8 +57,8 @@ type IString interface {
 	ComponentsSeparatedByString(separator string) []string
 	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string
 	ContainsString(str string) bool
-	DataUsingEncoding(encoding corefoundation.StringEncoding) Data
-	DataUsingEncodingAllowLossyConversion(encoding corefoundation.StringEncoding, lossy bool) Data
+	DataUsingEncoding(encoding unsafe.Pointer) Data
+	DataUsingEncodingAllowLossyConversion(encoding unsafe.Pointer, lossy bool) Data
 	DrawAtPointWithAttributes(point coregraphics.CGPoint, attrs IDictionary)
 	DrawInRectWithAttributes(rect coregraphics.CGRect, attrs IDictionary)
 	DrawWithRectOptionsAttributes(rect Rect, options NSStringDrawingOptions, attributes IDictionary)
@@ -75,10 +74,10 @@ type IString interface {
 	EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ Range, scheme unsafe.Pointer, options NSLinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer)
 	EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range, opts NSStringEnumerationOptions, block unsafe.Pointer)
 	StringByFoldingWithOptionsLocale(options NSStringCompareOptions, locale ILocale) String
-	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding corefoundation.StringEncoding, options NSStringEncodingConversionOptions, range_ Range, leftover unsafe.Pointer) bool
+	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options NSStringEncodingConversionOptions, range_ Range, leftover unsafe.Pointer) bool
 	GetCString(bytes unsafe.Pointer)
 	GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint)
-	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding corefoundation.StringEncoding) bool
+	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding unsafe.Pointer) bool
 	GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange Range, leftoverRange unsafe.Pointer)
 	GetCharacters(buffer unichar)
 	GetCharactersRange(buffer unichar, range_ Range)
@@ -88,7 +87,7 @@ type IString interface {
 	HasPrefix(str string) bool
 	HasSuffix(str string) bool
 	IsEqualToString(aString string) bool
-	LengthOfBytesUsingEncoding(enc corefoundation.StringEncoding) uint
+	LengthOfBytesUsingEncoding(enc unsafe.Pointer) uint
 	LineRangeForRange(range_ Range) Range
 	LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ Range, scheme unsafe.Pointer, options NSLinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string
 	LocalizedCaseInsensitiveCompare(string_ string) ComparisonResult
@@ -99,7 +98,7 @@ type IString interface {
 	LocalizedStandardRangeOfString(str string) Range
 	LossyCString() unsafe.Pointer
 	LowercaseStringWithLocale(locale ILocale) String
-	MaximumLengthOfBytesUsingEncoding(enc corefoundation.StringEncoding) uint
+	MaximumLengthOfBytesUsingEncoding(enc unsafe.Pointer) uint
 	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString string, padIndex uint) String
 	ParagraphRangeForRange(range_ Range) Range
 	PropertyList() objc.ID
@@ -116,7 +115,7 @@ type IString interface {
 	StringByReplacingCharactersInRangeWithString(range_ Range, replacement string) String
 	StringByReplacingOccurrencesOfStringWithString(target string, replacement string) String
 	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options NSStringCompareOptions, searchRange Range) String
-	StringByReplacingPercentEscapesUsingEncoding(enc corefoundation.StringEncoding) String
+	StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer) String
 	SizeWithAttributes(attrs IDictionary) coregraphics.CGSize
 	SizeWithFont(font objectivec.IObject) coregraphics.CGSize
 	SizeWithFontConstrainedToSize(font objectivec.IObject, size coregraphics.CGSize) coregraphics.CGSize
@@ -133,9 +132,9 @@ type IString interface {
 	UppercaseStringWithLocale(locale ILocale) String
 	VariantFittingPresentationWidth(width int) String
 	WriteToURLAtomically(url IURL, atomically bool) bool
-	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc corefoundation.StringEncoding, error_ IError) bool
+	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool
 	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
-	WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc corefoundation.StringEncoding, error_ IError) bool
+	WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool
 	StringByAbbreviatingWithTildeInPath() string
 	BoolValue() bool
 	CapitalizedString() string
@@ -146,7 +145,7 @@ type IString interface {
 	Description() string
 	DoubleValue() float64
 	StringByExpandingTildeInPath() string
-	FastestEncoding() corefoundation.StringEncoding
+	FastestEncoding() unsafe.Pointer
 	FileSystemRepresentation() unsafe.Pointer
 	FloatValue() float32
 	Hash() uint
@@ -166,7 +165,7 @@ type IString interface {
 	PrecomposedStringWithCompatibilityMapping() string
 	StringByRemovingPercentEncoding() string
 	StringByResolvingSymlinksInPath() string
-	SmallestEncoding() corefoundation.StringEncoding
+	SmallestEncoding() unsafe.Pointer
 	StringByStandardizingPath() string
 	UppercaseString() string
 	UTF8String() unsafe.Pointer
@@ -259,7 +258,7 @@ func NewString() String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
-func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding corefoundation.StringEncoding) String {
+func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len_, encoding)
 	rv.Autorelease()
@@ -269,7 +268,7 @@ func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
-func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len_ uint, encoding corefoundation.StringEncoding, deallocator unsafe.Pointer) String {
+func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len_ uint, encoding unsafe.Pointer, deallocator unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len_, encoding, deallocator)
 	rv.Autorelease()
@@ -281,7 +280,7 @@ func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
-func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len_ uint, encoding corefoundation.StringEncoding, freeBuffer bool) String {
+func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len_ uint, encoding unsafe.Pointer, freeBuffer bool) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len_, encoding, freeBuffer)
 	rv.Autorelease()
@@ -305,7 +304,7 @@ func NewStringWithCString(bytes unsafe.Pointer) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:encoding:)-20f9h
-func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding corefoundation.StringEncoding) String {
+func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:encoding:"), nullTerminatedCString, encoding)
 	rv.Autorelease()
@@ -397,7 +396,7 @@ func NewStringWithContentsOfFile(path string) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:encoding:)
-func NewStringWithContentsOfFileEncodingError(path string, enc corefoundation.StringEncoding, error_ IError) String {
+func NewStringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), objc.String(path), enc, error_)
 	rv.Autorelease()
@@ -409,7 +408,7 @@ func NewStringWithContentsOfFileEncodingError(path string, enc corefoundation.St
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
-func NewStringWithContentsOfFileUsedEncodingError(path string, enc corefoundation.StringEncoding, error_ IError) String {
+func NewStringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), objc.String(path), enc, error_)
 	rv.Autorelease()
@@ -433,7 +432,7 @@ func NewStringWithContentsOfURL(url IURL) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-715fw
-func NewStringWithContentsOfURLEncodingError(url IURL, enc corefoundation.StringEncoding, error_ IError) String {
+func NewStringWithContentsOfURLEncodingError(url IURL, enc unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:encoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -445,7 +444,7 @@ func NewStringWithContentsOfURLEncodingError(url IURL, enc corefoundation.String
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-2c72d
-func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc corefoundation.StringEncoding, error_ IError) String {
+func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -457,7 +456,7 @@ func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc corefoundation.St
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(data:encoding:)
-func NewStringWithDataEncoding(data IData, encoding corefoundation.StringEncoding) String {
+func NewStringWithDataEncoding(data IData, encoding unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithData:encoding:"), data, encoding)
 	rv.Autorelease()
@@ -606,7 +605,7 @@ func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTableArgument
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:encoding:)-7auq8
-func (sc _StringClass) StringWithCStringEncoding(cString unsafe.Pointer, enc corefoundation.StringEncoding) unsafe.Pointer {
+func (sc _StringClass) StringWithCStringEncoding(cString unsafe.Pointer, enc unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithCString:encoding:"), cString, enc)
 	return rv
 }
@@ -626,7 +625,7 @@ func (sc _StringClass) StringWithUTF8String(nullTerminatedCString unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-x6cv
-func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc corefoundation.StringEncoding, error_ IError) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc unsafe.Pointer, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:encoding:error:"), url, enc, error_)
 	return rv
 }
@@ -636,7 +635,7 @@ func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc corefo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-9jrum
-func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc corefoundation.StringEncoding, error_ IError) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc unsafe.Pointer, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	return rv
 }
@@ -646,7 +645,7 @@ func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedName(of:)
-func (sc _StringClass) LocalizedNameOfStringEncoding(encoding corefoundation.StringEncoding) String {
+func (sc _StringClass) LocalizedNameOfStringEncoding(encoding unsafe.Pointer) String {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("localizedNameOfStringEncoding:"), encoding)
 	return rv
 }
@@ -744,8 +743,8 @@ func (sc _StringClass) StringWithContentsOfFile(path string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringEncoding(for:encodingOptions:convertedString:usedLossyConversion:)
-func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary, string_ string, usedLossyConversion unsafe.Pointer) corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, objc.String(string_), usedLossyConversion)
+func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary, string_ string, usedLossyConversion unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, objc.String(string_), usedLossyConversion)
 	return rv
 }
 
@@ -764,7 +763,7 @@ func (sc _StringClass) StringWithCharactersLength(characters unichar, length uin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:encoding:error:
-func (sc _StringClass) StringWithContentsOfFileEncodingError(path string, enc corefoundation.StringEncoding, error_ IError) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfFileEncodingError(path string, enc unsafe.Pointer, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), objc.String(path), enc, error_)
 	return rv
 }
@@ -774,7 +773,7 @@ func (sc _StringClass) StringWithContentsOfFileEncodingError(path string, enc co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:usedEncoding:error:
-func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path string, enc corefoundation.StringEncoding, error_ IError) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path string, enc unsafe.Pointer, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), objc.String(path), enc, error_)
 	return rv
 }
@@ -812,8 +811,8 @@ func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(forma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/availableStringEncodings
-func (sc _StringClass) AvailableStringEncodings() corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](objc.ID(sc.class), objc.Sel("availableStringEncodings"))
+func (sc _StringClass) AvailableStringEncodings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("availableStringEncodings"))
 	return rv
 }
 
@@ -821,8 +820,8 @@ func (sc _StringClass) AvailableStringEncodings() corefoundation.StringEncoding 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/defaultCStringEncoding
-func (sc _StringClass) DefaultCStringEncoding() corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](objc.ID(sc.class), objc.Sel("defaultCStringEncoding"))
+func (sc _StringClass) DefaultCStringEncoding() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultCStringEncoding"))
 	return rv
 }
 
@@ -840,7 +839,7 @@ func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedChara
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/addingPercentEscapes(using:)
-func (s_ String) StringByAddingPercentEscapesUsingEncoding(enc corefoundation.StringEncoding) String {
+func (s_ String) StringByAddingPercentEscapesUsingEncoding(enc unsafe.Pointer) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAddingPercentEscapesUsingEncoding:"), enc)
 	return rv
 }
@@ -936,7 +935,7 @@ func (s_ String) CString() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/cString(using:)
-func (s_ String) CStringUsingEncoding(encoding corefoundation.StringEncoding) unsafe.Pointer {
+func (s_ String) CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cStringUsingEncoding:"), encoding)
 	return rv
 }
@@ -956,7 +955,7 @@ func (s_ String) CStringLength() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/canBeConverted(to:)
-func (s_ String) CanBeConvertedToEncoding(encoding corefoundation.StringEncoding) bool {
+func (s_ String) CanBeConvertedToEncoding(encoding unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canBeConvertedToEncoding:"), encoding)
 	return rv
 }
@@ -1086,7 +1085,7 @@ func (s_ String) ContainsString(str string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/data(using:)
-func (s_ String) DataUsingEncoding(encoding corefoundation.StringEncoding) Data {
+func (s_ String) DataUsingEncoding(encoding unsafe.Pointer) Data {
 	rv := objc.Send[Data](s_.ID, objc.Sel("dataUsingEncoding:"), encoding)
 	return rv
 }
@@ -1096,7 +1095,7 @@ func (s_ String) DataUsingEncoding(encoding corefoundation.StringEncoding) Data 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/data(using:allowLossyConversion:)
-func (s_ String) DataUsingEncodingAllowLossyConversion(encoding corefoundation.StringEncoding, lossy bool) Data {
+func (s_ String) DataUsingEncodingAllowLossyConversion(encoding unsafe.Pointer, lossy bool) Data {
 	rv := objc.Send[Data](s_.ID, objc.Sel("dataUsingEncoding:allowLossyConversion:"), encoding, lossy)
 	return rv
 }
@@ -1249,7 +1248,7 @@ func (s_ String) StringByFoldingWithOptionsLocale(options NSStringCompareOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)
-func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding corefoundation.StringEncoding, options NSStringEncodingConversionOptions, range_ Range, leftover unsafe.Pointer) bool {
+func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options NSStringEncodingConversionOptions, range_ Range, leftover unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
 }
@@ -1277,7 +1276,7 @@ func (s_ String) GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCString(_:maxLength:encoding:)
-func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding corefoundation.StringEncoding) bool {
+func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getCString:maxLength:encoding:"), buffer, maxBufferCount, encoding)
 	return rv
 }
@@ -1372,7 +1371,7 @@ func (s_ String) IsEqualToString(aString string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lengthOfBytes(using:)
-func (s_ String) LengthOfBytesUsingEncoding(enc corefoundation.StringEncoding) uint {
+func (s_ String) LengthOfBytesUsingEncoding(enc unsafe.Pointer) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("lengthOfBytesUsingEncoding:"), enc)
 	return rv
 }
@@ -1482,7 +1481,7 @@ func (s_ String) LowercaseStringWithLocale(locale ILocale) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/maximumLengthOfBytes(using:)
-func (s_ String) MaximumLengthOfBytesUsingEncoding(enc corefoundation.StringEncoding) uint {
+func (s_ String) MaximumLengthOfBytesUsingEncoding(enc unsafe.Pointer) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("maximumLengthOfBytesUsingEncoding:"), enc)
 	return rv
 }
@@ -1652,7 +1651,7 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(targ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingPercentEscapes(using:)
-func (s_ String) StringByReplacingPercentEscapesUsingEncoding(enc corefoundation.StringEncoding) String {
+func (s_ String) StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer) String {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingPercentEscapesUsingEncoding:"), enc)
 	return rv
 }
@@ -1820,7 +1819,7 @@ func (s_ String) WriteToURLAtomically(url IURL, atomically bool) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:encoding:)
-func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc corefoundation.StringEncoding, error_ IError) bool {
+func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -1840,7 +1839,7 @@ func (s_ String) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:encoding:)
-func (s_ String) WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc corefoundation.StringEncoding, error_ IError) bool {
+func (s_ String) WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), objc.String(path), useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -1860,8 +1859,8 @@ func (s_ String) StringByAbbreviatingWithTildeInPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/availableStringEncodings
-func (s_ String) AvailableStringEncodings() corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](s_.ID, objc.Sel("availableStringEncodings"))
+func (s_ String) AvailableStringEncodings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("availableStringEncodings"))
 	return rv
 }
 
@@ -1910,8 +1909,8 @@ func (s_ String) DecomposedStringWithCompatibilityMapping() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/defaultCStringEncoding
-func (s_ String) DefaultCStringEncoding() corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](s_.ID, objc.Sel("defaultCStringEncoding"))
+func (s_ String) DefaultCStringEncoding() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("defaultCStringEncoding"))
 	return rv
 }
 
@@ -1968,8 +1967,8 @@ func (s_ String) StringByExpandingTildeInPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/fastestEncoding
-func (s_ String) FastestEncoding() corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](s_.ID, objc.Sel("fastestEncoding"))
+func (s_ String) FastestEncoding() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("fastestEncoding"))
 	return rv
 }
 
@@ -2168,8 +2167,8 @@ func (s_ String) StringByResolvingSymlinksInPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/smallestEncoding
-func (s_ String) SmallestEncoding() corefoundation.StringEncoding {
-	rv := objc.Send[corefoundation.StringEncoding](s_.ID, objc.Sel("smallestEncoding"))
+func (s_ String) SmallestEncoding() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("smallestEncoding"))
 	return rv
 }
 

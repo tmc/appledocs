@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,7 @@ type _StreamClass struct {
 type IStream interface {
 	objectivec.IObject
 	StreamError() NSError
-	StreamStatus() corefoundation.StreamStatus
+	StreamStatus() unsafe.Pointer
 	NSStreamSOCKSErrorDomain() string
 	NSStreamSocketSSLErrorDomain() string
 	Delegate() unsafe.Pointer
@@ -122,8 +121,8 @@ func (s_ Stream) StreamError() NSError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamStatus
-func (s_ Stream) StreamStatus() corefoundation.StreamStatus {
-	rv := objc.Send[corefoundation.StreamStatus](s_.ID, objc.Sel("streamStatus"))
+func (s_ Stream) StreamStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _URLAuthenticationChallengeClass struct {
 // An interface definition for the [URLAuthenticationChallenge] class.
 type IURLAuthenticationChallenge interface {
 	objectivec.IObject
+	Error() Error
+	SetError(value IError)
 	FailureResponse() NSURLResponse
 	SetFailureResponse(value IURLResponse)
 	PreviousFailureCount() int
@@ -93,6 +95,25 @@ func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
 	return getURLAuthenticationChallengeClass().New()
 }
 
+
+
+// The error object representing the last authentication failure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+func (u_ URLAuthenticationChallenge) Error() Error {
+	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// The error object representing the last authentication failure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+func (u_ URLAuthenticationChallenge) SetError(value IError) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
+}
 
 
 // The URL response object representing the last authentication failure.

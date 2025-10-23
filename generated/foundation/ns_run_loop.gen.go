@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,7 +36,7 @@ type IRunLoop interface {
 	AddPortForMode(aPort IPort, mode RunLoopMode)
 	CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject)
 	CancelPerformSelectorsWithTarget(target objectivec.IObject)
-	GetCFRunLoop() corefoundation.RunLoopRef
+	GetCFRunLoop() unsafe.Pointer
 	LimitDateForMode(mode RunLoopMode) Date
 	PerformBlock(block unsafe.Pointer)
 	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string)
@@ -178,8 +177,8 @@ func (r_ RunLoop) CancelPerformSelectorsWithTarget(target objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
-func (r_ RunLoop) GetCFRunLoop() corefoundation.RunLoopRef {
-	rv := objc.Send[corefoundation.RunLoopRef](r_.ID, objc.Sel("getCFRunLoop"))
+func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("getCFRunLoop"))
 	return rv
 }
 
